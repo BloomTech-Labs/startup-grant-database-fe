@@ -2,7 +2,17 @@
 import axios from "axios";
 
 // Objects
-import { FETCH_START, FETCH_SUCCESS, FETCH_ERROR } from "./types";
+import {
+  FETCH_START,
+  FETCH_SUCCESS,
+  FETCH_ERROR,
+  LOGIN_START,
+  LOGIN_SUCCESS,
+  LOGIN_ERROR,
+  CREATE_START,
+  CREATE_SUCCESS,
+  CREATE_ERROR
+} from "./types";
 
 export const fetchApi = () => dispatch => {
   dispatch({ type: FETCH_START });
@@ -22,7 +32,7 @@ export const createAccount = creds => dispatch => {
   console.log("createAccount creds", creds);
   dispatch({ type: CREATE_START });
   return axios
-    .post("https://lifegpa-zach-christy.herokuapp.com/api/register", creds)
+    .post("https://api-here.com/", creds)
     .then(response => {
       console.log("createAccount response", response);
       // localStorage.setItem("token", response.data.payload);
@@ -37,7 +47,7 @@ export const createAccount = creds => dispatch => {
 export const login = creds => dispatch => {
   dispatch({ type: LOGIN_START });
   return axios
-    .post("https://lifegpa-zach-christy.herokuapp.com/api/login", creds)
+    .post("https://api-here.com/", creds)
     .then(response => {
       console.log("login response", response);
       localStorage.setItem("token", response.data.token);
