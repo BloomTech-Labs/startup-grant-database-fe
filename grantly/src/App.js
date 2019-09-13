@@ -1,10 +1,17 @@
+// Dependencies
 import React from "react";
-import "./App.css";
+
+// Objects
+import GrantList from "./components/grants/GrantList";
+
+// Stylings
+import "../App.css";
 
 function App() {
   return (
     <div className="App">
-      <div>App incoming!</div>
+      <div>Welcome to Grantly</div>
+      <GrantList />
     </div>
   );
 }
