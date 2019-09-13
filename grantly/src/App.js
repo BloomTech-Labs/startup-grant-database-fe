@@ -2,10 +2,10 @@
 import React from "react";
 
 // Objects
-import GrantList from "./components/grants/GrantList";
+import GrantList from "./components/GrantList";
 
 // Stylings
-import "../App.css";
+import "./App.css";
 
 function App() {
   return (
