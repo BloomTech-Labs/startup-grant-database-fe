@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import { login } from "../actions";
+import { createAccount } from "../actions";
 
-const Login = props => {
+const CreateAccount = props => {
   const [credentials, setCredentials] = useState({
     username: "",
-    password: ""
+    password: "",
+    fullname: "",
+    email: ""
   });
 
   const handleChanges = event => {
@@ -16,35 +18,40 @@ const Login = props => {
     });
   };
 
-  const login = event => {
-    console.log("login event", event);
+  const createAccount = event => {
+    console.log("create account event", event);
     event.preventDefault();
-    props.login(credentials).then(() => {
-      props.history.push("/top9");
-    });
+    props.createAccount(credentials);
     setCredentials({
       username: "",
-      password: ""
+      password: "",
+      fullname: ""
     });
   };
 
   return (
-    <div>
-      <div>Welcome to Grantly!!</div>
-      <div className="create-account-header">CREATE ACCOUNT</div>
-      <button
-        onClick={() => {
-          props.history.push("/create");
-        }}
-      >
-        Create Account
-      </button>
-      <form onSubmit={login}>
+    <div className="create-account">
+      <h1>Get Grantly</h1>
+      <form onSubmit={createAccount}>
         <input
           type="text"
           name="username"
           placeholder="username"
           value={credentials.username}
+          onChange={handleChanges}
+        />
+        <input
+          type="text"
+          name="fullname"
+          placeholder="fullname"
+          value={credentials.fullname}
+          onChange={handleChanges}
+        />
+        <input
+          type="email"
+          name="email"
+          placeholder="email"
+          value={credentials.email}
           onChange={handleChanges}
         />
         <input
@@ -54,7 +61,7 @@ const Login = props => {
           value={credentials.password}
           onChange={handleChanges}
         />
-        <button>Login</button>
+        <button>Create Account</button>
       </form>
     </div>
   );
@@ -67,5 +74,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { login }
-)(Login);
+  { createAccount }
+)(CreateAccount);
