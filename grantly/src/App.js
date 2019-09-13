@@ -13,7 +13,7 @@ function App() {
   return (
     <div className="App">
       <div>Welcome to Grantly</div>
-      <NavBar />
+      {/* <NavBar /> */}
       <GrantList />
     </div>
   );
