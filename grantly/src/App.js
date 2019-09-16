@@ -2,7 +2,7 @@
 import React from "react";
 
 // Objects
-import GrantList from "./components/GrantList";
+import GrantList from "./components/grants/GrantList";
 
 // Stylings
 import "./App.css";
