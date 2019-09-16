@@ -10,7 +10,7 @@ import NavBar from "./components/Navbar";
 // Stylings
 import "./App.css";
 import Filters from "./components/Filters";
-import Home from "./components/Home";
+import Home from "./views/Home";
 
 function App() {
   return (
@@ -19,8 +19,8 @@ function App() {
         <div>Welcome to Grantly</div>
         <Route path="/" component={NavBar} />
         <Route path="/grants" component={GrantList} />
-        {/* <NavBar />
-      <GrantList /> */}
+        <Route path="/" component={Home} />
+
       </div>
     </Router>
   );
