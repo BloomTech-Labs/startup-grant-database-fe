@@ -1,6 +1,6 @@
 import React from "react";
-import GrantList from "./grants/GrantList";
-import Filters from "./Filters";
+import GrantList from "../components/grants/GrantList";
+import Filters from "../components/Filters";
 
 const Home = () => {
   return (
