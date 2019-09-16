@@ -17,7 +17,7 @@ import {
 export const fetchApi = () => dispatch => {
   dispatch({ type: FETCH_START });
   axios
-    .get(`https://api-here.com/`)
+    .get(`https://labs16-grantly.herokuapp.com/api/grants/`)
     .then(response => {
       console.log("GET response", response);
       dispatch({ type: FETCH_SUCCESS, payload: response.data });
