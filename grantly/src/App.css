@@ -1,3 +1,7 @@
 .App {
   text-align: center;
 }
+
+.grant-card {
+  border: 1px solid black;
+}
