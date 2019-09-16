@@ -9,6 +9,8 @@ import NavBar from "./components/Navbar";
 
 // Stylings
 import "./App.css";
+import Filters from "./components/Filters";
+import Home from "./components/Home";
 
 function App() {
   return (

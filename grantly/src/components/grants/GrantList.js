@@ -1,6 +1,7 @@
 // Dependencies
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
+// import { useAuth0 } from "../react-auth0-wrapper";
 
 // Objects
 import Grant from "./Grant";
@@ -10,6 +11,9 @@ import { fetchApi } from "../../actions";
 // Styles
 
 const GrantList = props => {
+  // const { user } = useAuth0();
+  console.log("GrantList props", props);
+
   useEffect(() => {
     props.fetchApi();
   }, []);
@@ -17,7 +21,7 @@ const GrantList = props => {
   if (props.isFetching) {
     return <Loader type="Puff" color="#00BFFF" height="100" width="100" />;
   }
-
+  // console.log(user);
   return (
     <div>
       {props.data.length > 0 ? (

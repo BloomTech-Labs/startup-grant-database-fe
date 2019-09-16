@@ -26,7 +26,7 @@ const AppWithProvider = (
   <Auth0Provider
     domain={config.domain}
     client_id={config.clientId}
-    redirect_uri={window.location.origin}
+    redirect_uri={window.location.origin + "/grants"}
     onRedirectCallback={onRedirectCallback}
   >
     <Provider store={store}>
