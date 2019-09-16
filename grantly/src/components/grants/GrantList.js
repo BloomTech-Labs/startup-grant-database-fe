@@ -6,7 +6,6 @@ import { connect } from "react-redux";
 import Grant from "./Grant";
 import Loader from "react-loader-spinner";
 import { fetchApi } from "../../actions";
-// ".src/actions/index.js";
 
 // Styles
 
