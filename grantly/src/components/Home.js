@@ -6,6 +6,7 @@ const Home = () => {
     return (
         <div>
             <GrantList />
+            {/* Grant Showcase component*/}
             <Filters />
             
         </div>
