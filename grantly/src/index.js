@@ -26,13 +26,13 @@ const AppWithProvider = (
   <Auth0Provider
     domain={config.domain}
     client_id={config.clientId}
-    redirect_uri={window.location.origin}
+    redirect_uri={window.location.origin + "/grants"}
     onRedirectCallback={onRedirectCallback}
   >
     <Provider store={store}>
       <App />
     </Provider>
-  // </Auth0Provider>
+   </Auth0Provider>
 );
 
 ReactDOM.render(AppWithProvider, document.getElementById("root"));
