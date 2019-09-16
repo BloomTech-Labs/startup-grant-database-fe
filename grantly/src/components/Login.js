@@ -17,9 +17,11 @@ const Login = props => {
   };
 
   const login = event => {
-    console.log("login credentials", credentials);
+    console.log("login event", event);
     event.preventDefault();
-    props.login(credentials);
+    props.login(credentials).then(() => {
+      props.history.push("/");
+    });
     setCredentials({
       username: "",
       password: ""
@@ -28,8 +30,9 @@ const Login = props => {
 
   return (
     <div>
+      <div>Welcome to Grantly!!</div>
       <div className="create-account-header">CREATE ACCOUNT</div>
-      <btn
+      <button
         onClick={() => {
           props.history.push("/create");
         }}
