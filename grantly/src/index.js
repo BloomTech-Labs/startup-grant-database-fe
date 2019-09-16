@@ -32,7 +32,7 @@ const AppWithProvider = (
     <Provider store={store}>
       <App />
     </Provider>
-   </Auth0Provider>
+  </Auth0Provider>
 );
 
 ReactDOM.render(AppWithProvider, document.getElementById("root"));

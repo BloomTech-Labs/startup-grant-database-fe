@@ -10,7 +10,7 @@ const Grant = props => {
   console.log("Grant props", props);
   return (
     <div>
-      <div>Grants rendering</div>
+      <h2>{props.grant.competition_name}</h2>
     </div>
   );
 };
