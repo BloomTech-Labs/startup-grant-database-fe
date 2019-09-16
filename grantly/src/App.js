@@ -1,7 +1,6 @@
 // Dependencies
 import React from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom"
-import { useAuth0 } from "./react-auth0-wrapper";
 
 
 // Objects
