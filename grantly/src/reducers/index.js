@@ -3,14 +3,16 @@ import {
   FETCH_START,
   FETCH_SUCCESS,
   FETCH_ERROR,
-  SELECT_GRANT
+  SELECT_GRANT,
+  FILTER_GRANTS
 } from "../actions/types";
 
 // Initial state
 
 const initialState = {
   data: [],
-  grantShowcase: {}
+  grantShowcase: {},
+  filters: []
 };
 
 // Reducer
@@ -43,6 +45,13 @@ export const rooterReducer = (state = initialState, { type, payload }) => {
         ...state,
         grantShowcase: payload
       };
+    case FILTER_GRANTS:
+      return {
+        ...state,
+        data: state.data.filter(filter => {
+          return 
+        })
+      }
     default:
       return state;
   }
