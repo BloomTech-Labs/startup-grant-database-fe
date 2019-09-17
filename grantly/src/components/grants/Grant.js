@@ -15,6 +15,7 @@ const Grant = props => {
     console.log("clicked");
     console.log("Selected Grant:", props.grant);
     setGrantShowcase(props.grant);
+    // props.selectGrant(props.grant);
   };
   console.log("grantShowcase", grantShowcase);
 
@@ -30,4 +31,12 @@ const Grant = props => {
   );
 };
 
-export default Grant;
+const mapStateToProps = state => {
+  console.log("Grant mapStateToProps state", state);
+  return {};
+};
+
+export default connect(
+  mapStateToProps,
+  {}
+)(Grant);
