@@ -49,7 +49,7 @@ const Filters = ({ filterGrants }) => {
           {grantFilters.area_focus.map(name => {
             return (
               <FormControlLabel
-                control={<Checkbox value={name} color={grantFilters.color} />}
+                control={<Checkbox value={name} color={grantFilters.color} onClick={() => handleChanges("area_focus", name)}/>}
                 key={name}
                 label={name}
               />
@@ -62,7 +62,7 @@ const Filters = ({ filterGrants }) => {
           {grantFilters.region.map(name => {
             return (
               <FormControlLabel
-                control={<Checkbox value={name} color={grantFilters.color} />}
+                control={<Checkbox value={name} color={grantFilters.color} onClick={() => handleChanges("region", name)}/>}
                 key={name}
                 label={name}
               />
@@ -75,7 +75,7 @@ const Filters = ({ filterGrants }) => {
           {grantFilters.minority.map(name => {
             return (
               <FormControlLabel
-                control={<Checkbox value={name} color={grantFilters.color} />}
+                control={<Checkbox value={name} color={grantFilters.color} onClick={() => handleChanges("minority", name)}/>}
                 key={name}
                 label={name}
               />
