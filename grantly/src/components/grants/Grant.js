@@ -13,7 +13,6 @@ const Grant = props => {
   const selectGrant = () => {
     props.selectGrant(props.grant);
   };
-
   return (
     <div className="grant-card">
       <h2>{props.grant.competition_name}</h2>

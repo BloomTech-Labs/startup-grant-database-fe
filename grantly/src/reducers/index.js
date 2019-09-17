@@ -3,14 +3,17 @@ import {
   FETCH_START,
   FETCH_SUCCESS,
   FETCH_ERROR,
-  SELECT_GRANT
+  SELECT_GRANT,
+  FILTER_GRANTS
 } from "../actions/types";
 
 // Initial state
 
 const initialState = {
   data: [],
-  grantShowcase: {}
+  filteredGrants: [],
+  grantShowcase: {},
+  filters: {}
 };
 
 // Reducer
@@ -30,6 +33,7 @@ export const rooterReducer = (state = initialState, { type, payload }) => {
         error: "",
         isFetching: false,
         data: payload.grants,
+        filteredGrants: payload.grants,
         grantShowcase: payload.grants[0]
       };
     case FETCH_ERROR:
@@ -43,6 +47,12 @@ export const rooterReducer = (state = initialState, { type, payload }) => {
         ...state,
         grantShowcase: payload
       };
+    case FILTER_GRANTS:
+      return {
+        ...state,
+        filters: payload,
+
+      }
     default:
       return state;
   }

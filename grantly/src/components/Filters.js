@@ -1,57 +1,115 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import Checkbox from "@material-ui/core/Checkbox";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import FormControl from "@material-ui/core/FormControl";
+import FormGroup from "@material-ui/core/FormGroup";
+import FormLabel from "@material-ui/core/FormLabel";
 
-const Filters = () => {
+import { connect } from "react-redux";
+import { filterGrants } from "../actions/index";
+
+const Filters = ({ filterGrants }) => {
+  const [filters, setFilters] = useState({
+    region: [],
+    amount: [],
+    area_focus: [],
+    minority: []
+  });
+
+  //Makes sure that the current state is being sent to the action creator
+  useEffect(() => {
+    filterGrants(filters);
+  }, [filters])
+
+  const grantFilters = {
+    color: "primary",
+    region: ["Global", "North America", "Europe", "South America", "Africa"],
+    amount: ["Under $1,000", "$1,000 - $5,000", "$5,000 - $10,000", "$10,000+"],
+    area_focus: ["Business", "Technology", "Science", "Creative"],
+    minority: ["Women", "African American", "Hispanic", "Other"]
+  };
+
+  const handleChanges = (type, value) => {
+
+    if(filters[type].includes(value)){
+        console.log("Its there")
+        setFilters({
+            ...filters,
+            [type]: filters[type].filter(val => val !== value)
+        })
+    } else {
+        console.log("it's not here")
+        setFilters({
+            ...filters,
+            [type]:  [...filters[type], value]
+        })
+    }
+
+    //Pass object of user filters to the action creator
+  };
+  console.log("render", filters);
   return (
     <div>
       <h2>Filter Grants By:</h2>
 
-      <form>
-        <fieldset>
-            <legend>Grant Amount</legend>
-          <input type="checkbox" namne="under1k" id="under1k"/>
-          <label htmlFor="under1k">Under $1,000</label>
-          <input type="checkbox" namne="1kto5k" id="1kto5k"/>
-          <label htmlFor="1kto5k">$1,000-$5,000</label>
-          <input type="checkbox" namne="5kto10k" id="5kto10k"/>
-          <label htmlFor="5kto10k">$5,000-$10,000</label>
-          <input type="checkbox" namne="over10k" id="over10k"/>
-          <label htmlFor="over10k">$10,000+</label>
-        </fieldset>
+      <FormGroup >
+        <FormControl component="fieldset">
+          <FormLabel component="legend">Grant Amount</FormLabel>
+          {grantFilters.amount.map(name => {
+            return (
+              <FormControlLabel
+                control={<Checkbox value={name} color={grantFilters.color} onClick={() => handleChanges("amount", name)}/>}
+                key={name}
+                label={name}
+              />
+            );
+          })}
+        </FormControl>
 
-        <fieldset>
-            <legend>Business Type</legend>
-            <input type="checkbox" name="technology" id="technology" />
-            <label htmlFor="technology">Technology</label>
-            <input type="checkbox" name="education" id="education" />
-            <label htmlFor="education">Education</label>
-            <input type="checkbox" name="science" id="science" />
-            <label htmlFor="science">Science</label>
-            <input type="checkbox" name="creative" id="creative" />
-            <label htmlFor="creative">Creative</label>
-        </fieldset>
+        <FormControl component="fieldset">
+          <FormLabel component="legend">Area Focus</FormLabel>
+          {grantFilters.area_focus.map(name => {
+            return (
+              <FormControlLabel
+                control={<Checkbox value={name} color={grantFilters.color} onClick={() => handleChanges("area_focus", name)}/>}
+                key={name}
+                label={name}
+              />
+            );
+          })}
+        </FormControl>
 
-        <fieldset>
-            <legend>Gender</legend>
-            <input type="checkbox" name="male" id="male" />
-            <label htmlFor="male">Male</label>
-            <input type="checkbox" name="male" id="female" />
-            <label hhtmlFor="female">Female</label>
-        </fieldset>
+        <FormControl component="fieldset">
+          <FormLabel component="legend">Region</FormLabel>
+          {grantFilters.region.map(name => {
+            return (
+              <FormControlLabel
+                control={<Checkbox value={name} color={grantFilters.color} onClick={() => handleChanges("region", name)}/>}
+                key={name}
+                label={name}
+              />
+            );
+          })}
+        </FormControl>
 
-        <fieldset>
-            <legend>Minority</legend>
-            <input type="checkbox" name="women" id="women"/>
-            <label htmlFor="women">Women</label>
-            <input type="checkbox" name="african-american" id="african-american"/>
-            <label htmlFor="african-american">African American</label>
-            <input type="checkbox" name="hispanic" id="hispanic"/>
-            <label htmlFor="hispanic">Hispanic</label>
-            <input type="checkbox" name="other" id="other"/>
-            <label htmlFor="other">Other</label>
-        </fieldset>
-      </form>
+        <FormControl component="fieldset">
+          <FormLabel component="legend">Minority</FormLabel>
+          {grantFilters.minority.map(name => {
+            return (
+              <FormControlLabel
+                control={<Checkbox value={name} color={grantFilters.color} onClick={() => handleChanges("minority", name)}/>}
+                key={name}
+                label={name}
+              />
+            );
+          })}
+        </FormControl>
+      </FormGroup>
     </div>
   );
 };
 
-export default Filters;
+export default connect(
+  null,
+  { filterGrants }
+)(Filters);
