@@ -23,22 +23,11 @@ const Filters = ({ filterGrants }) => {
     minority: ["Women", "African American", "Hispanic", "Other"]
   };
 
-  const handleChanges = e => {
-    console.log("who", e.target.name);
-    if (!e.target.checked) {
-      setFilters({
-        ...filters
-      });
-    } else {
-      setFilters({
-        ...filters,
-        [e.target.name]: e.target.value
-      });
-    }
-    console.log("List", filters);
+  const handleChanges = (e, value) => {
+    console.log("filters", e, value)
   };
   return (
-    <div style={{"width": "300px"}}>
+    <div>
       <h2>Filter Grants By:</h2>
 
       <FormGroup >
@@ -47,7 +36,7 @@ const Filters = ({ filterGrants }) => {
           {grantFilters.amount.map(name => {
             return (
               <FormControlLabel
-                control={<Checkbox value={name} color={grantFilters.color} />}
+                control={<Checkbox value={name} color={grantFilters.color} onClick={() => handleChanges("amount", name)}/>}
                 key={name}
                 label={name}
               />
