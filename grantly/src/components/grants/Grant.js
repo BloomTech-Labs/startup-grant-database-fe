@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 
 // Objects
 import { selectGrant } from "../../actions";
+import Button from "@material-ui/core/Button";
 
 // Styles
 
@@ -18,9 +19,7 @@ const Grant = props => {
       <h2>{props.grant.competition_name}</h2>
       <div>{props.grant.amount}</div>
       <div>{props.grant.area_focus}</div>
-      <div className="btn" onClick={selectGrant}>
-        Select
-      </div>
+      <Button onClick={selectGrant}>Select</Button>
     </div>
   );
 };

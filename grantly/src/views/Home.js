@@ -2,14 +2,21 @@ import React from "react";
 import GrantList from "../components/grants/GrantList";
 import Filters from "../components/Filters";
 import GrantShowcase from "../components/grants/GrantShowcase";
+import Grid from "@material-ui/core/Grid";
 
 const Home = () => {
   return (
-    <div className="home">
-      <GrantList />
-      <GrantShowcase />
-      <Filters />
-    </div>
+    <Grid container spacing={3}>
+      <Grid item>
+        <GrantList />
+      </Grid>
+      <Grid item>
+        <GrantShowcase />
+      </Grid>
+      <Grid item>
+        <Filters />
+      </Grid>
+    </Grid>
   );
 };
 
