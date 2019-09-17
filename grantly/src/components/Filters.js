@@ -15,6 +15,14 @@ const Filters = ({ filterGrants }) => {
     area_focus: []
   });
 
+  const grantFilters = {
+      color: "primary",
+      region: ["Global", "North America", "Europe", "South America", "Africa"],
+      amount: ["Under $1,000", "$1,000 - $5,000", "$5,000 - $10,000", "$10,000+"],
+      area_focus: ["Business", "Technology", "Science", "Creative"],
+      minority: ["Women", "African American", "Hispanic", "Other"]
+  }
+
   const handleChanges = e => {
     console.log("who", e.target.name);
     if (!e.target.checked) {
@@ -36,102 +44,32 @@ const Filters = ({ filterGrants }) => {
       <form>
         <FormControl component="fieldset">
           <FormLabel component="legend">Grant Amount</FormLabel>
-          <FormControlLabel
-            control={<Checkbox value="checkedB" color="primary" />}
-            label="Under $1,000"
-          />{" "}
-          <FormControlLabel
-            control={<Checkbox value="checkedB" color="primary" />}
-            label="$1,000-$5,000"
-          />
-          <FormControlLabel
-            control={<Checkbox value="checkedB" color="primary" />}
-            label="$5,000-$10,000"
-          />
-          <FormControlLabel
-            control={<Checkbox value="checkedB" color="primary" />}
-            label="$10,000+"
-          />
+          {grantFilters.amount.map(name => {
+              return <FormControlLabel control={<Checkbox value={name} color={grantFilters.color} />} label={name}/>
+          })}
         </FormControl>
 
         <FormControl component="fieldset">
           <FormLabel component="legend">Area Focus</FormLabel>
-          <FormControlLabel
-            control={<Checkbox value="checkedB" color="primary" />}
-            label="Technology"
-          />{" "}
-          <FormControlLabel
-            control={<Checkbox value="checkedB" color="primary" />}
-            label="Education"
-          />
-          <FormControlLabel
-            control={<Checkbox value="checkedB" color="primary" />}
-            label="Science"
-          />
-          <FormControlLabel
-            control={<Checkbox value="checkedB" color="primary" />}
-            label="Creative"
-          />
+          {grantFilters.area_focus.map(name => {
+              return <FormControlLabel control={<Checkbox value={name} color={grantFilters.color} />} label={name}/>
+          })}
         </FormControl>
 
         <FormControl component="fieldset">
-          <FormLabel component="legend">Area Focus</FormLabel>
-          <FormControlLabel
-            control={<Checkbox value="checkedB" color="primary" />}
-            label="Global"
-          />{" "}
-          <FormControlLabel
-            control={<Checkbox value="checkedB" color="primary" />}
-            label="North America"
-          />
-          <FormControlLabel
-            control={<Checkbox value="checkedB" color="primary" />}
-            label="Europe"
-          />
-          <FormControlLabel
-            control={<Checkbox value="checkedB" color="primary" />}
-            label="South America"
-          />
-          <FormControlLabel
-            control={<Checkbox value="checkedB" color="primary" />}
-            label="Africa"
-          />
+          <FormLabel component="legend">Region</FormLabel>
+          {grantFilters.region.map(name => {
+              return <FormControlLabel control={<Checkbox value={name} color={grantFilters.color} />} label={name}/>
+          })}
         </FormControl>
 
+        <FormControl component="fieldset">
+          <FormLabel component="legend">Minority</FormLabel>
+          {grantFilters.minority.map(name => {
+              return <FormControlLabel control={<Checkbox value={name} color={grantFilters.color} />} label={name}/>
+          })}
+        </FormControl>
 
-
-
-        <fieldset>
-          <legend>Minority</legend>
-          <input
-            type="checkbox"
-            name="women"
-            id="women"
-            onChange={handleChanges}
-          />
-          <label htmlFor="women">Women</label>
-          <input
-            type="checkbox"
-            name="african-american"
-            id="african-american"
-            onChange={handleChanges}
-          />
-          <label htmlFor="african-american">African American</label>
-          <input
-            type="checkbox"
-            name="hispanic"
-            id="hispanic"
-            onChange={handleChanges}
-          />
-          <label htmlFor="hispanic">Hispanic</label>
-          <input
-            type="checkbox"
-            name="other"
-            id="other"
-            onChange={handleChanges}
-          />
-          <label htmlFor="other">Other</label>
-        </fieldset>
       </form>
     </div>
   );
