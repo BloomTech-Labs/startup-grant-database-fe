@@ -29,7 +29,8 @@ export const rooterReducer = (state = initialState, { type, payload }) => {
         ...state,
         error: "",
         isFetching: false,
-        data: payload.grants
+        data: payload.grants,
+        grantShowcase: payload.grants[0]
       };
     case FETCH_ERROR:
       return {
