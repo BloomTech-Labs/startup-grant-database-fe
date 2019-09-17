@@ -6,14 +6,14 @@ import Grid from "@material-ui/core/Grid";
 
 const Home = () => {
   return (
-    <Grid container spacing={3}>
-      <Grid item>
+    <Grid container spacing={2}>
+      <Grid item xs={4}>
         <GrantList />
       </Grid>
-      <Grid item>
+      <Grid item xs={4}>
         <GrantShowcase />
       </Grid>
-      <Grid item>
+      <Grid item xs={4}>
         <Filters />
       </Grid>
     </Grid>
