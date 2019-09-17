@@ -32,7 +32,7 @@ const Filters = () => {
 
         <fieldset>
             <legend>Region</legend>
-            <input type="checkbox" name="global" id="global" />
+            <input type="checkbox" name="Global" id="global" />
             <label htmlFor="global">Global</label>
             <input type="checkbox" name="northamerica" id="northamerica" />
             <label hhtmlFor="northamerica">North America</label>
