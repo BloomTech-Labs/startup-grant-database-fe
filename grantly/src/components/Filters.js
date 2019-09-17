@@ -12,7 +12,8 @@ const Filters = ({ filterGrants }) => {
   const [filters, setFilters] = useState({
     region: [],
     amount: [],
-    area_focus: []
+    area_focus: [],
+    minority: []
   });
 
   const grantFilters = {
@@ -24,10 +25,9 @@ const Filters = ({ filterGrants }) => {
   };
 
   const handleChanges = (type, value) => {
-    console.log("filters", type, value)
     setFilters({
         ...filters,
-        [type]:  value
+        [type]:  [...filters[type], value]
     })
     if([filters.type.includes(value)]){
         console.log("Its there")
