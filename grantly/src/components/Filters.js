@@ -16,6 +16,11 @@ const Filters = ({ filterGrants }) => {
     minority: []
   });
 
+  //Makes sure that the current state is being sent to the action creator
+  useEffect(() => {
+    filterGrants(filters);
+  }, [filters])
+
   const grantFilters = {
     color: "primary",
     region: ["Global", "North America", "Europe", "South America", "Africa"],
@@ -41,7 +46,6 @@ const Filters = ({ filterGrants }) => {
     }
 
     //Pass object of user filters to the action creator
-    filterGrants(filters);
   };
   console.log("render", filters);
   return (

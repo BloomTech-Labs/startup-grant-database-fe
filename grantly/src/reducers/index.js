@@ -50,11 +50,7 @@ export const rooterReducer = (state = initialState, { type, payload }) => {
     case FILTER_GRANTS:
       return {
         ...state,
-        filteredGrants: state.data.filter(filter => {
-          payload.forEach(grant => {
-            return grant.filter === filter
-          })
-        })
+        filters: payload
       }
     default:
       return state;
