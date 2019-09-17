@@ -23,6 +23,7 @@ const GrantList = props => {
   if (props.isFetching) {
     return <Loader type="Puff" color="#00BFFF" height="100" width="100" />;
   }
+  console.log("List", props.data)
   return (
     <div>
       {props.data.length > 0 ? (
@@ -41,7 +42,7 @@ const mapStateToProps = state => {
   return {
     error: state.error,
     isFetching: state.isFetching,
-    data: state.data
+    data: state.filteredGrants
   };
 };
 export default connect(

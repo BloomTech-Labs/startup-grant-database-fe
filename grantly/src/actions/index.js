@@ -63,7 +63,6 @@ export const login = creds => dispatch => {
 };
 
 export const filterGrants = filters => dispatch => {
-  console.log("sup")
   //either call to database and return specific grants
   //or filter the list of grants in the redux store
 
