@@ -23,9 +23,19 @@ const Filters = ({ filterGrants }) => {
     minority: ["Women", "African American", "Hispanic", "Other"]
   };
 
-  const handleChanges = (e, value) => {
-    console.log("filters", e, value)
+  const handleChanges = (type, value) => {
+    console.log("filters", type, value)
+    setFilters({
+        ...filters,
+        [type]:  value
+    })
+    if([filters.type.includes(value)]){
+        console.log("Its there")
+    } else {
+        console.log("it's not here")
+    }
   };
+  console.log("render", filters);
   return (
     <div>
       <h2>Filter Grants By:</h2>
