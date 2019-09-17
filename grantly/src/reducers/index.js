@@ -50,7 +50,8 @@ export const rooterReducer = (state = initialState, { type, payload }) => {
     case FILTER_GRANTS:
       return {
         ...state,
-        filters: payload
+        filters: payload,
+
       }
     default:
       return state;
