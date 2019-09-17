@@ -3,12 +3,16 @@ import { connect } from "react-redux";
 import {filterGrants} from '../actions/index'
 
 
-const Filters = () => {
+const Filters = ({filterGrants}) => {
+
+    const filterTheGrants = () => {
+
+    }
   return (
     <div>
       <h2>Filter Grants By:</h2>
 
-      <form>
+      <form onChange={filterGrants}>
         <fieldset>
             <legend>Grant Amount</legend>
           <input type="checkbox" namne="under1k" id="under1k"/>
@@ -38,13 +42,13 @@ const Filters = () => {
             <input type="checkbox" name="Global" id="global" />
             <label htmlFor="global">Global</label>
             <input type="checkbox" name="northamerica" id="northamerica" />
-            <label hhtmlFor="northamerica">North America</label>
+            <label htmlFor="northamerica">North America</label>
             <input type="checkbox" name="europe" id="europe" />
-            <label hhtmlFor="europe">Europe</label>
+            <label htmlFor="europe">Europe</label>
             <input type="checkbox" name="southamerica" id="southamerica" />
-            <label hhtmlFor="southamerica">South America</label>
+            <label htmlFor="southamerica">South America</label>
             <input type="checkbox" name="africa" id="africa" />
-            <label hhtmlFor="africa">Africa</label>
+            <label htmlFor="africa">Africa</label>
         </fieldset>
         {/* <fieldset>
             <legend>Gender</legend>

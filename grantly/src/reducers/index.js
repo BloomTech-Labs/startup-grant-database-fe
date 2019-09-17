@@ -11,6 +11,7 @@ import {
 
 const initialState = {
   data: [],
+  filteredGrants: [],
   grantShowcase: {},
   filters: []
 };
@@ -49,7 +50,9 @@ export const rooterReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         data: state.data.filter(filter => {
-          return 
+          payload.forEach(grant => {
+            return grant.filter === filter
+          })
         })
       }
     default:
