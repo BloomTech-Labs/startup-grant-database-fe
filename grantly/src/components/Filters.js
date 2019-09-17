@@ -10,10 +10,10 @@ import { filterGrants } from "../actions/index";
 
 const Filters = ({ filterGrants }) => {
   const [filters, setFilters] = useState({
-    region: [],
+    geographic_region: [],
     amount: [],
     area_focus: [],
-    minority: []
+    domain_areas: []
   });
 
   //Makes sure that the current state is being sent to the action creator
@@ -23,10 +23,10 @@ const Filters = ({ filterGrants }) => {
 
   const grantFilters = {
     color: "secondary",
-    region: ["Global", "North America", "Europe", "South America", "Africa"],
+    geographic_region: ["Global", "North America", "Europe", "South America", "Africa"],
     amount: ["Under $1,000", "$1,000 - $5,000", "$5,000 - $10,000", "$10,000+"],
     area_focus: ["Business", "Technology", "Science", "Creative", "Random"],
-    type: ["Women", "African American", "Hispanic", "Other"]
+    domain_areas: ["Environment", "Conservation", "Water", "Engery"]
   };
 
   const handleChanges = (type, value) => {
@@ -35,13 +35,13 @@ const Filters = ({ filterGrants }) => {
         console.log("Its there")
         setFilters({
             ...filters,
-            [type]: filters[type].filter(val => val !== value)
+            [type]: filters[type].filter(val => val.toLowerCase() !== value.toLowerCase())
         })
     } else {
         console.log("it's not here")
         setFilters({
             ...filters,
-            [type]:  [...filters[type], value]
+            [type]:  [...filters[type], value.toLowerCase()]
         })
     }
 
@@ -81,10 +81,10 @@ const Filters = ({ filterGrants }) => {
 
         <FormControl component="fieldset">
           <FormLabel component="legend">Region</FormLabel>
-          {grantFilters.region.map(name => {
+          {grantFilters.geographic_region.map(name => {
             return (
               <FormControlLabel
-                control={<Checkbox value={name} color={grantFilters.color} onClick={() => handleChanges("region", name)}/>}
+                control={<Checkbox value={name} color={grantFilters.color} onClick={() => handleChanges("geographic_region", name)}/>}
                 key={name}
                 label={name}
               />
@@ -93,11 +93,11 @@ const Filters = ({ filterGrants }) => {
         </FormControl>
 
         <FormControl component="fieldset">
-          <FormLabel component="legend">Type</FormLabel>
-          {grantFilters.type.map(name => {
+          <FormLabel component="legend">Domain Areas</FormLabel>
+          {grantFilters.domain_areas.map(name => {
             return (
               <FormControlLabel
-                control={<Checkbox value={name} color={grantFilters.color} onClick={() => handleChanges("type", name)}/>}
+                control={<Checkbox value={name} color={grantFilters.color} onClick={() => handleChanges("domain_areas", name)}/>}
                 key={name}
                 label={name}
               />
