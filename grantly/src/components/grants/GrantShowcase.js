@@ -21,11 +21,17 @@ const GrantShowcase = props => {
   // when clicked on, it updates the GrantShowcase details
   // in the redux store
 
+  // we then pass that piece of state down and map it to
+  // the props object that we pass into GrantShowcase
+  // where we use it to render the selected Grant to the screen
+
+  console.log("GrantShowcase props", props);
+
   return (
     <div className="grant-showcase">
-      {/* <h2>{props.grant.competition_name}</h2>
+      <h2>{props.grant.competition_name}</h2>
       <div>{props.grant.amount}</div>
-      <div>{props.grant.area_focus}</div> */}
+      <div>{props.grant.area_focus}</div>
     </div>
   );
 };
@@ -33,8 +39,7 @@ const GrantShowcase = props => {
 const mapStateToProps = state => {
   console.log("GrantShowcase mapStateToProps state", state);
   return {
-    isFetching: state.isFetching,
-    data: state.data
+    grant: state.grantShowcase
   };
 };
 

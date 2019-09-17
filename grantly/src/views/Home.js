@@ -5,7 +5,7 @@ import GrantShowcase from "../components/grants/GrantShowcase";
 
 const Home = () => {
   return (
-    <div>
+    <div className="home">
       <GrantList />
       <GrantShowcase />
       <Filters />

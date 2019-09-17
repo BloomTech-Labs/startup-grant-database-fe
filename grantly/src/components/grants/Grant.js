@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { connect } from "react-redux";
 
 // Objects
+import { selectGrant } from "../../actions";
 
 // Styles
 
@@ -15,7 +16,7 @@ const Grant = props => {
     console.log("clicked");
     console.log("Selected Grant:", props.grant);
     setGrantShowcase(props.grant);
-    // props.selectGrant(props.grant);
+    props.selectGrant(props.grant);
   };
   console.log("grantShowcase", grantShowcase);
 
@@ -32,11 +33,11 @@ const Grant = props => {
 };
 
 const mapStateToProps = state => {
-  console.log("Grant mapStateToProps state", state);
+  // console.log("Grant mapStateToProps state", state);
   return {};
 };
 
 export default connect(
   mapStateToProps,
-  {}
+  { selectGrant }
 )(Grant);
