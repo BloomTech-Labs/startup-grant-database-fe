@@ -2,14 +2,18 @@ import React from "react";
 import GrantList from "../components/grants/GrantList";
 import Filters from "../components/Filters";
 import GrantShowcase from "../components/grants/GrantShowcase";
+import Navbar from "../components/Navbar";
 
 const Home = () => {
   return (
-    <div className="home">
-      <GrantList />
-      <GrantShowcase />
-      <Filters />
-    </div>
+    <>
+      <Navbar />
+      <div className="home">
+        <GrantList />
+        <GrantShowcase />
+        <Filters />
+      </div>
+    </>
   );
 };
 
