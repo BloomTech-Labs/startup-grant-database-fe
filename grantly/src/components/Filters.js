@@ -25,14 +25,19 @@ const Filters = ({ filterGrants }) => {
   };
 
   const handleChanges = (type, value) => {
-    setFilters({
-        ...filters,
-        [type]:  [...filters[type], value]
-    })
-    if([filters.type.includes(value)]){
+
+    if(filters[type].includes(value)){
         console.log("Its there")
+        setFilters({
+            ...filters,
+            [type]: filters[type].filter(val => val !== value)
+        })
     } else {
         console.log("it's not here")
+        setFilters({
+            ...filters,
+            [type]:  [...filters[type], value]
+        })
     }
   };
   console.log("render", filters);
