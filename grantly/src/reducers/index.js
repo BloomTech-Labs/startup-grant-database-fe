@@ -13,7 +13,7 @@ const initialState = {
   data: [],
   filteredGrants: [],
   grantShowcase: {},
-  filters: []
+  filters: {}
 };
 
 // Reducer

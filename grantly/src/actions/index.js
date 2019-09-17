@@ -68,6 +68,7 @@ export const filterGrants = filters => dispatch => {
   //or filter the list of grants in the redux store
 
   //initial thoughts is to have filters be an array  becuase users will be able to select multiple grant filter
+  //Now filters will be an object that contains different arrays
   dispatch({ type: FILTER_GRANTS, payload: filters });
 };
 

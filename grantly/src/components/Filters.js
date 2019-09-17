@@ -39,6 +39,9 @@ const Filters = ({ filterGrants }) => {
             [type]:  [...filters[type], value]
         })
     }
+
+    //Pass object of user filters to the action creator
+    filterGrants(filters);
   };
   console.log("render", filters);
   return (
