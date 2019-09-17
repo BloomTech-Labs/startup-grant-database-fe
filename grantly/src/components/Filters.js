@@ -1,90 +1,114 @@
 import React, { useState, useEffect } from "react";
+import Checkbox from "@material-ui/core/Checkbox";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import FormControl from "@material-ui/core/FormControl";
+import FormGroup from "@material-ui/core/FormGroup";
+import FormLabel from "@material-ui/core/FormLabel";
+
 import { connect } from "react-redux";
 import { filterGrants } from "../actions/index";
 
 const Filters = ({ filterGrants }) => {
   const [filters, setFilters] = useState({
-      region: [],
-      amount: [],
-      area_focus: []
+    region: [],
+    amount: [],
+    area_focus: []
   });
 
-//   useEffect(() => {
-//     filterGrants(filters)
-//   }, [filters])
-
-  const filterTheGrants = e => {
-    e.preventDefault();
-    console.log("filters", e);
-  };
-
   const handleChanges = e => {
-      console.log("who", e.target.name)
-      if (!e.target.checked) {
-          setFilters({
-              ...filters
-            });
-        } else {
-            setFilters({
-                ...filters,
-                [e.target.name]: e.target.value
-            });
-        }
-        console.log("List", filters);
+    console.log("who", e.target.name);
+    if (!e.target.checked) {
+      setFilters({
+        ...filters
+      });
+    } else {
+      setFilters({
+        ...filters,
+        [e.target.name]: e.target.value
+      });
+    }
+    console.log("List", filters);
   };
   return (
     <div>
       <h2>Filter Grants By:</h2>
 
       <form>
-        <fieldset onChange={handleChanges}>
-          <legend>Grant Amount</legend>
-          <input type="checkbox" namne="amount" id="under1k"/>
-          <label htmlFor="under1k">Under $1,000</label>
-          <input type="checkbox" namne="amount" id="1kto5k"/>
-          <label htmlFor="1kto5k">$1,000-$5,000</label>
-          <input type="checkbox" namne="amount" id="5kto10k" />
-          <label htmlFor="5kto10k">$5,000-$10,000</label>
-          <input type="checkbox" namne="amount" id="over10k" />
-          <label htmlFor="over10k">$10,000+</label>
-        </fieldset>
+        <FormControl component="fieldset">
+          <FormLabel component="legend">Grant Amount</FormLabel>
+          <FormControlLabel
+            control={<Checkbox value="checkedB" color="primary" />}
+            label="Under $1,000"
+          />{" "}
+          <FormControlLabel
+            control={<Checkbox value="checkedB" color="primary" />}
+            label="$1,000-$5,000"
+          />
+          <FormControlLabel
+            control={<Checkbox value="checkedB" color="primary" />}
+            label="$5,000-$10,000"
+          />
+          <FormControlLabel
+            control={<Checkbox value="checkedB" color="primary" />}
+            label="$10,000+"
+          />
+        </FormControl>
 
-        <fieldset>
-          <legend>Business Type</legend>
-          <input type="checkbox" name="technology" id="technology" onChange={handleChanges}/>
-          <label htmlFor="technology">Technology</label>
-          <input type="checkbox" name="education" id="education" onChange={handleChanges}/>
-          <label htmlFor="education">Education</label>
-          <input type="checkbox" name="science" id="science" onChange={handleChanges}/>
-          <label htmlFor="science">Science</label>
-          <input type="checkbox" name="creative" id="creative" onChange={handleChanges}/>
-          <label htmlFor="creative">Creative</label>
-        </fieldset>
+        <FormControl component="fieldset">
+          <FormLabel component="legend">Area Focus</FormLabel>
+          <FormControlLabel
+            control={<Checkbox value="checkedB" color="primary" />}
+            label="Technology"
+          />{" "}
+          <FormControlLabel
+            control={<Checkbox value="checkedB" color="primary" />}
+            label="Education"
+          />
+          <FormControlLabel
+            control={<Checkbox value="checkedB" color="primary" />}
+            label="Science"
+          />
+          <FormControlLabel
+            control={<Checkbox value="checkedB" color="primary" />}
+            label="Creative"
+          />
+        </FormControl>
 
-        <fieldset>
-          <legend>Region</legend>
-          <input type="checkbox" name="Global" id="global" onChange={handleChanges}/>
-          <label htmlFor="global">Global</label>
-          <input type="checkbox" name="northamerica" id="northamerica" onChange={handleChanges}/>
-          <label htmlFor="northamerica">North America</label>
-          <input type="checkbox" name="europe" id="europe" onChange={handleChanges}/>
-          <label htmlFor="europe">Europe</label>
-          <input type="checkbox" name="southamerica" id="southamerica" onChange={handleChanges}/>
-          <label htmlFor="southamerica">South America</label>
-          <input type="checkbox" name="africa" id="africa" onChange={handleChanges}/>
-          <label htmlFor="africa">Africa</label>
-        </fieldset>
-        {/* <fieldset>
-            <legend>Gender</legend>
-            <input type="checkbox" name="male" id="male" />
-            <label htmlFor="male">Male</label>
-            <input type="checkbox" name="female" id="female" />
-            <label hhtmlFor="female">Female</label>
-        </fieldset> */}
+        <FormControl component="fieldset">
+          <FormLabel component="legend">Area Focus</FormLabel>
+          <FormControlLabel
+            control={<Checkbox value="checkedB" color="primary" />}
+            label="Global"
+          />{" "}
+          <FormControlLabel
+            control={<Checkbox value="checkedB" color="primary" />}
+            label="North America"
+          />
+          <FormControlLabel
+            control={<Checkbox value="checkedB" color="primary" />}
+            label="Europe"
+          />
+          <FormControlLabel
+            control={<Checkbox value="checkedB" color="primary" />}
+            label="South America"
+          />
+          <FormControlLabel
+            control={<Checkbox value="checkedB" color="primary" />}
+            label="Africa"
+          />
+        </FormControl>
+
+
+
 
         <fieldset>
           <legend>Minority</legend>
-          <input type="checkbox" name="women" id="women" onChange={handleChanges}/>
+          <input
+            type="checkbox"
+            name="women"
+            id="women"
+            onChange={handleChanges}
+          />
           <label htmlFor="women">Women</label>
           <input
             type="checkbox"
@@ -93,9 +117,19 @@ const Filters = ({ filterGrants }) => {
             onChange={handleChanges}
           />
           <label htmlFor="african-american">African American</label>
-          <input type="checkbox" name="hispanic" id="hispanic" onChange={handleChanges}/>
+          <input
+            type="checkbox"
+            name="hispanic"
+            id="hispanic"
+            onChange={handleChanges}
+          />
           <label htmlFor="hispanic">Hispanic</label>
-          <input type="checkbox" name="other" id="other" onChange={handleChanges}/>
+          <input
+            type="checkbox"
+            name="other"
+            id="other"
+            onChange={handleChanges}
+          />
           <label htmlFor="other">Other</label>
         </fieldset>
       </form>
