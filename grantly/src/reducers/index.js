@@ -49,7 +49,7 @@ export const rooterReducer = (state = initialState, { type, payload }) => {
     case FILTER_GRANTS:
       return {
         ...state,
-        data: state.data.filter(filter => {
+        filteredGrants: state.data.filter(filter => {
           payload.forEach(grant => {
             return grant.filter === filter
           })
