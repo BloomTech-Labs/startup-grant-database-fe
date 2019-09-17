@@ -51,6 +51,9 @@ export const rooterReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         filters: payload,
+        filteredGrants: [...state.data.filter(grant => {
+          return grant.amount <= 1000; 
+        })]
 
       }
     default:

@@ -22,11 +22,11 @@ const Filters = ({ filterGrants }) => {
   }, [filters])
 
   const grantFilters = {
-    color: "primary",
+    color: "secondary",
     region: ["Global", "North America", "Europe", "South America", "Africa"],
     amount: ["Under $1,000", "$1,000 - $5,000", "$5,000 - $10,000", "$10,000+"],
-    area_focus: ["Business", "Technology", "Science", "Creative"],
-    minority: ["Women", "African American", "Hispanic", "Other"]
+    area_focus: ["Business", "Technology", "Science", "Creative", "Random"],
+    type: ["Women", "African American", "Hispanic", "Other"]
   };
 
   const handleChanges = (type, value) => {
@@ -66,7 +66,7 @@ const Filters = ({ filterGrants }) => {
           })}
         </FormControl>
 
-        <FormControl component="fieldset">
+        <FormControl component="fieldset" >
           <FormLabel component="legend">Area Focus</FormLabel>
           {grantFilters.area_focus.map(name => {
             return (
@@ -93,11 +93,11 @@ const Filters = ({ filterGrants }) => {
         </FormControl>
 
         <FormControl component="fieldset">
-          <FormLabel component="legend">Minority</FormLabel>
-          {grantFilters.minority.map(name => {
+          <FormLabel component="legend">Type</FormLabel>
+          {grantFilters.type.map(name => {
             return (
               <FormControlLabel
-                control={<Checkbox value={name} color={grantFilters.color} onClick={() => handleChanges("minority", name)}/>}
+                control={<Checkbox value={name} color={grantFilters.color} onClick={() => handleChanges("type", name)}/>}
                 key={name}
                 label={name}
               />
