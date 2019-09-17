@@ -10,15 +10,9 @@ import { selectGrant } from "../../actions";
 const Grant = props => {
   // console.log("Grant props", props);
 
-  const [grantShowcase, setGrantShowcase] = useState({});
-
   const selectGrant = () => {
-    console.log("clicked");
-    console.log("Selected Grant:", props.grant);
-    setGrantShowcase(props.grant);
     props.selectGrant(props.grant);
   };
-  console.log("grantShowcase", grantShowcase);
 
   return (
     <div className="grant-card">
@@ -32,12 +26,7 @@ const Grant = props => {
   );
 };
 
-const mapStateToProps = state => {
-  // console.log("Grant mapStateToProps state", state);
-  return {};
-};
-
 export default connect(
-  mapStateToProps,
+  null,
   { selectGrant }
 )(Grant);
