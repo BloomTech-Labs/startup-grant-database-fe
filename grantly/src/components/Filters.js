@@ -1,9 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { filterGrants } from "../actions/index";
 
 const Filters = ({ filterGrants }) => {
-  const [filters, setFilters] = useState([]);
+  const [filters, setFilters] = useState({
+      region: [],
+      amount: [],
+      area_focus: []
+  });
+
+//   useEffect(() => {
+//     filterGrants(filters)
+//   }, [filters])
 
   const filterTheGrants = e => {
     e.preventDefault();
@@ -12,7 +20,7 @@ const Filters = ({ filterGrants }) => {
 
   const handleChanges = e => {
       if (!e.target.checked) {
-          setFilters([...filters, e.target.name]);
+          setFilters([...filters, e.target]);
         } else {
             setFilters(filters.filter(filterList => filterList !== e.target.name));
         }
@@ -22,16 +30,16 @@ const Filters = ({ filterGrants }) => {
     <div>
       <h2>Filter Grants By:</h2>
 
-      <form onChange={filterTheGrants}>
-        <fieldset>
+      <form>
+        <fieldset onChange={handleChanges}>
           <legend>Grant Amount</legend>
-          <input type="checkbox" namne="under1k" id="under1k" onChange={handleChanges} />
+          <input type="checkbox" namne="under1k" id="under1k"/>
           <label htmlFor="under1k">Under $1,000</label>
-          <input type="checkbox" namne="1kto5k" id="1kto5k" onChange={handleChanges}/>
+          <input type="checkbox" namne="1kto5k" id="1kto5k"/>
           <label htmlFor="1kto5k">$1,000-$5,000</label>
-          <input type="checkbox" namne="5kto10k" id="5kto10k" onChange={handleChanges}/>
+          <input type="checkbox" namne="5kto10k" id="5kto10k" />
           <label htmlFor="5kto10k">$5,000-$10,000</label>
-          <input type="checkbox" namne="over10k" id="over10k" onChange={handleChanges}/>
+          <input type="checkbox" namne="over10k" id="over10k" />
           <label htmlFor="over10k">$10,000+</label>
         </fieldset>
 
