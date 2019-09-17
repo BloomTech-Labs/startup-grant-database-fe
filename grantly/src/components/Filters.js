@@ -19,10 +19,16 @@ const Filters = ({ filterGrants }) => {
   };
 
   const handleChanges = e => {
+      console.log("who", e.target.name)
       if (!e.target.checked) {
-          setFilters([...filters, e.target]);
+          setFilters({
+              ...filters
+            });
         } else {
-            setFilters(filters.filter(filterList => filterList !== e.target.name));
+            setFilters({
+                ...filters,
+                [e.target.name]: e.target.value
+            });
         }
         console.log("List", filters);
   };
@@ -33,13 +39,13 @@ const Filters = ({ filterGrants }) => {
       <form>
         <fieldset onChange={handleChanges}>
           <legend>Grant Amount</legend>
-          <input type="checkbox" namne="under1k" id="under1k"/>
+          <input type="checkbox" namne="amount" id="under1k"/>
           <label htmlFor="under1k">Under $1,000</label>
-          <input type="checkbox" namne="1kto5k" id="1kto5k"/>
+          <input type="checkbox" namne="amount" id="1kto5k"/>
           <label htmlFor="1kto5k">$1,000-$5,000</label>
-          <input type="checkbox" namne="5kto10k" id="5kto10k" />
+          <input type="checkbox" namne="amount" id="5kto10k" />
           <label htmlFor="5kto10k">$5,000-$10,000</label>
-          <input type="checkbox" namne="over10k" id="over10k" />
+          <input type="checkbox" namne="amount" id="over10k" />
           <label htmlFor="over10k">$10,000+</label>
         </fieldset>
 
