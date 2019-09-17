@@ -1,18 +1,20 @@
-import React from "react";
+import React, {useState} from "react";
 import { connect } from "react-redux";
 import {filterGrants} from '../actions/index'
 
 
 const Filters = ({filterGrants}) => {
+    const [filters, setFilters] = useState([]);
 
-    const filterTheGrants = () => {
-
+    const filterTheGrants = (e) => {
+        e.preventDefault();
+        console.log("filters", e);
     }
   return (
     <div>
       <h2>Filter Grants By:</h2>
 
-      <form onChange={filterGrants}>
+      <form onChange={filterTheGrants}>
         <fieldset>
             <legend>Grant Amount</legend>
           <input type="checkbox" namne="under1k" id="under1k"/>
