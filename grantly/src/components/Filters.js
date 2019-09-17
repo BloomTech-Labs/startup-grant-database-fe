@@ -31,12 +31,25 @@ const Filters = () => {
         </fieldset>
 
         <fieldset>
+            <legend>Region</legend>
+            <input type="checkbox" name="global" id="global" />
+            <label htmlFor="global">Global</label>
+            <input type="checkbox" name="northamerica" id="northamerica" />
+            <label hhtmlFor="northamerica">North America</label>
+            <input type="checkbox" name="europe" id="europe" />
+            <label hhtmlFor="europe">Europe</label>
+            <input type="checkbox" name="southamerica" id="southamerica" />
+            <label hhtmlFor="southamerica">South America</label>
+            <input type="checkbox" name="africa" id="africa" />
+            <label hhtmlFor="africa">Africa</label>
+        </fieldset>
+        {/* <fieldset>
             <legend>Gender</legend>
             <input type="checkbox" name="male" id="male" />
             <label htmlFor="male">Male</label>
-            <input type="checkbox" name="male" id="female" />
+            <input type="checkbox" name="female" id="female" />
             <label hhtmlFor="female">Female</label>
-        </fieldset>
+        </fieldset> */}
 
         <fieldset>
             <legend>Minority</legend>
