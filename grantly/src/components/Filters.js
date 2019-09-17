@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import {filterGrants} from '../actions/index'
 
 
 const Filters = () => {
@@ -69,4 +70,5 @@ const Filters = () => {
   );
 };
 
-export default Filters;
+
+export default connect(null, {filterGrants})(Filters);
