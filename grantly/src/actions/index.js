@@ -12,7 +12,8 @@ import {
   CREATE_START,
   CREATE_SUCCESS,
   CREATE_ERROR,
-  FILTER_GRANTS
+  FILTER_GRANTS,
+  SELECT_GRANT
 } from "./types";
 
 export const fetchApi = () => dispatch => {
@@ -64,7 +65,11 @@ export const login = creds => dispatch => {
 export const filterGrants = filters => dispatch => {
   //either call to database and return specific grants
   //or filter the list of grants in the redux store
-  
+
   //initial thoughts is to have filters be an array  becuase users will be able to select multiple grant filter
-  dispatch({type: FILTER_GRANTS, payload: filters })
-}
+  dispatch({ type: FILTER_GRANTS, payload: filters });
+};
+
+export const selectGrant = grant => dispatch => {
+  dispatch({ type: SELECT_GRANT, payload: grant });
+};

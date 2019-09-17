@@ -1,10 +1,16 @@
 // Action types
-import { FETCH_START, FETCH_SUCCESS, FETCH_ERROR } from "../actions/types";
+import {
+  FETCH_START,
+  FETCH_SUCCESS,
+  FETCH_ERROR,
+  SELECT_GRANT
+} from "../actions/types";
 
 // Initial state
 
 const initialState = {
-  data: []
+  data: [],
+  grantShowcase: {}
 };
 
 // Reducer
@@ -23,13 +29,19 @@ export const rooterReducer = (state = initialState, { type, payload }) => {
         ...state,
         error: "",
         isFetching: false,
-        data: payload.grants
+        data: payload.grants,
+        grantShowcase: payload.grants[0]
       };
     case FETCH_ERROR:
       return {
         ...state,
         error: payload,
         isFetching: false
+      };
+    case SELECT_GRANT:
+      return {
+        ...state,
+        grantShowcase: payload
       };
     default:
       return state;

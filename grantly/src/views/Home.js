@@ -1,12 +1,13 @@
 import React from "react";
 import GrantList from "../components/grants/GrantList";
 import Filters from "../components/Filters";
+import GrantShowcase from "../components/grants/GrantShowcase";
 
 const Home = () => {
   return (
-    <div>
+    <div className="home">
       <GrantList />
-      {/* Grant Showcase component*/}
+      <GrantShowcase />
       <Filters />
     </div>
   );
