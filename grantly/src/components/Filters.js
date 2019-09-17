@@ -16,12 +16,12 @@ const Filters = ({ filterGrants }) => {
   });
 
   const grantFilters = {
-      color: "primary",
-      region: ["Global", "North America", "Europe", "South America", "Africa"],
-      amount: ["Under $1,000", "$1,000 - $5,000", "$5,000 - $10,000", "$10,000+"],
-      area_focus: ["Business", "Technology", "Science", "Creative"],
-      minority: ["Women", "African American", "Hispanic", "Other"]
-  }
+    color: "primary",
+    region: ["Global", "North America", "Europe", "South America", "Africa"],
+    amount: ["Under $1,000", "$1,000 - $5,000", "$5,000 - $10,000", "$10,000+"],
+    area_focus: ["Business", "Technology", "Science", "Creative"],
+    minority: ["Women", "African American", "Hispanic", "Other"]
+  };
 
   const handleChanges = e => {
     console.log("who", e.target.name);
@@ -38,39 +38,62 @@ const Filters = ({ filterGrants }) => {
     console.log("List", filters);
   };
   return (
-    <div>
+    <div style={{"width": "300px"}}>
       <h2>Filter Grants By:</h2>
 
-      <form>
+      <FormGroup >
         <FormControl component="fieldset">
           <FormLabel component="legend">Grant Amount</FormLabel>
           {grantFilters.amount.map(name => {
-              return <FormControlLabel control={<Checkbox value={name} color={grantFilters.color} />} label={name}/>
+            return (
+              <FormControlLabel
+                control={<Checkbox value={name} color={grantFilters.color} />}
+                key={name}
+                label={name}
+              />
+            );
           })}
         </FormControl>
 
         <FormControl component="fieldset">
           <FormLabel component="legend">Area Focus</FormLabel>
           {grantFilters.area_focus.map(name => {
-              return <FormControlLabel control={<Checkbox value={name} color={grantFilters.color} />} label={name}/>
+            return (
+              <FormControlLabel
+                control={<Checkbox value={name} color={grantFilters.color} />}
+                key={name}
+                label={name}
+              />
+            );
           })}
         </FormControl>
 
         <FormControl component="fieldset">
           <FormLabel component="legend">Region</FormLabel>
           {grantFilters.region.map(name => {
-              return <FormControlLabel control={<Checkbox value={name} color={grantFilters.color} />} label={name}/>
+            return (
+              <FormControlLabel
+                control={<Checkbox value={name} color={grantFilters.color} />}
+                key={name}
+                label={name}
+              />
+            );
           })}
         </FormControl>
 
         <FormControl component="fieldset">
           <FormLabel component="legend">Minority</FormLabel>
           {grantFilters.minority.map(name => {
-              return <FormControlLabel control={<Checkbox value={name} color={grantFilters.color} />} label={name}/>
+            return (
+              <FormControlLabel
+                control={<Checkbox value={name} color={grantFilters.color} />}
+                key={name}
+                label={name}
+              />
+            );
           })}
         </FormControl>
-
-      </form>
+      </FormGroup>
     </div>
   );
 };
