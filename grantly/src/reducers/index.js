@@ -48,12 +48,23 @@ export const rooterReducer = (state = initialState, { type, payload }) => {
         grantShowcase: payload
       };
     case FILTER_GRANTS:
+      console.log("reducer", Object.entries(payload)[1])
       return {
         ...state,
         filters: payload,
-        filteredGrants: [...state.data.filter(grant => {
-          return grant.amount <= 1000; 
+        filteredGrants: [...state.data.map(grant => {
+          return Object.entries(payload)[1].map(filter => {
+            console.log(grant[filter])
+            console.log(payload)
+          //   if(grant.payload[0].includes(filter)){
+          //     console.log("true");
+          //   }
+          })
         })]
+
+        // [...state.data.filter(grant => {
+        //   return grant.amount <= 1000; 
+        // })]
 
       }
     default:
