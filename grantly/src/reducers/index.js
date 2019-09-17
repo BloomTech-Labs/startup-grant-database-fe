@@ -4,7 +4,8 @@ import { FETCH_START, FETCH_SUCCESS, FETCH_ERROR } from "../actions/types";
 // Initial state
 
 const initialState = {
-  data: []
+  data: [],
+  grantShowcase: []
 };
 
 // Reducer

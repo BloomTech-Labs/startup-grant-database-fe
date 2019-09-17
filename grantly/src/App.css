@@ -1,7 +1,17 @@
 .App {
   text-align: center;
+  max-width: 850px;
+  margin: 0 auto;
 }
 
 .grant-card {
   border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.btn {
+  border: 1px solid black;
+  background: lightgrey;
 }
