@@ -83,7 +83,7 @@ export const rooterReducer = (state = initialState, { type, payload }) => {
       //   });
       // });
 
-      state.data.filter(grant => {
+      state.data.map(grant => {
         Object.entries(payload).map(filter => {
           filter[1].map(userFilters => {
             if (filter[0] === "amount") {
@@ -121,6 +121,9 @@ export const rooterReducer = (state = initialState, { type, payload }) => {
 
       return {
         ...state,
+        data: Array.from(new Set(state.data.map(grant => grant.id))).map(id => {
+          return state.data.find(grant => grant.id === id);
+        }),
         filters: payload,
         filteredGrants: testing
 
