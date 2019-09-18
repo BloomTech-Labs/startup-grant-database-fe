@@ -20,7 +20,7 @@ function App() {
         {/* <div>Welcome to Grantly</div> */}
         <Route path="/" component={NavBar} />
         <Route path="/grants" component={GrantList} />
-        <Route path="/" component={Home} />
+        <Route exact path="/" component={Home} />
         <Route path="/form" component={SubmitForm} />
       </div>
     </Router>

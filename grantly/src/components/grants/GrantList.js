@@ -19,7 +19,7 @@ const GrantList = props => {
   }, []);
 
   if (props.isFetching) {
-    return <Loader type="Puff" color="#00BFFF" height="100" width="100" />;
+    return <Loader type="Triangle" color="#00BFFF" height="100" width="100" />;
   }
   // console.log(user);
   return (

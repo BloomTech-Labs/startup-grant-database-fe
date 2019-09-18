@@ -12,8 +12,6 @@ const Filters = ({ filterGrants }) => {
   const [filters, setFilters] = useState({
     geographic_region: [],
     amount: [],
-    area_focus: [],
-    domain_areas: []
   });
 
   //Makes sure that the current state is being sent to the action creator
@@ -24,9 +22,7 @@ const Filters = ({ filterGrants }) => {
   const grantFilters = {
     color: "secondary",
     geographic_region: ["Global", "North America", "Europe", "South America", "Africa"],
-    amount: ["Under $1,000", "$1,000 - $5,000", "$5,000 - $10,000", "$10,000+"],
-    area_focus: ["Business", "Technology", "Science", "Creative", "Random"],
-    domain_areas: ["Environment", "Conservation", "Water", "Engery"]
+    amount: ["Under $1,000", "$1,000 - $5,000", "$5,000 - $10,000", "$10,000+"]
   };
 
   const handleChanges = (type, value) => {
@@ -50,9 +46,9 @@ const Filters = ({ filterGrants }) => {
   console.log("render", filters);
   return (
     <div>
-      <h2>Filter Grants By:</h2>
 
       <FormGroup >
+      <h2>Filter Grants By:</h2>
         <FormControl component="fieldset">
           <FormLabel component="legend">Grant Amount</FormLabel>
           {grantFilters.amount.map(name => {
@@ -66,18 +62,6 @@ const Filters = ({ filterGrants }) => {
           })}
         </FormControl>
 
-        <FormControl component="fieldset" >
-          <FormLabel component="legend">Area Focus</FormLabel>
-          {grantFilters.area_focus.map(name => {
-            return (
-              <FormControlLabel
-                control={<Checkbox value={name} color={grantFilters.color} onClick={() => handleChanges("area_focus", name)}/>}
-                key={name}
-                label={name}
-              />
-            );
-          })}
-        </FormControl>
 
         <FormControl component="fieldset">
           <FormLabel component="legend">Region</FormLabel>
@@ -92,18 +76,7 @@ const Filters = ({ filterGrants }) => {
           })}
         </FormControl>
 
-        <FormControl component="fieldset">
-          <FormLabel component="legend">Domain Areas</FormLabel>
-          {grantFilters.domain_areas.map(name => {
-            return (
-              <FormControlLabel
-                control={<Checkbox value={name} color={grantFilters.color} onClick={() => handleChanges("domain_areas", name)}/>}
-                key={name}
-                label={name}
-              />
-            );
-          })}
-        </FormControl>
+
       </FormGroup>
     </div>
   );

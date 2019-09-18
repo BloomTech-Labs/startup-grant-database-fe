@@ -23,7 +23,7 @@ const useStyles = makeStyles(theme => ({
     marginLeft: "20px"
   },
   navbar: {
-    background: "#848dff"
+    background: "#000"
   }
 }));
 
