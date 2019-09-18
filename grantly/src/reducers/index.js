@@ -86,6 +86,7 @@ export const rooterReducer = (state = initialState, { type, payload }) => {
       state.data.map(grant => {
         Object.entries(payload).map(filter => {
           filter[1].map(userFilters => {
+
             if (filter[0] === "amount") {
               if (userFilters.includes("-")) {
                 const min = userFilters.split("-")[0].replace(/\D/g, "");
@@ -104,8 +105,6 @@ export const rooterReducer = (state = initialState, { type, payload }) => {
               grant[filter[0]].toLowerCase().includes(userFilters.toLowerCase())
             ) {
               newList.push(grant);
-            } else {
-              newList = state.data;
             }
           });
         });
