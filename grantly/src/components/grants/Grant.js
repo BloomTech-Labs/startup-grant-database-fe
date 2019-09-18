@@ -43,21 +43,28 @@ const Grant = props => {
           <BookmarkIcon className="bookmark" />
         </Grid>
       </Grid>
-      <h3>{props.grant.competition_name}</h3>
-      <Grid container direction="column">
-        <div item>Deadline</div>
-        {deadline}
-      </Grid>
-      <Grid container direction="column">
-        <div item>Amount</div>
-        <div item>
-          {props.grant.amount
-            ? "$" + formatNumbers(props.grant.amount)
-            : "See website for details"}
-        </div>
-      </Grid>
+      <h3 className={styles.grantName}>{props.grant.competition_name}</h3>
+      <Container className={styles.detailsWrapper}>
+        <Grid container direction="column" className={styles.amount}>
+          <div item>Amount</div>
+          <div item>
+            {props.grant.amount
+              ? "$" + formatNumbers(props.grant.amount)
+              : "See website for details"}
+          </div>
+        </Grid>
+        <Grid container direction="column" className={styles.deadline}>
+          <div item>Deadline</div>
+          {deadline}
+        </Grid>
+      </Container>
       <Container maxWidth="sm">
-        <Button variant="contained" color="default" onClick={selectGrant}>
+        <Button
+          className={styles.btn}
+          variant="contained"
+          color="default"
+          onClick={selectGrant}
+        >
           Select
         </Button>
       </Container>
