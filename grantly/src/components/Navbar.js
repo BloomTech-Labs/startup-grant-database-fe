@@ -51,12 +51,12 @@ const NavBar = () => {
           <Typography variant="h4" className={classes.title}>
             Grantly
           </Typography>
-          <Button className={classes.navButton} color="inherit">
             <NavLink to="/">
+          <Button className={classes.navButton} color="inherit">
 
             HOME
-            </NavLink>
           </Button>
+            </NavLink>
           <Button className={classes.navButton} color="inherit">
             ABOUT
           </Button>

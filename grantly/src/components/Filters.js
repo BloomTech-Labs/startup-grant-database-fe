@@ -18,8 +18,9 @@ const useStyles = makeStyles(theme => ({
       textAlign: "left"
     },
     set: {
-        width: "50%",
-        alignSelf: "center"
+        width: "90%",
+        alignSelf: "center",
+        margin: ".8em"
     }
 }))
 
@@ -36,7 +37,7 @@ const Filters = ({ filterGrants }) => {
   }, [filters]);
 
   const grantFilters = {
-    color: "secondary",
+    color: "primary",
     geographic_region: [
       "Global",
       "North America",
