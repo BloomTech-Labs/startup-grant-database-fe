@@ -10,7 +10,7 @@ import SubmitForm from "./components/SubmitForm";
 
 // Stylings
 import "./App.scss";
-import Filters from "./components/Filters";
+import { ThemeProvider } from '@material-ui/styles';
 import Home from "./views/Home";
 
 function App() {
