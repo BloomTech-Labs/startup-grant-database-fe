@@ -84,7 +84,6 @@ export const rooterReducer = (state = initialState, { type, payload }) => {
 
       state.data.filter(grant => {
         Object.entries(payload).map(filter => {
-          console.log("filter", filter)
           filter[1].map(userFilters => {
             if (filter[0] === "amount") {
               if (userFilters.includes("-")) {
@@ -115,7 +114,7 @@ export const rooterReducer = (state = initialState, { type, payload }) => {
         (grant, index) => newList.indexOf(grant) === index
       );
 
-      console.log("non", testing);
+      // console.log("non", testing);
 
       return {
         ...state,

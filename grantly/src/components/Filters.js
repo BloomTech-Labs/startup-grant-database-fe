@@ -34,6 +34,7 @@ const Filters = ({ filterGrants }) => {
   //Makes sure that the current state is being sent to the action creator
   useEffect(() => {
     filterGrants(filters);
+    
   }, [filters]);
 
   const grantFilters = {
@@ -50,7 +51,7 @@ const Filters = ({ filterGrants }) => {
   };
 
   const handleChanges = (type, value) => {
-    if (filters[type].includes(value)) {
+    if (filters[type].includes(value.toLowerCase())) {
       console.log("Its there");
       setFilters({
         ...filters,

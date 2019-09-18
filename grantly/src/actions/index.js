@@ -63,13 +63,22 @@ export const login = creds => dispatch => {
 };
 
 export const filterGrants = filters => dispatch => {
-  console.log("test", filters)
+  console.log("test", filters);
+  console.log("taaa", Object.values(filters).length);
+  const numofFilters = Object.values(filters).length;
+  let numCheck = 0;
   //either call to database and return specific grants
   //or filter the list of grants in the redux store
+  console.log("yooo", numofFilters);
+  Object.values(filters).map(filter => {
+    filter.length !== 0 && numCheck++ 
+  });
+
+  console.log("yessssss", numCheck);
 
   //initial thoughts is to have filters be an array  becuase users will be able to select multiple grant filter
   //Now filters will be an object that contains different arrays
-  dispatch({ type: FILTER_GRANTS, payload: filters });
+  // dispatch({ type: FILTER_GRANTS, payload: filters });
 };
 
 export const selectGrant = grant => dispatch => {
