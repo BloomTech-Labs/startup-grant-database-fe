@@ -13,6 +13,9 @@ import { connect } from "react-redux";
 import { filterGrants } from "../actions/index";
 
 const useStyles = makeStyles(theme => ({
+    card: {
+      position: "fixed"
+    },
     label: {
       alignSelf: "flex-start",
       textAlign: "left"
@@ -34,6 +37,7 @@ const Filters = ({ filterGrants }) => {
   //Makes sure that the current state is being sent to the action creator
   useEffect(() => {
     filterGrants(filters);
+    
   }, [filters]);
 
   const grantFilters = {
@@ -50,8 +54,7 @@ const Filters = ({ filterGrants }) => {
   };
 
   const handleChanges = (type, value) => {
-    if (filters[type].includes(value)) {
-      console.log("Its there");
+    if (filters[type].includes(value.toLowerCase())) {
       setFilters({
         ...filters,
         [type]: filters[type].filter(
@@ -59,7 +62,6 @@ const Filters = ({ filterGrants }) => {
         )
       });
     } else {
-      console.log("it's not here");
       setFilters({
         ...filters,
         [type]: [...filters[type], value.toLowerCase()]
@@ -70,9 +72,8 @@ const Filters = ({ filterGrants }) => {
   };
   const classes = useStyles();
 
-  console.log("render", filters);
   return (
-    <Card>
+    <Card className={classes.card}>
       <FormGroup>
         <Typography variant="h5" component="h2">
           {" "}
