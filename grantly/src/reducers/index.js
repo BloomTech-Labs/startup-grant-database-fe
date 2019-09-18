@@ -4,7 +4,8 @@ import {
   FETCH_SUCCESS,
   FETCH_ERROR,
   SELECT_GRANT,
-  FILTER_GRANTS
+  FILTER_GRANTS,
+  FILTER_GRANTS_RESET
 } from "../actions/types";
 
 // Initial state
@@ -125,6 +126,11 @@ export const rooterReducer = (state = initialState, { type, payload }) => {
         //   return grant.amount <= 1000;
         // })]
       };
+      case FILTER_GRANTS_RESET:
+        return {
+          ...state,
+          filteredGrants: state.data
+        }
     default:
       return state;
   }
