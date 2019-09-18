@@ -25,6 +25,9 @@ const useStyles = makeStyles(theme => ({
     background: "#fff",
     flexGrow: 1,
     marginBottom: "2em"
+  },
+  log: {
+    color: "#fff"
   }
 }));
 
@@ -66,27 +69,27 @@ const NavBar = () => {
         <Button className={classes.navButton} color="inherit">
           SIGN UP
         </Button>
-          {!isAuthenticated && (
-            <Button
-              className={classes.navButton}
-              variant="contained"
-              color="primary"
-              onClick={() => loginWithRedirect({})}
-            >
-              Log in
-            </Button>
-          )}
+        {!isAuthenticated && (
+          <Button
+            className={classes.log}
+            variant="contained"
+            color="primary"
+            onClick={() => loginWithRedirect({})}
+          >
+            Log in
+          </Button>
+        )}
 
-          {isAuthenticated && (
-            <Button
-              className={classes.navButton}
-              variant="outlined"
-              color="primary"
-              onClick={() => logout()}
-            >
-              Log out
-            </Button>
-          )}
+        {isAuthenticated && (
+          <Button
+            className={classes.log}
+            variant="outlined"
+            color="secondary"
+            onClick={() => logout()}
+          >
+            Log out
+          </Button>
+        )}
       </Toolbar>
     </AppBar>
   );
