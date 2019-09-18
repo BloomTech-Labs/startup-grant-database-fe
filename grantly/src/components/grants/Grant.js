@@ -38,12 +38,15 @@ const Grant = props => {
 
   return (
     <Card className={styles.grantCard}>
-      <Grid container justify="flex-end">
+      <Grid container direction="row" justify="space-between">
+        <Grid item className={styles.phantom}></Grid>
         <Grid item>
+          <h3 className={styles.grantName}>{props.grant.competition_name}</h3>
+        </Grid>
+        <Grid item className={styles.bookmark}>
           <BookmarkIcon className="bookmark" />
         </Grid>
       </Grid>
-      <h3 className={styles.grantName}>{props.grant.competition_name}</h3>
       <Container className={styles.detailsWrapper}>
         <Grid container direction="column" className={styles.amount}>
           <div item className={styles.detailsHeader}>

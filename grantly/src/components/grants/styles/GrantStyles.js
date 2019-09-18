@@ -17,13 +17,20 @@ const grantStyles = makeStyles(theme => ({
     margin: "0.5rem"
   },
   grantName: {
-    fontSize: "1rem"
+    fontSize: "1rem",
+    position: "relative",
+    marginLeft: "5px"
+    // border: "1px solid fuchsia"
+  },
+  bookmark: {
+    marginTop: "10px"
+    // border: "1px solid fuchsia"
+  },
+  phantom: {
+    // border: "1px solid fuchsia"
   },
   deadline: {
     margin: cardDetailsMargin
-    // deadlineHeader: {
-    //   margin: cardDetailsMargin
-    // }
   },
   detailsHeader: {
     margin: "5px",
@@ -34,8 +41,6 @@ const grantStyles = makeStyles(theme => ({
     margin: cardDetailsMargin
   },
   btn: {
-    // border: "1px solid black",
-    // background: "lightgrey"
     margin: "10px"
   },
   detailsWrapper: {
