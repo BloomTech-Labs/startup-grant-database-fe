@@ -6,6 +6,7 @@ import createAuth0Client from "@auth0/auth0-spa-js";
 // Objects
 import GrantList from "./components/grants/GrantList";
 import NavBar from "./components/Navbar";
+import SubmitForm from "./components/SubmitForm";
 
 // Stylings
 import "./App.scss";
@@ -16,9 +17,11 @@ function App() {
   return (
     <Router>
       <div className="App">
-        {/* <Route path="/" component={NavBar} /> */}
+        {/* <div>Welcome to Grantly</div> */}
+        <Route path="/" component={NavBar} />
         <Route path="/grants" component={GrantList} />
-        <Route path="/" component={Home} />
+        <Route exact path="/" component={Home} />
+        <Route path="/form" component={SubmitForm} />
       </div>
     </Router>
   );
