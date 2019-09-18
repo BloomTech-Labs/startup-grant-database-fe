@@ -13,6 +13,9 @@ import { connect } from "react-redux";
 import { filterGrants } from "../actions/index";
 
 const useStyles = makeStyles(theme => ({
+    card: {
+      position: "fixed"
+    },
     label: {
       alignSelf: "flex-start",
       textAlign: "left"
@@ -52,7 +55,6 @@ const Filters = ({ filterGrants }) => {
 
   const handleChanges = (type, value) => {
     if (filters[type].includes(value.toLowerCase())) {
-      console.log("Its there");
       setFilters({
         ...filters,
         [type]: filters[type].filter(
@@ -60,7 +62,6 @@ const Filters = ({ filterGrants }) => {
         )
       });
     } else {
-      console.log("it's not here");
       setFilters({
         ...filters,
         [type]: [...filters[type], value.toLowerCase()]
@@ -71,9 +72,8 @@ const Filters = ({ filterGrants }) => {
   };
   const classes = useStyles();
 
-  console.log("render", filters);
   return (
-    <Card>
+    <Card className={classes.card}>
       <FormGroup>
         <Typography variant="h5" component="h2">
           {" "}
