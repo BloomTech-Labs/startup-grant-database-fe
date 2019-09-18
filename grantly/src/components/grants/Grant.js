@@ -1,5 +1,5 @@
 // Dependencies
-import React, { useState } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import Moment from "react-moment";
 
@@ -16,7 +16,7 @@ import Card from "@material-ui/core/Card";
 import "../../App.scss";
 
 const Grant = props => {
-  console.log("Grant props", props);
+  // console.log("Grant props", props);
 
   const selectGrant = () => {
     props.selectGrant(props.grant);
@@ -49,19 +49,15 @@ const Grant = props => {
       </Grid>
       <Container className={styles.detailsWrapper}>
         <Grid container direction="column" className={styles.amount}>
-          <div item className={styles.detailsHeader}>
-            Amount
-          </div>
-          <div item>
+          <div className={styles.detailsHeader}>Amount</div>
+          <div>
             {props.grant.amount
               ? "$" + formatNumbers(props.grant.amount)
               : "See website for details"}
           </div>
         </Grid>
         <Grid container direction="column" className={styles.deadline}>
-          <div item className={styles.detailsHeader}>
-            Deadline
-          </div>
+          <div className={styles.detailsHeader}>Deadline</div>
           {deadline}
         </Grid>
       </Container>

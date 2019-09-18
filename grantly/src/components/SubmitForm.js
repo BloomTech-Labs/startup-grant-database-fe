@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { connect } from "react-redux";
-import { addGrant } from "../actions";
+// import { connect } from "react-redux";
+// import { addGrant } from "../actions";
 
 const AddGrant = props => {
   const [grantInfo, setGrantInfo] = useState({
