@@ -6,12 +6,11 @@ const NavBar = () => {
   const { loading } = useAuth0();
 
   if (loading) {
-    return (
-      <div>Loading...</div>
-    );
+    return <div>Loading...</div>;
   }
   return (
     <div>
+      <div>Welcome to Grantly</div>
       {!isAuthenticated && (
         <button onClick={() => loginWithRedirect({})}>Log in</button>
       )}
@@ -22,4 +21,3 @@ const NavBar = () => {
 };
 
 export default NavBar;
-

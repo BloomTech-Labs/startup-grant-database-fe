@@ -16,7 +16,6 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <div>Welcome to Grantly</div>
         {/* <Route path="/" component={NavBar} /> */}
         <Route path="/grants" component={GrantList} />
         <Route path="/" component={Home} />
