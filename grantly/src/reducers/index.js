@@ -62,7 +62,7 @@ export const rooterReducer = (state = initialState, { type, payload }) => {
       //           if(grant[filter[0]] >= min && grant[filter[0]] <= max){
       //             return true
       //           }
-                
+
       //         } else if(grant[filter[0]] <= userFilters.replace(/\D/g,'')){
       //           return true
       //         } else if (userFilters.replace(/[^0-9\+]/g, '').includes("+")){
@@ -82,40 +82,40 @@ export const rooterReducer = (state = initialState, { type, payload }) => {
       //   });
       // });
 
-
-
-
-
       state.data.filter(grant => {
         Object.entries(payload).map(filter => {
+          console.log("filter", filter)
           filter[1].map(userFilters => {
-            if(filter[0] === "amount"){
-
-              if(userFilters.includes("-")){
-                const min = userFilters.split("-")[0].replace(/\D/g,'')
-                const max = userFilters.split("-")[1].replace(/\D/g,'')
-                if(grant[filter[0]] >= min && grant[filter[0]] <= max){
-                  newList.push(grant)
+            if (filter[0] === "amount") {
+              if (userFilters.includes("-")) {
+                const min = userFilters.split("-")[0].replace(/\D/g, "");
+                const max = userFilters.split("-")[1].replace(/\D/g, "");
+                if (grant[filter[0]] >= min && grant[filter[0]] <= max) {
+                  newList.push(grant);
                 }
-                
-              } else if(grant[filter[0]] <= userFilters.replace(/\D/g,'')){
+              } else if (grant[filter[0]] <= userFilters.replace(/\D/g, "")) {
                 newList.push(grant);
-              } else if (userFilters.replace(/[^0-9\+]/g, '').includes("+")){
-                if(grant[filter[0]] >= userFilters.replace(/\D/g,'')){
-                  newList.push(grant)
+              } else if (userFilters.replace(/[^0-9\+]/g, "").includes("+")) {
+                if (grant[filter[0]] >= userFilters.replace(/\D/g, "")) {
+                  newList.push(grant);
                 }
               }
+            } else if (
+              grant[filter[0]].toLowerCase().includes(userFilters.toLowerCase())
+            ) {
+              newList.push(grant);
             } else {
-              if (
-                grant[filter[0]].toLowerCase().includes(userFilters.toLowerCase())
-              ) {
-                newList.push(grant);
-              }
-
+              newList = state.data
             }
           });
         });
       });
+
+      let testing = newList.filter(
+        (grant, index) => newList.indexOf(grant) === index
+      );
+
+      console.log("non", testing);
 
       return {
         ...state,
