@@ -10,6 +10,7 @@ import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
 import BookmarkIcon from "@material-ui/icons/Bookmark";
 import grantStyles from "./styles/GrantStyles";
+import Card from "@material-ui/core/Card";
 
 // Styles
 import "../../App.scss";
@@ -36,7 +37,7 @@ const Grant = props => {
   const styles = grantStyles();
 
   return (
-    <Container className={styles.grantCard}>
+    <Card className={styles.grantCard}>
       <Grid container justify="flex-end">
         <Grid item>
           <BookmarkIcon className="bookmark" />
@@ -60,7 +61,7 @@ const Grant = props => {
           Select
         </Button>
       </Container>
-    </Container>
+    </Card>
   );
 };
 
