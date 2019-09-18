@@ -8,7 +8,7 @@ import GrantList from "./components/grants/GrantList";
 import NavBar from "./components/Navbar";
 
 // Stylings
-import "./App.css";
+import "./App.scss";
 import Filters from "./components/Filters";
 import Home from "./views/Home";
 
@@ -20,7 +20,6 @@ function App() {
         <Route path="/" component={NavBar} />
         <Route path="/grants" component={GrantList} />
         <Route path="/" component={Home} />
-
       </div>
     </Router>
   );
