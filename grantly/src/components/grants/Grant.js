@@ -18,6 +18,17 @@ const Grant = props => {
   const selectGrant = () => {
     props.selectGrant(props.grant);
   };
+
+
+  function formatNumbers(num) {
+    return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
+
+const testFormat = formatNumbers(3769);
+console.log("testFormat", testFormat);
+
+
   return (
     <Container className="grant-card">
       <Grid container justify="flex-end">
@@ -32,7 +43,7 @@ const Grant = props => {
       </Grid>
       <Grid container direction="column">
         <div item>Amount</div>
-        <div item>${props.grant.amount}</div>
+        <div item>{props.grant.amount ? "$" + formatNumbers(props.grant.amount) : "See website for details"}</div>
       </Grid>
       <Container maxWidth="sm">
         <Button variant="contained" color="default" onClick={selectGrant}>
