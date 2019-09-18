@@ -9,6 +9,7 @@ import Container from "@material-ui/core/Container";
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
 import BookmarkIcon from "@material-ui/icons/Bookmark";
+import grantStyles from "./styles/GrantStyles";
 
 // Styles
 import "../../App.scss";
@@ -24,8 +25,6 @@ const Grant = props => {
     return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   }
 
-  const testDate = "2019-06-11T00:00:00.000Z";
-
   const deadline = props.grant.most_recent_application_due_date ? (
     <Moment format={"MMMM Do YYYY"}>
       {props.grant.most_recent_application_due_date}
@@ -33,6 +32,8 @@ const Grant = props => {
   ) : (
     <div>See website for details</div>
   );
+
+  const styles = grantStyles();
 
   return (
     <Container className="grant-card">

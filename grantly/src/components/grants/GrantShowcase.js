@@ -3,12 +3,14 @@ import React from "react";
 import { connect } from "react-redux";
 
 // Objects
+import grantStyles from "./styles/GrantStyles";
 
 // Styles
 
 const GrantShowcase = props => {
   console.log("GrantShowcase props", props);
 
+  const styles = grantStyles();
   if (props.isFetching) {
     return <div></div>;
   }
@@ -16,7 +18,7 @@ const GrantShowcase = props => {
   // console.log("GrantShowcase props", props);
 
   return (
-    <div className="grant-showcase">
+    <div className={styles.showcase}>
       <h2>{props.grant.competition_name}</h2>
       <div>{props.grant.amount}</div>
       <div>{props.grant.area_focus}</div>
