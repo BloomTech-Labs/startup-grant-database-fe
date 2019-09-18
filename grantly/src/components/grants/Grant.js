@@ -36,7 +36,7 @@ const Grant = props => {
   const styles = grantStyles();
 
   return (
-    <Container className="grant-card">
+    <Container className={styles.grantCard}>
       <Grid container justify="flex-end">
         <Grid item>
           <BookmarkIcon className="bookmark" />
