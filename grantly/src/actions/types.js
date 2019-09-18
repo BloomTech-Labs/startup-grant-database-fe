@@ -11,3 +11,4 @@ export const SELECT_GRANT = "SELECT_GRANT";
 
 //Filter Type
 export const FILTER_GRANTS = "FILTER_GRANTS";
+export const FILTER_GRANTS_RESET = "FILTER_GRANTS_RESET";
