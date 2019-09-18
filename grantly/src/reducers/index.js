@@ -105,32 +105,34 @@ export const rooterReducer = (state = initialState, { type, payload }) => {
             ) {
               newList.push(grant);
             } else {
-              newList = state.data
+              newList = state.data;
             }
           });
         });
       });
 
-      let testing = newList.filter(
-        (grant, index) => newList.indexOf(grant) === index
+      const testing = Array.from(new Set(newList.map(grant => grant.id))).map(
+        id => {
+          return newList.find(grant => grant.id === id);
+        }
       );
 
-      // console.log("non", testing);
+      console.log("non", testing);
 
       return {
         ...state,
         filters: payload,
-        filteredGrants: newList
+        filteredGrants: testing
 
         // [...state.data.filter(grant => {
         //   return grant.amount <= 1000;
         // })]
       };
-      case FILTER_GRANTS_RESET:
-        return {
-          ...state,
-          filteredGrants: state.data
-        }
+    case FILTER_GRANTS_RESET:
+      return {
+        ...state,
+        filteredGrants: state.data
+      };
     default:
       return state;
   }
