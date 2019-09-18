@@ -50,73 +50,72 @@ export const rooterReducer = (state = initialState, { type, payload }) => {
     case FILTER_GRANTS:
       let newList = [];
       // Don't pay attention to this mess :)
-      let list = state.data.filter(grant => {
-        console.log("test", Object.entries(payload))
-        Object.entries(payload).filter(filter => {
-          return filter[1].filter(userFilters => {
-            if(filter[0] === "amount"){
-
-              if(userFilters.includes("-")){
-                const min = userFilters.split("-")[0].replace(/\D/g,'')
-                const max = userFilters.split("-")[1].replace(/\D/g,'')
-                if(grant[filter[0]] >= min && grant[filter[0]] <= max){
-                  return true
-                }
-                
-              } else if(grant[filter[0]] <= userFilters.replace(/\D/g,'')){
-                return true
-              } else if (userFilters.replace(/[^0-9\+]/g, '').includes("+")){
-                if(grant[filter[0]] >= userFilters.replace(/\D/g,'')){
-                  return true
-                }
-              }
-            } else {
-              if (
-                grant[filter[0]].toLowerCase().includes(userFilters.toLowerCase())
-              ) {
-                return true
-              }
-
-            }
-          });
-        });
-      });
-
-
-
-console.log("sup", list)
-
-
-      // state.data.filter(grant => {
-      //   Object.entries(payload).map(filter => {
-      //     filter[1].map(userFilters => {
+      // let list = state.data.filter(grant => {
+      //   console.log("test", Object.entries(payload))
+      //   Object.entries(payload).filter(filter => {
+      //     return filter[1].filter(userFilters => {
       //       if(filter[0] === "amount"){
 
       //         if(userFilters.includes("-")){
       //           const min = userFilters.split("-")[0].replace(/\D/g,'')
       //           const max = userFilters.split("-")[1].replace(/\D/g,'')
       //           if(grant[filter[0]] >= min && grant[filter[0]] <= max){
-      //             newList.push(grant)
+      //             return true
       //           }
                 
       //         } else if(grant[filter[0]] <= userFilters.replace(/\D/g,'')){
-      //           newList.push(grant);
+      //           return true
       //         } else if (userFilters.replace(/[^0-9\+]/g, '').includes("+")){
       //           if(grant[filter[0]] >= userFilters.replace(/\D/g,'')){
-      //             newList.push(grant)
+      //             return true
       //           }
       //         }
       //       } else {
       //         if (
       //           grant[filter[0]].toLowerCase().includes(userFilters.toLowerCase())
       //         ) {
-      //           newList.push(grant);
+      //           return true
       //         }
 
       //       }
       //     });
       //   });
       // });
+
+
+
+
+
+      state.data.filter(grant => {
+        Object.entries(payload).map(filter => {
+          filter[1].map(userFilters => {
+            if(filter[0] === "amount"){
+
+              if(userFilters.includes("-")){
+                const min = userFilters.split("-")[0].replace(/\D/g,'')
+                const max = userFilters.split("-")[1].replace(/\D/g,'')
+                if(grant[filter[0]] >= min && grant[filter[0]] <= max){
+                  newList.push(grant)
+                }
+                
+              } else if(grant[filter[0]] <= userFilters.replace(/\D/g,'')){
+                newList.push(grant);
+              } else if (userFilters.replace(/[^0-9\+]/g, '').includes("+")){
+                if(grant[filter[0]] >= userFilters.replace(/\D/g,'')){
+                  newList.push(grant)
+                }
+              }
+            } else {
+              if (
+                grant[filter[0]].toLowerCase().includes(userFilters.toLowerCase())
+              ) {
+                newList.push(grant);
+              }
+
+            }
+          });
+        });
+      });
 
       return {
         ...state,

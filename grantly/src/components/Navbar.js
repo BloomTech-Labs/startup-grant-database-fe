@@ -1,4 +1,5 @@
 import React from "react";
+import {NavLink} from "react-router-dom"
 import { useAuth0 } from "../react-auth0-wrapper";
 import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
@@ -51,7 +52,10 @@ const NavBar = () => {
             Grantly
           </Typography>
           <Button className={classes.navButton} color="inherit">
+            <NavLink to="/">
+
             HOME
+            </NavLink>
           </Button>
           <Button className={classes.navButton} color="inherit">
             ABOUT
