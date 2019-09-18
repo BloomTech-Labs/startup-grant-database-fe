@@ -1,6 +1,7 @@
 // Dependencies
 import React, { useState } from "react";
 import { connect } from "react-redux";
+import Moment from "react-moment";
 
 // Objects
 import { selectGrant } from "../../actions";
@@ -18,6 +19,21 @@ const Grant = props => {
   const selectGrant = () => {
     props.selectGrant(props.grant);
   };
+
+  function formatNumbers(num) {
+    return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  }
+
+  const testDate = "2019-06-11T00:00:00.000Z";
+
+  const deadline = props.grant.most_recent_application_due_date ? (
+    <Moment format={"MMMM Do YYYY"}>
+      {props.grant.most_recent_application_due_date}
+    </Moment>
+  ) : (
+    <div>See website for details</div>
+  );
+
   return (
     <Container className="grant-card">
       <Grid container justify="flex-end">
@@ -28,11 +44,15 @@ const Grant = props => {
       <h3>{props.grant.competition_name}</h3>
       <Grid container direction="column">
         <div item>Deadline</div>
-        <div item>{props.grant.most_recent_application_due_date}</div>
+        {deadline}
       </Grid>
       <Grid container direction="column">
         <div item>Amount</div>
-        <div item>${props.grant.amount}</div>
+        <div item>
+          {props.grant.amount
+            ? "$" + formatNumbers(props.grant.amount)
+            : "See website for details"}
+        </div>
       </Grid>
       <Container maxWidth="sm">
         <Button variant="contained" color="default" onClick={selectGrant}>
