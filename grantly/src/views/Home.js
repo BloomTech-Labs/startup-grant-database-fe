@@ -7,10 +7,10 @@ import Grid from "@material-ui/core/Grid";
 const Home = () => {
   return (
     <Grid container spacing={2}>
-      <Grid item xs={4}>
+      <Grid item xs={3}>
         <GrantList />
       </Grid>
-      <Grid item xs={6}>
+      <Grid item xs={7}>
         <GrantShowcase />
       </Grid>
       <Grid item xs={2}>

@@ -46,7 +46,9 @@ const Grant = props => {
       <h3 className={styles.grantName}>{props.grant.competition_name}</h3>
       <Container className={styles.detailsWrapper}>
         <Grid container direction="column" className={styles.amount}>
-          <div item>Amount</div>
+          <div item className={styles.detailsHeader}>
+            Amount
+          </div>
           <div item>
             {props.grant.amount
               ? "$" + formatNumbers(props.grant.amount)
@@ -54,7 +56,9 @@ const Grant = props => {
           </div>
         </Grid>
         <Grid container direction="column" className={styles.deadline}>
-          <div item>Deadline</div>
+          <div item className={styles.detailsHeader}>
+            Deadline
+          </div>
           {deadline}
         </Grid>
       </Container>

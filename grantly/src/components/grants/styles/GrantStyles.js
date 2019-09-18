@@ -21,6 +21,14 @@ const grantStyles = makeStyles(theme => ({
   },
   deadline: {
     margin: cardDetailsMargin
+    // deadlineHeader: {
+    //   margin: cardDetailsMargin
+    // }
+  },
+  detailsHeader: {
+    margin: "5px",
+    fontWeight: "bold",
+    fontSize: "0.9rem"
   },
   amount: {
     margin: cardDetailsMargin
