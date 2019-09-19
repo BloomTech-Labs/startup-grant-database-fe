@@ -1,9 +1,17 @@
 import { createMuiTheme } from "@material-ui/core/styles";
 
 export const theme = createMuiTheme({
-    palette: {
-        primary: {
-            main: "#3DB8B3"
-        },
+  overrides: {
+    MuiCheckbox: {
+      root: {
+        padding: "4px"
+      }
     }
+  },
+
+  palette: {
+    primary: {
+      main: "#3DB8B3"
+    }
+  }
 });

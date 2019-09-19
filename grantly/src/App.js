@@ -7,6 +7,8 @@ import createAuth0Client from "@auth0/auth0-spa-js";
 import GrantList from "./components/grants/GrantList";
 import NavBar from "./components/Navbar";
 import SubmitForm from "./components/SubmitForm";
+import { useAuth0 } from "./react-auth0-wrapper";
+
 
 // Stylings
 import "./App.scss";
@@ -15,6 +17,15 @@ import { theme } from "./styles/Theme";
 import Home from "./views/Home";
 
 function App() {
+
+  const { loading } = useAuth0();
+
+  // if (loading) {
+  //   return (
+  //     <div>Loading...</div>
+  //   );
+  // }
+
   return (
     <Router>
       <ThemeProvider theme={theme}>
