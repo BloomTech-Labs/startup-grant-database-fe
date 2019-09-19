@@ -98,7 +98,7 @@ const NavBar = () => {
     <AppBar className={classes.navbar} color="primary" position="sticky">
       <Toolbar>
         <Typography variant="h4" className={classes.title}>
-          Grantly
+          FounderGrants
         </Typography>
         <Media query="(min-width:800px)">
           <div>

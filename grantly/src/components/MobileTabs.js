@@ -4,22 +4,30 @@ import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
+import GrantList from "./grants/GrantList"
 
 const MobileTabs = () => {
   const [tab, setTab] = useState(0);
   const tabs = ["Home", "Bookmarked", "Account"];
-  const value = 0;
   const index = 0;
+
+  const toRender = () => {
+    if(tab === 0){
+      return <GrantList />
+    } else{
+      return <h1>Testing</h1>
+    }
+  }
   const TabPanel = () => {
     return (
       <Typography
         component="div"
         role="tabpanel"
-        hidden={value !== index}
+        hidden={tab !== index}
         id={`full-width-tabpanel-${index}`}
         aria-labelledby={`full-width-tab-${index}`}
       >
-        <Box p={3}>{tabs[tab]}</Box>
+        <Box p={3}>{toRender()}</Box>
       </Typography>
     );
   };
@@ -52,7 +60,6 @@ const MobileTabs = () => {
 
       <SwipeableViews index={tab} onChangeIndex={handleChangeIndex}>
         <TabPanel value={tab} index={0}>
-          Item One
         </TabPanel>
         <TabPanel value={tab} index={1}>
           Item Two

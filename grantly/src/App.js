@@ -32,8 +32,8 @@ function App() {
           {/* <div>Welcome to Grantly</div> */}
           <Route path="/" component={NavBar} />
           <Route path="/" component={MobileTabs} />
-          <Route path="/grants" component={GrantList} />
-          <Route exact path="/" component={Home} />
+          {/* <Route path="/grants" component={GrantList} />
+          <Route exact path="/" component={Home} /> */}
           <Route path="/form" component={SubmitForm} />
         </div>
       </ThemeProvider>
