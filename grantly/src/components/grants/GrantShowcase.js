@@ -37,7 +37,9 @@ const GrantShowcase = props => {
   const showcaseStyles = makeStyles(theme => ({
     showcase: {
       position: "fixed",
-      width: "50%"
+      width: "50%",
+      textAlign: "left",
+      padding: "12px"
     },
     showcaseSpan: {
       fontWeight: "bold"
@@ -54,19 +56,37 @@ const GrantShowcase = props => {
 
   return (
     <Card className={styles.showcase}>
-      <h2>{props.grant.competition_name}</h2>
-      <div className={styles.showcaseDetails}>
-        <span className={styles.showcaseSpan}>What it is: </span>{" "}
-        {props.grant.amount
-          ? props.grant.amount_notes
-          : "See website for details"}
-      </div>
-      <Grid item className={styles.showcaseDetails}>
-        <span className={styles.showcaseSpan}>Deadline: </span>
-        {deadline}
-        {momentDeadline}
+      <Grid
+        container
+        direction="row"
+        justify="space-evenly"
+        alignItems="flex-start"
+      >
+        <Grid item>
+          <h2>{props.grant.competition_name}</h2>
+        </Grid>
+        <Grid item>
+          <button>Apply to Grant</button>
+        </Grid>
       </Grid>
-      <Grid container direction="column">
+
+      <Grid
+        container
+        direction="column"
+        justify="flex-start"
+        alignItems="flex-start"
+      >
+        <Grid item className={styles.showcaseDetails}>
+          <span className={styles.showcaseSpan}>What it is: </span>{" "}
+          {props.grant.amount
+            ? props.grant.amount_notes
+            : "See website for details"}
+        </Grid>
+        <Grid item className={styles.showcaseDetails}>
+          <span className={styles.showcaseSpan}>Deadline: </span>
+          {deadline}
+          {momentDeadline}
+        </Grid>
         <Grid item className={styles.showcaseDetails}>
           <span className={styles.showcaseSpan}>
             This grant is in the areas of:{" "}
