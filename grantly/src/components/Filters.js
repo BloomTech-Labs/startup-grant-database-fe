@@ -22,14 +22,15 @@ const useStyles = makeStyles(theme => ({
       display: "block"
     },
     title: {
-      fontWeight: "bold"
-
+      fontWeight: "bold",
+      marginTop: "1em",
+      color: "#464646",
     },
     label: {
       alignSelf: "flex-start",
       textAlign: "left",
       fontSize: "1.2rem",
-      color: "#000",
+      color: "#464646",
       fontWeight: "bold"
     },
     set: {
