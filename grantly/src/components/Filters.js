@@ -14,14 +14,19 @@ import { filterGrants } from "../actions/index";
 
 const useStyles = makeStyles(theme => ({
     card: {
-      position: "fixed"
+      position: "fixed",
+      marginTop: "3em"
+
+    },
+    filterCard: {
+      display: "block"
     },
     label: {
       alignSelf: "flex-start",
       textAlign: "left"
     },
     set: {
-        width: "90%",
+        width: "100%",
         alignSelf: "center",
         margin: ".8em"
     }
@@ -74,7 +79,7 @@ const Filters = ({ filterGrants }) => {
 
   return (
     <Card className={classes.card}>
-      <FormGroup>
+      <FormGroup className={classes.filterCard}>
         <Typography variant="h5" component="h2">
           {" "}
           Filter grants by:{" "}
