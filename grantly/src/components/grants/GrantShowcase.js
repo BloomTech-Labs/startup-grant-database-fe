@@ -8,10 +8,32 @@ import moment from "moment";
 // Objects
 import Card from "@material-ui/core/Card";
 import Grid from "@material-ui/core/Grid";
+import Button from "@material-ui/core/Button";
+import BookmarkIcon from "@material-ui/icons/Bookmark";
 
-// Styles
+// =========== STYLES ===========
+const useStyles = makeStyles(theme => ({
+  showcase: {
+    position: "fixed",
+    width: "48%",
+    textAlign: "left",
+    padding: "5px",
+    borderTop: "#3DB8B3 5px solid"
+  },
+  showcaseSpan: {
+    fontWeight: "bold"
+  },
+  showcaseDetails: {
+    margin: "12px"
+  },
+  applyButton: {
+    color: "#fff"
+  }
+}));
 
 const GrantShowcase = props => {
+  const classes = useStyles();
+
   console.log("GrantShowcase props", props);
   function formatNumbers(num) {
     return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -33,81 +55,80 @@ const GrantShowcase = props => {
   console.log("moment test", momentDeadline);
   // console.log("GrantShowcase props", props);
 
-  // =========== STYLES ===========
-  const showcaseStyles = makeStyles(theme => ({
-    showcase: {
-      position: "fixed",
-      width: "50%",
-      textAlign: "left",
-      padding: "12px"
-    },
-    showcaseSpan: {
-      fontWeight: "bold"
-    },
-    showcaseDetails: {
-      margin: "12px"
-    }
-  }));
-
-  const styles = showcaseStyles();
   if (props.isFetching) {
     return <div></div>;
   }
 
   return (
-    <Card className={styles.showcase}>
-      {/* Top container */}
+    <Card className={classes.showcase}>
+      <Grid
+        container
+        direction="row"
+        justify="flex-end"
+        alignItems="flex-start"
+      >
+        <Grid item>
+          <BookmarkIcon></BookmarkIcon>
+        </Grid>
+      </Grid>
+      {/* ================= Top container ================= */}
       <Grid
         container
         direction="row"
         justify="space-evenly"
-        alignItems="flex-start"
+        alignItems="center"
       >
         <Grid item>
           <h2>{props.grant.competition_name}</h2>
         </Grid>
         <Grid item>
-          <button>Apply to Grant</button>
+          <Button
+            className={classes.applyButton}
+            variant="contained"
+            color="primary"
+          >
+            Apply to Grant
+          </Button>
         </Grid>
       </Grid>
-      {/* Main content */}
+      {/* ================= Main content ================= */}
       <Grid
         container
         direction="column"
         justify="flex-start"
         alignItems="flex-start"
       >
-        <Grid item className={styles.showcaseDetails}>
-          <span className={styles.showcaseSpan}>What it is: </span>{" "}
+        <Grid item className={classes.showcaseDetails}>
+          <span className={classes.showcaseSpan}>What it is: </span>{" "}
           {props.grant.amount
             ? props.grant.amount_notes
             : "See website for details"}
         </Grid>
-        <Grid item className={styles.showcaseDetails}>
-          <span className={styles.showcaseSpan}>Deadline: </span>
+        <Grid item className={classes.showcaseDetails}>
+          <span className={classes.showcaseSpan}>Deadline: </span>
           {deadline}
           {momentDeadline}
         </Grid>
-        <Grid item className={styles.showcaseDetails}>
-          <span className={styles.showcaseSpan}>
+        <Grid item className={classes.showcaseDetails}>
+          <span className={classes.showcaseSpan}>
             This grant is in the areas of:{" "}
           </span>
           {props.grant.domain_areas}
         </Grid>
-        <Grid item className={styles.showcaseDetails}>
-          <span className={styles.showcaseSpan}>Focus Area: </span>
+        <Grid item className={classes.showcaseDetails}>
+          <span className={classes.showcaseSpan}>Focus Area: </span>
           {props.grant.area_focus}
         </Grid>
-        <Grid item className={styles.showcaseDetails}>
-          <span className={styles.showcaseSpan}>Region: </span>
+        <Grid item className={classes.showcaseDetails}>
+          <span className={classes.showcaseSpan}>Region: </span>
           {props.grant.geographic_region}
         </Grid>
-        <Grid item className={styles.showcaseDetails}>
-          <span className={styles.showcaseSpan}>Sponsored by: </span>
+        <Grid item className={classes.showcaseDetails}>
+          <span className={classes.showcaseSpan}>Sponsored by: </span>
           {props.grant.sponsoring_entity}
         </Grid>
-        <Grid item className={styles.showcaseDetails}>
-          <span className={styles.showcaseSpan}>Notes: </span>
+        <Grid item className={classes.showcaseDetails}>
+          <span className={classes.showcaseSpan}>Notes: </span>
           {props.grant.notes}
         </Grid>
       </Grid>
