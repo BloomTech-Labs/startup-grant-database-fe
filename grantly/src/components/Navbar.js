@@ -1,6 +1,6 @@
 import React from "react";
 
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import { useAuth0 } from "../react-auth0-wrapper";
 import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
@@ -9,7 +9,6 @@ import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
-import { textAlign } from "@material-ui/system";
 
 const useStyles = makeStyles(theme => ({
   navButton: {
@@ -17,10 +16,14 @@ const useStyles = makeStyles(theme => ({
     color: "#000"
   },
   title: {
-    flexGrow: 1,
     textAlign: "left",
     marginLeft: "20px",
-    color: "#000"
+    color: "#000",
+    fontFamily: "EB Garamond"
+  },
+  titleLink: {
+    flexGrow: 1,
+    textDecoration: "none"
   },
   navbar: {
     background: "#fff",
@@ -30,6 +33,9 @@ const useStyles = makeStyles(theme => ({
   },
   log: {
     color: "#fff"
+  },
+  link: {
+    textDecoration: "none"
   }
 }));
 
@@ -37,7 +43,7 @@ const NavBar = () => {
   const { isAuthenticated, loginWithRedirect, logout } = useAuth0();
 
   const classes = useStyles();
-  
+
   return (
     <AppBar className={classes.navbar} color="primary" position="sticky">
       <Toolbar>
@@ -49,10 +55,12 @@ const NavBar = () => {
           >
             <MenuIcon />
           </IconButton> */}
-        <Typography variant="h4" className={classes.title}>
-          Grantly
-        </Typography>
-        <NavLink to="/">
+        <Link to="/grants" className={classes.titleLink}>
+          <Typography variant="h4" className={classes.title}>
+            Founder Grants
+          </Typography>
+        </Link>
+        <NavLink className={classes.link} to="/grants">
           <Button className={classes.navButton} color="inherit">
             HOME
           </Button>
@@ -60,17 +68,17 @@ const NavBar = () => {
         <Button className={classes.navButton} color="inherit">
           ABOUT
         </Button>
-        <NavLink to="/form">
+        <NavLink className={classes.link} to="/form">
           <Button className={classes.navButton} color="inherit">
             Submit a Grant
           </Button>
         </NavLink>
-        <Button className={classes.navButton} color="inherit">
-          SIGN UP
-        </Button>
+        <NavLink className={classes.link} to="/">
+          <Button className={classes.navButton} color="inherit">
+            SIGN UP
+          </Button>
+        </NavLink>
 
-   
-     
         {!isAuthenticated && (
           <Button
             className={classes.log}
@@ -83,10 +91,7 @@ const NavBar = () => {
         )}
 
         {isAuthenticated && (
-          <Button
-            variant="outlined"
-            onClick={() => logout()}
-          >
+          <Button variant="outlined" onClick={() => logout()}>
             Log out
           </Button>
         )}
