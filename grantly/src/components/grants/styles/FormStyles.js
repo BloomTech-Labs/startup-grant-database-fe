@@ -4,6 +4,7 @@ const formStyles = makeStyles(theme => ({
   formContainer: {
     display: "flex",
     flexWrap: "wrap",
+    justifyContent: "space-between",
     margin: "10%"
   },
   inputText: {
