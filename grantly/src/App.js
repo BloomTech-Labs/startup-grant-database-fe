@@ -11,6 +11,7 @@ import NavBar from "./components/Navbar";
 import SubmitForm from "./components/SubmitForm";
 import Home from "./views/Home";
 import MobileTabs from "./components/MobileTabs";
+import SearchBar from "./components/SearchBar";
 
 // Stylings
 import "./App.scss";
@@ -30,6 +31,8 @@ function App() {
         <div className="App">
           {/* <div>Welcome to Grantly</div> */}
           <Route path="/" component={NavBar} />
+          <Route path="/" component={SearchBar} />
+
           <Media query="(max-width:850px)">
             {matches =>
               matches ? (

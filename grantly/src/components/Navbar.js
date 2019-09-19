@@ -40,7 +40,8 @@ const useStyles = makeStyles(theme => ({
     marginBottom: "2em",
     padding: "0 4em",
     [theme.breakpoints.down("sm")]: {
-      padding: "0"
+      padding: "0",
+      margin: "0"
     }
   },
   log: {
