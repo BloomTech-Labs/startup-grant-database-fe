@@ -6,5 +6,5 @@ import { rooterReducer } from "./reducers";
 
 export const store = createStore(
   rooterReducer,
-  composeWithDevTools(applyMiddleware(thunk, logger))
+  composeWithDevTools(applyMiddleware(thunk))
 );
