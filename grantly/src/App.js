@@ -10,19 +10,22 @@ import SubmitForm from "./components/SubmitForm";
 
 // Stylings
 import "./App.scss";
-import Filters from "./components/Filters";
+import { ThemeProvider } from "@material-ui/styles";
+import { theme } from "./styles/Theme";
 import Home from "./views/Home";
 
 function App() {
   return (
     <Router>
-      <div className="App">
-        {/* <div>Welcome to Grantly</div> */}
-        <Route path="/" component={NavBar} />
-        <Route path="/grants" component={GrantList} />
-        <Route exact path="/" component={Home} />
-        <Route path="/form" component={SubmitForm} />
-      </div>
+      <ThemeProvider theme={theme}>
+        <div className="App">
+          {/* <div>Welcome to Grantly</div> */}
+          <Route path="/" component={NavBar} />
+          <Route path="/grants" component={GrantList} />
+          <Route exact path="/" component={Home} />
+          <Route path="/form" component={SubmitForm} />
+        </div>
+      </ThemeProvider>
     </Router>
   );
 }

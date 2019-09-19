@@ -1,5 +1,5 @@
 // Dependencies
-import React, { useState } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import Moment from "react-moment";
 
@@ -9,12 +9,14 @@ import Container from "@material-ui/core/Container";
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
 import BookmarkIcon from "@material-ui/icons/Bookmark";
+import grantStyles from "./styles/GrantStyles";
+import Card from "@material-ui/core/Card";
 
 // Styles
 import "../../App.scss";
 
 const Grant = props => {
-  console.log("Grant props", props);
+  // console.log("Grant props", props);
 
   const selectGrant = () => {
     props.selectGrant(props.grant);
@@ -24,8 +26,6 @@ const Grant = props => {
     return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   }
 
-  const testDate = "2019-06-11T00:00:00.000Z";
-
   const deadline = props.grant.most_recent_application_due_date ? (
     <Moment format={"MMMM Do YYYY"}>
       {props.grant.most_recent_application_due_date}
@@ -34,32 +34,44 @@ const Grant = props => {
     <div>See website for details</div>
   );
 
+  const styles = grantStyles();
+
   return (
-    <Container className="grant-card">
-      <Grid container justify="flex-end">
+    <Card className={styles.grantCard}>
+      <Grid container direction="row" justify="space-between">
+        <Grid item className={styles.phantom}></Grid>
         <Grid item>
+          <h3 className={styles.grantName}>{props.grant.competition_name}</h3>
+        </Grid>
+        <Grid item className={styles.bookmark}>
           <BookmarkIcon className="bookmark" />
         </Grid>
       </Grid>
-      <h3>{props.grant.competition_name}</h3>
-      <Grid container direction="column">
-        <div item>Deadline</div>
-        {deadline}
-      </Grid>
-      <Grid container direction="column">
-        <div item>Amount</div>
-        <div item>
-          {props.grant.amount
-            ? "$" + formatNumbers(props.grant.amount)
-            : "See website for details"}
-        </div>
-      </Grid>
+      <Container className={styles.detailsWrapper}>
+        <Grid container direction="column" className={styles.amount}>
+          <div className={styles.detailsHeader}>Amount</div>
+          <div>
+            {props.grant.amount
+              ? "$" + formatNumbers(props.grant.amount)
+              : "See website for details"}
+          </div>
+        </Grid>
+        <Grid container direction="column" className={styles.deadline}>
+          <div className={styles.detailsHeader}>Deadline</div>
+          {deadline}
+        </Grid>
+      </Container>
       <Container maxWidth="sm">
-        <Button variant="contained" color="default" onClick={selectGrant}>
+        <Button
+          className={styles.btn}
+          variant="contained"
+          color="default"
+          onClick={selectGrant}
+        >
           Select
         </Button>
       </Container>
-    </Container>
+    </Card>
   );
 };
 

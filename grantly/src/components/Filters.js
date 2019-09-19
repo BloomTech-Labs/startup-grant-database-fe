@@ -77,7 +77,7 @@ const Filters = ({ filterGrants }) => {
       <FormGroup>
         <Typography variant="h5" component="h2">
           {" "}
-          Filter Grants By:{" "}
+          Filter grants by:{" "}
         </Typography>
 
         <FormControl className={classes.set} component="fieldset">
