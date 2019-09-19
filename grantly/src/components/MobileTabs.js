@@ -32,7 +32,6 @@ const MobileTabs = () => {
     );
   };
   const changeTab = (event, value) => {
-    console.log("Change", value);
     setTab(value);
   };
 
