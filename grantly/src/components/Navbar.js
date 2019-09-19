@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 
 import { NavLink } from "react-router-dom";
 import { useAuth0 } from "../react-auth0-wrapper";
@@ -43,7 +43,17 @@ const useStyles = makeStyles(theme => ({
 const NavBar = () => {
   const { isAuthenticated, loginWithRedirect, logout } = useAuth0();
   const [isOpen, setIsOpen] = useState(false);
+  const toggleDrawer = open => event => {
+    if (
+      event &&
+      event.type === "keydown" &&
+      (event.key === "Tab" || event.key === "Shift")
+    ) {
+      return;
+    }
 
+    setState(!open);
+  };
   const classes = useStyles();
 
   return (
