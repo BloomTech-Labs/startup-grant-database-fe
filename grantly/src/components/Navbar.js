@@ -1,7 +1,8 @@
-import React from "react";
+import React, {useState} from "react";
 
 import { NavLink } from "react-router-dom";
 import { useAuth0 } from "../react-auth0-wrapper";
+import Media from "react-media";
 import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -21,18 +22,18 @@ const useStyles = makeStyles(theme => ({
     textAlign: "left",
     marginLeft: "20px",
     color: "#000",
-    [theme.breakpoints.down('sm')]: {
-      margin: "0",
-    },
+    [theme.breakpoints.down("sm")]: {
+      margin: "0"
+    }
   },
   navbar: {
     background: "#fff",
     flexGrow: 1,
     marginBottom: "2em",
     padding: "0 4em",
-    [theme.breakpoints.down('sm')]: {
-      padding: "0",
-    },
+    [theme.breakpoints.down("sm")]: {
+      padding: "0"
+    }
   },
   log: {
     color: "#fff"
@@ -41,24 +42,17 @@ const useStyles = makeStyles(theme => ({
 
 const NavBar = () => {
   const { isAuthenticated, loginWithRedirect, logout } = useAuth0();
+  const [isOpen, setIsOpen] = useState(false);
 
   const classes = useStyles();
-  
+
   return (
     <AppBar className={classes.navbar} color="primary" position="sticky">
       <Toolbar>
-        {/* <IconButton
-            edge="start"
-            className={classes.menuButton}
-            color="inherit"
-            aria-label="menu"
-          >
-            <MenuIcon />
-          </IconButton> */}
         <Typography variant="h4" className={classes.title}>
           Grantly
         </Typography>
-        <NavLink to="/">
+        {/* <NavLink to="/">
           <Button className={classes.navButton} color="inherit">
             HOME
           </Button>
@@ -75,8 +69,6 @@ const NavBar = () => {
           SIGN UP
         </Button>
 
-   
-     
         {!isAuthenticated && (
           <Button
             className={classes.log}
@@ -89,13 +81,18 @@ const NavBar = () => {
         )}
 
         {isAuthenticated && (
-          <Button
-            variant="outlined"
-            onClick={() => logout()}
-          >
+          <Button variant="outlined" onClick={() => logout()}>
             Log out
           </Button>
-        )}
+        )} */}
+        <IconButton
+          edge="start"
+          className={classes.menuButton}
+          color="inherit"
+          aria-label="menu"
+        >
+          <MenuIcon />
+        </IconButton>
       </Toolbar>
     </AppBar>
   );
