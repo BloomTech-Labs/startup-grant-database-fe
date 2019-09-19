@@ -87,7 +87,6 @@ const NavBar = () => {
 
         {isAuthenticated && (
           <Button
-            className={classes.log}
             variant="outlined"
             onClick={() => logout()}
           >
