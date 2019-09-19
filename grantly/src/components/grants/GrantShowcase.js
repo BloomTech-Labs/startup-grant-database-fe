@@ -56,6 +56,7 @@ const GrantShowcase = props => {
 
   return (
     <Card className={styles.showcase}>
+      {/* Top container */}
       <Grid
         container
         direction="row"
@@ -69,7 +70,7 @@ const GrantShowcase = props => {
           <button>Apply to Grant</button>
         </Grid>
       </Grid>
-
+      {/* Main content */}
       <Grid
         container
         direction="column"
