@@ -40,40 +40,38 @@ const GrantShowcase = props => {
   // console.log("GrantShowcase props", props);
 
   return (
-    <Card className={styles.showcase}>
+    <Card className="showcase">
       <h2>{props.grant.competition_name}</h2>
-      <div className={styles.showcaseDetails}>
-        <span className={styles.showcaseSpan}>What it is: </span>{" "}
+      <div className="showcase-details">
+        <span className="showcase-span">What it is: </span>{" "}
         {props.grant.amount
           ? props.grant.amount_notes
           : "See website for details"}
       </div>
-      <Grid item className={styles.showcaseDetails}>
-        <span className={styles.showcaseSpan}>Deadline: </span>
+      <Grid item className="showcase-details">
+        <span className="showcase-span">Deadline: </span>
         {deadline}
         {momentDeadline}
       </Grid>
       <Grid container direction="column">
-        <Grid item className={styles.showcaseDetails}>
-          <span className={styles.showcaseSpan}>
-            This grant is in the areas of:{" "}
-          </span>
+        <Grid item className="showcase-details">
+          <span className="showcase-span">This grant is in the areas of: </span>
           {props.grant.domain_areas}
         </Grid>
-        <Grid item className={styles.showcaseDetails}>
-          <span className={styles.showcaseSpan}>Focus Area: </span>
+        <Grid item className="showcase-details">
+          <span className="showcase-span">Focus Area: </span>
           {props.grant.area_focus}
         </Grid>
-        <Grid item className={styles.showcaseDetails}>
-          <span className={styles.showcaseSpan}>Region: </span>
+        <Grid item className="showcase-details">
+          <span className="showcase-span">Region: </span>
           {props.grant.geographic_region}
         </Grid>
-        <Grid item className={styles.showcaseDetails}>
-          <span className={styles.showcaseSpan}>Sponsored by: </span>
+        <Grid item className="showcase-details">
+          <span className="showcase-span">Sponsored by: </span>
           {props.grant.sponsoring_entity}
         </Grid>
-        <Grid item className={styles.showcaseDetails}>
-          <span className={styles.showcaseSpan}>Notes: </span>
+        <Grid item className="showcase-details">
+          <span className="showcase-span">Notes: </span>
           {props.grant.notes}
         </Grid>
       </Grid>
