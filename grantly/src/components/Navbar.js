@@ -20,13 +20,19 @@ const useStyles = makeStyles(theme => ({
     flexGrow: 1,
     textAlign: "left",
     marginLeft: "20px",
-    color: "#000"
+    color: "#000",
+    [theme.breakpoints.down('sm')]: {
+      margin: "0",
+    },
   },
   navbar: {
     background: "#fff",
     flexGrow: 1,
     marginBottom: "2em",
-    padding: "0 4em"
+    padding: "0 4em",
+    [theme.breakpoints.down('sm')]: {
+      padding: "0",
+    },
   },
   log: {
     color: "#fff"
