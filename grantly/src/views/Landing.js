@@ -4,6 +4,7 @@ import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import { Link } from "react-router-dom";
+import Filter from "../components/Filters";
 
 const useStyles = makeStyles(theme => ({
   welcome: {
@@ -25,8 +26,9 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-function Landing() {
+function Landing(props) {
   const classes = useStyles();
+  console.log("@#@#@#@#@--------LOCATION-----------", props);
   return (
     <div className={classes.container}>
       <Navbar />
@@ -53,7 +55,7 @@ function Landing() {
           </div>
         </Grid>
         <Grid item xs={6}>
-          <p>Filter here</p>
+          <Filter location={props.location.pathname} />
         </Grid>
       </Grid>
     </div>

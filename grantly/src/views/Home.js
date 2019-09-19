@@ -5,7 +5,7 @@ import GrantShowcase from "../components/grants/GrantShowcase";
 import Grid from "@material-ui/core/Grid";
 import Navbar from "../components/Navbar";
 
-const Home = () => {
+const Home = props => {
   return (
     <>
       {/* I added the Navbar here, so the home view is all in one place -PJ */}
@@ -18,7 +18,7 @@ const Home = () => {
           <GrantShowcase />
         </Grid>
         <Grid item xs={2}>
-          <Filters />
+          <Filters location={props.location.pathname} />
         </Grid>
       </Grid>
     </>
