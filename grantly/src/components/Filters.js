@@ -21,12 +21,19 @@ const useStyles = makeStyles(theme => ({
     filterCard: {
       display: "block"
     },
+    title: {
+      fontWeight: "bold"
+
+    },
     label: {
       alignSelf: "flex-start",
-      textAlign: "left"
+      textAlign: "left",
+      fontSize: "1.2rem",
+      color: "#000",
+      fontWeight: "bold"
     },
     set: {
-        width: "100%",
+        width: "60%",
         alignSelf: "center",
         margin: ".8em"
     }
@@ -55,7 +62,7 @@ const Filters = ({ filterGrants }) => {
       "Africa"
     ],
     amount: ["Under $1,000", "$1,000 - $5,000", "$5,000 - $10,000", "$10,000+"],
-    domain_areas: ["tech", "water", "social"]
+    domain_areas: ["Tech", "Agriculture", "Social", "Energy"]
   };
 
   const handleChanges = (type, value) => {
@@ -80,7 +87,7 @@ const Filters = ({ filterGrants }) => {
   return (
     <Card className={classes.card}>
       <FormGroup className={classes.filterCard}>
-        <Typography variant="h5" component="h2">
+        <Typography className={classes.title} variant="h5" component="h2" >
           {" "}
           Filter grants by:{" "}
         </Typography>
@@ -124,7 +131,7 @@ const Filters = ({ filterGrants }) => {
         </FormControl>
 
         <FormControl className={classes.set} component="fieldset">
-          <FormLabel className={classes.label} component="legend">Region</FormLabel>
+          <FormLabel className={classes.label} component="legend">Focus Areas</FormLabel>
           {grantFilters.domain_areas.map(name => {
             return (
               <FormControlLabel

@@ -25,7 +25,8 @@ const useStyles = makeStyles(theme => ({
   navbar: {
     background: "#fff",
     flexGrow: 1,
-    marginBottom: "2em"
+    marginBottom: "2em",
+    padding: "0 4em"
   },
   log: {
     color: "#fff"
@@ -37,10 +38,6 @@ const NavBar = () => {
 
   const classes = useStyles();
   
-  console.log("auth", isAuthenticated);
-  // if (loading) {
-  //   return <div>Loading...</div>;
-  // }
   return (
     <AppBar className={classes.navbar} color="primary" position="sticky">
       <Toolbar>
