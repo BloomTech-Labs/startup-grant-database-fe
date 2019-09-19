@@ -41,7 +41,8 @@ const useStyles = makeStyles(theme => ({
     padding: "0 4em",
     [theme.breakpoints.down("sm")]: {
       padding: "0",
-      margin: "0"
+      margin: "0",
+      boxShadow: "none"
     }
   },
   log: {
