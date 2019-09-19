@@ -10,13 +10,13 @@ import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
-import List from '@material-ui/core/List';
-import Divider from '@material-ui/core/Divider';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
+import List from "@material-ui/core/List";
+import Divider from "@material-ui/core/Divider";
+import ListItem from "@material-ui/core/ListItem";
+import ListItemIcon from "@material-ui/core/ListItemIcon";
+import ListItemText from "@material-ui/core/ListItemText";
+import InboxIcon from "@material-ui/icons/MoveToInbox";
+import MailIcon from "@material-ui/icons/Mail";
 import SwipeableDrawer from "@material-ui/core/SwipeableDrawer";
 import { textAlign } from "@material-ui/system";
 
@@ -100,39 +100,43 @@ const NavBar = () => {
         <Typography variant="h4" className={classes.title}>
           Grantly
         </Typography>
-        {/* <NavLink to="/">
-          <Button className={classes.navButton} color="inherit">
-            HOME
-          </Button>
-        </NavLink>
-        <Button className={classes.navButton} color="inherit">
-          ABOUT
-        </Button>
-        <NavLink to="/form">
-          <Button className={classes.navButton} color="inherit">
-            Submit a Grant
-          </Button>
-        </NavLink>
-        <Button className={classes.navButton} color="inherit">
-          SIGN UP
-        </Button>
+        <Media query="(min-width:800px)">
+          <div>
+            <NavLink to="/">
+              <Button className={classes.navButton} color="inherit">
+                HOME
+              </Button>
+            </NavLink>
+            <Button className={classes.navButton} color="inherit">
+              ABOUT
+            </Button>
+            <NavLink to="/form">
+              <Button className={classes.navButton} color="inherit">
+                Submit a Grant
+              </Button>
+            </NavLink>
+            <Button className={classes.navButton} color="inherit">
+              SIGN UP
+            </Button>
 
-        {!isAuthenticated && (
-          <Button
-            className={classes.log}
-            variant="contained"
-            color="primary"
-            onClick={() => loginWithRedirect({})}
-          >
-            Log in
-          </Button>
-        )}
+            {!isAuthenticated && (
+              <Button
+                className={classes.log}
+                variant="contained"
+                color="primary"
+                onClick={() => loginWithRedirect({})}
+              >
+                Log in
+              </Button>
+            )}
 
-        {isAuthenticated && (
-          <Button variant="outlined" onClick={() => logout()}>
-            Log out
-          </Button>
-        )} */}
+            {isAuthenticated && (
+              <Button variant="outlined" onClick={() => logout()}>
+                Log out
+              </Button>
+            )}
+          </div>
+        </Media>
         <Media query="(max-width:800px)">
           {matches =>
             matches ? (
@@ -148,14 +152,14 @@ const NavBar = () => {
             ) : null
           }
         </Media>
-          <SwipeableDrawer
-            anchor="right"
-            open={isOpen}
-            onClose={toggleDrawer(false)}
-            onOpen={toggleDrawer(true)}
-          >
-            {sideList("right")}
-          </SwipeableDrawer>
+        <SwipeableDrawer
+          anchor="right"
+          open={isOpen}
+          onClose={toggleDrawer(false)}
+          onOpen={toggleDrawer(true)}
+        >
+          {sideList("right")}
+        </SwipeableDrawer>
       </Toolbar>
     </AppBar>
   );
