@@ -44,6 +44,12 @@ const grantStyles = makeStyles(theme => ({
   },
   detailsWrapper: {
     display: "flex"
+  },
+  showcaseSpan: {
+    fontWeight: "bold"
+  },
+  showcaseDetails: {
+    margin: "12px"
   }
 }));
 
