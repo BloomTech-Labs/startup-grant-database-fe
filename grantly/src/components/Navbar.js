@@ -1,4 +1,5 @@
 import React from "react";
+
 import { NavLink } from "react-router-dom";
 import { useAuth0 } from "../react-auth0-wrapper";
 import { makeStyles } from "@material-ui/core/styles";
@@ -33,9 +34,10 @@ const useStyles = makeStyles(theme => ({
 
 const NavBar = () => {
   const { isAuthenticated, loginWithRedirect, logout } = useAuth0();
-  const { loading } = useAuth0();
-  const classes = useStyles();
 
+  const classes = useStyles();
+  
+  console.log("auth", isAuthenticated);
   // if (loading) {
   //   return <div>Loading...</div>;
   // }
@@ -69,6 +71,9 @@ const NavBar = () => {
         <Button className={classes.navButton} color="inherit">
           SIGN UP
         </Button>
+
+   
+     
         {!isAuthenticated && (
           <Button
             className={classes.log}
@@ -84,7 +89,6 @@ const NavBar = () => {
           <Button
             className={classes.log}
             variant="outlined"
-            color="secondary"
             onClick={() => logout()}
           >
             Log out
