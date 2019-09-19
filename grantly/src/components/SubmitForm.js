@@ -1,6 +1,11 @@
+//Dependencies
 import React, { useState } from "react";
 // import { connect } from "react-redux";
 // import { addGrant } from "../actions";
+
+//Objects
+import formStyles from "./grants/styles/FormStyles";
+import { TextField } from "@material-ui/core";
 
 const AddGrant = props => {
   const [grantInfo, setGrantInfo] = useState({
@@ -50,34 +55,42 @@ const AddGrant = props => {
     });
   };
 
+  const styles = formStyles();
+
   return (
     <div>
       <h1>Submit a Grantly Grant</h1>
-      <form onSubmit={submitGrant}>
-        <label>
-          Competition Name
-          <input
-            type="text"
-            name="competition_name"
-            placeholder="Competition Name"
-            value={grantInfo.competition_name}
-            onChange={handleChanges}
-          />
-        </label>
-        <label>
-          Type
-          <input
-            type="text"
-            name="type"
-            placeholder="Type"
-            value={grantInfo.type}
-            onChange={handleChanges}
-          />
-        </label>
+      <form className={styles.formContainer} onSubmit={submitGrant}>
+        <TextField
+          // id="outlined-name"
+          label="Competition Name"
+          type="text"
+          className={styles.inputText}
+          name="competition_name"
+          placeholder="Competition Name"
+          value={grantInfo.competition_name}
+          onChange={handleChanges}
+          margin="normal"
+          variant="outlined"
+        />
+        <TextField
+          label="Type"
+          type="text"
+          className={styles.inputText}
+          name="type"
+          placeholder="Type"
+          value={grantInfo.type}
+          onChange={handleChanges}
+          margin="normal"
+          variant="outlined"
+        />
+        <TextField margin="normal" variant="outlined" />
+
         <label>
           Area Focus
           <input
             type="text"
+            className={styles.inputText}
             name="area_focus"
             placeholder="Area Focus"
             value={grantInfo.area_focus}
@@ -88,6 +101,7 @@ const AddGrant = props => {
           Sponsoring Entity
           <input
             type="text"
+            className={styles.inputText}
             name="sponsoring_entity"
             placeholder="Sponsoring Entity"
             value={grantInfo.sponsoring_entity}
@@ -99,6 +113,7 @@ const AddGrant = props => {
           <input
             type="url"
             name="website"
+            className={styles.inputText}
             placeholder="Website"
             value={grantInfo.website}
             onChange={handleChanges}
@@ -108,6 +123,7 @@ const AddGrant = props => {
           Application Due Date
           <input
             type="date"
+            className={styles.inputText}
             name="most_recent_application_due_date"
             placeholder="Application Due Date"
             value={grantInfo.most_recent_application_due_date}
@@ -118,6 +134,7 @@ const AddGrant = props => {
           Amount
           <input
             type="number"
+            className={styles.inputText}
             name="amount"
             placeholder="Amount"
             value={grantInfo.amount}
@@ -128,6 +145,7 @@ const AddGrant = props => {
           Amount Notes
           <input
             type="text"
+            className={styles.inputText}
             name="amount_notes"
             placeholder="Amount Notes"
             value={grantInfo.amount_notes}
@@ -138,6 +156,7 @@ const AddGrant = props => {
           Geographic Region
           <input
             type="text"
+            className={styles.inputText}
             name="geographic_region"
             placeholder="Geographic Region"
             value={grantInfo.geographic_region}
@@ -148,6 +167,7 @@ const AddGrant = props => {
           Domain Areas
           <input
             type="text"
+            className={styles.inputText}
             name="domain_areas"
             placeholder="Domain Areas"
             value={grantInfo.domain_areas}
@@ -158,6 +178,7 @@ const AddGrant = props => {
           Target Entrepreneur Demographic
           <input
             type="text"
+            className={styles.inputText}
             name="target_entrepreneur_demographic"
             placeholder="Target Entrepreneur Demographic"
             value={grantInfo.target_entrepreneur_demographic}
@@ -168,6 +189,7 @@ const AddGrant = props => {
           Notes
           <input
             type="text"
+            className={styles.inputText}
             name="notes"
             placeholder="Notes"
             value={grantInfo.notes}
@@ -178,6 +200,7 @@ const AddGrant = props => {
           Early Stage Funding
           <input
             type="radio"
+            className={styles.inputText}
             name="early_stage_funding"
             placeholder="Early Stage Funding"
             value={grantInfo.early_stage_funding}
@@ -188,6 +211,7 @@ const AddGrant = props => {
           Details Last Updated
           <input
             type="text"
+            className={styles.inputText}
             name="details_last_updated"
             placeholder="Details Last Updated"
             value={grantInfo.details_last_updated}
@@ -197,6 +221,7 @@ const AddGrant = props => {
       </form>
     </div>
   );
+
   //   const mapStateToProps = ({grantData, isFetching, error}) => ({
   //     grantData,
   //     isFetching,
@@ -209,3 +234,32 @@ const AddGrant = props => {
   //   )(AddGrant)
 };
 export default AddGrant;
+
+//Notes
+{
+  /* <label>
+  Competition Name
+          <input
+    type="text"
+    className={styles.inputText}
+    name="competition_name"
+    placeholder="Competition Name"
+    value={grantInfo.competition_name}
+    onChange={handleChanges}
+  />
+</label> */
+}
+
+{
+  /* <label>
+  Type
+          <input
+    type="text"
+    className={styles.inputText}
+    name="type"
+    placeholder="Type"
+    value={grantInfo.type}
+    onChange={handleChanges}
+  />
+</label> */
+}
