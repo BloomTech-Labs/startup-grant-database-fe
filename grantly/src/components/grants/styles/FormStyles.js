@@ -13,11 +13,10 @@ const formStyles = makeStyles(theme => ({
   },
   dense: {
     marginTop: theme.spacing(2)
+  },
+  dropDown: {
+    width: 200
   }
 }));
-
-// export default function Hook() {
-//     const classes = formStyles()
-// }
 
 export default formStyles;
