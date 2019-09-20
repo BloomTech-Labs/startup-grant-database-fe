@@ -8,14 +8,14 @@ import Media from "react-media";
 
 const Home = props => {
   return (
-    <> 
+    <>
       <Navbar />
       <Media query="(max-width:850px)">
         {matches =>
           matches ? null : (
             <div>
-              <Grid container spacing={2}>
-                <Grid item md={4} xs={12}>
+              <Grid container spacing={2} className="grid-container">
+                <Grid item md={4} xs={12} className="grid-item">
                   <GrantList />
                 </Grid>
                 <Grid item xs={6}>
