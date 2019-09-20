@@ -208,11 +208,6 @@ const AddGrant = props => {
           placeholder="Early Stage Funding"
           value={grantInfo.early_stage_funding}
           onChange={handleChanges}
-          // SelectProps={{
-          //   MenuProps: {
-          //     className: styles.dropDown
-          //   }
-          // }}
           margin="normal"
           variant="outlined"
         >
@@ -224,11 +219,9 @@ const AddGrant = props => {
         </TextField>
 
         <TextField
-          // label="Details Last Updated"
           type="date"
           className={styles.inputText}
           name="details_last_updated"
-          // placeholder="Details Last Updated"
           value={grantInfo.details_last_updated}
           onChange={handleChanges}
           helperText="Details Last Updated"
@@ -252,6 +245,3 @@ export default connect(
   mapStateToProps,
   { postGrants }
 )(AddGrant);
-// export default AddGrant;
-
-//Notes
