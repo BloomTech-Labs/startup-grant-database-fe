@@ -5,7 +5,7 @@ import { postGrants } from "../actions/index.js";
 
 //Objects
 import formStyles from "./grants/styles/FormStyles";
-import { TextField, MenuItem } from "@material-ui/core";
+import { TextField, MenuItem, Button } from "@material-ui/core";
 
 const funding = [
   {
@@ -47,7 +47,7 @@ const AddGrant = props => {
   const submitGrant = event => {
     console.log("SubmitForm.js submitGrant", event);
     event.preventDefault();
-    props.postGrant({ ...grantInfo });
+    props.postGrants({ ...grantInfo });
     setGrantInfo({
       competition_name: "",
       type: "",
@@ -235,6 +235,9 @@ const AddGrant = props => {
           margin="normal"
           variant="outlined"
         />
+        <Button type="submit" variant="outlined">
+          Submit
+        </Button>
       </form>
     </div>
   );
