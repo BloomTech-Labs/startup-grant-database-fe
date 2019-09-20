@@ -116,8 +116,6 @@ export const rooterReducer = (state = initialState, { type, payload }) => {
         }
       );
 
-      console.log("non", testing);
-
       return {
         ...state,
         data: Array.from(new Set(state.data.map(grant => grant.id))).map(id => {
@@ -126,9 +124,7 @@ export const rooterReducer = (state = initialState, { type, payload }) => {
         filters: payload,
         filteredGrants: testing
 
-        // [...state.data.filter(grant => {
-        //   return grant.amount <= 1000;
-        // })]
+
       };
     case FILTER_GRANTS_RESET:
       return {
