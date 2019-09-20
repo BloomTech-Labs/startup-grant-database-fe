@@ -9,8 +9,11 @@ import Filter from "../components/Filters";
 const useStyles = makeStyles(theme => ({
   welcome: {
     "& h1": {
-      fontSize: "3rem",
-      fontFamily: "EB Garamond"
+      fontSize: "3.5rem",
+      fontFamily: "adobe-garamond-pro",
+      fontWeight: 400,
+      margin: "1rem",
+      padding: "30px"
     }
   },
   grid: {
@@ -22,23 +25,27 @@ const useStyles = makeStyles(theme => ({
     height: "100vh"
   },
   link: {
-    textDecoration: "none"
+    textDecoration: "none",
+    "& button": {
+      fontFamily: "Roboto",
+      marginTop: "35px"
+    }
   }
 }));
 
 function Landing(props) {
   const classes = useStyles();
-  console.log("@#@#@#@#@--------LOCATION-----------", props);
+
   return (
     <div className={classes.container}>
-      <Navbar />
+      <Navbar location={props.location.pathname} />
       <Grid
         className={classes.grid}
         container
         direction="row"
         justify="center"
         alignItems="center"
-        spacing={2}
+        spacing={4}
       >
         <Grid item xs={6}>
           <div className={classes.welcome}>
@@ -47,8 +54,8 @@ function Landing(props) {
               Search lists for grants by choosing a category or as many as you
               are eligiable for.
             </p>
-            <Link to="/" className={classes.link}>
-              <Button variant="outlined" color="primary">
+            <Link to="/grants" className={classes.link}>
+              <Button variant="outlined" color="primary" size="Large">
                 View All Grants
               </Button>
             </Link>

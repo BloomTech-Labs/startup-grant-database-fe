@@ -8,8 +8,8 @@ import Media from "react-media";
 
 const Home = props => {
   return (
-    <> 
-      <Navbar />
+    <>
+      <Navbar location={props.location.pathname} />
       <Media query="(max-width:850px)">
         {matches =>
           matches ? null : (
