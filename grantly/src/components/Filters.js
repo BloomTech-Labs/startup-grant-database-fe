@@ -12,45 +12,53 @@ import Typography from "@material-ui/core/Typography";
 import { connect } from "react-redux";
 import { filterGrants } from "../actions/index";
 
-const useStyles = makeStyles(theme => ({
-    card: {
-      position: "fixed",
-      marginTop: "3em"
+const useStylesGrants = makeStyles(theme => ({
+  card: {
+    position: "fixed",
+    marginTop: "3em"
+  },
+  filterCard: {
+    display: "block"
+  },
+  title: {
+    fontWeight: "bold",
+    marginTop: "1em",
+    color: "#464646"
+  },
+  label: {
+    alignSelf: "flex-start",
+    textAlign: "left",
+    fontSize: "1.2rem",
+    color: "#464646",
+    fontWeight: "bold"
+  },
+  set: {
+    width: "60%",
+    alignSelf: "center",
+    margin: ".8em"
+  }
+}));
 
-    },
-    filterCard: {
-      display: "block"
-    },
-    title: {
-      fontWeight: "bold",
-      marginTop: "1em",
-      color: "#464646",
-    },
-    label: {
-      alignSelf: "flex-start",
-      textAlign: "left",
-      fontSize: "1.2rem",
-      color: "#464646",
-      fontWeight: "bold"
-    },
-    set: {
-        width: "60%",
-        alignSelf: "center",
-        margin: ".8em"
-    }
-}))
+const useStylesLanding = makeStyles(theme => ({
+  card: {
+    // position: "fixed",
+    // marginTop: "1em"
+  },
+  filterCard: {
+    display: "block"
+  }
+}));
 
-const Filters = ({ filterGrants }) => {
+const Filters = props => {
   const [filters, setFilters] = useState({
     geographic_region: [],
     amount: [],
     domain_areas: []
   });
-
+  console.log("@#@#@#@#@--------LOCATION-----------", props);
   //Makes sure that the current state is being sent to the action creator
   useEffect(() => {
-    filterGrants(filters);
-    
+    props.filterGrants(filters);
   }, [filters]);
 
   const grantFilters = {
@@ -83,18 +91,27 @@ const Filters = ({ filterGrants }) => {
 
     //Pass object of user filters to the action creator
   };
-  const classes = useStyles();
+
+  // Logic to determine styles to use depending on current location of component -PJ
+  const grantStyles = useStylesGrants();
+  const landingStyles = useStylesLanding();
+  let classes;
+  props.location === "/grants"
+    ? (classes = grantStyles)
+    : (classes = landingStyles);
 
   return (
     <Card className={classes.card}>
       <FormGroup className={classes.filterCard}>
-        <Typography className={classes.title} variant="h5" component="h2" >
+        <Typography className={classes.title} variant="h5" component="h2">
           {" "}
           Filter grants by:{" "}
         </Typography>
 
         <FormControl className={classes.set} component="fieldset">
-          <FormLabel className={classes.label} component="legend">Grant Amount</FormLabel>
+          <FormLabel className={classes.label} component="legend">
+            Grant Amount
+          </FormLabel>
           {grantFilters.amount.map(name => {
             return (
               <FormControlLabel
@@ -113,7 +130,9 @@ const Filters = ({ filterGrants }) => {
         </FormControl>
 
         <FormControl className={classes.set} component="fieldset">
-          <FormLabel className={classes.label} component="legend">Region</FormLabel>
+          <FormLabel className={classes.label} component="legend">
+            Region
+          </FormLabel>
           {grantFilters.geographic_region.map(name => {
             return (
               <FormControlLabel
@@ -132,7 +151,9 @@ const Filters = ({ filterGrants }) => {
         </FormControl>
 
         <FormControl className={classes.set} component="fieldset">
-          <FormLabel className={classes.label} component="legend">Focus Areas</FormLabel>
+          <FormLabel className={classes.label} component="legend">
+            Focus Areas
+          </FormLabel>
           {grantFilters.domain_areas.map(name => {
             return (
               <FormControlLabel

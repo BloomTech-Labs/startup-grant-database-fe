@@ -4,10 +4,6 @@ import { makeStyles } from "@material-ui/core/styles";
 const cardDetailsMargin = "10px";
 
 const grantStyles = makeStyles(theme => ({
-  showcase: {
-    position: "fixed",
-    width: "50%"
-  },
   grantCard: {
     display: "flex",
     flexDirection: "column",
@@ -44,12 +40,6 @@ const grantStyles = makeStyles(theme => ({
   },
   detailsWrapper: {
     display: "flex"
-  },
-  showcaseSpan: {
-    fontWeight: "bold"
-  },
-  showcaseDetails: {
-    margin: "12px"
   }
 }));
 
