@@ -20,13 +20,6 @@ import { theme } from "./styles/Theme";
 import Landing from "./views/Landing";
 
 function App() {
-
-  // if (loading) {
-  //   return (
-  //     <div>Loading...</div>
-  //   );
-  // }
-
   return (
     <Router>
       <ThemeProvider theme={theme}>
@@ -36,7 +29,6 @@ function App() {
           {/* <Route path="/" component={NavBar} /> */}
           <Route exact path="/" component={Landing} />
           <Route exact path="/grants" component={Home} />
-
 
           {/* <Route path="/grants" component={GrantList} /> */}
           <Route path="/form" component={SubmitForm} />

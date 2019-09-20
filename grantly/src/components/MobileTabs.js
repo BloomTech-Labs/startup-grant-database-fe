@@ -108,8 +108,10 @@ function a11yProps(index) {
 }
 const useStyles = makeStyles(theme => ({
   root: {
-    backgroundColor: theme.palette.background.paper,
-    width: 500
+    backgroundColor: theme.palette.background.paper
+  },
+  tabPos: {
+    top: "10%"
   }
 }));
 const MobileTabs = () => {
@@ -149,7 +151,9 @@ const MobileTabs = () => {
         <TabPanel value={value} index={0} dir={theme.direction}>
           <GrantList />
         </TabPanel>
-        <TabPanel value={value} index={1} dir={theme.direction}><h1>Hello</h1></TabPanel>
+        <TabPanel value={value} index={1} dir={theme.direction}>
+          <h1>Hello</h1>
+        </TabPanel>
         <TabPanel value={value} index={2} dir={theme.direction}>
           Si
         </TabPanel>

@@ -59,6 +59,10 @@ const useStyles = makeStyles(theme => ({
   },
   link: {
     textDecoration: "none"
+  },
+  tabs: {
+    position: "fixed",
+    marginTop: "3em"
   }
 }));
 
@@ -182,10 +186,10 @@ const NavBar = () => {
           </SwipeableDrawer>
         </Toolbar>
       </AppBar>
+      <SearchBar />
       <Media query="(max-width:850px)">
         {matches => (matches ? <MobileTabs /> : null)}
       </Media>
-      <SearchBar />
     </div>
   );
 };
