@@ -47,6 +47,15 @@ const useStyles = makeStyles(theme => ({
   },
   log: {
     color: "#fff"
+  },
+  menu: {
+    width: "2em",
+    height: "2em",
+    padding: "0"
+  },
+  signup: {
+    marginRight: theme.spacing(3),
+    color: "#3DB8B3"
   }
 }));
 
@@ -117,7 +126,7 @@ const NavBar = () => {
                 Submit a Grant
               </Button>
             </NavLink>
-            <Button className={classes.navButton} color="inherit">
+            <Button className={classes.signup} color="inherit">
               SIGN UP
             </Button>
 
@@ -143,13 +152,13 @@ const NavBar = () => {
           {matches =>
             matches ? (
               <IconButton
+                className={classes.menu}
                 edge="start"
-                className={classes.menuButton}
-                color="inherit"
+                color="primary"
                 aria-label="menu"
                 onClick={toggleDrawer()}
               >
-                <MenuIcon />
+                <MenuIcon className={classes.menu} />
               </IconButton>
             ) : null
           }

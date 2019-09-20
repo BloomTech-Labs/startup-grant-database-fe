@@ -5,7 +5,8 @@ export const theme = createMuiTheme({
     MuiCheckbox: {
       root: {
         padding: "4px"
-      }
+      },
+   
     }
   },
 
@@ -13,5 +14,8 @@ export const theme = createMuiTheme({
     primary: {
       main: "#3DB8B3"
     }
+  },
+  typography: {
+    fontFamily: ["adobe-garamond-pro", "serif"].join(",")
   }
 });
