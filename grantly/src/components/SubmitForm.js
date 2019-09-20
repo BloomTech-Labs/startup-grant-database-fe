@@ -1,7 +1,7 @@
 //Dependencies
 import React, { useState } from "react";
-// import { connect } from "react-redux";
-// import { addGrant } from "../actions";
+import { connect } from "react-redux";
+import { postGrants } from "../actions/index.js";
 
 //Objects
 import formStyles from "./grants/styles/FormStyles";
@@ -47,7 +47,7 @@ const AddGrant = props => {
   const submitGrant = event => {
     console.log("SubmitForm.js submitGrant", event);
     event.preventDefault();
-    props.addGrant({ ...grantInfo });
+    props.postGrant({ ...grantInfo });
     setGrantInfo({
       competition_name: "",
       type: "",
@@ -238,18 +238,17 @@ const AddGrant = props => {
       </form>
     </div>
   );
-
-  //   const mapStateToProps = ({grantData, isFetching, error}) => ({
-  //     grantData,
-  //     isFetching,
-  //     error
-  //   })
-
-  //   export default connect(
-  //       mapStateToProps,
-  //       {addGrant}
-  //   )(AddGrant)
 };
-export default AddGrant;
+const mapStateToProps = ({ grantData, isFetching, error }) => ({
+  grantData,
+  isFetching,
+  error
+});
+
+export default connect(
+  mapStateToProps,
+  { postGrants }
+)(AddGrant);
+// export default AddGrant;
 
 //Notes

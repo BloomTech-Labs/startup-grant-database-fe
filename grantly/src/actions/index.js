@@ -8,7 +8,10 @@ import {
   FETCH_ERROR,
   FILTER_GRANTS,
   FILTER_GRANTS_RESET,
-  SELECT_GRANT
+  SELECT_GRANT,
+  ADD_GRANT_START,
+  ADD_GRANT_SUCCESS,
+  ADD_GRANT_FAILURE
 } from "./types";
 
 export const fetchApi = () => dispatch => {
@@ -43,4 +46,16 @@ export const filterGrants = filters => dispatch => {
 
 export const selectGrant = grant => dispatch => {
   dispatch({ type: SELECT_GRANT, payload: grant });
+};
+
+// Submit a Grant
+export const postGrants = addGrant => dispatch => {
+  dispatch({ type: ADD_GRANT_START });
+  axios
+    .post("http://localhost:5000/api/grants/", addGrant)
+    .then(res => {
+      console.log("RES in postGrants, actions", res);
+      dispatch({ type: ADD_GRANT_START, payload: res.data });
+    })
+    .catch(err => console.log(err.response));
 };
