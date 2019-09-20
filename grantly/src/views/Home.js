@@ -11,10 +11,10 @@ const Home = () => {
       <Grid item xs={4}>
         <GrantList />
       </Grid>
-      <Grid item xs={3}>
+      <Grid item xs={2}>
         <Search />
       </Grid>
-      <Grid item xs={3}>
+      <Grid item xs={4}>
         <GrantShowcase />
       </Grid>
       <Grid item xs={2}>

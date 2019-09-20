@@ -15,7 +15,6 @@ import BookmarkIcon from "@material-ui/icons/Bookmark";
 const useStyles = makeStyles(theme => ({
   showcase: {
     position: "fixed",
-    width: "48%",
     textAlign: "left",
     padding: "5px",
     borderTop: "#3DB8B3 5px solid"
