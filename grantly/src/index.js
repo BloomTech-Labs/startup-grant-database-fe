@@ -11,6 +11,7 @@ import { store } from "./store";
 
 // Stylings
 import "./index.css";
+import "./index.scss";
 
 const onRedirectCallback = appState => {
   window.history.replaceState(
@@ -34,5 +35,5 @@ const AppWithProvider = (
     </Provider>
   </Auth0Provider>
 );
-
+console.log(window.location.origin);
 ReactDOM.render(AppWithProvider, document.getElementById("root"));
