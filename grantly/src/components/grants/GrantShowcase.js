@@ -13,18 +13,26 @@ import BookmarkIcon from "@material-ui/icons/Bookmark";
 
 // =========== STYLES ===========
 const useStyles = makeStyles(theme => ({
-  showcase: {
+  showcaseCard: {
     position: "fixed",
+    width: "47%",
     textAlign: "left",
     padding: "5px",
-    borderTop: "#3DB8B3 5px solid"
+    borderTop: "#3DB8B3 5px solid",
+    height: "75%",
+    margin: "8px"
+  },
+  topContent: {
+    margin: "20px"
+  },
+  grantInfo: {
+    height: "75%",
+    padding: "0 20px"
   },
   showcaseSpan: {
     fontWeight: "bold"
   },
-  showcaseDetails: {
-    margin: "12px"
-  },
+  showcaseDetails: {},
   applyButton: {
     color: "#fff"
   }
@@ -59,7 +67,8 @@ const GrantShowcase = props => {
   }
 
   return (
-    <Card className={classes.showcase}>
+    <Card className={classes.showcaseCard}>
+      {/* ================= Bookmark Icon ================= */}
       <Grid
         container
         direction="row"
@@ -76,6 +85,7 @@ const GrantShowcase = props => {
         direction="row"
         justify="space-evenly"
         alignItems="center"
+        className={classes.topContent}
       >
         <Grid item>
           <h2>{props.grant.competition_name}</h2>
@@ -94,8 +104,9 @@ const GrantShowcase = props => {
       <Grid
         container
         direction="column"
-        justify="flex-start"
+        justify="space-around"
         alignItems="flex-start"
+        className={classes.grantInfo}
       >
         <Grid item className={classes.showcaseDetails}>
           <span className={classes.showcaseSpan}>What it is: </span>{" "}
