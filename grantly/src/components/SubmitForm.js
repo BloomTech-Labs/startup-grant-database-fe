@@ -117,6 +117,17 @@ const AddGrant = props => {
           margin="normal"
           variant="outlined"
         />
+        <TextField
+          label="Website"
+          type="url"
+          className={styles.inputText}
+          name="website"
+          placeholder="Website"
+          value={grantInfo.website}
+          onChange={handleChanges}
+          margin="normal"
+          variant="outlined"
+        />
 
         <TextField
           // label="Application Due Date"
