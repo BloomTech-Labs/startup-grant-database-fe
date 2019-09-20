@@ -5,7 +5,18 @@ import React, { useState } from "react";
 
 //Objects
 import formStyles from "./grants/styles/FormStyles";
-import { TextField } from "@material-ui/core";
+import { TextField, MenuItem } from "@material-ui/core";
+
+const funding = [
+  {
+    value: true,
+    label: "yes"
+  },
+  {
+    value: false,
+    label: "no"
+  }
+];
 
 const AddGrant = props => {
   const [grantInfo, setGrantInfo] = useState({
@@ -188,19 +199,30 @@ const AddGrant = props => {
           onChange={handleChanges}
           margin="normal"
           variant="outlined"
-          // variant="filled"
         />
-        {/* <TextField 
-        label="Early Stage Funding"
-          type="radio"
-          className={styles.inputText}
+        <TextField
+          label="Early Stage Funding"
+          select
+          className={(styles.inputText, styles.dropDown)}
           name="early_stage_funding"
           placeholder="Early Stage Funding"
           value={grantInfo.early_stage_funding}
           onChange={handleChanges}
-        margin="normal" 
-        variant="outlined" 
-        /> */}
+          // SelectProps={{
+          //   MenuProps: {
+          //     className: styles.dropDown
+          //   }
+          // }}
+          margin="normal"
+          variant="outlined"
+        >
+          {funding.map(option => (
+            <MenuItem key={option.value} value={option.value}>
+              {option.label}
+            </MenuItem>
+          ))}
+        </TextField>
+
         <TextField
           // label="Details Last Updated"
           type="date"
@@ -231,195 +253,3 @@ const AddGrant = props => {
 export default AddGrant;
 
 //Notes
-{
-  /* <label>
-  Competition Name
-          <input
-    type="text"
-    className={styles.inputText}
-    name="competition_name"
-    placeholder="Competition Name"
-    value={grantInfo.competition_name}
-    onChange={handleChanges}
-  />
-</label> */
-}
-
-{
-  /* <label>
-  Type
-          <input
-    type="text"
-    className={styles.inputText}
-    name="type"
-    placeholder="Type"
-    value={grantInfo.type}
-    onChange={handleChanges}
-  />
-</label> */
-}
-
-{
-  /* <label>
-  Area Focus
-          <input
-    type="text"
-    className={styles.inputText}
-    name="area_focus"
-    placeholder="Area Focus"
-    value={grantInfo.area_focus}
-    onChange={handleChanges}
-  />
-</label> */
-}
-
-{
-  /* <label>
-  Sponsoring Entity
-          <input
-    type="text"
-    className={styles.inputText}
-    name="sponsoring_entity"
-    placeholder="Sponsoring Entity"
-    value={grantInfo.sponsoring_entity}
-    onChange={handleChanges}
-  />
-</label> */
-}
-{
-  /* <label>
-  Website
-          <input
-    type="url"
-    name="website"
-    className={styles.inputText}
-    placeholder="Website"
-    value={grantInfo.website}
-    onChange={handleChanges}
-  />
-</label> */
-}
-{
-  /* <label>
-  Application Due Date
-          <input
-    type="date"
-    className={styles.inputText}
-    name="most_recent_application_due_date"
-    placeholder="Application Due Date"
-    value={grantInfo.most_recent_application_due_date}
-    onChange={handleChanges}
-  />
-</label> */
-}
-
-{
-  /* <label>
-  Amount
-          <input
-    type="number"
-    className={styles.inputText}
-    name="amount"
-    placeholder="Amount"
-    value={grantInfo.amount}
-    onChange={handleChanges}
-  />
-</label> */
-}
-
-{
-  /* <label>
-  Amount Notes
-          <input
-    type="text"
-    className={styles.inputText}
-    name="amount_notes"
-    placeholder="Amount Notes"
-    value={grantInfo.amount_notes}
-    onChange={handleChanges}
-  />
-</label> */
-}
-{
-  /* <label>
-  Geographic Region
-          <input
-    type="text"
-    className={styles.inputText}
-    name="geographic_region"
-    placeholder="Geographic Region"
-    value={grantInfo.geographic_region}
-    onChange={handleChanges}
-  />
-</label> */
-}
-
-{
-  /* <label>
-  Domain Areas
-          <input
-    type="text"
-    className={styles.inputText}
-    name="domain_areas"
-    placeholder="Domain Areas"
-    value={grantInfo.domain_areas}
-    onChange={handleChanges}
-  />
-</label> */
-}
-
-{
-  /* <label>
-  Target Entrepreneur Demographic
-          <input
-    type="text"
-    className={styles.inputText}
-    name="target_entrepreneur_demographic"
-    placeholder="Target Entrepreneur Demographic"
-    value={grantInfo.target_entrepreneur_demographic}
-    onChange={handleChanges}
-  />
-</label> */
-}
-
-{
-  /* <label>
-  Notes
-          <input
-    type="text"
-    className={styles.inputText}
-    name="notes"
-    placeholder="Notes"
-    value={grantInfo.notes}
-    onChange={handleChanges}
-  />
-</label> */
-}
-
-{
-  /* <label>
-  Early Stage Funding
-          <input
-    type="radio"
-    className={styles.inputText}
-    name="early_stage_funding"
-    placeholder="Early Stage Funding"
-    value={grantInfo.early_stage_funding}
-    onChange={handleChanges}
-  />
-</label> */
-}
-
-{
-  /* <label>
-  Details Last Updated
-          <input
-    type="text"
-    className={styles.inputText}
-    name="details_last_updated"
-    placeholder="Details Last Updated"
-    value={grantInfo.details_last_updated}
-    onChange={handleChanges}
-  />
-</label> */
-}
