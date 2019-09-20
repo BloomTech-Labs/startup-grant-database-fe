@@ -8,10 +8,8 @@ import Media from "react-media";
 
 const Home = props => {
   return (
-    <>
-      {/* I added the Navbar here, so the home view is all in one place -PJ */}
+    <> 
       <Navbar />
-
       <Media query="(max-width:850px)">
         {matches =>
           matches ? null : (
