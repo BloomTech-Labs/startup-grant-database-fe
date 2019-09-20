@@ -5,8 +5,7 @@ export const theme = createMuiTheme({
     MuiCheckbox: {
       root: {
         padding: "4px"
-      },
-   
+      }
     }
   },
 
