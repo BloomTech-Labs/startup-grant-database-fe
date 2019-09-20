@@ -1,9 +1,13 @@
-import React from "react";
-import * as rtl from "@testing-library/react";
-import "jest-dom/extend-expect";
+// import React from "react";
+// import * as rtl from "@testing-library/react";
+// import "@testing-library/jest-dom/extend-expect";
 
-afterEach(rtl.cleanup);
+// afterEach(rtl.cleanup);
 
-it("renders without crashing", () => {
-  // ready to test!
+// it("renders without crashing", () => {
+//   // ready to test!
+// });
+
+describe("sum function", () => {
+  it("sums two integers", () => {});
 });
