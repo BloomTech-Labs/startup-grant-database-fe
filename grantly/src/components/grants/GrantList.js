@@ -11,10 +11,12 @@ import { fetchApi } from "../../actions";
 
 const GrantList = props => {
   console.log("GrantList props", props);
-  if (props.data.length === 0) {
-    props.fetchApi();
-  }
-  // useEffect(() => {}, []);
+  useEffect(() => {
+    if (props.data.length === 0) {
+      props.fetchApi();
+    }
+    console.log("Grantsssssssssssss")
+  }, [props.data]);
 
   if (props.isFetching) {
     return <Loader type="Triangle" color="#00BFFF" height="100" width="100" />;

@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import { useAuth0 } from "../react-auth0-wrapper";
 import Media from "react-media";
+import MobileTabs from "./MobileTabs";
 import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -18,7 +19,7 @@ import ListItemText from "@material-ui/core/ListItemText";
 import InboxIcon from "@material-ui/icons/MoveToInbox";
 import MailIcon from "@material-ui/icons/Mail";
 import SwipeableDrawer from "@material-ui/core/SwipeableDrawer";
-import { textAlign } from "@material-ui/system";
+import SearchBar from "./SearchBar";
 
 const useStyles = makeStyles(theme => ({
   navButton: {
@@ -26,19 +27,14 @@ const useStyles = makeStyles(theme => ({
     color: "#000"
   },
   title: {
-    flexGrow: 1,
     textAlign: "left",
     marginLeft: "20px",
-    color: "#000",
-    [theme.breakpoints.down("sm")]: {
-      margin: "0"
-    }
+    color: "#000"
   },
   navbar: {
     background: "#fff",
     flexGrow: 1,
     marginBottom: "2em",
-    padding: "0 4em",
     [theme.breakpoints.down("sm")]: {
       padding: "0",
       margin: "0",
@@ -56,6 +52,13 @@ const useStyles = makeStyles(theme => ({
   signup: {
     marginRight: theme.spacing(3),
     color: "#3DB8B3"
+  },
+  titleLink: {
+    flexGrow: 1,
+    textDecoration: "none"
+  },
+  link: {
+    textDecoration: "none"
   }
 }));
 
@@ -106,73 +109,84 @@ const NavBar = () => {
   );
 
   return (
-    <AppBar className={classes.navbar} color="primary" position="sticky">
-      <Toolbar>
-        <Typography variant="h4" className={classes.title}>
-          FounderGrants
-        </Typography>
-        <Media query="(min-width:800px)">
-          <div>
-            <NavLink to="/">
+    <div>
+      <AppBar className={classes.navbar} color="primary" position="sticky">
+        <Toolbar>
+          <Link to="/grants" className={classes.titleLink}>
+            <Typography variant="h4" className={classes.title}>
+              Founder Grants
+            </Typography>
+          </Link>
+          <Media query="(min-width:800px)">
+            <div>
+              <NavLink to="/" className={classes.link}>
+                <Button className={classes.navButton} color="inherit">
+                  HOME
+                </Button>
+              </NavLink>
               <Button className={classes.navButton} color="inherit">
-                HOME
+                ABOUT
               </Button>
-            </NavLink>
-            <Button className={classes.navButton} color="inherit">
-              ABOUT
-            </Button>
-            <NavLink to="/form">
-              <Button className={classes.navButton} color="inherit">
-                Submit a Grant
-              </Button>
-            </NavLink>
-            <Button className={classes.signup} color="inherit">
-              SIGN UP
-            </Button>
+              <NavLink to="/form" className={classes.link}>
+                <Button className={classes.navButton} color="inherit">
+                  Submit a Grant
+                </Button>
+              </NavLink>
+              <NavLink className={classes.link} to="/">
+                <Button className={classes.navButton} color="inherit">
+                  SIGN UP
+                </Button>
+              </NavLink>
 
-            {!isAuthenticated && (
-              <Button
-                className={classes.log}
-                variant="contained"
-                color="primary"
-                onClick={() => loginWithRedirect({})}
-              >
-                Log in
-              </Button>
-            )}
+              {!isAuthenticated && (
+                <Button
+                  className={classes.log}
+                  variant="contained"
+                  color="primary"
+                  onClick={() => loginWithRedirect({})}
+                >
+                  Log in
+                </Button>
+              )}
 
-            {isAuthenticated && (
-              <Button variant="outlined" onClick={() => logout()}>
-                Log out
-              </Button>
-            )}
-          </div>
-        </Media>
-        <Media query="(max-width:800px)">
-          {matches =>
-            matches ? (
-              <IconButton
-                className={classes.menu}
-                edge="start"
-                color="primary"
-                aria-label="menu"
-                onClick={toggleDrawer()}
-              >
-                <MenuIcon className={classes.menu} />
-              </IconButton>
-            ) : null
-          }
-        </Media>
-        <SwipeableDrawer
-          anchor="right"
-          open={isOpen}
-          onClose={toggleDrawer(false)}
-          onOpen={toggleDrawer(true)}
-        >
-          {sideList("right")}
-        </SwipeableDrawer>
-      </Toolbar>
-    </AppBar>
+              {isAuthenticated && (
+                <Button variant="outlined" onClick={() => logout()}>
+                  Log out
+                </Button>
+              )}
+            </div>
+          </Media>
+          <Media query="(max-width:800px)">
+            {matches =>
+              matches ? (
+                <IconButton
+                  className={classes.menu}
+                  edge="start"
+                  color="primary"
+                  aria-label="menu"
+                  onClick={toggleDrawer()}
+                >
+                  <MenuIcon className={classes.menu} />
+                </IconButton>
+              ) : null
+            }
+          </Media>
+
+          <SwipeableDrawer
+            anchor="right"
+            open={isOpen}
+            onClose={toggleDrawer(false)}
+            onOpen={toggleDrawer(true)}
+          >
+            {sideList("right")}
+          </SwipeableDrawer>
+        </Toolbar>
+      </AppBar>
+      <Media query="(max-width:850px)">
+        {matches => (matches ? <MobileTabs /> : null)}
+      </Media>
+      <SearchBar />
+    </div>
   );
 };
 

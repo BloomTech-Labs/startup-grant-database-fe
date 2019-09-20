@@ -17,8 +17,10 @@ import SearchBar from "./components/SearchBar";
 import "./App.scss";
 import { ThemeProvider } from "@material-ui/styles";
 import { theme } from "./styles/Theme";
+import Landing from "./views/Landing";
 
 function App() {
+
   // if (loading) {
   //   return (
   //     <div>Loading...</div>
@@ -30,18 +32,12 @@ function App() {
       <ThemeProvider theme={theme}>
         <div className="App">
           {/* <div>Welcome to Grantly</div> */}
-          <Route path="/" component={NavBar} />
-          <Route path="/" component={SearchBar} />
+          {/* I put the Navbar into the Home View Component, so we don't need to have a specific route to the NavBar, and to clean up the code -PJ */}
+          {/* <Route path="/" component={NavBar} /> */}
+          <Route exact path="/" component={Landing} />
+          <Route exact path="/grants" component={Home} />
 
-          <Media query="(max-width:850px)">
-            {matches =>
-              matches ? (
-                <Route path="/" component={MobileTabs} />
-              ) : (
-                <Route exact path="/" component={Home} />
-              )
-            }
-          </Media>
+
           {/* <Route path="/grants" component={GrantList} /> */}
           <Route path="/form" component={SubmitForm} />
         </div>
