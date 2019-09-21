@@ -9,6 +9,7 @@ import Box from "@material-ui/core/Box";
 import AppBar from "@material-ui/core/AppBar";
 
 import GrantList from "./grants/GrantList";
+import GrantShowcase from "./grants/GrantShowcase";
 
 // const useStyles = makeStyles(theme => ({
 //   root: {
@@ -110,7 +111,7 @@ const useStyles = makeStyles(theme => ({
   root: {
     backgroundColor: theme.palette.background.paper
   },
-    tab: {
+  tab: {
     color: "#3DB8B3"
   },
   tabPos: {
@@ -155,7 +156,7 @@ const MobileTabs = () => {
           <GrantList />
         </TabPanel>
         <TabPanel value={value} index={1} dir={theme.direction}>
-          <h1>Hello</h1>
+          <GrantShowcase />
         </TabPanel>
         <TabPanel value={value} index={2} dir={theme.direction}>
           Si
