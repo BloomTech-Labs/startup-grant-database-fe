@@ -6,6 +6,7 @@ import React, { useState } from "react";
 //Objects
 import formStyles from "./grants/styles/FormStyles";
 import { TextField, MenuItem } from "@material-ui/core";
+import NavBar from "./Navbar";
 
 const funding = [
   {
@@ -70,6 +71,7 @@ const AddGrant = props => {
 
   return (
     <div>
+      <NavBar />
       <h1>Submit a Grantly Grant</h1>
       <form className={styles.formContainer} onSubmit={submitGrant}>
         <TextField

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import {connect} from "react-redux";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 
 import SwipeableViews from "react-swipeable-views";
@@ -11,79 +12,6 @@ import AppBar from "@material-ui/core/AppBar";
 import GrantList from "./grants/GrantList";
 import GrantShowcase from "./grants/GrantShowcase";
 
-// const useStyles = makeStyles(theme => ({
-//   root: {
-//     color: "#3DB8B3"
-//   }
-// }));
-// const MobileTabs = () => {
-// const [tab, setTab] = useState(0);
-// const [index, setIndex] = useState(0);
-// const tabs = ["Home", "Bookmarked", "Account"];
-
-// useEffect
-// const classes = useStyles();
-
-// const toRender = () => {
-//   if (tab === index) {
-//     console.log("render")
-//     return<h1>Test</h1>;
-//   } else if(tab === 1){
-//     console.log("else if")
-
-//     return <h1>Testing</h1>;
-//   }
-// };
-// const TabPanel = () => {
-//   return (
-//     <Typography
-//       component="div"
-//       role="tabpanel"
-//       hidden={tab !== index}
-//       id={`full-width-tabpanel-${index}`}
-//       aria-labelledby={`full-width-tab-${index}`}
-//     >
-//       <Box p={3}>{toRender()}</Box>
-//     </Typography>
-//   );
-// };
-// const changeTab = (event, value) => {
-//   setTab(value);
-//   setIndex(value);
-//   console.log("changeTab", value, index)
-// };
-
-// const handleChangeIndex = index => {
-//   console.log("index", index)
-//   setTab(index);
-//   setIndex(index)
-// };
-
-// return (
-//   <div>
-//     <Tabs
-//       value={tab}
-//       onChange={changeTab}
-//       indicatorColor="primary"
-//       textColor="primary"
-//       variant="fullWidth"
-//       aria-label="full width tabs example"
-//     >
-//       {/* {tabs.map(tab => (
-//         <Tab tabel={tab} key={tab} />
-//       ))} */}
-//       <Tab label={tabs[0]} className={classes.root} />
-//       <Tab label={tabs[1]} className={classes.root} />
-//       <Tab label={tabs[2]} className={classes.root} />
-//     </Tabs>
-
-//     <SwipeableViews index={tab} onChangeIndex={handleChangeIndex}>
-//       <TabPanel value={tab} index={0}></TabPanel>
-//       <TabPanel value={tab} index={1}></TabPanel>
-//       <TabPanel value={tab} index={2}></TabPanel>
-//     </SwipeableViews>
-//   </div>
-//);
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -118,7 +46,7 @@ const useStyles = makeStyles(theme => ({
     top: "10%"
   }
 }));
-const MobileTabs = () => {
+const MobileTabs = ({grant}) => {
   const classes = useStyles();
   const theme = useTheme();
   const [value, setValue] = React.useState(0);
@@ -130,7 +58,6 @@ const MobileTabs = () => {
   function handleChangeIndex(index) {
     setValue(index);
   }
-
   return (
     <div className={classes.root}>
       <AppBar position="static" color="default">
@@ -166,4 +93,10 @@ const MobileTabs = () => {
   );
 };
 
-export default MobileTabs;
+const mapStateToProps = state => {
+  return {
+    grant: state.grantShowcase
+
+  }
+}
+export default connect(mapStateToProps, {})(MobileTabs);
