@@ -66,7 +66,8 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const NavBar = () => {
+const NavBar = ({ location }) => {
+  console.log("ffffffffffffffffffffffffffffffffffff",location)
   const { isAuthenticated, loginWithRedirect, logout } = useAuth0();
   const [isOpen, setIsOpen] = useState(false);
   const toggleDrawer = open => event => {
@@ -186,9 +187,12 @@ const NavBar = () => {
           </SwipeableDrawer>
         </Toolbar>
       </AppBar>
-      <SearchBar />
+      {location === "/grants" ? <SearchBar /> : null}
       <Media query="(max-width:850px)">
-        {matches => (matches ? <MobileTabs /> : null)}
+        {matches => {
+          if(matches && location !== "/"){
+            return <MobileTabs />
+          }}}
       </Media>
     </div>
   );

@@ -27,6 +27,7 @@ function App() {
           {/* <div>Welcome to Grantly</div> */}
           {/* I put the Navbar into the Home View Component, so we don't need to have a specific route to the NavBar, and to clean up the code -PJ */}
           {/* <Route path="/" component={NavBar} /> */}
+          <NavBar location={}/>
           <Route exact path="/" component={Landing} />
           <Route exact path="/grants" component={Home} />
 

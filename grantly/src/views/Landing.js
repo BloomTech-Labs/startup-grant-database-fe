@@ -31,7 +31,6 @@ function Landing(props) {
   console.log("@#@#@#@#@--------LOCATION-----------", props);
   return (
     <div className={classes.container}>
-      <Navbar />
       <Grid
         className={classes.grid}
         container
