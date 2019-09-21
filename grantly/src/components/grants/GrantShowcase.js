@@ -22,7 +22,9 @@ const useStyles = makeStyles(theme => ({
     height: "75%",
     margin: "8px",
     [theme.breakpoints.down("sm")]: {
-      position: "initial"
+      position: "initial",
+      width: "100%",
+      margin: 0
     }
   },
   topContent: {
