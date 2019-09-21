@@ -17,6 +17,7 @@ const Home = props => {
 
   return (
     <>
+      <Navbar location={props.location.pathname} />
       <Media query="(max-width:850px)">
         {matches =>
           matches ? null : (

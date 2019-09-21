@@ -24,7 +24,8 @@ import SearchBar from "./SearchBar";
 const useStyles = makeStyles(theme => ({
   navButton: {
     marginRight: theme.spacing(3),
-    color: "#000"
+    color: "#000",
+    fontFamily: "Roboto"
   },
   title: {
     textAlign: "left",
@@ -42,7 +43,8 @@ const useStyles = makeStyles(theme => ({
     }
   },
   log: {
-    color: "#fff"
+    color: "#fff",
+    fontFamily: "Roboto"
   },
   menu: {
     width: "2em",
@@ -66,8 +68,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const NavBar = ({ location }) => {
-  console.log("ffffffffffffffffffffffffffffffffffff",location)
+const NavBar = props => {
   const { isAuthenticated, loginWithRedirect, logout } = useAuth0();
   const [isOpen, setIsOpen] = useState(false);
   const toggleDrawer = open => event => {
@@ -117,14 +118,14 @@ const NavBar = ({ location }) => {
     <div>
       <AppBar className={classes.navbar} color="primary" position="sticky">
         <Toolbar>
-          <Link to="/grants" className={classes.titleLink}>
+          <Link to="/" className={classes.titleLink}>
             <Typography variant="h4" className={classes.title}>
               Founder Grants
             </Typography>
           </Link>
           <Media query="(min-width:800px)">
             <div>
-              <NavLink to="/" className={classes.link}>
+              <NavLink to="/grants" className={classes.link}>
                 <Button className={classes.navButton} color="inherit">
                   HOME
                 </Button>
@@ -155,7 +156,11 @@ const NavBar = ({ location }) => {
               )}
 
               {isAuthenticated && (
-                <Button variant="outlined" onClick={() => logout()}>
+                <Button
+                  className={classes.log}
+                  variant="outlined"
+                  onClick={() => logout()}
+                >
                   Log out
                 </Button>
               )}
@@ -187,13 +192,6 @@ const NavBar = ({ location }) => {
           </SwipeableDrawer>
         </Toolbar>
       </AppBar>
-      {location === "/grants" ? <SearchBar /> : null}
-      <Media query="(max-width:850px)">
-        {matches => {
-          if(matches && location !== "/"){
-            return <MobileTabs />
-          }}}
-      </Media>
     </div>
   );
 };
