@@ -110,6 +110,9 @@ const useStyles = makeStyles(theme => ({
   root: {
     backgroundColor: theme.palette.background.paper
   },
+    tab: {
+    color: "#3DB8B3"
+  },
   tabPos: {
     top: "10%"
   }
@@ -138,9 +141,9 @@ const MobileTabs = () => {
           variant="fullWidth"
           aria-label="full width tabs example"
         >
-          <Tab label="Grants" {...a11yProps(0)} />
-          <Tab label="Item Two" {...a11yProps(1)} />
-          <Tab label="Item Three" {...a11yProps(2)} />
+          <Tab className={classes.tab} label="Grants" {...a11yProps(0)} />
+          <Tab className={classes.tab} label="Item Two" {...a11yProps(1)} />
+          <Tab className={classes.tab} label="Item Three" {...a11yProps(2)} />
         </Tabs>
       </AppBar>
       <SwipeableViews

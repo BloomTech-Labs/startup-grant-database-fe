@@ -3,9 +3,11 @@ import { makeStyles } from "@material-ui/core/styles";
 import GrantList from "../components/grants/GrantList";
 import Filters from "../components/Filters";
 import GrantShowcase from "../components/grants/GrantShowcase";
+import MobileTabs from "../components/MobileTabs";
 import Grid from "@material-ui/core/Grid";
 import Navbar from "../components/Navbar";
 import Media from "react-media";
+import SearchBar from "../components/SearchBar";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -18,9 +20,12 @@ const Home = props => {
   return (
     <>
       <Navbar location={props.location.pathname} />
+      <SearchBar />
       <Media query="(max-width:850px)">
         {matches =>
-          matches ? null : (
+          matches ? (
+            <MobileTabs />
+          ) : (
             <div>
               <Grid container spacing={6} className={classes.root}>
                 <Grid item md={4} xs={12}>

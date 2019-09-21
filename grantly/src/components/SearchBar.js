@@ -37,7 +37,6 @@ const SearchBar = () => {
   const classes = useStyles();
 
   return (
-    <div>
       <Paper className={classes.root}>
         <IconButton className={classes.iconButton} aria-label="search">
           <SearchIcon />
@@ -49,7 +48,6 @@ const SearchBar = () => {
           inputProps={{ "aria-label": "search google maps" }}
         />
       </Paper>
-    </div>
   );
 };
 

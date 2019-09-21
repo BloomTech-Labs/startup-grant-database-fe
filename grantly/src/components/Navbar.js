@@ -115,7 +115,6 @@ const NavBar = props => {
   );
 
   return (
-    <div>
       <AppBar className={classes.navbar} color="primary" position="sticky">
         <Toolbar>
           <Link to="/" className={classes.titleLink}>
@@ -192,7 +191,6 @@ const NavBar = props => {
           </SwipeableDrawer>
         </Toolbar>
       </AppBar>
-    </div>
   );
 };
 
