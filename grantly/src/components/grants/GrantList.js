@@ -1,5 +1,5 @@
 // Dependencies
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 
 // Objects
@@ -10,18 +10,24 @@ import { fetchApi } from "../../actions";
 // Styles
 
 // test funcs
-exports.sum = function(a, b) {
-  return a + b;
+// exports.sum = function(a, b) {
+//   return a + b;
+// };
+
+export const addFieldGoal = currentScore => {
+  return currentScore + 3;
 };
 
-const GrantList = props => {
-  console.log("GrantList props", props);
+export const GrantList = props => {
+  // console.log("GrantList props", props);
+
+  const [lionsScore, setLionsScore] = useState(0);
 
   useEffect(() => {
     if (props.data.length === 0) {
       props.fetchApi();
     }
-    console.log("Grants");
+    // console.log("Grants");
   }, [props.data]);
 
   if (props.isFetching) {
@@ -30,6 +36,7 @@ const GrantList = props => {
   // console.log(user);
   return (
     <div>
+      <div onClick={() => setLionsScore(addFieldGoal(lionsScore))}>button</div>
       {props.data.length > 0 ? (
         props.data.map(grant => {
           return <Grant grant={grant} key={grant.id} />;
