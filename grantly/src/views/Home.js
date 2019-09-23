@@ -28,14 +28,6 @@ const useStyles = makeStyles(theme => ({
   root: {
     display: "flex"
   },
-  scrollBox: {
-    border: "none",
-    padding: "5px",
-    font: "24px/ 36px sans - serif",
-    width: "480px",
-    height: "1000px",
-    overflow: "scroll"
-  },
   toolbar: theme.mixins.toolbar
 }));
 
@@ -52,32 +44,22 @@ const Home = props => {
             <MobileTabs />
           ) : (
             <div>
-              <Grid container spacing={0} className={classes.gridContainer}>
-                <Grid
-                  item
-                  md={4}
-                  xs={12}
-                  className={classes.gridItem}
-                  style={{ padding: "0" }}
-                >
-                  <div className={classes.scrollBox}>
-                    <GrantList />
-                  </div>
+              <Grid
+                container
+                direction="row"
+                justify="flex-start"
+                alignItems="flex-start"
+                className={classes.gridContainer}
+              >
+                <Grid item md={4} xs={12} className={classes.gridItem}>
+                  {/* <div className={classes.scrollBox}> */}
+                  <GrantList />
+                  {/* </div> */}
                 </Grid>
-                <Grid
-                  item
-                  xs={6}
-                  className={classes.gridItem}
-                  style={{ padding: "0" }}
-                >
+                <Grid item xs={6} className={classes.gridItem}>
                   <GrantShowcase />
                 </Grid>
-                <Grid
-                  item
-                  xs={2}
-                  className={classes.gridItem}
-                  style={{ padding: "0" }}
-                >
+                <Grid item xs={2} className={classes.gridItem}>
                   <Filters location={props.location.pathname} />
                 </Grid>
               </Grid>

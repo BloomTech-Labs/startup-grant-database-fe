@@ -14,7 +14,7 @@ import { filterGrants } from "../actions/index";
 
 const useStylesGrants = makeStyles(theme => ({
   card: {
-    marginTop: "3em"
+    marginTop: "8px"
   },
   filterCard: {
     display: "block"

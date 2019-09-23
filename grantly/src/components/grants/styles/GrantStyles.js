@@ -9,12 +9,11 @@ const grantStyles = makeStyles(theme => ({
     flexDirection: "column",
     textAlign: "center",
     borderRadius: "10px",
-    margin: "0.5rem"
+    marginTop: "0.5rem"
   },
   grantName: {
     fontSize: "1rem",
-    position: "relative",
-    marginLeft: "5px"
+    position: "relative"
     // border: "1px solid fuchsia"
   },
   bookmark: {

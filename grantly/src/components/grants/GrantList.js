@@ -6,6 +6,7 @@ import { connect } from "react-redux";
 import Grant from "./Grant";
 import Loader from "react-loader-spinner";
 import { fetchApi } from "../../actions";
+import { makeStyles } from "@material-ui/core/styles";
 
 // Styles
 
@@ -14,7 +15,19 @@ import { fetchApi } from "../../actions";
 //   return a + b;
 // };
 
+const useStyles = makeStyles(theme => ({
+  scrollBox: {
+    border: "none",
+    padding: "5px",
+    font: "24px/ 36px sans - serif",
+    height: "1000px",
+    overflow: "scroll"
+  }
+}));
+
 const GrantList = props => {
+  const classes = useStyles();
+
   console.log("GrantList props", props);
 
   useEffect(() => {
@@ -29,7 +42,7 @@ const GrantList = props => {
   }
   // console.log(user);
   return (
-    <div>
+    <div className={classes.scrollBox}>
       {props.data.length > 0 ? (
         props.data.map(grant => {
           return <Grant grant={grant} key={grant.id} />;
