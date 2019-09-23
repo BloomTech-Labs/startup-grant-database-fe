@@ -14,8 +14,6 @@ import BookmarkIcon from "@material-ui/icons/Bookmark";
 // =========== STYLES ===========
 const useStyles = makeStyles(theme => ({
   showcaseCard: {
-    position: "fixed",
-    width: "47%",
     textAlign: "left",
     padding: "5px",
     borderTop: "#3DB8B3 5px solid",
