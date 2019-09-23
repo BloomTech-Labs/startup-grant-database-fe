@@ -12,7 +12,8 @@ import {
   CHANGE_TAB,
   ADD_GRANT_START,
   ADD_GRANT_SUCCESS,
-  ADD_GRANT_FAILURE
+  ADD_GRANT_FAILURE,
+  FILTER_SAVE
 } from "./types";
 
 export const fetchApi = () => dispatch => {
@@ -28,7 +29,9 @@ export const fetchApi = () => dispatch => {
       dispatch({ type: FETCH_ERROR });
     });
 };
-
+export const saveFilters = filters => dispatch => {
+  dispatch({ type: FILTER_SAVE, payload: filters });
+};
 export const filterGrants = filters => dispatch => {
   let numCheck = 0;
   //either call to database and return specific grants
@@ -37,8 +40,8 @@ export const filterGrants = filters => dispatch => {
     filter.length !== 0 && numCheck++;
   });
   numCheck === 0
-    ? dispatch({ type: FILTER_GRANTS_RESET }) :
-  dispatch({ type: FILTER_GRANTS, payload: filters });
+    ? dispatch({ type: FILTER_GRANTS_RESET })
+    : dispatch({ type: FILTER_GRANTS, payload: filters });
 
   //initial thoughts is to have filters be an array  becuase users will be able to select multiple grant filter
   //Now filters will be an object that contains different arrays

@@ -10,7 +10,7 @@ import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { filterGrants, fetchApi } from "../actions/index";
+import { filterGrants, saveFilters } from "../actions/index";
 
 const useStylesGrants = makeStyles(theme => ({
   card: {
@@ -78,9 +78,17 @@ const Filters = props => {
 
   //Makes sure that the current state is being sent to the action creator
   useEffect(() => {
-
-    props.filterGrants(filters);
+    if (props.location === "/") {
+      props.saveFilters(filters);
+    } else {
+      
+      props.filterGrants(props.savedFilters);
+    }
   }, [filters]);
+
+  // useEffect(() => {
+  //   props.filterGrants(filters);
+  // }, [filters]);
 
   const grantFilters = {
     color: "primary",
@@ -209,10 +217,11 @@ const Filters = props => {
 };
 const mapStateToProps = state => {
   return {
-    grants: state.filteredGrants
+    grants: state.filteredGrants,
+    savedFilters: state.filters
   };
 };
 export default connect(
   mapStateToProps,
-  { filterGrants, fetchApi }
+  { filterGrants, saveFilters }
 )(Filters);
