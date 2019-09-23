@@ -28,17 +28,17 @@ test("it renders without crashing", () => {
   const container = rtl.render(<GrantShowcase grant={grant} />);
 });
 
-// test("Amounts header", () => {
-//   const container = rtl.render(<Grant grant={grant} />);
+test("Explanation header", () => {
+  const container = rtl.render(<GrantShowcase grant={grant} />);
 
-//   container.queryAllByText(/Amount/i);
-// });
+  container.queryAllByText(/What it is:/i);
+});
 
-// test("Deadline header", () => {
-//   const container = rtl.render(<Grant grant={grant} />);
+test("Deadline header", () => {
+  const container = rtl.render(<GrantShowcase grant={grant} />);
 
-//   container.queryAllByText(/Deadline/i);
-// });
+  container.queryAllByText(/Deadline/i);
+});
 
 // test("Select button", () => {
 //   const container = rtl.render(<Grant grant={grant} />);
