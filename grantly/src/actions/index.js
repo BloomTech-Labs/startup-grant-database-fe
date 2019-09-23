@@ -11,7 +11,10 @@ import {
   SELECT_GRANT,
   ADD_GRANT_START,
   ADD_GRANT_SUCCESS,
-  ADD_GRANT_FAILURE
+  ADD_GRANT_FAILURE,
+  UPDATE_GRANT_START,
+  UPDATE_GRANT_SUCCESS,
+  UPDATE_GRANT_FAILURE
 } from "./types";
 
 export const fetchApi = () => dispatch => {
@@ -59,3 +62,16 @@ export const postGrants = addGrant => dispatch => {
     })
     .catch(err => console.log(err.response));
 };
+
+//Update a Grant
+// export const putGrants = updateGrant => dispatch => {
+//   dispatch({
+//     type: UPDATE_GRANT_START
+//   });
+//   axios
+//     .put(`http://localhost:5000/api/grants/${grantId}`, updateGrant)
+//     .then(res => {
+//       dispatch({ type: UPDATE_GRANT_START, payload: res.data });
+//     })
+//     .catch(err => console.log(err.response));
+// };
