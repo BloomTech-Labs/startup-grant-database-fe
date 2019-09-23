@@ -30,6 +30,7 @@ export const fetchApi = () => dispatch => {
     });
 };
 export const saveFilters = filters => dispatch => {
+  console.log("fil", filters);
   dispatch({ type: FILTER_SAVE, payload: filters });
 };
 export const filterGrants = filters => dispatch => {

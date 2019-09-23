@@ -81,10 +81,15 @@ const Filters = props => {
     if (props.location === "/") {
       props.saveFilters(filters);
     } else {
-      
-      props.filterGrants(props.savedFilters);
+      // props.filterGrants(props.savedFilters);
+      props.saveFilters(filters);
     }
   }, [filters]);
+
+  useEffect(() => {
+    props.filterGrants(props.savedFilters);
+    // props.saveFilters(filters)
+  }, [props.savedFilters]);
 
   // useEffect(() => {
   //   props.filterGrants(filters);
@@ -129,8 +134,6 @@ const Filters = props => {
     ? (classes = grantStyles)
     : (classes = landingStyles);
 
-  console.log("fillllllllllllll", props);
-  console.log("ters", filters);
   return (
     <Card className={classes.card}>
       <Typography className={classes.title} variant="h5" component="h2">
