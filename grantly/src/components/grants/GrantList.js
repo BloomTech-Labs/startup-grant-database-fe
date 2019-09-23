@@ -1,5 +1,5 @@
 // Dependencies
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 
 // Objects
@@ -14,6 +14,11 @@ import { makeStyles } from "@material-ui/core/styles";
 // exports.sum = function(a, b) {
 //   return a + b;
 // };
+
+
+export const GrantList = props => {
+  // console.log("GrantList props", props);
+
 
 const useStyles = makeStyles(theme => ({
   scrollBox: {
@@ -34,7 +39,7 @@ const GrantList = props => {
     if (props.data.length === 0) {
       props.fetchApi();
     }
-    console.log("Grants");
+    // console.log("Grants");
   }, [props.data]);
 
   if (props.isFetching) {
@@ -42,7 +47,11 @@ const GrantList = props => {
   }
   // console.log(user);
   return (
+
+    <div>
+
     <div className={classes.scrollBox}>
+
       {props.data.length > 0 ? (
         props.data.map(grant => {
           return <Grant grant={grant} key={grant.id} />;
