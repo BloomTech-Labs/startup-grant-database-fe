@@ -5,6 +5,7 @@ import {
   FETCH_ERROR,
   SELECT_GRANT,
   CHANGE_TAB,
+  FILTER_SAVE,
   FILTER_GRANTS,
   FILTER_GRANTS_RESET,
   ADD_GRANT_START,
@@ -58,6 +59,11 @@ export const rooterReducer = (state = initialState, { type, payload }) => {
         ...state,
         currentTab: payload
       };
+      case FILTER_SAVE:
+        return {
+          ...state,
+          filters: payload
+        }
     case FILTER_GRANTS:
       let newList = [];
       // Don't pay attention to this mess :)
