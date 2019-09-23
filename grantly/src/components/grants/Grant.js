@@ -13,7 +13,6 @@ import grantStyles from "./styles/GrantStyles";
 import Card from "@material-ui/core/Card";
 
 // Styles
-import "../../App.scss";
 
 const Grant = props => {
   // console.log("Grant props", props);
@@ -38,15 +37,29 @@ const Grant = props => {
 
   return (
     <Card className={styles.grantCard}>
-      <Grid container direction="row" justify="space-between">
-        <Grid item className={styles.phantom}></Grid>
+      {/* ================= Bookmark Icon ================= */}
+      <Grid
+        container
+        direction="row"
+        justify="flex-end"
+        alignItems="flex-start"
+      >
         <Grid item>
-          <h3 className={styles.grantName}>{props.grant.competition_name}</h3>
-        </Grid>
-        <Grid item className={styles.bookmark}>
-          <BookmarkIcon className="bookmark" />
+          <BookmarkIcon></BookmarkIcon>
         </Grid>
       </Grid>
+      {/* ================= Top container (grant name) ================= */}
+      <Grid
+        container
+        direction="row"
+        justify="space-evenly"
+        alignItems="center"
+      >
+        <Grid item>
+          <div className={styles.grantName}>{props.grant.competition_name}</div>
+        </Grid>
+      </Grid>
+      {/* ================= Middle Container (sub details) ================= */}
       <Container className={styles.detailsWrapper}>
         <Grid container direction="column" className={styles.amount}>
           <div className={styles.detailsHeader}>Amount</div>
@@ -61,6 +74,7 @@ const Grant = props => {
           {deadline}
         </Grid>
       </Container>
+      {/* ================= Bottom Container (button) ================= */}
       <Container maxWidth="sm">
         <Button
           className={styles.btn}
