@@ -63,7 +63,13 @@ test("contains grants", () => {
   container.queryAllByText(/grants/i);
 });
 
-test("addFieldGoal adds 3 to current score", () => {
-  expect(addFieldGoal(7)).toBe(10);
-  expect(addFieldGoal(0)).toBe(3);
-});
+// test('props.data.length is truthy', () =? {
+//   const container = rtl.render(<GrantList data={mockData} />);
+//   container
+
+// });
+
+// test("addFieldGoal adds 3 to current score", () => {
+//   expect(addFieldGoal(7)).toBe(10);
+//   expect(addFieldGoal(0)).toBe(3);
+// });

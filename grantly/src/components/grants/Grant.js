@@ -15,7 +15,7 @@ import Card from "@material-ui/core/Card";
 // Styles
 import "../../App.scss";
 
-const Grant = props => {
+export const Grant = props => {
   // console.log("Grant props", props);
 
   const selectGrant = () => {
