@@ -16,6 +16,15 @@ const formStyles = makeStyles(theme => ({
   },
   dropDown: {
     width: 200
+  },
+  leftBox: {
+    background: "primary"
+  },
+  grid: {
+    justifyContent: "space-between"
+    // maxWidth: "100%",
+    // height: "80%"
+    // zIndex: 0
   }
 }));
 

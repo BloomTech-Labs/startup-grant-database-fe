@@ -4,6 +4,8 @@ import {
   FETCH_SUCCESS,
   FETCH_ERROR,
   SELECT_GRANT,
+  CHANGE_TAB,
+  FILTER_SAVE,
   FILTER_GRANTS,
   FILTER_GRANTS_RESET,
   ADD_GRANT_START,
@@ -17,7 +19,8 @@ const initialState = {
   data: [],
   filteredGrants: [],
   grantShowcase: {},
-  filters: {}
+  filters: {},
+  currentTab: 0
 };
 
 // Reducer
@@ -51,6 +54,16 @@ export const rooterReducer = (state = initialState, { type, payload }) => {
         ...state,
         grantShowcase: payload
       };
+    case CHANGE_TAB:
+      return {
+        ...state,
+        currentTab: payload
+      };
+      case FILTER_SAVE:
+        return {
+          ...state,
+          filters: payload
+        }
     case FILTER_GRANTS:
       let newList = [];
       // Don't pay attention to this mess :)
