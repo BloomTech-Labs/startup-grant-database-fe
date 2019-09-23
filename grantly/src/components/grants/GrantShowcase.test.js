@@ -58,6 +58,18 @@ test("Region header", () => {
   container.queryAllByText(/Region/i);
 });
 
+test("Sponsored by header", () => {
+  const container = rtl.render(<GrantShowcase grant={grant} />);
+
+  container.queryAllByText(/Sponsored by:/i);
+});
+
+test("Notes header", () => {
+  const container = rtl.render(<GrantShowcase grant={grant} />);
+
+  container.queryAllByText(/Notes: /i);
+});
+
 // describe("sum function", () => {
 //   it("sums two integers", () => {});
 // });
