@@ -14,13 +14,11 @@ import BookmarkIcon from "@material-ui/icons/Bookmark";
 // =========== STYLES ===========
 const useStyles = makeStyles(theme => ({
   showcaseCard: {
-    position: "fixed",
-    width: "47%",
     textAlign: "left",
     padding: "5px",
     borderTop: "#3DB8B3 5px solid",
-    height: "75%",
-    margin: "8px",
+    height: "600px",
+    fontFamily: "adobe-garamond-pro",
     [theme.breakpoints.down("sm")]: {
       position: "initial",
       width: "100%",
@@ -28,16 +26,19 @@ const useStyles = makeStyles(theme => ({
     }
   },
   topContent: {
-    margin: "20px"
+    margin: "20px",
+    fontWeight: "700",
+    fontSize: "1.8rem"
   },
   grantInfo: {
-    height: "75%",
     padding: "0 20px"
   },
   showcaseSpan: {
     fontWeight: "bold"
   },
-  showcaseDetails: {},
+  showcaseDetails: {
+    marginBottom: "30px"
+  },
   applyButton: {
     color: "#fff"
   }

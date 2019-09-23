@@ -6,6 +6,7 @@ import { connect } from "react-redux";
 import Grant from "./Grant";
 import Loader from "react-loader-spinner";
 import { fetchApi } from "../../actions";
+import { makeStyles } from "@material-ui/core/styles";
 
 // Styles
 
@@ -14,14 +15,25 @@ import { fetchApi } from "../../actions";
 //   return a + b;
 // };
 
-export const addFieldGoal = currentScore => {
-  return currentScore + 3;
-};
 
 export const GrantList = props => {
   // console.log("GrantList props", props);
 
-  const [lionsScore, setLionsScore] = useState(0);
+
+const useStyles = makeStyles(theme => ({
+  scrollBox: {
+    border: "none",
+    padding: "0 8px",
+    font: "24px/ 36px sans - serif",
+    height: "600px",
+    overflow: "scroll"
+  }
+}));
+
+const GrantList = props => {
+  const classes = useStyles();
+
+  console.log("GrantList props", props);
 
   useEffect(() => {
     if (props.data.length === 0) {
@@ -35,8 +47,11 @@ export const GrantList = props => {
   }
   // console.log(user);
   return (
+
     <div>
-      <div onClick={() => setLionsScore(addFieldGoal(lionsScore))}>button</div>
+
+    <div className={classes.scrollBox}>
+
       {props.data.length > 0 ? (
         props.data.map(grant => {
           return <Grant grant={grant} key={grant.id} />;

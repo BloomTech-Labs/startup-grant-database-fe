@@ -1,63 +1,45 @@
-import React from "react";
+import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import GrantList from "../components/grants/GrantList";
 import Filters from "../components/Filters";
 import GrantShowcase from "../components/grants/GrantShowcase";
 import MobileTabs from "../components/MobileTabs";
-import SearchBar from "../components/SearchBar"
+import SearchBar from "../components/SearchBar";
 import Grid from "@material-ui/core/Grid";
 import Navbar from "../components/Navbar";
 import Media from "react-media";
-import Drawer from "@material-ui/core/Drawer";
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
-import Typography from "@material-ui/core/Typography";
-import {  useTheme } from "@material-ui/core/styles";
-
-const drawerWidth = 480;
+import SwipeableDrawer from "@material-ui/core/SwipeableDrawer";
 
 const useStyles = makeStyles(theme => ({
-  root: {
-    display: "flex"
-  },
-  appBar: {
-    zIndex: 1000
-  },
-  drawer: {
-    width: drawerWidth,
-    flexShrink: 0,
-    zIndex: 1
-  },
-  drawerPaper: {
-    width: drawerWidth
-  },
   content: {
     flexGrow: 1,
     padding: theme.spacing(3)
   },
-  scrollBox: {
-    border: "none",
-    padding: "5px",
-    font: "24px/ 36px sans - serif",
-    width: "480px",
-    height: "1000px",
-    overflow: "scroll"
+  gridContainer: {
+    margin: "0"
   },
-  //   height: "1000px",
-  //   width: "480px",
-  //   border: "1px solid #ccc",
-  //   font: "16px/ 26px Georgia, Garamond, Serif",
-  //   overflow: "auto"
-  // },
+  gridItem: {
+    padding: 30
+  },
+  root: {
+    display: "flex"
+  },
   toolbar: theme.mixins.toolbar
 }));
 
-// const useStyles = makeStyles(theme => ({
-//   root: {
-//     width: "100%"
-//   }
-// }));
 const Home = props => {
+  const [isOpen, setIsOpen] = useState(false);
+  const toggleDrawer = open => event => {
+    if (
+      event &&
+      event.type === "keydown" &&
+      (event.key === "Tab" || event.key === "Shift")
+    ) {
+      return;
+    }
+
+    setIsOpen(!isOpen);
+  };
   const classes = useStyles();
 
   return (
@@ -67,34 +49,51 @@ const Home = props => {
       <Media query="(max-width:850px)">
         {matches =>
           matches ? (
-            <MobileTabs />
+            <>
+              <MobileTabs />
+              <SwipeableDrawer
+                anchor="bottom"
+                open={isOpen}
+                onClose={toggleDrawer(false)}
+                onOpen={toggleDrawer(true)}
+              >
+                <Filters />
+              </SwipeableDrawer>
+            </>
           ) : (
             <div>
-              <Grid container spacing={2} className="grid-container">
-                <Grid item md={4} xs={12} className="grid-item">
-                  {/* <AppBar position="fixed" className={classes.appBar}>
-                    <Toolbar>
-                      <Typography variant="h6" noWrap>
-                        Permanent drawer
-                      </Typography>
-                    </Toolbar>
-                  </AppBar> */}
-                  {/* <Drawer
-                    className={classes.drawer}
-                    variant="permanent"
-                    classes={{
-                      paper: classes.drawerPaper
-                    }}
-                  > */}
-                  <div className={classes.scrollBox}>
-                    <GrantList />
-                  </div>
-                  {/* </Drawer> */}
+              <Grid
+                container
+                direction="row"
+                justify="flex-start"
+                alignItems="flex-start"
+                className={classes.gridContainer}
+              >
+                <Grid
+                  item
+                  md={3}
+                  xs={12}
+                  className={classes.gridItem}
+                  style={{ padding: "30px 0 0 30px" }}
+                >
+                  {/* <div className={classes.scrollBox}> */}
+                  <GrantList />
+                  {/* </div> */}
                 </Grid>
-                <Grid item xs={6}>
+                <Grid
+                  item
+                  xs={6}
+                  className={classes.gridItem}
+                  style={{ padding: "30px 30px 0 30px" }}
+                >
                   <GrantShowcase />
                 </Grid>
-                <Grid item xs={2}>
+                <Grid
+                  item
+                  xs={3}
+                  className={classes.gridItem}
+                  style={{ padding: "30px 30px 0 0" }}
+                >
                   <Filters location={props.location.pathname} />
                 </Grid>
               </Grid>

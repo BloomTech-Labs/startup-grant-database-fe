@@ -9,9 +9,14 @@ import {
   FILTER_GRANTS,
   FILTER_GRANTS_RESET,
   SELECT_GRANT,
+  CHANGE_TAB,
   ADD_GRANT_START,
   ADD_GRANT_SUCCESS,
-  ADD_GRANT_FAILURE
+  ADD_GRANT_FAILURE,
+  UPDATE_GRANT_START,
+  UPDATE_GRANT_SUCCESS,
+  UPDATE_GRANT_FAILURE,
+  FILTER_SAVE
 } from "./types";
 
 export const fetchApi = () => dispatch => {
@@ -27,7 +32,9 @@ export const fetchApi = () => dispatch => {
       dispatch({ type: FETCH_ERROR });
     });
 };
-
+export const saveFilters = filters => dispatch => {
+  dispatch({ type: FILTER_SAVE, payload: filters });
+};
 export const filterGrants = filters => dispatch => {
   let numCheck = 0;
   //either call to database and return specific grants
@@ -46,6 +53,11 @@ export const filterGrants = filters => dispatch => {
 
 export const selectGrant = grant => dispatch => {
   dispatch({ type: SELECT_GRANT, payload: grant });
+  dispatch({ type: CHANGE_TAB, payload: 1 });
+};
+
+export const changeTab = tab => dispatch => {
+  dispatch({ type: CHANGE_TAB, payload: tab });
 };
 
 // Submit a Grant
@@ -59,3 +71,16 @@ export const postGrants = addGrant => dispatch => {
     })
     .catch(err => console.log(err.response));
 };
+
+//Update a Grant
+// export const putGrants = updateGrant => dispatch => {
+//   dispatch({
+//     type: UPDATE_GRANT_START
+//   });
+//   axios
+//     .put(`http://localhost:5000/api/grants/${grantId}`, updateGrant)
+//     .then(res => {
+//       dispatch({ type: UPDATE_GRANT_START, payload: res.data });
+//     })
+//     .catch(err => console.log(err.response));
+// };
