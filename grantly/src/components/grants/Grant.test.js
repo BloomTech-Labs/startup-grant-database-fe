@@ -34,6 +34,18 @@ test("Amounts header", () => {
   container.queryAllByText(/Amount/i);
 });
 
+test("Deadline header", () => {
+  const container = rtl.render(<Grant grant={grant} />);
+
+  container.queryAllByText(/Deadline/i);
+});
+
+test("Select button", () => {
+  const container = rtl.render(<Grant grant={grant} />);
+
+  container.queryAllByText(/Select/i);
+});
+
 // describe("sum function", () => {
 //   it("sums two integers", () => {});
 // });
