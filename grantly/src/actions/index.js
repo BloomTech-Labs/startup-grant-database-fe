@@ -52,7 +52,7 @@ export const selectGrant = grant => dispatch => {
 export const postGrants = addGrant => dispatch => {
   dispatch({ type: ADD_GRANT_START });
   axios
-    .post("http://localhost:5000/api/grants/", addGrant)
+    .post("https://grantly-staging.herokuapp.com/api/grants", addGrant)
     .then(res => {
       console.log("RES in postGrants, actions", res);
       dispatch({ type: ADD_GRANT_START, payload: res.data });
