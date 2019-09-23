@@ -9,9 +9,10 @@ import {
   FILTER_GRANTS,
   FILTER_GRANTS_RESET,
   SELECT_GRANT,
+  CHANGE_TAB,
   ADD_GRANT_START,
   ADD_GRANT_SUCCESS,
-  ADD_GRANT_FAILURE
+  ADD_GRANT_FAILURE,
 } from "./types";
 
 export const fetchApi = () => dispatch => {
@@ -46,6 +47,7 @@ export const filterGrants = filters => dispatch => {
 
 export const selectGrant = grant => dispatch => {
   dispatch({ type: SELECT_GRANT, payload: grant });
+  dispatch({type: CHANGE_TAB, payload: 1})
 };
 
 // Submit a Grant

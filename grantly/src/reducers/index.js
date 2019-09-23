@@ -4,6 +4,7 @@ import {
   FETCH_SUCCESS,
   FETCH_ERROR,
   SELECT_GRANT,
+  CHANGE_TAB,
   FILTER_GRANTS,
   FILTER_GRANTS_RESET,
   ADD_GRANT_START,
@@ -50,7 +51,11 @@ export const rooterReducer = (state = initialState, { type, payload }) => {
     case SELECT_GRANT:
       return {
         ...state,
-        grantShowcase: payload,
+        grantShowcase: payload
+      };
+    case CHANGE_TAB:
+      return {
+        ...state,
         currentTab: 1
       };
     case FILTER_GRANTS:
