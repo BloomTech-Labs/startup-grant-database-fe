@@ -13,10 +13,13 @@ import { fetchApi } from "../../actions";
 // exports.sum = function(a, b) {
 //   return a + b;
 // };
+<<<<<<< HEAD
 
 export const addFieldGoal = currentScore => {
   return currentScore + 3;
 };
+=======
+>>>>>>> c1e1defedbbdd9883fc1f8110780a42832046378
 
 export const GrantList = props => {
   // console.log("GrantList props", props);
