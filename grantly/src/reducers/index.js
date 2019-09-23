@@ -17,7 +17,8 @@ const initialState = {
   data: [],
   filteredGrants: [],
   grantShowcase: {},
-  filters: {}
+  filters: {},
+  currentTab: 0
 };
 
 // Reducer
@@ -49,7 +50,8 @@ export const rooterReducer = (state = initialState, { type, payload }) => {
     case SELECT_GRANT:
       return {
         ...state,
-        grantShowcase: payload
+        grantShowcase: payload,
+        currentTab: 1
       };
     case FILTER_GRANTS:
       let newList = [];

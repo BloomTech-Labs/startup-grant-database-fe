@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {connect} from "react-redux";
+import { connect } from "react-redux";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 
 import SwipeableViews from "react-swipeable-views";
@@ -11,7 +11,6 @@ import AppBar from "@material-ui/core/AppBar";
 
 import GrantList from "./grants/GrantList";
 import GrantShowcase from "./grants/GrantShowcase";
-
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -46,16 +45,20 @@ const useStyles = makeStyles(theme => ({
     top: "10%"
   }
 }));
-const MobileTabs = ({grant}) => {
+const MobileTabs = ({ grant, currentTab }) => {
   const classes = useStyles();
   const theme = useTheme();
   const [value, setValue] = React.useState(0);
-
+  useEffect(() => {
+    handleChangeIndex(currentTab);
+  }, [currentTab]);
   function handleChange(event, newValue) {
+    console.log("value", newValue, currentTab)
     setValue(newValue);
   }
 
   function handleChangeIndex(index) {
+    console.log("index", index, currentTab)
     setValue(index);
   }
   return (
@@ -71,7 +74,7 @@ const MobileTabs = ({grant}) => {
         >
           <Tab className={classes.tab} label="Grants" {...a11yProps(0)} />
           <Tab className={classes.tab} label="Item Two" {...a11yProps(1)} />
-          <Tab className={classes.tab} label="Item Three" {...a11yProps(2)} />
+          {/* <Tab className={classes.tab} label="Item Three" {...a11yProps(2)} /> */}
         </Tabs>
       </AppBar>
       <SwipeableViews
@@ -85,8 +88,8 @@ const MobileTabs = ({grant}) => {
         <TabPanel value={value} index={1} dir={theme.direction}>
           <GrantShowcase />
         </TabPanel>
-        <TabPanel value={value} index={2} dir={theme.direction}>
-        </TabPanel>
+        {/* <TabPanel value={value} index={2} dir={theme.direction}>
+        </TabPanel> */}
       </SwipeableViews>
     </div>
   );
@@ -94,8 +97,11 @@ const MobileTabs = ({grant}) => {
 
 const mapStateToProps = state => {
   return {
-    grant: state.grantShowcase
-
-  }
-}
-export default connect(mapStateToProps, {})(MobileTabs);
+    grant: state.grantShowcase,
+    currentTab: state.currentTab
+  };
+};
+export default connect(
+  mapStateToProps,
+  {}
+)(MobileTabs);
