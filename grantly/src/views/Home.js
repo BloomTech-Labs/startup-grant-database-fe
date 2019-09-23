@@ -14,12 +14,7 @@ import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import { useTheme } from "@material-ui/core/styles";
 
-const drawerWidth = 480;
-
 const useStyles = makeStyles(theme => ({
-  appBar: {
-    zIndex: 1000
-  },
   content: {
     flexGrow: 1,
     padding: theme.spacing(3)
@@ -29,14 +24,6 @@ const useStyles = makeStyles(theme => ({
   },
   gridItem: {
     padding: 30
-  },
-  drawer: {
-    width: drawerWidth,
-    flexShrink: 0,
-    zIndex: 1
-  },
-  drawerPaper: {
-    width: drawerWidth
   },
   root: {
     display: "flex"
@@ -52,11 +39,6 @@ const useStyles = makeStyles(theme => ({
   toolbar: theme.mixins.toolbar
 }));
 
-// const useStyles = makeStyles(theme => ({
-//   root: {
-//     width: "100%"
-//   }
-// }));
 const Home = props => {
   const classes = useStyles();
 
@@ -70,7 +52,7 @@ const Home = props => {
             <MobileTabs />
           ) : (
             <div>
-              <Grid container spacing={2} className={classes.gridContainer}>
+              <Grid container spacing={0} className={classes.gridContainer}>
                 <Grid
                   item
                   md={4}

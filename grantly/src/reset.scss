@@ -1,6 +1,6 @@
 /* CSS RESET */
 
-/* http://meyerweb.com/eric/tools/css/reset/ 
+/* http://meyerweb.com/eric/tools/css/reset/
    v2.0 | 20110126
    License: none (public domain)
 */
@@ -110,6 +110,7 @@ section {
 body {
   line-height: 1;
   height: 100%;
+  box-sizing: border-box;
 }
 ol,
 ul {
@@ -129,11 +130,4 @@ q:after {
 table {
   border-collapse: collapse;
   border-spacing: 0;
-}
-
-*,
-*::after,
-*::before {
-  box-sizing: border-box;
-  outline-color: $blue;
 }

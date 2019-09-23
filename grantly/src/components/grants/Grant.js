@@ -41,7 +41,7 @@ const Grant = props => {
       <Grid container direction="row" justify="space-between">
         <Grid item className={styles.phantom}></Grid>
         <Grid item>
-          <h3 className={styles.grantName}>{props.grant.competition_name}</h3>
+          <div className={styles.grantName}>{props.grant.competition_name}</div>
         </Grid>
         <Grid item className={styles.bookmark}>
           <BookmarkIcon className="bookmark" />
