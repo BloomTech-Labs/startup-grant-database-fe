@@ -5,7 +5,10 @@ import {
   FETCH_ERROR,
   SELECT_GRANT,
   FILTER_GRANTS,
-  FILTER_GRANTS_RESET
+  FILTER_GRANTS_RESET,
+  ADD_GRANT_START,
+  ADD_GRANT_SUCCESS,
+  ADD_GRANT_FAILURE
 } from "../actions/types";
 
 // Initial state
@@ -86,7 +89,6 @@ export const rooterReducer = (state = initialState, { type, payload }) => {
       state.data.map(grant => {
         Object.entries(payload).map(filter => {
           filter[1].map(userFilters => {
-
             if (filter[0] === "amount") {
               if (userFilters.includes("-")) {
                 const min = userFilters.split("-")[0].replace(/\D/g, "");
@@ -123,13 +125,25 @@ export const rooterReducer = (state = initialState, { type, payload }) => {
         }),
         filters: payload,
         filteredGrants: testing
-
-
       };
     case FILTER_GRANTS_RESET:
       return {
         ...state,
         filteredGrants: state.data
+      };
+
+    case ADD_GRANT_START:
+      return {
+        ...state,
+        isFetching: true,
+        error: payload
+      };
+    case ADD_GRANT_SUCCESS:
+      return {
+        ...state,
+        data: payload,
+        isFetching: false,
+        error: payload
       };
     default:
       return state;

@@ -6,3 +6,8 @@ export const SELECT_GRANT = "SELECT_GRANT";
 //Filter Type
 export const FILTER_GRANTS = "FILTER_GRANTS";
 export const FILTER_GRANTS_RESET = "FILTER_GRANTS_RESET";
+
+// Submit a Grant
+export const ADD_GRANT_START = "ADD_GRANT_START";
+export const ADD_GRANT_SUCCESS = "ADD_GRANT_SUCCESS";
+export const ADD_GRANT_FAILURE = "ADD_GRANT_FAILURE";
