@@ -10,7 +10,7 @@ import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { filterGrants } from "../actions/index";
+import { filterGrants, saveFilters } from "../actions/index";
 
 const useStylesGrants = makeStyles(theme => ({
   filterCard: {
@@ -75,8 +75,16 @@ const Filters = props => {
 
   //Makes sure that the current state is being sent to the action creator
   useEffect(() => {
-    props.filterGrants(filters);
+    if (props.location === "/") {
+      props.saveFilters(filters);
+    } else {
+      props.filterGrants(props.savedFilters);
+    }
   }, [filters]);
+
+  // useEffect(() => {
+  //   props.filterGrants(filters);
+  // }, [filters]);
 
   const grantFilters = {
     color: "primary",
@@ -117,6 +125,8 @@ const Filters = props => {
     ? (classes = grantStyles)
     : (classes = landingStyles);
 
+  console.log("fillllllllllllll", props);
+  console.log("ters", filters);
   return (
     <Card className={classes.card}>
       <Typography className={classes.title} variant="h5" component="h2">
@@ -134,6 +144,7 @@ const Filters = props => {
               <FormControlLabel
                 control={
                   <Checkbox
+                    checked={filters.amount.includes(name.toLowerCase())}
                     value={name}
                     color={grantFilters.color}
                     onClick={() => handleChanges("amount", name)}
@@ -155,6 +166,9 @@ const Filters = props => {
               <FormControlLabel
                 control={
                   <Checkbox
+                    checked={filters.geographic_region.includes(
+                      name.toLowerCase()
+                    )}
                     value={name}
                     color={grantFilters.color}
                     onClick={() => handleChanges("geographic_region", name)}
@@ -176,6 +190,7 @@ const Filters = props => {
               <FormControlLabel
                 control={
                   <Checkbox
+                    checked={filters.domain_areas.includes(name.toLowerCase())}
                     value={name}
                     color={grantFilters.color}
                     onClick={() => handleChanges("domain_areas", name)}
@@ -196,8 +211,13 @@ const Filters = props => {
     </Card>
   );
 };
-
+const mapStateToProps = state => {
+  return {
+    grants: state.filteredGrants,
+    savedFilters: state.filters
+  };
+};
 export default connect(
-  null,
-  { filterGrants }
+  mapStateToProps,
+  { filterGrants, saveFilters }
 )(Filters);

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import GrantList from "../components/grants/GrantList";
 import Filters from "../components/Filters";
@@ -8,6 +8,7 @@ import SearchBar from "../components/SearchBar";
 import Grid from "@material-ui/core/Grid";
 import Navbar from "../components/Navbar";
 import Media from "react-media";
+import SwipeableDrawer from "@material-ui/core/SwipeableDrawer";
 
 const useStyles = makeStyles(theme => ({
   content: {
@@ -27,6 +28,18 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const Home = props => {
+  const [isOpen, setIsOpen] = useState(false);
+  const toggleDrawer = open => event => {
+    if (
+      event &&
+      event.type === "keydown" &&
+      (event.key === "Tab" || event.key === "Shift")
+    ) {
+      return;
+    }
+
+    setIsOpen(!isOpen);
+  };
   const classes = useStyles();
 
   return (
@@ -36,7 +49,17 @@ const Home = props => {
       <Media query="(max-width:850px)">
         {matches =>
           matches ? (
-            <MobileTabs />
+            <>
+              <MobileTabs />
+              <SwipeableDrawer
+                anchor="bottom"
+                open={isOpen}
+                onClose={toggleDrawer(false)}
+                onOpen={toggleDrawer(true)}
+              >
+                <Filters />
+              </SwipeableDrawer>
+            </>
           ) : (
             <div>
               <Grid
