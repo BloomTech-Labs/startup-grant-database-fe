@@ -18,7 +18,7 @@ import { makeStyles } from "@material-ui/core/styles";
 const useStyles = makeStyles(theme => ({
   scrollBox: {
     border: "none",
-    padding: "5px",
+    padding: "0 8px",
     font: "24px/ 36px sans - serif",
     height: "1000px",
     overflow: "scroll"

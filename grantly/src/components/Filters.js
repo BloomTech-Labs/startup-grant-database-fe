@@ -13,9 +13,6 @@ import { connect } from "react-redux";
 import { filterGrants } from "../actions/index";
 
 const useStylesGrants = makeStyles(theme => ({
-  card: {
-    marginTop: "8px"
-  },
   filterCard: {
     display: "block"
   },

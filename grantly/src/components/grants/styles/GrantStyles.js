@@ -9,7 +9,7 @@ const grantStyles = makeStyles(theme => ({
     flexDirection: "column",
     textAlign: "center",
     borderRadius: "10px",
-    marginTop: "0.5rem"
+    marginBottom: "0.5rem"
   },
   grantName: {
     fontSize: "1rem",
