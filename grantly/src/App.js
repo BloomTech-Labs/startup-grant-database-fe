@@ -8,7 +8,6 @@ import SubmitForm from "./components/SubmitForm";
 import Home from "./views/Home";
 
 // Stylings
-import "./App.scss";
 import { ThemeProvider } from "@material-ui/styles";
 import { theme } from "./styles/Theme";
 import Landing from "./views/Landing";
