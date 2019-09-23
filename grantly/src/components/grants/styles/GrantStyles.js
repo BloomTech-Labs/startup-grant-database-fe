@@ -9,11 +9,14 @@ const grantStyles = makeStyles(theme => ({
     flexDirection: "column",
     textAlign: "center",
     borderRadius: "10px",
-    marginBottom: "0.5rem"
+    marginBottom: "0.5rem",
+    padding: "5px",
+    fontFamily: "adobe-garamond-pro"
   },
   grantName: {
-    fontSize: "1rem",
-    position: "relative"
+    fontSize: "1.2rem",
+    position: "relative",
+    fontWeight: "700"
     // border: "1px solid fuchsia"
   },
   bookmark: {
@@ -28,7 +31,7 @@ const grantStyles = makeStyles(theme => ({
   },
   detailsHeader: {
     margin: "5px",
-    fontWeight: "bold",
+    fontWeight: "700",
     fontSize: "0.9rem"
   },
   amount: {

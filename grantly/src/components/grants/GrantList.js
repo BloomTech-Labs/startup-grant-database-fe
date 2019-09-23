@@ -20,7 +20,7 @@ const useStyles = makeStyles(theme => ({
     border: "none",
     padding: "0 8px",
     font: "24px/ 36px sans - serif",
-    height: "1000px",
+    height: "600px",
     overflow: "scroll"
   }
 }));

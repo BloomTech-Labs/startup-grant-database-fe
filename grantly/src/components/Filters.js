@@ -87,7 +87,7 @@ const Filters = props => {
       "South America",
       "Africa"
     ],
-    amount: ["Under $1,000", "$1,000 - $5,000", "$5,000 - $10,000", "$10,000+"],
+    amount: ["Under $1,000", "$1,000-$5,000", "$5,000-$10,000", "$10,000+"],
     domain_areas: ["Tech", "Agriculture", "Social", "Energy"]
   };
 

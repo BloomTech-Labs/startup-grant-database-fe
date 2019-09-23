@@ -8,11 +8,6 @@ import SearchBar from "../components/SearchBar";
 import Grid from "@material-ui/core/Grid";
 import Navbar from "../components/Navbar";
 import Media from "react-media";
-import Drawer from "@material-ui/core/Drawer";
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
-import Typography from "@material-ui/core/Typography";
-import { useTheme } from "@material-ui/core/styles";
 
 const useStyles = makeStyles(theme => ({
   content: {
@@ -51,15 +46,31 @@ const Home = props => {
                 alignItems="flex-start"
                 className={classes.gridContainer}
               >
-                <Grid item md={4} xs={12} className={classes.gridItem}>
+                <Grid
+                  item
+                  md={3}
+                  xs={12}
+                  className={classes.gridItem}
+                  style={{ padding: "30px 0 0 30px" }}
+                >
                   {/* <div className={classes.scrollBox}> */}
                   <GrantList />
                   {/* </div> */}
                 </Grid>
-                <Grid item xs={6} className={classes.gridItem}>
+                <Grid
+                  item
+                  xs={6}
+                  className={classes.gridItem}
+                  style={{ padding: "30px 30px 0 30px" }}
+                >
                   <GrantShowcase />
                 </Grid>
-                <Grid item xs={2} className={classes.gridItem}>
+                <Grid
+                  item
+                  xs={3}
+                  className={classes.gridItem}
+                  style={{ padding: "30px 30px 0 0" }}
+                >
                   <Filters location={props.location.pathname} />
                 </Grid>
               </Grid>
