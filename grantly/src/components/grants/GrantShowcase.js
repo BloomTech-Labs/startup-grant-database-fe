@@ -18,7 +18,12 @@ const useStyles = makeStyles(theme => ({
     padding: "5px",
     borderTop: "#3DB8B3 5px solid",
     height: "75%",
-    margin: "8px"
+    margin: "8px",
+    [theme.breakpoints.down("sm")]: {
+      position: "initial",
+      width: "100%",
+      margin: 0
+    }
   },
   topContent: {
     margin: "20px"

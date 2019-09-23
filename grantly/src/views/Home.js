@@ -1,7 +1,10 @@
 import React from "react";
+import { makeStyles } from "@material-ui/core/styles";
 import GrantList from "../components/grants/GrantList";
 import Filters from "../components/Filters";
 import GrantShowcase from "../components/grants/GrantShowcase";
+import MobileTabs from "../components/MobileTabs";
+import SearchBar from "../components/SearchBar";
 import Grid from "@material-ui/core/Grid";
 import Navbar from "../components/Navbar";
 import Media from "react-media";
@@ -9,16 +12,23 @@ import Drawer from "@material-ui/core/Drawer";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
-import { makeStyles, useTheme } from "@material-ui/core/styles";
+import { useTheme } from "@material-ui/core/styles";
 
 const drawerWidth = 480;
 
 const useStyles = makeStyles(theme => ({
-  root: {
-    display: "flex"
-  },
   appBar: {
     zIndex: 1000
+  },
+  content: {
+    flexGrow: 1,
+    padding: theme.spacing(3)
+  },
+  gridContainer: {
+    margin: "0"
+  },
+  gridItem: {
+    padding: 30
   },
   drawer: {
     width: drawerWidth,
@@ -28,9 +38,8 @@ const useStyles = makeStyles(theme => ({
   drawerPaper: {
     width: drawerWidth
   },
-  content: {
-    flexGrow: 1,
-    padding: theme.spacing(3)
+  root: {
+    display: "flex"
   },
   scrollBox: {
     border: "none",
@@ -40,59 +49,53 @@ const useStyles = makeStyles(theme => ({
     height: "1000px",
     overflow: "scroll"
   },
-  //   height: "1000px",
-  //   width: "480px",
-  //   border: "1px solid #ccc",
-  //   font: "16px/ 26px Georgia, Garamond, Serif",
-  //   overflow: "auto"
-  // },
   toolbar: theme.mixins.toolbar
 }));
 
+// const useStyles = makeStyles(theme => ({
+//   root: {
+//     width: "100%"
+//   }
+// }));
 const Home = props => {
   const classes = useStyles();
-  const theme = useTheme();
-  const [open, setOpen] = React.useState(true);
 
-  function handleDrawerOpen() {
-    setOpen(true);
-  }
-
-  function handleDrawerClose() {
-    setOpen(false);
-  }
   return (
     <>
-      <Navbar className={classes.appBar} />
+      <Navbar location={props.location.pathname} />
+      {/* <SearchBar /> */}
       <Media query="(max-width:850px)">
         {matches =>
-          matches ? null : (
+          matches ? (
+            <MobileTabs />
+          ) : (
             <div>
-              <Grid container spacing={2} className="grid-container">
-                <Grid item md={4} xs={12} className="grid-item">
-                  {/* <AppBar position="fixed" className={classes.appBar}>
-                    <Toolbar>
-                      <Typography variant="h6" noWrap>
-                        Permanent drawer
-                      </Typography>
-                    </Toolbar>
-                  </AppBar> */}
-                  {/* <Drawer
-                    className={classes.drawer}
-                    variant="permanent"
-                    classes={{
-                      paper: classes.drawerPaper
-                    }}
-                  > */}
+              <Grid container spacing={2} className={classes.gridContainer}>
+                <Grid
+                  item
+                  md={4}
+                  xs={12}
+                  className={classes.gridItem}
+                  style={{ padding: "0" }}
+                >
                   <div className={classes.scrollBox}>
                     <GrantList />
                   </div>
-                  {/* </Drawer> */}
                 </Grid>
-                <Grid item xs={6}>
+                <Grid
+                  item
+                  xs={6}
+                  className={classes.gridItem}
+                  style={{ padding: "0" }}
+                >
                   <GrantShowcase />
                 </Grid>
-                <Grid item xs={2}>
+                <Grid
+                  item
+                  xs={2}
+                  className={classes.gridItem}
+                  style={{ padding: "0" }}
+                >
                   <Filters location={props.location.pathname} />
                 </Grid>
               </Grid>

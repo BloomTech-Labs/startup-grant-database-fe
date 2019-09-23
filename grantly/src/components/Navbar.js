@@ -24,7 +24,8 @@ import SearchBar from "./SearchBar";
 const useStyles = makeStyles(theme => ({
   navButton: {
     marginRight: theme.spacing(3),
-    color: "#000"
+    color: "#000",
+    fontFamily: "Roboto"
   },
   title: {
     textAlign: "left",
@@ -42,7 +43,11 @@ const useStyles = makeStyles(theme => ({
     }
   },
   log: {
-    color: "#fff"
+    color: "#fff",
+    fontFamily: "Roboto"
+  },
+  logout: {
+color: "#000"
   },
   menu: {
     width: "2em",
@@ -59,10 +64,14 @@ const useStyles = makeStyles(theme => ({
   },
   link: {
     textDecoration: "none"
+  },
+  tabs: {
+    position: "fixed",
+    marginTop: "3em"
   }
 }));
 
-const NavBar = () => {
+const NavBar = props => {
   const { isAuthenticated, loginWithRedirect, logout } = useAuth0();
   const [isOpen, setIsOpen] = useState(false);
   const toggleDrawer = open => event => {
@@ -85,23 +94,46 @@ const NavBar = () => {
       onKeyDown={toggleDrawer(side, false)}
     >
       <List>
-        {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>
-              {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-            </ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
+        {["Submit A Grant", "Starred", "Send email", "Drafts"].map(
+          (text, index) => (
+            <ListItem button key={text}>
+              <ListItemIcon>
+                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+              </ListItemIcon>
+              <ListItemText primary={text} />
+            </ListItem>
+          )
+        )}
       </List>
       <Divider />
       <List>
-        {["All mail", "Trash", "Spam"].map((text, index) => (
+        {["SignUp", "Login"].map((text, index) => (
           <ListItem button key={text}>
-            <ListItemIcon>
-              {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-            </ListItemIcon>
-            <ListItemText primary={text} />
+            {index % 2 === 0 ? (
+              <InboxIcon />
+            ) : (
+              <div>
+                {!isAuthenticated && (
+                  <Button
+                    className={classes.log}
+                    variant="contained"
+                    color="primary"
+                    onClick={() => loginWithRedirect({})}
+                  >
+                    Log in
+                  </Button>
+                )}
+                {isAuthenticated && (
+                  <Button
+                    className={classes.log}
+                    variant="outlined"
+                    onClick={() => logout()}
+                  >
+                    Log out
+                  </Button>
+                )}
+              </div>
+            )}
           </ListItem>
         ))}
       </List>
@@ -109,84 +141,82 @@ const NavBar = () => {
   );
 
   return (
-    <div>
-      <AppBar className={classes.navbar} color="primary" position="sticky">
-        <Toolbar>
-          <Link to="/grants" className={classes.titleLink}>
-            <Typography variant="h4" className={classes.title}>
-              Founder Grants
-            </Typography>
-          </Link>
-          <Media query="(min-width:800px)">
-            <div>
-              <NavLink to="/" className={classes.link}>
-                <Button className={classes.navButton} color="inherit">
-                  HOME
-                </Button>
-              </NavLink>
+    <AppBar className={classes.navbar} color="primary" position="sticky">
+      <Toolbar>
+        <Link to="/" className={classes.titleLink}>
+          <Typography variant="h4" className={classes.title}>
+            Founder Grants
+          </Typography>
+        </Link>
+        <Media query="(min-width:800px)">
+          <div>
+            <NavLink to="/grants" className={classes.link}>
               <Button className={classes.navButton} color="inherit">
-                ABOUT
+                HOME
               </Button>
-              <NavLink to="/form" className={classes.link}>
-                <Button className={classes.navButton} color="inherit">
-                  Submit a Grant
-                </Button>
-              </NavLink>
-              <NavLink className={classes.link} to="/">
-                <Button className={classes.navButton} color="inherit">
-                  SIGN UP
-                </Button>
-              </NavLink>
+            </NavLink>
+            {/* <Button className={classes.navButton} color="inherit">
+              ABOUT
+            </Button> */}
+            <NavLink to="/form" className={classes.link}>
+              <Button className={classes.navButton} color="inherit">
+                Submit a Grant
+              </Button>
+            </NavLink>
+            <NavLink className={classes.link} to="/">
+              <Button className={classes.navButton} color="inherit">
+                SIGN UP
+              </Button>
+            </NavLink>
 
-              {!isAuthenticated && (
-                <Button
-                  className={classes.log}
-                  variant="contained"
-                  color="primary"
-                  onClick={() => loginWithRedirect({})}
-                >
-                  Log in
-                </Button>
-              )}
+            {!isAuthenticated && (
+              <Button
+                className={classes.log}
+                variant="contained"
+                color="primary"
+                onClick={() => loginWithRedirect({})}
+              >
+                Log in
+              </Button>
+            )}
 
-              {isAuthenticated && (
-                <Button variant="outlined" onClick={() => logout()}>
-                  Log out
-                </Button>
-              )}
-            </div>
-          </Media>
-          <Media query="(max-width:800px)">
-            {matches =>
-              matches ? (
-                <IconButton
-                  className={classes.menu}
-                  edge="start"
-                  color="primary"
-                  aria-label="menu"
-                  onClick={toggleDrawer()}
-                >
-                  <MenuIcon className={classes.menu} />
-                </IconButton>
-              ) : null
-            }
-          </Media>
+            {isAuthenticated && (
+              <Button
+                className={classes.logout}
+                variant="outlined"
+                onClick={() => logout()}
+              >
+                Log out
+              </Button>
+            )}
+          </div>
+        </Media>
+        {/* <Media query="(max-width:800px)">
+          {matches =>
+            matches ? (
+              <IconButton
+                className={classes.menu}
+                edge="start"
+                color="primary"
+                aria-label="menu"
+                onClick={toggleDrawer()}
+              >
+                <MenuIcon className={classes.menu} />
+              </IconButton>
+            ) : null
+          }
+        </Media> */}
 
-          <SwipeableDrawer
-            anchor="right"
-            open={isOpen}
-            onClose={toggleDrawer(false)}
-            onOpen={toggleDrawer(true)}
-          >
-            {sideList("right")}
-          </SwipeableDrawer>
-        </Toolbar>
-      </AppBar>
-      <Media query="(max-width:850px)">
-        {matches => (matches ? <MobileTabs /> : null)}
-      </Media>
-      <SearchBar />
-    </div>
+        <SwipeableDrawer
+          anchor="right"
+          open={isOpen}
+          onClose={toggleDrawer(false)}
+          onOpen={toggleDrawer(true)}
+        >
+          {sideList("right")}
+        </SwipeableDrawer>
+      </Toolbar>
+    </AppBar>
   );
 };
 

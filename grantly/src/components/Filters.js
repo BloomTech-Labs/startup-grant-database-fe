@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-
 import Checkbox from "@material-ui/core/Checkbox";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import FormControl from "@material-ui/core/FormControl";
@@ -8,7 +7,8 @@ import FormGroup from "@material-ui/core/FormGroup";
 import FormLabel from "@material-ui/core/FormLabel";
 import Card from "@material-ui/core/Card";
 import Typography from "@material-ui/core/Typography";
-
+import Button from "@material-ui/core/Button";
+import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { filterGrants } from "../actions/index";
 
@@ -35,16 +35,37 @@ const useStylesGrants = makeStyles(theme => ({
     width: "60%",
     alignSelf: "center",
     margin: ".8em"
+  },
+  landingButton: {
+    display: "none"
   }
 }));
 
 const useStylesLanding = makeStyles(theme => ({
+  title: {
+    marginBottom: "35px",
+    fontSize: "2rem"
+  },
   card: {
-    // position: "fixed",
-    // marginTop: "1em"
+    marginRight: "2rem",
+    padding: "30px"
+  },
+  label: {
+    marginBottom: "20px",
+    fontSize: "1.4rem"
   },
   filterCard: {
-    display: "block"
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-evenly"
+  },
+  landingButton: {
+    textDecoration: "none",
+    "& button": {
+      marginTop: "45px",
+      color: "white",
+      fontFamily: "Roboto"
+    }
   }
 }));
 
@@ -54,7 +75,7 @@ const Filters = props => {
     amount: [],
     domain_areas: []
   });
-  console.log("@#@#@#@#@--------LOCATION-----------", props);
+
   //Makes sure that the current state is being sent to the action creator
   useEffect(() => {
     props.filterGrants(filters);
@@ -101,12 +122,12 @@ const Filters = props => {
 
   return (
     <Card className={classes.card}>
+      <Typography className={classes.title} variant="h5" component="h2">
+        {props.location === "/"
+          ? "Which grants would you like to find?"
+          : "Filter grants by:"}
+      </Typography>
       <FormGroup className={classes.filterCard}>
-        <Typography className={classes.title} variant="h5" component="h2">
-          {" "}
-          Filter grants by:{" "}
-        </Typography>
-
         <FormControl className={classes.set} component="fieldset">
           <FormLabel className={classes.label} component="legend">
             Grant Amount
@@ -170,6 +191,11 @@ const Filters = props => {
           })}
         </FormControl>
       </FormGroup>
+      <Link to="/grants" className={classes.landingButton}>
+        <Button variant="contained" color="primary" size="large">
+          Find Grants
+        </Button>
+      </Link>
     </Card>
   );
 };
