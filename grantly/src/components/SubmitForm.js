@@ -1,11 +1,11 @@
 //Dependencies
 import React, { useState } from "react";
-// import { connect } from "react-redux";
-// import { addGrant } from "../actions";
+import { connect } from "react-redux";
+import { postGrants } from "../actions/index.js";
 
 //Objects
 import formStyles from "./grants/styles/FormStyles";
-import { TextField, MenuItem } from "@material-ui/core";
+import { TextField, MenuItem, Button } from "@material-ui/core";
 import NavBar from "./Navbar";
 
 const funding = [
@@ -48,7 +48,7 @@ const AddGrant = props => {
   const submitGrant = event => {
     console.log("SubmitForm.js submitGrant", event);
     event.preventDefault();
-    props.addGrant({ ...grantInfo });
+    props.postGrants({ ...grantInfo });
     setGrantInfo({
       competition_name: "",
       type: "",
@@ -115,6 +115,17 @@ const AddGrant = props => {
           name="sponsoring_entity"
           placeholder="Sponsoring Entity"
           value={grantInfo.sponsoring_entity}
+          onChange={handleChanges}
+          margin="normal"
+          variant="outlined"
+        />
+        <TextField
+          label="Website"
+          type="url"
+          className={styles.inputText}
+          name="website"
+          placeholder="Website"
+          value={grantInfo.website}
           onChange={handleChanges}
           margin="normal"
           variant="outlined"
@@ -210,11 +221,6 @@ const AddGrant = props => {
           placeholder="Early Stage Funding"
           value={grantInfo.early_stage_funding}
           onChange={handleChanges}
-          // SelectProps={{
-          //   MenuProps: {
-          //     className: styles.dropDown
-          //   }
-          // }}
           margin="normal"
           variant="outlined"
         >
@@ -226,32 +232,29 @@ const AddGrant = props => {
         </TextField>
 
         <TextField
-          // label="Details Last Updated"
           type="date"
           className={styles.inputText}
           name="details_last_updated"
-          // placeholder="Details Last Updated"
           value={grantInfo.details_last_updated}
           onChange={handleChanges}
           helperText="Details Last Updated"
           margin="normal"
           variant="outlined"
         />
+        <Button type="submit" variant="outlined">
+          Submit
+        </Button>
       </form>
     </div>
   );
-
-  //   const mapStateToProps = ({grantData, isFetching, error}) => ({
-  //     grantData,
-  //     isFetching,
-  //     error
-  //   })
-
-  //   export default connect(
-  //       mapStateToProps,
-  //       {addGrant}
-  //   )(AddGrant)
 };
-export default AddGrant;
+const mapStateToProps = ({ grantData, isFetching, error }) => ({
+  grantData,
+  isFetching,
+  error
+});
 
-//Notes
+export default connect(
+  mapStateToProps,
+  { postGrants }
+)(AddGrant);
