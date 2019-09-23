@@ -56,7 +56,7 @@ export const rooterReducer = (state = initialState, { type, payload }) => {
     case CHANGE_TAB:
       return {
         ...state,
-        currentTab: 1
+        currentTab: payload
       };
     case FILTER_GRANTS:
       let newList = [];

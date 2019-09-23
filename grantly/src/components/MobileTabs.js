@@ -11,6 +11,7 @@ import AppBar from "@material-ui/core/AppBar";
 
 import GrantList from "./grants/GrantList";
 import GrantShowcase from "./grants/GrantShowcase";
+import { changeTab } from "../actions/index";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -45,7 +46,7 @@ const useStyles = makeStyles(theme => ({
     top: "10%"
   }
 }));
-const MobileTabs = ({ grant, currentTab }) => {
+const MobileTabs = ({ grant, currentTab, changeTab }) => {
   const classes = useStyles();
   const theme = useTheme();
   const [value, setValue] = React.useState(0);
@@ -53,13 +54,13 @@ const MobileTabs = ({ grant, currentTab }) => {
     handleChangeIndex(currentTab);
   }, [currentTab]);
   function handleChange(event, newValue) {
-    console.log("value", newValue, currentTab)
     setValue(newValue);
+    changeTab(newValue);
   }
 
   function handleChangeIndex(index) {
-    console.log("index", index, currentTab)
     setValue(index);
+    changeTab(index);
   }
   return (
     <div className={classes.root}>
@@ -103,5 +104,5 @@ const mapStateToProps = state => {
 };
 export default connect(
   mapStateToProps,
-  {}
+  { changeTab }
 )(MobileTabs);
