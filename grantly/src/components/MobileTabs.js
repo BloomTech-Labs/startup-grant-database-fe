@@ -86,7 +86,6 @@ const MobileTabs = ({grant}) => {
           <GrantShowcase />
         </TabPanel>
         <TabPanel value={value} index={2} dir={theme.direction}>
-          Si
         </TabPanel>
       </SwipeableViews>
     </div>
