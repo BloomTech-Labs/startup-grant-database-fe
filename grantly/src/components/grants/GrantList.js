@@ -10,9 +10,9 @@ import { fetchApi } from "../../actions";
 // Styles
 
 // test funcs
-exports.sum = function(a, b) {
-  return a + b;
-};
+// exports.sum = function(a, b) {
+//   return a + b;
+// };
 
 const GrantList = props => {
   console.log("GrantList props", props);
