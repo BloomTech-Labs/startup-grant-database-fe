@@ -46,6 +46,18 @@ test("Domain areas header", () => {
   container.queryAllByText(/This grant is in the areas of:/i);
 });
 
+test("Focus area header", () => {
+  const container = rtl.render(<GrantShowcase grant={grant} />);
+
+  container.queryAllByText(/Focus Area:/i);
+});
+
+test("Region header", () => {
+  const container = rtl.render(<GrantShowcase grant={grant} />);
+
+  container.queryAllByText(/Region/i);
+});
+
 // describe("sum function", () => {
 //   it("sums two integers", () => {});
 // });
