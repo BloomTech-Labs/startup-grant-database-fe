@@ -28,6 +28,12 @@ test("it renders without crashing", () => {
   const container = rtl.render(<Grant grant={grant} />);
 });
 
+test("Amounts header", () => {
+  const container = rtl.render(<Grant grant={grant} />);
+
+  container.queryAllByText(/Amount/i);
+});
+
 // describe("sum function", () => {
 //   it("sums two integers", () => {});
 // });
