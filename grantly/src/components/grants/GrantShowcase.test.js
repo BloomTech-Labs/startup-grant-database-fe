@@ -40,11 +40,11 @@ test("Deadline header", () => {
   container.queryAllByText(/Deadline/i);
 });
 
-// test("Select button", () => {
-//   const container = rtl.render(<Grant grant={grant} />);
+test("Domain areas header", () => {
+  const container = rtl.render(<GrantShowcase grant={grant} />);
 
-//   container.queryAllByText(/Select/i);
-// });
+  container.queryAllByText(/This grant is in the areas of:/i);
+});
 
 // describe("sum function", () => {
 //   it("sums two integers", () => {});
