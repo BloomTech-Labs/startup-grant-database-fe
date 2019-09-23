@@ -6,64 +6,47 @@ import Grid from "@material-ui/core/Grid";
 import Navbar from "../components/Navbar";
 import Media from "react-media";
 import Drawer from "@material-ui/core/Drawer";
+import AppBar from "@material-ui/core/AppBar";
+import Toolbar from "@material-ui/core/Toolbar";
+import Typography from "@material-ui/core/Typography";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 
-const drawerWidth = 240;
+const drawerWidth = 480;
 
 const useStyles = makeStyles(theme => ({
   root: {
     display: "flex"
   },
   appBar: {
-    transition: theme.transitions.create(["margin", "width"], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen
-    })
-  },
-  appBarShift: {
-    width: `calc(100% - ${drawerWidth}px)`,
-    marginLeft: drawerWidth,
-    transition: theme.transitions.create(["margin", "width"], {
-      easing: theme.transitions.easing.easeOut,
-      duration: theme.transitions.duration.enteringScreen
-    })
-  },
-  menuButton: {
-    marginRight: theme.spacing(2)
-  },
-  hide: {
-    display: "none"
+    zIndex: 1000
   },
   drawer: {
     width: drawerWidth,
-    flexShrink: 0
+    flexShrink: 0,
+    zIndex: 1
   },
   drawerPaper: {
     width: drawerWidth
   },
-  drawerHeader: {
-    display: "flex",
-    alignItems: "center",
-    padding: theme.spacing(0, 1),
-    ...theme.mixins.toolbar,
-    justifyContent: "flex-end"
-  },
   content: {
     flexGrow: 1,
-    padding: theme.spacing(3),
-    transition: theme.transitions.create("margin", {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen
-    }),
-    marginLeft: -drawerWidth
+    padding: theme.spacing(3)
   },
-  contentShift: {
-    transition: theme.transitions.create("margin", {
-      easing: theme.transitions.easing.easeOut,
-      duration: theme.transitions.duration.enteringScreen
-    }),
-    marginLeft: 0
-  }
+  scrollBox: {
+    border: "none",
+    padding: "5px",
+    font: "24px/ 36px sans - serif",
+    width: "480px",
+    height: "1000px",
+    overflow: "scroll"
+  },
+  //   height: "1000px",
+  //   width: "480px",
+  //   border: "1px solid #ccc",
+  //   font: "16px/ 26px Georgia, Garamond, Serif",
+  //   overflow: "auto"
+  // },
+  toolbar: theme.mixins.toolbar
 }));
 
 const Home = props => {
@@ -80,24 +63,31 @@ const Home = props => {
   }
   return (
     <>
-      <Navbar />
+      <Navbar className={classes.appBar} />
       <Media query="(max-width:850px)">
         {matches =>
           matches ? null : (
             <div>
               <Grid container spacing={2} className="grid-container">
                 <Grid item md={4} xs={12} className="grid-item">
-                  <Drawer
+                  {/* <AppBar position="fixed" className={classes.appBar}>
+                    <Toolbar>
+                      <Typography variant="h6" noWrap>
+                        Permanent drawer
+                      </Typography>
+                    </Toolbar>
+                  </AppBar> */}
+                  {/* <Drawer
                     className={classes.drawer}
-                    variant="persistent"
-                    anchor="left"
-                    open={open}
+                    variant="permanent"
                     classes={{
                       paper: classes.drawerPaper
                     }}
-                  >
+                  > */}
+                  <div className={classes.scrollBox}>
                     <GrantList />
-                  </Drawer>
+                  </div>
+                  {/* </Drawer> */}
                 </Grid>
                 <Grid item xs={6}>
                   <GrantShowcase />
