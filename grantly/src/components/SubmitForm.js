@@ -79,7 +79,7 @@ const AddGrant = props => {
     <div>
       {/* <Container fixed> */}
       <NavBar />
-      <h1>Submit a New Grant to Founder Grants</h1>
+      {/* <h1>Submit a New Grant to Founder Grants</h1> */}
       <Grid
         className={styles.grid}
         container
@@ -89,7 +89,7 @@ const AddGrant = props => {
         spacing={4}
       >
         <Grid className={styles.leftBox} item xs={5}>
-          <h1>Test Test</h1>
+          <h1>Submit a New Grant to Founder Grants</h1>
           <p>
             Please fill out all of the form feilds on this page regarding the
             grant you are submitting. If you ate unsure of anything please write
