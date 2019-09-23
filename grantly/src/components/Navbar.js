@@ -46,6 +46,9 @@ const useStyles = makeStyles(theme => ({
     color: "#fff",
     fontFamily: "Roboto"
   },
+  logout: {
+color: "#000"
+  },
   menu: {
     width: "2em",
     height: "2em",
@@ -179,7 +182,7 @@ const NavBar = props => {
 
             {isAuthenticated && (
               <Button
-                className={classes.log}
+                className={classes.logout}
                 variant="outlined"
                 onClick={() => logout()}
               >
