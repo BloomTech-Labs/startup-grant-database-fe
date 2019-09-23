@@ -9,13 +9,19 @@ import { fetchApi } from "../../actions";
 
 // Styles
 
+// test funcs
+exports.sum = function(a, b) {
+  return a + b;
+};
+
 const GrantList = props => {
   console.log("GrantList props", props);
+
   useEffect(() => {
     if (props.data.length === 0) {
       props.fetchApi();
     }
-    console.log("Grantsssssssssssss")
+    console.log("Grants");
   }, [props.data]);
 
   if (props.isFetching) {
