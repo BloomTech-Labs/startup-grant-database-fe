@@ -155,9 +155,9 @@ const NavBar = props => {
                 HOME
               </Button>
             </NavLink>
-            <Button className={classes.navButton} color="inherit">
+            {/* <Button className={classes.navButton} color="inherit">
               ABOUT
-            </Button>
+            </Button> */}
             <NavLink to="/form" className={classes.link}>
               <Button className={classes.navButton} color="inherit">
                 Submit a Grant
@@ -191,7 +191,7 @@ const NavBar = props => {
             )}
           </div>
         </Media>
-        <Media query="(max-width:800px)">
+        {/* <Media query="(max-width:800px)">
           {matches =>
             matches ? (
               <IconButton
@@ -205,7 +205,7 @@ const NavBar = props => {
               </IconButton>
             ) : null
           }
-        </Media>
+        </Media> */}
 
         <SwipeableDrawer
           anchor="right"
