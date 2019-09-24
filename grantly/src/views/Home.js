@@ -65,7 +65,7 @@ const Home = props => {
               <Grid
                 container
                 direction="row"
-                justify="flex-start"
+                justify="space-between"
                 alignItems="flex-start"
                 className={classes.gridContainer}
               >
@@ -90,9 +90,8 @@ const Home = props => {
                 </Grid>
                 <Grid
                   item
-                  xs={3}
-                  className={classes.gridItem}
-                  style={{ padding: "30px 30px 0 0" }}
+                  xs={2}
+
                 >
                   <Filters location={props.location.pathname} />
                 </Grid>

@@ -19,7 +19,7 @@ const initialState = {
   data: [],
   filteredGrants: [],
   grantShowcase: {},
-  filters: {},
+  filters: { amount: [], geographic_region: [], domain_areas: [] },
   currentTab: 0
 };
 
@@ -59,12 +59,12 @@ export const rooterReducer = (state = initialState, { type, payload }) => {
         ...state,
         currentTab: payload
       };
-      case FILTER_SAVE:
-        console.log(payload);
-        return {
-          ...state,
-          filters: payload
-        }
+    case FILTER_SAVE:
+      console.log(payload);
+      return {
+        ...state,
+        filters: payload
+      };
     case FILTER_GRANTS:
       let newList = [];
       // Don't pay attention to this mess :)
