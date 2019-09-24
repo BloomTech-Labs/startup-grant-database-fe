@@ -1,3 +1,8 @@
 import React from "react"
 import * as rtl from "@testing-library/react"
-import { Navbar } from "./Navbar"
+import { NavBar } from "./Navbar"
+
+
+test('it renders without crashing', () => {
+    const container = rtl.render(<NavBar  />)
+})
