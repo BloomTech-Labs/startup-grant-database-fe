@@ -1,11 +1,11 @@
-// import React from "react";
-// import * as rtl from "@testing-library/react";
-// import "@testing-library/jest-dom/extend-expect";
+import React from "react";
+import * as rtl from "@testing-library/react";
+import App from "./App";
 
 // afterEach(rtl.cleanup);
 
 // it("renders without crashing", () => {
-//   // ready to test!
+//   const container = rtl.render(<App />);
 // });
 
 describe("sum function", () => {

@@ -44,7 +44,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const GrantShowcase = props => {
+export const GrantShowcase = props => {
   const classes = useStyles();
 
   console.log("GrantShowcase props", props);
