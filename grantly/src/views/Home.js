@@ -9,6 +9,7 @@ import Grid from "@material-ui/core/Grid";
 import Navbar from "../components/Navbar";
 import Media from "react-media";
 import SwipeableDrawer from "@material-ui/core/SwipeableDrawer";
+import MobileFilters from "../components/MobileFilters";
 
 const useStyles = makeStyles(theme => ({
   content: {
@@ -50,14 +51,15 @@ const Home = props => {
         {matches =>
           matches ? (
             <>
-              <MobileTabs />
+              <MobileTabs /> 
+              <MobileFilters />
               <SwipeableDrawer
                 anchor="bottom"
                 open={isOpen}
                 onClose={toggleDrawer(false)}
                 onOpen={toggleDrawer(true)}
               >
-                <Filters />
+                <Filters location={props.location.pathname} />
               </SwipeableDrawer>
             </>
           ) : (
@@ -88,11 +90,7 @@ const Home = props => {
                 >
                   <GrantShowcase />
                 </Grid>
-                <Grid
-                  item
-                  xs={2}
-
-                >
+                <Grid item xs={2}>
                   <Filters location={props.location.pathname} />
                 </Grid>
               </Grid>
