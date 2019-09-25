@@ -39,8 +39,9 @@ const useStyles = makeStyles(theme => ({
   },
   filter: {
     display: "flex",
-    justifyContent: "space-between"
-  }
+    justifyContent: "center"
+  },
+
 }));
 const MobileFilters = () => {
   const classes = useStyles();
@@ -49,12 +50,13 @@ const MobileFilters = () => {
     <div>
       <AppBar position="fixed" color="primary" className={classes.appBar}>
         <Toolbar className={classes.filter}>
-        <IconButton color="inherit">
+        {/* <IconButton color="inherit">
             <SortIcon/>
           </IconButton>
         <p>Amount</p>
         <p>Region</p>
-        <p>Focus Areas</p>
+        <p>Focus Areas</p> */}
+        <p>Swipe Up To See Filters</p>
         </Toolbar>
       </AppBar>
     </div>
