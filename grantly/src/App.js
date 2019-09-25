@@ -2,6 +2,7 @@
 import React from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
+
 // Objects
 
 import SubmitForm from "./components/SubmitForm";
@@ -11,6 +12,7 @@ import Home from "./views/Home";
 import { ThemeProvider } from "@material-ui/styles";
 import { theme } from "./styles/Theme";
 import Landing from "./views/Landing";
+
 
 function App() {
   return (
