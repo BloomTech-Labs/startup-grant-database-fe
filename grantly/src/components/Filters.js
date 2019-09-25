@@ -48,28 +48,71 @@ const useStylesGrants = makeStyles(theme => ({
 
 const useStylesLanding = makeStyles(theme => ({
   title: {
-    marginBottom: "35px",
-    fontSize: "2rem"
+    marginBottom: "15px",
+    fontSize: "2rem",
+    [theme.breakpoints.down("xs")]: {
+      paddingLeft: "10px",
+      paddingRight: "10px"
+    }
   },
   card: {
     marginRight: "2rem",
-    padding: "30px"
+    padding: "30px",
+    [theme.breakpoints.down("sm")]: {
+      width: "100%",
+      borderRadius: 0
+    },
+    [theme.breakpoints.down("xs")]: {
+      padding: 0,
+      paddingTop: "20px",
+      flexGrow: 2
+    }
+  },
+  set: {
+    [theme.breakpoints.down("sm")]: {
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "center",
+      width: "20%",
+      margin: "10px"
+    },
+    [theme.breakpoints.down("xs")]: {
+      width: "50%",
+      alignItems: "center",
+      alignContent: "center"
+    }
   },
   label: {
     marginBottom: "20px",
-    fontSize: "1.4rem"
+    fontSize: "1.4rem",
+    [theme.breakpoints.down("sm")]: {
+      textAlign: "left"
+    }
   },
   filterCard: {
     display: "flex",
     flexDirection: "row",
-    justifyContent: "space-evenly"
+    justifyContent: "space-evenly",
+    [theme.breakpoints.down("xs")]: {
+      marginLeft: "20px",
+      "& fieldset:nth-child(2)": {
+        display: "none"
+      },
+      "& fieldset:nth-child(3)": {
+        display: "none"
+      }
+    }
   },
   landingButton: {
     textDecoration: "none",
     "& button": {
       marginTop: "45px",
       color: "white",
-      fontFamily: "Roboto"
+      fontFamily: "Roboto",
+      [theme.breakpoints.down("xs")]: {
+        marginTop: "10px",
+        marginBottom: "20px"
+      }
     }
   }
 }));

@@ -66,14 +66,16 @@ export const postGrants = addGrant => dispatch => {
   axios
     .post("https://grantly-staging.herokuapp.com/api/grants", addGrant)
     // .post("https://labs16-grantly.herokuapp.com/api/grants/", addGrant)
+    // .post("http://localhost:5000/api/grants/", addGrant)
     .then(res => {
       console.log("RES in postGrants, actions", res);
       dispatch({ type: ADD_GRANT_SUCCESS, payload: res.data });
     })
-    .catch(err => console.log(err.response));
-    //wanted to call the fetch api function in here so it would fetch the new data
-    // but wasn't working
-  }
+    .catch(err => {
+      console.log(err.response);
+      dispatch({ type: ADD_GRANT_FAILURE });
+    });
+};
 
 //Update a Grant
 // export const putGrants = updateGrant => dispatch => {
@@ -83,7 +85,7 @@ export const postGrants = addGrant => dispatch => {
 //   axios
 //     .put(`http://localhost:5000/api/grants/${grantId}`, updateGrant)
 //     .then(res => {
-//       dispatch({ type: UPDATE_GRANT_START, payload: res.data });
+//       dispatch({ type: UPDATE_GRANT_SUCCESS, payload: res.data });
 //     })
 //     .catch(err => console.log(err.response));
 // };

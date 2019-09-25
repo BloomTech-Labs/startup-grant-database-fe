@@ -7,6 +7,7 @@ import Button from "@material-ui/core/Button";
 import { Link } from "react-router-dom";
 import Filter from "../components/Filters";
 import { fetchApi } from "../actions/index";
+import { flexbox } from "@material-ui/system";
 
 const useStyles = makeStyles(theme => ({
   welcome: {
@@ -15,13 +16,30 @@ const useStyles = makeStyles(theme => ({
       fontFamily: "adobe-garamond-pro",
       fontWeight: 400,
       margin: "1rem",
-      padding: "30px"
+      padding: "30px",
+      [theme.breakpoints.down("xs")]: {
+        fontSize: "2rem",
+        padding: 0,
+        margin: 0
+      }
+    },
+    "& p": {
+      fontFamily: "Roboto",
+      margin: "15px"
+    },
+    [theme.breakpoints.down("xs")]: {
+      margin: "1rem",
+      flexGrow: 2
     }
   },
   grid: {
     maxWidth: "100%",
     height: "80%",
-    zIndex: 0
+    [theme.breakpoints.down("xs")]: {
+      marginTop: "3rem",
+      alignContent: "center",
+      display: "block"
+    }
   },
   container: {
     height: "100vh"
@@ -30,7 +48,10 @@ const useStyles = makeStyles(theme => ({
     textDecoration: "none",
     "& button": {
       fontFamily: "Roboto",
-      marginTop: "35px"
+      marginTop: "35px",
+      [theme.breakpoints.down("sm")]: {
+        marginBottom: "30px"
+      }
     }
   }
 }));
@@ -40,34 +61,29 @@ function Landing(props) {
 
   return (
     <div className={classes.container}>
-      <Navbar location={props.location.pathname} />
+      <Navbar className={classes.nav} location={props.location.pathname} />
       <Grid
         className={classes.grid}
         container
         direction="row"
         justify="center"
         alignItems="center"
-        spacing={4}
       >
-        <Grid item xs={6}>
+        <Grid item md={6} xs={12}>
           <div className={classes.welcome}>
             <h1>Welcome to Founder Grants</h1>
             <p>
               Search lists for grants by choosing a category or as many as you
-              are eligiable for.
+              are eligible for.
             </p>
             <Link to="/grants" className={classes.link}>
-              <Button
-                variant="outlined"
-                color="primary"
-                size="Large"
-              >
+              <Button variant="outlined" color="primary" size="Large">
                 View All Grants
               </Button>
             </Link>
           </div>
         </Grid>
-        <Grid item xs={6}>
+        <Grid item md={6} xs={12}>
           <Filter location={props.location.pathname} />
         </Grid>
       </Grid>
