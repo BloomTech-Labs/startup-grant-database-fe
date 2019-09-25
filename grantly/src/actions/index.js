@@ -39,8 +39,7 @@ export const saveFilters = filters => dispatch => {
 };
 export const filterGrants = filters => dispatch => {
   let numCheck = 0;
-  //either call to database and return specific grants
-  //or filter the list of grants in the redux store
+
   Object.values(filters).map(filter => {
     filter.length !== 0 && numCheck++;
   });
@@ -50,7 +49,6 @@ export const filterGrants = filters => dispatch => {
 
   //initial thoughts is to have filters be an array  becuase users will be able to select multiple grant filter
   //Now filters will be an object that contains different arrays
-  // dispatch({ type: FILTER_GRANTS, payload: filters });
 };
 
 export const selectGrant = grant => dispatch => {
@@ -68,11 +66,15 @@ export const postGrants = addGrant => dispatch => {
   axios
     .post("https://grantly-staging.herokuapp.com/api/grants", addGrant)
     // .post("https://labs16-grantly.herokuapp.com/api/grants/", addGrant)
+    // .post("http://localhost:5000/api/grants/", addGrant)
     .then(res => {
       console.log("RES in postGrants, actions", res);
-      dispatch({ type: ADD_GRANT_START, payload: res.data });
+      dispatch({ type: ADD_GRANT_SUCCESS, payload: res.data });
     })
-    .catch(err => console.log(err.response));
+    .catch(err => {
+      console.log(err.response);
+      dispatch({ type: ADD_GRANT_FAILURE });
+    });
 };
 
 //Update a Grant
@@ -83,7 +85,7 @@ export const postGrants = addGrant => dispatch => {
 //   axios
 //     .put(`http://localhost:5000/api/grants/${grantId}`, updateGrant)
 //     .then(res => {
-//       dispatch({ type: UPDATE_GRANT_START, payload: res.data });
+//       dispatch({ type: UPDATE_GRANT_SUCCESS, payload: res.data });
 //     })
 //     .catch(err => console.log(err.response));
 // };

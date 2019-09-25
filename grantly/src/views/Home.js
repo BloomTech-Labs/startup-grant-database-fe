@@ -9,6 +9,7 @@ import Grid from "@material-ui/core/Grid";
 import Navbar from "../components/Navbar";
 import Media from "react-media";
 import SwipeableDrawer from "@material-ui/core/SwipeableDrawer";
+import MobileFilters from "../components/MobileFilters";
 
 const useStyles = makeStyles(theme => ({
   content: {
@@ -16,7 +17,8 @@ const useStyles = makeStyles(theme => ({
     padding: theme.spacing(3)
   },
   gridContainer: {
-    margin: "0"
+    margin: "0",
+    flexWrap: "nowrap"
   },
   gridItem: {
     padding: 30
@@ -30,6 +32,7 @@ const useStyles = makeStyles(theme => ({
 const Home = props => {
   const [isOpen, setIsOpen] = useState(false);
   const toggleDrawer = open => event => {
+    console.log("toggle")
     if (
       event &&
       event.type === "keydown" &&
@@ -46,18 +49,19 @@ const Home = props => {
     <>
       <Navbar location={props.location.pathname} />
       {/* <SearchBar /> */}
-      <Media query="(max-width:850px)">
+      <Media query="(max-width:900px)">
         {matches =>
           matches ? (
             <>
-              <MobileTabs />
+              <MobileTabs /> 
+              <MobileFilters toggleDrawer={toggleDrawer}/>
               <SwipeableDrawer
                 anchor="bottom"
                 open={isOpen}
                 onClose={toggleDrawer(false)}
                 onOpen={toggleDrawer(true)}
               >
-                <Filters />
+                <Filters location={props.location.pathname} />
               </SwipeableDrawer>
             </>
           ) : (
@@ -65,7 +69,7 @@ const Home = props => {
               <Grid
                 container
                 direction="row"
-                justify="flex-start"
+                justify="space-between"
                 alignItems="flex-start"
                 className={classes.gridContainer}
               >
@@ -88,12 +92,7 @@ const Home = props => {
                 >
                   <GrantShowcase />
                 </Grid>
-                <Grid
-                  item
-                  xs={3}
-                  className={classes.gridItem}
-                  style={{ padding: "30px 30px 0 0" }}
-                >
+                <Grid item xs={2}>
                   <Filters location={props.location.pathname} />
                 </Grid>
               </Grid>
