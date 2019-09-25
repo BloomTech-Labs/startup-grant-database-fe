@@ -1,6 +1,6 @@
-import React from "react";
-import * as rtl from "@testing-library/react";
-import { Grant } from "./Grant";
+import React from "react"
+import * as rtl from "@testing-library/react"
+import { Grant } from "./Grant"
 
 // integration testing
 const grant = {

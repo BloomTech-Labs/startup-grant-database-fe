@@ -71,7 +71,7 @@ color: "#000"
   }
 }));
 
-const NavBar = props => {
+export const NavBar = props => {
   const { isAuthenticated, loginWithRedirect, logout } = useAuth0();
   const [isOpen, setIsOpen] = useState(false);
   const toggleDrawer = open => event => {
