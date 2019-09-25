@@ -69,10 +69,11 @@ export const postGrants = addGrant => dispatch => {
     .then(res => {
       console.log("RES in postGrants, actions", res);
       dispatch({ type: ADD_GRANT_SUCCESS, payload: res.data });
-      fetchApi();
     })
     .catch(err => console.log(err.response));
-};
+    //wanted to call the fetch api function in here so it would fetch the new data
+    // but wasn't working
+  }
 
 //Update a Grant
 // export const putGrants = updateGrant => dispatch => {

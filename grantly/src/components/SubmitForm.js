@@ -1,7 +1,7 @@
 //Dependencies
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import { postGrants } from "../actions/index.js";
+import { postGrants, fetchApi } from "../actions/index.js";
 
 //Objects
 import formStyles from "./grants/styles/FormStyles";
@@ -71,10 +71,15 @@ const AddGrant = props => {
       early_stage_funding: "",
       details_last_updated: ""
     });
+    setTimeout(() => {
+      props.fetchApi()
+     props.history.push("/grants")
+    }, 2000)
   };
 
   const styles = formStyles();
 
+  console.log(props)
   return (
     <div>
       {/* <Container fixed> */}
@@ -287,5 +292,5 @@ const mapStateToProps = ({ grantData, isFetching, error }) => ({
 
 export default connect(
   mapStateToProps,
-  { postGrants }
+  { postGrants, fetchApi }
 )(AddGrant);
