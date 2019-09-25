@@ -87,7 +87,7 @@ export const postGrants = addGrant => dispatch => {
 //   axios
 //     .put(`http://localhost:5000/api/grants/${grantId}`, updateGrant)
 //     .then(res => {
-//       dispatch({ type: UPDATE_GRANT_START, payload: res.data });
+//       dispatch({ type: UPDATE_GRANT_SUCCESS, payload: res.data });
 //     })
 //     .catch(err => console.log(err.response));
 // };

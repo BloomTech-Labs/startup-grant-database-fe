@@ -10,8 +10,10 @@ import {
   MenuItem,
   Button,
   Grid,
-  Container
+  Container,
+  Link
 } from "@material-ui/core";
+import Home from "../views/Home";
 import NavBar from "./Navbar";
 
 const funding = [
@@ -264,6 +266,7 @@ const AddGrant = props => {
               margin="normal"
               variant="outlined"
             />
+
             <Button
               type="submit"
               variant="outlined"
