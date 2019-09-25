@@ -17,7 +17,8 @@ const useStyles = makeStyles(theme => ({
     padding: theme.spacing(3)
   },
   gridContainer: {
-    margin: "0"
+    margin: "0",
+    flexWrap: "nowrap"
   },
   gridItem: {
     padding: 30
@@ -47,7 +48,7 @@ const Home = props => {
     <>
       <Navbar location={props.location.pathname} />
       {/* <SearchBar /> */}
-      <Media query="(max-width:850px)">
+      <Media query="(max-width:900px)">
         {matches =>
           matches ? (
             <>
