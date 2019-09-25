@@ -34,7 +34,6 @@ export const rooterReducer = (state = initialState, { type, payload }) => {
         isFetching: true
       };
     case FETCH_SUCCESS:
-      console.log("FETCH_SUCCESS payload", payload);
       return {
         ...state,
         error: "",

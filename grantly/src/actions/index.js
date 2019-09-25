@@ -39,8 +39,7 @@ export const saveFilters = filters => dispatch => {
 };
 export const filterGrants = filters => dispatch => {
   let numCheck = 0;
-  //either call to database and return specific grants
-  //or filter the list of grants in the redux store
+
   Object.values(filters).map(filter => {
     filter.length !== 0 && numCheck++;
   });
@@ -50,7 +49,6 @@ export const filterGrants = filters => dispatch => {
 
   //initial thoughts is to have filters be an array  becuase users will be able to select multiple grant filter
   //Now filters will be an object that contains different arrays
-  // dispatch({ type: FILTER_GRANTS, payload: filters });
 };
 
 export const selectGrant = grant => dispatch => {
@@ -70,7 +68,8 @@ export const postGrants = addGrant => dispatch => {
     // .post("https://labs16-grantly.herokuapp.com/api/grants/", addGrant)
     .then(res => {
       console.log("RES in postGrants, actions", res);
-      dispatch({ type: ADD_GRANT_START, payload: res.data });
+      dispatch({ type: ADD_GRANT_SUCCESS, payload: res.data });
+      fetchApi();
     })
     .catch(err => console.log(err.response));
 };
