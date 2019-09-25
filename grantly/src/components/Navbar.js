@@ -36,9 +36,9 @@ const useStyles = makeStyles(theme => ({
     background: "#fff",
     flexGrow: 1,
     marginBottom: "2em",
-    [theme.breakpoints.down("sm")]: {
+    [theme.breakpoints.down("xs")]: {
       padding: "0",
-      margin: "0",
+      marginBottom: "2rem",
       boxShadow: "none"
     }
   },
@@ -47,7 +47,7 @@ const useStyles = makeStyles(theme => ({
     fontFamily: "Roboto"
   },
   logout: {
-color: "#000"
+    color: "#000"
   },
   menu: {
     width: "2em",
