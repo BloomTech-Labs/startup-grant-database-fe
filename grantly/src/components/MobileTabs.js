@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, {useEffect } from "react";
 import { connect } from "react-redux";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 
@@ -12,6 +12,7 @@ import AppBar from "@material-ui/core/AppBar";
 import GrantList from "./grants/GrantList";
 import GrantShowcase from "./grants/GrantShowcase";
 import { changeTab } from "../actions/index";
+import SubmitForm from "./SubmitForm";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -75,7 +76,7 @@ const MobileTabs = ({ grant, currentTab, changeTab }) => {
         >
           <Tab className={classes.tab} label="Grants" {...a11yProps(0)} />
           <Tab className={classes.tab} label="Showcase" {...a11yProps(1)} />
-          {/* <Tab className={classes.tab} label="Item Three" {...a11yProps(2)} /> */}
+          <Tab className={classes.tab} label="Submit" {...a11yProps(2)} />
         </Tabs>
       </AppBar>
       <SwipeableViews
@@ -89,8 +90,9 @@ const MobileTabs = ({ grant, currentTab, changeTab }) => {
         <TabPanel value={value} index={1} dir={theme.direction}>
           <GrantShowcase />
         </TabPanel>
-        {/* <TabPanel value={value} index={2} dir={theme.direction}>
-        </TabPanel> */}
+        <TabPanel value={value} index={2} dir={theme.direction}>
+          <SubmitForm />
+        </TabPanel>
       </SwipeableViews>
     </div>
   );
