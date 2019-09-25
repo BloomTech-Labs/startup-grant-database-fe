@@ -14,7 +14,7 @@ import { fetchApi } from "../../actions";
 //   return a + b;
 // };
 
-const GrantList = props => {
+export const GrantList = props => {
   console.log("GrantList props", props);
 
   useEffect(() => {
