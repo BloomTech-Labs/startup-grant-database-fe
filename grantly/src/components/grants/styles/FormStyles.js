@@ -8,20 +8,28 @@ const formStyles = makeStyles(theme => ({
     margin: "10%"
   },
   inputText: {
-    marginLeft: theme.spacing(1),
-    marginRight: theme.spacing(1)
+    // marginLeft: theme.spacing(1),
+    // marginRight: theme.spacing(1)
   },
   dense: {
-    marginTop: theme.spacing(2)
+    // marginTop: theme.spacing(2)
   },
   dropDown: {
     width: 200
   },
   leftBox: {
-    background: "primary"
+    // background: "primary"
+    "& h1": {
+      fontSize: "2.8rem",
+      fontFamily: "adobe-garamond-pro",
+      fontWeight: 400,
+      margin: "1rem",
+      padding: "30px"
+    }
+    // background: "skyblue"
   },
   grid: {
-    justifyContent: "space-between"
+    // justifyContent: "space-between"
     // maxWidth: "100%",
     // height: "80%"
     // zIndex: 0
