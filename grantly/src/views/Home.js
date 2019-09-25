@@ -53,7 +53,7 @@ const Home = props => {
           matches ? (
             <>
               <MobileTabs /> 
-              <MobileFilters setIsOpen={setIsOpen}/>
+              <MobileFilters toggleDrawer={toggleDrawer}/>
               <SwipeableDrawer
                 anchor="bottom"
                 open={isOpen}
