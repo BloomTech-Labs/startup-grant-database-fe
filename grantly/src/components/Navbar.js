@@ -163,11 +163,11 @@ export const NavBar = props => {
                 Submit a Grant
               </Button>
             </NavLink>
-            <NavLink className={classes.link} to="/">
+            <a className={classes.link} href="https://founder-grants.auth0.com/u/signup?state=g6Fo2SBUQXFxbUpIYWtyNjBUTllpM2pwdmVLNnF1Z1l2X3RDOKN0aWTZIE5zZk1pZzZKN2xIQ29fZGVEUzd4Q2hfNTFCbF9iY09oo2NpZNkgRjdJUTA3RG1VTVdWbnFLRTBEMzRsSng2N3ZBZDNhMmU">
               <Button className={classes.navButton} color="inherit">
                 SIGN UP
               </Button>
-            </NavLink>
+            </a>
 
             {!isAuthenticated && (
               <Button

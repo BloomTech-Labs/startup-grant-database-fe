@@ -32,6 +32,7 @@ const useStyles = makeStyles(theme => ({
 const Home = props => {
   const [isOpen, setIsOpen] = useState(false);
   const toggleDrawer = open => event => {
+    console.log("toggle")
     if (
       event &&
       event.type === "keydown" &&

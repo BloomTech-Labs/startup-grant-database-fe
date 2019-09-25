@@ -43,13 +43,13 @@ const useStyles = makeStyles(theme => ({
   },
 
 }));
-const MobileFilters = () => {
+const MobileFilters = ({toggleDrawer}) => {
   const classes = useStyles();
 
   return (
     <div>
-      <AppBar position="fixed" color="primary" className={classes.appBar}>
-        <Toolbar className={classes.filter}>
+      <AppBar position="fixed" color="primary" className={classes.appBar} onClick={() => toggleDrawer(true)}>
+        <Toolbar className={classes.filter} >
         {/* <IconButton color="inherit">
             <SortIcon/>
           </IconButton>
