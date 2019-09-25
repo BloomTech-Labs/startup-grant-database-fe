@@ -60,6 +60,7 @@ export const rooterReducer = (state = initialState, { type, payload }) => {
         currentTab: payload
       };
       case FILTER_SAVE:
+        console.log(payload);
         return {
           ...state,
           filters: payload

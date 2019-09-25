@@ -1,6 +1,6 @@
 import React from "react";
 import * as rtl from "@testing-library/react";
-import { Grant } from "./Grant";
+import { GrantShowcase } from "./GrantShowcase";
 
 // integration testing
 const grant = {
@@ -25,25 +25,49 @@ const grant = {
 };
 
 test("it renders without crashing", () => {
-  const container = rtl.render(<Grant grant={grant} />);
+  const container = rtl.render(<GrantShowcase grant={grant} />);
 });
 
-test("Amounts header", () => {
-  const container = rtl.render(<Grant grant={grant} />);
+test("Explanation header", () => {
+  const container = rtl.render(<GrantShowcase grant={grant} />);
 
-  container.queryAllByText(/Amount/i);
+  container.queryAllByText(/What it is:/i);
 });
 
 test("Deadline header", () => {
-  const container = rtl.render(<Grant grant={grant} />);
+  const container = rtl.render(<GrantShowcase grant={grant} />);
 
   container.queryAllByText(/Deadline/i);
 });
 
-test("Select button", () => {
-  const container = rtl.render(<Grant grant={grant} />);
+test("Domain areas header", () => {
+  const container = rtl.render(<GrantShowcase grant={grant} />);
 
-  container.queryAllByText(/Select/i);
+  container.queryAllByText(/This grant is in the areas of:/i);
+});
+
+test("Focus area header", () => {
+  const container = rtl.render(<GrantShowcase grant={grant} />);
+
+  container.queryAllByText(/Focus Area:/i);
+});
+
+test("Region header", () => {
+  const container = rtl.render(<GrantShowcase grant={grant} />);
+
+  container.queryAllByText(/Region/i);
+});
+
+test("Sponsored by header", () => {
+  const container = rtl.render(<GrantShowcase grant={grant} />);
+
+  container.queryAllByText(/Sponsored by:/i);
+});
+
+test("Notes header", () => {
+  const container = rtl.render(<GrantShowcase grant={grant} />);
+
+  container.queryAllByText(/Notes: /i);
 });
 
 // describe("sum function", () => {
