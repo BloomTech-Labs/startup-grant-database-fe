@@ -66,13 +66,17 @@ export const changeTab = tab => dispatch => {
 export const postGrants = addGrant => dispatch => {
   dispatch({ type: ADD_GRANT_START });
   axios
-    .post("https://grantly-staging.herokuapp.com/api/grants", addGrant)
+    // .post("https://grantly-staging.herokuapp.com/api/grants", addGrant)
     // .post("https://labs16-grantly.herokuapp.com/api/grants/", addGrant)
+    .post("http://localhost:5000/api/grants/", addGrant)
     .then(res => {
       console.log("RES in postGrants, actions", res);
-      dispatch({ type: ADD_GRANT_START, payload: res.data });
+      dispatch({ type: ADD_GRANT_SUCCESS, payload: res.data });
     })
-    .catch(err => console.log(err.response));
+    .catch(err => {
+      console.log(err.response);
+      dispatch({ type: ADD_GRANT_FAILURE });
+    });
 };
 
 //Update a Grant
