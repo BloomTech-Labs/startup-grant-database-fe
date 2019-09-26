@@ -86,7 +86,7 @@ const AddGrant = props => {
   return (
     <div>
       {/* <Container fixed> */}
-      <Media query="(max-width:800px)">
+      <Media query="(max-width:850px)">
         {matches => (
           matches ?
           null
