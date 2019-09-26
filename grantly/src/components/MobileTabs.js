@@ -1,4 +1,4 @@
-import React, {useEffect } from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 
@@ -11,6 +11,7 @@ import AppBar from "@material-ui/core/AppBar";
 
 import GrantList from "./grants/GrantList";
 import GrantShowcase from "./grants/GrantShowcase";
+import MobileFilters from "./MobileFilters";
 import { changeTab } from "../actions/index";
 import SubmitForm from "./SubmitForm";
 
@@ -45,7 +46,13 @@ const useStyles = makeStyles(theme => ({
   },
   tabPos: {
     top: "10%"
-  }
+  },
+  swipe: {
+    position: "fixed",
+    top: "auto",
+    bottom: "0",
+    background: "#fff"
+  },
 }));
 const MobileTabs = ({ grant, currentTab, changeTab }) => {
   const classes = useStyles();
@@ -86,6 +93,7 @@ const MobileTabs = ({ grant, currentTab, changeTab }) => {
       >
         <TabPanel value={value} index={0} dir={theme.direction}>
           <GrantList />
+          <MobileFilters className={classes.swipe}/>
         </TabPanel>
         <TabPanel value={value} index={1} dir={theme.direction}>
           <GrantShowcase />
