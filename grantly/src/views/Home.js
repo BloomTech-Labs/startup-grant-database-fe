@@ -49,12 +49,12 @@ const Home = props => {
     <>
       <Navbar location={props.location.pathname} />
       {/* <SearchBar /> */}
-      <Media query="(max-width:900px)">
+      <Media query="(max-width:850px)">
         {matches =>
           matches ? (
             <>
               <MobileTabs /> 
-              <MobileFilters toggleDrawer={toggleDrawer}/>
+              <MobileFilters />
               <SwipeableDrawer
                 anchor="bottom"
                 open={isOpen}

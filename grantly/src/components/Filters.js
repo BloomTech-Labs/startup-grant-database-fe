@@ -15,8 +15,10 @@ import { filterGrants, saveFilters } from "../actions/index";
 const useStylesGrants = makeStyles(theme => ({
   card: {
     position: "fixed",
+    marginTop: "2em",
     [theme.breakpoints.down("sm")]: {
-      position: "initial"
+      position: "initial",
+      marginTop: "0"
     }
   },
   filterCard: {
