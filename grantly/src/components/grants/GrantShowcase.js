@@ -17,6 +17,7 @@ const useStyles = makeStyles(theme => ({
     position: "fixed",
     textAlign: "left",
     padding: "5px",
+    width: "50%",
     borderTop: "#3DB8B3 5px solid",
     height: "600px",
     fontFamily: "adobe-garamond-pro",
