@@ -1,6 +1,7 @@
 //Dependencies
 import React, { useState } from "react";
 import { connect } from "react-redux";
+import Media from "react-media"
 import { postGrants, fetchApi } from "../actions/index.js";
 
 //Objects
@@ -85,7 +86,12 @@ const AddGrant = props => {
   return (
     <div>
       {/* <Container fixed> */}
-      <NavBar />
+      <Media query="(max-width:800px)">
+        {matches => (
+          matches ?
+          null
+        : <NavBar />)}
+</Media>
       {/* <h1>Submit a New Grant to Founder Grants</h1> */}
       <Grid
         className={styles.grid}

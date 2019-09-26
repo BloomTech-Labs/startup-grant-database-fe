@@ -49,7 +49,7 @@ const Home = props => {
     <>
       <Navbar location={props.location.pathname} />
       {/* <SearchBar /> */}
-      <Media query="(max-width:900px)">
+      <Media query="(max-width:800px)">
         {matches =>
           matches ? (
             <>
