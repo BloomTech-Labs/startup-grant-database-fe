@@ -35,11 +35,11 @@ const useStyles = makeStyles(theme => ({
   navbar: {
     background: "#fff",
     flexGrow: 1,
+    boxShadow: "0px 2px 6px rgba(0, 0, 0, 0.15)",
     // marginBottom: "2em",
     [theme.breakpoints.down("xs")]: {
       padding: "0",
       boxShadow: "none"
-      
     }
   },
   log: {
@@ -71,8 +71,8 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 const homeStyles = makeStyles(theme => ({
-  marginBottom: "0",
-}))
+  marginBottom: "0"
+}));
 
 export const NavBar = props => {
   const { isAuthenticated, loginWithRedirect, logout } = useAuth0();

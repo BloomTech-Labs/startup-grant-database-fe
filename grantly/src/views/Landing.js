@@ -49,6 +49,7 @@ const useStyles = makeStyles(theme => ({
     "& button": {
       fontFamily: "Roboto",
       marginTop: "35px",
+      borderRadius: "2px",
       [theme.breakpoints.down("sm")]: {
         marginBottom: "30px"
       }

@@ -16,6 +16,7 @@ const useStylesGrants = makeStyles(theme => ({
   card: {
     position: "fixed",
     marginTop: "2em",
+    borderRadius: "2px",
     [theme.breakpoints.down("sm")]: {
       position: "initial",
       marginTop: "0"
@@ -60,6 +61,7 @@ const useStylesLanding = makeStyles(theme => ({
   card: {
     marginRight: "2rem",
     padding: "30px",
+    borderRadius: "2px",
     [theme.breakpoints.down("sm")]: {
       width: "100%",
       borderRadius: 0
@@ -111,6 +113,7 @@ const useStylesLanding = makeStyles(theme => ({
       marginTop: "45px",
       color: "white",
       fontFamily: "Roboto",
+      borderRadius: "2px",
       [theme.breakpoints.down("xs")]: {
         marginTop: "10px",
         marginBottom: "20px"
