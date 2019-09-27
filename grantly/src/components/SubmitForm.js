@@ -188,6 +188,7 @@ const AddGrant = props => {
                 className={styles.notes}
                 name="amount_notes"
                 multiline
+                fullWidth
                 rows="3"
                 placeholder="Amount Notes"
                 value={grantInfo.amount_notes}
@@ -239,6 +240,7 @@ const AddGrant = props => {
                 className={styles.notes}
                 name="notes"
                 multiline
+                fullWidth
                 rows="3"
                 placeholder="Notes"
                 value={grantInfo.notes}
@@ -288,10 +290,10 @@ const AddGrant = props => {
                 variant="outlined"
               />
             </div>
-            <div>
+            <div className={styles.divButton}>
               <Button
                 type="submit"
-                variant="outlined"
+                variant="contained"
                 color="primary"
                 size="large"
               >

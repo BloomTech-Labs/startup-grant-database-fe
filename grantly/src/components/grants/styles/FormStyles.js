@@ -68,6 +68,14 @@ const formStyles = makeStyles(theme => ({
       paddingBottom: "3rem",
       width: "100%"
     }
+  },
+  divButton: {
+    marginTop: "30px",
+    "& Button": {
+      color: "white",
+      width: "265px",
+      height: "58px"
+    }
   }
 }));
 
