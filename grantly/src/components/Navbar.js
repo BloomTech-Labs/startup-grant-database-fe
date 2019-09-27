@@ -25,7 +25,7 @@ const useStyles = makeStyles(theme => ({
   navButton: {
     marginRight: theme.spacing(3),
     color: "#000",
-    fontFamily: "Roboto"
+    fontFamily: "Nunito Sans"
   },
   title: {
     textAlign: "left",
@@ -44,10 +44,11 @@ const useStyles = makeStyles(theme => ({
   },
   log: {
     color: "#fff",
-    fontFamily: "Roboto"
+    fontFamily: "Nunito Sans"
   },
   logout: {
-    color: "#000"
+    color: "#000",
+    fontFamily: "Nunito Sans"
   },
   menu: {
     width: "2em",
@@ -56,7 +57,8 @@ const useStyles = makeStyles(theme => ({
   },
   signup: {
     marginRight: theme.spacing(3),
-    color: "#3DB8B3"
+    color: "#3DB8B3",
+    fontFamily: "Nunito Sans"
   },
   titleLink: {
     flexGrow: 1,

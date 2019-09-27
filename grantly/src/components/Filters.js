@@ -36,8 +36,10 @@ const useStylesGrants = makeStyles(theme => ({
     alignSelf: "flex-start",
     textAlign: "left",
     fontSize: "1.2rem",
-    color: "#464646",
-    fontWeight: "bold"
+    fontFamily: "Nunito Sans",
+    color: "#222222",
+    marginBottom: "10px"
+    // fontWeight: "bold"
   },
   set: {
     width: "60%",
@@ -51,7 +53,7 @@ const useStylesGrants = makeStyles(theme => ({
 
 const useStylesLanding = makeStyles(theme => ({
   title: {
-    marginBottom: "15px",
+    marginBottom: "20px",
     fontSize: "2rem",
     [theme.breakpoints.down("xs")]: {
       paddingLeft: "10px",
@@ -60,7 +62,7 @@ const useStylesLanding = makeStyles(theme => ({
   },
   card: {
     marginRight: "2rem",
-    padding: "30px",
+    padding: "48px",
     borderRadius: "2px",
     [theme.breakpoints.down("sm")]: {
       width: "100%",
@@ -87,8 +89,10 @@ const useStylesLanding = makeStyles(theme => ({
     }
   },
   label: {
-    marginBottom: "20px",
+    marginBottom: "10px",
     fontSize: "1.4rem",
+    fontFamily: "Nunito Sans",
+    color: "#222222",
     [theme.breakpoints.down("sm")]: {
       textAlign: "left"
     }
