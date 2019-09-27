@@ -118,6 +118,8 @@ const useStylesLanding = makeStyles(theme => ({
       color: "white",
       fontFamily: "Roboto",
       borderRadius: "2px",
+      height: "58px",
+      width: "266px",
       [theme.breakpoints.down("xs")]: {
         marginTop: "10px",
         marginBottom: "20px"
