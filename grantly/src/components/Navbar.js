@@ -75,7 +75,7 @@ const homeStyles = makeStyles(theme => ({
 }))
 
 export const NavBar = props => {
-  const { isAuthenticated, loginWithRedirect, logout } = useAuth0();
+  const { isAuthenticated, loginWithRedirect, logout, user } = useAuth0();
   const [isOpen, setIsOpen] = useState(false);
   const toggleDrawer = open => event => {
     if (
@@ -142,7 +142,7 @@ export const NavBar = props => {
       </List>
     </div>
   );
-
+                  console.log("************************", user)
   return (
     <AppBar className={classes.navbar} color="primary" position="sticky">
       <Toolbar>
