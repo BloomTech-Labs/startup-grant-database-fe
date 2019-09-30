@@ -19,7 +19,7 @@ const useStyles = makeStyles(theme => ({
     position: "fixed",
     textAlign: "left",
     padding: "50px",
-    width: "50%",
+    width: "45%",
     borderTop: "#3DB8B3 5px solid",
     minHeight: "100vh",
     fontFamily: "adobe-garamond-pro",
@@ -33,7 +33,7 @@ const useStyles = makeStyles(theme => ({
   topContent: {
     margin: " 0",
     fontWeight: "700",
-    fontSize: "1.8rem"
+    // fontSize: "1.8rem"
   },
   grantInfo: {},
   showcaseSpan: {

@@ -2,7 +2,49 @@ import React from 'react';
 import {loginStyles} from "../styles/loginStyles"
 
 const LoginForm = () => {
+/*
 
+
+
+
+
+
+
+
+
+
+
+
+
+Not to be in use yet not functional still using default auth lock widget
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+*/
     const styles = loginStyles();
 
     return (

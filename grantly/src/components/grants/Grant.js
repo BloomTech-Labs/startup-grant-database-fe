@@ -11,6 +11,10 @@ import Grid from "@material-ui/core/Grid";
 import BookmarkIcon from "@material-ui/icons/Bookmark";
 import grantStyles from "./styles/GrantStyles";
 import Card from "@material-ui/core/Card";
+import CardContent from '@material-ui/core/CardContent';
+import Typography from '@material-ui/core/Typography';
+
+
 
 // Styles
 
@@ -38,7 +42,14 @@ export const Grant = props => {
   return (
     <Card className={styles.grantCard}>
       {/* ================= Bookmark Icon ================= */}
-      <Grid
+      <CardContent>
+      <Typography variant="h5" component="h2">
+          be
+  
+        
+        </Typography>
+</CardContent>
+      {/* <Grid
         container
         direction="row"
         justify="flex-end"
@@ -48,7 +59,6 @@ export const Grant = props => {
           <BookmarkIcon></BookmarkIcon>
         </Grid>
       </Grid>
-      {/* ================= Top container (grant name) ================= */}
       <Grid
         container
         direction="row"
@@ -59,7 +69,6 @@ export const Grant = props => {
           <div className={styles.grantName}>{props.grant.competition_name}</div>
         </Grid>
       </Grid>
-      {/* ================= Middle Container (sub details) ================= */}
       <Container className={styles.detailsWrapper}>
         <Grid container direction="column" className={styles.amount}>
           <div className={styles.detailsHeader}>Amount</div>
@@ -74,7 +83,6 @@ export const Grant = props => {
           {deadline}
         </Grid>
       </Container>
-      {/* ================= Bottom Container (button) ================= */}
       <Container maxWidth="sm">
         <Button
           className={styles.btn}
@@ -84,7 +92,7 @@ export const Grant = props => {
         >
           Select
         </Button>
-      </Container>
+      </Container> */}
     </Card>
   );
 };

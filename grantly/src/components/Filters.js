@@ -17,7 +17,7 @@ const useStylesGrants = makeStyles(theme => ({
     position: "fixed",
     marginTop: "2em",
     minHeight: "100vh",
-
+    width: "15%",
     [theme.breakpoints.down("sm")]: {
       position: "initial",
       marginTop: "0",
