@@ -1,7 +1,7 @@
 //Dependencies
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import Media from "react-media"
+import Media from "react-media";
 import { postGrants, fetchApi } from "../actions/index.js";
 
 //Objects
@@ -87,11 +87,8 @@ const AddGrant = props => {
     <div>
       {/* <Container fixed> */}
       <Media query="(max-width:850px)">
-        {matches => (
-          matches ?
-          null
-        : <NavBar />)}
-</Media>
+        {matches => (matches ? null : <NavBar />)}
+      </Media>
       {/* <h1>Submit a New Grant to Founder Grants</h1> */}
       <Grid
         className={styles.grid}
@@ -106,8 +103,8 @@ const AddGrant = props => {
           <div className={styles.leftBox}>
             <h1>Submit a New Grant to Founder Grants</h1>
             <p>
-              Please fill out all of the form feilds on this page regarding the
-              grant you are submitting. If you ate unsure of anything please
+              Please fill out all of the form fields on this page regarding the
+              grant you are submitting. If you are unsure of anything please
               write “N/A” Thank you!
             </p>
           </div>
