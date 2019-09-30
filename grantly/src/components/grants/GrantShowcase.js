@@ -108,6 +108,15 @@ export const GrantShowcase = props => {
             Apply to Grant
           </Button>
         </Grid>
+        <Grid item>
+          <Button
+            className={classes.applyButton}
+            variant="contained"
+            color="primary"
+          >
+            Edit Grant
+          </Button>
+        </Grid>
       </Grid>
       {/* ================= Main content ================= */}
       <Grid
