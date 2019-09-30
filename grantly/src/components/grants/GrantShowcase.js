@@ -11,15 +11,17 @@ import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
 import BookmarkIcon from "@material-ui/icons/Bookmark";
 
+import Typography from "@material-ui/core/Typography"
+
 // =========== STYLES ===========
 const useStyles = makeStyles(theme => ({
   showcaseCard: {
     position: "fixed",
     textAlign: "left",
-    padding: "5px",
+    padding: "50px",
     width: "50%",
     borderTop: "#3DB8B3 5px solid",
-    height: "600px",
+    minHeight: "100vh",
     fontFamily: "adobe-garamond-pro",
     [theme.breakpoints.down("sm")]: {
       position: "initial",
@@ -29,13 +31,11 @@ const useStyles = makeStyles(theme => ({
     }
   },
   topContent: {
-    margin: "20px",
+    margin: " 0",
     fontWeight: "700",
     fontSize: "1.8rem"
   },
-  grantInfo: {
-    padding: "0 20px"
-  },
+  grantInfo: {},
   showcaseSpan: {
     fontWeight: "bold"
   },
@@ -43,7 +43,18 @@ const useStyles = makeStyles(theme => ({
     marginBottom: "30px"
   },
   applyButton: {
-    color: "#fff"
+    color: "#fff",
+    margin: "20px auto"
+  },
+  showcase_header: {
+    width: "initial",
+  },
+  grant_logo: {
+    display: "inline-block",
+    marginRight: "5px",
+    background: "#ddd",
+    width: "60px",
+    height: "50px",
   }
 }));
 
@@ -78,37 +89,45 @@ export const GrantShowcase = props => {
   return (
     <Card className={classes.showcaseCard}>
       {/* ================= Bookmark Icon ================= */}
-      <Grid
-        container
-        direction="row"
-        justify="flex-end"
-        alignItems="flex-start"
-      >
-        <Grid item>
-          <BookmarkIcon></BookmarkIcon>
-        </Grid>
-      </Grid>
+
       {/* ================= Top container ================= */}
-      <Grid
-        container
-        direction="row"
-        justify="space-evenly"
-        alignItems="center"
-        className={classes.topContent}
-      >
-        <Grid item>
-          <h2>{props.grant.competition_name}</h2>
+      <div>
+        <Grid
+          container
+          direction="row"
+          justify="space-between"
+          alignItems="center"
+          className={classes.topContent}
+        >
+          <Grid container className={classes.showcase_header} alignItems="center">
+            <Grid item>
+
+            <div className={classes.grant_logo}></div>
+            </Grid>
+          <Grid item>
+            <Typography variant="h4" component="h4" display="inline-block">
+              {props.grant.competition_name}
+            </Typography>
+
+          </Grid>
+          </Grid>
+          <Grid direction="row" justify="flex-end" alignItems="flex-start">
+            <Grid item>
+              <BookmarkIcon></BookmarkIcon>
+            </Grid>
+          </Grid>
         </Grid>
         <Grid item>
-          <Button
-            className={classes.applyButton}
-            variant="contained"
-            color="primary"
-          >
-            Apply to Grant
-          </Button>
+          <a href="/">https://www.mercatus.org/emergentventures</a>
         </Grid>
-      </Grid>
+        <Button
+          className={classes.applyButton}
+          variant="contained"
+          color="primary"
+        >
+          Apply to Grant
+        </Button>
+      </div>
       {/* ================= Main content ================= */}
       <Grid
         container

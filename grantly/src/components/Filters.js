@@ -16,9 +16,12 @@ const useStylesGrants = makeStyles(theme => ({
   card: {
     position: "fixed",
     marginTop: "2em",
+    minHeight: "100vh",
+
     [theme.breakpoints.down("sm")]: {
       position: "initial",
-      marginTop: "0"
+      marginTop: "0",
+      minHeight: "initial"
     }
   },
   filterCard: {
