@@ -11,10 +11,8 @@ import Grid from "@material-ui/core/Grid";
 import BookmarkIcon from "@material-ui/icons/Bookmark";
 import grantStyles from "./styles/GrantStyles";
 import Card from "@material-ui/core/Card";
-import CardContent from '@material-ui/core/CardContent';
-import Typography from '@material-ui/core/Typography';
-
-
+import CardContent from "@material-ui/core/CardContent";
+import Typography from "@material-ui/core/Typography";
 
 // Styles
 
@@ -43,12 +41,15 @@ export const Grant = props => {
     <Card className={styles.grantCard}>
       {/* ================= Bookmark Icon ================= */}
       <CardContent>
-      <Typography variant="h5" component="h2">
-          be
-  
-        
-        </Typography>
-</CardContent>
+        <Grid container direction="row">
+          <Grid item>Logo</Grid>
+          <Grid item>
+            <Typography variant="h5" component="h2">
+              be
+            </Typography>
+          </Grid>
+        </Grid>
+      </CardContent>
       {/* <Grid
         container
         direction="row"
