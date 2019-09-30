@@ -75,8 +75,8 @@ const Admin = props => {
               >
                 <Grid
                   item
-                  md={3}
-                  xs={12}
+                  md={4}
+                  xs={4}
                   className={classes.gridItem}
                   style={{ padding: "30px 0 0 30px" }}
                 >
@@ -86,15 +86,12 @@ const Admin = props => {
                 </Grid>
                 <Grid
                   item
-                  xs={6}
+                  xs={8}
                   className={classes.gridItem}
                   style={{ padding: "30px 30px 0 30px" }}
                 >
                   <GrantShowcase />
                 </Grid>
-                {/* <Grid item xs={2}>
-                  <Filters location={props.location.pathname} />
-                </Grid> */}
               </Grid>
             </div>
           )
