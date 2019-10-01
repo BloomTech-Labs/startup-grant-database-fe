@@ -167,8 +167,8 @@ export const NavBar = props => {
             </NavLink>
             {isAuthenticated && (
               <Button
-                className={classes.admin}
-                variant="outlined"
+                className={classes.navButton}
+                color="inherit"
                 onClick={() => console.log("Why you gotta push me like that?")}
               >
                 Admin
