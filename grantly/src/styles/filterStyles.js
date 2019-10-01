@@ -20,7 +20,7 @@ export const useStylesGrants = makeStyles(theme => ({
       margin: "0 auto"
     },
     title: {
-      fontWeight: "bold",
+      fontWeight: "700",
       marginTop: "1em",
       color: "#464646"
     },
@@ -31,7 +31,6 @@ export const useStylesGrants = makeStyles(theme => ({
       fontFamily: "Nunito Sans",
       color: "#222222",
       marginBottom: "10px"
-      // fontWeight: "bold"
     },
     set: {
       width: "60%",

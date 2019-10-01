@@ -29,13 +29,14 @@ export const showcaseStyles = makeStyles(theme => ({
   bookmark: {
     fill: "#C4C4C4"
   },
-
   showcaseDetails: {
     marginBottom: "30px"
   },
   applyButton: {
     color: "#fff",
-    margin: "20px auto"
+    margin: "20px auto",
+    fontFamily: "Nunito Sans",
+    fontWeight: "600"
   },
   showcase_header: {
     width: "initial"
@@ -50,6 +51,6 @@ export const showcaseStyles = makeStyles(theme => ({
   grant_name: {
     fontWeight: "500",
     fontFamily: "Roboto",
-    color: "#222222"   
+    color: "#222222"
   }
 }));
