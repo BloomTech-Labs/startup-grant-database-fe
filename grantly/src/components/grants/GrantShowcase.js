@@ -78,15 +78,26 @@ export const GrantShowcase = props => {
         <Grid item>
           <a href="/">https://www.mercatus.org/emergentventures</a>
         </Grid>
+        <Grid item>
         <Button
-          className={classes.applyButton}
-          variant="contained"
-          color="primary"
-        >
-          Apply to Grant
-        </Button>
-      </div>
+      className={classes.applyButton}
+      variant="contained"
+      color="primary"
+    >
+      Apply to Grant
+    </Button>
+  
+          <Button
+            className={classes.applyButton}
+            variant="contained"
+            color="primary"
+          >
+            Edit Grant
+          </Button>
+        </Grid>
+        </div>
       {/* ================= Main content ================= */}
+
       <Grid
         container
         direction="column"
