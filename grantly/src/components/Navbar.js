@@ -39,7 +39,6 @@ const useStyles = makeStyles(theme => ({
     [theme.breakpoints.down("xs")]: {
       padding: "0",
       boxShadow: "none"
-      
     }
   },
   log: {
@@ -71,8 +70,8 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 const homeStyles = makeStyles(theme => ({
-  marginBottom: "0",
-}))
+  marginBottom: "0"
+}));
 
 export const NavBar = props => {
   const { isAuthenticated, loginWithRedirect, logout } = useAuth0();
@@ -166,6 +165,15 @@ export const NavBar = props => {
                 Submit a Grant
               </Button>
             </NavLink>
+            {isAuthenticated && (
+              <Button
+                className={classes.admin}
+                variant="outlined"
+                onClick={() => console.log("Why you gotta push me like that?")}
+              >
+                Admin
+              </Button>
+            )}
             <a
               className={classes.link}
               href="https://founder-grants.auth0.com/u/signup?state=g6Fo2SBUQXFxbUpIYWtyNjBUTllpM2pwdmVLNnF1Z1l2X3RDOKN0aWTZIE5zZk1pZzZKN2xIQ29fZGVEUzd4Q2hfNTFCbF9iY09oo2NpZNkgRjdJUTA3RG1VTVdWbnFLRTBEMzRsSng2N3ZBZDNhMmU"
