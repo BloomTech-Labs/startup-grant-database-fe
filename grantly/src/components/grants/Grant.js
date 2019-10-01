@@ -35,11 +35,9 @@ export const Grant = props => {
   ) : (
     <span>See website for details</span>
   );
-
   const styles = grantStyles();
-
   return (
-    <Card className={styles.grantCard} onClick={selectGrant}>
+    <Card className={props.grantShowcase.id === props.grant.id ? styles.grantCardSeleted : styles.grantCard} onClick={selectGrant}>
       {/* ================= Bookmark Icon ================= */}
       <div className={styles.grant_layout}>
         <Grid item className={styles.grant_logo}></Grid>
@@ -125,7 +123,14 @@ export const Grant = props => {
   );
 };
 
+const mapStateToProps = ({grantShowcase}) => {
+ return{
+   grantShowcase
+  } 
+}
+
+
 export default connect(
-  null,
+  mapStateToProps,
   { selectGrant }
 )(Grant);

@@ -6,6 +6,11 @@ export const theme = createMuiTheme({
       root: {
         padding: "4px"
       }
+    },
+    MuiCard: {
+      root: {
+        transition: "all .2s ease-in-out"
+      }
     }
   },
 
@@ -15,7 +20,6 @@ export const theme = createMuiTheme({
     }
   },
   typography: {
-    fontFamily: ["adobe-garamond-pro","Nunito Sans", "serif"].join(",")
+    fontFamily: ["adobe-garamond-pro", "Nunito Sans", "serif"].join(",")
   }
 });
-
