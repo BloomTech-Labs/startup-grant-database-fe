@@ -8,6 +8,8 @@ import moment from "moment";
 import Card from "@material-ui/core/Card";
 import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
+import BookmarkBorderOutlinedIcon from '@material-ui/icons/BookmarkBorderOutlined';
+
 import BookmarkIcon from "@material-ui/icons/Bookmark";
 
 import Typography from "@material-ui/core/Typography"
@@ -71,7 +73,8 @@ export const GrantShowcase = props => {
           </Grid>
           <Grid direction="row" justify="flex-end" alignItems="flex-start">
             <Grid item>
-              <BookmarkIcon></BookmarkIcon>
+              <BookmarkBorderOutlinedIcon></BookmarkBorderOutlinedIcon>
+              {/* <BookmarkIcon></BookmarkIcon> */}
             </Grid>
           </Grid>
         </Grid>

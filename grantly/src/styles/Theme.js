@@ -15,6 +15,7 @@ export const theme = createMuiTheme({
     }
   },
   typography: {
-    fontFamily: ["adobe-garamond-pro", "serif"].join(",")
+    fontFamily: ["adobe-garamond-pro","Nunito Sans", "serif"].join(",")
   }
 });
+

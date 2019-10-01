@@ -1,9 +1,12 @@
 import { makeStyles } from "@material-ui/core/styles";
+import { createMuiTheme } from "@material-ui/core/styles";
+
 
 // vars
 const cardDetailsMargin = "10px";
 
 const grantStyles = makeStyles(theme => ({
+  
   grantCard: {
     display: "flex",
     flexDirection: "column",
@@ -11,7 +14,7 @@ const grantStyles = makeStyles(theme => ({
     borderRadius: "10px",
     marginBottom: "0.5rem",
     padding: "25px 10px",
-    fontFamily: "adobe-garamond-pro"
+    fontFamily: "Roboto"
   },
   grant_layout: {
     display: "flex",
@@ -26,12 +29,17 @@ const grantStyles = makeStyles(theme => ({
   },
   grant_info: {
     alignSelf: "stretch",
-    margin: "0 10px"
+    margin: "0 10px",
+    color: "#696969"
+  },
+  grant_subinfo: {
+    fontStyle: "italic"
   },
   grantName: {
-    fontSize: "1.2rem",
-    position: "relative",
-    fontWeight: "700"
+    fontWeight: "500",
+    fontFamily: "Roboto",
+    color: "#222222"
+
     // border: "1px solid fuchsia"
   },
   bookmark: {

@@ -9,7 +9,9 @@ export const useStylesGrants = makeStyles(theme => ({
     height: "100vh",
       [theme.breakpoints.down("sm")]: {
         position: "initial",
-        marginTop: "0"
+        marginTop: "0",
+        width: "100%",
+        height: "initial"
       }
     },
     filterCard: {

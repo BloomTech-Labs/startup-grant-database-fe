@@ -12,6 +12,7 @@ export const showcaseStyles = makeStyles(theme => ({
       [theme.breakpoints.down("sm")]: {
         position: "initial",
         width: "100%",
+        padding: "10px",
         height: "auto",
         margin: 0
       }

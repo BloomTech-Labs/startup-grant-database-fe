@@ -8,6 +8,7 @@ import { selectGrant } from "../../actions";
 import Container from "@material-ui/core/Container";
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
+import BookmarkBorderOutlinedIcon from '@material-ui/icons/BookmarkBorderOutlined';
 import BookmarkIcon from "@material-ui/icons/Bookmark";
 import grantStyles from "../../styles/GrantStyles";
 import Card from "@material-ui/core/Card";
@@ -40,21 +41,42 @@ export const Grant = props => {
   return (
     <Card className={styles.grantCard} onClick={selectGrant}>
       {/* ================= Bookmark Icon ================= */}
-        <div className={styles.grant_layout}>
-          <Grid item className={styles.grant_logo}>Logo</Grid>
-          <Grid container direction="column" alignItems="flex-start" justify="space-between" className={styles.grant_info}> 
-            <Typography variant="h6">
-              {props.grant.competition_name}
+      <div className={styles.grant_layout}>
+        <Grid item className={styles.grant_logo}></Grid>
+        <Grid
+          container
+          direction="column"
+          alignItems="flex-start"
+          justify="space-between"
+          className={styles.grant_info}
+        >
+          <Typography variant="h6" className={styles.grantName}>
+            {props.grant.competition_name}
+          </Typography>
+          <Grid item>
+            <Typography variant="body2" component="p">
+              https://google.com
             </Typography>
-            <Grid item>
-              <p>https://google.com</p>
-            </Grid>
-            <Grid item> Deadline - {deadline}</Grid>
-            <Grid item>Amount - ${props.grant.amount}</Grid>
           </Grid>
-          <BookmarkIcon className={styles.bookmark}></BookmarkIcon>
-
-          </div>
+          <Typography variant="h6" component="p">
+            Deadline - <span className={styles.grant_subinfo}>{deadline}</span>
+          </Typography>
+          <Grid item>
+            {" "}
+            <Typography variant="h6" component="p">
+              Amount -{" "}
+              <span className={styles.grant_subinfo}>
+                {" "}
+                {props.grant.amount
+                  ? "$" + formatNumbers(props.grant.amount)
+                  : "See website for details"}
+              </span>
+            </Typography>
+          </Grid>
+        </Grid>
+        <BookmarkBorderOutlinedIcon className={styles.bookmark}></BookmarkBorderOutlinedIcon>
+        {/* <BookmarkIcon className={styles.bookmark}></BookmarkIcon> */}
+      </div>
       {/* <Grid
         container
         direction="row"
