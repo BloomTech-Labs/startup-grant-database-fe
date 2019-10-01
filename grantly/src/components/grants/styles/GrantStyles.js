@@ -10,8 +10,23 @@ const grantStyles = makeStyles(theme => ({
     textAlign: "center",
     borderRadius: "10px",
     marginBottom: "0.5rem",
-    padding: "5px",
+    padding: "25px 10px",
     fontFamily: "adobe-garamond-pro"
+  },
+  grant_layout: {
+    display: "flex",
+    minHeight: "125px",
+    justifyContent: "space-between",
+    alignItems: "center"
+  },
+  grant_logo: {
+    background: "#ddd",
+    width: "70px",
+    height: "60px"
+  },
+  grant_info: {
+    alignSelf: "stretch",
+    margin: "0 10px"
   },
   grantName: {
     fontSize: "1.2rem",
@@ -20,7 +35,7 @@ const grantStyles = makeStyles(theme => ({
     // border: "1px solid fuchsia"
   },
   bookmark: {
-    marginTop: "10px"
+    alignSelf: "flex-start"
     // border: "1px solid fuchsia"
   },
   phantom: {

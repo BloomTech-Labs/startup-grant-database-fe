@@ -32,7 +32,7 @@ export const Grant = props => {
       {props.grant.most_recent_application_due_date}
     </Moment>
   ) : (
-    <div>See website for details</div>
+    <span>See website for details</span>
   );
 
   const styles = grantStyles();
@@ -40,11 +40,10 @@ export const Grant = props => {
   return (
     <Card className={styles.grantCard} onClick={selectGrant}>
       {/* ================= Bookmark Icon ================= */}
-      <CardContent>
-        <Grid container direction="row">
-          <Grid item>Logo</Grid>
-          <Grid container direction="column">
-            <Typography component="h4">
+        <div className={styles.grant_layout}>
+          <Grid item className={styles.grant_logo}>Logo</Grid>
+          <Grid container direction="column" alignItems="flex-start" justify="space-between" className={styles.grant_info}> 
+            <Typography variant="h6">
               {props.grant.competition_name}
             </Typography>
             <Grid item>
@@ -53,8 +52,9 @@ export const Grant = props => {
             <Grid item> Deadline - {deadline}</Grid>
             <Grid item>Amount - ${props.grant.amount}</Grid>
           </Grid>
-        </Grid>
-      </CardContent>
+          <BookmarkIcon className={styles.bookmark}></BookmarkIcon>
+
+          </div>
       {/* <Grid
         container
         direction="row"
