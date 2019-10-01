@@ -16,6 +16,10 @@ import { makeStyles } from "@material-ui/core/styles";
     gridItem: {
       padding: 30
     },
+    grantList: {
+      height: "90vh",
+      overflow: "auto"
+    },
     root: {
       display: "flex"
     },

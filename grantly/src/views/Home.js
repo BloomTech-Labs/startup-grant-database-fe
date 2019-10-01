@@ -62,8 +62,8 @@ const Home = props => {
                   item
                   md={3}
                   xs={12}
-                  className={classes.gridItem}
-                  style={{ padding: "30px 0 0 30px" }}
+                  className={classes.grantList}
+                  // style={{ padding: "30px 0 0 30px" }}
                 >
                   {/* <div className={classes.scrollBox}> */}
                   <GrantList />
