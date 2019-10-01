@@ -8,6 +8,8 @@ import Loader from "react-loader-spinner";
 import { fetchApi } from "../../actions";
 
 // Styles
+import {homeStyles} from "../../styles/homeStyles";
+
 
 // test funcs
 // exports.sum = function(a, b) {
@@ -16,6 +18,7 @@ import { fetchApi } from "../../actions";
 
 export const GrantList = props => {
   console.log("GrantList props", props);
+  const styles = homeStyles();
 
   useEffect(() => {
     if (props.data.length === 0) {
@@ -30,6 +33,7 @@ export const GrantList = props => {
   // console.log(user);
   return (
     <div>
+      <p className={styles.results}>{props.data.length} Results</p>
       {props.data.length > 0 ? (
         props.data.map(grant => {
           return <Grant grant={grant} key={grant.id} />;
