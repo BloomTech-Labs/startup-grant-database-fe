@@ -13,7 +13,6 @@ import { connect } from "react-redux";
 import { filterGrants, saveFilters } from "../actions/index";
 
 
-
 const Filters = ({ saveFilters, filterGrants, savedFilters, location }) => {
   const [filters, setFilters] = useState({
     amount: [],

@@ -24,8 +24,12 @@ const useStyles = makeStyles(theme => ({
       }
     },
     "& p": {
-      fontFamily: "Roboto",
-      margin: "15px"
+      fontFamily: "adobe-garamond-pro",
+      fontSize: "32px",
+      margin: "5%",
+      [theme.breakpoints.down("xs")]: {
+        fontSize: "18px"
+      }
     },
     [theme.breakpoints.down("xs")]: {
       margin: "1rem",
@@ -49,10 +53,15 @@ const useStyles = makeStyles(theme => ({
     "& button": {
       fontFamily: "Roboto",
       marginTop: "35px",
+      borderRadius: "2px",
       [theme.breakpoints.down("sm")]: {
         marginBottom: "30px"
       }
     }
+  },
+  button: {
+    width: "266px",
+    height: "58px"
   }
 }));
 
@@ -77,7 +86,11 @@ function Landing(props) {
               are eligible for.
             </p>
             <Link to="/grants" className={classes.link}>
-              <Button variant="outlined" color="primary" size="Large">
+              <Button
+                className={classes.button}
+                variant="outlined"
+                color="primary"
+              >
                 View All Grants
               </Button>
             </Link>

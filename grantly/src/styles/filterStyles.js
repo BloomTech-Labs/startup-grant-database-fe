@@ -4,12 +4,12 @@ export const useStylesGrants = makeStyles(theme => ({
     card: {
       position: "fixed",
       marginTop: "2em",
-      minHeight: "100vh",
+      borderRadius: "2px",
       width: "15%",
+    height: "100vh",
       [theme.breakpoints.down("sm")]: {
         position: "initial",
-        marginTop: "0",
-        minHeight: "initial"
+        marginTop: "0"
       }
     },
     filterCard: {
@@ -26,8 +26,10 @@ export const useStylesGrants = makeStyles(theme => ({
       alignSelf: "flex-start",
       textAlign: "left",
       fontSize: "1.2rem",
-      color: "#464646",
-      fontWeight: "bold"
+      fontFamily: "Nunito Sans",
+      color: "#222222",
+      marginBottom: "10px"
+      // fontWeight: "bold"
     },
     set: {
       width: "60%",
@@ -39,9 +41,9 @@ export const useStylesGrants = makeStyles(theme => ({
     }
   }));
   
- export const useStylesLanding = makeStyles(theme => ({
+  export const useStylesLanding = makeStyles(theme => ({
     title: {
-      marginBottom: "15px",
+      marginBottom: "20px",
       fontSize: "2rem",
       [theme.breakpoints.down("xs")]: {
         paddingLeft: "10px",
@@ -50,7 +52,8 @@ export const useStylesGrants = makeStyles(theme => ({
     },
     card: {
       marginRight: "2rem",
-      padding: "30px",
+      padding: "48px",
+      borderRadius: "2px",
       [theme.breakpoints.down("sm")]: {
         width: "100%",
         borderRadius: 0
@@ -76,8 +79,10 @@ export const useStylesGrants = makeStyles(theme => ({
       }
     },
     label: {
-      marginBottom: "20px",
+      marginBottom: "10px",
       fontSize: "1.4rem",
+      fontFamily: "Nunito Sans",
+      color: "#222222",
       [theme.breakpoints.down("sm")]: {
         textAlign: "left"
       }
@@ -102,6 +107,9 @@ export const useStylesGrants = makeStyles(theme => ({
         marginTop: "45px",
         color: "white",
         fontFamily: "Roboto",
+        borderRadius: "2px",
+        height: "58px",
+        width: "266px",
         [theme.breakpoints.down("xs")]: {
           marginTop: "10px",
           marginBottom: "20px"
@@ -109,3 +117,4 @@ export const useStylesGrants = makeStyles(theme => ({
       }
     }
   }));
+  
