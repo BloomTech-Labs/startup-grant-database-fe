@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { makeStyles } from "@material-ui/core/styles";
+import {useStylesGrants, useStylesLanding} from "../styles/filterStyles"
 import Checkbox from "@material-ui/core/Checkbox";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import FormControl from "@material-ui/core/FormControl";
@@ -12,115 +12,7 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { filterGrants, saveFilters } from "../actions/index";
 
-const useStylesGrants = makeStyles(theme => ({
-  card: {
-    position: "fixed",
-    marginTop: "2em",
-    minHeight: "100vh",
-    width: "15%",
-    [theme.breakpoints.down("sm")]: {
-      position: "initial",
-      marginTop: "0",
-      minHeight: "initial"
-    }
-  },
-  filterCard: {
-    display: "block",
-    alignSelf: "flex-end",
-    margin: "0 auto"
-  },
-  title: {
-    fontWeight: "bold",
-    marginTop: "1em",
-    color: "#464646"
-  },
-  label: {
-    alignSelf: "flex-start",
-    textAlign: "left",
-    fontSize: "1.2rem",
-    color: "#464646",
-    fontWeight: "bold"
-  },
-  set: {
-    width: "60%",
-    alignSelf: "center",
-    margin: ".8em"
-  },
-  landingButton: {
-    display: "none"
-  }
-}));
 
-const useStylesLanding = makeStyles(theme => ({
-  title: {
-    marginBottom: "15px",
-    fontSize: "2rem",
-    [theme.breakpoints.down("xs")]: {
-      paddingLeft: "10px",
-      paddingRight: "10px"
-    }
-  },
-  card: {
-    marginRight: "2rem",
-    padding: "30px",
-    [theme.breakpoints.down("sm")]: {
-      width: "100%",
-      borderRadius: 0
-    },
-    [theme.breakpoints.down("xs")]: {
-      padding: 0,
-      paddingTop: "20px",
-      flexGrow: 2
-    }
-  },
-  set: {
-    [theme.breakpoints.down("sm")]: {
-      display: "flex",
-      flexDirection: "column",
-      justifyContent: "center",
-      width: "20%",
-      margin: "10px"
-    },
-    [theme.breakpoints.down("xs")]: {
-      width: "50%",
-      alignItems: "center",
-      alignContent: "center"
-    }
-  },
-  label: {
-    marginBottom: "20px",
-    fontSize: "1.4rem",
-    [theme.breakpoints.down("sm")]: {
-      textAlign: "left"
-    }
-  },
-  filterCard: {
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "space-evenly",
-    [theme.breakpoints.down("xs")]: {
-      marginLeft: "20px",
-      "& fieldset:nth-child(2)": {
-        display: "none"
-      },
-      "& fieldset:nth-child(3)": {
-        display: "none"
-      }
-    }
-  },
-  landingButton: {
-    textDecoration: "none",
-    "& button": {
-      marginTop: "45px",
-      color: "white",
-      fontFamily: "Roboto",
-      [theme.breakpoints.down("xs")]: {
-        marginTop: "10px",
-        marginBottom: "20px"
-      }
-    }
-  }
-}));
 
 const Filters = ({ saveFilters, filterGrants, savedFilters, location }) => {
   const [filters, setFilters] = useState({

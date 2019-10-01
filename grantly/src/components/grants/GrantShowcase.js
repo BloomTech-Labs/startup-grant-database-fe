@@ -1,7 +1,6 @@
 // Dependencies
 import React from "react";
 import { connect } from "react-redux";
-import { makeStyles } from "@material-ui/core/styles";
 import Moment from "react-moment";
 import moment from "moment";
 
@@ -14,52 +13,11 @@ import BookmarkIcon from "@material-ui/icons/Bookmark";
 import Typography from "@material-ui/core/Typography"
 
 // =========== STYLES ===========
-const useStyles = makeStyles(theme => ({
-  showcaseCard: {
-    position: "fixed",
-    textAlign: "left",
-    padding: "50px",
-    width: "45%",
-    borderTop: "#3DB8B3 5px solid",
-    minHeight: "100vh",
-    fontFamily: "adobe-garamond-pro",
-    [theme.breakpoints.down("sm")]: {
-      position: "initial",
-      width: "100%",
-      height: "auto",
-      margin: 0
-    }
-  },
-  topContent: {
-    margin: " 0",
-    fontWeight: "700",
-    // fontSize: "1.8rem"
-  },
-  grantInfo: {},
-  showcaseSpan: {
-    fontWeight: "bold"
-  },
-  showcaseDetails: {
-    marginBottom: "30px"
-  },
-  applyButton: {
-    color: "#fff",
-    margin: "20px auto"
-  },
-  showcase_header: {
-    width: "initial",
-  },
-  grant_logo: {
-    display: "inline-block",
-    marginRight: "5px",
-    background: "#ddd",
-    width: "60px",
-    height: "50px",
-  }
-}));
+import {showcaseStyles} from "../../styles/grantShowcaseStyles"
+
 
 export const GrantShowcase = props => {
-  const classes = useStyles();
+  const classes = showcaseStyles();
 
   console.log("GrantShowcase props", props);
   function formatNumbers(num) {

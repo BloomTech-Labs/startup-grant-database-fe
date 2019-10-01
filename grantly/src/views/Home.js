@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
+import {homeStyles} from "../styles/homeStyles";
 import GrantList from "../components/grants/GrantList";
 import Filters from "../components/Filters";
 import GrantShowcase from "../components/grants/GrantShowcase";
@@ -11,23 +12,7 @@ import Media from "react-media";
 import SwipeableDrawer from "@material-ui/core/SwipeableDrawer";
 import MobileFilters from "../components/MobileFilters";
 
-const useStyles = makeStyles(theme => ({
-  content: {
-    flexGrow: 1,
-    padding: theme.spacing(3)
-  },
-  gridContainer: {
-    margin: "0",
-    flexWrap: "nowrap"
-  },
-  gridItem: {
-    padding: 30
-  },
-  root: {
-    display: "flex"
-  },
-  toolbar: theme.mixins.toolbar
-}));
+
 
 const Home = props => {
   const [isOpen, setIsOpen] = useState(false);
@@ -43,7 +28,7 @@ const Home = props => {
 
     setIsOpen(!isOpen);
   };
-  const classes = useStyles();
+  const classes = homeStyles();
 
   return (
     <>
