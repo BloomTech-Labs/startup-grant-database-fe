@@ -2,10 +2,10 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 import Media from "react-media";
-import { postGrants, fetchApi } from "../actions/index.js";
+import { postGrants, fetchApi } from "../../actions/index";
 
 //Objects
-import formStyles from "../styles/FormStyles";
+import formStyles from "../grants/styles/FormStyles";
 import {
   TextField,
   MenuItem,
@@ -14,8 +14,8 @@ import {
   Container,
   Link
 } from "@material-ui/core";
-import Home from "../views/Home";
-import NavBar from "./Navbar";
+import Admin from "../../views/Landing";
+import NavBar from "../Navbar";
 
 const funding = [
   {
@@ -28,7 +28,7 @@ const funding = [
   }
 ];
 
-const AddGrant = props => {
+const GrantForm = props => {
   const [grantInfo, setGrantInfo] = useState({
     competition_name: "",
     type: "",
@@ -103,8 +103,8 @@ const AddGrant = props => {
           <div className={styles.leftBox}>
             <h1>Submit a New Grant to Founder Grants</h1>
             <p>
-              Please fill out all of the form fields on this page regarding the
-              grant you are submitting. If you are unsure of anything please
+              Please fill out all of the form feilds on this page regarding the
+              grant you are submitting. If you ate unsure of anything please
               write “N/A” Thank you!
             </p>
           </div>
@@ -317,4 +317,4 @@ const mapStateToProps = ({ grantData, isFetching, error }) => ({
 export default connect(
   mapStateToProps,
   { postGrants, fetchApi }
-)(AddGrant);
+)(GrantForm);

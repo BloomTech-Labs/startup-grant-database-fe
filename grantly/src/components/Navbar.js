@@ -2,9 +2,10 @@ import React, { useState } from "react";
 
 import { NavLink, Link } from "react-router-dom";
 import { useAuth0 } from "../react-auth0-wrapper";
+import {navStyles} from "../styles/navStyles"
 import Media from "react-media";
 import MobileTabs from "./MobileTabs";
-import { makeStyles } from "@material-ui/core/styles";
+
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
@@ -21,61 +22,10 @@ import MailIcon from "@material-ui/icons/Mail";
 import SwipeableDrawer from "@material-ui/core/SwipeableDrawer";
 import SearchBar from "./SearchBar";
 
-const useStyles = makeStyles(theme => ({
-  navButton: {
-    marginRight: theme.spacing(3),
-    color: "#000",
-    fontFamily: "Roboto"
-  },
-  title: {
-    textAlign: "left",
-    marginLeft: "20px",
-    color: "#000"
-  },
-  navbar: {
-    background: "#fff",
-    flexGrow: 1,
-    // marginBottom: "2em",
-    [theme.breakpoints.down("xs")]: {
-      padding: "0",
-      boxShadow: "none"
-      
-    }
-  },
-  log: {
-    color: "#fff",
-    fontFamily: "Roboto"
-  },
-  logout: {
-    color: "#000"
-  },
-  menu: {
-    width: "2em",
-    height: "2em",
-    padding: "0"
-  },
-  signup: {
-    marginRight: theme.spacing(3),
-    color: "#3DB8B3"
-  },
-  titleLink: {
-    flexGrow: 1,
-    textDecoration: "none"
-  },
-  link: {
-    textDecoration: "none"
-  },
-  tabs: {
-    position: "fixed",
-    marginTop: "3em"
-  }
-}));
-const homeStyles = makeStyles(theme => ({
-  marginBottom: "0",
-}))
+
 
 export const NavBar = props => {
-  const { isAuthenticated, loginWithRedirect, logout } = useAuth0();
+  const { isAuthenticated, loginWithRedirect, logout, user } = useAuth0();
   const [isOpen, setIsOpen] = useState(false);
   const toggleDrawer = open => event => {
     if (
@@ -88,7 +38,7 @@ export const NavBar = props => {
 
     setIsOpen(!isOpen);
   };
-  const classes = useStyles();
+  const classes = navStyles();
 
   const sideList = side => (
     <div
@@ -142,7 +92,7 @@ export const NavBar = props => {
       </List>
     </div>
   );
-
+                  console.log("************************", user)
   return (
     <AppBar className={classes.navbar} color="primary" position="sticky">
       <Toolbar>
