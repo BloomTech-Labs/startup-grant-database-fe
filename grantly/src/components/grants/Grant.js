@@ -38,15 +38,20 @@ export const Grant = props => {
   const styles = grantStyles();
 
   return (
-    <Card className={styles.grantCard}>
+    <Card className={styles.grantCard} onClick={selectGrant}>
       {/* ================= Bookmark Icon ================= */}
       <CardContent>
         <Grid container direction="row">
           <Grid item>Logo</Grid>
-          <Grid item>
-            <Typography variant="h5" component="h2">
-              be
+          <Grid container direction="column">
+            <Typography component="h4">
+              {props.grant.competition_name}
             </Typography>
+            <Grid item>
+              <p>https://google.com</p>
+            </Grid>
+            <Grid item> Deadline - {deadline}</Grid>
+            <Grid item>Amount - ${props.grant.amount}</Grid>
           </Grid>
         </Grid>
       </CardContent>
