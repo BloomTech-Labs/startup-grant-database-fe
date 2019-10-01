@@ -3,7 +3,7 @@ import { makeStyles } from "@material-ui/core/styles";
 // vars
 const cardDetailsMargin = "10px";
 
-const grantStyles = makeStyles(theme => ({
+export const grantStyles = makeStyles(theme => ({
   grantCard: {
     display: "flex",
     flexDirection: "column",
@@ -45,4 +45,38 @@ const grantStyles = makeStyles(theme => ({
   }
 }));
 
-export default grantStyles;
+// =========== STYLES ===========
+export const grantShowcaseStyles = makeStyles(theme => ({
+  showcaseCard: {
+    position: "fixed",
+    textAlign: "left",
+    padding: "5px",
+    width: "50%",
+    borderTop: "#3DB8B3 5px solid",
+    height: "600px",
+    fontFamily: "adobe-garamond-pro",
+    [theme.breakpoints.down("sm")]: {
+      position: "initial",
+      width: "100%",
+      height: "auto",
+      margin: 0
+    }
+  },
+  topContent: {
+    margin: "20px",
+    fontWeight: "700",
+    fontSize: "1.8rem"
+  },
+  grantInfo: {
+    padding: "0 20px"
+  },
+  showcaseSpan: {
+    fontWeight: "bold"
+  },
+  showcaseDetails: {
+    marginBottom: "30px"
+  },
+  applyButton: {
+    color: "#fff"
+  }
+}));
