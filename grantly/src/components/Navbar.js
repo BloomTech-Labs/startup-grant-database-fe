@@ -166,13 +166,17 @@ export const NavBar = props => {
               </Button>
             </NavLink>
             {isAuthenticated && (
-              <Button
-                className={classes.navButton}
-                color="inherit"
-                onClick={() => console.log("Why you gotta push me like that?")}
-              >
-                Admin
-              </Button>
+              <NavLink to="/admin" className={classes.link}>
+                <Button
+                  className={classes.navButton}
+                  color="inherit"
+                  onClick={() =>
+                    console.log("Why you gotta push me like that?")
+                  }
+                >
+                  Admin
+                </Button>
+              </NavLink>
             )}
             <a
               className={classes.link}
