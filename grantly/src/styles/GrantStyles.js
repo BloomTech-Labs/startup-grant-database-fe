@@ -29,7 +29,7 @@ const grantStyles = makeStyles(theme => ({
   },
   grant_info: {
     alignSelf: "stretch",
-    margin: "0 10px",
+    margin: "0 20px",
     color: "#696969"
   },
   grant_subinfo: {
@@ -43,7 +43,9 @@ const grantStyles = makeStyles(theme => ({
     // border: "1px solid fuchsia"
   },
   bookmark: {
-    alignSelf: "flex-start"
+    alignSelf: "flex-start",
+    fill: "#C4C4C4"
+
     // border: "1px solid fuchsia"
   },
   phantom: {

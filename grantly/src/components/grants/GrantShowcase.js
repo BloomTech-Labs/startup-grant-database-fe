@@ -65,7 +65,7 @@ export const GrantShowcase = props => {
             <div className={classes.grant_logo}></div>
             </Grid>
           <Grid item>
-            <Typography variant="h4" component="h4" display="inline-block">
+            <Typography className={classes.grant_name} variant="h4" component="h4" display="inline-block">
               {props.grant.competition_name}
             </Typography>
 
@@ -73,7 +73,7 @@ export const GrantShowcase = props => {
           </Grid>
           <Grid direction="row" justify="flex-end" alignItems="flex-start">
             <Grid item>
-              <BookmarkBorderOutlinedIcon></BookmarkBorderOutlinedIcon>
+              <BookmarkBorderOutlinedIcon className={classes.bookmark}></BookmarkBorderOutlinedIcon>
               {/* <BookmarkIcon></BookmarkIcon> */}
             </Grid>
           </Grid>
