@@ -78,5 +78,10 @@ export const grantShowcaseStyles = makeStyles(theme => ({
   },
   applyButton: {
     color: "#fff"
+  },
+  modal: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center"
   }
 }));

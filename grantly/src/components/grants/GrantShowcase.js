@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { grantShowcaseStyles } from "./styles/GrantStyles";
 import Moment from "react-moment";
 import moment from "moment";
+import { makeStyles } from "@material-ui/core/styles";
 
 // Objects
 import Card from "@material-ui/core/Card";
@@ -12,6 +13,7 @@ import Button from "@material-ui/core/Button";
 import BookmarkBorderOutlinedIcon from "@material-ui/icons/BookmarkBorderOutlined";
 import Modal from "@material-ui/core/Modal";
 import Fade from "@material-ui/core/Fade";
+import Backdrop from "@material-ui/core/Backdrop";
 
 import BookmarkIcon from "@material-ui/icons/Bookmark";
 
@@ -51,13 +53,13 @@ export const GrantShowcase = props => {
     " or in about " +
       moment(props.grant.most_recent_application_due_date).fromNow();
 
-  console.log("moment test", momentDeadline);
-  // console.log("GrantShowcase props", props);
+  // console.log("moment test", momentDeadline);
 
   if (props.isFetching) {
     return <div></div>;
   }
 
+  console.log("GrantShowcase open", open);
   return (
     <Card className={classes.showcaseCard}>
       {/* ================= Bookmark Icon ================= */}
@@ -165,11 +167,25 @@ export const GrantShowcase = props => {
             className={classes.applyButton}
             variant="contained"
             color="primary"
-            onClick={() => console.log("suggest changes firing")}
+            onClick={handleOpen}
           >
             Suggest Changes
           </Button>
         </Grid>
+        <Modal
+          className={classes.modal}
+          open={open}
+          onClose={handleClose}
+          closeAfterTransition
+          BackdropComponent={Backdrop}
+          BackdropProps={{ timeout: 500 }}
+        >
+          <Fade in={open}>
+            <div>
+              <div>You made it work</div>
+            </div>
+          </Fade>
+        </Modal>
       </Grid>
     </Card>
   );
