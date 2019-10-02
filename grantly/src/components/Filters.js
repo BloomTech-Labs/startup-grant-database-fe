@@ -28,14 +28,15 @@ const useStylesGrants = makeStyles(theme => ({
     margin: "0 auto"
   },
   title: {
-    fontWeight: "bold",
+    // fontWeight: "bold",
+    fontSize: "2rem",
     marginTop: "1em",
     color: "#464646"
   },
   label: {
     alignSelf: "flex-start",
     textAlign: "left",
-    fontSize: "1.2rem",
+    fontSize: "20px",
     fontFamily: "Nunito Sans",
     color: "#222222",
     marginBottom: "10px"
@@ -71,7 +72,8 @@ const useStylesLanding = makeStyles(theme => ({
     [theme.breakpoints.down("xs")]: {
       padding: 0,
       paddingTop: "20px",
-      flexGrow: 2
+      flexGrow: 2,
+      height: "40%"
     }
   },
   set: {
@@ -90,7 +92,7 @@ const useStylesLanding = makeStyles(theme => ({
   },
   label: {
     marginBottom: "10px",
-    fontSize: "1.4rem",
+    fontSize: "20px",
     fontFamily: "Nunito Sans",
     color: "#222222",
     [theme.breakpoints.down("sm")]: {
