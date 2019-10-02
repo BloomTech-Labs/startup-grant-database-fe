@@ -21,11 +21,12 @@ import InboxIcon from "@material-ui/icons/MoveToInbox";
 import MailIcon from "@material-ui/icons/Mail";
 import SwipeableDrawer from "@material-ui/core/SwipeableDrawer";
 import SearchBar from "./SearchBar";
+import ExternalApi from "../util/ExternalApi";
 
 
 
 export const NavBar = props => {
-  const { isAuthenticated, loginWithRedirect, logout, user } = useAuth0();
+  const { isAuthenticated, loginWithRedirect, logout, user,  getTokenSilently } = useAuth0();
   const [isOpen, setIsOpen] = useState(false);
   const toggleDrawer = open => event => {
     if (
@@ -39,7 +40,26 @@ export const NavBar = props => {
     setIsOpen(!isOpen);
   };
   const classes = navStyles();
+  const callApi = async () => {
+    try {
+      const token = await getTokenSilently();
 
+      const response = await fetch("/api/external", {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
+
+      console.log("AUTH *****************", token);
+      const responseData = await response.json();
+
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  //If user is logged in call to get access token
+{isAuthenticated && callApi()}
   const sideList = side => (
     <div
       role="presentation"

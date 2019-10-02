@@ -11,6 +11,11 @@ export const theme = createMuiTheme({
       root: {
         transition: "all .2s ease-in-out"
       }
+    },
+    MuiBox: {
+      root: {
+        padding: "0",
+      }
     }
   },
 

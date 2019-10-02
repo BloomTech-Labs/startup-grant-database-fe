@@ -68,6 +68,7 @@ const Filters = ({ saveFilters, filterGrants, savedFilters, location }) => {
   location === "/grants" ? classes = grantStyles : classes = landingStyles;
 
   return (
+
     <Card className={classes.card}>
       <Typography className={classes.title} variant="h5" component="h2">
         {location === "/"

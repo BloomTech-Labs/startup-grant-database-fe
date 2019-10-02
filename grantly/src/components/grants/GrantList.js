@@ -28,7 +28,7 @@ export const GrantList = props => {
   }, [props.data]);
 
   if (props.isFetching) {
-    return <Loader type="Triangle" color="#00BFFF" height="100" width="100" />;
+    return <Loader type="Triangle" color="#3DB8B3" height="100" width="100" />;
   }
   // console.log(user);
   return (

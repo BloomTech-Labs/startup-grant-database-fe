@@ -26,8 +26,10 @@ import { makeStyles } from "@material-ui/core/styles";
       left: "25%",
       margin: "10px",
       color: "#464646",
-      borderBottom: "2px solid #3DB8B3"
-
+      borderBottom: "2px solid #3DB8B3",
+      [theme.breakpoints.down("sm")]: {
+        display: "none",
+      }
     },
     root: {
       display: "flex"
