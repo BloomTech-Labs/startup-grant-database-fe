@@ -1,5 +1,5 @@
 {
   "domain": "founder-grants.auth0.com",
   "clientId": "F7IQ07DmUMWVnqKE0D34lJx67vAd3a2e",
-  "audience": "https://grantly-staging.herokuapp.com/api/grants"
+  "audience": "http://localhost:5000/api/admin"
 }
