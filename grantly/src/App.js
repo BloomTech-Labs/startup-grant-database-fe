@@ -12,12 +12,14 @@ import Admin from "./views/Admin";
 import { ThemeProvider } from "@material-ui/styles";
 import { theme } from "./styles/Theme";
 import Landing from "./views/Landing";
+import LoginForm from "./components/LoginForm";
 
 function App() {
   return (
     <Router>
       <ThemeProvider theme={theme}>
         <div className="App">
+          {/* <Route path = "/login" component={LoginForm} /> */}
           <Route exact path="/" component={Landing} />
           <Route exact path="/grants" component={Home} />
           <Route path="/form" component={SubmitForm} />

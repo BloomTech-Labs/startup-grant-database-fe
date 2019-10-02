@@ -1,6 +1,6 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
+import {mobileFilterStyles} from "../styles/mobileFilterStyles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
@@ -19,32 +19,9 @@ import SortIcon from "@material-ui/icons/Sort"
 import SearchIcon from "@material-ui/icons/Search";
 import MoreIcon from "@material-ui/icons/MoreVert";
 
-const useStyles = makeStyles(theme => ({
-  text: {
-    padding: theme.spacing(2, 2, 0)
-  },
-  paper: {
-    paddingBottom: 50
-  },
-  list: {
-    marginBottom: theme.spacing(2)
-  },
-  subheader: {
-    backgroundColor: theme.palette.background.paper
-  },
-  appBar: {
-    top: "auto",
-    bottom: "0",
-    background: "#fff"
-  },
-  filter: {
-    display: "flex",
-    justifyContent: "center"
-  },
 
-}));
 const MobileFilters = ({toggleDrawer}) => {
-  const classes = useStyles();
+  const classes = mobileFilterStyles();
 
   return (
     <div>

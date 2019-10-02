@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import { makeStyles, useTheme } from "@material-ui/core/styles";
+import { useTheme } from "@material-ui/core/styles";
+import {mobileTabStyles} from "../styles/mobileTabStyles";
 
 import SwipeableViews from "react-swipeable-views";
 import Tabs from "@material-ui/core/Tabs";
@@ -37,25 +38,9 @@ function a11yProps(index) {
     "aria-controls": `full-width-tabpanel-${index}`
   };
 }
-const useStyles = makeStyles(theme => ({
-  root: {
-    backgroundColor: theme.palette.background.paper
-  },
-  tab: {
-    color: "#3DB8B3"
-  },
-  tabPos: {
-    top: "10%"
-  },
-  swipe: {
-    position: "fixed",
-    top: "auto",
-    bottom: "0",
-    background: "#fff"
-  },
-}));
+
 const MobileTabs = ({ grant, currentTab, changeTab }) => {
-  const classes = useStyles();
+  const classes = mobileTabStyles();
   const theme = useTheme();
   const [value, setValue] = React.useState(0);
   useEffect(() => {

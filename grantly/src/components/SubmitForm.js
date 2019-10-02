@@ -5,7 +5,7 @@ import Media from "react-media";
 import { postGrants, fetchApi } from "../actions/index.js";
 
 //Objects
-import formStyles from "./grants/styles/FormStyles";
+import formStyles from "../styles/FormStyles";
 import {
   TextField,
   MenuItem,

@@ -2,9 +2,10 @@ import React, { useState } from "react";
 
 import { NavLink, Link } from "react-router-dom";
 import { useAuth0 } from "../react-auth0-wrapper";
+import { navStyles } from "../styles/navStyles";
 import Media from "react-media";
 import MobileTabs from "./MobileTabs";
-import { makeStyles } from "@material-ui/core/styles";
+
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
@@ -74,7 +75,7 @@ const homeStyles = makeStyles(theme => ({
 }));
 
 export const NavBar = props => {
-  const { isAuthenticated, loginWithRedirect, logout } = useAuth0();
+  const { isAuthenticated, loginWithRedirect, logout, user } = useAuth0();
   const [isOpen, setIsOpen] = useState(false);
   const toggleDrawer = open => event => {
     if (
@@ -87,7 +88,7 @@ export const NavBar = props => {
 
     setIsOpen(!isOpen);
   };
-  const classes = useStyles();
+  const classes = navStyles();
 
   const sideList = side => (
     <div
@@ -141,7 +142,7 @@ export const NavBar = props => {
       </List>
     </div>
   );
-
+  console.log("************************", user);
   return (
     <AppBar className={classes.navbar} color="primary" position="sticky">
       <Toolbar>
