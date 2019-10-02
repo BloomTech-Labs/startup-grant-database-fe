@@ -23,6 +23,16 @@ import { showcaseStyles } from "../../styles/grantShowcaseStyles";
 export const GrantShowcase = props => {
   const classes = showcaseStyles();
 
+  const [open, setOpen] = React.useState(false);
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
   console.log("GrantShowcase props", props);
   function formatNumbers(num) {
     return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
