@@ -9,15 +9,14 @@ import moment from "moment";
 import Card from "@material-ui/core/Card";
 import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
-import BookmarkBorderOutlinedIcon from '@material-ui/icons/BookmarkBorderOutlined';
+import BookmarkBorderOutlinedIcon from "@material-ui/icons/BookmarkBorderOutlined";
 
 import BookmarkIcon from "@material-ui/icons/Bookmark";
 
-import Typography from "@material-ui/core/Typography"
+import Typography from "@material-ui/core/Typography";
 
 // =========== STYLES ===========
-import {showcaseStyles} from "../../styles/grantShowcaseStyles"
-
+import { showcaseStyles } from "../../styles/grantShowcaseStyles";
 
 export const GrantShowcase = props => {
   const classes = showcaseStyles();
@@ -60,26 +59,35 @@ export const GrantShowcase = props => {
           alignItems="center"
           className={classes.topContent}
         >
-          <Grid container className={classes.showcase_header} alignItems="center">
+          <Grid
+            container
+            className={classes.showcase_header}
+            alignItems="center"
+          >
             <Grid item>
-
-            <div className={classes.grant_logo}></div>
+              <div className={classes.grant_logo}></div>
             </Grid>
-          <Grid item>
-            <Typography className={classes.grant_name} variant="h4" component="h4" display="inline-block">
-              {props.grant.competition_name}
-            </Typography>
-
-          </Grid>
+            <Grid item>
+              <Typography
+                className={classes.grant_name}
+                variant="h4"
+                component="h4"
+                display="inline-block"
+              >
+                {props.grant.competition_name}
+              </Typography>
+            </Grid>
           </Grid>
           <Grid direction="row" justify="flex-end" alignItems="flex-start">
             <Grid item>
-              <BookmarkBorderOutlinedIcon className={classes.bookmark}></BookmarkBorderOutlinedIcon>
+              <BookmarkBorderOutlinedIcon
+                className={classes.bookmark}
+              ></BookmarkBorderOutlinedIcon>
               {/* <BookmarkIcon></BookmarkIcon> */}
             </Grid>
           </Grid>
         </Grid>
-
+      </div>
 
       {/* ================= Main content ================= */}
 

@@ -8,13 +8,9 @@ import { selectGrant } from "../../actions";
 import Container from "@material-ui/core/Container";
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
-import BookmarkBorderOutlinedIcon from '@material-ui/icons/BookmarkBorderOutlined';
+import BookmarkBorderOutlinedIcon from "@material-ui/icons/BookmarkBorderOutlined";
 import BookmarkIcon from "@material-ui/icons/Bookmark";
-<<<<<<< HEAD
 import { grantStyles } from "./styles/GrantStyles";
-=======
-import grantStyles from "../../styles/GrantStyles";
->>>>>>> f76d87a5e15145c9e66a5c63348e4fb341682888
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
@@ -41,7 +37,14 @@ export const Grant = props => {
   );
   const styles = grantStyles();
   return (
-    <Card className={props.grantShowcase.id === props.grant.id ? styles.grantCardSeleted : styles.grantCard} onClick={selectGrant}>
+    <Card
+      className={
+        props.grantShowcase.id === props.grant.id
+          ? styles.grantCardSeleted
+          : styles.grantCard
+      }
+      onClick={selectGrant}
+    >
       {/* ================= Bookmark Icon ================= */}
       <div className={styles.grant_layout}>
         <Grid item className={styles.grant_logo}></Grid>
@@ -76,7 +79,9 @@ export const Grant = props => {
             </Typography>
           </Grid>
         </Grid>
-        <BookmarkBorderOutlinedIcon className={styles.bookmark}></BookmarkBorderOutlinedIcon>
+        <BookmarkBorderOutlinedIcon
+          className={styles.bookmark}
+        ></BookmarkBorderOutlinedIcon>
         {/* <BookmarkIcon className={styles.bookmark}></BookmarkIcon> */}
       </div>
       {/* <Grid
@@ -127,12 +132,11 @@ export const Grant = props => {
   );
 };
 
-const mapStateToProps = ({grantShowcase}) => {
- return{
-   grantShowcase
-  } 
-}
-
+const mapStateToProps = ({ grantShowcase }) => {
+  return {
+    grantShowcase
+  };
+};
 
 export default connect(
   mapStateToProps,
