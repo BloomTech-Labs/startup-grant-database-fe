@@ -32,7 +32,7 @@ const Home = props => {
 
   return (
     <>
-      <Navbar location={props.location.pathname} />
+      {/* <Navbar location={props.location.pathname} /> */}
       {/* <SearchBar /> */}
       <Media query="(max-width:850px)">
         {matches =>
