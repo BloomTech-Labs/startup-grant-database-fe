@@ -129,7 +129,7 @@ export const GrantShowcase = props => {
             variant="contained"
             color="primary"
           >
-            Edit Grant
+            Suggest Changes
           </Button>
         </Grid>
       </Grid>
