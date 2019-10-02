@@ -63,25 +63,8 @@ export const GrantShowcase = props => {
         <Grid item>
           <h2>{props.grant.competition_name}</h2>
         </Grid>
-        <Grid item>
-          <Button
-            className={classes.applyButton}
-            variant="contained"
-            color="primary"
-          >
-            Apply to Grant
-          </Button>
-        </Grid>
-        <Grid item>
-          <Button
-            className={classes.applyButton}
-            variant="contained"
-            color="primary"
-          >
-            Edit Grant
-          </Button>
-        </Grid>
       </Grid>
+
       {/* ================= Main content ================= */}
       <Grid
         container
@@ -122,6 +105,32 @@ export const GrantShowcase = props => {
         <Grid item className={classes.showcaseDetails}>
           <span className={classes.showcaseSpan}>Notes: </span>
           {props.grant.notes}
+        </Grid>
+      </Grid>
+      <Grid
+        container
+        direction="row"
+        justify="space-evenly"
+        alignItems="center"
+        className={classes.topContent}
+      >
+        <Grid item>
+          <Button
+            className={classes.applyButton}
+            variant="contained"
+            color="primary"
+          >
+            Apply to Grant
+          </Button>
+        </Grid>
+        <Grid item>
+          <Button
+            className={classes.applyButton}
+            variant="contained"
+            color="primary"
+          >
+            Edit Grant
+          </Button>
         </Grid>
       </Grid>
     </Card>
