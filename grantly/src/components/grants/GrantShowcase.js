@@ -153,6 +153,7 @@ export const GrantShowcase = props => {
             className={classes.applyButton}
             variant="contained"
             color="primary"
+            onClick={() => console.log("suggest changes firing")}
           >
             Suggest Changes
           </Button>
