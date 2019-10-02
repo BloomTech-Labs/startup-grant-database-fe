@@ -26,12 +26,14 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
-    <link rel="stylesheet" href="https://use.typekit.net/mqo1rdw.css" />
+    <link rel="stylesheet" href="https://use.typekit.net/mqo1rdw.css">
 
+    <link rel="stylesheet" href="https://cdn.auth0.com/ulp/react-components/1.0.0-beta.199/css/main.cdn.min.css">
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
     />
+
     <link
       href="https://fonts.googleapis.com/css?family=Nunito+Sans&display=swap"
       rel="stylesheet"
@@ -56,5 +58,8 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
+    <script id="client-scripts" type="text/javascript">
+      !function(){var e,t={exports:function(r,n){function s(e,t,r){return e.addEventListener(t,r)}function o(e,t){return e.getAttribute(t)}function i(e){return"string"==typeof e}function a(e,t,r){return e.setAttribute(t,r)}return{addClass:function(e,t){if(e.classList)return e.classList.add(t);var r=e.className.split(" ");-1===r.indexOf(t)&&(r.push(t),e.className=r.join(" "))},toggleClass:function(e,t){if(e.classList)return e.classList.toggle(t);var r=e.className.split(" "),n=r.indexOf(t);-1!==n?r.splice(n,1):r.push(t),e.className=r.join(" ")},addClickListener:function(e,t){return s(e,"click",t)},addEventListener:s,getAttribute:o,getElementById:function(e){return n.getElementById(e)},getParent:function(e){return e.parentNode},isString:i,poll:function(e){var o=e.interval||2e3,t=e.url||r.location.href,i=e.condition||function(){return!0},a=e.onSuccess||function(){},u=e.onError||function(){};return setTimeout(function n(){var s=new XMLHttpRequest;return s.open("GET",t),s.setRequestHeader("Accept","application/json"),s.onload=function(){if(200===s.status){var e="application/json"===s.getResponseHeader("Content-Type").split(";")[0]?JSON.parse(s.responseText):s.responseText;return i(e)?a():setTimeout(n,o)}if(429!==s.status)return u({status:s.status,responseText:s.responseText});var t=1e3*Number.parseInt(s.getResponseHeader("X-RateLimit-Reset")),r=t-(new Date).getTime();return setTimeout(n,o<r?r:o)},s.send()},o)},querySelector:function(e,t){return i(e)?n.querySelector(e):e.querySelector(t)},querySelectorAll:function(e,t){var r=i(e)?n.querySelectorAll(e):e.querySelectorAll(t);return Array.prototype.slice.call(r)},removeClass:function(e,t){if(e.classList)return e.classList.remove(t);var r=e.className.split(" "),n=r.indexOf(t);-1!==n&&(r.splice(n,1),e.className=r.join(" "))},setAttribute:a,swapAttributes:function(e,t,r){var n=o(e,t),s=o(e,r);a(e,r,n),a(e,t,s)}}}}.exports(window,document);((e={}).exports=function(s,e,o,i,a,u){e("div.input-container.password").forEach(function(e){var r,n,t=s(e,"input");o(e,(r=e,n=t,function(e){if(!(e.offsetX<r.offsetWidth-45)){n.type="password"===n.type?"text":"password";var t=u(n);"text"===n.type?i(t,"show"):a(t,"show")}}))})},e.exports)(t.querySelector,t.querySelectorAll,t.addClickListener,t.addClass,t.removeClass,t.getParent),{exports:function(e,n,s,t){var r=e(".ulp-outer"),o=e("#alert-trigger"),i=e(".ulp-alert-dropdown-outer"),a=e(".alert-list"),u=!1;o&&a&&r&&t(r,function(e){var t=e.target===o,r=a.contains(e.target);return t&&!u?(n(i,"show"),void(u=!0)):t&&u||u&&!r?(s(i,"show"),void(u=!1)):void 0})}}.exports(t.querySelector,t.addClass,t.removeClass,t.addClickListener)}();
+      </script>
   </body>
 </html>

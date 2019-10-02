@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { makeStyles } from "@material-ui/core/styles";
+import { useStylesGrants, useStylesLanding } from "../styles/filterStyles";
 import Checkbox from "@material-ui/core/Checkbox";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import FormControl from "@material-ui/core/FormControl";
@@ -11,124 +11,6 @@ import Button from "@material-ui/core/Button";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { filterGrants, saveFilters } from "../actions/index";
-
-const useStylesGrants = makeStyles(theme => ({
-  card: {
-    position: "fixed",
-    marginTop: "2em",
-    borderRadius: "2px",
-    [theme.breakpoints.down("sm")]: {
-      position: "initial",
-      marginTop: "0"
-    }
-  },
-  filterCard: {
-    display: "block",
-    alignSelf: "flex-end",
-    margin: "0 auto"
-  },
-  title: {
-    // fontWeight: "bold",
-    fontSize: "2rem",
-    marginTop: "1em",
-    color: "#464646"
-  },
-  label: {
-    alignSelf: "flex-start",
-    textAlign: "left",
-    fontSize: "20px",
-    fontFamily: "Nunito Sans",
-    color: "#222222",
-    marginBottom: "10px"
-    // fontWeight: "bold"
-  },
-  set: {
-    width: "60%",
-    alignSelf: "center",
-    margin: ".8em"
-  },
-  landingButton: {
-    display: "none"
-  }
-}));
-
-const useStylesLanding = makeStyles(theme => ({
-  title: {
-    marginBottom: "20px",
-    fontSize: "2rem",
-    [theme.breakpoints.down("xs")]: {
-      paddingLeft: "10px",
-      paddingRight: "10px"
-    }
-  },
-  card: {
-    marginRight: "2rem",
-    padding: "48px",
-    borderRadius: "2px",
-    [theme.breakpoints.down("sm")]: {
-      width: "100%",
-      borderRadius: 0
-    },
-    [theme.breakpoints.down("xs")]: {
-      padding: 0,
-      paddingTop: "20px",
-      flexGrow: 2,
-      height: "40%"
-    }
-  },
-  set: {
-    [theme.breakpoints.down("sm")]: {
-      display: "flex",
-      flexDirection: "column",
-      justifyContent: "center",
-      width: "20%",
-      margin: "10px"
-    },
-    [theme.breakpoints.down("xs")]: {
-      width: "50%",
-      alignItems: "center",
-      alignContent: "center"
-    }
-  },
-  label: {
-    marginBottom: "10px",
-    fontSize: "20px",
-    fontFamily: "Nunito Sans",
-    color: "#222222",
-    [theme.breakpoints.down("sm")]: {
-      textAlign: "left"
-    }
-  },
-  filterCard: {
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "space-evenly",
-    [theme.breakpoints.down("xs")]: {
-      marginLeft: "20px",
-      "& fieldset:nth-child(2)": {
-        display: "none"
-      },
-      "& fieldset:nth-child(3)": {
-        display: "none"
-      }
-    }
-  },
-  landingButton: {
-    textDecoration: "none",
-    "& button": {
-      marginTop: "45px",
-      color: "white",
-      fontFamily: "Roboto",
-      borderRadius: "2px",
-      height: "58px",
-      width: "266px",
-      [theme.breakpoints.down("xs")]: {
-        marginTop: "10px",
-        marginBottom: "20px"
-      }
-    }
-  }
-}));
 
 const Filters = ({ saveFilters, filterGrants, savedFilters, location }) => {
   const [filters, setFilters] = useState({
@@ -183,6 +65,7 @@ const Filters = ({ saveFilters, filterGrants, savedFilters, location }) => {
   const landingStyles = useStylesLanding();
   let classes;
   location === "/grants" ? (classes = grantStyles) : (classes = landingStyles);
+
   return (
     <Card className={classes.card}>
       <Typography className={classes.title} variant="h5" component="h2">

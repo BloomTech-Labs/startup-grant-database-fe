@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import {homeStyles} from "../styles/homeStyles";
 import GrantList from "../components/grants/GrantList";
 import Filters from "../components/Filters";
 import GrantShowcase from "../components/grants/GrantShowcase";
@@ -12,12 +11,28 @@ import Media from "react-media";
 import SwipeableDrawer from "@material-ui/core/SwipeableDrawer";
 import MobileFilters from "../components/MobileFilters";
 
+const useStyles = makeStyles(theme => ({
+  content: {
+    flexGrow: 1,
+    padding: theme.spacing(3)
+  },
+  gridContainer: {
+    margin: "0",
+    flexWrap: "nowrap"
+  },
+  gridItem: {
+    padding: 30
+  },
+  root: {
+    display: "flex"
+  },
+  toolbar: theme.mixins.toolbar
+}));
 
-
-const Home = props => {
+const Admin = props => {
   const [isOpen, setIsOpen] = useState(false);
   const toggleDrawer = open => event => {
-    console.log("toggle")
+    console.log("toggle");
     if (
       event &&
       event.type === "keydown" &&
@@ -28,17 +43,17 @@ const Home = props => {
 
     setIsOpen(!isOpen);
   };
-  const classes = homeStyles();
+  const classes = useStyles();
 
   return (
     <>
-      {/* <Navbar location={props.location.pathname} /> */}
+      <Navbar location={props.location.pathname} />
       {/* <SearchBar /> */}
       <Media query="(max-width:850px)">
         {matches =>
           matches ? (
             <>
-              <MobileTabs /> 
+              <MobileTabs />
               <MobileFilters />
               <SwipeableDrawer
                 anchor="bottom"
@@ -60,10 +75,10 @@ const Home = props => {
               >
                 <Grid
                   item
-                  md={3}
-                  xs={12}
-                  className={classes.grantList}
-                  // style={{ padding: "30px 0 0 30px" }}
+                  md={4}
+                  xs={4}
+                  className={classes.gridItem}
+                  style={{ padding: "30px 0 0 30px" }}
                 >
                   {/* <div className={classes.scrollBox}> */}
                   <GrantList />
@@ -71,14 +86,11 @@ const Home = props => {
                 </Grid>
                 <Grid
                   item
-                  xs={6}
+                  xs={8}
                   className={classes.gridItem}
                   style={{ padding: "30px 30px 0 30px" }}
                 >
                   <GrantShowcase />
-                </Grid>
-                <Grid item xs={2}>
-                  <Filters location={props.location.pathname} />
                 </Grid>
               </Grid>
             </div>
@@ -89,4 +101,4 @@ const Home = props => {
   );
 };
 
-export default Home;
+export default Admin;

@@ -2,9 +2,10 @@ import React, { useState } from "react";
 
 import { NavLink, Link } from "react-router-dom";
 import { useAuth0 } from "../react-auth0-wrapper";
+import {navStyles} from "../styles/navStyles"
 import Media from "react-media";
 import MobileTabs from "./MobileTabs";
-import { makeStyles } from "@material-ui/core/styles";
+
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
@@ -20,64 +21,12 @@ import InboxIcon from "@material-ui/icons/MoveToInbox";
 import MailIcon from "@material-ui/icons/Mail";
 import SwipeableDrawer from "@material-ui/core/SwipeableDrawer";
 import SearchBar from "./SearchBar";
+import ExternalApi from "../util/ExternalApi";
 
-const useStyles = makeStyles(theme => ({
-  navButton: {
-    marginRight: theme.spacing(3),
-    color: "#000",
-    fontFamily: "Nunito Sans"
-  },
-  title: {
-    textAlign: "left",
-    marginLeft: "20px",
-    color: "#000"
-  },
-  navbar: {
-    background: "#fff",
-    flexGrow: 1,
-    boxShadow: "0px 2px 6px rgba(0, 0, 0, 0.15)",
-    // marginBottom: "2em",
-    [theme.breakpoints.down("xs")]: {
-      padding: "0",
-      boxShadow: "none"
-    }
-  },
-  log: {
-    color: "#fff",
-    fontFamily: "Nunito Sans"
-  },
-  logout: {
-    color: "#000",
-    fontFamily: "Nunito Sans"
-  },
-  menu: {
-    width: "2em",
-    height: "2em",
-    padding: "0"
-  },
-  signup: {
-    marginRight: theme.spacing(3),
-    color: "#3DB8B3",
-    fontFamily: "Nunito Sans"
-  },
-  titleLink: {
-    flexGrow: 1,
-    textDecoration: "none"
-  },
-  link: {
-    textDecoration: "none"
-  },
-  tabs: {
-    position: "fixed",
-    marginTop: "3em"
-  }
-}));
-const homeStyles = makeStyles(theme => ({
-  marginBottom: "0"
-}));
+
 
 export const NavBar = props => {
-  const { isAuthenticated, loginWithRedirect, logout } = useAuth0();
+  const { isAuthenticated, loginWithRedirect, logout, user,  getTokenSilently } = useAuth0();
   const [isOpen, setIsOpen] = useState(false);
   const toggleDrawer = open => event => {
     if (
@@ -90,8 +39,27 @@ export const NavBar = props => {
 
     setIsOpen(!isOpen);
   };
-  const classes = useStyles();
+  const classes = navStyles();
+  const callApi = async () => {
+    try {
+      const token = await getTokenSilently();
 
+      const response = await fetch("/api/external", {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
+
+      console.log("AUTH *****************", token);
+      const responseData = await response.json();
+
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  //If user is logged in call to get access token
+{isAuthenticated && callApi()}
   const sideList = side => (
     <div
       role="presentation"
@@ -144,7 +112,7 @@ export const NavBar = props => {
       </List>
     </div>
   );
-
+                  console.log("************************", user)
   return (
     <AppBar className={classes.navbar} color="primary" position="sticky">
       <Toolbar>
