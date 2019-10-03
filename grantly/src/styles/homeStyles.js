@@ -18,7 +18,18 @@ import { makeStyles } from "@material-ui/core/styles";
     },
     grantList: {
       height: "90vh",
-      overflow: "auto"
+      overflow: "auto",
+      position: "relative"
+    },
+    results: {
+      position: "fixed",
+      left: "25%",
+      margin: "10px",
+      color: "#464646",
+      borderBottom: "2px solid #3DB8B3",
+      [theme.breakpoints.down("sm")]: {
+        display: "none",
+      }
     },
     root: {
       display: "flex"
