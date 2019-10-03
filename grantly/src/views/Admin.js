@@ -17,7 +17,6 @@ const useStyles = makeStyles(theme => ({
     padding: theme.spacing(3)
   },
   gridContainer: {
-    margin: "0",
     flexWrap: "nowrap"
   },
   gridItem: {
@@ -46,58 +45,23 @@ const Admin = props => {
   const classes = useStyles();
 
   return (
-    <>
+    <div>
       <Navbar location={props.location.pathname} />
-      {/* <SearchBar /> */}
-      <Media query="(max-width:850px)">
-        {matches =>
-          matches ? (
-            <>
-              <MobileTabs />
-              <MobileFilters />
-              <SwipeableDrawer
-                anchor="bottom"
-                open={isOpen}
-                onClose={toggleDrawer(false)}
-                onOpen={toggleDrawer(true)}
-              >
-                <Filters location={props.location.pathname} />
-              </SwipeableDrawer>
-            </>
-          ) : (
-            <div>
-              <Grid
-                container
-                direction="row"
-                justify="space-between"
-                alignItems="flex-start"
-                className={classes.gridContainer}
-              >
-                <Grid
-                  item
-                  md={4}
-                  xs={4}
-                  className={classes.gridItem}
-                  style={{ padding: "30px 0 0 30px" }}
-                >
-                  {/* <div className={classes.scrollBox}> */}
-                  <GrantList />
-                  {/* </div> */}
-                </Grid>
-                <Grid
-                  item
-                  xs={8}
-                  className={classes.gridItem}
-                  style={{ padding: "30px 30px 0 30px" }}
-                >
-                  <GrantShowcase />
-                </Grid>
-              </Grid>
-            </div>
-          )
-        }
-      </Media>
-    </>
+
+      <Grid
+        container
+        direction="row"
+        justify="space-between"
+        className={classes.gridContainer}
+      >
+        <Grid item xs={6} className={classes.gridItem}>
+          <GrantList />
+        </Grid>
+        <Grid item xs={8} className={classes.gridItem}>
+          <GrantShowcase />
+        </Grid>
+      </Grid>
+    </div>
   );
 };
 
