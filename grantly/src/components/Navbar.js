@@ -5,7 +5,7 @@ import { NavLink, Link } from "react-router-dom";
 import { useAuth0 } from "../react-auth0-wrapper";
 import { navStyles } from "../styles/navStyles";
 import Media from "react-media";
-import MobileTabs from "./MobileTabs";
+import MobileTabs from "./mobile/MobileTabs";
 
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
