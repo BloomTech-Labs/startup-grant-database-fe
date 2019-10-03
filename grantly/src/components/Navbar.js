@@ -73,6 +73,7 @@ export const NavBar = props => {
               <ListItemIcon>
                 {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
               </ListItemIcon>
+              
               <ListItemText primary={text} />
             </ListItem>
           )
