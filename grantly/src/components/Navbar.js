@@ -1,8 +1,9 @@
 import React, { useState } from "react";
+import { makeStyles } from "@material-ui/core/styles";
 
 import { NavLink, Link } from "react-router-dom";
 import { useAuth0 } from "../react-auth0-wrapper";
-import {navStyles} from "../styles/navStyles"
+import { navStyles } from "../styles/navStyles";
 import Media from "react-media";
 import MobileTabs from "./MobileTabs";
 
@@ -23,7 +24,57 @@ import SwipeableDrawer from "@material-ui/core/SwipeableDrawer";
 import SearchBar from "./SearchBar";
 import ExternalApi from "../util/ExternalApi";
 
-
+const useStyles = makeStyles(theme => ({
+  navButton: {
+    marginRight: theme.spacing(3),
+    color: "#000",
+    fontFamily: "Roboto"
+  },
+  title: {
+    textAlign: "left",
+    marginLeft: "20px",
+    color: "#000"
+  },
+  navbar: {
+    background: "#fff",
+    flexGrow: 1,
+    // marginBottom: "2em",
+    [theme.breakpoints.down("xs")]: {
+      padding: "0",
+      boxShadow: "none"
+    }
+  },
+  log: {
+    color: "#fff",
+    fontFamily: "Roboto"
+  },
+  logout: {
+    color: "#000"
+  },
+  menu: {
+    width: "2em",
+    height: "2em",
+    padding: "0"
+  },
+  signup: {
+    marginRight: theme.spacing(3),
+    color: "#3DB8B3"
+  },
+  titleLink: {
+    flexGrow: 1,
+    textDecoration: "none"
+  },
+  link: {
+    textDecoration: "none"
+  },
+  tabs: {
+    position: "fixed",
+    marginTop: "3em"
+  }
+}));
+const homeStyles = makeStyles(theme => ({
+  marginBottom: "0"
+}));
 
 export const NavBar = props => {
   const { isAuthenticated, loginWithRedirect, logout, user,  getTokenSilently } = useAuth0();
@@ -112,7 +163,7 @@ export const NavBar = props => {
       </List>
     </div>
   );
-                  console.log("************************", user)
+  console.log("************************", user);
   return (
     <AppBar className={classes.navbar} color="primary" position="sticky">
       <Toolbar>
@@ -136,6 +187,19 @@ export const NavBar = props => {
                 Submit a Grant
               </Button>
             </NavLink>
+            {isAuthenticated && (
+              <NavLink to="/admin" className={classes.link}>
+                <Button
+                  className={classes.navButton}
+                  color="inherit"
+                  onClick={() =>
+                    console.log("Why you gotta push me like that?")
+                  }
+                >
+                  Admin
+                </Button>
+              </NavLink>
+            )}
             <a
               className={classes.link}
               href="https://founder-grants.auth0.com/u/signup?state=g6Fo2SBUQXFxbUpIYWtyNjBUTllpM2pwdmVLNnF1Z1l2X3RDOKN0aWTZIE5zZk1pZzZKN2xIQ29fZGVEUzd4Q2hfNTFCbF9iY09oo2NpZNkgRjdJUTA3RG1VTVdWbnFLRTBEMzRsSng2N3ZBZDNhMmU"
