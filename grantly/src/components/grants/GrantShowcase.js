@@ -181,9 +181,11 @@ export const GrantShowcase = props => {
           BackdropProps={{ timeout: 500 }}
         >
           <Fade in={open}>
-            <div>
-              <div>You made it work</div>
-            </div>
+            <Grid container>
+              <div item className={classes.insideModal}>
+                You made it work
+              </div>
+            </Grid>
           </Fade>
         </Modal>
       </Grid>
