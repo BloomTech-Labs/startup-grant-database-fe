@@ -2,10 +2,11 @@ import { makeStyles } from "@material-ui/core/styles";
 
 export const useStylesGrants = makeStyles(theme => ({
     card: {
-      position: "fixed",
+      // position: "fixed",
       marginTop: "2em",
       borderRadius: "2px",
-      width: "15%",
+      // width: "15%",
+      width: "90%",
     height: "100vh",
       [theme.breakpoints.down("sm")]: {
         position: "initial",

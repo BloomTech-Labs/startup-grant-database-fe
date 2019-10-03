@@ -5,8 +5,9 @@ import { sitemapStyles } from "../styles/sitemapStyles";
 
 const Sitemap = () => {
   const styles = sitemapStyles();
+  
   return (
-    <Container className={styles.container}>
+    <div className={styles.container}>
       <Grid container spacing="8" className={styles.sitemap}>
         <Grid item className={styles.item}>
           <Typography variant="h5" component="h5">Founder Grants</Typography>
@@ -23,8 +24,13 @@ const Sitemap = () => {
         <Grid item className={styles.item}>
         <Typography variant="subtitle2">ADMIN LOGIN</Typography>
         </Grid>
+        <Grid container justify="center" alignItems="flex-end">
+
+      <Typography variant="subtitle2">&copy; 2019 FOUNDER GRANTS. ALL RIGHTS RESERVED.</Typography>
+        </Grid>
       </Grid>
-    </Container>
+
+    </div>
   );
 };
 

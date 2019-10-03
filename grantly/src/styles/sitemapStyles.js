@@ -12,13 +12,14 @@ export const sitemapStyles = makeStyles(theme => ({
         fontFamily: "Roboto, sans-serif",
         letterSpacing: "1px",
         zIndex: "3000",
+        
     },
     item: {
-        margin: "1em 5%"
+        margin: ".5em 5% 0",
     },
     sitemap: {
         height: "100%",
-        // margin: "0"
+        margin: "0 -32px",
     },
     links: {
         display: "flex",

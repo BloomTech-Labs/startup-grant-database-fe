@@ -294,9 +294,10 @@ const AddGrant = props => {
             <div>
               <Button
                 type="submit"
-                variant="outlined"
+                variant="contained"
                 color="primary"
                 size="large"
+                className={styles.submit}
               >
                 Submit
               </Button>
