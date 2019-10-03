@@ -16,6 +16,7 @@ export const mobileFilterStyles = makeStyles(theme => ({
     appBar: {
       top: "auto",
       bottom: "0",
+      position: "fixed",
       background: "#fff"
     },
     filter: {

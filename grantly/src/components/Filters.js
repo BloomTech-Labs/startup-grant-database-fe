@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {useStylesGrants, useStylesLanding} from "../styles/filterStyles"
+import { useStylesGrants, useStylesLanding } from "../styles/filterStyles";
 import Checkbox from "@material-ui/core/Checkbox";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import FormControl from "@material-ui/core/FormControl";
@@ -11,7 +11,6 @@ import Button from "@material-ui/core/Button";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { filterGrants, saveFilters } from "../actions/index";
-
 
 const Filters = ({ saveFilters, filterGrants, savedFilters, location }) => {
   const [filters, setFilters] = useState({
@@ -65,7 +64,7 @@ const Filters = ({ saveFilters, filterGrants, savedFilters, location }) => {
   const grantStyles = useStylesGrants();
   const landingStyles = useStylesLanding();
   let classes;
-  location === "/grants" ? classes = grantStyles : classes = landingStyles;
+  location === "/grants" ? (classes = grantStyles) : (classes = landingStyles);
 
   return (
     <Card className={classes.card}>

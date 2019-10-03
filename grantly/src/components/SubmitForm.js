@@ -86,9 +86,9 @@ const AddGrant = props => {
   return (
     <div>
       {/* <Container fixed> */}
-      <Media query="(max-width:850px)">
+      {/* <Media query="(max-width:850px)">
         {matches => (matches ? null : <NavBar />)}
-      </Media>
+      </Media> */}
       {/* <h1>Submit a New Grant to Founder Grants</h1> */}
       <Grid
         className={styles.grid}
