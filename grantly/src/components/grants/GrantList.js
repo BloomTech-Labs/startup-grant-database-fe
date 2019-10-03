@@ -23,7 +23,7 @@ export const GrantList = props => {
     if (props.data.length === 0) {
       props.fetchApi();
     }
-    console.log("Grants");
+    console.log("Grants", props.data);
   }, [props.data]);
 
   if (props.isFetching) {
