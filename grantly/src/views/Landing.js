@@ -16,7 +16,7 @@ function Landing(props) {
 
   return (
     <div className={classes.container}>
-      <Navbar className={classes.nav} location={props.location.pathname} />
+      {/* <Navbar className={classes.nav} location={props.location.pathname} /> */}
       <Grid
         className={classes.grid}
         container

@@ -78,6 +78,7 @@ const MobileTabs = ({ grant, currentTab, changeTab }) => {
       >
         <TabPanel value={value} index={0} dir={theme.direction}>
           <GrantList />
+
         </TabPanel>
         <TabPanel value={value} index={1} dir={theme.direction}>
           <GrantShowcase />
