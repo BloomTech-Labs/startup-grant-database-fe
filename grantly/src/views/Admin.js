@@ -46,7 +46,7 @@ const Admin = props => {
 
   return (
     <div>
-      <Navbar location={props.location.pathname} />
+      {/* <Navbar location={props.location.pathname} /> */}
 
       <Grid
         container
