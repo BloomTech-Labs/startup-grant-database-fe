@@ -33,7 +33,7 @@ export const GrantList = props => {
   return (
     <div>
       {props.data.length && (
-        <p className={styles.results}>{props.data.length} Results</p>
+        <p className={styles.results}>{props.data.length} Grants</p>
       )}
 
       {props.data.length > 0 ? (

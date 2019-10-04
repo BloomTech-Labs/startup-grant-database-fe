@@ -13,18 +13,20 @@ const Sitemap = () => {
     <div className={styles.container}>
       <Grid container spacing="8" className={styles.sitemap}>
         <Grid item className={styles.item}>
-          <Typography variant="h5" component="h5">
-            Founder Grants
-          </Typography>
+          <Link to="/" className={styles.link}>
+            <Typography variant="h5" component="h5">
+              Founder Grants
+            </Typography>
+          </Link>
         </Grid>
         <Grid item className={styles.item}>
           <ul className={styles.links}>
             <Link to="/" className={styles.link}>
               <Typography variant="subtitle2">ABOUT</Typography>
             </Link>
-            <Link to="/" className={styles.link}>
+            <a href="mailto:labs16grantly@gmail.com" className={styles.link}>
               <Typography variant="subtitle2">CONTACT</Typography>
-            </Link>
+            </a>
             <a href="https://www.1517fund.com/" className={styles.link}>
               <Typography variant="subtitle2">1517 FUND</Typography>
             </a>
@@ -32,12 +34,9 @@ const Sitemap = () => {
         </Grid>
         <Grid item className={styles.item}>
           {/* <Link to="/admin" className={styles.link}> */}
-            <Typography
-              variant="subtitle2"
-              onClick={() => loginWithRedirect({})}
-            >
-              ADMIN LOGIN
-            </Typography>
+          <Typography variant="subtitle2" onClick={() => loginWithRedirect({})}>
+            ADMIN LOGIN
+          </Typography>
           {/* </Link> */}
         </Grid>
         <Grid container justify="center" alignItems="flex-end">
