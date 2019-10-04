@@ -93,7 +93,7 @@ export const GrantShowcase = props => {
               </Typography>
             </Grid>
           </Grid>
-          <Grid >
+          <Grid>
             <Grid item>
               <BookmarkBorderOutlinedIcon
                 className={classes.bookmark}
@@ -110,17 +110,21 @@ export const GrantShowcase = props => {
           alignContent="flex-end"
         >
           <LanguageIcon className={classes.website}></LanguageIcon>
-            <span className={classes.website}>Visit Website:</span>
-            <a href={props.grant.website} target="_blank">{props.grant.website}</a>
+          <span className={classes.website}>Visit Website:</span>
+          <a href={props.grant.website} target="_blank">
+            {props.grant.website}
+          </a>
         </Grid>
         <Grid item>
-          <Button
-            className={classes.applyButton}
-            variant="contained"
-            color="primary"
-          >
-            Apply to Grant
-          </Button>
+          <a href={props.grant.website} target="_blank">
+            <Button
+              className={classes.applyButton}
+              variant="contained"
+              color="primary"
+            >
+              Apply to Grant
+            </Button>
+          </a>
 
           {/* <Button
             className={classes.applyButton}

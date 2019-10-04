@@ -73,6 +73,10 @@ const formStyles = makeStyles(theme => ({
   submit: {
     width: "30%",
     height: "4em",
+    color: "#fff",
+  },
+  label: {
+    color: "#fff"
   }
 }));
 

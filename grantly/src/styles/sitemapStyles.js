@@ -2,11 +2,14 @@ import { makeStyles } from "@material-ui/core/styles";
 
 export const sitemapStyles = makeStyles(theme => ({
     container: {
-        background: "#3A3A3A",
+        // background: "#3A3A3A",
+        // color: "#fff",
+        // background: "#83D7D1",
+        color: "#696969",
+        background: "#fff",
         maxWidth: "100%",
         height: "180px",
         padding: "0 2%",
-        color: "#fff",
         // position: "fixed",
         // bottom: "0",
         fontFamily: "Roboto, sans-serif",
@@ -38,6 +41,8 @@ export const sitemapStyles = makeStyles(theme => ({
     },
     link: {
         color: "#fff",
+        color: "#696969",
+
     }
   }));
   

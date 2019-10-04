@@ -298,8 +298,9 @@ const AddGrant = props => {
                 color="primary"
                 size="large"
                 className={styles.submit}
+
               >
-                Submit
+                <span className={styles.label}>Submit</span>
               </Button>
             </div>
           </form>
