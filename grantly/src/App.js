@@ -26,6 +26,7 @@ function App() {
           <Route exact path="/" component={Landing} />
           <Route exact path="/grants" component={Home} />
           <Route path="/form" component={SubmitForm} />
+          <Route path="/login" component={LoginForm} />
           <Route path="/admin" component={Admin} />
           <Sitemap />
         </div>
