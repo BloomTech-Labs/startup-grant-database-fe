@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import { NavLink, Link } from "react-router-dom";
 import { useAuth0 } from "../react-auth0-wrapper";
-import {navStyles} from "../styles/navStyles"
+import { navStyles } from "../styles/navStyles";
 import Media from "react-media";
 import MobileTabs from "./MobileTabs";
 
@@ -23,10 +23,14 @@ import SwipeableDrawer from "@material-ui/core/SwipeableDrawer";
 import SearchBar from "./SearchBar";
 import ExternalApi from "../util/ExternalApi";
 
-
-
 export const NavBar = props => {
-  const { isAuthenticated, loginWithRedirect, logout, user,  getTokenSilently } = useAuth0();
+  const {
+    isAuthenticated,
+    loginWithRedirect,
+    logout,
+    user,
+    getTokenSilently
+  } = useAuth0();
   const [isOpen, setIsOpen] = useState(false);
   const toggleDrawer = open => event => {
     if (
@@ -52,14 +56,15 @@ export const NavBar = props => {
 
       console.log("AUTH *****************", token);
       const responseData = await response.json();
-
     } catch (error) {
       console.error(error);
     }
   };
 
   //If user is logged in call to get access token
-{isAuthenticated && callApi()}
+  {
+    isAuthenticated && callApi();
+  }
   const sideList = side => (
     <div
       role="presentation"
@@ -112,7 +117,7 @@ export const NavBar = props => {
       </List>
     </div>
   );
-                  console.log("************************", user)
+
   return (
     <AppBar className={classes.navbar} color="primary" position="sticky">
       <Toolbar>
