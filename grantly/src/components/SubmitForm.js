@@ -98,7 +98,7 @@ const AddGrant = props => {
         alignItems="center"
       >
         {/* <Grid item className={styles.leftBox} sm={12} md={5}> */}
-        <Grid sm={12} md={4}>
+        <Grid item sm={12} md={4}>
           {/* <div> */}
           <div className={styles.leftBox}>
             <h1>Submit a New Grant to Founder Grants</h1>

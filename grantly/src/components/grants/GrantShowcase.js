@@ -88,13 +88,12 @@ export const GrantShowcase = props => {
                 className={classes.grant_name}
                 variant="h4"
                 component="h4"
-                display="inline-block"
               >
                 {props.grant.competition_name}
               </Typography>
             </Grid>
           </Grid>
-          <Grid direction="row" justify="flex-end" alignItems="flex-start">
+          <Grid >
             <Grid item>
               <BookmarkBorderOutlinedIcon
                 className={classes.bookmark}

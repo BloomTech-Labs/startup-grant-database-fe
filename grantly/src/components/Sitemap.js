@@ -11,7 +11,7 @@ const Sitemap = () => {
 
   return (
     <div className={styles.container}>
-      <Grid container spacing="8" className={styles.sitemap}>
+      <Grid container spacing={8} className={styles.sitemap}>
         <Grid item className={styles.item}>
           <Link to="/" className={styles.link}>
             <Typography variant="h5" component="h5">
