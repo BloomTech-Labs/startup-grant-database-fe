@@ -60,7 +60,7 @@ export const Grant = props => {
           </Typography>
           <Grid item>
             <Typography variant="body2" component="p">
-              https://google.com
+              {props.grant.website}
             </Typography>
           </Grid>
           <Typography variant="h6" component="p">

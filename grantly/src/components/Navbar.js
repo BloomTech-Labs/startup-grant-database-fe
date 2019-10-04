@@ -24,57 +24,6 @@ import SwipeableDrawer from "@material-ui/core/SwipeableDrawer";
 import SearchBar from "./SearchBar";
 import ExternalApi from "../util/ExternalApi";
 
-const useStyles = makeStyles(theme => ({
-  navButton: {
-    marginRight: theme.spacing(3),
-    color: "#000",
-    fontFamily: "Roboto"
-  },
-  title: {
-    textAlign: "left",
-    marginLeft: "20px",
-    color: "#000"
-  },
-  navbar: {
-    background: "#fff",
-    flexGrow: 1,
-    // marginBottom: "2em",
-    [theme.breakpoints.down("xs")]: {
-      padding: "0",
-      boxShadow: "none"
-    }
-  },
-  log: {
-    color: "#fff",
-    fontFamily: "Roboto"
-  },
-  logout: {
-    color: "#000"
-  },
-  menu: {
-    width: "2em",
-    height: "2em",
-    padding: "0"
-  },
-  signup: {
-    marginRight: theme.spacing(3),
-    color: "#3DB8B3"
-  },
-  titleLink: {
-    flexGrow: 1,
-    textDecoration: "none"
-  },
-  link: {
-    textDecoration: "none"
-  },
-  tabs: {
-    position: "fixed",
-    marginTop: "3em"
-  }
-}));
-const homeStyles = makeStyles(theme => ({
-  marginBottom: "0"
-}));
 
 export const NavBar = props => {
   const { isAuthenticated, loginWithRedirect, logout, user,  getTokenSilently } = useAuth0();
@@ -177,7 +126,7 @@ export const NavBar = props => {
           <div>
             <NavLink to="/grants" className={classes.link}>
               <Button className={classes.navButton} color="inherit">
-                HOME
+                Grants
               </Button>
             </NavLink>
             {/* <Button className={classes.navButton} color="inherit">
@@ -201,16 +150,13 @@ export const NavBar = props => {
                 </Button>
               </NavLink>
             )}
-            <a
-              className={classes.link}
-              href="https://founder-grants.auth0.com/u/signup?state=g6Fo2SBUQXFxbUpIYWtyNjBUTllpM2pwdmVLNnF1Z1l2X3RDOKN0aWTZIE5zZk1pZzZKN2xIQ29fZGVEUzd4Q2hfNTFCbF9iY09oo2NpZNkgRjdJUTA3RG1VTVdWbnFLRTBEMzRsSng2N3ZBZDNhMmU"
-            >
+
               <Button className={classes.navButton} color="inherit">
                 SIGN UP
               </Button>
-            </a>
+    
 
-            {!isAuthenticated && (
+            {/* {!isAuthenticated && (
               <Button
                 className={classes.log}
                 variant="contained"
@@ -219,7 +165,7 @@ export const NavBar = props => {
               >
                 Log in
               </Button>
-            )}
+            )} */}
 
             {isAuthenticated && (
               <Button

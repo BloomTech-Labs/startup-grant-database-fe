@@ -11,6 +11,7 @@ import Card from "@material-ui/core/Card";
 import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
 import BookmarkBorderOutlinedIcon from "@material-ui/icons/BookmarkBorderOutlined";
+import LanguageIcon from "@material-ui/icons/Language"
 import Modal from "@material-ui/core/Modal";
 import Fade from "@material-ui/core/Fade";
 import Backdrop from "@material-ui/core/Backdrop";
@@ -103,7 +104,7 @@ export const GrantShowcase = props => {
         </Grid>
 
         <Grid item>
-          <a href="/">https://www.mercatus.org/emergentventures</a>
+          <Typography><LanguageIcon className={classes.website}></LanguageIcon>Visit Webite:</Typography><a href={props.grant.website}>{props.grant.website}</a>
         </Grid>
         <Grid item>
         <Button
