@@ -3,13 +3,13 @@ import { makeStyles } from "@material-ui/core/styles";
 import GrantList from "../components/grants/GrantList";
 import Filters from "../components/Filters";
 import GrantShowcase from "../components/grants/GrantShowcase";
-import MobileTabs from "../components/MobileTabs";
+import MobileTabs from "../components/mobile/MobileTabs";
 import SearchBar from "../components/SearchBar";
 import Grid from "@material-ui/core/Grid";
 import Navbar from "../components/Navbar";
 import Media from "react-media";
 import SwipeableDrawer from "@material-ui/core/SwipeableDrawer";
-import MobileFilters from "../components/MobileFilters";
+import MobileFilters from "../components/mobile/MobileFilters";
 
 const useStyles = makeStyles(theme => ({
   content: {
@@ -46,7 +46,7 @@ const Admin = props => {
 
   return (
     <div>
-      <Navbar location={props.location.pathname} />
+      {/* <Navbar location={props.location.pathname} /> */}
 
       <Grid
         container

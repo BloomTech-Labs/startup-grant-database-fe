@@ -4,13 +4,13 @@ import {homeStyles} from "../styles/homeStyles";
 import GrantList from "../components/grants/GrantList";
 import Filters from "../components/Filters";
 import GrantShowcase from "../components/grants/GrantShowcase";
-import MobileTabs from "../components/MobileTabs";
+import MobileTabs from "../components/mobile/MobileTabs";
 import SearchBar from "../components/SearchBar";
 import Grid from "@material-ui/core/Grid";
 import Navbar from "../components/Navbar";
 import Media from "react-media";
 import SwipeableDrawer from "@material-ui/core/SwipeableDrawer";
-import MobileFilters from "../components/MobileFilters";
+import MobileFilters from "../components/mobile/MobileFilters";
 
 
 

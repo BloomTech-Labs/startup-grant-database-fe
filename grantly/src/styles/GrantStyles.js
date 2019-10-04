@@ -5,7 +5,7 @@ import { createMuiTheme } from "@material-ui/core/styles";
 // vars
 const cardDetailsMargin = "10px";
 
-const grantStyles = makeStyles(theme => ({
+export const grantStyles = makeStyles(theme => ({
   grantCard: {
     display: "flex",
     flexDirection: "column",

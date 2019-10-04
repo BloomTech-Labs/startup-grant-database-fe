@@ -6,6 +6,11 @@ export const navStyles = makeStyles(theme => ({
     color: "#000",
     fontFamily: "Nunito Sans"
   },
+  submitNavButton: {
+    marginRight: theme.spacing(3),
+    color: "#fff",
+    fontFamily: "Nunito Sans"
+  },
   title: {
     textAlign: "left",
     marginLeft: "20px",
@@ -49,5 +54,24 @@ export const navStyles = makeStyles(theme => ({
   tabs: {
     position: "fixed",
     marginTop: "3em"
+  },
+  drawer: {
+    display: "flex",
+    marginTop: "1em",
+    fontSize: "2rem",
+    height: "100%",
+
+  },
+  links: {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    alignContent: "center",
+    width: "100%",
+},
+  drawerLink: {
+    margin: "1em auto",
+    padding: ".5em",
+    color: "#696969",
   }
 }));

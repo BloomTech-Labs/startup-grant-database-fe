@@ -11,14 +11,16 @@ import { makeStyles } from "@material-ui/core/styles";
     },
     gridContainer: {
       margin: "0",
-      flexWrap: "nowrap"
+      flexWrap: "nowrap",
+      marginBottom: "10%"
     },
     gridItem: {
       padding: 30
     },
     grantList: {
-      height: "90vh",
+      height: "100vh",
       overflow: "auto",
+      marginTop: "2em",
       position: "relative"
     },
     results: {
