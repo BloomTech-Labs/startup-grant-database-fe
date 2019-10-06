@@ -1,50 +1,11 @@
 import React from "react";
+import Auth0Lock from "auth0-lock"
 import { loginStyles } from "../styles/loginStyles";
 
 const LoginForm = () => {
-  /*
 
 
-
-
-
-
-
-
-
-
-
-
-
-Not to be in use yet not functional still using default auth lock widget
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-*/
+  
   const styles = loginStyles();
 
   return (
