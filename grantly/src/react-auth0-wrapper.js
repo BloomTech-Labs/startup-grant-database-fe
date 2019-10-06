@@ -1,5 +1,6 @@
 // src/react-auth0-wrapper.js
 import React, { useState, useEffect, useContext } from "react";
+import axios from "axios";
 import createAuth0Client from "@auth0/auth0-spa-js";
 
 const DEFAULT_REDIRECT_CALLBACK = () =>
@@ -57,6 +58,14 @@ export const Auth0Provider = ({
     setIsAuthenticated(true);
   };
 
+  //Here check if the user is admin
+  const checkAdmin = () => {
+    axios
+      .post("https://grantly-staging.herokuapp.com/api/grants", user)
+      .then(res => console.log(res))
+      .catch(err => err.response);
+  };
+
   const handleRedirectCallback = async () => {
     setLoading(true);
     await auth0Client.handleRedirectCallback();
@@ -64,6 +73,8 @@ export const Auth0Provider = ({
     setLoading(false);
     setIsAuthenticated(true);
     setUser(user);
+    console.log("In AUTH", user)
+    // checkAdmin();
   };
   return (
     <Auth0Context.Provider

@@ -6,6 +6,13 @@ export const loginStyles = makeStyles(theme => ({
         textAlign: "center",
         marginTop: "var(--spacing-2)"
     },
+    see: {
+        position: "relative",
+        "&::after": {
+
+            display: "none"
+        }
+    },
     cta: {
     backgroundColor: "#3CBBB1",
     color: "#fff",

@@ -10,7 +10,8 @@ import {
   FILTER_GRANTS_RESET,
   ADD_GRANT_START,
   ADD_GRANT_SUCCESS,
-  ADD_GRANT_FAILURE
+  ADD_GRANT_FAILURE,
+  CHECK_ADMIN,
 } from "../actions/types";
 
 // Initial state
@@ -21,13 +22,19 @@ const initialState = {
   filteredGrants: [],
   grantShowcase: {},
   filters: { amount: [], geographic_region: [], domain_areas: [] },
-  currentTab: 0
+  currentTab: 0,
+  currentUser: {}
 };
 
 // Reducer
 
 export const rooterReducer = (state = initialState, { type, payload }) => {
   switch (type) {
+    case CHECK_ADMIN: {
+      return {
+        ...state
+      }
+    }
     case FETCH_START:
       return {
         ...state,
