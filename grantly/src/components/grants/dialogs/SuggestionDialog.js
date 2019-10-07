@@ -2,17 +2,12 @@ import React from "react";
 import { dialogStyles } from "../styles/DialogStyles";
 import {
   Button,
-  Fab,
   Dialog,
   DialogActions,
   DialogContent,
   DialogContentText,
   DialogTitle,
-  TextField,
-  FormControl,
-  InputLabel,
-  MenuItem,
-  Select
+  TextField
 } from "@material-ui/core";
 
 export default () => {
