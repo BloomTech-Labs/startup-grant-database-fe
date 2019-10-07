@@ -28,6 +28,7 @@ const SuggestionDialog = props => {
 
   const handleClose = () => {
     setOpen(false);
+    setSuggestion("");
   };
 
   const handleChanges = name => ({ target: { value } }) => {
@@ -40,9 +41,9 @@ const SuggestionDialog = props => {
       id: props.id
     };
 
-    // props.submitSuggestion(suggestion);
-    // handleClose();
-    // setSuggestion("");
+    props.submitSuggestion(sendObject);
+    handleClose();
+    setSuggestion("");
   };
 
   return (
