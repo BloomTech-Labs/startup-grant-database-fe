@@ -18,7 +18,10 @@ import {
   UPDATE_GRANT_FAILURE,
   FILTER_SAVE,
   CHECK_ADMIN,
-  SET_USER
+  SET_USER,
+  SUBMIT_SUGGESTION_START,
+  SUBMIT_SUGGESTION_SUCCESS,
+  SUBMIT_SUGGESTION_FAILURE
 } from "./types";
 
 export const fetchApi = () => dispatch => {
@@ -114,7 +117,7 @@ export const checkUser = user => dispatch => {
         axios
           .post("http://localhost:5000/user", newUser)
           .then(res => {
-            console.log("POst", res)
+            console.log("POst", res);
             dispatch({ type: SET_USER, payload: res.data });
           })
           .catch(err => {
@@ -122,8 +125,25 @@ export const checkUser = user => dispatch => {
           });
         // console.log("checking user", user);
       }
-      
+
       console.log("Error", err.response);
-      //
+    });
+};
+//
+// Submit a grant suggestion
+
+export const submitSuggestion = suggestion => dispatch => {
+  console.log("submitSuggestion suggestion", suggestion);
+  dispatch({ type: SUBMIT_SUGGESTION_START });
+  axios
+    .post("https://grantly-staging.herokuapp.com/api/suggestion", suggestion)
+
+    .then(response => {
+      console.log("submitSuggestion response", response);
+      dispatch({ type: SUBMIT_SUGGESTION_SUCCESS, payload: response.data });
+    })
+    .catch(error => {
+      console.log("submitSuggestion error", error);
+      dispatch({ type: SUBMIT_SUGGESTION_FAILURE });
     });
 };
