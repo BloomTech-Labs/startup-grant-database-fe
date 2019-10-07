@@ -27,10 +27,6 @@ export const GrantList = props => {
     } else {
       props.fetchApi();
     }
-    // props.inAdmin && props.adminFetchApi();
-    // if (props.data.length === 0) {
-    //   props.fetchApi();
-    // }
 
     console.log("Grants", props.data);
 
