@@ -8,6 +8,7 @@ import Loader from "react-loader-spinner";
 import { fetchApi } from "../../actions";
 
 // Styles
+import { homeStyles } from "../../styles/homeStyles";
 
 // test funcs
 // exports.sum = function(a, b) {
@@ -16,20 +17,25 @@ import { fetchApi } from "../../actions";
 
 export const GrantList = props => {
   console.log("GrantList props", props);
+  const styles = homeStyles();
 
   useEffect(() => {
     if (props.data.length === 0) {
       props.fetchApi();
     }
-    console.log("Grants");
+    console.log("Grants", props.data);
   }, [props.data]);
 
   if (props.isFetching) {
-    return <Loader type="Triangle" color="#00BFFF" height="100" width="100" />;
+    return <Loader type="Triangle" color="#3DB8B3" height="100" width="100" />;
   }
   // console.log(user);
   return (
     <div>
+      {props.data.length && (
+        <p className={styles.results}>{props.data.length} Grants</p>
+      )}
+
       {props.data.length > 0 ? (
         props.data.map(grant => {
           return <Grant grant={grant} key={grant.id} />;

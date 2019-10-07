@@ -4,15 +4,35 @@ import { createMuiTheme } from "@material-ui/core/styles";
 // vars
 const cardDetailsMargin = "10px";
 
-const grantStyles = makeStyles(theme => ({
+export const grantStyles = makeStyles(theme => ({
   grantCard: {
     display: "flex",
     flexDirection: "column",
     textAlign: "center",
-    borderRadius: "2px",
-    marginBottom: "0.5rem",
+    borderRadius: "0",
+    marginBottom: "0.25rem",
     padding: "25px 10px",
-    fontFamily: "Roboto"
+    transition: "all .3s ease-in-out",
+    fontFamily: "Roboto",
+    '&:hover': {
+      boxShadow: "0px 5px 10px #BBB",
+      transform: "translateY(-5px)"
+    },
+    '&:active': {
+      transform: "translateY(0)"
+    }
+  },
+
+  grantCardSeleted: {
+    display: "flex",
+    flexDirection: "column",
+    textAlign: "center",
+    borderRadius: "0",
+    marginBottom: "0.25rem",
+    padding: "25px 10px",
+    fontFamily: "Roboto",
+    borderTop: "2px solid #3DB8B3",
+    borderLeft: "5px solid #3DB8B3"
   },
   grant_layout: {
     display: "flex",

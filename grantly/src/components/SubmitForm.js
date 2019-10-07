@@ -86,9 +86,9 @@ const AddGrant = props => {
   return (
     <div>
       {/* <Container fixed> */}
-      <Media query="(max-width:850px)">
+      {/* <Media query="(max-width:850px)">
         {matches => (matches ? null : <NavBar />)}
-      </Media>
+      </Media> */}
       {/* <h1>Submit a New Grant to Founder Grants</h1> */}
       <Grid
         className={styles.grid}
@@ -98,7 +98,7 @@ const AddGrant = props => {
         alignItems="center"
       >
         {/* <Grid item className={styles.leftBox} sm={12} md={5}> */}
-        <Grid sm={12} md={4}>
+        <Grid item sm={12} md={4}>
           {/* <div> */}
           <div className={styles.leftBox}>
             <h1>Submit a New Grant to Founder Grants</h1>
@@ -294,11 +294,13 @@ const AddGrant = props => {
             <div>
               <Button
                 type="submit"
-                variant="outlined"
+                variant="contained"
                 color="primary"
                 size="large"
+                className={styles.submit}
+
               >
-                Submit
+                <span className={styles.label}>Submit</span>
               </Button>
             </div>
           </form>

@@ -2,10 +2,10 @@ import { makeStyles } from "@material-ui/core/styles";
 
 export const showcaseStyles = makeStyles(theme => ({
   showcaseCard: {
-    position: "fixed",
+    // position: "fixed",
     textAlign: "left",
     padding: "50px",
-    width: "50%",
+    // width: "50%",
     borderTop: "#3DB8B3 5px solid",
     minHeight: "100vh",
     fontFamily: "adobe-garamond-pro",
@@ -29,6 +29,11 @@ export const showcaseStyles = makeStyles(theme => ({
   bookmark: {
     fill: "#C4C4C4"
   },
+  website: {
+    fill: "#C4C4C4",
+    marginRight: ".2rem"
+  },
+
   showcaseDetails: {
     marginBottom: "30px"
   },

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
-import {useStylesGrants, useStylesLanding} from "../styles/filterStyles"
+import { useStylesGrants, useStylesLanding } from "../styles/filterStyles";
 import Checkbox from "@material-ui/core/Checkbox";
+import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import FormControl from "@material-ui/core/FormControl";
 import FormGroup from "@material-ui/core/FormGroup";
@@ -11,7 +12,6 @@ import Button from "@material-ui/core/Button";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { filterGrants, saveFilters } from "../actions/index";
-
 
 const Filters = ({ saveFilters, filterGrants, savedFilters, location }) => {
   const [filters, setFilters] = useState({
@@ -44,7 +44,6 @@ const Filters = ({ saveFilters, filterGrants, savedFilters, location }) => {
 
   const handleChanges = (type, value) => {
     if (filters[type].includes(value.toLowerCase())) {
-      console.log("yes", filters[type]);
       setFilters({
         ...filters,
         [type]: filters[type].filter(
@@ -66,6 +65,7 @@ const Filters = ({ saveFilters, filterGrants, savedFilters, location }) => {
   const landingStyles = useStylesLanding();
   let classes;
   location === "/grants" ? (classes = grantStyles) : (classes = landingStyles);
+
   return (
     <Card className={classes.card}>
       <Typography className={classes.title} variant="h5" component="h2">

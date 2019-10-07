@@ -2,10 +2,11 @@ import { makeStyles } from "@material-ui/core/styles";
 
 export const useStylesGrants = makeStyles(theme => ({
   card: {
-    position: "fixed",
+    // position: "fixed",
     marginTop: "2em",
     borderRadius: "2px",
-    width: "15%",
+    // width: "15%",
+    width: "90%",
     height: "100vh",
     [theme.breakpoints.down("sm")]: {
       position: "initial",
@@ -14,13 +15,22 @@ export const useStylesGrants = makeStyles(theme => ({
       height: "initial"
     }
   },
+  arrow: {
+    position: "fixed",
+    right: "16.5%",
+    zIndex: "2000",
+    boxShadow:
+      "0px 1px 0px 0px rgba(0,0,0,0.2), 0px 1px 0px 0px rgba(0,0,0,0.14), 0px 2px 0px -1px rgba(0,0,0,0.12)",
+    top: "11%",
+    padding: "10px"
+  },
   filterCard: {
     display: "block",
     alignSelf: "flex-end",
     margin: "0 auto"
   },
   title: {
-    fontWeight: "700",
+    fontWeight: "bold",
     marginTop: "1em",
     color: "#464646"
   },
@@ -31,6 +41,7 @@ export const useStylesGrants = makeStyles(theme => ({
     fontFamily: "Nunito Sans",
     color: "#222222",
     marginBottom: "10px"
+    // fontWeight: "bold"
   },
   set: {
     width: "60%",

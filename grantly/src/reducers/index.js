@@ -17,6 +17,7 @@ import {
 
 const initialState = {
   data: [],
+  isFetching: false,
   filteredGrants: [],
   grantShowcase: {},
   filters: { amount: [], geographic_region: [], domain_areas: [] },

@@ -1,25 +1,41 @@
 // Dependencies
 import React from "react";
 import { connect } from "react-redux";
+import Loader from "react-loader-spinner";
+
 import Moment from "react-moment";
 import moment from "moment";
+import { makeStyles } from "@material-ui/core/styles";
 
 // Objects
 import Card from "@material-ui/core/Card";
 import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
-import BookmarkBorderOutlinedIcon from '@material-ui/icons/BookmarkBorderOutlined';
+import BookmarkBorderOutlinedIcon from "@material-ui/icons/BookmarkBorderOutlined";
+import LanguageIcon from "@material-ui/icons/Language";
+import Modal from "@material-ui/core/Modal";
+import Fade from "@material-ui/core/Fade";
+import Backdrop from "@material-ui/core/Backdrop";
 
 import BookmarkIcon from "@material-ui/icons/Bookmark";
 
-import Typography from "@material-ui/core/Typography"
+import Typography from "@material-ui/core/Typography";
 
 // =========== STYLES ===========
-import {showcaseStyles} from "../../styles/grantShowcaseStyles"
-
+import { showcaseStyles } from "../../styles/grantShowcaseStyles";
 
 export const GrantShowcase = props => {
   const classes = showcaseStyles();
+
+  const [open, setOpen] = React.useState(false);
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   console.log("GrantShowcase props", props);
   function formatNumbers(num) {
@@ -39,13 +55,13 @@ export const GrantShowcase = props => {
     " or in about " +
       moment(props.grant.most_recent_application_due_date).fromNow();
 
-  console.log("moment test", momentDeadline);
-  // console.log("GrantShowcase props", props);
+  // console.log("moment test", momentDeadline);
 
   if (props.isFetching) {
-    return <div></div>;
+    return <Loader type="Triangle" color="#3DB8B3" height="200" width="200" />;
   }
 
+  console.log("GrantShowcase open", open);
   return (
     <Card className={classes.showcaseCard}>
       {/* ================= Bookmark Icon ================= */}
@@ -59,46 +75,66 @@ export const GrantShowcase = props => {
           alignItems="center"
           className={classes.topContent}
         >
-          <Grid container className={classes.showcase_header} alignItems="center">
+          <Grid
+            container
+            className={classes.showcase_header}
+            alignItems="center"
+          >
             <Grid item>
-
-            <div className={classes.grant_logo}></div>
+              <div className={classes.grant_logo}></div>
             </Grid>
-          <Grid item>
-            <Typography className={classes.grant_name} variant="h4" component="h4" display="inline-block">
-              {props.grant.competition_name}
-            </Typography>
-
-          </Grid>
-          </Grid>
-          <Grid direction="row" justify="flex-end" alignItems="flex-start">
             <Grid item>
-              <BookmarkBorderOutlinedIcon className={classes.bookmark}></BookmarkBorderOutlinedIcon>
+              <Typography
+                className={classes.grant_name}
+                variant="h4"
+                component="h4"
+              >
+                {props.grant.competition_name}
+              </Typography>
+            </Grid>
+          </Grid>
+          <Grid>
+            <Grid item>
+              <BookmarkBorderOutlinedIcon
+                className={classes.bookmark}
+              ></BookmarkBorderOutlinedIcon>
               {/* <BookmarkIcon></BookmarkIcon> */}
             </Grid>
           </Grid>
         </Grid>
-        <Grid item>
-          <a href="/">https://www.mercatus.org/emergentventures</a>
+
+        <Grid
+          container
+          justify="flex-start"
+          alignItems="flex-end"
+          alignContent="flex-end"
+        >
+          <LanguageIcon className={classes.website}></LanguageIcon>
+          <span className={classes.website}>Visit Website:</span>
+          <a href={props.grant.website} target="_blank">
+            {props.grant.website}
+          </a>
         </Grid>
         <Grid item>
-        <Button
-      className={classes.applyButton}
-      variant="contained"
-      color="primary"
-    >
-      Apply to Grant
-    </Button>
-  
-          <Button
+          <a href={props.grant.website} target="_blank">
+            <Button
+              className={classes.applyButton}
+              variant="contained"
+              color="primary"
+            >
+              Apply to Grant
+            </Button>
+          </a>
+
+          {/* <Button
             className={classes.applyButton}
             variant="contained"
             color="primary"
           >
             Edit Grant
-          </Button>
+          </Button> */}
         </Grid>
-        </div>
+      </div>
       {/* ================= Main content ================= */}
 
       <Grid
@@ -142,6 +178,47 @@ export const GrantShowcase = props => {
           {props.grant.notes}
         </Grid>
       </Grid>
+      <Grid
+        container
+        direction="row"
+        justify="space-evenly"
+        alignItems="center"
+        className={classes.topContent}
+      >
+        <Grid item>
+          <Button
+            className={classes.applyButton}
+            variant="contained"
+            color="primary"
+          >
+            Apply to Grant
+          </Button>
+        </Grid>
+        <Grid item>
+          <Button
+            className={classes.applyButton}
+            variant="contained"
+            color="primary"
+            onClick={handleOpen}
+          >
+            Suggest Changes
+          </Button>
+        </Grid>
+        <Modal
+          className={classes.modal}
+          open={open}
+          onClose={handleClose}
+          closeAfterTransition
+          BackdropComponent={Backdrop}
+          BackdropProps={{ timeout: 500 }}
+        >
+          <Fade in={open}>
+            <div>
+              <div>You made it work</div>
+            </div>
+          </Fade>
+        </Modal>
+      </Grid>
     </Card>
   );
 };
@@ -149,7 +226,8 @@ export const GrantShowcase = props => {
 const mapStateToProps = state => {
   // console.log("GrantShowcase mapStateToProps state", state);
   return {
-    grant: state.grantShowcase
+    grant: state.grantShowcase,
+    isFetching: state.isFetching
   };
 };
 

@@ -4,13 +4,13 @@ import {homeStyles} from "../styles/homeStyles";
 import GrantList from "../components/grants/GrantList";
 import Filters from "../components/Filters";
 import GrantShowcase from "../components/grants/GrantShowcase";
-import MobileTabs from "../components/MobileTabs";
+import MobileTabs from "../components/mobile/MobileTabs";
 import SearchBar from "../components/SearchBar";
 import Grid from "@material-ui/core/Grid";
 import Navbar from "../components/Navbar";
 import Media from "react-media";
 import SwipeableDrawer from "@material-ui/core/SwipeableDrawer";
-import MobileFilters from "../components/MobileFilters";
+import MobileFilters from "../components/mobile/MobileFilters";
 
 
 
@@ -32,7 +32,7 @@ const Home = props => {
 
   return (
     <>
-      <Navbar location={props.location.pathname} />
+      {/* <Navbar location={props.location.pathname} /> */}
       {/* <SearchBar /> */}
       <Media query="(max-width:850px)">
         {matches =>
@@ -62,8 +62,8 @@ const Home = props => {
                   item
                   md={3}
                   xs={12}
-                  className={classes.gridItem}
-                  style={{ padding: "30px 0 0 30px" }}
+                  className={classes.grantList}
+                  // style={{ padding: "30px 0 0 30px" }}
                 >
                   {/* <div className={classes.scrollBox}> */}
                   <GrantList />
