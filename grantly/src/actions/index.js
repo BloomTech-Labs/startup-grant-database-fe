@@ -96,6 +96,7 @@ export const postGrants = addGrant => dispatch => {
 // Submit a grant suggestion
 
 export const submitSuggestion = suggestion => dispatch => {
+  console.log("submitSuggestion suggestion", suggestion);
   dispatch({ type: SUBMIT_SUGGESTION_START });
   axios
     .post("https://grantly-staging.herokuapp.com/api/grants", suggestion)

@@ -1,4 +1,5 @@
 import React from "react";
+import { connect } from "react-redux";
 import { dialogStyles } from "../styles/DialogStyles";
 import {
   Button,
@@ -10,7 +11,7 @@ import {
   TextField
 } from "@material-ui/core";
 
-export default () => {
+const SuggestionDialog = () => {
   const [suggestion, setSuggestion] = React.useState("");
   console.log("SuggestionDialog suggestion", suggestion);
 
@@ -71,3 +72,8 @@ export default () => {
     </>
   );
 };
+
+export default connect(
+  null,
+  {}
+)(SuggestionDialog);
