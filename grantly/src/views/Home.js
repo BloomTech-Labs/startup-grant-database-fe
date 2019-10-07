@@ -12,12 +12,11 @@ import Media from "react-media";
 import SwipeableDrawer from "@material-ui/core/SwipeableDrawer";
 import MobileFilters from "../components/mobile/MobileFilters";
 
-
+// delete this sometime
 
 const Home = props => {
   const [isOpen, setIsOpen] = useState(false);
   const toggleDrawer = open => event => {
-    console.log("toggle")
     if (
       event &&
       event.type === "keydown" &&
