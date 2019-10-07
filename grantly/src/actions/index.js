@@ -16,7 +16,9 @@ import {
   UPDATE_GRANT_START,
   UPDATE_GRANT_SUCCESS,
   UPDATE_GRANT_FAILURE,
-  FILTER_SAVE
+  FILTER_SAVE,
+  CHECK_ADMIN,
+  SET_USER
 } from "./types";
 
 export const fetchApi = () => dispatch => {
@@ -89,3 +91,39 @@ export const postGrants = addGrant => dispatch => {
 //     })
 //     .catch(err => console.log(err.response));
 // };
+
+//Check if user is admin
+export const checkUser = user => dispatch => {
+  dispatch({ type: CHECK_ADMIN });
+  const auth = { ...user, auth_id: user.sub };
+  console.log("SENT", JSON.stringify(auth));
+  axios
+    .get("http://localhost:5000/user", {
+      headers: {
+        auth_id: auth.auth_id
+      }
+    })
+    .then(res => {
+      console.log("Success! Data sent to Store:", res.data);
+      dispatch({ type: SET_USER, payload: res.data });
+    })
+    .catch(err => {
+      // What error code is ok to post to the db?
+      const newUser = { role: "user", auth_id: auth.auth_id };
+      if (err.response.status === 404) {
+        axios
+          .post("http://localhost:5000/user", newUser)
+          .then(res => {
+            console.log("POst", res)
+            dispatch({ type: SET_USER, payload: res.data });
+          })
+          .catch(err => {
+            console.log("Oops", err.response);
+          });
+        // console.log("checking user", user);
+      }
+      
+      console.log("Error", err.response);
+      //
+    });
+};

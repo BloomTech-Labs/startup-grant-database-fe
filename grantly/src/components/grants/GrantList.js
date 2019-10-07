@@ -38,7 +38,7 @@ export const GrantList = props => {
 
       {props.data.length > 0 ? (
         props.data.map(grant => {
-          return <Grant grant={grant} key={grant.id} />;
+          return <Grant grant={grant} key={grant.id} inAdmin={props.inAdmin}/>;
         })
       ) : (
         <div> Grants incoming! </div>

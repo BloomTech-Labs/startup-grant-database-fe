@@ -1,27 +1,32 @@
-
+import React, { useState } from "react";
 
 import Auth0Lock from "auth0-lock";
 
+// const Auth0LockConfig = () => {
+//   const [isAuthenticated, setIsAuthenticated] = useState();
+//   const [user, setUser] = useState();
 
+//   // setIsAuthenticated(true);
+//   // setUser(JSON.stringify(profile));
+// };
+// const clientId = "F7IQ07DmUMWVnqKE0D34lJx67vAd3a2e";
+// const domain = "founder-grants.auth0.com";
+// export const lock = new Auth0Lock(clientId, domain);
 
-const clientId = "F7IQ07DmUMWVnqKE0D34lJx67vAd3a2e";
-const domain = "founder-grants.auth0.com";
-export const lock = new Auth0Lock(clientId, domain);
+// lock.on("authenticated", function(authResult) {
+//   lock.getUserInfo(authResult.accessToken, function(error, profile) {
+//     if (error) {
+//       // Handle error
+//       return;
+//     }
 
-lock.on("authenticated", function(authResult) {
-  lock.getUserInfo(authResult.accessToken, function(error, profile) {
-    if (error) {
-      // Handle error
-      return;
-    }
- 
-    localStorage.setItem("accessToken", authResult.accessToken);
-    localStorage.setItem("profile", JSON.stringify(profile));
-    console.log("PRofile", JSON.stringify(profile))
- 
-    // Update DOM
-  });
-});
+//     localStorage.setItem("accessToken", authResult.accessToken);
+//     localStorage.setItem("profile", JSON.stringify(profile));
+//     console.log("PRofile", JSON.stringify(profile));
+//     return "Success";
+//     // Update DOM
+//   });
+// });
 
 // const lock = new Auth0Lock(
 //   "F7IQ07DmUMWVnqKE0D34lJx67vAd3a2e",
@@ -30,7 +35,7 @@ lock.on("authenticated", function(authResult) {
 //  const Auth = (function() {
 //   let wm = new WeakMap();
 //   let privateStore = {};
-//   let lock;
+//   var lock;
 
 //   function Auth() {
 //     this.lock = new Auth0Lock(
@@ -55,7 +60,7 @@ lock.on("authenticated", function(authResult) {
 //           // Handle error
 //           return;
 //         }
-
+//         console.log("we in")
 //         //we recommend not storing Access Tokens unless absolutely necessary
 //         wm.set(privateStore, {
 //           accessToken: authResult.accessToken
@@ -64,8 +69,12 @@ lock.on("authenticated", function(authResult) {
 //         wm.set(privateStore, {
 //           profile: profile
 //         });
+
+//         console.log("PRofile", JSON.stringify(profile))
 //       });
 //     });
 //   };
 //   return Auth;
 // })();
+
+// export const auth = new Auth();

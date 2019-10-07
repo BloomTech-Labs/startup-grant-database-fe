@@ -2,12 +2,57 @@
 import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import createAuth0Client from "@auth0/auth0-spa-js";
+import Auth0Lock from "auth0-lock";
+
 
 const DEFAULT_REDIRECT_CALLBACK = () =>
   window.history.replaceState({}, document.title, window.location.pathname);
 
 export const Auth0Context = React.createContext();
 export const useAuth0 = () => useContext(Auth0Context);
+
+
+const clientId = "F7IQ07DmUMWVnqKE0D34lJx67vAd3a2e";
+const domain = "founder-grants.auth0.com";
+const options = {
+  languageDictionary: {
+    emailInputPlaceholder: "Enter your email",
+    passwordInputPlaceholder: "Enter your password",
+
+    title: "Welcome"
+  },
+  popupOptions: { width: 300, height: 400, left: 200, top: 300 },
+
+  theme: {
+    primaryColor: "#3DB8B3",
+    
+    authButtons: {
+      "testConnection": {
+        displayName: "Test Conn",
+        primaryColor: "#3DB8B3",
+        foregroundColor: "#000000",
+        icon: "http://example.com/icon.png"
+      },
+      "testConnection2": {
+        primaryColor: "#000000",
+        foregroundColor: "#ffffff",
+      }
+    }, 
+    
+  },
+      additionalSignUpFields: [{
+        name: "First_name",
+        placeholder: "Enter your first name"
+      },
+      {
+        name: "Last_name",
+        placeholder: "Enter your last name"
+
+      }
+    ]
+}
+export const lock = new Auth0Lock(clientId, domain, options);
+
 export const Auth0Provider = ({
   children,
   onRedirectCallback = DEFAULT_REDIRECT_CALLBACK,
@@ -34,6 +79,8 @@ export const Auth0Provider = ({
       setIsAuthenticated(isAuthenticated);
 
       if (isAuthenticated) {
+        console.log("im in")
+        checkAdmin()
         const user = await auth0FromHook.getUser();
         setUser(user);
       }
@@ -59,11 +106,12 @@ export const Auth0Provider = ({
   };
 
   //Here check if the user is admin
-  const checkAdmin = () => {
-    axios
-      .post("https://grantly-staging.herokuapp.com/api/grants", user)
-      .then(res => console.log(res))
-      .catch(err => err.response);
+  const checkAdmin = (user) => {
+    // axios
+    //   .post("https://grantly-staging.herokuapp.com/api/grants", user)
+    //   .then(res => console.log(res))
+    //   .catch(err => err.response);
+    console.log("Im checking", user);
   };
 
   const handleRedirectCallback = async () => {
@@ -73,9 +121,28 @@ export const Auth0Provider = ({
     setLoading(false);
     setIsAuthenticated(true);
     setUser(user);
-    console.log("In AUTH", user)
+    // console.log("In AUTH", user)
+    // checkAdmin(user);
     // checkAdmin();
   };
+
+  lock.on("authenticated", function(authResult) {
+    lock.getUserInfo(authResult.accessToken, function(error, profile) {
+      if (error) {
+        // Handle error
+        return;
+      }
+  
+      localStorage.setItem("accessToken", authResult.accessToken);
+      localStorage.setItem("profile", JSON.stringify(profile));
+      setIsAuthenticated(true);
+      setUser(JSON.stringify(profile));
+      checkAdmin(profile.sub)
+
+      return "Success";
+      // Update DOM
+    });
+  });
   return (
     <Auth0Context.Provider
       value={{

@@ -12,6 +12,7 @@ import {
   ADD_GRANT_SUCCESS,
   ADD_GRANT_FAILURE,
   CHECK_ADMIN,
+  SET_USER
 } from "../actions/types";
 
 // Initial state
@@ -33,7 +34,14 @@ export const rooterReducer = (state = initialState, { type, payload }) => {
     case CHECK_ADMIN: {
       return {
         ...state
-      }
+      };
+    }
+    case SET_USER: {
+      console.log("reducer", payload)
+      return {
+        ...state,
+        currentUser: payload
+      };
     }
     case FETCH_START:
       return {
@@ -50,6 +58,7 @@ export const rooterReducer = (state = initialState, { type, payload }) => {
         filteredGrants: payload,
         grantShowcase: payload[0]
       };
+      
     case FETCH_ERROR:
       return {
         ...state,
