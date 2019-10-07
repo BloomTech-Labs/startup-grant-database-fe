@@ -10,8 +10,9 @@ import {
   DialogTitle,
   TextField
 } from "@material-ui/core";
+import { submitSuggestion } from "../../../actions/index";
 
-const SuggestionDialog = () => {
+const SuggestionDialog = props => {
   const [suggestion, setSuggestion] = React.useState("");
   console.log("SuggestionDialog suggestion", suggestion);
 
@@ -31,8 +32,13 @@ const SuggestionDialog = () => {
     setSuggestion(value);
   };
 
+  const submitSuggestion = suggestion => {
+    props.submitSuggestion(suggestion);
+  };
+
   const handleSubmit = () => {
     console.log("SuggestionDialog handleSubmit firing");
+    // submitSuggestion();
   };
 
   return (
@@ -75,5 +81,5 @@ const SuggestionDialog = () => {
 
 export default connect(
   null,
-  {}
+  { submitSuggestion }
 )(SuggestionDialog);

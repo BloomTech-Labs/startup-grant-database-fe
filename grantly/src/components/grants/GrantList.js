@@ -8,8 +8,7 @@ import Loader from "react-loader-spinner";
 import { fetchApi } from "../../actions";
 
 // Styles
-import {homeStyles} from "../../styles/homeStyles";
-
+import { homeStyles } from "../../styles/homeStyles";
 
 // test funcs
 // exports.sum = function(a, b) {
@@ -17,14 +16,14 @@ import {homeStyles} from "../../styles/homeStyles";
 // };
 
 export const GrantList = props => {
-  console.log("GrantList props", props);
+  // console.log("GrantList props", props);
   const styles = homeStyles();
 
   useEffect(() => {
     if (props.data.length === 0) {
       props.fetchApi();
     }
-    console.log("Grants");
+    // console.log("Grants");
   }, [props.data]);
 
   if (props.isFetching) {
@@ -46,7 +45,7 @@ export const GrantList = props => {
 };
 
 const mapStateToProps = state => {
-  console.log("GrantList mapStateToProps state", state);
+  // console.log("GrantList mapStateToProps state", state);
   return {
     error: state.error,
     isFetching: state.isFetching,
