@@ -39,7 +39,7 @@ export const landingStyles = makeStyles(theme => ({
     container: {
       height: "calc(100vh - 64px)",
       [theme.breakpoints.down("xs")]: {
-        height: "70vh"
+        height: "100vh"
       }
     },
     link: {

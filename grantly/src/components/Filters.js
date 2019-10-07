@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useStylesGrants, useStylesLanding } from "../styles/filterStyles";
 import Checkbox from "@material-ui/core/Checkbox";
+import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import FormControl from "@material-ui/core/FormControl";
 import FormGroup from "@material-ui/core/FormGroup";
@@ -43,7 +44,6 @@ const Filters = ({ saveFilters, filterGrants, savedFilters, location }) => {
 
   const handleChanges = (type, value) => {
     if (filters[type].includes(value.toLowerCase())) {
-      console.log("yes", filters[type]);
       setFilters({
         ...filters,
         [type]: filters[type].filter(

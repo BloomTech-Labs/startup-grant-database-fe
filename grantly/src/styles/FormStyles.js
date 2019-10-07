@@ -11,9 +11,10 @@ const formStyles = makeStyles(theme => ({
   form: {
     display: "flex",
     flexDirection: "column",
-    marginLeft: "30px",
-    marginRight: "30px",
-    width: "60%"
+    margin: "0 auto",
+    height: "70vh",
+    width: "80%",
+    justifyContent: "space-around"
   },
   formContainer: {
     display: "flex",
@@ -68,6 +69,14 @@ const formStyles = makeStyles(theme => ({
       paddingBottom: "3rem",
       width: "100%"
     }
+  },
+  submit: {
+    width: "30%",
+    height: "4em",
+    color: "#fff",
+  },
+  label: {
+    color: "#fff"
   }
 }));
 

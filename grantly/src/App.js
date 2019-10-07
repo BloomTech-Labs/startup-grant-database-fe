@@ -14,6 +14,7 @@ import { theme } from "./styles/Theme";
 import Landing from "./views/Landing";
 import LoginForm from "./components/LoginForm";
 import NavBar from "./components/Navbar";
+import Sitemap from "./components/Sitemap";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
           <Route exact path="/grants" component={Home} />
           <Route path="/form" component={SubmitForm} />
           <Route path="/admin" component={Admin} />
+          <Sitemap />
         </div>
       </ThemeProvider>
     </Router>

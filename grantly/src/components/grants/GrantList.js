@@ -23,7 +23,9 @@ export const GrantList = props => {
     if (props.data.length === 0) {
       props.fetchApi();
     }
-    // console.log("Grants");
+
+    console.log("Grants", props.data);
+
   }, [props.data]);
 
   if (props.isFetching) {
@@ -32,7 +34,10 @@ export const GrantList = props => {
   // console.log(user);
   return (
     <div>
-      <p className={styles.results}>{props.data.length} Results</p>
+      {props.data.length && (
+        <p className={styles.results}>{props.data.length} Grants</p>
+      )}
+
       {props.data.length > 0 ? (
         props.data.map(grant => {
           return <Grant grant={grant} key={grant.id} />;

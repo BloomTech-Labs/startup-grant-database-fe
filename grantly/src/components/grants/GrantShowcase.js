@@ -1,6 +1,9 @@
 // Dependencies
 import React from "react";
 import { connect } from "react-redux";
+
+import Loader from "react-loader-spinner";
+
 import Moment from "react-moment";
 import moment from "moment";
 
@@ -9,6 +12,7 @@ import Card from "@material-ui/core/Card";
 import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
 import BookmarkBorderOutlinedIcon from "@material-ui/icons/BookmarkBorderOutlined";
+import LanguageIcon from "@material-ui/icons/Language";
 import Modal from "@material-ui/core/Modal";
 import Fade from "@material-ui/core/Fade";
 import Backdrop from "@material-ui/core/Backdrop";
@@ -53,7 +57,7 @@ export const GrantShowcase = props => {
   // console.log("moment test", momentDeadline);
 
   if (props.isFetching) {
-    return <div></div>;
+    return <Loader type="Triangle" color="#3DB8B3" height="200" width="200" />;
   }
 
   return (
@@ -80,13 +84,12 @@ export const GrantShowcase = props => {
                 className={classes.grant_name}
                 variant="h4"
                 component="h4"
-                display="inline-block"
               >
                 {props.grant.competition_name}
               </Typography>
             </Grid>
           </Grid>
-          <Grid direction="row" justify="flex-end" alignItems="flex-start">
+          <Grid>
             <Grid item>
               <BookmarkBorderOutlinedIcon
                 className={classes.bookmark}
@@ -96,9 +99,39 @@ export const GrantShowcase = props => {
           </Grid>
         </Grid>
 
-        <Grid item>
-          <a href="/">https://www.mercatus.org/emergentventures</a>
+        <Grid
+          container
+          justify="flex-start"
+          alignItems="flex-end"
+          alignContent="flex-end"
+        >
+          <LanguageIcon className={classes.website}></LanguageIcon>
+          <span className={classes.website}>Visit Website:</span>
+          <a href={props.grant.website} target="_blank">
+            {props.grant.website}
+          </a>
         </Grid>
+
+        <Grid item>
+          <a href={props.grant.website} target="_blank">
+            <Button
+              className={classes.applyButton}
+              variant="contained"
+              color="primary"
+            >
+              Apply to Grant
+            </Button>
+          </a>
+
+          {/* <Button
+            className={classes.applyButton}
+            variant="contained"
+            color="primary"
+          >
+            Edit Grant
+          </Button> */}
+        </Grid>
+
       </div>
       {/* ================= Main content ================= */}
 
@@ -170,7 +203,8 @@ export const GrantShowcase = props => {
 const mapStateToProps = state => {
   // console.log("GrantShowcase mapStateToProps state", state);
   return {
-    grant: state.grantShowcase
+    grant: state.grantShowcase,
+    isFetching: state.isFetching
   };
 };
 
