@@ -32,7 +32,7 @@ export default () => {
   };
 
   const handleChanges = name => ({ target: { value } }) => {
-    setSuggestion({ ...suggestion, [name]: value });
+    setSuggestion(value);
   };
 
   const handleSubmit = () => {
