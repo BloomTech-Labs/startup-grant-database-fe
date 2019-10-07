@@ -9,6 +9,7 @@ export default () => {
 
   const handleOpen = () => {
     setOpen(true);
+    console.log("it's working!");
   };
 
   const handleClose = () => {

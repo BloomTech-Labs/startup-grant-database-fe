@@ -1,10 +1,8 @@
 // Dependencies
 import React from "react";
 import { connect } from "react-redux";
-import { grantShowcaseStyles } from "./styles/GrantStyles";
 import Moment from "react-moment";
 import moment from "moment";
-import { makeStyles } from "@material-ui/core/styles";
 
 // Objects
 import Card from "@material-ui/core/Card";
@@ -14,10 +12,9 @@ import BookmarkBorderOutlinedIcon from "@material-ui/icons/BookmarkBorderOutline
 import Modal from "@material-ui/core/Modal";
 import Fade from "@material-ui/core/Fade";
 import Backdrop from "@material-ui/core/Backdrop";
-
 import BookmarkIcon from "@material-ui/icons/Bookmark";
-
 import Typography from "@material-ui/core/Typography";
+import SuggestionDialog from "./dialogs/SuggestionDialog";
 
 // =========== STYLES ===========
 import { showcaseStyles } from "../../styles/grantShowcaseStyles";
@@ -164,14 +161,7 @@ export const GrantShowcase = props => {
           </Button>
         </Grid>
         <Grid item>
-          <Button
-            className={classes.applyButton}
-            variant="contained"
-            color="primary"
-            onClick={handleOpen}
-          >
-            Suggest Changes
-          </Button>
+          <SuggestionDialog />
         </Grid>
         <Modal
           className={classes.modal}
