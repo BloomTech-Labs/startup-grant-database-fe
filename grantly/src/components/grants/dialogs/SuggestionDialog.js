@@ -35,6 +35,10 @@ export default () => {
     setSuggestion({ ...suggestion, [name]: value });
   };
 
+  const handleSubmit = () => {
+    console.log("SuggestionDialog handleSubmit firing");
+  };
+
   return (
     <>
       <Button
@@ -53,7 +57,7 @@ export default () => {
           </DialogContentText>
           <form>
             <TextField
-              label="suggestion"
+              label="Suggest changes here"
               value={suggestion}
               onChange={handleChanges("suggestion")}
               margin="normal"
