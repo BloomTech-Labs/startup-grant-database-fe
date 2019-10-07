@@ -38,6 +38,22 @@ export const fetchApi = () => dispatch => {
       dispatch({ type: FETCH_ERROR });
     });
 };
+
+export const adminFetchApi = () => dispatch => {
+  console.log("Calling admin")
+  dispatch({ type: FETCH_START });
+  axios
+    // .get(`https://labs16-grantly.herokuapp.com/api/grants/`)
+    .get(`https://grantly-staging.herokuapp.com/api/admin`)
+    .then(response => {
+      console.log("GET response", response);
+      dispatch({ type: FETCH_SUCCESS, payload: response.data });
+    })
+    .catch(error => {
+      console.log("GET error", error);
+      dispatch({ type: FETCH_ERROR });
+    });
+};
 export const saveFilters = filters => dispatch => {
   console.log("fil", filters);
   dispatch({ type: FILTER_SAVE, payload: filters });
@@ -101,7 +117,7 @@ export const checkUser = user => dispatch => {
   const auth = { ...user, auth_id: user.sub };
   console.log("SENT", JSON.stringify(auth));
   axios
-    .get("http://localhost:5000/user", {
+    .get("https://grantly-staging.herokuapp.com/user", {
       headers: {
         auth_id: auth.auth_id
       }
@@ -115,7 +131,7 @@ export const checkUser = user => dispatch => {
       const newUser = { role: "user", auth_id: auth.auth_id };
       if (err.response.status === 404) {
         axios
-          .post("http://localhost:5000/user", newUser)
+          .post("https://grantly-staging.herokuapp.com/user", newUser)
           .then(res => {
             console.log("POst", res);
             dispatch({ type: SET_USER, payload: res.data });
