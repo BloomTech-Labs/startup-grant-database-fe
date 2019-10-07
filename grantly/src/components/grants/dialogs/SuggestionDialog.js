@@ -14,7 +14,9 @@ import { submitSuggestion } from "../../../actions/index";
 
 const SuggestionDialog = props => {
   const [suggestion, setSuggestion] = React.useState("");
-  console.log("SuggestionDialog suggestion", suggestion);
+  const [submitValue, setSubmitValue] = React.useState("");
+  console.log("SuggestionDialog suggestion:", suggestion);
+  //   console.log("SuggestionDialog props", props);
 
   const [open, setOpen] = React.useState(false);
 
@@ -32,13 +34,15 @@ const SuggestionDialog = props => {
     setSuggestion(value);
   };
 
-  const submitSuggestion = suggestion => {
-    props.submitSuggestion(suggestion);
-  };
-
   const handleSubmit = () => {
-    console.log("SuggestionDialog handleSubmit firing");
-    // submitSuggestion();
+    const sendObject = {
+      suggestion: suggestion,
+      id: props.id
+    };
+
+    // props.submitSuggestion(suggestion);
+    // handleClose();
+    // setSuggestion("");
   };
 
   return (

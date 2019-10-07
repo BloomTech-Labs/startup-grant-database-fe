@@ -99,7 +99,7 @@ export const submitSuggestion = suggestion => dispatch => {
   console.log("submitSuggestion suggestion", suggestion);
   dispatch({ type: SUBMIT_SUGGESTION_START });
   axios
-    .post("https://grantly-staging.herokuapp.com/api/grants", suggestion)
+    .post("https://grantly-staging.herokuapp.com/api/suggestion", suggestion)
 
     .then(response => {
       console.log("submitSuggestion response", response);

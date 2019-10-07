@@ -56,7 +56,6 @@ export const GrantShowcase = props => {
     return <div></div>;
   }
 
-  console.log("GrantShowcase open", open);
   return (
     <Card className={classes.showcaseCard}>
       {/* ================= Top container ================= */}
@@ -161,24 +160,8 @@ export const GrantShowcase = props => {
           </Button>
         </Grid>
         <Grid item>
-          <SuggestionDialog />
+          <SuggestionDialog id={props.grant.id} />
         </Grid>
-        <Modal
-          className={classes.modal}
-          open={open}
-          onClose={handleClose}
-          closeAfterTransition
-          BackdropComponent={Backdrop}
-          BackdropProps={{ timeout: 500 }}
-        >
-          <Fade in={open}>
-            <Grid container>
-              <div item className={classes.insideModal}>
-                You made it work
-              </div>
-            </Grid>
-          </Fade>
-        </Modal>
       </Grid>
     </Card>
   );
