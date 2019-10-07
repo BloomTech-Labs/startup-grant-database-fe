@@ -16,7 +16,10 @@ import {
   UPDATE_GRANT_START,
   UPDATE_GRANT_SUCCESS,
   UPDATE_GRANT_FAILURE,
-  FILTER_SAVE
+  FILTER_SAVE,
+  SUBMIT_SUGGESTION_START,
+  SUBMIT_SUGGESTION_SUCCESS,
+  SUBMIT_SUGGESTION_FAILURE
 } from "./types";
 
 export const fetchApi = () => dispatch => {
@@ -89,3 +92,20 @@ export const postGrants = addGrant => dispatch => {
 //     })
 //     .catch(err => console.log(err.response));
 // };
+
+// Submit a grant suggestion
+
+export const submitSuggestion = suggestion => dispatch => {
+  dispatch({ type: SUBMIT_SUGGESTION_START });
+  axios
+    .post("https://grantly-staging.herokuapp.com/api/grants", suggestion)
+
+    .then(response => {
+      console.log("submitSuggestion response", response);
+      dispatch({ type: SUBMIT_SUGGESTION_SUCCESS, payload: response.data });
+    })
+    .catch(error => {
+      console.log("submitSuggestion error", error);
+      dispatch({ type: SUBMIT_SUGGESTION_FAILURE });
+    });
+};
