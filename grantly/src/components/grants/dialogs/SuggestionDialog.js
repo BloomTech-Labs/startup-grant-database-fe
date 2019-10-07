@@ -57,43 +57,19 @@ export default () => {
           </DialogContentText>
           <form>
             <TextField
-              label="Suggest changes here"
+              multiline
+              rows="4"
               value={suggestion}
               onChange={handleChanges("suggestion")}
               margin="normal"
               className={classes.formField}
             />
             <br />
-            {/* <FormControl>
-              <InputLabel htmlFor="muscles">Muscles</InputLabel>
-              <Select
-                value={muscles}
-                onChange={handleChanges("muscles")}
-                className={classes.formField}
-              >
-                {categories.map(category => {
-                  return (
-                    <MenuItem value={category} key={category}>
-                      {category}
-                    </MenuItem>
-                  );
-                })}
-              </Select>
-            </FormControl>
-            <br />
-            <TextField
-              label="Description"
-              multiline
-              rows="4"
-              onChange={handleChanges("description")}
-              margin="normal"
-              className={classes.formField}
-            /> */}
           </form>
         </DialogContent>
         <DialogActions>
           <Button color="primary" variant="outlined" onClick={handleSubmit}>
-            Create
+            Send
           </Button>
         </DialogActions>
       </Dialog>
