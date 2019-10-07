@@ -123,7 +123,6 @@ export const checkUser = user => dispatch => {
           .catch(err => {
             console.log("Oops", err.response);
           });
-        // console.log("checking user", user);
       }
 
       console.log("Error", err.response);
