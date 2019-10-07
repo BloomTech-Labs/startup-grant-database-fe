@@ -44,7 +44,7 @@ const formStyles = makeStyles(theme => ({
     "& h1": {
       fontSize: "2.8rem",
       fontFamily: "adobe-garamond-pro",
-      fontWeight: 400,
+      fontWeight: "400",
       margin: "1rem",
       color: "white",
       padding: "30px"
@@ -53,8 +53,8 @@ const formStyles = makeStyles(theme => ({
       fontFamily: "Roboto",
       color: "white",
       fontSize: "1.3rem",
-      fontWeight: 200,
-      lineHeight: 1.5
+      fontWeight: "200",
+      lineHeight: "1.5"
     },
     paddingTop: "70px",
     background: "#3DB8B3",

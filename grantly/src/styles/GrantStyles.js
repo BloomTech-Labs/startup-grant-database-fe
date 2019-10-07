@@ -1,17 +1,15 @@
 import { makeStyles } from "@material-ui/core/styles";
 import { createMuiTheme } from "@material-ui/core/styles";
 
-
 // vars
 const cardDetailsMargin = "10px";
 
 const grantStyles = makeStyles(theme => ({
-  
   grantCard: {
     display: "flex",
     flexDirection: "column",
     textAlign: "center",
-    borderRadius: "10px",
+    borderRadius: "2px",
     marginBottom: "0.5rem",
     padding: "25px 10px",
     fontFamily: "Roboto"
