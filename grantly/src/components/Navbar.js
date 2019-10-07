@@ -1,10 +1,12 @@
 import React, { useState } from "react";
+import { makeStyles } from "@material-ui/core/styles";
 
 import { NavLink, Link } from "react-router-dom";
 import { useAuth0 } from "../react-auth0-wrapper";
+import { navStyles } from "../styles/navStyles";
 import Media from "react-media";
-import MobileTabs from "./MobileTabs";
-import { makeStyles } from "@material-ui/core/styles";
+import MobileTabs from "./mobile/MobileTabs";
+
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
@@ -20,59 +22,16 @@ import InboxIcon from "@material-ui/icons/MoveToInbox";
 import MailIcon from "@material-ui/icons/Mail";
 import SwipeableDrawer from "@material-ui/core/SwipeableDrawer";
 import SearchBar from "./SearchBar";
-
-const useStyles = makeStyles(theme => ({
-  navButton: {
-    marginRight: theme.spacing(3),
-    color: "#000",
-    fontFamily: "Roboto"
-  },
-  title: {
-    textAlign: "left",
-    marginLeft: "20px",
-    color: "#000"
-  },
-  navbar: {
-    background: "#fff",
-    flexGrow: 1,
-    // marginBottom: "2em",
-    [theme.breakpoints.down("xs")]: {
-      padding: "0",
-      marginBottom: "2rem",
-      boxShadow: "none"
-    }
-  },
-  log: {
-    color: "#fff",
-    fontFamily: "Roboto"
-  },
-  logout: {
-    color: "#000"
-  },
-  menu: {
-    width: "2em",
-    height: "2em",
-    padding: "0"
-  },
-  signup: {
-    marginRight: theme.spacing(3),
-    color: "#3DB8B3"
-  },
-  titleLink: {
-    flexGrow: 1,
-    textDecoration: "none"
-  },
-  link: {
-    textDecoration: "none"
-  },
-  tabs: {
-    position: "fixed",
-    marginTop: "3em"
-  }
-}));
+import ExternalApi from "../util/ExternalApi";
 
 export const NavBar = props => {
-  const { isAuthenticated, loginWithRedirect, logout } = useAuth0();
+  const {
+    isAuthenticated,
+    loginWithRedirect,
+    logout,
+    user,
+    getTokenSilently
+  } = useAuth0();
   const [isOpen, setIsOpen] = useState(false);
   const toggleDrawer = open => event => {
     if (
@@ -85,61 +44,67 @@ export const NavBar = props => {
 
     setIsOpen(!isOpen);
   };
-  const classes = useStyles();
+  const classes = navStyles();
+  const callApi = async () => {
+    try {
+      const token = await getTokenSilently();
 
+      const response = await fetch("/api/external", {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
+
+      console.log("AUTH *****************", token);
+      const responseData = await response.json();
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  //If user is logged in call to get access token
+  {
+    isAuthenticated && callApi();
+  }
   const sideList = side => (
     <div
       role="presentation"
       onClick={toggleDrawer(side, false)}
       onKeyDown={toggleDrawer(side, false)}
+      className={classes.drawer}
     >
-      <List>
-        {["Submit A Grant", "Starred", "Send email", "Drafts"].map(
-          (text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          )
-        )}
-      </List>
+      {" "}
+      <ul className={classes.links}>
+        <Link to="/" className={classes.drawerLink}>
+          <Typography variant="h5">ABOUT</Typography>
+        </Link>
+        <a href="mailto:labs16grantly@gmail.com" className={classes.drawerLink}>
+          <Typography variant="h5">CONTACT</Typography>
+        </a>
+        <a href="https://www.1517fund.com/" className={classes.drawerLink}>
+          <Typography variant="h5">1517 FUND</Typography>
+        </a>
+        <Typography
+          className={classes.drawerLink}
+          variant="h5"
+          onClick={() => loginWithRedirect({})}
+        >
+          ADMIN LOGIN
+        </Typography>
+      </ul>
       <Divider />
-      <List>
-        {["SignUp", "Login"].map((text, index) => (
-          <ListItem button key={text}>
-            {index % 2 === 0 ? (
-              <InboxIcon />
-            ) : (
-              <div>
-                {!isAuthenticated && (
-                  <Button
-                    className={classes.log}
-                    variant="contained"
-                    color="primary"
-                    onClick={() => loginWithRedirect({})}
-                  >
-                    Log in
-                  </Button>
-                )}
-                {isAuthenticated && (
-                  <Button
-                    className={classes.log}
-                    variant="outlined"
-                    onClick={() => logout()}
-                  >
-                    Log out
-                  </Button>
-                )}
-              </div>
-            )}
-          </ListItem>
-        ))}
-      </List>
+      {isAuthenticated && (
+        <Button
+          className={classes.log}
+          variant="outlined"
+          onClick={() => logout()}
+        >
+          Log out
+        </Button>
+      )}
     </div>
   );
-
+  console.log("************************", user);
   return (
     <AppBar className={classes.navbar} color="primary" position="sticky">
       <Toolbar>
@@ -152,27 +117,39 @@ export const NavBar = props => {
           <div>
             <NavLink to="/grants" className={classes.link}>
               <Button className={classes.navButton} color="inherit">
-                HOME
+                Grants
               </Button>
             </NavLink>
             {/* <Button className={classes.navButton} color="inherit">
               ABOUT
             </Button> */}
+            <Button className={classes.navButton} color="inherit" onClick={() => loginWithRedirect()}>
+              SIGN UP
+            </Button>
             <NavLink to="/form" className={classes.link}>
-              <Button className={classes.navButton} color="inherit">
+              <Button
+                className={classes.submitNavButton}
+                color="primary"
+                variant="contained"
+              >
                 Submit a Grant
               </Button>
             </NavLink>
-            <a
-              className={classes.link}
-              href="https://founder-grants.auth0.com/u/signup?state=g6Fo2SBUQXFxbUpIYWtyNjBUTllpM2pwdmVLNnF1Z1l2X3RDOKN0aWTZIE5zZk1pZzZKN2xIQ29fZGVEUzd4Q2hfNTFCbF9iY09oo2NpZNkgRjdJUTA3RG1VTVdWbnFLRTBEMzRsSng2N3ZBZDNhMmU"
-            >
-              <Button className={classes.navButton} color="inherit">
-                SIGN UP
-              </Button>
-            </a>
+            {isAuthenticated && (
+              <NavLink to="/admin" className={classes.link}>
+                <Button
+                  className={classes.navButton}
+                  color="inherit"
+                  onClick={() =>
+                    console.log("Why you gotta push me like that?")
+                  }
+                >
+                  Admin
+                </Button>
+              </NavLink>
+            )}
 
-            {!isAuthenticated && (
+            {/* {!isAuthenticated && (
               <Button
                 className={classes.log}
                 variant="contained"
@@ -181,7 +158,7 @@ export const NavBar = props => {
               >
                 Log in
               </Button>
-            )}
+            )} */}
 
             {isAuthenticated && (
               <Button
@@ -194,7 +171,7 @@ export const NavBar = props => {
             )}
           </div>
         </Media>
-        {/* <Media query="(max-width:800px)">
+        <Media query="(max-width:800px)">
           {matches =>
             matches ? (
               <IconButton
@@ -208,7 +185,7 @@ export const NavBar = props => {
               </IconButton>
             ) : null
           }
-        </Media> */}
+        </Media>
 
         <SwipeableDrawer
           anchor="right"

@@ -2,10 +2,10 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 import Media from "react-media";
-import { postGrants, fetchApi } from "../actions/index.js";
+import { postGrants, fetchApi } from "../../actions/index";
 
 //Objects
-import formStyles from "../styles/FormStyles";
+import formStyles from "../grants/styles/FormStyles";
 import {
   TextField,
   MenuItem,
@@ -14,8 +14,8 @@ import {
   Container,
   Link
 } from "@material-ui/core";
-import Home from "../views/Home";
-import NavBar from "./Navbar";
+import Admin from "../../views/Landing";
+import NavBar from "../Navbar";
 
 const funding = [
   {
@@ -28,7 +28,7 @@ const funding = [
   }
 ];
 
-const AddGrant = props => {
+const GrantForm = props => {
   const [grantInfo, setGrantInfo] = useState({
     competition_name: "",
     type: "",
@@ -86,9 +86,9 @@ const AddGrant = props => {
   return (
     <div>
       {/* <Container fixed> */}
-      {/* <Media query="(max-width:850px)">
+      <Media query="(max-width:850px)">
         {matches => (matches ? null : <NavBar />)}
-      </Media> */}
+      </Media>
       {/* <h1>Submit a New Grant to Founder Grants</h1> */}
       <Grid
         className={styles.grid}
@@ -98,7 +98,7 @@ const AddGrant = props => {
         alignItems="center"
       >
         {/* <Grid item className={styles.leftBox} sm={12} md={5}> */}
-        <Grid item sm={12} md={4}>
+        <Grid sm={12} md={4}>
           {/* <div> */}
           <div className={styles.leftBox}>
             <h1>Submit a New Grant to Founder Grants</h1>
@@ -191,7 +191,6 @@ const AddGrant = props => {
                 className={styles.notes}
                 name="amount_notes"
                 multiline
-                fullWidth
                 rows="3"
                 placeholder="Amount Notes"
                 value={grantInfo.amount_notes}
@@ -243,7 +242,6 @@ const AddGrant = props => {
                 className={styles.notes}
                 name="notes"
                 multiline
-                fullWidth
                 rows="3"
                 placeholder="Notes"
                 value={grantInfo.notes}
@@ -293,16 +291,14 @@ const AddGrant = props => {
                 variant="outlined"
               />
             </div>
-            <div className={styles.divButton}>
+            <div>
               <Button
                 type="submit"
-                variant="contained"
+                variant="outlined"
                 color="primary"
                 size="large"
-                className={styles.submit}
-
               >
-                <span className={styles.label}>Submit</span>
+                Submit
               </Button>
             </div>
           </form>
@@ -321,4 +317,4 @@ const mapStateToProps = ({ grantData, isFetching, error }) => ({
 export default connect(
   mapStateToProps,
   { postGrants, fetchApi }
-)(AddGrant);
+)(GrantForm);

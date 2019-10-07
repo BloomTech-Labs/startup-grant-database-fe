@@ -1,6 +1,7 @@
-import React, {useEffect } from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import { makeStyles, useTheme } from "@material-ui/core/styles";
+import { useTheme } from "@material-ui/core/styles";
+import {mobileTabStyles} from "../../styles/mobileTabStyles";
 
 import SwipeableViews from "react-swipeable-views";
 import Tabs from "@material-ui/core/Tabs";
@@ -9,10 +10,11 @@ import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 import AppBar from "@material-ui/core/AppBar";
 
-import GrantList from "./grants/GrantList";
-import GrantShowcase from "./grants/GrantShowcase";
-import { changeTab } from "../actions/index";
-import SubmitForm from "./SubmitForm";
+import GrantList from "../grants/GrantList";
+import GrantShowcase from "../grants/GrantShowcase";
+import MobileFilters from "./MobileFilters";
+import { changeTab } from "../../actions/index";
+import SubmitForm from "../SubmitForm";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -36,19 +38,9 @@ function a11yProps(index) {
     "aria-controls": `full-width-tabpanel-${index}`
   };
 }
-const useStyles = makeStyles(theme => ({
-  root: {
-    backgroundColor: theme.palette.background.paper
-  },
-  tab: {
-    color: "#3DB8B3"
-  },
-  tabPos: {
-    top: "10%"
-  }
-}));
+
 const MobileTabs = ({ grant, currentTab, changeTab }) => {
-  const classes = useStyles();
+  const classes = mobileTabStyles();
   const theme = useTheme();
   const [value, setValue] = React.useState(0);
   useEffect(() => {
@@ -86,6 +78,7 @@ const MobileTabs = ({ grant, currentTab, changeTab }) => {
       >
         <TabPanel value={value} index={0} dir={theme.direction}>
           <GrantList />
+
         </TabPanel>
         <TabPanel value={value} index={1} dir={theme.direction}>
           <GrantShowcase />

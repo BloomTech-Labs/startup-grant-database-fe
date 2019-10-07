@@ -17,6 +17,7 @@ import {
 
 const initialState = {
   data: [],
+  isFetching: false,
   filteredGrants: [],
   grantShowcase: {},
   filters: { amount: [], geographic_region: [], domain_areas: [] },
@@ -38,9 +39,9 @@ export const rooterReducer = (state = initialState, { type, payload }) => {
         ...state,
         error: "",
         isFetching: false,
-        data: payload.grants,
-        filteredGrants: payload.grants,
-        grantShowcase: payload.grants[0]
+        data: payload,
+        filteredGrants: payload,
+        grantShowcase: payload[0]
       };
     case FETCH_ERROR:
       return {
