@@ -15,13 +15,16 @@ import {
 import { submitSuggestion } from "../../../actions/index";
 
 const SuggestionDialog = props => {
-  const [suggestion, setSuggestion] = React.useState("");
+  const [suggestion, setSuggestion] = React.useState({
+    subject: "",
+    suggestion: ""
+  });
   const [subject, setSubject] = React.useState({
     subject: "",
     suggestion: ""
   });
   const [submitValue, setSubmitValue] = React.useState("");
-  // console.log("SuggestionDialog suggestion:", suggestion);
+  console.log("SuggestionDialog suggestion:", suggestion);
   console.log("SuggestionDialog subject:", subject);
   //   console.log("SuggestionDialog props", props);
 
@@ -39,11 +42,8 @@ const SuggestionDialog = props => {
   };
 
   const handleChanges = name => ({ target: { value } }) => {
-    setSuggestion(value);
-  };
-  const handleChangesSubject = name => ({ target: { value } }) => {
-    setSubject({
-      ...subject,
+    setSuggestion({
+      ...suggestion,
       [name]: value
     });
   };
@@ -95,15 +95,12 @@ const SuggestionDialog = props => {
         <DialogContent>
           <form>
             <br />
-            <TextField
-              margin="normal"
-              onChange={handleChangesSubject("subject")}
-            />
+            <TextField margin="normal" onChange={handleChanges("subject")} />
             <br />
             <TextField
               multiline
               rows="4"
-              onChange={handleChangesSubject("suggestion")}
+              onChange={handleChanges("suggestion")}
               margin="normal"
               className={classes.formField}
             />
