@@ -6,5 +6,11 @@ export const dialogStyles = makeStyles(theme => ({
   },
   formField: {
     width: 500
+  },
+  header: {
+    background: "#3CBBB1"
+  },
+  headerText: {
+    color: "#ffffff"
   }
 }));

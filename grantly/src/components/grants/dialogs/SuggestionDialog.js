@@ -58,12 +58,20 @@ const SuggestionDialog = props => {
         Suggest Changes
       </Button>
       <Dialog open={open} onClose={handleClose}>
-        <Grid container justify="center" direction="column" alignItems="center">
+        <Grid
+          container
+          justify="center"
+          direction="column"
+          alignItems="center"
+          className={classes.header}
+        >
           <Grid item>
-            <DialogTitle>Submit your suggestion to Founder Grants</DialogTitle>
+            <DialogTitle className={classes.headerText}>
+              Submit your suggestion to Founder Grants
+            </DialogTitle>
           </Grid>
           <Grid item>
-            <DialogContentText>
+            <DialogContentText className={classes.headerText}>
               Our admins will review your suggestions and make the appropriate
               changes
             </DialogContentText>
