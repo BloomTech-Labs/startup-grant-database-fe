@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useStylesGrants, useStylesLanding } from "../styles/filterStyles";
 import Checkbox from "@material-ui/core/Checkbox";
-import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
+import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import FormControl from "@material-ui/core/FormControl";
 import FormGroup from "@material-ui/core/FormGroup";
@@ -13,7 +13,7 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { filterGrants, saveFilters } from "../actions/index";
 
-const Filters = ({ saveFilters, filterGrants, savedFilters, location }) => {
+const Filters = ({ saveFilters, filterGrants, savedFilters, location, inAdmin }) => {
   const [filters, setFilters] = useState({
     amount: [],
     geographic_region: [],
@@ -26,7 +26,6 @@ const Filters = ({ saveFilters, filterGrants, savedFilters, location }) => {
     setOpen(true);
   };
 
- 
   //Makes sure that the current state is being sent to the action creator
   useEffect(() => {
     saveFilters(filters);
@@ -72,7 +71,9 @@ const Filters = ({ saveFilters, filterGrants, savedFilters, location }) => {
   const grantStyles = useStylesGrants();
   const landingStyles = useStylesLanding();
   let classes;
-  location === "/grants" || "/admin" ? (classes = grantStyles) : (classes = landingStyles);
+  location === "/grants" || "/admin"
+    ? (classes = grantStyles)
+    : (classes = landingStyles);
 
   return (
     <Card className={classes.card}>
@@ -82,27 +83,32 @@ const Filters = ({ saveFilters, filterGrants, savedFilters, location }) => {
           : "Filter grants by:"}
       </Typography>
       <FormGroup className={classes.filterCard}>
-      <FormControl className={classes.set} component="fieldset">
-          <FormLabel className={classes.label} component="legend">
-            View grant by
-          </FormLabel>
-          {grantFilters.admin_filters.map(name => {
-            return (
-              <FormControlLabel
-                control={
-                  <Checkbox
-                    checked={savedFilters.admin_filters.includes(name.toLowerCase())}
-                    value={name}
-                    color={grantFilters.color}
-                    onClick={() => handleChanges("admin_filters", name)}
-                  />
-                }
-                key={name}
-                label={name}
-              />
-            );
-          })}
-        </FormControl>
+        {inAdmin && (
+          <FormControl className={classes.set} component="fieldset">
+            <FormLabel className={classes.label} component="legend">
+              View grant by
+            </FormLabel>
+            {grantFilters.admin_filters.map(name => {
+              return (
+                <FormControlLabel
+                  control={
+                    <Checkbox
+                      checked={savedFilters.admin_filters.includes(
+                        name.toLowerCase()
+                      )}
+                      value={name}
+                      color={grantFilters.color}
+                      onClick={() => handleChanges("admin_filters", name)}
+                    />
+                  }
+                  key={name}
+                  label={name}
+                />
+              );
+            })}
+          </FormControl>
+        )}
+
         <FormControl className={classes.set} component="fieldset">
           <FormLabel className={classes.label} component="legend">
             Grant Amount
