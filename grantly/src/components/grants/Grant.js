@@ -47,7 +47,7 @@ export const Grant = props => {
     >
       {/* ================= Bookmark Icon ================= */}
       <div className={styles.grant_layout}>
-        <Grid item className={styles.grant_logo}></Grid>
+        {/* <Grid item className={styles.grant_logo}></Grid> */}
         <Grid
           container
           direction="column"
@@ -55,7 +55,7 @@ export const Grant = props => {
           justify="space-between"
           className={styles.grant_info}
         >
-          <Typography variant="h6" className={styles.grantName}>
+          <Typography variant="subtilte1" className={styles.grantName}>
             {props.grant.competition_name}
           </Typography>
           {props.inAdmin && <h2 onClick={console.log("Delete")}>Delete</h2>}
@@ -64,12 +64,12 @@ export const Grant = props => {
               {props.grant.website}
             </Typography>
           </Grid>
-          <Typography variant="h6" component="p">
+          <Typography variant="subtilte1" component="p">
             Deadline - <span className={styles.grant_subinfo}>{deadline}</span>
           </Typography>
           <Grid item>
             {" "}
-            <Typography variant="h6" component="p">
+            <Typography variant="subtilte1" component="p">
               Amount -{" "}
               <span className={styles.grant_subinfo}>
                 {" "}
