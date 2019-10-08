@@ -16,7 +16,12 @@ import {
   UPDATE_GRANT_START,
   UPDATE_GRANT_SUCCESS,
   UPDATE_GRANT_FAILURE,
-  FILTER_SAVE
+  FILTER_SAVE,
+  CHECK_ADMIN,
+  SET_USER,
+  SUBMIT_SUGGESTION_START,
+  SUBMIT_SUGGESTION_SUCCESS,
+  SUBMIT_SUGGESTION_FAILURE
 } from "./types";
 
 export const fetchApi = () => dispatch => {
@@ -24,6 +29,22 @@ export const fetchApi = () => dispatch => {
   axios
     // .get(`https://labs16-grantly.herokuapp.com/api/grants/`)
     .get(`https://grantly-staging.herokuapp.com/api/grants`)
+    .then(response => {
+      console.log("GET response", response);
+      dispatch({ type: FETCH_SUCCESS, payload: response.data });
+    })
+    .catch(error => {
+      console.log("GET error", error);
+      dispatch({ type: FETCH_ERROR });
+    });
+};
+
+export const adminFetchApi = () => dispatch => {
+  console.log("Calling admin")
+  dispatch({ type: FETCH_START });
+  axios
+    // .get(`https://labs16-grantly.herokuapp.com/api/grants/`)
+    .get(`https://grantly-staging.herokuapp.com/api/admin`)
     .then(response => {
       console.log("GET response", response);
       dispatch({ type: FETCH_SUCCESS, payload: response.data });
@@ -89,3 +110,55 @@ export const postGrants = addGrant => dispatch => {
 //     })
 //     .catch(err => console.log(err.response));
 // };
+
+//Check if user is admin
+export const checkUser = user => dispatch => {
+  dispatch({ type: CHECK_ADMIN });
+  const auth = { ...user, auth_id: user.sub };
+  console.log("SENT", JSON.stringify(auth));
+  axios
+    .get("https://grantly-staging.herokuapp.com/user", {
+      headers: {
+        auth_id: auth.auth_id
+      }
+    })
+    .then(res => {
+      console.log("Success! Data sent to Store:", res.data);
+      dispatch({ type: SET_USER, payload: res.data });
+    })
+    .catch(err => {
+      // What error code is ok to post to the db?
+      const newUser = { role: "user", auth_id: auth.auth_id };
+      if (err.response.status === 404) {
+        axios
+          .post("https://grantly-staging.herokuapp.com/user", newUser)
+          .then(res => {
+            console.log("POst", res);
+            dispatch({ type: SET_USER, payload: res.data });
+          })
+          .catch(err => {
+            console.log("Oops", err.response);
+          });
+      }
+
+      console.log("Error", err.response);
+    });
+};
+//
+// Submit a grant suggestion
+
+export const submitSuggestion = suggestion => dispatch => {
+  console.log("submitSuggestion suggestion", suggestion);
+  dispatch({ type: SUBMIT_SUGGESTION_START });
+  axios
+    .post("https://grantly-staging.herokuapp.com/api/suggestion", suggestion)
+
+    .then(response => {
+      console.log("submitSuggestion response", response);
+      dispatch({ type: SUBMIT_SUGGESTION_SUCCESS, payload: response.data });
+    })
+    .catch(error => {
+      console.log("submitSuggestion error", error);
+      dispatch({ type: SUBMIT_SUGGESTION_FAILURE });
+    });
+};

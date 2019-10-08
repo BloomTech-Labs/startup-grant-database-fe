@@ -55,7 +55,7 @@ const Admin = props => {
         className={classes.gridContainer}
       >
         <Grid item xs={6} className={classes.gridItem}>
-          <GrantList />
+          <GrantList inAdmin={true}/>
         </Grid>
         <Grid item xs={8} className={classes.gridItem}>
           <GrantShowcase />

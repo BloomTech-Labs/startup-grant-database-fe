@@ -1,12 +1,20 @@
 import { makeStyles } from "@material-ui/core/styles";
 
 export const loginStyles = makeStyles(theme => ({
-  forgot: {
-    marginTop: "16px",
-    textAlign: "center",
-    marginTop: "var(--spacing-2)"
-  },
-  cta: {
+
+    forgot: {
+        marginTop: "16px",
+        textAlign: "center",
+        marginTop: "var(--spacing-2)"
+    },
+    see: {
+        position: "relative",
+        "&::after": {
+
+            display: "none"
+        }
+    },
+    cta: {
     backgroundColor: "#3CBBB1",
     color: "#fff",
     position: "relative",

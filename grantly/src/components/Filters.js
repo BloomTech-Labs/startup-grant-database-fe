@@ -19,7 +19,13 @@ const Filters = ({ saveFilters, filterGrants, savedFilters, location }) => {
     geographic_region: [],
     domain_areas: []
   });
+  const [open, setOpen] = useState(false);
 
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+ 
   //Makes sure that the current state is being sent to the action creator
   useEffect(() => {
     saveFilters(filters);

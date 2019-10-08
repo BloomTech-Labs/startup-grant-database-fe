@@ -14,31 +14,48 @@ const formStyles = makeStyles(theme => ({
     margin: "0 auto",
     height: "70vh",
     width: "80%",
-    justifyContent: "space-around"
+    justifyContent: "space-around",
+    [theme.breakpoints.down("sm")]: {
+      height: "initial",
+      justifyContent: "center",
+      width: "90%"
+    }
   },
   formContainer: {
     display: "flex",
     flexWrap: "wrap",
-    justifyContent: "space-between"
+    justifyContent: "space-between",
     // justifyContent: "space-evenly"
     // margin: "10%"
     // margin: "2rem"
+    [theme.breakpoints.down("sm")]: {
+      justifyContent: "center"
+    }
   },
   notes: {
-    width: "50%"
+    width: "50%",
+    [theme.breakpoints.down("sm")]: {
+      width: "90%"
+    }
   },
   inputText: {
     // marginLeft: theme.spacing(1)
     // marginRight: theme.spacing(1)
 
     marginLeft: "30px",
-    marginRight: "30px"
+    marginRight: "30px",
+    [theme.breakpoints.down("sm")]: {
+      width: "90%"
+    }
   },
   dense: {
     // marginTop: theme.spacing(2)
   },
   dropDown: {
-    width: 200
+    width: 200,
+    [theme.breakpoints.down("sm")]: {
+      width: "90%"
+    }
   },
   leftBox: {
     // background: "primary"
@@ -74,6 +91,10 @@ const formStyles = makeStyles(theme => ({
     width: "30%",
     height: "4em",
     color: "#fff",
+    [theme.breakpoints.down("sm")]: {
+      width: "90%",
+       
+     }
   },
   label: {
     color: "#fff"

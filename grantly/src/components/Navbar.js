@@ -55,7 +55,7 @@ export const NavBar = props => {
         }
       });
 
-      console.log("AUTH *****************", token);
+      // console.log("AUTH *****************", token);
       const responseData = await response.json();
     } catch (error) {
       console.error(error);
@@ -104,7 +104,7 @@ export const NavBar = props => {
       )}
     </div>
   );
-  console.log("************************", user);
+  // console.log("************************", user);
   return (
     <AppBar className={classes.navbar} color="primary" position="sticky">
       <Toolbar>
@@ -123,9 +123,15 @@ export const NavBar = props => {
             {/* <Button className={classes.navButton} color="inherit">
               ABOUT
             </Button> */}
-            <Button className={classes.navButton} color="inherit" onClick={() => loginWithRedirect()}>
-              SIGN UP
-            </Button>
+            {!isAuthenticated && (
+              <Button
+                className={classes.navButton}
+                color="inherit"
+                onClick={() => loginWithRedirect()}
+              >
+                SIGN UP
+              </Button>
+            )}
             <NavLink to="/form" className={classes.link}>
               <Button
                 className={classes.submitNavButton}
@@ -135,7 +141,7 @@ export const NavBar = props => {
                 Submit a Grant
               </Button>
             </NavLink>
-            {isAuthenticated && (
+            {props.role === "admin" && (
               <NavLink to="/admin" className={classes.link}>
                 <Button
                   className={classes.navButton}
