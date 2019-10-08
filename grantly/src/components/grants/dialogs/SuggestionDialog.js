@@ -50,7 +50,8 @@ const SuggestionDialog = props => {
 
   const handleSubmit = () => {
     const sendObject = {
-      suggestion: suggestion,
+      subject: subject.subject,
+      suggestion: subject.suggestion,
       id: props.id
     };
 
