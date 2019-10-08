@@ -22,7 +22,12 @@ const initialState = {
   isFetching: false,
   filteredGrants: [],
   grantShowcase: {},
-  filters: { amount: [], geographic_region: [], domain_areas: [], admin_filters: [] },
+  filters: {
+    amount: [],
+    geographic_region: [],
+    domain_areas: [],
+    admin_filters: []
+  },
   currentTab: 0,
   currentUser: {}
 };
@@ -81,9 +86,12 @@ export const rooterReducer = (state = initialState, { type, payload }) => {
         filters: payload
       };
     case FILTER_GRANTS:
+      const filtersWithoutAdmin = Object.entries(state.filters)
+      filtersWithoutAdmin.pop()
       let newList = [];
       state.data.map(grant => {
-        Object.entries(payload).map(filter => {
+
+        filtersWithoutAdmin.map(filter => {
           filter[1].map(userFilters => {
             if (filter[0] === "amount") {
               if (userFilters.includes("-")) {
@@ -108,12 +116,22 @@ export const rooterReducer = (state = initialState, { type, payload }) => {
         });
       });
 
+      if (payload.admin_filters.length !== 0) {
+        newList = state.data.filter(grant => {
+          if (payload.admin_filters.includes("new")) {
+            return grant.is_reviewed === false;
+          } else if (payload.admin_filters.includes("suggestions")) {
+            return grant.has_requests === true;
+          }
+        });
+      }
+
       const testing = Array.from(new Set(newList.map(grant => grant.id))).map(
         id => {
           return newList.find(grant => grant.id === id);
         }
       );
-
+      console.log(testing);
       return {
         ...state,
         data: Array.from(new Set(state.data.map(grant => grant.id))).map(id => {

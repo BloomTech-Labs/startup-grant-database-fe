@@ -61,7 +61,7 @@ const Admin = props => {
           <GrantShowcase />
         </Grid>
         <Grid item xs={2}>
-          <Filters location={props.location.pathname}/>
+          <Filters inAdmin={true} location={props.location.pathname}/>
         </Grid>
       </Grid>
     </div>
