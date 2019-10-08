@@ -1,14 +1,18 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useAuth0 } from "../react-auth0-wrapper";
+import { lock } from "../react-auth0-wrapper";
 import { Grid, Typography } from "@material-ui/core/";
 
 import { sitemapStyles } from "../styles/sitemapStyles";
 
 const Sitemap = () => {
-  const { loginWithRedirect } = useAuth0();
+  const { loginWithRedirect, loginWithPopup, } = useAuth0();
   const styles = sitemapStyles();
 
+  // const login = () => {
+  //   lock.show()
+  // }
   return (
     <div className={styles.container}>
       <Grid container spacing={8} className={styles.sitemap}>

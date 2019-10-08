@@ -1,6 +1,9 @@
 // Dependencies
-import React from "react";
+import React, { useEffect } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
+import { connect } from "react-redux";
+import { checkUser } from "./actions/index";
+import { useAuth0 } from "./react-auth0-wrapper";
 
 // Objects
 
@@ -15,23 +18,42 @@ import Landing from "./views/Landing";
 import LoginForm from "./components/LoginForm";
 import NavBar from "./components/Navbar";
 import Sitemap from "./components/Sitemap";
+import PrivateRoute from "./util/PrivateRoute";
 
-function App() {
+function App({ checkUser, currentUser }) {
+  const { user, isAuthenticated } = useAuth0();
+  useEffect(() => {
+    if (isAuthenticated) {
+      checkUser(user);
+    }
+  }, [user]);
+  console.log("App", user);
   return (
     <Router>
       <ThemeProvider theme={theme}>
         <div className="App">
           {/* <Route path = "/login" component={LoginForm} /> */}
-          <NavBar location={window.location.pathname} />
+          <NavBar location={window.location.pathname} role={currentUser.role} />
           <Route exact path="/" component={Landing} />
           <Route exact path="/grants" component={Home} />
           <Route path="/form" component={SubmitForm} />
-          <Route path="/admin" component={Admin} />
+          <Route path="/login" component={LoginForm} />
+          {/* <Route path="/admin" component={Admin} /> */}
+          {isAuthenticated && (
+            <PrivateRoute exact path="/admin" component={Admin} />
+          )}
           <Sitemap />
         </div>
       </ThemeProvider>
     </Router>
   );
 }
-
-export default App;
+const mapStateToProps = state => {
+  return {
+    currentUser: state.currentUser
+  }
+}
+export default connect(
+  mapStateToProps,
+  { checkUser }
+)(App);

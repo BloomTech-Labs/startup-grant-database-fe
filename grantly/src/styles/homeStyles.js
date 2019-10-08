@@ -1,4 +1,5 @@
 import { makeStyles } from "@material-ui/core/styles";
+import { border } from "@material-ui/system";
 
 // export const homeStyles = makeStyles(theme => ({
 //     marginBottom: "0",
@@ -12,6 +13,7 @@ import { makeStyles } from "@material-ui/core/styles";
     gridContainer: {
       margin: "0",
       flexWrap: "nowrap",
+      overflowX: "hidden",
       marginBottom: "10%"
     },
     gridItem: {
@@ -32,6 +34,16 @@ import { makeStyles } from "@material-ui/core/styles";
       [theme.breakpoints.down("sm")]: {
         display: "none",
       }
+    },
+    filters: {
+      transition: "all .3s ease-in-out",
+    },
+    hideFilters: {
+      transform: "translateX(100%)",
+    },
+    showFilters: {
+      transform: "translateX(0)",
+
     },
     root: {
       display: "flex"
