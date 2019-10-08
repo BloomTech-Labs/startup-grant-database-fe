@@ -48,7 +48,7 @@ const SuggestionDialog = props => {
     const sendObject = {
       subject: suggestion.subject,
       suggestion: suggestion.suggestion,
-      id: props.id
+      grant_id: props.id
     };
 
     props.submitSuggestion(sendObject);
