@@ -54,11 +54,14 @@ const Admin = props => {
         justify="space-between"
         className={classes.gridContainer}
       >
-        <Grid item xs={6} className={classes.gridItem}>
+        <Grid item xs={6} md={3}>
           <GrantList inAdmin={true}/>
         </Grid>
         <Grid item xs={8} className={classes.gridItem}>
           <GrantShowcase />
+        </Grid>
+        <Grid item xs={2}>
+          <Filters location={props.location.pathname}/>
         </Grid>
       </Grid>
     </div>

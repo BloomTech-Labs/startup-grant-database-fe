@@ -70,7 +70,7 @@ const Filters = ({ saveFilters, filterGrants, savedFilters, location }) => {
   const grantStyles = useStylesGrants();
   const landingStyles = useStylesLanding();
   let classes;
-  location === "/grants" ? (classes = grantStyles) : (classes = landingStyles);
+  location === "/grants" || "/admin" ? (classes = grantStyles) : (classes = landingStyles);
 
   return (
     <Card className={classes.card}>

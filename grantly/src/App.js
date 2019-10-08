@@ -38,6 +38,7 @@ function App({ checkUser, currentUser }) {
           <Route exact path="/grants" component={Home} />
           <Route path="/form" component={SubmitForm} />
           <Route path="/login" component={LoginForm} />
+          
           {/* <Route path="/admin" component={Admin} /> */}
           {isAuthenticated && (
             <PrivateRoute exact path="/admin" component={Admin} />
