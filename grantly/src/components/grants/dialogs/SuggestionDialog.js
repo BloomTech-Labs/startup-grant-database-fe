@@ -8,7 +8,8 @@ import {
   DialogContent,
   DialogContentText,
   DialogTitle,
-  TextField
+  TextField,
+  Grid
 } from "@material-ui/core";
 import { submitSuggestion } from "../../../actions/index";
 
@@ -57,10 +58,21 @@ const SuggestionDialog = props => {
         Suggest Changes
       </Button>
       <Dialog open={open} onClose={handleClose}>
-        <DialogTitle>Suggest changes</DialogTitle>
+        <Grid container justify="center" direction="column">
+          <Grid item>
+            <DialogTitle>Submit your suggestion to Founder Grants</DialogTitle>
+          </Grid>
+          <Grid item>
+            <DialogContentText>
+              Our admins will review your suggestions and make the appropriate
+              changes
+            </DialogContentText>
+          </Grid>
+        </Grid>
         <DialogContent>
           <DialogContentText>
-            Please suggest changes in the below dialog
+            Our admins will review your suggestions and make the appropriate
+            changes
           </DialogContentText>
           <form>
             <TextField
