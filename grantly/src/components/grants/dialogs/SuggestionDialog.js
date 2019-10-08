@@ -9,7 +9,8 @@ import {
   DialogContentText,
   DialogTitle,
   TextField,
-  Grid
+  Grid,
+  Typography
 } from "@material-ui/core";
 import { submitSuggestion } from "../../../actions/index";
 
@@ -67,7 +68,9 @@ const SuggestionDialog = props => {
         >
           <Grid item>
             <DialogTitle className={classes.headerText}>
-              Submit your suggestion to Founder Grants
+              <Typography variant="h5">
+                Submit your suggestion to Founder Grants
+              </Typography>
             </DialogTitle>
           </Grid>
           <Grid item>
