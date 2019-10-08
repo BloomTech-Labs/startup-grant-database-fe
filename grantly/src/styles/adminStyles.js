@@ -6,7 +6,9 @@ export const adminStyles = makeStyles(theme => ({
       padding: theme.spacing(3)
     },
     gridContainer: {
-      flexWrap: "nowrap"
+      flexWrap: "nowrap",
+      overflowX: "hidden",
+
     },
     gridItem: {
       padding: 30
