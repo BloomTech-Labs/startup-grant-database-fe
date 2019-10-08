@@ -1,7 +1,7 @@
 // Dependencies
 import React from "react";
 import { connect } from "react-redux";
-import Moment from "react-moment";
+import clsx from "clsx";
 
 // Objects
 import Grid from "@material-ui/core/Grid";
@@ -10,38 +10,17 @@ import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 import Collapse from "@material-ui/core/Collapse";
-
-// const useStyles = makeStyles(theme => ({
-//   card: {
-//     maxWidth: 345
-//   },
-//   media: {
-//     height: 0,
-//     paddingTop: "56.25%" // 16:9
-//   },
-//   expand: {
-//     transform: "rotate(0deg)",
-//     marginLeft: "auto",
-//     transition: theme.transitions.create("transform", {
-//       duration: theme.transitions.duration.shortest
-//     })
-//   },
-//   expandOpen: {
-//     transform: "rotate(180deg)"
-//   },
-//   avatar: {
-//     backgroundColor: red[500]
-//   }
-// }));
+import IconButton from "@material-ui/core/IconButton";
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import CardActions from "@material-ui/core/CardActions";
 
 export const Suggestion = props => {
   const selectSuggestion = () => {
     props.selectSuggestion(props.suggestion);
   };
 
-//   const styles = suggestionStyles();
+  const styles = suggestionStyles();
 
-  //   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
 
   const handleExpandClick = () => {
@@ -65,6 +44,18 @@ export const Suggestion = props => {
             the mussels, if you like.
           </Typography>
         </CardContent>
+        <CardActions disableSpacing>
+          <IconButton
+            className={clsx(styles.expand, {
+              [styles.expandOpen]: expanded
+            })}
+            onClick={handleExpandClick}
+            aria-expanded={expanded}
+            aria-label="show more"
+          >
+            <ExpandMoreIcon />
+          </IconButton>
+        </CardActions>
         <Collapse in={expanded} timeout="auto" unmountOnExit>
           <CardContent>
             <Typography paragraph>Method:</Typography>
