@@ -19,13 +19,9 @@ const SuggestionDialog = props => {
     subject: "",
     suggestion: ""
   });
-  const [subject, setSubject] = React.useState({
-    subject: "",
-    suggestion: ""
-  });
+
   const [submitValue, setSubmitValue] = React.useState("");
   console.log("SuggestionDialog suggestion:", suggestion);
-  console.log("SuggestionDialog subject:", subject);
   //   console.log("SuggestionDialog props", props);
 
   const [open, setOpen] = React.useState(false);
@@ -50,8 +46,8 @@ const SuggestionDialog = props => {
 
   const handleSubmit = () => {
     const sendObject = {
-      subject: subject.subject,
-      suggestion: subject.suggestion,
+      subject: suggestion.subject,
+      suggestion: suggestion.suggestion,
       id: props.id
     };
 
