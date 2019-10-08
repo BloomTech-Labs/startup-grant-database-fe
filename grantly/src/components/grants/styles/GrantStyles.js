@@ -82,6 +82,11 @@ export const grantShowcaseStyles = makeStyles(theme => ({
   modal: {
     display: "flex",
     alignItems: "center",
-    justifyContent: "center"
+    justifyContent: "center",
+    border: "1px solid red"
+  },
+  insideModal: {
+    border: "1px solid red",
+    fontSize: "2rem"
   }
 }));

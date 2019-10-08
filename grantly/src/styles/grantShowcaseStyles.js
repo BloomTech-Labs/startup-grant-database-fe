@@ -39,7 +39,9 @@ export const showcaseStyles = makeStyles(theme => ({
   },
   applyButton: {
     color: "#fff",
-    margin: "20px auto"
+    margin: "20px auto",
+    fontFamily: "Nunito Sans",
+    fontWeight: "600"
   },
   showcase_header: {
     width: "initial"

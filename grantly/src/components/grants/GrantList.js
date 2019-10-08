@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 // Objects
 import Grant from "./Grant";
 import Loader from "react-loader-spinner";
-import { fetchApi } from "../../actions";
+import { fetchApi, adminFetchApi } from "../../actions";
 
 // Styles
 import { homeStyles } from "../../styles/homeStyles";
@@ -16,15 +16,23 @@ import { homeStyles } from "../../styles/homeStyles";
 // };
 
 export const GrantList = props => {
-  console.log("GrantList props", props);
+  // console.log("GrantList props", props);
   const styles = homeStyles();
 
   useEffect(() => {
-    if (props.data.length === 0) {
+    if(props.inAdmin){
+      props.adminFetchApi()
+    } else if (props.data.length === 0){
+      props.fetchApi();
+    } else {
       props.fetchApi();
     }
+
     console.log("Grants", props.data);
-  }, [props.data]);
+    console.log("Use effect", props)
+
+  }, []);
+
 
   if (props.isFetching) {
     return <Loader type="Triangle" color="#3DB8B3" height="100" width="100" />;
@@ -38,7 +46,7 @@ export const GrantList = props => {
 
       {props.data.length > 0 ? (
         props.data.map(grant => {
-          return <Grant grant={grant} key={grant.id} />;
+          return <Grant grant={grant} key={grant.id} inAdmin={props.inAdmin}/>;
         })
       ) : (
         <div> Grants incoming! </div>
@@ -48,7 +56,7 @@ export const GrantList = props => {
 };
 
 const mapStateToProps = state => {
-  console.log("GrantList mapStateToProps state", state);
+  // console.log("GrantList mapStateToProps state", state);
   return {
     error: state.error,
     isFetching: state.isFetching,
@@ -57,5 +65,5 @@ const mapStateToProps = state => {
 };
 export default connect(
   mapStateToProps,
-  { fetchApi }
+  { fetchApi, adminFetchApi }
 )(GrantList);

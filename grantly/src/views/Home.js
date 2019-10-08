@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import {homeStyles} from "../styles/homeStyles";
+import { homeStyles } from "../styles/homeStyles";
 import GrantList from "../components/grants/GrantList";
 import Filters from "../components/Filters";
 import GrantShowcase from "../components/grants/GrantShowcase";
@@ -12,12 +12,13 @@ import Media from "react-media";
 import SwipeableDrawer from "@material-ui/core/SwipeableDrawer";
 import MobileFilters from "../components/mobile/MobileFilters";
 
-
+// delete this sometime
 
 const Home = props => {
   const [isOpen, setIsOpen] = useState(false);
+  //Show filters
+  const [open, setOpen] = useState();
   const toggleDrawer = open => event => {
-    console.log("toggle")
     if (
       event &&
       event.type === "keydown" &&
@@ -28,8 +29,12 @@ const Home = props => {
 
     setIsOpen(!isOpen);
   };
-  const classes = homeStyles();
 
+  const toggleFilters = () => {
+    setOpen(!open);
+  };
+  const classes = homeStyles();
+  
   return (
     <>
       {/* <Navbar location={props.location.pathname} /> */}
@@ -38,8 +43,8 @@ const Home = props => {
         {matches =>
           matches ? (
             <>
-              <MobileTabs /> 
-              <MobileFilters />
+              <MobileTabs />
+              <MobileFilters toggleDrawer={toggleDrawer} />
               <SwipeableDrawer
                 anchor="bottom"
                 open={isOpen}
@@ -66,7 +71,7 @@ const Home = props => {
                   // style={{ padding: "30px 0 0 30px" }}
                 >
                   {/* <div className={classes.scrollBox}> */}
-                  <GrantList />
+                  <GrantList inAdmin={false} />
                   {/* </div> */}
                 </Grid>
                 <Grid
@@ -78,7 +83,10 @@ const Home = props => {
                   <GrantShowcase />
                 </Grid>
                 <Grid item xs={2}>
-                  <Filters location={props.location.pathname} />
+                  <button onClick={toggleFilters}>Filters</button>
+                  <div className={`${classes.filters} ${open ? classes.showFilters : classes.hideFilters}`}>
+                    <Filters location={props.location.pathname} />
+                  </div>
                 </Grid>
               </Grid>
             </div>

@@ -10,7 +10,9 @@ import {
   FILTER_GRANTS_RESET,
   ADD_GRANT_START,
   ADD_GRANT_SUCCESS,
-  ADD_GRANT_FAILURE
+  ADD_GRANT_FAILURE,
+  CHECK_ADMIN,
+  SET_USER
 } from "../actions/types";
 
 // Initial state
@@ -20,14 +22,32 @@ const initialState = {
   isFetching: false,
   filteredGrants: [],
   grantShowcase: {},
-  filters: { amount: [], geographic_region: [], domain_areas: [] },
-  currentTab: 0
+  filters: {
+    amount: [],
+    geographic_region: [],
+    domain_areas: [],
+    admin_filters: []
+  },
+  currentTab: 0,
+  currentUser: {}
 };
 
 // Reducer
 
 export const rooterReducer = (state = initialState, { type, payload }) => {
   switch (type) {
+    case CHECK_ADMIN: {
+      return {
+        ...state
+      };
+    }
+    case SET_USER: {
+      console.log("reducer", payload);
+      return {
+        ...state,
+        currentUser: payload
+      };
+    }
     case FETCH_START:
       return {
         ...state,
@@ -43,6 +63,7 @@ export const rooterReducer = (state = initialState, { type, payload }) => {
         filteredGrants: payload,
         grantShowcase: payload[0]
       };
+
     case FETCH_ERROR:
       return {
         ...state,
@@ -60,15 +81,17 @@ export const rooterReducer = (state = initialState, { type, payload }) => {
         currentTab: payload
       };
     case FILTER_SAVE:
-      console.log(payload);
       return {
         ...state,
         filters: payload
       };
     case FILTER_GRANTS:
+      const filtersWithoutAdmin = Object.entries(state.filters)
+      filtersWithoutAdmin.pop()
       let newList = [];
       state.data.map(grant => {
-        Object.entries(payload).map(filter => {
+
+        filtersWithoutAdmin.map(filter => {
           filter[1].map(userFilters => {
             if (filter[0] === "amount") {
               if (userFilters.includes("-")) {
@@ -77,12 +100,12 @@ export const rooterReducer = (state = initialState, { type, payload }) => {
                 if (grant[filter[0]] >= min && grant[filter[0]] <= max) {
                   newList.push(grant);
                 }
-              } else if (grant[filter[0]] <= userFilters.replace(/\D/g, "")) {
-                newList.push(grant);
               } else if (userFilters.replace(/[^0-9\+]/g, "").includes("+")) {
                 if (grant[filter[0]] >= userFilters.replace(/\D/g, "")) {
                   newList.push(grant);
                 }
+              } else if (grant[filter[0]] <= userFilters.replace(/\D/g, "")) {
+                newList.push(grant);
               }
             } else if (
               grant[filter[0]].toLowerCase().includes(userFilters.toLowerCase())
@@ -93,12 +116,22 @@ export const rooterReducer = (state = initialState, { type, payload }) => {
         });
       });
 
+      if (payload.admin_filters.length !== 0) {
+        newList = state.data.filter(grant => {
+          if (payload.admin_filters.includes("new")) {
+            return grant.is_reviewed === false;
+          } else if (payload.admin_filters.includes("suggestions")) {
+            return grant.has_requests === true;
+          }
+        });
+      }
+
       const testing = Array.from(new Set(newList.map(grant => grant.id))).map(
         id => {
           return newList.find(grant => grant.id === id);
         }
       );
-
+      console.log(testing);
       return {
         ...state,
         data: Array.from(new Set(state.data.map(grant => grant.id))).map(id => {

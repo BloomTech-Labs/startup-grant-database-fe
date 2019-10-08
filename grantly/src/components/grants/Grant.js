@@ -58,6 +58,7 @@ export const Grant = props => {
           <Typography variant="h6" className={styles.grantName}>
             {props.grant.competition_name}
           </Typography>
+          {props.inAdmin && <h2 onClick={console.log("Delete")}>Delete</h2>}
           <Grid item>
             <Typography variant="body2" component="p">
               {props.grant.website}
@@ -132,9 +133,10 @@ export const Grant = props => {
   );
 };
 
-const mapStateToProps = ({ grantShowcase }) => {
+const mapStateToProps = ({ grantShowcase, currentUser }) => {
   return {
-    grantShowcase
+    grantShowcase,
+    currentUser
   };
 };
 
