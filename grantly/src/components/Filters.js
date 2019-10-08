@@ -71,7 +71,7 @@ const Filters = ({ saveFilters, filterGrants, savedFilters, location, inAdmin })
   const grantStyles = useStylesGrants();
   const landingStyles = useStylesLanding();
   let classes;
-  location === "/grants" || "/admin"
+  location === "/grants" || location === "/admin"
     ? (classes = grantStyles)
     : (classes = landingStyles);
 
