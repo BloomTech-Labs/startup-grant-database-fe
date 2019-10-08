@@ -10,6 +10,7 @@ import Navbar from "../components/Navbar";
 import Media from "react-media";
 import SwipeableDrawer from "@material-ui/core/SwipeableDrawer";
 import MobileFilters from "../components/mobile/MobileFilters";
+import Suggestion from "../components/Suggestion";
 
 const useStyles = makeStyles(theme => ({
   content: {
@@ -55,10 +56,11 @@ const Admin = props => {
         className={classes.gridContainer}
       >
         <Grid item xs={6} className={classes.gridItem}>
-          <GrantList inAdmin={true}/>
+          <GrantList inAdmin={true} />
         </Grid>
         <Grid item xs={8} className={classes.gridItem}>
           <GrantShowcase />
+          <Suggestion />
         </Grid>
       </Grid>
     </div>
