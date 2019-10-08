@@ -1,7 +1,6 @@
 import { makeStyles } from "@material-ui/core/styles";
 import { createMuiTheme } from "@material-ui/core/styles";
 
-
 // vars
 const cardDetailsMargin = "10px";
 
