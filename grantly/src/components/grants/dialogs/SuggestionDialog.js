@@ -111,9 +111,28 @@ const SuggestionDialog = props => {
           </form>
         </DialogContent>
         <DialogActions>
-          <Button color="primary" variant="outlined" onClick={handleSubmit}>
-            Send
-          </Button>
+          <Grid container justify="center">
+            <Grid item>
+              <Button
+                color="primary"
+                variant="outlined"
+                onClick={handleSubmit}
+                className={classes.btn}
+              >
+                Cancel
+              </Button>
+            </Grid>
+            <Grid>
+              <Button
+                color="primary"
+                variant="outlined"
+                onClick={handleClose}
+                className={classes.btn}
+              >
+                Send
+              </Button>
+            </Grid>
+          </Grid>
         </DialogActions>
       </Dialog>
     </>
