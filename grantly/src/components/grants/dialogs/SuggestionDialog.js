@@ -93,11 +93,13 @@ const SuggestionDialog = props => {
             <br />
             <TextField
               margin="normal"
+              label="subject"
               onChange={handleChanges("subject")}
               variant="outlined"
             />
             <br />
             <TextField
+              label="suggestion"
               multiline
               rows="4"
               onChange={handleChanges("suggestion")}
