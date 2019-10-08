@@ -1,11 +1,11 @@
 // Dependencies
 import React from "react";
 import { connect } from "react-redux";
+
 import Loader from "react-loader-spinner";
 
 import Moment from "react-moment";
 import moment from "moment";
-import { makeStyles } from "@material-ui/core/styles";
 
 // Objects
 import Card from "@material-ui/core/Card";
@@ -16,10 +16,9 @@ import LanguageIcon from "@material-ui/icons/Language";
 import Modal from "@material-ui/core/Modal";
 import Fade from "@material-ui/core/Fade";
 import Backdrop from "@material-ui/core/Backdrop";
-
 import BookmarkIcon from "@material-ui/icons/Bookmark";
-
 import Typography from "@material-ui/core/Typography";
+import SuggestionDialog from "./dialogs/SuggestionDialog";
 
 // =========== STYLES ===========
 import { showcaseStyles } from "../../styles/grantShowcaseStyles";
@@ -61,11 +60,8 @@ export const GrantShowcase = props => {
     return <Loader type="Triangle" color="#3DB8B3" height="200" width="200" />;
   }
 
-  console.log("GrantShowcase open", open);
   return (
     <Card className={classes.showcaseCard}>
-      {/* ================= Bookmark Icon ================= */}
-
       {/* ================= Top container ================= */}
       <div>
         <Grid
@@ -115,6 +111,7 @@ export const GrantShowcase = props => {
             {props.grant.website}
           </a>
         </Grid>
+
         <Grid item>
           <a href={props.grant.website} target="_blank">
             <Button
@@ -134,6 +131,7 @@ export const GrantShowcase = props => {
             Edit Grant
           </Button> */}
         </Grid>
+
       </div>
       {/* ================= Main content ================= */}
 
@@ -195,29 +193,8 @@ export const GrantShowcase = props => {
           </Button>
         </Grid>
         <Grid item>
-          <Button
-            className={classes.applyButton}
-            variant="contained"
-            color="primary"
-            onClick={handleOpen}
-          >
-            Suggest Changes
-          </Button>
+          <SuggestionDialog id={props.grant.id} />
         </Grid>
-        <Modal
-          className={classes.modal}
-          open={open}
-          onClose={handleClose}
-          closeAfterTransition
-          BackdropComponent={Backdrop}
-          BackdropProps={{ timeout: 500 }}
-        >
-          <Fade in={open}>
-            <div>
-              <div>You made it work</div>
-            </div>
-          </Fade>
-        </Modal>
       </Grid>
     </Card>
   );
