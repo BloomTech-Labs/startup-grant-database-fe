@@ -29,6 +29,7 @@ export const GrantList = props => {
     }
 
     console.log("Grants", props.data);
+    console.log("Use effect", props)
 
   }, []);
 
