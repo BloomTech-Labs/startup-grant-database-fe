@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import {homeStyles} from "../styles/homeStyles";
+import { homeStyles } from "../styles/homeStyles";
 import GrantList from "../components/grants/GrantList";
 import Filters from "../components/Filters";
 import GrantShowcase from "../components/grants/GrantShowcase";
@@ -16,6 +16,8 @@ import MobileFilters from "../components/mobile/MobileFilters";
 
 const Home = props => {
   const [isOpen, setIsOpen] = useState(false);
+  //Show filters
+  const [open, setOpen] = useState();
   const toggleDrawer = open => event => {
     if (
       event &&
@@ -27,8 +29,12 @@ const Home = props => {
 
     setIsOpen(!isOpen);
   };
-  const classes = homeStyles();
 
+  const toggleFilters = () => {
+    setOpen(!open);
+  };
+  const classes = homeStyles();
+  
   return (
     <>
       {/* <Navbar location={props.location.pathname} /> */}
@@ -37,7 +43,7 @@ const Home = props => {
         {matches =>
           matches ? (
             <>
-              <MobileTabs /> 
+              <MobileTabs />
               <MobileFilters />
               <SwipeableDrawer
                 anchor="bottom"
@@ -77,7 +83,10 @@ const Home = props => {
                   <GrantShowcase />
                 </Grid>
                 <Grid item xs={2}>
-                  <Filters location={props.location.pathname} />
+                  <button onClick={toggleFilters}>Filters</button>
+                  <div className={`${classes.filters} ${open ? classes.showFilters : classes.hideFilters}`}>
+                    <Filters location={props.location.pathname} />
+                  </div>
                 </Grid>
               </Grid>
             </div>

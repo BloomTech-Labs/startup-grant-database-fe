@@ -7,7 +7,7 @@ export const useStylesGrants = makeStyles(theme => ({
       borderRadius: "2px",
       // width: "15%",
       width: "90%",
-    height: "100vh",
+    minHeight: "100vh",
       [theme.breakpoints.down("sm")]: {
         position: "initial",
         marginTop: "0",
