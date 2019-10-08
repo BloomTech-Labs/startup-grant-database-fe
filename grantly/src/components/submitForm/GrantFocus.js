@@ -10,11 +10,11 @@ export default function GrantFocus() {
           <TextField
             label="Sponsoring Entity"
             type="text"
-            className={styles.inputText}
+            // className={styles.inputText}
             name="sponsoring_entity"
             placeholder="Sponsoring Entity"
-            value={grantInfo.sponsoring_entity}
-            onChange={handleChanges}
+            // value={grantInfo.sponsoring_entity}
+            // onChange={handleChanges}
             margin="normal"
             variant="outlined"
           />
@@ -23,11 +23,11 @@ export default function GrantFocus() {
           <TextField
             label="Domain Areas"
             type="text"
-            className={styles.inputText}
+            // className={styles.inputText}
             name="domain_areas"
             placeholder="Domain Areas"
-            value={grantInfo.domain_areas}
-            onChange={handleChanges}
+            // value={grantInfo.domain_areas}
+            // onChange={handleChanges}
             margin="normal"
             variant="outlined"
           />
@@ -36,11 +36,11 @@ export default function GrantFocus() {
           <TextField
             label="Area Focus"
             type="text"
-            className={styles.inputText}
+            // className={styles.inputText}
             name="area_focus"
             placeholder="Area Focus"
-            value={grantInfo.area_focus}
-            onChange={handleChanges}
+            // value={grantInfo.area_focus}
+            // onChange={handleChanges}
             margin="normal"
             variant="outlined"
           />

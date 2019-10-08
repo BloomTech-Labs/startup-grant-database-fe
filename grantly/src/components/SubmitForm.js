@@ -10,23 +10,46 @@ import {
   TextField,
   MenuItem,
   Button,
+  Paper,
   Grid,
+  Stepper,
+  Step,
   Container,
-  Link
+  Link,
+  CssBaseline,
+  StepLabel
 } from "@material-ui/core";
 import Home from "../views/Home";
 import NavBar from "./Navbar";
+import GrantInfo from "./submitForm/GrantInfo";
+import GrantFocus from "./submitForm/GrantFocus";
+import GrantDemo from "./submitForm/GrantDemo";
 
-const funding = [
-  {
-    value: true,
-    label: "yes"
-  },
-  {
-    value: false,
-    label: "no"
+// const funding = [
+//   {
+//     value: true,
+//     label: "yes"
+//   },
+//   {
+//     value: false,
+//     label: "no"
+//   }
+// ];
+
+const steps = ["Grant Info", "Grant Focus", "Grant Demo"];
+
+function getStepContent(step) {
+  switch (step) {
+    case 0:
+      return <GrantInfo />;
+    case 1:
+      return <GrantFocus />;
+    case 2:
+      return <GrantDemo />;
+    default:
+      throw new Error("Unknown Step");
   }
-];
+}
 
 const AddGrant = props => {
   const [grantInfo, setGrantInfo] = useState({
@@ -82,59 +105,85 @@ const AddGrant = props => {
 
   const styles = formStyles();
 
+  const [activeStep, setActiveStep] = React.useState(0);
+
+  const handleNext = () => {
+    setActiveStep(activeStep + 1);
+  };
+
+  const handleBack = () => {
+    setActiveStep(activeStep - 1);
+  };
+
   console.log(props);
   return (
-    <div classname={styles.grid}>
-      <Grid
-        // container
-        // classname={styles.grid}
-        direction="column"
-        justify="center"
-        alignItems="center"
-      >
-        <Grid className={styles.topBox}>
-          <div>
-            <h1>Submit a New Grant to Founder Grants</h1>
-            <p>
-              Please fill out all of the form fields on this page regarding the
-              grant you are submitting. If you are unsure of anything please
-              write “N/A” Thank you!
-            </p>
-          </div>
-        </Grid>
+    <React.Fragment>
+      <CssBaseline />
 
-        <Grid className={styles.bottomBox}>
-          <div>
-            <form onSubmit={submitGrant}>
-              <div className={styles.formContainer}>
-                <TextField
-                  type="date"
-                  className={styles.inputText}
-                  name="details_last_updated"
-                  value={grantInfo.details_last_updated}
-                  onChange={handleChanges}
-                  helperText="Details Last Updated"
-                  margin="normal"
-                  variant="outlined"
-                />
-              </div>
-              <div className={styles.divButton}>
-                <Button
-                  type="submit"
-                  variant="contained"
-                  color="primary"
-                  size="large"
-                  className={styles.submit}
-                >
-                  <span className={styles.label}>Submit</span>
-                </Button>
-              </div>
-            </form>
-          </div>
-        </Grid>
-      </Grid>
-      {/* </Container> */}
-    </div>
+      <main className={styles.layout}>
+        <Paper className={styles.paper}>
+          <Grid className={styles.topBox}>
+            <div>
+              <h1>Submit a New Grant to Founder Grants</h1>
+              <p>
+                Please fill out all of the form fields on this page regarding
+                the grant you are submitting. If you are unsure of anything
+                please write “N/A” Thank you!
+              </p>
+            </div>
+          </Grid>
+          <Stepper activeStep={activeStep} className={styles.stepper}>
+            {steps.map(label => (
+              <Step key={label}>
+                <StepLabel>{label}</StepLabel>
+              </Step>
+            ))}
+          </Stepper>
+        </Paper>
+      </main>
+    </React.Fragment>
+
+    // <div classname={styles.grid}>
+    //   <Grid
+    //     // container
+    //     // classname={styles.grid}
+    //     direction="column"
+    //     justify="center"
+    //     alignItems="center"
+    //   >
+
+    //     <Grid className={styles.bottomBox}>
+    //       <div>
+    //         <form onSubmit={submitGrant}>
+    //           {/* <div className={styles.formContainer}>
+    //             <TextField
+    //               type="date"
+    //               className={styles.inputText}
+    //               name="details_last_updated"
+    //               value={grantInfo.details_last_updated}
+    //               onChange={handleChanges}
+    //               helperText="Details Last Updated"
+    //               margin="normal"
+    //               variant="outlined"
+    //             />
+    //           </div> */}
+    //           <div className={styles.divButton}>
+    //             <Button
+    //               type="submit"
+    //               variant="contained"
+    //               color="primary"
+    //               size="large"
+    //               className={styles.submit}
+    //             >
+    //               <span className={styles.label}>Submit</span>
+    //             </Button>
+    //           </div>
+    //         </form>
+    //       </div>
+    //     </Grid>
+    //   </Grid>
+    //   {/* </Container> */}
+    // </div>
   );
   // return (
   //   <div className={styles.root}>
