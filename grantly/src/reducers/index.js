@@ -22,7 +22,7 @@ const initialState = {
   isFetching: false,
   filteredGrants: [],
   grantShowcase: {},
-  filters: { amount: [], geographic_region: [], domain_areas: [] },
+  filters: { amount: [], geographic_region: [], domain_areas: [], admin_filters: [] },
   currentTab: 0,
   currentUser: {}
 };

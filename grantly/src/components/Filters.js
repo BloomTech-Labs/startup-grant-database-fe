@@ -17,7 +17,8 @@ const Filters = ({ saveFilters, filterGrants, savedFilters, location }) => {
   const [filters, setFilters] = useState({
     amount: [],
     geographic_region: [],
-    domain_areas: []
+    domain_areas: [],
+    admin_filters: []
   });
   const [open, setOpen] = useState(false);
 
@@ -45,7 +46,8 @@ const Filters = ({ saveFilters, filterGrants, savedFilters, location }) => {
       "Africa"
     ],
     amount: ["Under $1,000", "$1,000-$5,000", "$5,000-$10,000", "$10,000+"],
-    domain_areas: ["Tech", "Agriculture", "Social", "Energy"]
+    domain_areas: ["Tech", "Agriculture", "Social", "Energy"],
+    admin_filters: ["New", "Expired", "Reported", "Suggestions"]
   };
 
   const handleChanges = (type, value) => {
@@ -80,6 +82,27 @@ const Filters = ({ saveFilters, filterGrants, savedFilters, location }) => {
           : "Filter grants by:"}
       </Typography>
       <FormGroup className={classes.filterCard}>
+      <FormControl className={classes.set} component="fieldset">
+          <FormLabel className={classes.label} component="legend">
+            View grant by
+          </FormLabel>
+          {grantFilters.admin_filters.map(name => {
+            return (
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    checked={savedFilters.admin_filters.includes(name.toLowerCase())}
+                    value={name}
+                    color={grantFilters.color}
+                    onClick={() => handleChanges("admin_filters", name)}
+                  />
+                }
+                key={name}
+                label={name}
+              />
+            );
+          })}
+        </FormControl>
         <FormControl className={classes.set} component="fieldset">
           <FormLabel className={classes.label} component="legend">
             Grant Amount
