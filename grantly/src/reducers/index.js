@@ -37,7 +37,7 @@ export const rooterReducer = (state = initialState, { type, payload }) => {
       };
     }
     case SET_USER: {
-      console.log("reducer", payload)
+      console.log("reducer", payload);
       return {
         ...state,
         currentUser: payload
@@ -58,7 +58,7 @@ export const rooterReducer = (state = initialState, { type, payload }) => {
         filteredGrants: payload,
         grantShowcase: payload[0]
       };
-      
+
     case FETCH_ERROR:
       return {
         ...state,
@@ -76,7 +76,6 @@ export const rooterReducer = (state = initialState, { type, payload }) => {
         currentTab: payload
       };
     case FILTER_SAVE:
-      console.log(payload);
       return {
         ...state,
         filters: payload
@@ -93,12 +92,12 @@ export const rooterReducer = (state = initialState, { type, payload }) => {
                 if (grant[filter[0]] >= min && grant[filter[0]] <= max) {
                   newList.push(grant);
                 }
-              } else if (grant[filter[0]] <= userFilters.replace(/\D/g, "")) {
-                newList.push(grant);
               } else if (userFilters.replace(/[^0-9\+]/g, "").includes("+")) {
                 if (grant[filter[0]] >= userFilters.replace(/\D/g, "")) {
                   newList.push(grant);
                 }
+              } else if (grant[filter[0]] <= userFilters.replace(/\D/g, "")) {
+                newList.push(grant);
               }
             } else if (
               grant[filter[0]].toLowerCase().includes(userFilters.toLowerCase())
