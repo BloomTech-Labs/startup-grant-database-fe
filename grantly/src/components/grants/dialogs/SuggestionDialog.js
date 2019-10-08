@@ -91,7 +91,11 @@ const SuggestionDialog = props => {
         <DialogContent>
           <form>
             <br />
-            <TextField margin="normal" onChange={handleChanges("subject")} />
+            <TextField
+              margin="normal"
+              onChange={handleChanges("subject")}
+              variant="outlined"
+            />
             <br />
             <TextField
               multiline
@@ -99,6 +103,7 @@ const SuggestionDialog = props => {
               onChange={handleChanges("suggestion")}
               margin="normal"
               className={classes.formField}
+              variant="outlined"
             />
             <br />
           </form>
