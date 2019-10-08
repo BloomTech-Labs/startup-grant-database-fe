@@ -1,65 +1,38 @@
 import React, { useState, useEffect } from "react";
-import { makeStyles } from "@material-ui/core/styles";
-
+import { useStylesGrants, useStylesLanding } from "../styles/filterStyles";
 import Checkbox from "@material-ui/core/Checkbox";
+import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import FormControl from "@material-ui/core/FormControl";
 import FormGroup from "@material-ui/core/FormGroup";
 import FormLabel from "@material-ui/core/FormLabel";
 import Card from "@material-ui/core/Card";
 import Typography from "@material-ui/core/Typography";
-
+import Button from "@material-ui/core/Button";
+import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { filterGrants } from "../actions/index";
+import { filterGrants, saveFilters } from "../actions/index";
 
-const useStylesGrants = makeStyles(theme => ({
-  card: {
-    position: "fixed",
-    marginTop: "3em"
-  },
-  filterCard: {
-    display: "block"
-  },
-  title: {
-    fontWeight: "bold",
-    marginTop: "1em",
-    color: "#464646"
-  },
-  label: {
-    alignSelf: "flex-start",
-    textAlign: "left",
-    fontSize: "1.2rem",
-    color: "#464646",
-    fontWeight: "bold"
-  },
-  set: {
-    width: "70%",
-    alignSelf: "center",
-    margin: ".8em"
-  }
-}));
-
-const useStylesLanding = makeStyles(theme => ({
-  card: {
-    // position: "fixed",
-    // marginTop: "1em"
-  },
-  filterCard: {
-    display: "block"
-  }
-}));
-
-const Filters = props => {
+const Filters = ({ saveFilters, filterGrants, savedFilters, location }) => {
   const [filters, setFilters] = useState({
-    geographic_region: [],
     amount: [],
+    geographic_region: [],
     domain_areas: []
   });
-  console.log("@#@#@#@#@--------LOCATION-----------", props);
+  const [open, setOpen] = useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
   //Makes sure that the current state is being sent to the action creator
   useEffect(() => {
-    props.filterGrants(filters);
+    saveFilters(filters);
   }, [filters]);
+
+  useEffect(() => {
+    filterGrants(savedFilters);
+  }, [savedFilters]);
 
   const grantFilters = {
     color: "primary",
@@ -70,7 +43,7 @@ const Filters = props => {
       "South America",
       "Africa"
     ],
-    amount: ["Under $1,000", "$1,000 - $5,000", "$5,000 - $10,000", "$10,000+"],
+    amount: ["Under $1,000", "$1,000-$5,000", "$5,000-$10,000", "$10,000+"],
     domain_areas: ["Tech", "Agriculture", "Social", "Energy"]
   };
 
@@ -96,18 +69,16 @@ const Filters = props => {
   const grantStyles = useStylesGrants();
   const landingStyles = useStylesLanding();
   let classes;
-  props.location === "/grants"
-    ? (classes = grantStyles)
-    : (classes = landingStyles);
+  location === "/grants" ? (classes = grantStyles) : (classes = landingStyles);
 
   return (
     <Card className={classes.card}>
+      <Typography className={classes.title} variant="h5" component="h2">
+        {location === "/"
+          ? "Which grants would you like to find?"
+          : "Filter grants by:"}
+      </Typography>
       <FormGroup className={classes.filterCard}>
-        <Typography className={classes.title} variant="h5" component="h2">
-          {" "}
-          Filter grants by:{" "}
-        </Typography>
-
         <FormControl className={classes.set} component="fieldset">
           <FormLabel className={classes.label} component="legend">
             Grant Amount
@@ -117,6 +88,7 @@ const Filters = props => {
               <FormControlLabel
                 control={
                   <Checkbox
+                    checked={savedFilters.amount.includes(name.toLowerCase())}
                     value={name}
                     color={grantFilters.color}
                     onClick={() => handleChanges("amount", name)}
@@ -138,6 +110,9 @@ const Filters = props => {
               <FormControlLabel
                 control={
                   <Checkbox
+                    checked={savedFilters.geographic_region.includes(
+                      name.toLowerCase()
+                    )}
                     value={name}
                     color={grantFilters.color}
                     onClick={() => handleChanges("geographic_region", name)}
@@ -159,6 +134,9 @@ const Filters = props => {
               <FormControlLabel
                 control={
                   <Checkbox
+                    checked={savedFilters.domain_areas.includes(
+                      name.toLowerCase()
+                    )}
                     value={name}
                     color={grantFilters.color}
                     onClick={() => handleChanges("domain_areas", name)}
@@ -171,11 +149,21 @@ const Filters = props => {
           })}
         </FormControl>
       </FormGroup>
+      <Link to="/grants" className={classes.landingButton}>
+        <Button variant="contained" color="primary" size="large">
+          Find Grants
+        </Button>
+      </Link>
     </Card>
   );
 };
-
+const mapStateToProps = state => {
+  return {
+    grants: state.filteredGrants,
+    savedFilters: state.filters
+  };
+};
 export default connect(
-  null,
-  { filterGrants }
+  mapStateToProps,
+  { filterGrants, saveFilters }
 )(Filters);

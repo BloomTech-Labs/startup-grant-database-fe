@@ -5,8 +5,17 @@ export const theme = createMuiTheme({
     MuiCheckbox: {
       root: {
         padding: "4px"
-      },
-   
+      }
+    },
+    MuiCard: {
+      root: {
+        transition: "all .2s ease-in-out"
+      }
+    },
+    MuiBox: {
+      root: {
+        padding: "0",
+      }
     }
   },
 
@@ -16,6 +25,6 @@ export const theme = createMuiTheme({
     }
   },
   typography: {
-    fontFamily: ["adobe-garamond-pro", "serif"].join(",")
+    fontFamily: ["adobe-garamond-pro", "Nunito Sans", "serif"].join(",")
   }
 });

@@ -1,10 +1,12 @@
 import React, { useState } from "react";
+import { makeStyles } from "@material-ui/core/styles";
 
 import { NavLink, Link } from "react-router-dom";
 import { useAuth0 } from "../react-auth0-wrapper";
+import { navStyles } from "../styles/navStyles";
 import Media from "react-media";
-import MobileTabs from "./MobileTabs";
-import { makeStyles } from "@material-ui/core/styles";
+import MobileTabs from "./mobile/MobileTabs";
+
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
@@ -20,54 +22,16 @@ import InboxIcon from "@material-ui/icons/MoveToInbox";
 import MailIcon from "@material-ui/icons/Mail";
 import SwipeableDrawer from "@material-ui/core/SwipeableDrawer";
 import SearchBar from "./SearchBar";
+import ExternalApi from "../util/ExternalApi";
 
-const useStyles = makeStyles(theme => ({
-  navButton: {
-    marginRight: theme.spacing(3),
-    color: "#000"
-  },
-  title: {
-    textAlign: "left",
-    marginLeft: "20px",
-    color: "#000"
-  },
-  navbar: {
-    background: "#fff",
-    flexGrow: 1,
-    marginBottom: "2em",
-    [theme.breakpoints.down("sm")]: {
-      padding: "0",
-      margin: "0",
-      boxShadow: "none"
-    }
-  },
-  log: {
-    color: "#fff"
-  },
-  menu: {
-    width: "2em",
-    height: "2em",
-    padding: "0"
-  },
-  signup: {
-    marginRight: theme.spacing(3),
-    color: "#3DB8B3"
-  },
-  titleLink: {
-    flexGrow: 1,
-    textDecoration: "none"
-  },
-  link: {
-    textDecoration: "none"
-  },
-  tabs: {
-    position: "fixed",
-    marginTop: "3em"
-  }
-}));
-
-const NavBar = () => {
-  const { isAuthenticated, loginWithRedirect, logout } = useAuth0();
+export const NavBar = props => {
+  const {
+    isAuthenticated,
+    loginWithRedirect,
+    logout,
+    user,
+    getTokenSilently
+  } = useAuth0();
   const [isOpen, setIsOpen] = useState(false);
   const toggleDrawer = open => event => {
     if (
@@ -80,117 +44,165 @@ const NavBar = () => {
 
     setIsOpen(!isOpen);
   };
-  const classes = useStyles();
+  const classes = navStyles();
+  const callApi = async () => {
+    try {
+      const token = await getTokenSilently();
 
+      const response = await fetch("/api/external", {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
+
+      // console.log("AUTH *****************", token);
+      const responseData = await response.json();
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  //If user is logged in call to get access token
+  {
+    isAuthenticated && callApi();
+  }
   const sideList = side => (
     <div
       role="presentation"
       onClick={toggleDrawer(side, false)}
       onKeyDown={toggleDrawer(side, false)}
+      className={classes.drawer}
     >
-      <List>
-        {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>
-              {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-            </ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
-      </List>
+      {" "}
+      <ul className={classes.links}>
+        <Link to="/" className={classes.drawerLink}>
+          <Typography variant="h5">ABOUT</Typography>
+        </Link>
+        <a href="mailto:labs16grantly@gmail.com" className={classes.drawerLink}>
+          <Typography variant="h5">CONTACT</Typography>
+        </a>
+        <a href="https://www.1517fund.com/" className={classes.drawerLink}>
+          <Typography variant="h5">1517 FUND</Typography>
+        </a>
+        <Typography
+          className={classes.drawerLink}
+          variant="h5"
+          onClick={() => loginWithRedirect({})}
+        >
+          ADMIN LOGIN
+        </Typography>
+      </ul>
       <Divider />
-      <List>
-        {["All mail", "Trash", "Spam"].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>
-              {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-            </ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
-      </List>
+      {isAuthenticated && (
+        <Button
+          className={classes.log}
+          variant="outlined"
+          onClick={() => logout()}
+        >
+          Log out
+        </Button>
+      )}
     </div>
   );
-
+  // console.log("************************", user);
   return (
-    <div>
-      <AppBar className={classes.navbar} color="primary" position="sticky">
-        <Toolbar>
-          <Link to="/grants" className={classes.titleLink}>
-            <Typography variant="h4" className={classes.title}>
-              Founder Grants
-            </Typography>
-          </Link>
-          <Media query="(min-width:800px)">
-            <div>
-              <NavLink to="/" className={classes.link}>
-                <Button className={classes.navButton} color="inherit">
-                  HOME
-                </Button>
-              </NavLink>
+    <AppBar className={classes.navbar} color="primary" position="sticky">
+      <Toolbar>
+        <Link to="/" className={classes.titleLink}>
+          <Typography variant="h4" className={classes.title}>
+            Founder Grants
+          </Typography>
+        </Link>
+        <Media query="(min-width:800px)">
+          <div>
+            <NavLink to="/grants" className={classes.link}>
               <Button className={classes.navButton} color="inherit">
-                ABOUT
+                Grants
               </Button>
-              <NavLink to="/form" className={classes.link}>
-                <Button className={classes.navButton} color="inherit">
-                  Submit a Grant
-                </Button>
-              </NavLink>
-              <NavLink className={classes.link} to="/">
-                <Button className={classes.navButton} color="inherit">
-                  SIGN UP
-                </Button>
-              </NavLink>
-
-              {!isAuthenticated && (
+            </NavLink>
+            {/* <Button className={classes.navButton} color="inherit">
+              ABOUT
+            </Button> */}
+            {!isAuthenticated && (
+              <Button
+                className={classes.navButton}
+                color="inherit"
+                onClick={() => loginWithRedirect()}
+              >
+                SIGN UP
+              </Button>
+            )}
+            <NavLink to="/form" className={classes.link}>
+              <Button
+                className={classes.submitNavButton}
+                color="primary"
+                variant="contained"
+              >
+                Submit a Grant
+              </Button>
+            </NavLink>
+            {props.role === "admin" && (
+              <NavLink to="/admin" className={classes.link}>
                 <Button
-                  className={classes.log}
-                  variant="contained"
-                  color="primary"
-                  onClick={() => loginWithRedirect({})}
+                  className={classes.navButton}
+                  color="inherit"
+                  onClick={() =>
+                    console.log("Why you gotta push me like that?")
+                  }
                 >
-                  Log in
+                  Admin
                 </Button>
-              )}
+              </NavLink>
+            )}
 
-              {isAuthenticated && (
-                <Button variant="outlined" onClick={() => logout()}>
-                  Log out
-                </Button>
-              )}
-            </div>
-          </Media>
-          <Media query="(max-width:800px)">
-            {matches =>
-              matches ? (
-                <IconButton
-                  className={classes.menu}
-                  edge="start"
-                  color="primary"
-                  aria-label="menu"
-                  onClick={toggleDrawer()}
-                >
-                  <MenuIcon className={classes.menu} />
-                </IconButton>
-              ) : null
-            }
-          </Media>
+            {/* {!isAuthenticated && (
+              <Button
+                className={classes.log}
+                variant="contained"
+                color="primary"
+                onClick={() => loginWithRedirect({})}
+              >
+                Log in
+              </Button>
+            )} */}
 
-          {/* <SwipeableDrawer
-            anchor="right"
-            open={isOpen}
-            onClose={toggleDrawer(false)}
-            onOpen={toggleDrawer(true)}
-          >
-            {sideList("right")}
-          </SwipeableDrawer> */}
-        </Toolbar>
-      </AppBar>
-      <SearchBar />
-      <Media query="(max-width:850px)">
-        {matches => (matches ? <MobileTabs /> : null)}
-      </Media>
-    </div>
+            {isAuthenticated && (
+              <Button
+                className={classes.logout}
+                variant="outlined"
+                onClick={() => logout()}
+              >
+                Log out
+              </Button>
+            )}
+          </div>
+        </Media>
+        <Media query="(max-width:800px)">
+          {matches =>
+            matches ? (
+              <IconButton
+                className={classes.menu}
+                edge="start"
+                color="primary"
+                aria-label="menu"
+                onClick={toggleDrawer()}
+              >
+                <MenuIcon className={classes.menu} />
+              </IconButton>
+            ) : null
+          }
+        </Media>
+
+        <SwipeableDrawer
+          anchor="right"
+          open={isOpen}
+          onClose={toggleDrawer(false)}
+          onOpen={toggleDrawer(true)}
+        >
+          {sideList("right")}
+        </SwipeableDrawer>
+      </Toolbar>
+    </AppBar>
   );
 };
 

@@ -9,7 +9,7 @@
 
 # production
 /build
-
+.env # This contains secrets, don't store in source control
 # misc
 .DS_Store
 .env.local

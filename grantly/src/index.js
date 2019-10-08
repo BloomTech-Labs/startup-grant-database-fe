@@ -1,4 +1,5 @@
 // Dependencies
+
 import React from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
@@ -28,6 +29,7 @@ const AppWithProvider = (
     domain={config.domain}
     client_id={config.clientId}
     redirect_uri={window.location.origin}
+    audience={config.audience} 
     onRedirectCallback={onRedirectCallback}
   >
     <Provider store={store}>

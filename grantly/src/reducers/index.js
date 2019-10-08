@@ -4,23 +4,45 @@ import {
   FETCH_SUCCESS,
   FETCH_ERROR,
   SELECT_GRANT,
+  CHANGE_TAB,
+  FILTER_SAVE,
   FILTER_GRANTS,
-  FILTER_GRANTS_RESET
+  FILTER_GRANTS_RESET,
+  ADD_GRANT_START,
+  ADD_GRANT_SUCCESS,
+  ADD_GRANT_FAILURE,
+  CHECK_ADMIN,
+  SET_USER
 } from "../actions/types";
 
 // Initial state
 
 const initialState = {
   data: [],
+  isFetching: false,
   filteredGrants: [],
   grantShowcase: {},
-  filters: {}
+  filters: { amount: [], geographic_region: [], domain_areas: [] },
+  currentTab: 0,
+  currentUser: {}
 };
 
 // Reducer
 
 export const rooterReducer = (state = initialState, { type, payload }) => {
   switch (type) {
+    case CHECK_ADMIN: {
+      return {
+        ...state
+      };
+    }
+    case SET_USER: {
+      console.log("reducer", payload);
+      return {
+        ...state,
+        currentUser: payload
+      };
+    }
     case FETCH_START:
       return {
         ...state,
@@ -28,15 +50,15 @@ export const rooterReducer = (state = initialState, { type, payload }) => {
         isFetching: true
       };
     case FETCH_SUCCESS:
-      console.log("FETCH_SUCCESS payload", payload);
       return {
         ...state,
         error: "",
         isFetching: false,
-        data: payload.grants,
-        filteredGrants: payload.grants,
-        grantShowcase: payload.grants[0]
+        data: payload,
+        filteredGrants: payload,
+        grantShowcase: payload[0]
       };
+
     case FETCH_ERROR:
       return {
         ...state,
@@ -48,45 +70,21 @@ export const rooterReducer = (state = initialState, { type, payload }) => {
         ...state,
         grantShowcase: payload
       };
+    case CHANGE_TAB:
+      return {
+        ...state,
+        currentTab: payload
+      };
+    case FILTER_SAVE:
+      return {
+        ...state,
+        filters: payload
+      };
     case FILTER_GRANTS:
       let newList = [];
-      // Don't pay attention to this mess :)
-      // let list = state.data.filter(grant => {
-      //   console.log("test", Object.entries(payload))
-      //   Object.entries(payload).filter(filter => {
-      //     return filter[1].filter(userFilters => {
-      //       if(filter[0] === "amount"){
-
-      //         if(userFilters.includes("-")){
-      //           const min = userFilters.split("-")[0].replace(/\D/g,'')
-      //           const max = userFilters.split("-")[1].replace(/\D/g,'')
-      //           if(grant[filter[0]] >= min && grant[filter[0]] <= max){
-      //             return true
-      //           }
-
-      //         } else if(grant[filter[0]] <= userFilters.replace(/\D/g,'')){
-      //           return true
-      //         } else if (userFilters.replace(/[^0-9\+]/g, '').includes("+")){
-      //           if(grant[filter[0]] >= userFilters.replace(/\D/g,'')){
-      //             return true
-      //           }
-      //         }
-      //       } else {
-      //         if (
-      //           grant[filter[0]].toLowerCase().includes(userFilters.toLowerCase())
-      //         ) {
-      //           return true
-      //         }
-
-      //       }
-      //     });
-      //   });
-      // });
-
       state.data.map(grant => {
         Object.entries(payload).map(filter => {
           filter[1].map(userFilters => {
-
             if (filter[0] === "amount") {
               if (userFilters.includes("-")) {
                 const min = userFilters.split("-")[0].replace(/\D/g, "");
@@ -94,12 +92,12 @@ export const rooterReducer = (state = initialState, { type, payload }) => {
                 if (grant[filter[0]] >= min && grant[filter[0]] <= max) {
                   newList.push(grant);
                 }
-              } else if (grant[filter[0]] <= userFilters.replace(/\D/g, "")) {
-                newList.push(grant);
               } else if (userFilters.replace(/[^0-9\+]/g, "").includes("+")) {
                 if (grant[filter[0]] >= userFilters.replace(/\D/g, "")) {
                   newList.push(grant);
                 }
+              } else if (grant[filter[0]] <= userFilters.replace(/\D/g, "")) {
+                newList.push(grant);
               }
             } else if (
               grant[filter[0]].toLowerCase().includes(userFilters.toLowerCase())
@@ -123,13 +121,24 @@ export const rooterReducer = (state = initialState, { type, payload }) => {
         }),
         filters: payload,
         filteredGrants: testing
-
-
       };
     case FILTER_GRANTS_RESET:
       return {
         ...state,
         filteredGrants: state.data
+      };
+
+    case ADD_GRANT_START:
+      return {
+        ...state,
+        isFetching: true,
+        error: payload
+      };
+    case ADD_GRANT_SUCCESS:
+      return {
+        ...state,
+        isFetching: false,
+        error: payload
       };
     default:
       return state;

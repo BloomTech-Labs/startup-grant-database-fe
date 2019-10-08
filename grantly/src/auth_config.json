@@ -1,4 +1,5 @@
 {
-    "domain": "grantly.auth0.com",
-    "clientId": "2uQW0J9iJX38MT0xM1Ll8lYQs3pL0RAo"
-  }
+  "domain": "founder-grants.auth0.com",
+  "clientId": "F7IQ07DmUMWVnqKE0D34lJx67vAd3a2e",
+  "audience": "http://localhost:5000/api/admin"
+}

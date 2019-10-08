@@ -1,41 +1,59 @@
 // Dependencies
-import React from "react";
+import React, { useEffect } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import Media from "react-media";
-
-import createAuth0Client from "@auth0/auth0-spa-js";
+import { connect } from "react-redux";
+import { checkUser } from "./actions/index";
+import { useAuth0 } from "./react-auth0-wrapper";
 
 // Objects
-import GrantList from "./components/grants/GrantList";
-import NavBar from "./components/Navbar";
+
 import SubmitForm from "./components/SubmitForm";
 import Home from "./views/Home";
-import MobileTabs from "./components/MobileTabs";
-import SearchBar from "./components/SearchBar";
+import Admin from "./views/Admin";
 
 // Stylings
-import "./App.scss";
 import { ThemeProvider } from "@material-ui/styles";
 import { theme } from "./styles/Theme";
 import Landing from "./views/Landing";
+import LoginForm from "./components/LoginForm";
+import NavBar from "./components/Navbar";
+import Sitemap from "./components/Sitemap";
+import PrivateRoute from "./util/PrivateRoute";
 
-function App() {
+function App({ checkUser, currentUser }) {
+  const { user, isAuthenticated } = useAuth0();
+  useEffect(() => {
+    if (isAuthenticated) {
+      checkUser(user);
+    }
+  }, [user]);
+  console.log("App", user);
   return (
     <Router>
       <ThemeProvider theme={theme}>
         <div className="App">
-          {/* <div>Welcome to Grantly</div> */}
-          {/* I put the Navbar into the Home View Component, so we don't need to have a specific route to the NavBar, and to clean up the code -PJ */}
-          {/* <Route path="/" component={NavBar} /> */}
+          {/* <Route path = "/login" component={LoginForm} /> */}
+          <NavBar location={window.location.pathname} role={currentUser.role} />
           <Route exact path="/" component={Landing} />
           <Route exact path="/grants" component={Home} />
-
-          {/* <Route path="/grants" component={GrantList} /> */}
           <Route path="/form" component={SubmitForm} />
+          <Route path="/login" component={LoginForm} />
+          {/* <Route path="/admin" component={Admin} /> */}
+          {isAuthenticated && (
+            <PrivateRoute exact path="/admin" component={Admin} />
+          )}
+          <Sitemap />
         </div>
       </ThemeProvider>
     </Router>
   );
 }
-
-export default App;
+const mapStateToProps = state => {
+  return {
+    currentUser: state.currentUser
+  }
+}
+export default connect(
+  mapStateToProps,
+  { checkUser }
+)(App);
