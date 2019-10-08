@@ -49,8 +49,8 @@ export const useStylesGrants = makeStyles(theme => ({
     },
     landingButton: {
       display: "none"
-    }
-  },
+    },
+  
   arrow: {
     position: "fixed",
     right: "16.5%",
