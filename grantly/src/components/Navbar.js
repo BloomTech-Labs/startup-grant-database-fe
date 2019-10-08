@@ -176,14 +176,14 @@ const NavBar = () => {
             }
           </Media>
 
-          <SwipeableDrawer
+          {/* <SwipeableDrawer
             anchor="right"
             open={isOpen}
             onClose={toggleDrawer(false)}
             onOpen={toggleDrawer(true)}
           >
             {sideList("right")}
-          </SwipeableDrawer>
+          </SwipeableDrawer> */}
         </Toolbar>
       </AppBar>
       <SearchBar />
