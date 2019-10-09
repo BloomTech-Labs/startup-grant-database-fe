@@ -8,3 +8,11 @@ export const dialogStyles = makeStyles(theme => ({
     width: 500
   }
 }));
+
+export const editGrantStyles = makeStyles(theme => ({
+  editIcon: {},
+  editButton: {
+    alignSelf: "flex-start",
+    minWidth: "24px"
+  }
+}));

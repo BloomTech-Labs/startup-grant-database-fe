@@ -116,7 +116,6 @@ export const Auth0Provider = ({
       localStorage.setItem("profile", JSON.stringify(profile));
       setIsAuthenticated(true);
       setUser(JSON.stringify(profile));
-      checkAdmin(profile.sub);
 
       return "Success";
       // Update DOM

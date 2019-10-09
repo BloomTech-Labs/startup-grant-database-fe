@@ -2,10 +2,10 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 import Media from "react-media";
-import { postGrants, fetchApi } from "../../actions/index";
+import { postGrants, fetchApi } from "../actions/index";
 
 //Objects
-import formStyles from "../grants/styles/FormStyles";
+import formStyles from "../styles/FormStyles";
 import {
   TextField,
   MenuItem,
@@ -14,8 +14,8 @@ import {
   Container,
   Link
 } from "@material-ui/core";
-import Admin from "../../views/Landing";
-import NavBar from "../Navbar";
+import Admin from "../views/Landing";
+import NavBar from "./Navbar";
 
 const funding = [
   {

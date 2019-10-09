@@ -10,6 +10,7 @@ import { useAuth0 } from "./react-auth0-wrapper";
 import SubmitForm from "./components/SubmitForm";
 import Home from "./views/Home";
 import Admin from "./views/Admin";
+import GrantForm from "./components/GrantForm";
 
 // Stylings
 import { ThemeProvider } from "@material-ui/styles";
@@ -37,8 +38,9 @@ function App({ checkUser, currentUser }) {
           <Route exact path="/" component={Landing} />
           <Route exact path="/grants" component={Home} />
           <Route path="/form" component={SubmitForm} />
+          <Route path="/form2" component={GrantForm} />
           <Route path="/login" component={LoginForm} />
-          
+
           {/* <Route path="/admin" component={Admin} /> */}
           {isAuthenticated && (
             <PrivateRoute exact path="/admin" component={Admin} />
@@ -52,8 +54,8 @@ function App({ checkUser, currentUser }) {
 const mapStateToProps = state => {
   return {
     currentUser: state.currentUser
-  }
-}
+  };
+};
 export default connect(
   mapStateToProps,
   { checkUser }

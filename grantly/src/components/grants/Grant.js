@@ -9,14 +9,12 @@ import Container from "@material-ui/core/Container";
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
 import BookmarkBorderOutlinedIcon from "@material-ui/icons/BookmarkBorderOutlined";
-import BookmarkIcon from "@material-ui/icons/Bookmark";
+import EditIcon from "@material-ui/icons/Edit";
 import { grantStyles } from "../../styles/GrantStyles";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
-
-// Styles
-
+import EditGrantDialog from "./dialogs/EditGrantDialog";
 export const Grant = props => {
   // console.log("Grant props", props);
 
@@ -40,12 +38,11 @@ export const Grant = props => {
     <Card
       className={
         props.grantShowcase.id === props.grant.id
-          ? styles.grantCardSeleted
+          ? styles.grantCardSelected
           : styles.grantCard
       }
       onClick={selectGrant}
     >
-      {/* ================= Bookmark Icon ================= */}
       <div className={styles.grant_layout}>
         <Grid item className={styles.grant_logo}></Grid>
         <Grid
@@ -58,7 +55,6 @@ export const Grant = props => {
           <Typography variant="h6" className={styles.grantName}>
             {props.grant.competition_name}
           </Typography>
-          {props.inAdmin && <h2 onClick={console.log("Delete")}>Delete</h2>}
           <Grid item>
             <Typography variant="body2" component="p">
               {props.grant.website}
@@ -80,10 +76,11 @@ export const Grant = props => {
             </Typography>
           </Grid>
         </Grid>
-        <BookmarkBorderOutlinedIcon
-          className={styles.bookmark}
-        ></BookmarkBorderOutlinedIcon>
-        {/* <BookmarkIcon className={styles.bookmark}></BookmarkIcon> */}
+        {props.inAdmin ? (
+          <EditGrantDialog className={styles.editIcon} />
+        ) : (
+          <BookmarkBorderOutlinedIcon className={styles.bookmark} />
+        )}
       </div>
       {/* <Grid
         container

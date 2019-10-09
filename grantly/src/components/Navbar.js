@@ -22,7 +22,6 @@ import InboxIcon from "@material-ui/icons/MoveToInbox";
 import MailIcon from "@material-ui/icons/Mail";
 import SwipeableDrawer from "@material-ui/core/SwipeableDrawer";
 import SearchBar from "./SearchBar";
-import ExternalApi from "../util/ExternalApi";
 
 export const NavBar = props => {
   const {

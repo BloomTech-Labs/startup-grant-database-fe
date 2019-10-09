@@ -6,24 +6,24 @@ const cardDetailsMargin = "10px";
 
 export const grantStyles = makeStyles(theme => ({
   grantCard: {
-    display: "flex",
-    flexDirection: "column",
+    // display: "flex",
+    // flexDirection: "column",
     textAlign: "center",
     borderRadius: "0",
     marginBottom: "0.25rem",
     padding: "25px 10px",
     transition: "all .3s ease-in-out",
     fontFamily: "Roboto",
-    '&:hover': {
+    "&:hover": {
       boxShadow: "0px 5px 10px #BBB",
       transform: "translateY(-5px)"
     },
-    '&:active': {
+    "&:active": {
       transform: "translateY(0)"
     }
   },
 
-  grantCardSeleted: {
+  grantCardSelected: {
     display: "flex",
     flexDirection: "column",
     textAlign: "center",
@@ -65,6 +65,9 @@ export const grantStyles = makeStyles(theme => ({
     fill: "#C4C4C4"
 
     // border: "1px solid fuchsia"
+  },
+  editIcon: {
+    alignSelf: "flex-start"
   },
   phantom: {
     // border: "1px solid fuchsia"
