@@ -41,7 +41,7 @@ export const fetchApi = () => dispatch => {
 };
 
 export const adminFetchApi = () => dispatch => {
-  console.log("Calling admin")
+  console.log("Calling admin");
   dispatch({ type: FETCH_START });
   axios
     // .get(`https://labs16-grantly.herokuapp.com/api/grants/`)
@@ -86,9 +86,9 @@ export const changeTab = tab => dispatch => {
 export const postGrants = addGrant => dispatch => {
   dispatch({ type: ADD_GRANT_START });
   axios
-    // .post("https://grantly-staging.herokuapp.com/api/grants", addGrant)
+    .post("https://grantly-staging.herokuapp.com/api/grants", addGrant)
     // .post("https://labs16-grantly.herokuapp.com/api/grants/", addGrant)
-    .post("http://localhost:5000/api/grants/", addGrant)
+    // .post("http://localhost:5000/api/grants/", addGrant)
     .then(res => {
       console.log("RES in postGrants, actions", res);
       dispatch({ type: ADD_GRANT_SUCCESS, payload: res.data });
@@ -118,7 +118,7 @@ export const checkUser = user => dispatch => {
   const auth = { ...user, auth_id: user.sub };
   console.log("SENT", JSON.stringify(auth));
   axios
-  // .get("http://localhost:5000/user", {
+    // .get("http://localhost:5000/user", {
     .get("https://grantly-staging.herokuapp.com/user", {
       headers: {
         auth_id: auth.auth_id
@@ -133,7 +133,7 @@ export const checkUser = user => dispatch => {
       const newUser = { role: "user", auth_id: auth.auth_id };
       if (err.response.status === 404) {
         axios
-        // .post("http://localhost:5000/user", newUser)
+          // .post("http://localhost:5000/user", newUser)
           .post("https://grantly-staging.herokuapp.com/user", newUser)
           .then(res => {
             console.log("POst", res);

@@ -14,8 +14,6 @@ import {
   Container,
   Link
 } from "@material-ui/core";
-import Home from "../views/Home";
-import NavBar from "./Navbar";
 
 const funding = [
   {
@@ -298,7 +296,6 @@ const AddGrant = props => {
                 color="primary"
                 size="large"
                 className={styles.submit}
-
               >
                 <span className={styles.label}>Submit</span>
               </Button>

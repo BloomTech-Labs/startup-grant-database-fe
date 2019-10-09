@@ -15,7 +15,6 @@ import {
   Link
 } from "@material-ui/core";
 import Admin from "../views/Landing";
-import NavBar from "./Navbar";
 
 const funding = [
   {
@@ -29,22 +28,25 @@ const funding = [
 ];
 
 const GrantForm = props => {
-  const [grantInfo, setGrantInfo] = useState({
-    competition_name: "",
-    type: "",
-    area_focus: "",
-    sponsoring_entity: "",
-    website: "",
-    most_recent_application_due_date: "",
-    amount: "",
-    amount_notes: "",
-    geographic_region: "",
-    domain_areas: "",
-    target_entrepreneur_demographic: "",
-    notes: "",
-    early_stage_funding: "",
-    details_last_updated: ""
-  });
+  const [grantInfo, setGrantInfo] = useState(props.grant);
+
+  // Empty Object previously use to set default state
+  // {
+  //   competition_name: "",
+  //   type: "",
+  //   area_focus: "",
+  //   sponsoring_entity: "",
+  //   website: "",
+  //   most_recent_application_due_date: "",
+  //   amount: "",
+  //   amount_notes: "",
+  //   geographic_region: "",
+  //   domain_areas: "",
+  //   target_entrepreneur_demographic: "",
+  //   notes: "",
+  //   early_stage_funding: "",
+  //   details_last_updated: ""
+  // }
 
   const handleChanges = event => {
     event.preventDefault();
@@ -85,11 +87,6 @@ const GrantForm = props => {
   console.log(props);
   return (
     <div>
-      {/* <Container fixed> */}
-      <Media query="(max-width:850px)">
-        {matches => (matches ? null : <NavBar />)}
-      </Media>
-      {/* <h1>Submit a New Grant to Founder Grants</h1> */}
       <Grid
         className={styles.grid}
         container
@@ -97,19 +94,7 @@ const GrantForm = props => {
         // justify="center"
         alignItems="center"
       >
-        {/* <Grid item className={styles.leftBox} sm={12} md={5}> */}
-        <Grid sm={12} md={4}>
-          {/* <div> */}
-          <div className={styles.leftBox}>
-            <h1>Submit a New Grant to Founder Grants</h1>
-            <p>
-              Please fill out all of the form fields on this page regarding the
-              grant you are submitting. If you are unsure of anything please
-              write “N/A” Thank you!
-            </p>
-          </div>
-        </Grid>
-        <Grid item sm={12} md={8}>
+        <Grid item sm={12} md={12}>
           <form className={styles.form} onSubmit={submitGrant}>
             <div className={styles.formContainer}>
               <TextField
@@ -304,7 +289,6 @@ const GrantForm = props => {
           </form>
         </Grid>
       </Grid>
-      {/* </Container> */}
     </div>
   );
 };

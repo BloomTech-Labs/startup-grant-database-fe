@@ -16,8 +16,6 @@ import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 import EditGrantDialog from "./dialogs/EditGrantDialog";
 export const Grant = props => {
-  // console.log("Grant props", props);
-
   const selectGrant = () => {
     props.selectGrant(props.grant);
   };
@@ -77,7 +75,7 @@ export const Grant = props => {
           </Grid>
         </Grid>
         {props.inAdmin ? (
-          <EditGrantDialog className={styles.editIcon} />
+          <EditGrantDialog className={styles.editIcon} grant={props.grant} />
         ) : (
           <BookmarkBorderOutlinedIcon className={styles.bookmark} />
         )}
