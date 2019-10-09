@@ -15,9 +15,6 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import CardActions from "@material-ui/core/CardActions";
 
 export const Suggestion = props => {
-  const selectSuggestion = () => {
-    props.selectSuggestion(props.suggestion);
-  };
 
   const styles = suggestionStyles();
 
@@ -39,9 +36,7 @@ export const Suggestion = props => {
       >
         <CardContent>
           <Typography variant="body2" color="textSecondary" component="p">
-            This impressive paella is a perfect party dish and a fun meal to
-            cook together with your guests. Add 1 cup of frozen peas along with
-            the mussels, if you like.
+            This is the subject text
           </Typography>
         </CardContent>
         <CardActions disableSpacing>
@@ -60,8 +55,7 @@ export const Suggestion = props => {
           <CardContent>
             <Typography paragraph>Method:</Typography>
             <Typography paragraph>
-              Heat 1/2 cup of the broth in a pot until simmering, add saffron
-              and set aside for 10 minutes.
+              This is the actual suggestion
             </Typography>
           </CardContent>
         </Collapse>

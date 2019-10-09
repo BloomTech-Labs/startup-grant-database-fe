@@ -60,6 +60,8 @@ export const GrantShowcase = props => {
     return <Loader type="Triangle" color="#3DB8B3" height="200" width="200" />;
   }
 
+  console.log("REQUESTS:", props.grant.requests);
+
   return (
     <Card className={classes.showcaseCard}>
       {/* ================= Top container ================= */}
@@ -131,7 +133,6 @@ export const GrantShowcase = props => {
             Edit Grant
           </Button> */}
         </Grid>
-
       </div>
       {/* ================= Main content ================= */}
 
@@ -157,7 +158,8 @@ export const GrantShowcase = props => {
           <span className={classes.showcaseSpan}>
             This grant is in the areas of:{" "}
           </span>
-          {props.grant.domain_areas}
+          {props.grant.requests !== undefined ? props.grant.requests[0].suggestion : null}
+          {/* {props.grant.requests[0].suggestion} */}
         </Grid>
         <Grid item className={classes.showcaseDetails}>
           <span className={classes.showcaseSpan}>Focus Area: </span>
