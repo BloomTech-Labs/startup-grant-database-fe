@@ -111,27 +111,6 @@ export const GrantShowcase = props => {
             {props.grant.website}
           </a>
         </Grid>
-
-        <Grid item>
-          <a href={props.grant.website} target="_blank">
-            <Button
-              className={classes.applyButton}
-              variant="contained"
-              color="primary"
-            >
-              Apply to Grant
-            </Button>
-          </a>
-
-          {/* <Button
-            className={classes.applyButton}
-            variant="contained"
-            color="primary"
-          >
-            Edit Grant
-          </Button> */}
-        </Grid>
-
       </div>
       {/* ================= Main content ================= */}
 
@@ -184,13 +163,15 @@ export const GrantShowcase = props => {
         className={classes.topContent}
       >
         <Grid item>
-          <Button
-            className={classes.applyButton}
-            variant="contained"
-            color="primary"
-          >
-            Apply to Grant
-          </Button>
+          <a href={props.grant.website} target="_blank">
+            <Button
+              className={classes.applyButton}
+              variant="contained"
+              color="primary"
+            >
+              Apply to Grant
+            </Button>
+          </a>
         </Grid>
         <Grid item>
           <SuggestionDialog id={props.grant.id} />

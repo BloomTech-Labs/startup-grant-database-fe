@@ -41,7 +41,7 @@ export const fetchApi = () => dispatch => {
 };
 
 export const adminFetchApi = () => dispatch => {
-  console.log("Calling admin")
+  console.log("Calling admin");
   dispatch({ type: FETCH_START });
   axios
     // .get(`https://labs16-grantly.herokuapp.com/api/grants/`)
