@@ -25,6 +25,9 @@ import Backdrop from "@material-ui/core/Backdrop";
 import BookmarkIcon from "@material-ui/icons/Bookmark";
 import Typography from "@material-ui/core/Typography";
 import SuggestionDialog from "./dialogs/SuggestionDialog";
+import ExpansionPanel from "@material-ui/core/ExpansionPanel";
+import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
+import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
 
 // =========== STYLES ===========
 import { showcaseStyles } from "../../styles/grantShowcaseStyles";
@@ -214,21 +217,63 @@ export const GrantShowcase = props => {
           </Grid>
         </Grid>
       </Card>
-      <Card
-    // conditional styling if card is selected
-    >
-      <Grid
-        container
-        direction="column"
-        justify="space-between"
-        alignItems="center"
-      >
-        <CardContent>
-          <Typography variant="body2" color="textSecondary" component="p">
-            This is the subject text
+      <ExpansionPanel className={suggestion.card}>
+        <ExpansionPanelSummary
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls="panel1a-content"
+          id="panel1a-header"
+        >
+          <Typography className={suggestion.subject}>
+            {props.grant.requests !== undefined
+              ? props.grant.requests[0].subject
+              : null}
           </Typography>
-        </CardContent>
-        <CardActions disableSpacing>
+        </ExpansionPanelSummary>
+        <ExpansionPanelDetails>
+          <Typography className={suggestion.suggestion}>
+            {props.grant.requests !== undefined
+              ? props.grant.requests[1].suggestion
+              : null}
+          </Typography>
+        </ExpansionPanelDetails>
+      </ExpansionPanel>
+      <ExpansionPanel className={suggestion.card}>
+        <ExpansionPanelSummary
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls="panel2a-content"
+          id="panel2a-header"
+        >
+          <Typography className={suggestion.subject}>
+            {props.grant.requests !== undefined
+              ? props.grant.requests[1].subject
+              : null}
+          </Typography>
+        </ExpansionPanelSummary>
+        <ExpansionPanelDetails>
+          <Typography className={suggestion.suggestion}>
+            {props.grant.requests !== undefined
+              ? props.grant.requests[1].suggestion
+              : null}
+          </Typography>
+        </ExpansionPanelDetails>
+      </ExpansionPanel>
+      {/* <Card
+      // conditional styling if card is selected
+      className={suggestion.card}
+      >
+        <Grid
+          container
+          direction="column"
+          justify="space-between"
+          alignItems="center"
+        >
+          <CardContent>
+            <Typography variant="body2" color="textSecondary" component="p">
+              {props.grant.requests !== undefined
+                ? props.grant.requests[0].subject
+                : null}
+            </Typography>
+          </CardContent>
           <IconButton
             className={clsx(suggestion.expand, {
               [suggestion.expandOpen]: expanded
@@ -239,26 +284,58 @@ export const GrantShowcase = props => {
           >
             <ExpandMoreIcon />
           </IconButton>
-        </CardActions>
-        <Collapse in={expanded} timeout="auto" unmountOnExit>
+          <Collapse in={expanded} timeout="auto" unmountOnExit>
+            <CardContent>
+              <Typography paragraph>
+                {props.grant.requests !== undefined
+                  ? props.grant.requests[0].suggestion
+                  : null}
+              </Typography>
+            </CardContent>
+          </Collapse>
+        </Grid>
+      </Card>
+      <Card
+      // conditional styling if card is selected
+      className={suggestion.card}
+      >
+        <Grid
+          container
+          direction="column"
+          justify="space-between"
+          alignItems="center"
+        >
           <CardContent>
-            <Typography paragraph>Method:</Typography>
-            <Typography paragraph>
-              This is the actual suggestion
+            <Typography variant="body2" color="textSecondary" component="p">
+              {props.grant.requests !== undefined
+                ? props.grant.requests[1].subject
+                : null}
             </Typography>
           </CardContent>
-        </Collapse>
-      </Grid>
-    </Card>
+          <IconButton
+            className={clsx(suggestion.expand, {
+              [suggestion.expandOpen]: expanded
+            })}
+            onClick={handleExpandClick}
+            aria-expanded={expanded}
+            aria-label="show more"
+          >
+            <ExpandMoreIcon />
+          </IconButton>
+          <Collapse in={expanded} timeout="auto" unmountOnExit>
+            <CardContent>
+              <Typography paragraph>
+                {props.grant.requests !== undefined
+                  ? props.grant.requests[1].suggestion
+                  : null}
+              </Typography>
+            </CardContent>
+          </Collapse>
+        </Grid>
+      </Card> */}
     </div>
   );
 };
-
-// {
-//   props.grant.requests !== undefined
-//     ? props.grant.requests[0].suggestion
-//     : null;
-// }
 
 const mapStateToProps = state => {
   // console.log("GrantShowcase mapStateToProps state", state);

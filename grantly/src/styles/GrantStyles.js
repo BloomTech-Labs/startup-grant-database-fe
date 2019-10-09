@@ -23,7 +23,7 @@ export const grantStyles = makeStyles(theme => ({
     }
   },
 
-  grantCardSeleted: {
+  grantCardSelected: {
     display: "flex",
     flexDirection: "column",
     textAlign: "center",

@@ -9,6 +9,7 @@ export const showcaseStyles = makeStyles(theme => ({
     borderTop: "#3DB8B3 5px solid",
     minHeight: "100vh",
     fontFamily: "adobe-garamond-pro",
+    marginBottom: "1rem",
     [theme.breakpoints.down("sm")]: {
       position: "initial",
       width: "100%",
