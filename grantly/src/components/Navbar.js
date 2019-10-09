@@ -94,11 +94,16 @@ export const NavBar = props => {
           </Typography>
         )}
         <Divider />
-        {props.role === "admin" && (
+        {props.role === "admin" && props.location.pathname === "/grants" ? (
           <Link to="/admin" className={classes.drawerLink}>
             Admin
           </Link>
-        )}
+        ) : null}
+        {props.role === "admin" && props.location.pathname === "/admin" ? (
+          <Link to="/grants" className={classes.drawerLink}>
+            Grants
+          </Link>
+        ) : null}
         {isAuthenticated && (
           <Button
             className={classes.drawerLink}
