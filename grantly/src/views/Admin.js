@@ -4,6 +4,7 @@ import Filters from "../components/Filters";
 import TuneIcon from "@material-ui/icons/Tune";
 
 import GrantShowcase from "../components/grants/GrantShowcase";
+import Suggestion from "../components/Suggestion";
 // import MobileTabs from "../components/mobile/MobileTabs";
 // import SearchBar from "../components/SearchBar";
 import Grid from "@material-ui/core/Grid";
@@ -50,6 +51,7 @@ const Admin = props => {
         </Grid>
         <Grid item xs={8} className={classes.gridItem}>
           <GrantShowcase />
+          <Suggestion />
         </Grid>
         <Grid item xs={2}>
           <TuneIcon
