@@ -104,7 +104,6 @@ export const NavBar = props => {
       )}
     </div>
   );
-  console.log("Path", props);
   return (
     <AppBar className={classes.navbar} color="primary" position="sticky">
       <Toolbar>

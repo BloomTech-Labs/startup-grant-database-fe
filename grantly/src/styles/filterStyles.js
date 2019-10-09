@@ -100,6 +100,7 @@ export const useStylesLanding = makeStyles(theme => ({
     }
   },
   card: {
+    
     marginRight: "2rem",
     padding: "48px",
     borderRadius: "2px",
@@ -114,7 +115,6 @@ export const useStylesLanding = makeStyles(theme => ({
     }
   },
   set: {
-    width: "100%",
     [theme.breakpoints.down("sm")]: {
       display: "flex",
       flexDirection: "column",
