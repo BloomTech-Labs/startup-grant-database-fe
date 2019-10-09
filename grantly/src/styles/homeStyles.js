@@ -26,12 +26,10 @@ export const homeStyles = makeStyles(theme => ({
     position: "relative"
   },
   results: {
-    position: "fixed",
-    top: "9%",
-    left: "25%",
+    display: "flex",
+    justifyContent: "flex-end",
     margin: "10px",
     color: "#464646",
-    borderBottom: "2px solid #3DB8B3",
     [theme.breakpoints.down("sm")]: {
       display: "none"
     }

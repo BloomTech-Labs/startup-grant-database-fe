@@ -1,5 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { useStylesGrants, useStylesLanding } from "../styles/filterStyles";
+import {
+  useStylesGrants,
+  useStylesLanding,
+  useStylesMobile
+} from "../styles/filterStyles";
 import Checkbox from "@material-ui/core/Checkbox";
 import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
@@ -13,7 +17,14 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { filterGrants, saveFilters } from "../actions/index";
 
-const Filters = ({ saveFilters, filterGrants, savedFilters, location, inAdmin }) => {
+const Filters = ({
+  saveFilters,
+  filterGrants,
+  savedFilters,
+  location,
+  inAdmin,
+  mobile
+}) => {
   const [filters, setFilters] = useState({
     amount: [],
     geographic_region: [],
@@ -70,11 +81,18 @@ const Filters = ({ saveFilters, filterGrants, savedFilters, location, inAdmin })
   // Logic to determine styles to use depending on current location of component -PJ
   const grantStyles = useStylesGrants();
   const landingStyles = useStylesLanding();
+  const mobileStyles = useStylesMobile();
   let classes;
-  location === "/grants" || location === "/admin"
-    ? (classes = grantStyles)
-    : (classes = landingStyles);
-
+  if (mobile) {
+    classes = mobileStyles;
+  } else if (location === "/grants" || location === "/admin") {
+    classes = grantStyles;
+  } else {
+    classes = landingStyles;
+  }
+  // location === "/grants" || location === "/admin"
+  //   ? (classes = grantStyles)
+  //   : (classes = landingStyles);
 
   return (
     <Card className={classes.card}>
@@ -117,6 +135,7 @@ const Filters = ({ saveFilters, filterGrants, savedFilters, location, inAdmin })
           {grantFilters.amount.map(name => {
             return (
               <FormControlLabel
+              className={classes.mobileSet}
                 control={
                   <Checkbox
                     checked={savedFilters.amount.includes(name.toLowerCase())}

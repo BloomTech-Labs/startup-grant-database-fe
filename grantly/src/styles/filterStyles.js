@@ -100,7 +100,6 @@ export const useStylesLanding = makeStyles(theme => ({
     }
   },
   card: {
-    
     marginRight: "2rem",
     padding: "48px",
     borderRadius: "2px",
@@ -165,5 +164,31 @@ export const useStylesLanding = makeStyles(theme => ({
         marginBottom: "20px"
       }
     }
+  }
+}));
+
+export const useStylesMobile = makeStyles(theme => ({
+  filterCard: {
+    display: "flex",
+    padding: "10px",
+    flexWrap: "nowrap",
+    flexDirection: "column",
+    justifyContent: "space-between",
+  },
+  mobileSet: {
+    display: "inline-block",
+    margin: "0",
+    justifyContent: "space-between",
+    flexWrap: "no-wrap",
+  },
+  set: {
+    display: "flex",
+    flexDirection: "row",
+  },
+  label: {
+    display: "inline-block",
+  },
+  landingButton: {
+    display: "none"
   }
 }));

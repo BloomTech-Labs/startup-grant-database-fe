@@ -84,24 +84,31 @@ export const NavBar = props => {
         <a href="https://www.1517fund.com/" className={classes.drawerLink}>
           <Typography variant="h5">1517 FUND</Typography>
         </a>
-        <Typography
-          className={classes.drawerLink}
-          variant="h5"
-          onClick={() => loginWithRedirect({})}
-        >
-          ADMIN LOGIN
-        </Typography>
+        {!isAuthenticated && (
+          <Typography
+            className={classes.drawerLink}
+            variant="h5"
+            onClick={() => loginWithRedirect({})}
+          >
+            ADMIN LOGIN
+          </Typography>
+        )}
+        <Divider />
+        {props.role === "admin" && (
+          <Link to="/admin" className={classes.drawerLink}>
+            Admin
+          </Link>
+        )}
+        {isAuthenticated && (
+          <Button
+            className={classes.drawerLink}
+            variant="outlined"
+            onClick={() => logout()}
+          >
+            Log out
+          </Button>
+        )}
       </ul>
-      <Divider />
-      {isAuthenticated && (
-        <Button
-          className={classes.log}
-          variant="outlined"
-          onClick={() => logout()}
-        >
-          Log out
-        </Button>
-      )}
     </div>
   );
   return (
@@ -109,7 +116,9 @@ export const NavBar = props => {
       <Toolbar>
         <Link to="/" className={classes.titleLink}>
           <Typography variant="h4" className={classes.title}>
-            {props.role === "admin" && window.location.pathname === "/admin" ? "Founder Grants Admin" : "Founder Grants"}
+            {props.role === "admin" && window.location.pathname === "/admin"
+              ? "Founder Grants Admin"
+              : "Founder Grants"}
           </Typography>
         </Link>
         <Media query="(min-width:800px)">
