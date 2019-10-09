@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import GrantList from "../components/grants/GrantList";
 import Filters from "../components/Filters";
+import TuneIcon from "@material-ui/icons/Tune";
+
 import GrantShowcase from "../components/grants/GrantShowcase";
 // import MobileTabs from "../components/mobile/MobileTabs";
 // import SearchBar from "../components/SearchBar";
@@ -9,8 +11,7 @@ import Grid from "@material-ui/core/Grid";
 // import Media from "react-media";
 // import SwipeableDrawer from "@material-ui/core/SwipeableDrawer";
 // import MobileFilters from "../components/mobile/MobileFilters";
-import {adminStyles} from "../styles/adminStyles"
-
+import { adminStyles } from "../styles/adminStyles";
 
 const Admin = props => {
   const [isOpen, setIsOpen] = useState(false);
@@ -51,7 +52,11 @@ const Admin = props => {
           <GrantShowcase />
         </Grid>
         <Grid item xs={2}>
-          <button onClick={toggleFilters}>Filters</button>
+          <TuneIcon
+            className={`${classes.filterIcon} ${open &&
+              classes.filterIconSelected}`}
+            onClick={toggleFilters}
+          ></TuneIcon>
           <div
             className={`${classes.filters} ${
               open ? classes.showFilters : classes.hideFilters

@@ -7,6 +7,7 @@ import GrantShowcase from "../components/grants/GrantShowcase";
 import MobileTabs from "../components/mobile/MobileTabs";
 import SearchBar from "../components/SearchBar";
 import Grid from "@material-ui/core/Grid";
+import TuneIcon from "@material-ui/icons/Tune";
 import Navbar from "../components/Navbar";
 import Media from "react-media";
 import SwipeableDrawer from "@material-ui/core/SwipeableDrawer";
@@ -34,7 +35,7 @@ const Home = props => {
     setOpen(!open);
   };
   const classes = homeStyles();
-  
+
   return (
     <>
       {/* <Navbar location={props.location.pathname} /> */}
@@ -65,7 +66,7 @@ const Home = props => {
               >
                 <Grid
                   item
-                  md={3}
+                  md={4}
                   xs={12}
                   className={classes.grantList}
                   // style={{ padding: "30px 0 0 30px" }}
@@ -78,13 +79,23 @@ const Home = props => {
                   item
                   xs={6}
                   className={classes.gridItem}
-                  style={{ padding: "30px 30px 0 30px" }}
+                  // style={{ padding: "30px 30px 0 30px" }}
                 >
                   <GrantShowcase />
                 </Grid>
-                <Grid item xs={2}>
-                  <button onClick={toggleFilters}>Filters</button>
-                  <div className={`${classes.filters} ${open ? classes.showFilters : classes.hideFilters}`}>
+                <Grid item xs={4} md={2}>
+                  <TuneIcon
+                    className={`${classes.filterIcon} ${open &&
+                      classes.filterIconSelected}`}
+                    onClick={toggleFilters}
+                  >
+                    Filters
+                  </TuneIcon>
+                  <div
+                    className={`${classes.filters} ${
+                      open ? classes.showFilters : classes.hideFilters
+                    }`}
+                  >
                     <Filters location={props.location.pathname} />
                   </div>
                 </Grid>
