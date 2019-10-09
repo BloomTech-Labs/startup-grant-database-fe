@@ -14,6 +14,7 @@ import {
   Grid,
   Stepper,
   Step,
+  Typography,
   Container,
   Link,
   CssBaseline,
@@ -24,6 +25,7 @@ import NavBar from "./Navbar";
 import GrantInfo from "./submitForm/GrantInfo";
 import GrantFocus from "./submitForm/GrantFocus";
 import GrantDemo from "./submitForm/GrantDemo";
+import { typography } from "@material-ui/system";
 
 // const funding = [
 //   {
@@ -139,6 +141,33 @@ const AddGrant = props => {
               </Step>
             ))}
           </Stepper>
+          <React.Fragment>
+            {activeStep === steps.length ? (
+              <React.Fragment>
+                <Typography variant="h2">Grant Submitted</Typography>
+                <Typography>lorem ipsum</Typography>
+              </React.Fragment>
+            ) : (
+              <React.Fragment>
+                {getStepContent(activeStep)}
+                <div className={styles.button}>
+                  {activeStep !== 0 && (
+                    <Button onClick={handleBack} className={styles.button}>
+                      Back
+                    </Button>
+                  )}
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    onClick={handleNext}
+                    className={styles.button}
+                  >
+                    {activeStep === steps.length - 1 ? "Submit" : "Next"}
+                  </Button>
+                </div>
+              </React.Fragment>
+            )}
+          </React.Fragment>
         </Paper>
       </main>
     </React.Fragment>
