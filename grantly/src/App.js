@@ -37,9 +37,11 @@ function App({ checkUser, currentUser }) {
           <Route exact path="/grants" component={Home} />
           <Route path="/form" component={SubmitForm} />
           <Route path="/login" component={LoginForm} />
-          {isAuthenticated && (
+          {/* Making Admin Route public for testing purposes */}
+          <Route path="/admin" component={Admin} />
+          {/* {isAuthenticated && (
             <PrivateRoute exact path="/admin" component={Admin} />
-          )}
+          )} */}
           <Sitemap />
         </div>
       </ThemeProvider>

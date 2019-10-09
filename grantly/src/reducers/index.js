@@ -86,11 +86,10 @@ export const rooterReducer = (state = initialState, { type, payload }) => {
         filters: payload
       };
     case FILTER_GRANTS:
-      const filtersWithoutAdmin = Object.entries(state.filters)
-      filtersWithoutAdmin.pop()
+      const filtersWithoutAdmin = Object.entries(state.filters);
+      filtersWithoutAdmin.pop();
       let newList = [];
       state.data.map(grant => {
-
         filtersWithoutAdmin.map(filter => {
           filter[1].map(userFilters => {
             if (filter[0] === "amount") {
@@ -153,6 +152,12 @@ export const rooterReducer = (state = initialState, { type, payload }) => {
         error: payload
       };
     case ADD_GRANT_SUCCESS:
+      return {
+        ...state,
+        isFetching: false,
+        error: payload
+      };
+    case ADD_GRANT_FAILURE:
       return {
         ...state,
         isFetching: false,

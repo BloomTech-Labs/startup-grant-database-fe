@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { connect } from "react-redux";
 import Media from "react-media";
 import { postGrants, fetchApi } from "../actions/index";
+import moment from "moment";
 
 //Objects
 import formStyles from "../styles/FormStyles";
@@ -28,25 +29,15 @@ const funding = [
 ];
 
 const GrantForm = props => {
-  const [grantInfo, setGrantInfo] = useState(props.grant);
-
-  // Empty Object previously use to set default state
-  // {
-  //   competition_name: "",
-  //   type: "",
-  //   area_focus: "",
-  //   sponsoring_entity: "",
-  //   website: "",
-  //   most_recent_application_due_date: "",
-  //   amount: "",
-  //   amount_notes: "",
-  //   geographic_region: "",
-  //   domain_areas: "",
-  //   target_entrepreneur_demographic: "",
-  //   notes: "",
-  //   early_stage_funding: "",
-  //   details_last_updated: ""
-  // }
+  const [grantInfo, setGrantInfo] = useState({
+    ...props.grant,
+    most_recent_application_due_date: moment(
+      props.grant.most_recent_application_due_date
+    ).format("YYYY-MM-DD"),
+    details_last_updated: moment(props.grant.details_last_updated).format(
+      "YYYY-MM-DD"
+    )
+  });
 
   const handleChanges = event => {
     event.preventDefault();
@@ -283,7 +274,15 @@ const GrantForm = props => {
                 color="primary"
                 size="large"
               >
-                Submit
+                Save Changes
+              </Button>
+              <Button
+                type="submit"
+                variant="outlined"
+                color="primary"
+                size="large"
+              >
+                Delete
               </Button>
             </div>
           </form>

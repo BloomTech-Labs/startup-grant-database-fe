@@ -13,10 +13,10 @@ import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
 import BookmarkBorderOutlinedIcon from "@material-ui/icons/BookmarkBorderOutlined";
 import LanguageIcon from "@material-ui/icons/Language";
-import Modal from "@material-ui/core/Modal";
-import Fade from "@material-ui/core/Fade";
-import Backdrop from "@material-ui/core/Backdrop";
-import BookmarkIcon from "@material-ui/icons/Bookmark";
+// import Modal from "@material-ui/core/Modal";
+// import Fade from "@material-ui/core/Fade";
+// import Backdrop from "@material-ui/core/Backdrop";
+// import BookmarkIcon from "@material-ui/icons/Bookmark";
 import Typography from "@material-ui/core/Typography";
 import SuggestionDialog from "./dialogs/SuggestionDialog";
 
@@ -26,20 +26,19 @@ import { showcaseStyles } from "../../styles/grantShowcaseStyles";
 export const GrantShowcase = props => {
   const classes = showcaseStyles();
 
-  const [open, setOpen] = React.useState(false);
+  // const [open, setOpen] = React.useState(false);
 
-  const handleOpen = () => {
-    setOpen(true);
-  };
+  // const handleOpen = () => {
+  //   setOpen(true);
+  // };
 
-  const handleClose = () => {
-    setOpen(false);
-  };
+  // const handleClose = () => {
+  //   setOpen(false);
+  // };
 
-  console.log("GrantShowcase props", props);
-  function formatNumbers(num) {
-    return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-  }
+  // function formatNumbers(num) {
+  //   return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  // }
 
   const deadline = props.grant.most_recent_application_due_date ? (
     <Moment format={"MMMM Do YYYY"}>
@@ -131,7 +130,6 @@ export const GrantShowcase = props => {
             Edit Grant
           </Button> */}
         </Grid>
-
       </div>
       {/* ================= Main content ================= */}
 

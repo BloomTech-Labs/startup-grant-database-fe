@@ -14,8 +14,8 @@ import { submitSuggestion } from "../../../actions/index";
 
 const SuggestionDialog = props => {
   const [suggestion, setSuggestion] = React.useState("");
-  const [submitValue, setSubmitValue] = React.useState("");
-  console.log("SuggestionDialog suggestion:", suggestion);
+  // const [submitValue, setSubmitValue] = React.useState("");
+  // console.log("SuggestionDialog suggestion:", suggestion);
   //   console.log("SuggestionDialog props", props);
 
   const [open, setOpen] = React.useState(false);
