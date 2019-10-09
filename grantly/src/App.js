@@ -32,7 +32,7 @@ function App({ checkUser, currentUser }) {
       <ThemeProvider theme={theme}>
         <div className="App">
           {/* <Route path = "/login" component={LoginForm} /> */}
-          <NavBar location={window.location.pathname} role={currentUser.role} />
+          <Route path="/" render={props => <NavBar {...props} role={currentUser.role}/>} />
           <Route exact path="/" component={Landing} />
           <Route exact path="/grants" component={Home} />
           <Route path="/form" component={SubmitForm} />

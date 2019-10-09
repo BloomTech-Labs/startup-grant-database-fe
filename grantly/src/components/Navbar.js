@@ -104,13 +104,13 @@ export const NavBar = props => {
       )}
     </div>
   );
-  // console.log("************************", user);
+  console.log("Path", props);
   return (
     <AppBar className={classes.navbar} color="primary" position="sticky">
       <Toolbar>
         <Link to="/" className={classes.titleLink}>
           <Typography variant="h4" className={classes.title}>
-            Founder Grants
+            {props.role === "admin" && window.location.pathname === "/admin" ? "Founder Grants Admin" : "Founder Grants"}
           </Typography>
         </Link>
         <Media query="(min-width:800px)">
