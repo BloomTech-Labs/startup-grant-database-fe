@@ -9,6 +9,15 @@ export const aboutStyles = makeStyles(theme => ({
     // border: "1px solid fuchsia"
     margin: 1,
     padding: 20
+    // background: "#3DB8B3",
+    // color: "#ffffff",
+    // "&:hover": {
+    //   boxShadow: "0px 5px 10px #BBB",
+    //   transform: "translateY(-5px)",
+    //   opacity: 1,
+    //   background: "#3DB8B3",
+    //   color: "#ffffff"
+    // }
   },
   aboutCard: {
     // border: "1px solid fuchsia",
@@ -19,6 +28,7 @@ export const aboutStyles = makeStyles(theme => ({
     opacity: 0.7,
     display: "flex",
     alignItems: "center",
+    justifyContent: "center",
     // transition: "margin 2s",
     "&:hover": {
       boxShadow: "0px 5px 10px #BBB",
