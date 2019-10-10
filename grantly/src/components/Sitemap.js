@@ -1,4 +1,5 @@
 import React from "react";
+import FGLogo from "../assets/FGLogo"
 import { Link } from "react-router-dom";
 import { useAuth0 } from "../react-auth0-wrapper";
 import { lock } from "../react-auth0-wrapper";
@@ -19,7 +20,7 @@ const Sitemap = () => {
         <Grid item className={styles.item}>
           <Link to="/" className={styles.link}>
             <Typography variant="h5" component="h5">
-              Founder Grants
+              <FGLogo />
             </Typography>
           </Link>
         </Grid>
