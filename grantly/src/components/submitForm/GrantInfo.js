@@ -1,81 +1,85 @@
-import React from "react";
+import React, { Fragment } from "react";
+import { connect } from "react-redux";
+import { postGrants, fetchApi } from "../../actions/index.js";
 import { Grid, Typography, TextField } from "@material-ui/core";
+import formStyles from "../../styles/FormStyles";
 
-export default function GrantInfo() {
+const GrantInfo = props => {
+  const styles = formStyles();
   return (
-    <React.Fragment>
+    <Fragment>
       <Typography variant="h5">Grant Info</Typography>
-      <Grid container spacing={3}>
-        <Grid item xs={12} sm={6}>
+      <Grid container spacing={3} className={styles.bottomBox}>
+        <Grid item xs={12}>
           <TextField
             // id="outlined-name"
+            fullWidth
             label="Competition Name"
             type="text"
-            // className={styles.inputText}
             name="competition_name"
             placeholder="Competition Name"
-            // value={grantInfo.competition_name}
-            // onChange={handleChanges}
-            margin="normal"
-            variant="outlined"
+            value={props.grantInfo.competition_name}
+            onChange={props.handleChanges}
           />
         </Grid>
-        <Grid item xs={12} sm={6}>
+        <Grid item xs={12}>
           <TextField
             label="Website"
             type="url"
-            // className={styles.inputText}
+            fullWidth
             name="website"
             placeholder="Website"
-            // value={grantInfo.website}
-            // onChange={handleChanges}
-            margin="normal"
-            variant="outlined"
+            value={props.grantInfo.website}
+            onChange={props.handleChanges}
           />
         </Grid>
-        <Grid item xs={12} sm={6}>
+        <Grid item xs={12}>
           <TextField
             label="Type"
             type="text"
-            // className={styles.inputText}
             name="type"
+            fullWidth
             placeholder="Type"
-            // value={grantInfo.type}
-            // onChange={handleChanges}
-            margin="normal"
-            variant="outlined"
+            value={props.grantInfo.type}
+            onChange={props.handleChanges}
           />
         </Grid>
-        <Grid item xs={12} sm={6}>
+        <Grid item xs={12}>
           <TextField
             label="Amount"
             type="number"
-            // className={styles.inputText}
             name="amount"
+            fullWidth
             placeholder="Amount"
-            // value={grantInfo.amount}
-            // onChange={handleChanges}
-            margin="normal"
-            variant="outlined"
+            value={props.grantInfo.amount}
+            onChange={props.handleChanges}
           />
         </Grid>
-        <Grid item xs={12} sm={6}>
+        <Grid item xs={12}>
           <TextField
             label="Amount Notes"
             type="text"
-            // className={styles.notes}
             name="amount_notes"
             multiline
             fullWidth
             rows="3"
             placeholder="Amount Notes"
-            // value={grantInfo.amount_notes}
-            // onChange={handleChanges}
-            margin="normal"
+            value={props.grantInfo.amount_notes}
+            onChange={props.handleChanges}
             variant="outlined"
           />
         </Grid>
       </Grid>
-    </React.Fragment>
+    </Fragment>
   );
-}
+};
+const mapStateToProps = ({ grantData, isFetching, error }) => ({
+  grantData,
+  isFetching,
+  error
+});
+
+export default connect(
+  mapStateToProps,
+  { postGrants, fetchApi }
+)(GrantInfo);

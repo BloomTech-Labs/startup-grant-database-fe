@@ -1,51 +1,61 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { Grid, Typography, TextField } from "@material-ui/core";
+import { connect } from "react-redux";
+import { postGrants, fetchApi } from "../../actions/index.js";
+import formStyles from "../../styles/FormStyles";
 
-export default function GrantFocus() {
+const GrantFocus = props => {
+  const styles = formStyles();
   return (
-    <React.Fragment>
+    <Fragment>
       <Typography variant="h5">Grant Focus</Typography>
-      <Grid container spacing={3}>
-        <Grid item xs={12} sm={6}>
+      <Grid container spacing={3} className={styles.bottomBox}>
+        <Grid item xs={12}>
           <TextField
             label="Sponsoring Entity"
             type="text"
-            // className={styles.inputText}
             name="sponsoring_entity"
+            fullWidth
             placeholder="Sponsoring Entity"
-            // value={grantInfo.sponsoring_entity}
-            // onChange={handleChanges}
-            margin="normal"
-            variant="outlined"
+            value={props.grantInfo.sponsoring_entity}
+            onChange={props.handleChanges}
           />
         </Grid>
-        <Grid item xs={12} sm={6}>
+        <Grid item xs={12}>
           <TextField
             label="Domain Areas"
             type="text"
-            // className={styles.inputText}
             name="domain_areas"
+            fullWidth
             placeholder="Domain Areas"
-            // value={grantInfo.domain_areas}
-            // onChange={handleChanges}
-            margin="normal"
-            variant="outlined"
+            value={props.grantInfo.domain_areas}
+            onChange={props.handleChanges}
           />
         </Grid>
-        <Grid item xs={12} sm={6}>
+        <Grid item xs={12}>
           <TextField
             label="Area Focus"
             type="text"
-            // className={styles.inputText}
+            className={styles.inputText}
             name="area_focus"
             placeholder="Area Focus"
-            // value={grantInfo.area_focus}
-            // onChange={handleChanges}
-            margin="normal"
-            variant="outlined"
+            fullWidth
+            value={props.grantInfo.area_focus}
+            onChange={props.handleChanges}
           />
         </Grid>
       </Grid>
-    </React.Fragment>
+    </Fragment>
   );
-}
+};
+
+const mapStateToProps = ({ grantData, isFetching, error }) => ({
+  grantData,
+  isFetching,
+  error
+});
+
+export default connect(
+  mapStateToProps,
+  { postGrants, fetchApi }
+)(GrantFocus);

@@ -7,7 +7,7 @@ const formStyles = makeStyles(theme => ({
     marginLeft: theme.spacing(2),
     marginRight: theme.spacing(2),
     [theme.breakpoints.up(600 + theme.spacing(2) * 2)]: {
-      width: 600,
+      width: 700,
       marginLeft: "auto",
       marginRight: "auto"
     }
@@ -23,6 +23,18 @@ const formStyles = makeStyles(theme => ({
     }
   },
 
+  topBox: {
+    padding: theme.spacing(3),
+    // background: "primary"
+    "& h1": {
+      fontSize: "2.8rem",
+      fontFamily: "adobe-garamond-pro",
+      fontWeight: 400,
+      // margin: "1rem",
+      color: "white"
+      // padding: "30px"
+    },
+    "& p": {
       fontFamily: "Roboto",
       fontSize: "1.3rem",
       fontWeight: "200",
@@ -32,7 +44,37 @@ const formStyles = makeStyles(theme => ({
     // paddingTop: "42px",
     background: "#3DB8B3"
     // padding: "2rem"
-  }));
+  },
+  stepper: {
+    padding: theme.spacing(3, 0, 5)
+  },
+  bottomBox: {
+    padding: theme.spacing(2, 6, 1, 2)
+  },
+  submit: {
+    width: "30%",
+    height: "4em",
+    color: "white"
+  },
+  back: {
+    width: "30%",
+    height: "4em",
+    border: "1px solid black",
+    color: "white"
+  },
+  dropDown: {
+    width: 200
+  }
+
+  // // root: {
+  // //   flexGrow: 1
+  // // },
+  // grid: {
+  //   // justifyContent: "space-between",
+  //   display: "flex",
+  //   // flexDirection: "column",
+  //   maxWidth: "50%"
+  //   // height: "80%"
   //   // zIndex: 0
   // },
   //   // background: "primary"
@@ -255,6 +297,6 @@ const formStyles = makeStyles(theme => ({
 //   label: {
 //     color: "#fff"
 //   }
-// }));
+}}));
 
 export default formStyles;
