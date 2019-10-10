@@ -38,10 +38,10 @@ export const Grant = props => {
   const styles = grantStyles();
   return (
     <Card
-      className={
+      className={`${
         props.grantShowcase.id === props.grant.id
           ? styles.grantCardSeleted
-          : styles.grantCard
+          : styles.grantCard} ${!props.grant.is_reviewed && styles.grant_new}`
       }
       onClick={selectGrant}
     >
@@ -53,9 +53,9 @@ export const Grant = props => {
           direction="column"
           alignItems="flex-start"
           justify="space-between"
-          className={styles.grant_info}
+          className={props.grant.is_reviewed ? styles.grant_info : `${styles.grant_info} ${styles.grant_new}`}
         >
-          <Typography variant="subtilte1" className={styles.grantName}>
+          <Typography variant="subtilte1" className={props.grant.is_reviewed ? styles.grantName : `${styles.grantName} ${styles.grant_new}`}>
             {props.grant.competition_name}
           </Typography>
           {props.inAdmin && <h2 onClick={console.log("Delete")}>Delete</h2>}

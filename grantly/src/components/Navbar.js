@@ -94,7 +94,7 @@ export const NavBar = props => {
           </Typography>
         )}
         <Divider />
-        {props.role === "admin" && props.location.pathname === "/grants" ? (
+        {props.role === "admin" && props.location.pathname !== "/admin" ? (
           <Link to="/admin" className={classes.drawerLink}>
             Admin
           </Link>
