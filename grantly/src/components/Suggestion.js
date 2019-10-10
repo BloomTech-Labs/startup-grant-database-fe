@@ -7,12 +7,13 @@ import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import { deleteSuggestion } from "../actions/index";
 import ExpansionPanel from "@material-ui/core/ExpansionPanel";
 import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
 import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
 
 import { suggestionStyles } from "../styles/suggestionStyles";
+
+import { deleteSuggestion, adminFetchApi } from "../actions/index";
 
 export const Suggestion = props => {
   const suggestion = suggestionStyles();
@@ -23,9 +24,11 @@ export const Suggestion = props => {
     setExpanded(!expanded);
   };
 
-  // ====== finish ======
   const handleSubmit = () => {
       props.deleteSuggestion(props.request.id)
+      setTimeout(() => {
+        props.adminFetchApi();
+      }, 500);
   };
 
   console.log("SUBJECT (props.grant.requests)", props.request)
@@ -44,7 +47,7 @@ export const Suggestion = props => {
               ? props.grant.requests.subject
             //   ? props.grant.requests[props.grant.requests.id-1].subject
               : null} */}
-              {props.request.subject}SUBJECT HERE
+              {props.request.subject}
           </Typography>
         </ExpansionPanelSummary>
         <Grid container direction="column" justify="center" alignItems="center">
@@ -65,14 +68,7 @@ export const Suggestion = props => {
               color="secondary"
               onClick={handleSubmit}
             >
-              Reject
-            </Button>
-            <Button
-              className={suggestion.button}
-              variant="contained"
-              color="primary"
-            >
-              Accept
+              Delete Suggestion
             </Button>
           </Grid>
         </Grid>
@@ -89,5 +85,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { deleteSuggestion }
+  { deleteSuggestion, adminFetchApi }
 )(Suggestion);
