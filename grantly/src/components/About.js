@@ -24,26 +24,32 @@ export default () => {
           className={classes.aboutContainer}
         >
           <Grid item xs={3}>
-            <Card className={classes.aboutCard}>
-              <Typography variant="subtitle1">
-                You can find out more about 1517 Fund here.
-              </Typography>
-            </Card>
+            <a href="https://www.google.com">
+              <Card className={classes.aboutCard}>
+                <Typography variant="subtitle1">
+                  You can find out more about 1517 Fund here.
+                </Typography>
+              </Card>
+            </a>
           </Grid>
           <Grid item xs={3}>
-            <Card className={classes.aboutCard}>
-              <Typography variant="subtitle1">
-                You can find out more about Lambda School here.
-              </Typography>
-            </Card>
+            <a href="https://www.google.com">
+              <Card className={classes.aboutCard}>
+                <Typography variant="subtitle1">
+                  You can find out more about Lambda School here.
+                </Typography>
+              </Card>
+            </a>
           </Grid>
           <Grid item xs={3}>
-            <Card className={classes.aboutCard}>
-              <Typography variant="subtitle1">
-                You can find out more about the student team and the project,
-                including the open source code here.
-              </Typography>
-            </Card>
+            <a href="https://www.google.com">
+              <Card className={classes.aboutCard}>
+                <Typography variant="subtitle1">
+                  You can find out more about the student team and the project,
+                  including the open source code here.
+                </Typography>
+              </Card>
+            </a>
           </Grid>
         </Grid>
       </Card>
