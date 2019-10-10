@@ -12,9 +12,13 @@ export const aboutStyles = makeStyles(theme => ({
   },
   aboutCard: {
     // border: "1px solid fuchsia",
+    width: 350,
+    height: 150,
     margin: 10,
     padding: 10,
     opacity: 0.7,
+    display: "flex",
+    alignItems: "center",
     // transition: "margin 2s",
     "&:hover": {
       boxShadow: "0px 5px 10px #BBB",

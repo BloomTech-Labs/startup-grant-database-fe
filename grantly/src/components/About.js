@@ -22,9 +22,10 @@ export default () => {
           container
           justify="space-around"
           className={classes.aboutContainer}
+          alignItems="center"
         >
           <Grid item xs={3}>
-            <a href="https://www.google.com">
+            <a href="https://www.1517fund.com/">
               <Card className={classes.aboutCard}>
                 <Typography variant="subtitle1">
                   You can find out more about 1517 Fund here.
@@ -33,7 +34,7 @@ export default () => {
             </a>
           </Grid>
           <Grid item xs={3}>
-            <a href="https://www.google.com">
+            <a href="https://lambdaschool.com/">
               <Card className={classes.aboutCard}>
                 <Typography variant="subtitle1">
                   You can find out more about Lambda School here.
@@ -42,7 +43,7 @@ export default () => {
             </a>
           </Grid>
           <Grid item xs={3}>
-            <a href="https://www.google.com">
+            <a href="https://github.com/Lambda-School-Labs/startup-grant-database-fe">
               <Card className={classes.aboutCard}>
                 <Typography variant="subtitle1">
                   You can find out more about the student team and the project,
