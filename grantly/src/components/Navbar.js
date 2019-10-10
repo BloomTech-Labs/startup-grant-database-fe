@@ -7,22 +7,18 @@ import { navStyles } from "../styles/navStyles";
 import Media from "react-media";
 import MobileTabs from "./mobile/MobileTabs";
 
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
-import Typography from "@material-ui/core/Typography";
-import Button from "@material-ui/core/Button";
-import IconButton from "@material-ui/core/IconButton";
+// Material core imports
+
+import {
+  AppBar,
+  Toolbar,
+  Typography,
+  Button,
+  IconButton,
+  Divider,
+  SwipeableDrawer
+} from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
-import List from "@material-ui/core/List";
-import Divider from "@material-ui/core/Divider";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
-import ListItemText from "@material-ui/core/ListItemText";
-import InboxIcon from "@material-ui/icons/MoveToInbox";
-import MailIcon from "@material-ui/icons/Mail";
-import SwipeableDrawer from "@material-ui/core/SwipeableDrawer";
-import SearchBar from "./SearchBar";
-import ExternalApi from "../util/ExternalApi";
 
 export const NavBar = props => {
   const {
