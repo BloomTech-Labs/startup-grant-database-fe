@@ -1,10 +1,10 @@
 import React from "react";
 import {navStyles} from "../styles/navStyles"
 
-const FGLogo = ({inAdmin}) => {
+const FGLogo = ({inAdmin, siteMap}) => {
     const styles = navStyles();
   return (
-      <div className={styles.logo}>
+      <div className={siteMap ? styles.siteMap : styles.logo}>
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width="46"
@@ -118,7 +118,7 @@ const FGLogo = ({inAdmin}) => {
         </filter>
       </defs>
     </svg>
-        <span className={styles.title}>{!inAdmin ? "Founder Grants" : "Founder Grants Admin"}</span>
+        <span className={siteMap ? styles.siteMap : styles.title}>{!inAdmin ? "Founder Grants" : "Founder Grants Admin"}</span>
     </div>
   );
 };
