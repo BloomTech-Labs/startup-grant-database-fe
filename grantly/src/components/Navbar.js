@@ -14,14 +14,14 @@ import MenuIcon from "@material-ui/icons/Menu";
 import Divider from "@material-ui/core/Divider";
 
 import SwipeableDrawer from "@material-ui/core/SwipeableDrawer";
-import SearchBar from "./SearchBar";
+// import SearchBar from "./SearchBar";
 
 export const NavBar = props => {
   const {
     isAuthenticated,
     loginWithRedirect,
     logout,
-    user,
+    // user,
     getTokenSilently
   } = useAuth0();
   const [isOpen, setIsOpen] = useState(false);

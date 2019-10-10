@@ -21,11 +21,9 @@ const Home = props => {
   const [filterOpen, setFilterOpen] = useState();
   const toggleDrawer = () => {
     setIsOpen(!isOpen);
-    console.log("clicked");
   };
 
   const toggleFilters = () => {
-    console.log("filters clicked");
     setFilterOpen(!filterOpen);
   };
   const classes = homeStyles();

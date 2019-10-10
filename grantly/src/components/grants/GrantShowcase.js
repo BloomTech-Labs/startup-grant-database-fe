@@ -13,10 +13,10 @@ import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
 import BookmarkBorderOutlinedIcon from "@material-ui/icons/BookmarkBorderOutlined";
 import LanguageIcon from "@material-ui/icons/Language";
-import Modal from "@material-ui/core/Modal";
-import Fade from "@material-ui/core/Fade";
-import Backdrop from "@material-ui/core/Backdrop";
-import BookmarkIcon from "@material-ui/icons/Bookmark";
+// import Modal from "@material-ui/core/Modal";
+// import Fade from "@material-ui/core/Fade";
+// import Backdrop from "@material-ui/core/Backdrop";
+// import BookmarkIcon from "@material-ui/icons/Bookmark";
 import Typography from "@material-ui/core/Typography";
 import SuggestionDialog from "./dialogs/SuggestionDialog";
 

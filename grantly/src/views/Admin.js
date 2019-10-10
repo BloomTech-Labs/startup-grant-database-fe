@@ -15,21 +15,21 @@ import Grid from "@material-ui/core/Grid";
 import { adminStyles } from "../styles/adminStyles";
 
 const Admin = props => {
-  const [isOpen, setIsOpen] = useState(false);
+  // const [isOpen, setIsOpen] = useState(false);
   //Show filters
   const [open, setOpen] = useState();
-  const toggleDrawer = open => event => {
-    console.log("toggle");
-    if (
-      event &&
-      event.type === "keydown" &&
-      (event.key === "Tab" || event.key === "Shift")
-    ) {
-      return;
-    }
+  // const toggleDrawer = open => event => {
+  //   console.log("toggle");
+  //   if (
+  //     event &&
+  //     event.type === "keydown" &&
+  //     (event.key === "Tab" || event.key === "Shift")
+  //   ) {
+  //     return;
+  //   }
 
-    setIsOpen(!isOpen);
-  };
+  //   setIsOpen(!isOpen);
+  // };
 
   const toggleFilters = () => {
     setOpen(!open);

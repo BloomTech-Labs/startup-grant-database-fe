@@ -79,7 +79,6 @@ export const Auth0Provider = ({
       setIsAuthenticated(isAuthenticated);
 
       if (isAuthenticated) {
-        console.log("im in")
         checkAdmin()
         const user = await auth0FromHook.getUser();
         setUser(user);

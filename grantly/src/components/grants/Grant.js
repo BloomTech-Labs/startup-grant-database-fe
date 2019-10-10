@@ -55,7 +55,7 @@ export const Grant = props => {
           justify="space-between"
           className={props.grant.is_reviewed ? styles.grant_info : `${styles.grant_info} ${styles.grant_new}`}
         >
-          <Typography variant="subtilte1" className={props.grant.is_reviewed ? styles.grantName : `${styles.grantName} ${styles.grant_new}`}>
+          <Typography variant="subtitle1" className={props.grant.is_reviewed ? styles.grantName : `${styles.grantName} ${styles.grant_new}`}>
             {props.grant.competition_name}
           </Typography>
           {props.inAdmin && <h2 onClick={console.log("Delete")}>Delete</h2>}
@@ -64,12 +64,12 @@ export const Grant = props => {
               {props.grant.website}
             </Typography>
           </Grid>
-          <Typography variant="subtilte1" component="p">
+          <Typography variant="subtitle1" component="p">
             Deadline - <span className={styles.grant_subinfo}>{deadline}</span>
           </Typography>
           <Grid item>
             {" "}
-            <Typography variant="subtilte1" component="p">
+            <Typography variant="subtitle1" component="p">
               Amount -{" "}
               <span className={styles.grant_subinfo}>
                 {" "}
