@@ -167,11 +167,12 @@ export const submitSuggestion = suggestion => dispatch => {
 };
 
 // Delete a grant suggestion
-export const deleteSuggestion = suggestion => dispatch => {
+export const deleteSuggestion = requestId => dispatch => {
   dispatch({ type: DELETE_SUGGESTION_START });
+  console.log('hello')
   axios
     .delete(
-      // `https://grantly-staging.herokuapp.com/api/admin/suggestion/${grantId}`
+      `https://grantly-staging.herokuapp.com/api/admin/suggestion/${requestId}`
     )
     .then(response => {
       dispatch({ type: DELETE_SUGGESTION_SUCCESS, payload: response.data });

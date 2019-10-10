@@ -25,7 +25,7 @@ export const Suggestion = props => {
 
   // ====== finish ======
   const handleSubmit = () => {
-      deleteSuggestion()
+      props.deleteSuggestion(props.request.id)
   };
 
   console.log("SUBJECT (props.grant.requests)", props.request)
@@ -89,5 +89,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  {}
+  { deleteSuggestion }
 )(Suggestion);
