@@ -116,6 +116,11 @@ export const NavBar = props => {
                 Grants
               </Button>
             </NavLink>
+            <NavLink to="/about" className={classes.link}>
+              <Button className={classes.navButton} color="inherit">
+                About
+              </Button>
+            </NavLink>
             {/* <Button className={classes.navButton} color="inherit">
               ABOUT
             </Button> */}
