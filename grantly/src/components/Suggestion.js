@@ -3,20 +3,19 @@ import React from "react";
 import { connect } from "react-redux";
 import clsx from "clsx";
 
-// Objects
+import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
-import { suggestionStyles } from "../styles/suggestionStyles";
-import Card from "@material-ui/core/Card";
-import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
-import Collapse from "@material-ui/core/Collapse";
-import IconButton from "@material-ui/core/IconButton";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import CardActions from "@material-ui/core/CardActions";
-import { deleteSuggestion } from "../../actions/index";
+import { deleteSuggestion } from "../actions/index";
+import ExpansionPanel from "@material-ui/core/ExpansionPanel";
+import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
+import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
+
+import { suggestionStyles } from "../styles/suggestionStyles";
 
 export const Suggestion = props => {
-  const styles = suggestionStyles();
+  const suggestion = suggestionStyles();
 
   const [expanded, setExpanded] = React.useState(false);
 
@@ -53,11 +52,11 @@ export const Suggestion = props => {
           <Grid
             container
             direction="row"
-            justifyContent="space-around"
+            justify="space-around"
             alignItems="center"
           >
             <Button
-              className={showcase.applyButton}
+              className={suggestion.button}
               variant="contained"
               color="secondary"
               onClick={handleSubmit}
@@ -65,7 +64,7 @@ export const Suggestion = props => {
               Reject
             </Button>
             <Button
-              className={showcase.applyButton}
+              className={suggestion.button}
               variant="contained"
               color="primary"
             >

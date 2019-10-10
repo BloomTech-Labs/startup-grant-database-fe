@@ -14,6 +14,12 @@ export const suggestionStyles = makeStyles(theme => ({
     fontSize: "1.6rem",
     fontWeight: theme.typography.fontWeightRegular
   },
+  button: {
+    color: "#fff",
+    margin: "20px auto",
+    fontFamily: "Nunito Sans",
+    fontWeight: "600"
+  },
   details: {
     padding: 0
   },

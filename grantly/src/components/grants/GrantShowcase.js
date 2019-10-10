@@ -217,7 +217,7 @@ export const GrantShowcase = props => {
           </Grid>
         </Grid>
       </Card>
-      <ExpansionPanel className={suggestion.card}>
+      {/* <ExpansionPanel className={suggestion.card}>
         <ExpansionPanelSummary
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1a-content"
@@ -279,83 +279,7 @@ export const GrantShowcase = props => {
               : null}
           </Typography>
         </ExpansionPanelDetails>
-      </ExpansionPanel>
-      {/* <Card
-      // conditional styling if card is selected
-      className={suggestion.card}
-      >
-        <Grid
-          container
-          direction="column"
-          justify="space-between"
-          alignItems="center"
-        >
-          <CardContent>
-            <Typography variant="body2" color="textSecondary" component="p">
-              {props.grant.requests !== undefined
-                ? props.grant.requests[0].subject
-                : null}
-            </Typography>
-          </CardContent>
-          <IconButton
-            className={clsx(suggestion.expand, {
-              [suggestion.expandOpen]: expanded
-            })}
-            onClick={handleExpandClick}
-            aria-expanded={expanded}
-            aria-label="show more"
-          >
-            <ExpandMoreIcon />
-          </IconButton>
-          <Collapse in={expanded} timeout="auto" unmountOnExit>
-            <CardContent>
-              <Typography paragraph>
-                {props.grant.requests !== undefined
-                  ? props.grant.requests[0].suggestion
-                  : null}
-              </Typography>
-            </CardContent>
-          </Collapse>
-        </Grid>
-      </Card>
-      <Card
-      // conditional styling if card is selected
-      className={suggestion.card}
-      >
-        <Grid
-          container
-          direction="column"
-          justify="space-between"
-          alignItems="center"
-        >
-          <CardContent>
-            <Typography variant="body2" color="textSecondary" component="p">
-              {props.grant.requests !== undefined
-                ? props.grant.requests[1].subject
-                : null}
-            </Typography>
-          </CardContent>
-          <IconButton
-            className={clsx(suggestion.expand, {
-              [suggestion.expandOpen]: expanded
-            })}
-            onClick={handleExpandClick}
-            aria-expanded={expanded}
-            aria-label="show more"
-          >
-            <ExpandMoreIcon />
-          </IconButton>
-          <Collapse in={expanded} timeout="auto" unmountOnExit>
-            <CardContent>
-              <Typography paragraph>
-                {props.grant.requests !== undefined
-                  ? props.grant.requests[1].suggestion
-                  : null}
-              </Typography>
-            </CardContent>
-          </Collapse>
-        </Grid>
-      </Card> */}
+      </ExpansionPanel> */}
     </div>
   );
 };

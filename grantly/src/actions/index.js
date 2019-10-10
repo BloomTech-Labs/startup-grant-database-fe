@@ -49,10 +49,6 @@ export const adminFetchApi = () => dispatch => {
     // .get(`https://labs16-grantly.herokuapp.com/api/grants/`)
     .get(`https://grantly-staging.herokuapp.com/api/admin`)
     .then(response => {
-      console.log(
-        "HELLOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO GET response",
-        response
-      );
       dispatch({ type: FETCH_SUCCESS, payload: response.data });
     })
     .catch(error => {
