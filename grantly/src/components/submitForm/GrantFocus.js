@@ -44,17 +44,18 @@ const GrantFocus = props => {
             onChange={props.handleChanges}
           />
         </Grid>
-        <Grid item xs={12}>
+        {/* <Grid item xs={12}>
           <TextField
             type="date"
             name="details_last_updated"
-            value={props.grantInfo.details_last_updated}
+            // value={props.grantInfo.details_last_updated}
+            // value={Date.now()}
             onChange={props.handleChanges}
             helperText="Details Last Updated"
             margin="normal"
             variant="outlined"
           />
-        </Grid>
+        </Grid> */}
       </Grid>
     </Fragment>
   );

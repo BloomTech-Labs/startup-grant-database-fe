@@ -26,6 +26,7 @@ import GrantInfo from "./submitForm/GrantInfo";
 import GrantFocus from "./submitForm/GrantFocus";
 import GrantDemo from "./submitForm/GrantDemo";
 import { typography } from "@material-ui/system";
+import moment from "moment";
 
 // const funding = [
 //   {
@@ -73,7 +74,10 @@ const AddGrant = props => {
     target_entrepreneur_demographic: "",
     notes: "",
     early_stage_funding: "",
-    details_last_updated: ""
+    // details_last_updated: Date.now()
+    // details_last_updated: new Date()
+    details_last_updated: moment().format("YYYY-MM-DD")
+    // details_last_updated: moment().format("YYYY-MM-DD")
   });
 
   const handleChanges = event => {
@@ -104,10 +108,10 @@ const AddGrant = props => {
       early_stage_funding: "",
       details_last_updated: ""
     });
-    setTimeout(() => {
-      props.fetchApi();
-      props.history.push("/grants");
-    }, 2000);
+    // setTimeout(() => {
+    //   props.fetchApi();
+    //   props.history.push("/grants");
+    // }, 2000);
   };
 
   const styles = formStyles();
