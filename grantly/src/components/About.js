@@ -6,7 +6,42 @@ export default () => {
     <Grid container style={{ border: "1px solid red" }}>
       <Grid item style={{ border: "1px solid red" }}>
         <Typography variant="subtitle1" color="secondary">
-          You found your way here
+          Imani Russ
+        </Typography>
+      </Grid>
+      <Grid item style={{ border: "1px solid red" }}>
+        <Typography variant="subtitle1" color="secondary">
+          Zabdiel Rosario
+        </Typography>
+      </Grid>
+      <Grid item style={{ border: "1px solid red" }}>
+        <Typography variant="subtitle1" color="secondary">
+          Reed James
+        </Typography>
+      </Grid>
+      <Grid item style={{ border: "1px solid red" }}>
+        <Typography variant="subtitle1" color="secondary">
+          Michael Harris
+        </Typography>
+      </Grid>
+      <Grid item style={{ border: "1px solid red" }}>
+        <Typography variant="subtitle1" color="secondary">
+          Yusuf Nafey
+        </Typography>
+      </Grid>
+      <Grid item style={{ border: "1px solid red" }}>
+        <Typography variant="subtitle1" color="secondary">
+          Philip Johnson
+        </Typography>
+      </Grid>
+      <Grid item style={{ border: "1px solid red" }}>
+        <Typography variant="subtitle1" color="secondary">
+          Rory Murray
+        </Typography>
+      </Grid>
+      <Grid item style={{ border: "1px solid red" }}>
+        <Typography variant="subtitle1" color="secondary">
+          Chad Kidd
         </Typography>
       </Grid>
     </Grid>
