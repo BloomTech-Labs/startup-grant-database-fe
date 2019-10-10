@@ -11,6 +11,9 @@ import {
   ADD_GRANT_START,
   ADD_GRANT_SUCCESS,
   ADD_GRANT_FAILURE,
+  UPDATE_GRANT_START,
+  UPDATE_GRANT_SUCCESS,
+  UPDATE_GRANT_FAILURE,
   CHECK_ADMIN,
   SET_USER
 } from "../actions/types";
@@ -29,7 +32,8 @@ const initialState = {
     admin_filters: []
   },
   currentTab: 0,
-  currentUser: {}
+  currentUser: {},
+  error: ""
 };
 
 // Reducer
@@ -144,7 +148,6 @@ export const rooterReducer = (state = initialState, { type, payload }) => {
         ...state,
         filteredGrants: state.data
       };
-
     case ADD_GRANT_START:
       return {
         ...state,
@@ -163,6 +166,25 @@ export const rooterReducer = (state = initialState, { type, payload }) => {
         isFetching: false,
         error: payload
       };
+    case UPDATE_GRANT_START:
+      return {
+        ...state,
+        isFetching: true,
+        error: payload
+      };
+    case UPDATE_GRANT_SUCCESS:
+      return {
+        ...state,
+        isFetching: false,
+        data: { ...state.data, payload }
+      };
+    case UPDATE_GRANT_FAILURE:
+      return {
+        ...state,
+        isFetching: false,
+        error: payload
+      };
+
     default:
       return state;
   }

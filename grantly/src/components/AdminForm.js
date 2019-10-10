@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 import Media from "react-media";
-import { postGrants, fetchApi } from "../actions/index";
+import { putGrants, adminFetchApi } from "../actions/index";
 import moment from "moment";
 
 //Objects
@@ -29,6 +29,7 @@ const funding = [
 ];
 
 const GrantForm = props => {
+  // Set initial state of form
   const [grantInfo, setGrantInfo] = useState({
     ...props.grant,
     most_recent_application_due_date: moment(
@@ -47,35 +48,26 @@ const GrantForm = props => {
     });
   };
 
-  const submitGrant = event => {
-    console.log("SubmitForm.js submitGrant", event);
+  const editGrant = event => {
+    // console.log("SubmitForm.js submitGrant", event);
     event.preventDefault();
-    props.postGrants({ ...grantInfo });
+    props.putGrants({ ...grantInfo });
     setGrantInfo({
-      competition_name: "",
-      type: "",
-      area_focus: "",
-      sponsoring_entity: "",
-      website: "",
-      most_recent_application_due_date: "",
-      amount: "",
-      amount_notes: "",
-      geographic_region: "",
-      domain_areas: "",
-      target_entrepreneur_demographic: "",
-      notes: "",
-      early_stage_funding: "",
-      details_last_updated: ""
+      ...props.grant,
+      most_recent_application_due_date: moment(
+        props.grant.most_recent_application_due_date
+      ).format("YYYY-MM-DD"),
+      details_last_updated: moment(props.grant.details_last_updated).format(
+        "YYYY-MM-DD"
+      )
     });
-    setTimeout(() => {
-      props.fetchApi();
-      props.history.push("/grants");
-    }, 2000);
+
+    props.adminFetchApi();
+    props.handleClose();
   };
 
   const styles = formStyles();
 
-  console.log(props);
   return (
     <div>
       <Grid
@@ -86,7 +78,7 @@ const GrantForm = props => {
         alignItems="center"
       >
         <Grid item sm={12} md={12}>
-          <form className={styles.form} onSubmit={submitGrant}>
+          <form className={styles.form}>
             <div className={styles.formContainer}>
               <TextField
                 // id="outlined-name"
@@ -269,19 +261,22 @@ const GrantForm = props => {
             </div>
             <div>
               <Button
-                type="submit"
+                onClick={props.handleClose}
+                variant="outlined"
+                color="primary"
+                size="large"
+              >
+                Cancel
+              </Button>
+              <Button
+                onClick={editGrant}
                 variant="outlined"
                 color="primary"
                 size="large"
               >
                 Save Changes
               </Button>
-              <Button
-                type="submit"
-                variant="outlined"
-                color="primary"
-                size="large"
-              >
+              <Button variant="outlined" color="danger" size="large">
                 Delete
               </Button>
             </div>
@@ -291,13 +286,12 @@ const GrantForm = props => {
     </div>
   );
 };
-const mapStateToProps = ({ grantData, isFetching, error }) => ({
-  grantData,
+const mapStateToProps = ({ isFetching, error }) => ({
   isFetching,
   error
 });
 
 export default connect(
   mapStateToProps,
-  { postGrants, fetchApi }
+  { putGrants, adminFetchApi }
 )(GrantForm);

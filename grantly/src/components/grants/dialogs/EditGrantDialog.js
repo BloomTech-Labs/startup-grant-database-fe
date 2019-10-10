@@ -61,6 +61,9 @@ export default function FullScreenDialog(props) {
       >
         <AppBar className={classes.appBar}>
           <Toolbar>
+            <Typography variant="h6" className={classes.title}>
+              Edit Grant
+            </Typography>
             <IconButton
               edge="start"
               color="inherit"
@@ -69,15 +72,9 @@ export default function FullScreenDialog(props) {
             >
               <CloseIcon />
             </IconButton>
-            <Typography variant="h6" className={classes.title}>
-              Edit Grant
-            </Typography>
-            <Button color="inherit" onClick={handleClose}>
-              save
-            </Button>
           </Toolbar>
         </AppBar>
-        <AdminForm grant={props.grant} />
+        <AdminForm grant={props.grant} handleClose={handleClose} />
       </Dialog>
     </div>
   );
