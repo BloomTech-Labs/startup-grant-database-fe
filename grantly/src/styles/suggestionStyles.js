@@ -14,8 +14,12 @@ export const suggestionStyles = makeStyles(theme => ({
     fontSize: "1.6rem",
     fontWeight: theme.typography.fontWeightRegular
   },
+  details: {
+    padding: 0
+  },
   suggestion: {
-    fontSize: "1.2rem"
+    fontSize: "1.2rem",
+    padding: 0
   },
   expand: {
     transform: "rotate(0deg)",
@@ -26,5 +30,11 @@ export const suggestionStyles = makeStyles(theme => ({
   },
   expandOpen: {
     transform: "rotate(180deg)"
+  },
+  suggestionButton: {
+    color: "#fff",
+    margin: "20px auto",
+    fontFamily: "Nunito Sans",
+    fontWeight: "600"
   }
 }));

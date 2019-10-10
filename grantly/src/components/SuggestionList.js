@@ -36,7 +36,7 @@ const mapStateToProps = state => {
   return {	
     error: state.error,	
     isFetching: state.isFetching,	
-    data: state.filteredGrants	
+    data: state.grantShowcase	
   };	
 };	
 export default connect(	

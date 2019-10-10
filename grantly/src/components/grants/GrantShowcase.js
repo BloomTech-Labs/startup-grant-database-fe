@@ -229,13 +229,36 @@ export const GrantShowcase = props => {
               : null}
           </Typography>
         </ExpansionPanelSummary>
-        <ExpansionPanelDetails>
-          <Typography className={suggestion.suggestion}>
-            {props.grant.requests !== undefined
-              ? props.grant.requests[1].suggestion
-              : null}
-          </Typography>
-        </ExpansionPanelDetails>
+        <Grid container direction="column" justify="center" alignItems="center">
+          <ExpansionPanelDetails className={suggestion.details}>
+            <Typography className={suggestion.suggestion}>
+              {props.grant.requests !== undefined
+                ? props.grant.requests[0].suggestion
+                : null}
+            </Typography>
+          </ExpansionPanelDetails>
+          <Grid
+            container
+            direction="row"
+            justifyContent="space-around"
+            alignItems="center"
+          >
+            <Button
+              className={showcase.applyButton}
+              variant="contained"
+              color="secondary"
+            >
+              Reject
+            </Button>
+            <Button
+              className={showcase.applyButton}
+              variant="contained"
+              color="primary"
+            >
+              Accept
+            </Button>
+          </Grid>
+        </Grid>
       </ExpansionPanel>
       <ExpansionPanel className={suggestion.card}>
         <ExpansionPanelSummary
