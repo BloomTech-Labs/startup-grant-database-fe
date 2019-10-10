@@ -3,16 +3,29 @@ import { makeStyles } from "@material-ui/core/styles";
 export const aboutStyles = makeStyles(theme => ({
   aboutCardContainer: {
     // border: "1px solid fuchsia"
-    margin: 1
+    margin: 20
   },
   aboutIntroCardContainer: {
     // border: "1px solid fuchsia"
-    margin: 1
+    margin: 1,
+    padding: 20
   },
   aboutCard: {
     // border: "1px solid fuchsia",
     margin: 10,
-    padding: 10
+    padding: 10,
+    opacity: 0.7,
+    // transition: "margin 2s",
+    "&:hover": {
+      boxShadow: "0px 5px 10px #BBB",
+      transform: "translateY(-5px)",
+      opacity: 1,
+      background: "#3DB8B3",
+      color: "#ffffff"
+    }
+    //   '&:active': {
+    //     transform: "translateY(0)"
+    //   }
   },
   aboutIntro: {
     // border: "1px solid fuchsia",
