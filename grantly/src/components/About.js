@@ -9,7 +9,7 @@ export default () => {
       <Card className={classes.aboutIntroCardContainer}>
         <Grid container justify="center" className={classes.aboutIntro}>
           <Grid item className={classes.aboutTopCard}>
-            <Typography variant="body1">
+            <Typography variant="h5">
               Founder Grants was built to solve one basic problem: connecting
               early stage founders with appropriate available resources to fund
               their inventions. It was developed by 1517 Fund in partnership
@@ -22,7 +22,6 @@ export default () => {
           container
           justify="space-around"
           className={classes.aboutContainer}
-          alignItems="center"
         >
           <Grid item xs={3}>
             <a href="https://www.1517fund.com/">
