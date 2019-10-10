@@ -60,6 +60,7 @@ const Admin = props => {
         </Grid>
         <Grid item xs={8} className={classes.gridItem}>
           <GrantShowcase />
+          
           <SuggestionList />
         </Grid>
       </Grid>

@@ -78,8 +78,6 @@ export const GrantShowcase = props => {
     return <Loader type="Triangle" color="#3DB8B3" height="200" width="200" />;
   }
 
-  console.log("REQUESTS:", props.grant.requests);
-
   return (
     <div>
       <Card className={showcase.showcaseCard}>
@@ -217,6 +215,63 @@ export const GrantShowcase = props => {
           </Grid>
         </Grid>
       </Card>
+      {/* {undefined !== props.grant.requests && props.grant.requests.length ? (
+        props.grant.requests.map(grant => {
+          return (
+            <ExpansionPanel className={suggestion.card}>
+              <ExpansionPanelSummary
+                expandIcon={<ExpandMoreIcon />}
+                aria-controls="panel1a-content"
+                id="panel1a-header"
+              >
+                <Typography className={suggestion.subject}>
+                  {props.grant.requests !== undefined
+                    ? props.grant.requests.subject
+                    : // ? props.grant.requests[props.grant.requests.id-1].subject
+                      null}
+                </Typography>
+              </ExpansionPanelSummary>
+              <Grid
+                container
+                direction="column"
+                justify="center"
+                alignItems="center"
+              >
+                <ExpansionPanelDetails className={suggestion.details}>
+                  <Typography className={suggestion.suggestion}>
+                    {props.grant.requests !== undefined
+                      ? props.grant.requests[0].suggestion
+                      : null}
+                  </Typography>
+                </ExpansionPanelDetails>
+                <Grid
+                  container
+                  direction="row"
+                  justify="space-around"
+                  alignItems="center"
+                >
+                  <Button
+                    className={suggestion.button}
+                    variant="contained"
+                    color="secondary"
+                  >
+                    Reject
+                  </Button>
+                  <Button
+                    className={suggestion.button}
+                    variant="contained"
+                    color="primary"
+                  >
+                    Accept
+                  </Button>
+                </Grid>
+              </Grid>
+            </ExpansionPanel>
+          );
+        })
+      ) : (
+        <div>Incoming</div>
+      )} */}
       {/* <ExpansionPanel className={suggestion.card}>
         <ExpansionPanelSummary
           expandIcon={<ExpandMoreIcon />}

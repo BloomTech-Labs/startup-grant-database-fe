@@ -28,6 +28,10 @@ export const Suggestion = props => {
       deleteSuggestion()
   };
 
+  console.log("SUBJECT (props.grant.requests)", props.request)
+  console.log("SUBJECT (props.request.subject)", props.request.subject)
+  console.log("SUBJECT (props.request.suggestion)", props.request.suggestion)
+  
   return (
     <ExpansionPanel className={suggestion.card}>
         <ExpansionPanelSummary
@@ -36,17 +40,17 @@ export const Suggestion = props => {
           id="panel1a-header"
         >
           <Typography className={suggestion.subject}>
-            {props.grant.requests !== undefined
-              ? props.grant.requests[0].subject
-              : null}
+            {/* {props.grant.requests !== undefined
+              ? props.grant.requests.subject
+            //   ? props.grant.requests[props.grant.requests.id-1].subject
+              : null} */}
+              {props.request.subject}SUBJECT HERE
           </Typography>
         </ExpansionPanelSummary>
         <Grid container direction="column" justify="center" alignItems="center">
           <ExpansionPanelDetails className={suggestion.details}>
             <Typography className={suggestion.suggestion}>
-              {props.grant.requests !== undefined
-                ? props.grant.requests[0].suggestion
-                : null}
+              {props.request.suggestion}
             </Typography>
           </ExpansionPanelDetails>
           <Grid
