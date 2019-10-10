@@ -1,28 +1,20 @@
 import React, { useState } from "react";
-import { makeStyles } from "@material-ui/core/styles";
 
 import { NavLink, Link } from "react-router-dom";
 import { useAuth0 } from "../react-auth0-wrapper";
 import { navStyles } from "../styles/navStyles";
+import FGLogo from "../assets/FGLogo";
 import Media from "react-media";
-import MobileTabs from "./mobile/MobileTabs";
-
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
-import List from "@material-ui/core/List";
 import Divider from "@material-ui/core/Divider";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
-import ListItemText from "@material-ui/core/ListItemText";
-import InboxIcon from "@material-ui/icons/MoveToInbox";
-import MailIcon from "@material-ui/icons/Mail";
+
 import SwipeableDrawer from "@material-ui/core/SwipeableDrawer";
 import SearchBar from "./SearchBar";
-import ExternalApi from "../util/ExternalApi";
 
 export const NavBar = props => {
   const {
@@ -61,11 +53,11 @@ export const NavBar = props => {
       console.error(error);
     }
   };
-
   //If user is logged in call to get access token
   {
     isAuthenticated && callApi();
   }
+
   const sideList = side => (
     <div
       role="presentation"
@@ -122,8 +114,8 @@ export const NavBar = props => {
         <Link to="/" className={classes.titleLink}>
           <Typography variant="h4" className={classes.title}>
             {props.role === "admin" && window.location.pathname === "/admin"
-              ? "Founder Grants Admin"
-              : "Founder Grants"}
+              ? <FGLogo inAdmin={true} />
+              : <FGLogo /> }
           </Typography>
         </Link>
         <Media query="(min-width:800px)">
