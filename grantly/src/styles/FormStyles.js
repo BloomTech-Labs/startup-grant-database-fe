@@ -7,7 +7,7 @@ const formStyles = makeStyles(theme => ({
     marginLeft: theme.spacing(2),
     marginRight: theme.spacing(2),
     [theme.breakpoints.up(600 + theme.spacing(2) * 2)]: {
-      width: 600,
+      width: 700,
       marginLeft: "auto",
       marginRight: "auto"
     }
@@ -24,6 +24,7 @@ const formStyles = makeStyles(theme => ({
   },
 
   topBox: {
+    padding: theme.spacing(3),
     // background: "primary"
     "& h1": {
       fontSize: "2.8rem",
@@ -47,6 +48,23 @@ const formStyles = makeStyles(theme => ({
   },
   stepper: {
     padding: theme.spacing(3, 0, 5)
+  },
+  bottomBox: {
+    padding: theme.spacing(2, 6, 1, 2)
+  },
+  submit: {
+    width: "30%",
+    height: "4em",
+    color: "white"
+  },
+  back: {
+    width: "30%",
+    height: "4em",
+    border: "1px solid black",
+    color: "white"
+  },
+  dropDown: {
+    width: 200
   }
 
   // // root: {

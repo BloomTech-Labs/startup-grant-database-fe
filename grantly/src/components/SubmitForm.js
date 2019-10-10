@@ -1,5 +1,5 @@
 //Dependencies
-import React, { useState } from "react";
+import React, { useState, Fragment } from "react";
 import { connect } from "react-redux";
 import Media from "react-media";
 import { postGrants, fetchApi } from "../actions/index.js";
@@ -37,23 +37,28 @@ import { typography } from "@material-ui/system";
 //     label: "no"
 //   }
 // ];
-
-const steps = ["Grant Info", "Grant Focus", "Grant Demo"];
-
-function getStepContent(step) {
-  switch (step) {
-    case 0:
-      return <GrantInfo />;
-    case 1:
-      return <GrantFocus />;
-    case 2:
-      return <GrantDemo />;
-    default:
-      throw new Error("Unknown Step");
-  }
-}
-
 const AddGrant = props => {
+  const steps = ["Grant Info", "Grant Focus", "Grant Demo"];
+
+  function getStepContent(step) {
+    switch (step) {
+      case 0:
+        return (
+          <GrantInfo handleChanges={handleChanges} grantInfo={grantInfo} />
+        );
+      case 1:
+        return (
+          <GrantFocus handleChanges={handleChanges} grantInfo={grantInfo} />
+        );
+      case 2:
+        return (
+          <GrantDemo handleChanges={handleChanges} grantInfo={grantInfo} />
+        );
+      default:
+        throw new Error("Unknown Step");
+    }
+  }
+
   const [grantInfo, setGrantInfo] = useState({
     competition_name: "",
     type: "",
@@ -107,7 +112,7 @@ const AddGrant = props => {
 
   const styles = formStyles();
 
-  const [activeStep, setActiveStep] = React.useState(0);
+  const [activeStep, setActiveStep] = useState(0);
 
   const handleNext = () => {
     setActiveStep(activeStep + 1);
@@ -119,7 +124,7 @@ const AddGrant = props => {
 
   console.log(props);
   return (
-    <React.Fragment>
+    <Fragment>
       <CssBaseline />
 
       <main className={styles.layout}>
@@ -141,36 +146,54 @@ const AddGrant = props => {
               </Step>
             ))}
           </Stepper>
-          <React.Fragment>
+          <Fragment>
             {activeStep === steps.length ? (
-              <React.Fragment>
-                <Typography variant="h2">Grant Submitted</Typography>
-                <Typography>lorem ipsum</Typography>
-              </React.Fragment>
+              <Fragment>
+                <Typography variant="h3">
+                  Thank you for your grant submission!{" "}
+                </Typography>
+                <Typography>
+                  Our site admins will look over your grant information to be
+                  approved before it’s posted on Founders Grant. Enter your
+                  email address to get updates and to know when your grant has
+                  been approved.
+                </Typography>
+              </Fragment>
             ) : (
-              <React.Fragment>
+              <Fragment>
                 {getStepContent(activeStep)}
                 <div className={styles.button}>
                   {activeStep !== 0 && (
-                    <Button onClick={handleBack} className={styles.button}>
+                    <Button onClick={handleBack} className={styles.back}>
                       Back
                     </Button>
                   )}
+                  {/* <Fragment>
+                  {activeStep === steps.length - 1 ? (
+                    <Button>submit</Button>
+                  ) : (
+                    <Button> Next </Button>
+                  )}
+                  </Fragment> */}
                   <Button
                     variant="contained"
                     color="primary"
-                    onClick={handleNext}
-                    className={styles.button}
+                    onClick={
+                      activeStep === steps.length - 1 ? submitGrant : handleNext
+                    }
+                    // onClick={handleNext}
+
+                    className={styles.submit}
                   >
-                    {activeStep === steps.length - 1 ? "Submit" : "Next"}
+                    {activeStep === steps.length - 1 ? "submit" : "Next"}
                   </Button>
                 </div>
-              </React.Fragment>
+              </Fragment>
             )}
-          </React.Fragment>
+          </Fragment>
         </Paper>
       </main>
-    </React.Fragment>
+    </Fragment>
 
     // <div classname={styles.grid}>
     //   <Grid
