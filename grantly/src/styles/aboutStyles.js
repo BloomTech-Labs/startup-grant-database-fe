@@ -8,6 +8,11 @@ export const aboutStyles = makeStyles(theme => ({
     border: "1px solid fuchsia",
     margin: 10,
     padding: 10
+  },
+  aboutIntro: {
+    border: "1px solid fuchsia",
+    marginTop: 15,
+    marginBottom: 15
   }
 }));
 
