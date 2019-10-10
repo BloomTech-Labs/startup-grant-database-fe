@@ -1,8 +1,10 @@
 import React, { Fragment } from "react";
 import { Grid, Typography, TextField } from "@material-ui/core";
+import { connect } from "react-redux";
+import { postGrants, fetchApi } from "../../actions/index.js";
 import formStyles from "../../styles/FormStyles";
 
-export default function GrantFocus(props) {
+const GrantFocus = props => {
   const styles = formStyles();
   return (
     <Fragment>
@@ -42,7 +44,29 @@ export default function GrantFocus(props) {
             onChange={props.handleChanges}
           />
         </Grid>
+        <Grid item xs={12}>
+          <TextField
+            type="date"
+            name="details_last_updated"
+            value={props.grantInfo.details_last_updated}
+            onChange={props.handleChanges}
+            helperText="Details Last Updated"
+            margin="normal"
+            variant="outlined"
+          />
+        </Grid>
       </Grid>
     </Fragment>
   );
-}
+};
+
+const mapStateToProps = ({ grantData, isFetching, error }) => ({
+  grantData,
+  isFetching,
+  error
+});
+
+export default connect(
+  mapStateToProps,
+  { postGrants, fetchApi }
+)(GrantFocus);

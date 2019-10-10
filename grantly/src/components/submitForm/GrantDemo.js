@@ -1,5 +1,7 @@
 import React from "react";
 import { Grid, Typography, TextField, MenuItem } from "@material-ui/core";
+import { connect } from "react-redux";
+import { postGrants, fetchApi } from "../../actions/index.js";
 import formStyles from "../../styles/FormStyles";
 
 const funding = [
@@ -13,7 +15,7 @@ const funding = [
   }
 ];
 
-export default function GrantDemo(props) {
+const GrantDemo = props => {
   const styles = formStyles();
   return (
     <React.Fragment>
@@ -90,4 +92,15 @@ export default function GrantDemo(props) {
       </Grid>
     </React.Fragment>
   );
-}
+};
+
+const mapStateToProps = ({ grantData, isFetching, error }) => ({
+  grantData,
+  isFetching,
+  error
+});
+
+export default connect(
+  mapStateToProps,
+  { postGrants, fetchApi }
+)(GrantDemo);
