@@ -5,6 +5,8 @@ import { connect } from "react-redux";
 // Objects
 import Grant from "./Grant";
 import Loader from "react-loader-spinner";
+import Typography from "@material-ui/core/Typography";
+
 import { fetchApi, adminFetchApi } from "../../actions";
 
 // Styles
@@ -26,10 +28,9 @@ export const GrantList = props => {
     } else {
       props.fetchApi();
     }
-
-    // console.log("Grants", props.data);
-    // console.log("Use effect", props);
   }, []);
+const needToBeReviewed = props.data.filter(grant => grant.is_reviewed === false).length;
+// const numberOfSuggestions = props.data.filter(grant => grant.requests.length > 0).length;
 
   if (props.isFetching) {
     return <Loader type="Triangle" color="#3DB8B3" height="100" width="100" />;
@@ -40,6 +41,7 @@ export const GrantList = props => {
       {props.data.length && (
         <p className={styles.results}>{props.data.length} Grants</p>
       )}
+      {props.inAdmin && <p>{needToBeReviewed} grant(s) need to be reviewed</p>}      
 
       {props.data.length > 0 ? (
         props.data.map(grant => {
@@ -55,6 +57,7 @@ export const GrantList = props => {
       ) : (
         <div> Grants incoming! </div>
       )}
+
     </div>
   );
 };

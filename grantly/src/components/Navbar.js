@@ -1,18 +1,26 @@
 import React, { useState } from "react";
-import { makeStyles } from "@material-ui/core/styles";
 
 import { NavLink, Link } from "react-router-dom";
 import { useAuth0 } from "../react-auth0-wrapper";
 import { navStyles } from "../styles/navStyles";
+import FGLogo from "../assets/FGLogo";
 import Media from "react-media";
+
 import MobileTabs from "./mobile/MobileTabs";
 
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
-import Typography from "@material-ui/core/Typography";
-import Button from "@material-ui/core/Button";
-import IconButton from "@material-ui/core/IconButton";
+// Material core imports
+
+import {
+  AppBar,
+  Toolbar,
+  Typography,
+  Button,
+  IconButton,
+  Divider,
+  SwipeableDrawer
+} from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
+
 import List from "@material-ui/core/List";
 import Divider from "@material-ui/core/Divider";
 import ListItem from "@material-ui/core/ListItem";
@@ -23,12 +31,13 @@ import MailIcon from "@material-ui/icons/Mail";
 import SwipeableDrawer from "@material-ui/core/SwipeableDrawer";
 import SearchBar from "./SearchBar";
 
+
 export const NavBar = props => {
   const {
     isAuthenticated,
     loginWithRedirect,
     logout,
-    user,
+    // user,
     getTokenSilently
   } = useAuth0();
   const [isOpen, setIsOpen] = useState(false);
@@ -60,11 +69,11 @@ export const NavBar = props => {
       console.error(error);
     }
   };
-
   //If user is logged in call to get access token
   {
     isAuthenticated && callApi();
   }
+
   const sideList = side => (
     <div
       role="presentation"
@@ -83,24 +92,36 @@ export const NavBar = props => {
         <a href="https://www.1517fund.com/" className={classes.drawerLink}>
           <Typography variant="h5">1517 FUND</Typography>
         </a>
-        <Typography
-          className={classes.drawerLink}
-          variant="h5"
-          onClick={() => loginWithRedirect({})}
-        >
-          ADMIN LOGIN
-        </Typography>
+        {!isAuthenticated && (
+          <Typography
+            className={classes.drawerLink}
+            variant="h5"
+            onClick={() => loginWithRedirect({})}
+          >
+            ADMIN LOGIN
+          </Typography>
+        )}
+        <Divider />
+        {props.role === "admin" && props.location.pathname !== "/admin" ? (
+          <Link to="/admin" className={classes.drawerLink}>
+            Admin
+          </Link>
+        ) : null}
+        {props.role === "admin" && props.location.pathname === "/admin" ? (
+          <Link to="/grants" className={classes.drawerLink}>
+            Grants
+          </Link>
+        ) : null}
+        {isAuthenticated && (
+          <Button
+            className={classes.drawerLink}
+            variant="outlined"
+            onClick={() => logout()}
+          >
+            Log out
+          </Button>
+        )}
       </ul>
-      <Divider />
-      {isAuthenticated && (
-        <Button
-          className={classes.log}
-          variant="outlined"
-          onClick={() => logout()}
-        >
-          Log out
-        </Button>
-      )}
     </div>
   );
   return (
@@ -108,7 +129,9 @@ export const NavBar = props => {
       <Toolbar>
         <Link to="/" className={classes.titleLink}>
           <Typography variant="h4" className={classes.title}>
-            Founder Grants
+            {props.role === "admin" && window.location.pathname === "/admin"
+              ? <FGLogo inAdmin={true} />
+              : <FGLogo /> }
           </Typography>
         </Link>
         <Media query="(min-width:800px)">
@@ -116,6 +139,11 @@ export const NavBar = props => {
             <NavLink to="/grants" className={classes.link}>
               <Button className={classes.navButton} color="inherit">
                 Grants
+              </Button>
+            </NavLink>
+            <NavLink to="/about" className={classes.link}>
+              <Button className={classes.navButton} color="inherit">
+                About
               </Button>
             </NavLink>
             {/* <Button className={classes.navButton} color="inherit">

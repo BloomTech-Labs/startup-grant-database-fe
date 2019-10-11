@@ -2,76 +2,31 @@ import { makeStyles } from "@material-ui/core/styles";
 import { height } from "@material-ui/system";
 
 const formStyles = makeStyles(theme => ({
-  grid: {
-    // justifyContent: "space-between",
-    maxWidth: "100%"
-    // height: "80%"
-    // zIndex: 0
-  },
-  form: {
-    display: "flex",
-    flexDirection: "column",
-    margin: "0 auto",
-    height: "70vh",
-    width: "80%",
-    justifyContent: "space-around",
-    [theme.breakpoints.down("sm")]: {
-      height: "initial",
-      justifyContent: "center",
-      width: "90%"
+  layout: {
+    width: "auto",
+    marginLeft: theme.spacing(2),
+    marginRight: theme.spacing(2),
+    [theme.breakpoints.up(600 + theme.spacing(2) * 2)]: {
+      width: 600,
+      marginLeft: "auto",
+      marginRight: "auto"
     }
   },
-  formContainer: {
-    display: "flex",
-    flexWrap: "wrap",
-    justifyContent: "space-between",
-    // justifyContent: "space-evenly"
-    // margin: "10%"
-    // margin: "2rem"
-    [theme.breakpoints.down("sm")]: {
-      justifyContent: "center"
+  paper: {
+    marginTop: theme.spacing(3),
+    marginBottom: theme.spacing(3),
+    // padding: theme.spacing(2),
+    [theme.breakpoints.up(600 + theme.spacing(3) * 2)]: {
+      marginTop: theme.spacing(6),
+      marginBottom: theme.spacing(6)
+      // padding: theme.spacing(3)
     }
   },
-  notes: {
-    width: "50%",
-    [theme.breakpoints.down("sm")]: {
-      width: "90%"
-    }
-  },
-  inputText: {
-    // marginLeft: theme.spacing(1)
-    // marginRight: theme.spacing(1)
 
-    marginLeft: "30px",
-    marginRight: "30px",
-    [theme.breakpoints.down("sm")]: {
-      width: "90%"
-    }
-  },
-  dense: {
-    // marginTop: theme.spacing(2)
-  },
-  dropDown: {
-    width: 200,
-    [theme.breakpoints.down("sm")]: {
-      width: "90%"
-    }
-  },
-  leftBox: {
-    // background: "primary"
-    "& h1": {
-      fontSize: "2.8rem",
-      fontFamily: "adobe-garamond-pro",
-      fontWeight: "400",
-      margin: "1rem",
-      color: "white",
-      padding: "30px"
-    },
-    "& p": {
       fontFamily: "Roboto",
-      color: "white",
       fontSize: "1.3rem",
       fontWeight: "200",
+
       lineHeight: "1.5"
     },
     paddingTop: "70px",
@@ -102,5 +57,6 @@ const formStyles = makeStyles(theme => ({
     margin: "30px"
   }
 }));
+
 
 export default formStyles;

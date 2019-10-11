@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import GrantList from "../components/grants/GrantList";
 import Filters from "../components/Filters";
+import TuneIcon from "@material-ui/icons/Tune";
+
 import GrantShowcase from "../components/grants/GrantShowcase";
+import Suggestion from "../components/Suggestion";
 // import MobileTabs from "../components/mobile/MobileTabs";
 // import SearchBar from "../components/SearchBar";
 import Grid from "@material-ui/core/Grid";
@@ -12,7 +15,7 @@ import Grid from "@material-ui/core/Grid";
 import { adminStyles } from "../styles/adminStyles";
 
 const Admin = props => {
-  const [isOpen, setIsOpen] = useState(false);
+  // const [isOpen, setIsOpen] = useState(false);
   //Show filters
   const [open, setOpen] = useState();
   // const toggleDrawer = open => event => {
@@ -43,14 +46,21 @@ const Admin = props => {
         justify="space-between"
         className={classes.gridContainer}
       >
-        <Grid item xs={6} md={3}>
-          <GrantList inAdmin={true} history={props.history} />
+
+        <Grid item xs={6} md={3} className={classes.grantList}>
+          <GrantList inAdmin={true}  />
         </Grid>
         <Grid item xs={8} className={classes.gridItem}>
           <GrantShowcase inAdmin={true} history={props.history} />
+    <Suggestion />
+
         </Grid>
         <Grid item xs={2}>
-          <button onClick={toggleFilters}>Filters</button>
+          <TuneIcon
+            className={`${classes.filterIcon} ${open &&
+              classes.filterIconSelected}`}
+            onClick={toggleFilters}
+          ></TuneIcon>
           <div
             className={`${classes.filters} ${
               open ? classes.showFilters : classes.hideFilters

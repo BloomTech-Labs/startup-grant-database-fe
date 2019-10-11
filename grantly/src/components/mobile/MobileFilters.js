@@ -16,9 +16,11 @@ import ListSubheader from "@material-ui/core/ListSubheader";
 import Avatar from "@material-ui/core/Avatar";
 import MenuIcon from "@material-ui/icons/Menu";
 import AddIcon from "@material-ui/icons/Add";
-import SortIcon from "@material-ui/icons/Sort";
+import TuneIcon from "@material-ui/icons/Tune";
+
 import SearchIcon from "@material-ui/icons/Search";
 import MoreIcon from "@material-ui/icons/MoreVert";
+import Filters from "../Filters";
 
 const MobileFilters = ({ toggleDrawer, currentTab }) => {
   const classes = mobileFilterStyles();
@@ -29,12 +31,13 @@ const MobileFilters = ({ toggleDrawer, currentTab }) => {
         color="primary"
         style={currentTab !== 0 ? { display: "none" } : null}
         className={classes.appBar}
-        onClick={() => toggleDrawer(true)}
+        onClick={() => toggleDrawer()}
       >
         <Toolbar className={classes.filter}>
-          {/* <IconButton color="inherit">
-            <SortIcon/>
+           <IconButton color="inherit" >
+            <TuneIcon />
           </IconButton>
+          {/*
         <p>Amount</p>
         <p>Region</p>
         <p>Focus Areas</p> */}

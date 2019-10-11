@@ -1,4 +1,5 @@
 import React from "react";
+import FGLogo from "../assets/FGLogo";
 import { Link } from "react-router-dom";
 import { useAuth0 } from "../react-auth0-wrapper";
 import { lock } from "../react-auth0-wrapper";
@@ -7,7 +8,7 @@ import { Grid, Typography } from "@material-ui/core/";
 import { sitemapStyles } from "../styles/sitemapStyles";
 
 const Sitemap = () => {
-  const { loginWithRedirect, loginWithPopup, } = useAuth0();
+  const { loginWithRedirect, loginWithPopup } = useAuth0();
   const styles = sitemapStyles();
 
   // const login = () => {
@@ -19,7 +20,7 @@ const Sitemap = () => {
         <Grid item className={styles.item}>
           <Link to="/" className={styles.link}>
             <Typography variant="h5" component="h5">
-              Founder Grants
+              <FGLogo siteMap={true} />
             </Typography>
           </Link>
         </Grid>
@@ -44,7 +45,7 @@ const Sitemap = () => {
           {/* </Link> */}
         </Grid>
         <Grid container justify="center" alignItems="flex-end">
-          <Typography variant="subtitle2">
+          <Typography variant="subtitle2" className={styles.copy}>
             &copy; 2019 FOUNDER GRANTS. ALL RIGHTS RESERVED.
           </Typography>
         </Grid>

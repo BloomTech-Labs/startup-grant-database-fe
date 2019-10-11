@@ -34,23 +34,25 @@ export const Grant = props => {
   const styles = grantStyles();
   return (
     <Card
-      className={
+      className={`${
         props.grantShowcase.id === props.grant.id
-          ? styles.grantCardSelected
-          : styles.grantCard
+
+          ? styles.grantCardSeleted
+          : styles.grantCard} ${!props.grant.is_reviewed && styles.grant_new}`
+
       }
       onClick={selectGrant}
     >
       <div className={styles.grant_layout}>
-        <Grid item className={styles.grant_logo}></Grid>
+        {/* <Grid item className={styles.grant_logo}></Grid> */}
         <Grid
           container
           direction="column"
           alignItems="flex-start"
           justify="space-between"
-          className={styles.grant_info}
+          className={props.grant.is_reviewed ? styles.grant_info : `${styles.grant_info} ${styles.grant_new}`}
         >
-          <Typography variant="h6" className={styles.grantName}>
+          <Typography variant="subtitle1" className={props.grant.is_reviewed ? styles.grantName : `${styles.grantName} ${styles.grant_new}`}>
             {props.grant.competition_name}
           </Typography>
           <Grid item>
@@ -58,12 +60,12 @@ export const Grant = props => {
               {props.grant.website}
             </Typography>
           </Grid>
-          <Typography variant="h6" component="p">
+          <Typography variant="subtitle1" component="p">
             Deadline - <span className={styles.grant_subinfo}>{deadline}</span>
           </Typography>
           <Grid item>
             {" "}
-            <Typography variant="h6" component="p">
+            <Typography variant="subtitle1" component="p">
               Amount -{" "}
               <span className={styles.grant_subinfo}>
                 {" "}
