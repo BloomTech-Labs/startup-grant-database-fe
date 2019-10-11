@@ -31,7 +31,6 @@ export const GrantList = props => {
   }, []);
 const needToBeReviewed = props.data.filter(grant => grant.is_reviewed === false).length;
 // const numberOfSuggestions = props.data.filter(grant => grant.requests.length > 0).length;
-
   if (props.isFetching) {
     return <Loader type="Triangle" color="#3DB8B3" height="100" width="100" />;
   }
@@ -57,7 +56,6 @@ const needToBeReviewed = props.data.filter(grant => grant.is_reviewed === false)
       ) : (
         <div> Grants incoming! </div>
       )}
-
     </div>
   );
 };

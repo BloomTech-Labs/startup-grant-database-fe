@@ -57,7 +57,7 @@ const Home = props => {
               >
                 <Grid
                   item
-                  md={4}
+                  md={3}
                   xs={12}
                   className={classes.grantList}
                   // style={{ padding: "30px 0 0 30px" }}

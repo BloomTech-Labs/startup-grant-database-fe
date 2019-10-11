@@ -4,7 +4,7 @@ import Filters from "../components/Filters";
 import TuneIcon from "@material-ui/icons/Tune";
 
 import GrantShowcase from "../components/grants/GrantShowcase";
-import Suggestion from "../components/Suggestion";
+import SuggestionList from "../components/SuggestionList"
 // import MobileTabs from "../components/mobile/MobileTabs";
 // import SearchBar from "../components/SearchBar";
 import Grid from "@material-ui/core/Grid";
@@ -40,11 +40,7 @@ const Admin = props => {
   //   console.log("toggle");
   //   if (
   //     event &&
-  //     event.type === "keydown" &&
   //     (event.key === "Tab" || event.key === "Shift")
-  //   ) {
-  //     return;
-  //   }
 
   //   setIsOpen(!isOpen);
   // };
@@ -56,22 +52,18 @@ const Admin = props => {
 
   return (
     <div>
-      {/* <Navbar location={props.location.pathname} /> */}
-
       <Grid
         container
         direction="row"
         justify="space-between"
         className={classes.gridContainer}
       >
-
-        <Grid item xs={6} md={3} className={classes.grantList}>
-          <GrantList inAdmin={true}  />
+        <Grid item xs={6} md={3} className={classes.grantList} >
+          <GrantList inAdmin={true} history={props.history} />
         </Grid>
-        <Grid item xs={8} className={classes.gridItem}>
 
+        <Grid item xs={6} className={classes.gridItem}>
           <GrantShowcase inAdmin={true} history={props.history} />
-   // <Suggestion />   
           <SuggestionList />
 
         </Grid>

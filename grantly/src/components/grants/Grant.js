@@ -36,10 +36,8 @@ export const Grant = props => {
     <Card
       className={`${
         props.grantShowcase.id === props.grant.id
-
-          ? styles.grantCardSeleted
+          ? styles.grantCardSelected
           : styles.grantCard} ${!props.grant.is_reviewed && styles.grant_new}`
-
       }
       onClick={selectGrant}
     >

@@ -34,8 +34,8 @@ export const fetchApi = () => dispatch => {
   dispatch({ type: FETCH_START });
   axios
     // .get(`https://labs16-grantly.herokuapp.com/api/grants/`)
-    // .get("http://localhost:5000/api/grants")
     .get(`https://grantly-staging.herokuapp.com/api/grants`)
+    // .get(`http://localhost:5000/api/grants/`)
     .then(response => {
       // console.log("GET response", response);
       dispatch({ type: FETCH_SUCCESS, payload: response.data });
@@ -203,17 +203,19 @@ export const checkUser = user => dispatch => {
 
 export const submitSuggestion = suggestion => dispatch => {
   // console.log("submitSuggestion suggestion", suggestion);
+  console.log("im submitting")
   dispatch({ type: SUBMIT_SUGGESTION_START });
   axios
-    .post("https://grantly-staging.herokuapp.com/api/suggestion", suggestion)
+    .post("https://grantly-staging.herokuapp.com/api/grants/suggestion", suggestion)
     // .post("http://localhost:5000/api/suggestion", suggestion)
 
     .then(response => {
       // console.log("submitSuggestion response", response);
+      console.log("Success")
       dispatch({ type: SUBMIT_SUGGESTION_SUCCESS, payload: response.data });
     })
     .catch(error => {
-      // console.log("submitSuggestion error", error);
+      console.log("submitSuggestion error", error);
       dispatch({ type: SUBMIT_SUGGESTION_FAILURE });
     });
 };
@@ -226,6 +228,9 @@ export const deleteSuggestion = requestId => dispatch => {
     .delete(
       `https://grantly-staging.herokuapp.com/api/admin/suggestion/${requestId}`
     )
+
+    // .delete(`http://localhost:5000/api/admin/suggestion/${requestId}`)
+
     .then(response => {
       dispatch({ type: DELETE_SUGGESTION_SUCCESS, payload: response.data });
     })

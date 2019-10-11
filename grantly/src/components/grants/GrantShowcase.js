@@ -49,6 +49,7 @@ export const GrantShowcase = props => {
     setExpanded(!expanded);
   };
 
+
   // ===== not needed? =====
 
   // const handleOpen = () => {
@@ -113,19 +114,23 @@ export const GrantShowcase = props => {
                 </Typography>
               </Grid>
             </Grid>
-           
 
-          <Grid>
+            <Grid>
             <Grid item>
               {props.inAdmin ? (
                 <EditGrantDialog
-                  className={classes.editIcon}
+                  className={showcase.editIcon}
                   grant={props.grant}
                 />
               ) : (
-                <BookmarkBorderOutlinedIcon className={classes.bookmark} />
+                <BookmarkBorderOutlinedIcon className={showcase.bookmark} />
               )}
             </Grid>
+
+            </Grid>
+          </Grid>
+
+
           <Grid
             container
             justify="flex-start"
@@ -138,94 +143,97 @@ export const GrantShowcase = props => {
               {props.grant.website}
             </a>
 
-          </Grid>
+         
 
-        <Grid item>
-          <a href={props.grant.website} target="_blank">
-            <Button
-              className={classes.applyButton}
-              variant="contained"
-              color="primary"
-            >
-              Apply to Grant
-            </Button>
-          </a>
+          <Grid item>
+            <a href={props.grant.website} target="_blank">
+              <Button
+                className={showcase.applyButton}
+                variant="contained"
+                color="primary"
+              >
+                Apply to Grant
+              </Button>
+            </a>
 
-          {/* <Button
-            className={classes.applyButton}
+
+            {/* <Button
+            className={showcase.applyButton}
             variant="contained"
             color="primary"
-          >
+            >
             Edit Grant
           </Button> */}
-        </Grid>
+          </Grid>
+          </Grid>
+        </div>
+        {/* ================= Main content ================= */}
 
 
-      </div>
-      {/* ================= Main content ================= */}
-      <Grid
-        container
-        direction="column"
-        justify="space-around"
-        alignItems="flex-start"
-        className={classes.grantInfo}
-      >
-        <Grid item className={classes.showcaseDetails}>
-          <span className={classes.showcaseSpan}>What it is: </span>{" "}
-          {props.grant.amount
-            ? props.grant.amount_notes
-            : "See website for details"}
+        <Grid
+          container
+          direction="column"
+          justify="space-around"
+          alignItems="flex-start"
+          className={showcase.grantInfo}
+        >
+          <Grid item className={showcase.showcaseDetails}>
+            <span className={showcase.showcaseSpan}>What it is: </span>{" "}
+            {props.grant.amount
+              ? props.grant.amount_notes
+              : "See website for details"}
+          </Grid>
+          <Grid item className={showcase.showcaseDetails}>
+            <span className={showcase.showcaseSpan}>Deadline: </span>
+            {deadline}
+            {momentDeadline}
+          </Grid>
+          <Grid item className={showcase.showcaseDetails}>
+            <span className={showcase.showcaseSpan}>
+              This grant is in the areas of:{" "}
+            </span>
+            {props.grant.domain_areas}
+          </Grid>
+          <Grid item className={showcase.showcaseDetails}>
+            <span className={showcase.showcaseSpan}>Focus Area: </span>
+            {props.grant.area_focus}
+          </Grid>
+          <Grid item className={showcase.showcaseDetails}>
+            <span className={showcase.showcaseSpan}>Region: </span>
+            {props.grant.geographic_region}
+          </Grid>
+          <Grid item className={showcase.showcaseDetails}>
+            <span className={showcase.showcaseSpan}>Sponsored by: </span>
+            {props.grant.sponsoring_entity}
+          </Grid>
+          <Grid item className={showcase.showcaseDetails}>
+            <span className={showcase.showcaseSpan}>Notes: </span>
+            {props.grant.notes}
+          </Grid>
+
         </Grid>
-        <Grid item className={classes.showcaseDetails}>
-          <span className={classes.showcaseSpan}>Deadline: </span>
-          {deadline}
-          {momentDeadline}
-        </Grid>
-        <Grid item className={classes.showcaseDetails}>
-          <span className={classes.showcaseSpan}>
-            This grant is in the areas of:{" "}
-          </span>
-          {props.grant.domain_areas}
-        </Grid>
-        <Grid item className={classes.showcaseDetails}>
-          <span className={classes.showcaseSpan}>Focus Area: </span>
-          {props.grant.area_focus}
-        </Grid>
-        <Grid item className={classes.showcaseDetails}>
-          <span className={classes.showcaseSpan}>Region: </span>
-          {props.grant.geographic_region}
-        </Grid>
-        <Grid item className={classes.showcaseDetails}>
-          <span className={classes.showcaseSpan}>Sponsored by: </span>
-          {props.grant.sponsoring_entity}
-        </Grid>
-        <Grid item className={classes.showcaseDetails}>
-          <span className={classes.showcaseSpan}>Notes: </span>
-          {props.grant.notes}
-        </Grid>
-      </Grid>
-      <Grid
-        container
-        direction="row"
-        justify="space-evenly"
-        alignItems="center"
-        className={classes.topContent}
-      >
-        <Grid item>
-          <a href={props.grant.website} target="_blank">
+        <Grid
+          container
+          direction="row"
+          justify="space-evenly"
+          alignItems="center"
+          className={showcase.topContent}
+        >
+          <Grid item>
             <Button
-              className={classes.applyButton}
+              className={showcase.applyButton}
               variant="contained"
               color="primary"
             >
               Apply to Grant
             </Button>
-          </a>
-        </Grid>
-        <Grid item>
-          <SuggestionDialog id={props.grant.id} />
+          </Grid>
+          <Grid item>
+            <SuggestionDialog id={props.grant.id} />
+          </Grid>
         </Grid>
       </Card>
+
     </div>
   );
 };

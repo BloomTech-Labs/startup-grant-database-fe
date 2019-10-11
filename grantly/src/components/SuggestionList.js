@@ -24,6 +24,8 @@ export const SuggestionList = props => {
 };
 
 const mapStateToProps = state => {
+
+
   return {
     error: state.error,
     isFetching: state.isFetching,

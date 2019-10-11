@@ -7,7 +7,7 @@ const formStyles = makeStyles(theme => ({
     marginLeft: theme.spacing(2),
     marginRight: theme.spacing(2),
     [theme.breakpoints.up(600 + theme.spacing(2) * 2)]: {
-      width: 600,
+      width: 700,
       marginLeft: "auto",
       marginRight: "auto"
     }
@@ -15,36 +15,51 @@ const formStyles = makeStyles(theme => ({
   paper: {
     marginTop: theme.spacing(3),
     marginBottom: theme.spacing(3),
-    // padding: theme.spacing(2),
+
     [theme.breakpoints.up(600 + theme.spacing(3) * 2)]: {
       marginTop: theme.spacing(6),
       marginBottom: theme.spacing(6)
-      // padding: theme.spacing(3)
     }
   },
 
+  topBox: {
+    padding: theme.spacing(3),
+
+    "& h1": {
+      fontSize: "2.8rem",
+      fontFamily: "adobe-garamond-pro",
+      fontWeight: 400,
+
+      color: "white"
+    },
+    "& p": {
       fontFamily: "Roboto",
       fontSize: "1.3rem",
-      fontWeight: "200",
-
-      lineHeight: "1.5"
+      fontWeight: 200,
+      lineHeight: 1.5
     },
-    paddingTop: "70px",
-    background: "#3DB8B3",
-    padding: "2rem",
-    paddingTop: "12rem",
-    height: "100vh",
-    [theme.breakpoints.down("sm")]: {
-      height: "30%",
-      background: "#3DB8B3",
-      paddingTop: "3rem",
-      paddingBottom: "3rem",
-      width: "100%"
-    }
+
+    background: "#3DB8B3"
+  },
+  stepper: {
+    padding: theme.spacing(3, 0, 5)
+  },
+  bottomBox: {
+    padding: theme.spacing(2, 6, 1, 2)
   },
   submit: {
     width: "30%",
     height: "4em",
+    color: "white"
+  },
+  back: {
+    width: "30%",
+    height: "4em",
+    border: "1px solid black",
+    color: "white"
+  },
+  dropDown: {
+    width: 200,
     color: "#fff",
     [theme.breakpoints.down("sm")]: {
       width: "90%"
@@ -57,6 +72,5 @@ const formStyles = makeStyles(theme => ({
     margin: "30px"
   }
 }));
-
 
 export default formStyles;
