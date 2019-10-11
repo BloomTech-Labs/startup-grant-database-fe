@@ -11,14 +11,14 @@ export const grantStyles = makeStyles(theme => ({
     textAlign: "center",
     borderRadius: "0",
     marginBottom: "0.25rem",
-    padding: "25px 10px",
+    padding: "25px 5px",
     transition: "all .3s ease-in-out",
     fontFamily: "Roboto",
-    '&:hover': {
+    "&:hover": {
       boxShadow: "0px 5px 10px #BBB",
       transform: "translateY(-5px)"
     },
-    '&:active': {
+    "&:active": {
       transform: "translateY(0)"
     }
   },
@@ -29,11 +29,12 @@ export const grantStyles = makeStyles(theme => ({
     textAlign: "center",
     borderRadius: "0",
     marginBottom: "0.25rem",
-    padding: "25px 10px",
+    padding: "25px 5px",
     fontFamily: "Roboto",
     borderTop: "2px solid #3DB8B3",
     borderLeft: "5px solid #3DB8B3"
   },
+
   grant_layout: {
     display: "flex",
     minHeight: "125px",
@@ -57,9 +58,13 @@ export const grantStyles = makeStyles(theme => ({
     fontWeight: "500",
     fontFamily: "Roboto",
     color: "#222222"
-
+    
     // border: "1px solid fuchsia"
   },
+        grant_new: {
+          background: "#EF7B5C",
+          color: "#F7F7F7",
+        },
   bookmark: {
     alignSelf: "flex-start",
     fill: "#C4C4C4"

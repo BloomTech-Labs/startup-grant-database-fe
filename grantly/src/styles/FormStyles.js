@@ -2,103 +2,259 @@ import { makeStyles } from "@material-ui/core/styles";
 import { height } from "@material-ui/system";
 
 const formStyles = makeStyles(theme => ({
-  grid: {
-    // justifyContent: "space-between",
-    maxWidth: "100%"
-    // height: "80%"
-    // zIndex: 0
-  },
-  form: {
-    display: "flex",
-    flexDirection: "column",
-    margin: "0 auto",
-    height: "70vh",
-    width: "80%",
-    justifyContent: "space-around",
-    [theme.breakpoints.down("sm")]: {
-      height: "initial",
-      justifyContent: "center",
-      width: "90%"
+  layout: {
+    width: "auto",
+    marginLeft: theme.spacing(2),
+    marginRight: theme.spacing(2),
+    [theme.breakpoints.up(600 + theme.spacing(2) * 2)]: {
+      width: 600,
+      marginLeft: "auto",
+      marginRight: "auto"
     }
   },
-  formContainer: {
-    display: "flex",
-    flexWrap: "wrap",
-    justifyContent: "space-between",
-    // justifyContent: "space-evenly"
-    // margin: "10%"
-    // margin: "2rem"
-    [theme.breakpoints.down("sm")]: {
-      justifyContent: "center"
+  paper: {
+    marginTop: theme.spacing(3),
+    marginBottom: theme.spacing(3),
+    // padding: theme.spacing(2),
+    [theme.breakpoints.up(600 + theme.spacing(3) * 2)]: {
+      marginTop: theme.spacing(6),
+      marginBottom: theme.spacing(6)
+      // padding: theme.spacing(3)
     }
   },
-  notes: {
-    width: "50%",
-    [theme.breakpoints.down("sm")]: {
-      width: "90%"
-    }
-  },
-  inputText: {
-    // marginLeft: theme.spacing(1)
-    // marginRight: theme.spacing(1)
 
-    marginLeft: "30px",
-    marginRight: "30px",
-    [theme.breakpoints.down("sm")]: {
-      width: "90%"
-    }
-  },
-  dense: {
-    // marginTop: theme.spacing(2)
-  },
-  dropDown: {
-    width: 200,
-    [theme.breakpoints.down("sm")]: {
-      width: "90%"
-    }
-  },
-  leftBox: {
-    // background: "primary"
-    "& h1": {
-      fontSize: "2.8rem",
-      fontFamily: "adobe-garamond-pro",
-      fontWeight: "400",
-      margin: "1rem",
-      color: "white",
-      padding: "30px"
-    },
-    "& p": {
       fontFamily: "Roboto",
-      color: "white",
       fontSize: "1.3rem",
       fontWeight: "200",
-      lineHeight: "1.5"
-    },
-    paddingTop: "70px",
-    background: "#3DB8B3",
-    padding: "2rem",
-    paddingTop: "12rem",
-    height: "100vh",
-    [theme.breakpoints.down("sm")]: {
-      height: "30%",
-      background: "#3DB8B3",
-      paddingTop: "3rem",
-      paddingBottom: "3rem",
-      width: "100%"
-    }
-  },
-  submit: {
-    width: "30%",
-    height: "4em",
-    color: "#fff",
-    [theme.breakpoints.down("sm")]: {
-      width: "90%",
-       
-     }
-  },
-  label: {
-    color: "#fff"
-  }
-}));
+      lineHeight: "1.5",
+    
+    // marginTop: "80px",
+    // paddingTop: "42px",
+    background: "#3DB8B3"
+    // padding: "2rem"
+  }));
+  //   // zIndex: 0
+  // },
+  //   // background: "primary"
+  //   "& h1": {
+  //     fontSize: "2.8rem",
+  //     fontFamily: "adobe-garamond-pro",
+  //     fontWeight: 400,
+  //     margin: "1rem",
+  //     color: "white",
+  //     padding: "30px"
+  //   },
+  //   "& p": {
+  //     fontFamily: "Roboto",
+  //     color: "white",
+  //     fontSize: "1.3rem",
+  //     fontWeight: 200,
+  //     lineHeight: 1.5
+  //   },
+  //   marginTop: "80px",
+  //   paddingTop: "42px",
+  //   background: "#3DB8B3",
+  //   padding: "2rem",
+  //   // paddingTop: "12rem",
+  //   // height: "100vh",
+  //   [theme.breakpoints.down("sm")]: {
+  //     height: "30%",
+  //     background: "#3DB8B3",
+  //     paddingTop: "3rem",
+  //     paddingBottom: "3rem",
+  //     width: "100%"
+  //   }
+  // },
+  // bottomBox: {
+  //   width: "100%",
+  //   paddingTop: "30px"
+  // },
+  // form: {
+  //   display: "flex",
+  //   flexDirection: "column",
+  //   margin: "0 auto",
+  //   height: "70vh",
+  //   // width: "80%",
+  //   justifyContent: "space-around"
+  // },
+  // formContainer: {
+  //   display: "flex",
+  //   flexWrap: "wrap",
+  //   justifyContent: "space-between"
+  //   // justifyContent: "space-evenly"
+  //   // margin: "10%"
+  //   // margin: "2rem"
+  // },
+  // notes: {
+  //   width: "50%"
+  // },
+  // inputText: {
+  //   // marginLeft: theme.spacing(1)
+  //   // marginRight: theme.spacing(1)
+  //   marginLeft: "30px",
+  //   marginRight: "30px"
+  // },
+  // dense: {
+  //   // marginTop: theme.spacing(2)
+  // },
+  // dropDown: {
+  //   width: 200
+  // },
+  // // leftBox: {
+  // //   // background: "primary"
+  // //   "& h1": {
+  // //     fontSize: "2.8rem",
+  // //     fontFamily: "adobe-garamond-pro",
+  // //     fontWeight: 400,
+  // //     margin: "1rem",
+  // //     color: "white",
+  // //     padding: "30px"
+  // //   },
+  // //   "& p": {
+  // //     fontFamily: "Roboto",
+  // //     color: "white",
+  // //     fontSize: "1.3rem",
+  // //     fontWeight: 200,
+  // //     lineHeight: 1.5
+  // //   },
+  // //   paddingTop: "70px",
+  // //   background: "#3DB8B3",
+  // //   padding: "2rem",
+  // //   paddingTop: "12rem",
+  // //   height: "100vh",
+  // //   [theme.breakpoints.down("sm")]: {
+  // //     height: "30%",
+  // //     background: "#3DB8B3",
+  // //     paddingTop: "3rem",
+  // //     paddingBottom: "3rem",
+  // //     width: "100%"
+  // //   }
+  // // },
+  // submit: {
+  //   width: "30%",
+  //   height: "4em",
+  //   color: "#fff"
+  // },
+  // label: {
+  //   color: "#fff"
+  // }
+// }));
+// const formStyles = makeStyles(theme => ({
+//   root: {
+//     flexGrow: 1
+//   },
+//   grid: {
+//     // justifyContent: "space-between",
+//     display: "flex",
+//     flexDirection: "column",
+//     maxWidth: "100%"
+//     // height: "80%"
+//     // zIndex: 0
+//   },
+//   topBox: {
+//     // background: "primary"
+//     "& h1": {
+//       fontSize: "2.8rem",
+//       fontFamily: "adobe-garamond-pro",
+//       fontWeight: 400,
+//       margin: "1rem",
+//       color: "white",
+//       padding: "30px"
+//     },
+//     "& p": {
+//       fontFamily: "Roboto",
+//       color: "white",
+//       fontSize: "1.3rem",
+//       fontWeight: 200,
+//       lineHeight: 1.5
+//     },
+//     marginTop: "80px",
+//     paddingTop: "42px",
+//     background: "#3DB8B3",
+//     padding: "2rem",
+//     // paddingTop: "12rem",
+//     // height: "100vh",
+//     [theme.breakpoints.down("sm")]: {
+//       height: "30%",
+//       background: "#3DB8B3",
+//       paddingTop: "3rem",
+//       paddingBottom: "3rem",
+//       width: "100%"
+//     }
+//   },
+//   bottomBox: {
+//     paddingTop: "30px"
+//   },
+//   form: {
+//     display: "flex",
+//     flexDirection: "column",
+//     margin: "0 auto",
+//     height: "70vh",
+//     // width: "80%",
+//     justifyContent: "space-around"
+//   },
+//   formContainer: {
+//     display: "flex",
+//     flexWrap: "wrap",
+//     justifyContent: "space-between"
+//     // justifyContent: "space-evenly"
+//     // margin: "10%"
+//     // margin: "2rem"
+//   },
+//   notes: {
+//     width: "50%"
+//   },
+//   inputText: {
+//     // marginLeft: theme.spacing(1)
+//     // marginRight: theme.spacing(1)
+
+//     marginLeft: "30px",
+//     marginRight: "30px"
+//   },
+//   dense: {
+//     // marginTop: theme.spacing(2)
+//   },
+//   dropDown: {
+//     width: 200
+//   },
+//   // leftBox: {
+//   //   // background: "primary"
+//   //   "& h1": {
+//   //     fontSize: "2.8rem",
+//   //     fontFamily: "adobe-garamond-pro",
+//   //     fontWeight: 400,
+//   //     margin: "1rem",
+//   //     color: "white",
+//   //     padding: "30px"
+//   //   },
+//   //   "& p": {
+//   //     fontFamily: "Roboto",
+//   //     color: "white",
+//   //     fontSize: "1.3rem",
+//   //     fontWeight: 200,
+//   //     lineHeight: 1.5
+//   //   },
+//   //   paddingTop: "70px",
+//   //   background: "#3DB8B3",
+//   //   padding: "2rem",
+//   //   paddingTop: "12rem",
+//   //   height: "100vh",
+//   //   [theme.breakpoints.down("sm")]: {
+//   //     height: "30%",
+//   //     background: "#3DB8B3",
+//   //     paddingTop: "3rem",
+//   //     paddingBottom: "3rem",
+//   //     width: "100%"
+//   //   }
+//   // },
+//   submit: {
+//     width: "30%",
+//     height: "4em",
+//     color: "#fff"
+//   },
+//   label: {
+//     color: "#fff"
+//   }
+// }));
 
 export default formStyles;

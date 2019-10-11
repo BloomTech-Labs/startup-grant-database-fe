@@ -1,20 +1,13 @@
 import { makeStyles } from "@material-ui/core/styles";
-import { border } from "@material-ui/system";
 
-// export const homeStyles = makeStyles(theme => ({
-//     marginBottom: "0",
-//   }))
-
-export const homeStyles = makeStyles(theme => ({
+export const adminStyles = makeStyles(theme => ({
   content: {
     flexGrow: 1,
     padding: theme.spacing(3)
   },
   gridContainer: {
-    margin: "0",
     flexWrap: "nowrap",
-    overflowX: "hidden",
-    marginBottom: "10%"
+    overflowX: "hidden"
   },
   gridItem: {
     padding: 30
@@ -25,14 +18,17 @@ export const homeStyles = makeStyles(theme => ({
     marginTop: "2em",
     position: "relative"
   },
-  results: {
-    display: "flex",
-    justifyContent: "flex-end",
-    margin: "10px",
-    color: "#464646",
-    [theme.breakpoints.down("sm")]: {
-      display: "none"
-    }
+  root: {
+    display: "flex"
+  },
+  filters: {
+    transition: "all .3s ease-in-out"
+  },
+  hideFilters: {
+    transform: "translateX(100%)"
+  },
+  showFilters: {
+    transform: "translateX(0)"
   },
   filterIcon: {
     position: "fixed",
@@ -52,18 +48,6 @@ export const homeStyles = makeStyles(theme => ({
     fill: "#3DB8B3",
     boxShadow:
       "0px 1px 0px 0px #3DB8B3, 0px 1px 0px 0px #3DB8B3, 0px 2px 0px -1px #3DB8B3"
-  },
-  filters: {
-    transition: "all .3s ease-in-out"
-  },
-  hideFilters: {
-    transform: "translateX(100%)"
-  },
-  showFilters: {
-    transform: "translateX(0)"
-  },
-  root: {
-    display: "flex"
   },
   toolbar: theme.mixins.toolbar
 }));
