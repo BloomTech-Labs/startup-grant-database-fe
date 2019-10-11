@@ -4,7 +4,7 @@ import Filters from "../components/Filters";
 import TuneIcon from "@material-ui/icons/Tune";
 
 import GrantShowcase from "../components/grants/GrantShowcase";
-import Suggestion from "../components/Suggestion";
+import SuggestionList from "../components/SuggestionList"
 // import MobileTabs from "../components/mobile/MobileTabs";
 // import SearchBar from "../components/SearchBar";
 import Grid from "@material-ui/core/Grid";
@@ -22,7 +22,7 @@ const Admin = props => {
   //   console.log("toggle");
   //   if (
   //     event &&
-  //     event.type === "keydown" &&
+  //     event.type === "keydown" &&S
   //     (event.key === "Tab" || event.key === "Shift")
   //   ) {
   //     return;
@@ -49,9 +49,10 @@ const Admin = props => {
         <Grid item xs={6} md={3}   className={classes.grantList}>
           <GrantList inAdmin={true} />
         </Grid>
-        <Grid item xs={8} className={classes.gridItem}>
+        <Grid item xs={6} className={classes.gridItem}>
           <GrantShowcase />
-          <Suggestion />
+          
+          <SuggestionList />
         </Grid>
         <Grid item xs={2}>
           <TuneIcon

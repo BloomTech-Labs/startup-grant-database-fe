@@ -21,7 +21,10 @@ import {
   SET_USER,
   SUBMIT_SUGGESTION_START,
   SUBMIT_SUGGESTION_SUCCESS,
-  SUBMIT_SUGGESTION_FAILURE
+  SUBMIT_SUGGESTION_FAILURE,
+  DELETE_SUGGESTION_START,
+  DELETE_SUGGESTION_SUCCESS,
+  DELETE_SUGGESTION_FAILURE
 } from "./types";
 
 export const fetchApi = () => dispatch => {
@@ -47,7 +50,6 @@ export const adminFetchApi = () => dispatch => {
     .get(`https://grantly-staging.herokuapp.com/api/admin`)
     // .get("http://localhost:5000/api/admin")
     .then(response => {
-      console.log("GET response", response);
       dispatch({ type: FETCH_SUCCESS, payload: response.data });
     })
     .catch(error => {
@@ -55,6 +57,7 @@ export const adminFetchApi = () => dispatch => {
       dispatch({ type: FETCH_ERROR });
     });
 };
+
 export const saveFilters = filters => dispatch => {
   dispatch({ type: FILTER_SAVE, payload: filters });
 };
@@ -162,5 +165,21 @@ export const submitSuggestion = suggestion => dispatch => {
     .catch(error => {
       console.log("submitSuggestion error", error);
       dispatch({ type: SUBMIT_SUGGESTION_FAILURE });
+    });
+};
+
+// Delete a grant suggestion
+export const deleteSuggestion = requestId => dispatch => {
+  dispatch({ type: DELETE_SUGGESTION_START });
+  console.log('hello')
+  axios
+    .delete(
+      `https://grantly-staging.herokuapp.com/api/admin/suggestion/${requestId}`
+    )
+    .then(response => {
+      dispatch({ type: DELETE_SUGGESTION_SUCCESS, payload: response.data });
+    })
+    .catch(error => {
+      dispatch({ type: DELETE_SUGGESTION_FAILURE });
     });
 };
