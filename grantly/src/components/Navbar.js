@@ -5,16 +5,22 @@ import { useAuth0 } from "../react-auth0-wrapper";
 import { navStyles } from "../styles/navStyles";
 import FGLogo from "../assets/FGLogo";
 import Media from "react-media";
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
-import Typography from "@material-ui/core/Typography";
-import Button from "@material-ui/core/Button";
-import IconButton from "@material-ui/core/IconButton";
-import MenuIcon from "@material-ui/icons/Menu";
-import Divider from "@material-ui/core/Divider";
 
-import SwipeableDrawer from "@material-ui/core/SwipeableDrawer";
-// import SearchBar from "./SearchBar";
+import MobileTabs from "./mobile/MobileTabs";
+
+// Material core imports
+
+import {
+  AppBar,
+  Toolbar,
+  Typography,
+  Button,
+  IconButton,
+  Divider,
+  SwipeableDrawer
+} from "@material-ui/core";
+import MenuIcon from "@material-ui/icons/Menu";
+
 
 export const NavBar = props => {
   const {
@@ -123,6 +129,11 @@ export const NavBar = props => {
             <NavLink to="/grants" className={classes.link}>
               <Button className={classes.navButton} color="inherit">
                 Grants
+              </Button>
+            </NavLink>
+            <NavLink to="/about" className={classes.link}>
+              <Button className={classes.navButton} color="inherit">
+                About
               </Button>
             </NavLink>
             {/* <Button className={classes.navButton} color="inherit">
