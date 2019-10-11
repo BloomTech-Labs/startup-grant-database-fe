@@ -21,7 +21,6 @@ const SuggestionDialog = props => {
   });
 
   const [submitValue, setSubmitValue] = React.useState("");
-  console.log("SuggestionDialog suggestion:", suggestion);
   //   console.log("SuggestionDialog props", props);
 
   const [open, setOpen] = React.useState(false);
@@ -46,14 +45,16 @@ const SuggestionDialog = props => {
 
   const handleSubmit = () => {
     const sendObject = {
+      
       subject: suggestion.subject,
       suggestion: suggestion.suggestion,
       grant_id: props.id
     };
-
+    console.log("OBJECT BEING SENT TO ACTION", sendObject)
     props.submitSuggestion(sendObject);
     handleClose();
     setSuggestion("");
+
   };
 
   return (
@@ -116,7 +117,7 @@ const SuggestionDialog = props => {
               <Button
                 color="secondary"
                 variant="outlined"
-                onClick={handleSubmit}
+                onClick={handleClose}
                 className={classes.btn}
               >
                 Cancel
@@ -126,7 +127,7 @@ const SuggestionDialog = props => {
               <Button
                 color="primary"
                 variant="outlined"
-                onClick={handleClose}
+                onClick={handleSubmit}
                 className={classes.btn}
               >
                 Send

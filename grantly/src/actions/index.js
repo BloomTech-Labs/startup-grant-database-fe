@@ -50,8 +50,8 @@ export const adminFetchApi = () => dispatch => {
   dispatch({ type: FETCH_START });
   axios
     // .get(`https://labs16-grantly.herokuapp.com/api/admin/`)
-    // .get(`https://grantly-staging.herokuapp.com/api/admin`)
-    .get("http://localhost:5000/api/admin")
+    .get(`https://grantly-staging.herokuapp.com/api/admin`)
+    // .get("http://localhost:5000/api/admin")
     .then(response => {
             console.log("GET response", response);
 
@@ -93,8 +93,8 @@ export const changeTab = tab => dispatch => {
 export const postGrants = addGrant => dispatch => {
   dispatch({ type: ADD_GRANT_START });
   axios
-    // .post("https://grantly-staging.herokuapp.com/api/grants", addGrant)
-    .post("https://labs16-grantly.herokuapp.com/api/grants/", addGrant)
+    .post("https://grantly-staging.herokuapp.com/api/grants", addGrant)
+    // .post("https://labs16-grantly.herokuapp.com/api/grants/", addGrant)
     // .post("http://localhost:5000/api/grants/", addGrant)
     .then(res => {
       dispatch({ type: ADD_GRANT_SUCCESS, payload: res.data });
@@ -111,16 +111,16 @@ export const putGrants = updateGrant => dispatch => {
     type: UPDATE_GRANT_START
   });
   axios
-    // .put(
-    //   `https://grantly-staging.herokuapp.com/api/admin/${updateGrant.id}`,
-    //   updateGrant
-    // )
-    .put(`http://localhost:5000/api/admin/${updateGrant.id}`, updateGrant)
+    .put(
+      `https://grantly-staging.herokuapp.com/api/admin/${updateGrant.id}`,
+      updateGrant
+    )
+    // .put(`http://localhost:5000/api/admin/${updateGrant.id}`, updateGrant)
     .then(res => {
       axios
         // .get(`https://labs16-grantly.herokuapp.com/api/grants/`)
-        // .get(`https://grantly-staging.herokuapp.com/api/admin`)
-        .get("http://localhost:5000/api/admin")
+        .get(`https://grantly-staging.herokuapp.com/api/admin`)
+        // .get("http://localhost:5000/api/admin")
         .then(response => {
           dispatch({
             type: UPDATE_GRANT_SUCCESS,
@@ -143,13 +143,13 @@ export const deleteGrants = id => dispatch => {
     type: DELETE_GRANT_START
   });
   axios
-    // .delete(`https://grantly-staging.herokuapp.com/api/admin/${id}`)
-    .delete(`http://localhost:5000/api/admin/${id}`)
+    .delete(`https://grantly-staging.herokuapp.com/api/admin/${id}`)
+    // .delete(`http://localhost:5000/api/admin/${id}`)
     .then(res => {
       axios
         // .get(`https://labs16-grantly.herokuapp.com/api/grants/`)
-        // .get(`https://grantly-staging.herokuapp.com/api/admin`)
-        .get("http://localhost:5000/api/admin")
+        .get(`https://grantly-staging.herokuapp.com/api/admin`)
+        // .get("http://localhost:5000/api/admin")
         .then(response => {
           dispatch({
             type: DELETE_GRANT_SUCCESS,
@@ -171,8 +171,8 @@ export const checkUser = user => dispatch => {
   const auth = { ...user, auth_id: user.sub };
 
   axios
-    .get("http://localhost:5000/user", {
-    // .get("https://grantly-staging.herokuapp.com/user", {
+    // .get("http://localhost:5000/user", {
+    .get("https://grantly-staging.herokuapp.com/user", {
       headers: {
         auth_id: auth.auth_id
       }
@@ -185,8 +185,8 @@ export const checkUser = user => dispatch => {
       const newUser = { role: "user", auth_id: auth.auth_id };
       if (err.response.status === 404) {
         axios
-          .post("http://localhost:5000/user", newUser)
-          // .post("https://grantly-staging.herokuapp.com/user", newUser)
+          // .post("http://localhost:5000/user", newUser)
+          .post("https://grantly-staging.herokuapp.com/user", newUser)
           .then(res => {
             // console.log("POst", res);
             dispatch({ type: SET_USER, payload: res.data });
@@ -204,17 +204,19 @@ export const checkUser = user => dispatch => {
 
 export const submitSuggestion = suggestion => dispatch => {
   // console.log("submitSuggestion suggestion", suggestion);
+  console.log("im submitting")
   dispatch({ type: SUBMIT_SUGGESTION_START });
   axios
-    // .post("https://grantly-staging.herokuapp.com/api/suggestion", suggestion)
-    .post("http://localhost:5000/api/suggestion", suggestion)
+    .post("https://grantly-staging.herokuapp.com/api/grants/suggestion", suggestion)
+    // .post("http://localhost:5000/api/suggestion", suggestion)
 
     .then(response => {
       // console.log("submitSuggestion response", response);
+      console.log("Success")
       dispatch({ type: SUBMIT_SUGGESTION_SUCCESS, payload: response.data });
     })
     .catch(error => {
-      // console.log("submitSuggestion error", error);
+      console.log("submitSuggestion error", error);
       dispatch({ type: SUBMIT_SUGGESTION_FAILURE });
     });
 };
@@ -224,10 +226,10 @@ export const deleteSuggestion = requestId => dispatch => {
   dispatch({ type: DELETE_SUGGESTION_START });
   console.log('hello')
   axios
-    // .delete(
-    //   `https://grantly-staging.herokuapp.com/api/admin/suggestion/${requestId}`
-    // )
-    .delete(`http://localhost:5000/api/admin/suggestion/${requestId}`)
+    .delete(
+      `https://grantly-staging.herokuapp.com/api/admin/suggestion/${requestId}`
+    )
+    // .delete(`http://localhost:5000/api/admin/suggestion/${requestId}`)
     .then(response => {
       dispatch({ type: DELETE_SUGGESTION_SUCCESS, payload: response.data });
     })

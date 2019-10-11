@@ -131,7 +131,7 @@ export const rooterReducer = (state = initialState, { type, payload }) => {
           } else if (payload.admin_filters.includes("expired")) {
             return moment(grant.most_recent_application_due_date).format() <= moment().format();
           } else if (payload.admin_filters.includes("suggestions")) {
-            return grant.has_requests === true;
+            return grant.requests.length > 0;
           }
         });
       }

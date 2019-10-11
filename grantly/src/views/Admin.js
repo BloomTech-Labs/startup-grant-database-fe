@@ -45,6 +45,7 @@ const Admin = props => {
         </Grid>
         <Grid item xs={6} className={classes.gridItem}>
           <GrantShowcase inAdmin={true} history={props.history} />
+          <SuggestionList />
         </Grid>
         <Grid item xs={2}>
           <TuneIcon
