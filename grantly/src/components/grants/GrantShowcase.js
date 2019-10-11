@@ -1,6 +1,7 @@
 // Dependencies
 import React from "react";
 import { connect } from "react-redux";
+import clsx from "clsx";
 
 import Loader from "react-loader-spinner";
 
@@ -9,6 +10,11 @@ import moment from "moment";
 
 // Objects
 import Card from "@material-ui/core/Card";
+import CardContent from "@material-ui/core/CardContent";
+import Collapse from "@material-ui/core/Collapse";
+import IconButton from "@material-ui/core/IconButton";
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import CardActions from "@material-ui/core/CardActions";
 import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
 import BookmarkBorderOutlinedIcon from "@material-ui/icons/BookmarkBorderOutlined";
@@ -19,22 +25,34 @@ import LanguageIcon from "@material-ui/icons/Language";
 // import BookmarkIcon from "@material-ui/icons/Bookmark";
 import Typography from "@material-ui/core/Typography";
 import SuggestionDialog from "./dialogs/SuggestionDialog";
+import ExpansionPanel from "@material-ui/core/ExpansionPanel";
+import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
+import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
 
 // =========== STYLES ===========
 import { showcaseStyles } from "../../styles/grantShowcaseStyles";
+import { suggestionStyles } from "../../styles/suggestionStyles";
 
 export const GrantShowcase = props => {
-  const classes = showcaseStyles();
+  const showcase = showcaseStyles();
+  const suggestion = suggestionStyles();
 
   const [open, setOpen] = React.useState(false);
+  const [expanded, setExpanded] = React.useState(false);
 
-  const handleOpen = () => {
-    setOpen(true);
+  const handleExpandClick = () => {
+    setExpanded(!expanded);
   };
 
-  const handleClose = () => {
-    setOpen(false);
-  };
+  // ===== not needed? =====
+
+  // const handleOpen = () => {
+  //   setOpen(true);
+  // };
+
+  // const handleClose = () => {
+  //   setOpen(false);
+  // };
 
   console.log("GrantShowcase props", props);
   function formatNumbers(num) {
@@ -61,59 +79,80 @@ export const GrantShowcase = props => {
   }
 
   return (
-    <Card className={classes.showcaseCard}>
-      {/* ================= Top container ================= */}
-      <div>
-        <Grid
-          container
-          direction="row"
-          justify="space-between"
-          alignItems="center"
-          className={classes.topContent}
-        >
+    <div>
+      <Card className={showcase.showcaseCard}>
+        {/* ================= Top container ================= */}
+        <div>
           <Grid
             container
-            className={classes.showcase_header}
+            direction="row"
+            justify="space-between"
             alignItems="center"
+            className={showcase.topContent}
           >
-            <Grid item>
-              <div className={classes.grant_logo}></div>
+            <Grid
+              container
+              className={showcase.showcase_header}
+              alignItems="center"
+            >
+              <Grid item>
+                <div className={showcase.grant_logo}></div>
+              </Grid>
+              <Grid item>
+                <Typography
+                  className={showcase.grant_name}
+                  variant="h4"
+                  component="h4"
+                >
+                  {props.grant.competition_name}
+                </Typography>
+              </Grid>
             </Grid>
-            <Grid item>
-              <Typography
-                className={classes.grant_name}
-                variant="h4"
-                component="h4"
-              >
-                {props.grant.competition_name}
-              </Typography>
+            <Grid>
+              <Grid item>
+                <BookmarkBorderOutlinedIcon
+                  className={showcase.bookmark}
+                ></BookmarkBorderOutlinedIcon>
+                {/* <BookmarkIcon></BookmarkIcon> */}
+              </Grid>
             </Grid>
           </Grid>
-          <Grid>
-            <Grid item>
-              <BookmarkBorderOutlinedIcon
-                className={classes.bookmark}
-              ></BookmarkBorderOutlinedIcon>
-              {/* <BookmarkIcon></BookmarkIcon> */}
-            </Grid>
-          </Grid>
-        </Grid>
 
-        <Grid
-          container
-          justify="flex-start"
-          alignItems="flex-end"
-          alignContent="flex-end"
-        >
-          <LanguageIcon className={classes.website}></LanguageIcon>
-          <span className={classes.website}>Visit Website:</span>
-          <a href={props.grant.website} target="_blank">
-            {props.grant.website}
-          </a>
-        </Grid>
+          <Grid
+            container
+            justify="flex-start"
+            alignItems="flex-end"
+            alignContent="flex-end"
+          >
+            <LanguageIcon className={showcase.website}></LanguageIcon>
+            <span className={showcase.website}>Visit Website:</span>
+            <a href={props.grant.website} target="_blank">
+              {props.grant.website}
+            </a>
+          </Grid>
+
+          <Grid item>
+            <a href={props.grant.website} target="_blank">
+              <Button
+                className={showcase.applyButton}
+                variant="contained"
+                color="primary"
+              >
+                Apply to Grant
+              </Button>
+            </a>
+
+            {/* <Button
+            className={showcase.applyButton}
+            variant="contained"
+            color="primary"
+            >
+            Edit Grant
+          </Button> */}
+          </Grid>
+        
       </div>
       {/* ================= Main content ================= */}
-
       <Grid
         container
         direction="column"
@@ -176,8 +215,8 @@ export const GrantShowcase = props => {
         <Grid item>
           <SuggestionDialog id={props.grant.id} />
         </Grid>
-      </Grid>
-    </Card>
+      </Card>
+    </div>
   );
 };
 

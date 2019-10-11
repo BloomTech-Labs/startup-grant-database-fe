@@ -13,6 +13,24 @@ import Grid from "@material-ui/core/Grid";
 // import SwipeableDrawer from "@material-ui/core/SwipeableDrawer";
 // import MobileFilters from "../components/mobile/MobileFilters";
 import { adminStyles } from "../styles/adminStyles";
+import SuggestionList from "../components/SuggestionList";
+
+// const useStyles = makeStyles(theme => ({
+//   content: {
+//     flexGrow: 1,
+//     padding: theme.spacing(3)
+//   },
+//   gridContainer: {
+//     flexWrap: "nowrap"
+//   },
+//   gridItem: {
+//     padding: 30
+//   },
+//   root: {
+//     display: "flex"
+//   },
+//   toolbar: theme.mixins.toolbar
+// }));
 
 const Admin = props => {
   // const [isOpen, setIsOpen] = useState(false);
@@ -51,7 +69,8 @@ const Admin = props => {
         </Grid>
         <Grid item xs={8} className={classes.gridItem}>
           <GrantShowcase />
-          <Suggestion />
+          
+          <SuggestionList />
         </Grid>
         <Grid item xs={2}>
           <TuneIcon
