@@ -27,7 +27,7 @@ function App({ checkUser, currentUser }) {
       checkUser(user);
     }
   }, [user]);
-  console.log("App", user);
+
   return (
     <Router>
       <ThemeProvider theme={theme}>

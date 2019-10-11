@@ -16,6 +16,9 @@ import {
   UPDATE_GRANT_START,
   UPDATE_GRANT_SUCCESS,
   UPDATE_GRANT_FAILURE,
+  DELETE_GRANT_START,
+  DELETE_GRANT_SUCCESS,
+  DELETE_GRANT_FAILURE,
   FILTER_SAVE,
   CHECK_ADMIN,
   SET_USER,
@@ -107,15 +110,50 @@ export const putGrants = updateGrant => dispatch => {
   axios
     .put(`http://localhost:5000/api/admin/${updateGrant.id}`, updateGrant)
     .then(res => {
-      console.log(
-        "UPDATE SUCCESS, res.data is now sent to reducer, this is just res",
-        res
-      );
-      dispatch({ type: UPDATE_GRANT_SUCCESS, payload: res.data });
+      axios
+        // .get(`https://labs16-grantly.herokuapp.com/api/grants/`)
+        // .get(`https://grantly-staging.herokuapp.com/api/admin`)
+        .get("http://localhost:5000/api/admin")
+        .then(response => {
+          dispatch({
+            type: UPDATE_GRANT_SUCCESS,
+            payload: [response.data, updateGrant.id]
+          });
+        })
+        .catch(error => {
+          dispatch({ type: UPDATE_GRANT_FAILURE, payload: error });
+        });
     })
     .catch(err => {
-      console.log("An error updating the grant happened", err);
       dispatch({ type: UPDATE_GRANT_FAILURE, payload: err });
+    });
+};
+
+// Delete A grant
+
+export const deleteGrants = id => dispatch => {
+  dispatch({
+    type: DELETE_GRANT_START
+  });
+  axios
+    .delete(`http://localhost:5000/api/admin/${id}`)
+    .then(res => {
+      axios
+        // .get(`https://labs16-grantly.herokuapp.com/api/grants/`)
+        // .get(`https://grantly-staging.herokuapp.com/api/admin`)
+        .get("http://localhost:5000/api/admin")
+        .then(response => {
+          dispatch({
+            type: DELETE_GRANT_SUCCESS,
+            payload: response.data
+          });
+        })
+        .catch(error => {
+          dispatch({ type: DELETE_GRANT_FAILURE, payload: error });
+        });
+    })
+    .catch(err => {
+      dispatch({ type: DELETE_GRANT_FAILURE, payload: err });
     });
 };
 

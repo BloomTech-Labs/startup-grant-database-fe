@@ -14,6 +14,9 @@ import {
   UPDATE_GRANT_START,
   UPDATE_GRANT_SUCCESS,
   UPDATE_GRANT_FAILURE,
+  DELETE_GRANT_START,
+  DELETE_GRANT_SUCCESS,
+  DELETE_GRANT_FAILURE,
   CHECK_ADMIN,
   SET_USER
 } from "../actions/types";
@@ -170,15 +173,42 @@ export const rooterReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         isFetching: true,
-        error: payload
+        error: ""
       };
     case UPDATE_GRANT_SUCCESS:
+      console.log("UPDATE_GRANT PAYLOAD", payload);
+      let [showCase] = payload[0].filter(grant => {
+        return grant.id === payload[1];
+      });
+      console.log("TEST SHOWCASE", showCase);
       return {
         ...state,
         isFetching: false,
-        data: { ...state.data, payload }
+        data: payload,
+        filteredGrants: payload[0],
+        grantShowcase: showCase
       };
     case UPDATE_GRANT_FAILURE:
+      return {
+        ...state,
+        isFetching: false,
+        error: payload
+      };
+    case DELETE_GRANT_START:
+      return {
+        ...state,
+        isFetching: true,
+        error: ""
+      };
+    case DELETE_GRANT_SUCCESS:
+      return {
+        ...state,
+        isFetching: false,
+        data: payload,
+        filteredGrants: payload,
+        grantShowcase: payload[0]
+      };
+    case DELETE_GRANT_FAILURE:
       return {
         ...state,
         isFetching: false,

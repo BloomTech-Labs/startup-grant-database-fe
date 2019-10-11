@@ -44,10 +44,10 @@ const Admin = props => {
         className={classes.gridContainer}
       >
         <Grid item xs={6} md={3}>
-          <GrantList inAdmin={true} />
+          <GrantList inAdmin={true} history={props.history} />
         </Grid>
         <Grid item xs={8} className={classes.gridItem}>
-          <GrantShowcase />
+          <GrantShowcase history={props.history} />
         </Grid>
         <Grid item xs={2}>
           <button onClick={toggleFilters}>Filters</button>

@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 import Media from "react-media";
-import { putGrants, adminFetchApi } from "../actions/index";
+import { putGrants, deleteGrants, adminFetchApi } from "../actions/index";
 import moment from "moment";
 
 //Objects
@@ -27,18 +27,32 @@ const funding = [
     label: "no"
   }
 ];
-
-const GrantForm = props => {
-  // Set initial state of form
-  const [grantInfo, setGrantInfo] = useState({
-    ...props.grant,
+const formattedGrantObj = props => {
+  return {
+    id: props.grant.id,
+    competition_name: props.grant.competition_name,
+    type: props.grant.type,
+    area_focus: props.grant.area_focus,
+    sponsoring_entity: props.grant.sponsoring_entity,
+    website: props.grant.website,
     most_recent_application_due_date: moment(
       props.grant.most_recent_application_due_date
     ).format("YYYY-MM-DD"),
-    details_last_updated: moment(props.grant.details_last_updated).format(
-      "YYYY-MM-DD"
-    )
-  });
+    amount: props.grant.amount,
+    amount_notes: props.grant.amount_notes,
+    geographic_region: props.grant.geographic_region,
+    domain_areas: props.grant.domain_areas,
+    target_entrepreneur_demographic:
+      props.grant.target_entrepreneur_demographic,
+    notes: props.grant.notes,
+    early_stage_funding: props.grant.early_stage_funding,
+    details_last_updated: moment().format("YYYY-MM-DD")
+  };
+};
+
+const GrantForm = props => {
+  // Set initial state of form
+  const [grantInfo, setGrantInfo] = useState(formattedGrantObj(props));
 
   const handleChanges = event => {
     event.preventDefault();
@@ -49,23 +63,17 @@ const GrantForm = props => {
   };
 
   const editGrant = event => {
-    // console.log("SubmitForm.js submitGrant", event);
     event.preventDefault();
     props.putGrants({ ...grantInfo });
-    setGrantInfo({
-      ...props.grant,
-      most_recent_application_due_date: moment(
-        props.grant.most_recent_application_due_date
-      ).format("YYYY-MM-DD"),
-      details_last_updated: moment(props.grant.details_last_updated).format(
-        "YYYY-MM-DD"
-      )
-    });
-
-    props.adminFetchApi();
     props.handleClose();
   };
 
+  const removeGrant = event => {
+    event.preventDefault();
+    // console.log("GRANT ID IN STATE", grantInfo.id);
+    props.deleteGrants(grantInfo.id);
+    props.handleClose();
+  };
   const styles = formStyles();
 
   return (
@@ -276,7 +284,7 @@ const GrantForm = props => {
               >
                 Save Changes
               </Button>
-              <Button variant="outlined" color="danger" size="large">
+              <Button onClick={removeGrant} variant="outlined" size="large">
                 Delete
               </Button>
             </div>
@@ -293,5 +301,5 @@ const mapStateToProps = ({ isFetching, error }) => ({
 
 export default connect(
   mapStateToProps,
-  { putGrants, adminFetchApi }
+  { putGrants, deleteGrants, adminFetchApi }
 )(GrantForm);

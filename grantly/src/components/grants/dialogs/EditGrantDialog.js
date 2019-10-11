@@ -74,7 +74,11 @@ export default function FullScreenDialog(props) {
             </IconButton>
           </Toolbar>
         </AppBar>
-        <AdminForm grant={props.grant} handleClose={handleClose} />
+        <AdminForm
+          grant={props.grant}
+          handleClose={handleClose}
+          history={props.history}
+        />
       </Dialog>
     </div>
   );
