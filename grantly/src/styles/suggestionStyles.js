@@ -21,7 +21,7 @@ export const suggestionStyles = makeStyles(theme => ({
     fontWeight: "600"
   },
   details: {
-    padding: 0
+    padding: "0 0 0 1rem"
   },
   suggestion: {
     fontSize: "1.2rem",

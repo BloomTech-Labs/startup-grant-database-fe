@@ -25,54 +25,37 @@ export const Suggestion = props => {
   };
 
   const handleSubmit = () => {
-      props.deleteSuggestion(props.request.id)
-      setTimeout(() => {
-        props.adminFetchApi();
-      }, 500);
+    props.deleteSuggestion(props.request.id);
+    setTimeout(() => {
+      props.adminFetchApi();
+    }, 500);
   };
 
-  console.log("SUBJECT (props.grant.requests)", props.request)
-  console.log("SUBJECT (props.request.subject)", props.request.subject)
-  console.log("SUBJECT (props.request.suggestion)", props.request.suggestion)
-  
   return (
     <ExpansionPanel className={suggestion.card}>
-        <ExpansionPanelSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel1a-content"
-          id="panel1a-header"
-        >
-          <Typography className={suggestion.subject}>
-            {/* {props.grant.requests !== undefined
-              ? props.grant.requests.subject
-            //   ? props.grant.requests[props.grant.requests.id-1].subject
-              : null} */}
-              {props.request.subject}
-          </Typography>
-        </ExpansionPanelSummary>
-        <Grid container direction="column" justify="center" alignItems="center">
-          <ExpansionPanelDetails className={suggestion.details}>
-            <Typography className={suggestion.suggestion}>
-              {props.request.suggestion}
-            </Typography>
-          </ExpansionPanelDetails>
-          <Grid
-            container
-            direction="row"
-            justify="space-around"
-            alignItems="center"
-          >
-            <Button
-              className={suggestion.button}
-              variant="contained"
-              color="secondary"
-              onClick={handleSubmit}
-            >
-              Delete Suggestion
-            </Button>
-          </Grid>
-        </Grid>
-      </ExpansionPanel>
+      <ExpansionPanelSummary
+        expandIcon={<ExpandMoreIcon />}
+        aria-controls="panel1a-content"
+        id="panel1a-header"
+      >
+        <Typography className={suggestion.subject}>
+          {props.request.subject}
+        </Typography>
+      </ExpansionPanelSummary>
+      <ExpansionPanelDetails className={suggestion.details}>
+        <Typography className={suggestion.suggestion}>
+          {props.request.suggestion}
+        </Typography>
+      </ExpansionPanelDetails>
+      <Button
+        className={suggestion.button}
+        variant="contained"
+        color="secondary"
+        onClick={handleSubmit}
+      >
+        Delete Suggestion
+      </Button>
+    </ExpansionPanel>
   );
 };
 
