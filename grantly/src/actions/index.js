@@ -53,7 +53,7 @@ export const adminFetchApi = () => dispatch => {
     .get(`https://grantly-staging.herokuapp.com/api/admin`)
     // .get("http://localhost:5000/api/admin")
     .then(response => {
-            console.log("GET response", response);
+            // console.log("GET response", response);
 
       dispatch({ type: FETCH_SUCCESS, payload: response.data });
     })
