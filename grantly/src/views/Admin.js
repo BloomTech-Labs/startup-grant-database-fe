@@ -13,7 +13,7 @@ import Grid from "@material-ui/core/Grid";
 // import SwipeableDrawer from "@material-ui/core/SwipeableDrawer";
 // import MobileFilters from "../components/mobile/MobileFilters";
 import { adminStyles } from "../styles/adminStyles";
-import SuggestionList from "../components/SuggestionList";
+
 
 // const useStyles = makeStyles(theme => ({
 //   content: {
