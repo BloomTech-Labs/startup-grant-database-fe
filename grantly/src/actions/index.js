@@ -23,8 +23,8 @@ export const fetchApi = () => dispatch => {
   dispatch({ type: FETCH_START });
   axios
     // .get(`https://labs16-grantly.herokuapp.com/api/grants/`)
-    // .get(`https://grantly-staging.herokuapp.com/api/grants`)
-    .get(`http://localhost:5000/api/grants/`)
+    .get(`https://grantly-staging.herokuapp.com/api/grants`)
+    // .get(`http://localhost:5000/api/grants/`)
     .then(response => {
       console.log("GET response", response);
       dispatch({ type: FETCH_SUCCESS, payload: response.data });
@@ -66,8 +66,8 @@ export const postGrants = addGrant => dispatch => {
   dispatch({ type: ADD_GRANT_START });
   axios
     // .post("https://grantly-staging.herokuapp.com/api/grants", addGrant)
-    // .post("https://labs16-grantly.herokuapp.com/api/grants/", addGrant)
-    .post("http://localhost:5000/api/grants/", addGrant)
+    .post("https://labs16-grantly.herokuapp.com/api/grants/", addGrant)
+    // .post("http://localhost:5000/api/grants/", addGrant)
     .then(res => {
       console.log("RES in postGrants, actions", res);
       dispatch({ type: ADD_GRANT_SUCCESS, payload: res.data });
