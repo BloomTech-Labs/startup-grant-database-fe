@@ -55,8 +55,8 @@ export const adminStyles = makeStyles(theme => ({
   },
   adminActions: {
     fontFamily: "Nunito Sans",
-    fontWeight: "500",
-
+    fontWeight: "700",
+    margin: "10px",
   },
   buttons: {
     textTransform: "capitalize",

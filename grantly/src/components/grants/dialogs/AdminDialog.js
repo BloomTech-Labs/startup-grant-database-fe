@@ -1,12 +1,13 @@
 // Dependencies
 import React from "react";
 import { connect } from "react-redux";
+import Loader from "react-loader-spinner";
 
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
-import CloseIcon from '@material-ui/icons/Close';
-import CheckIcon from '@material-ui/icons/Check';
+import CloseIcon from "@material-ui/icons/Close";
+import CheckIcon from "@material-ui/icons/Check";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import ExpansionPanel from "@material-ui/core/ExpansionPanel";
 import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
@@ -31,24 +32,43 @@ export const AdminDialog = props => {
       props.adminFetchApi();
     }, 500);
   };
+  if (props.isFetching) {
+    return <Loader type="Triangle" color="#3DB8B3" height="100" width="100" />;
+  }
 
   return (
     <>
-      <Typography variant="h5" className={styles.adminActions}>Admin Actions</Typography>
-      <Grid container justify="center"  spacing={4}>
-        <Grid item>
-          <Button variant="outlined" color="secondary" size="large" className={styles.buttons}>
-              <CloseIcon />
-            Reject
-          </Button>
-        </Grid>
-        <Grid item>
-          <Button variant="contained" color="primary" size="large" className={`${styles.approve} ${styles.buttons}`}>
-            <CheckIcon />
-            Approve
-          </Button>
-        </Grid>
-      </Grid>
+      {!props.grant.is_reviewed && (
+        <div>
+          <Typography variant="h5" className={styles.adminActions}>
+            Admin actions
+          </Typography>
+          <Grid container justify="center" spacing={4}>
+            <Grid item>
+              <Button
+                variant="outlined"
+                color="secondary"
+                size="large"
+                className={styles.buttons}
+              >
+                <CloseIcon />
+                Reject
+              </Button>
+            </Grid>
+            <Grid item>
+              <Button
+                variant="contained"
+                color="primary"
+                size="large"
+                className={`${styles.approve} ${styles.buttons}`}
+              >
+                <CheckIcon />
+                Approve
+              </Button>
+            </Grid>
+          </Grid>
+        </div>
+      )}
     </>
   );
 };
