@@ -26,7 +26,7 @@ const Sitemap = () => {
         </Grid>
         <Grid item className={styles.item}>
           <ul className={styles.links}>
-            <Link to="/" className={styles.link}>
+            <Link to="/about" className={styles.link}>
               <Typography variant="subtitle2">ABOUT</Typography>
             </Link>
             <a href="mailto:labs16grantly@gmail.com" className={styles.link}>
