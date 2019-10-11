@@ -1,31 +1,26 @@
 //Dependencies
 import React, { useState, Fragment } from "react";
 import { connect } from "react-redux";
-import Media from "react-media";
+
 import { postGrants, fetchApi } from "../actions/index.js";
 
 //Objects
 import formStyles from "../styles/FormStyles";
 import {
-  TextField,
-  MenuItem,
   Button,
   Paper,
   Grid,
   Stepper,
   Step,
   Typography,
-  Container,
-  Link,
   CssBaseline,
   StepLabel
 } from "@material-ui/core";
-import Home from "../views/Home";
-import NavBar from "./Navbar";
+
 import GrantInfo from "./submitForm/GrantInfo";
 import GrantFocus from "./submitForm/GrantFocus";
 import GrantDemo from "./submitForm/GrantDemo";
-import { typography } from "@material-ui/system";
+
 import moment from "moment";
 
 const AddGrant = props => {
