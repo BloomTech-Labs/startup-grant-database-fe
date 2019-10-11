@@ -62,7 +62,7 @@ export default function FullScreenDialog(props) {
         <AppBar className={classes.appBar}>
           <Toolbar>
             <Typography variant="h6" className={classes.title}>
-              Edit Grant
+              {props.grant.competition_name}
             </Typography>
             <IconButton
               edge="start"
@@ -74,11 +74,7 @@ export default function FullScreenDialog(props) {
             </IconButton>
           </Toolbar>
         </AppBar>
-        <AdminForm
-          grant={props.grant}
-          handleClose={handleClose}
-          history={props.history}
-        />
+        <AdminForm grant={props.grant} handleClose={handleClose} />
       </Dialog>
     </div>
   );

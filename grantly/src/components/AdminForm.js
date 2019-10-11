@@ -1,7 +1,6 @@
 //Dependencies
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import Media from "react-media";
 import { putGrants, deleteGrants, adminFetchApi } from "../actions/index";
 import moment from "moment";
 
@@ -11,11 +10,11 @@ import {
   TextField,
   MenuItem,
   Button,
-  Grid,
-  Container,
-  Link
+  Grid
+  // Container,
+  // Link
 } from "@material-ui/core";
-import Admin from "../views/Landing";
+// import Admin from "../views/Landing";
 
 const funding = [
   {
@@ -268,6 +267,7 @@ const GrantForm = props => {
             </div>
             <div>
               <Button
+                className={styles.adminButtons}
                 onClick={props.handleClose}
                 variant="outlined"
                 color="primary"
@@ -276,6 +276,7 @@ const GrantForm = props => {
                 Cancel
               </Button>
               <Button
+                className={styles.adminButtons}
                 onClick={editGrant}
                 variant="outlined"
                 color="primary"
@@ -283,7 +284,12 @@ const GrantForm = props => {
               >
                 Save Changes
               </Button>
-              <Button onClick={removeGrant} variant="outlined" size="large">
+              <Button
+                className={styles.adminButtons}
+                onClick={removeGrant}
+                variant="outlined"
+                size="large"
+              >
                 Delete
               </Button>
             </div>

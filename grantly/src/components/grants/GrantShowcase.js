@@ -19,6 +19,7 @@ import LanguageIcon from "@material-ui/icons/Language";
 // import BookmarkIcon from "@material-ui/icons/Bookmark";
 import Typography from "@material-ui/core/Typography";
 import SuggestionDialog from "./dialogs/SuggestionDialog";
+import EditGrantDialog from "./dialogs/EditGrantDialog";
 
 // =========== STYLES ===========
 import { showcaseStyles } from "../../styles/grantShowcaseStyles";
@@ -90,10 +91,14 @@ export const GrantShowcase = props => {
           </Grid>
           <Grid>
             <Grid item>
-              <BookmarkBorderOutlinedIcon
-                className={classes.bookmark}
-              ></BookmarkBorderOutlinedIcon>
-              {/* <BookmarkIcon></BookmarkIcon> */}
+              {props.inAdmin ? (
+                <EditGrantDialog
+                  className={classes.editIcon}
+                  grant={props.grant}
+                />
+              ) : (
+                <BookmarkBorderOutlinedIcon className={classes.bookmark} />
+              )}
             </Grid>
           </Grid>
         </Grid>

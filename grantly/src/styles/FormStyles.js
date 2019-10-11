@@ -92,12 +92,14 @@ const formStyles = makeStyles(theme => ({
     height: "4em",
     color: "#fff",
     [theme.breakpoints.down("sm")]: {
-      width: "90%",
-       
-     }
+      width: "90%"
+    }
   },
   label: {
     color: "#fff"
+  },
+  adminButtons: {
+    margin: "30px"
   }
 }));
 

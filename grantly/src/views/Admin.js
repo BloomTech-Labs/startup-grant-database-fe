@@ -47,7 +47,7 @@ const Admin = props => {
           <GrantList inAdmin={true} history={props.history} />
         </Grid>
         <Grid item xs={8} className={classes.gridItem}>
-          <GrantShowcase history={props.history} />
+          <GrantShowcase inAdmin={true} history={props.history} />
         </Grid>
         <Grid item xs={2}>
           <button onClick={toggleFilters}>Filters</button>
