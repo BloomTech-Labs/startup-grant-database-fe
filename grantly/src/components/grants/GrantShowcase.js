@@ -25,9 +25,13 @@ import LanguageIcon from "@material-ui/icons/Language";
 // import BookmarkIcon from "@material-ui/icons/Bookmark";
 import Typography from "@material-ui/core/Typography";
 import SuggestionDialog from "./dialogs/SuggestionDialog";
+
+import EditGrantDialog from "./dialogs/EditGrantDialog";
+
 import ExpansionPanel from "@material-ui/core/ExpansionPanel";
 import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
 import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
+
 
 // =========== STYLES ===========
 import { showcaseStyles } from "../../styles/grantShowcaseStyles";
@@ -36,6 +40,7 @@ import { suggestionStyles } from "../../styles/suggestionStyles";
 export const GrantShowcase = props => {
   const showcase = showcaseStyles();
   const suggestion = suggestionStyles();
+
 
   const [open, setOpen] = React.useState(false);
   const [expanded, setExpanded] = React.useState(false);
@@ -50,14 +55,14 @@ export const GrantShowcase = props => {
   //   setOpen(true);
   // };
 
+
   // const handleClose = () => {
   //   setOpen(false);
   // };
 
-  console.log("GrantShowcase props", props);
-  function formatNumbers(num) {
-    return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-  }
+  // function formatNumbers(num) {
+  //   return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  // }
 
   const deadline = props.grant.most_recent_application_due_date ? (
     <Moment format={"MMMM Do YYYY"}>
@@ -108,16 +113,19 @@ export const GrantShowcase = props => {
                 </Typography>
               </Grid>
             </Grid>
-            <Grid>
-              <Grid item>
-                <BookmarkBorderOutlinedIcon
-                  className={showcase.bookmark}
-                ></BookmarkBorderOutlinedIcon>
-                {/* <BookmarkIcon></BookmarkIcon> */}
-              </Grid>
-            </Grid>
-          </Grid>
+           
 
+          <Grid>
+            <Grid item>
+              {props.inAdmin ? (
+                <EditGrantDialog
+                  className={classes.editIcon}
+                  grant={props.grant}
+                />
+              ) : (
+                <BookmarkBorderOutlinedIcon className={classes.bookmark} />
+              )}
+            </Grid>
           <Grid
             container
             justify="flex-start"
@@ -129,28 +137,30 @@ export const GrantShowcase = props => {
             <a href={props.grant.website} target="_blank">
               {props.grant.website}
             </a>
+
           </Grid>
 
-          <Grid item>
-            <a href={props.grant.website} target="_blank">
-              <Button
-                className={showcase.applyButton}
-                variant="contained"
-                color="primary"
-              >
-                Apply to Grant
-              </Button>
-            </a>
+        <Grid item>
+          <a href={props.grant.website} target="_blank">
+            <Button
+              className={classes.applyButton}
+              variant="contained"
+              color="primary"
+            >
+              Apply to Grant
+            </Button>
+          </a>
 
-            {/* <Button
-            className={showcase.applyButton}
+          {/* <Button
+            className={classes.applyButton}
             variant="contained"
             color="primary"
-            >
+          >
             Edit Grant
           </Button> */}
-          </Grid>
-        
+        </Grid>
+
+
       </div>
       {/* ================= Main content ================= */}
       <Grid

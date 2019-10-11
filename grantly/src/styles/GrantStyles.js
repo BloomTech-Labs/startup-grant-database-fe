@@ -6,8 +6,8 @@ const cardDetailsMargin = "10px";
 
 export const grantStyles = makeStyles(theme => ({
   grantCard: {
-    display: "flex",
-    flexDirection: "column",
+    // display: "flex",
+    // flexDirection: "column",
     textAlign: "center",
     borderRadius: "0",
     marginBottom: "0.25rem",
@@ -70,6 +70,9 @@ export const grantStyles = makeStyles(theme => ({
     fill: "#C4C4C4"
 
     // border: "1px solid fuchsia"
+  },
+  editIcon: {
+    alignSelf: "flex-start"
   },
   phantom: {
     // border: "1px solid fuchsia"

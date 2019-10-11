@@ -20,12 +20,7 @@ import {
   CssBaseline,
   StepLabel
 } from "@material-ui/core";
-import Home from "../views/Home";
-import NavBar from "./Navbar";
-import GrantInfo from "./submitForm/GrantInfo";
-import GrantFocus from "./submitForm/GrantFocus";
-import GrantDemo from "./submitForm/GrantDemo";
-import { typography } from "@material-ui/system";
+
 
 // const funding = [
 //   {
@@ -172,47 +167,91 @@ const AddGrant = props => {
       </main>
     </React.Fragment>
 
-    // <div classname={styles.grid}>
-    //   <Grid
-    //     // container
-    //     // classname={styles.grid}
-    //     direction="column"
-    //     justify="center"
-    //     alignItems="center"
-    //   >
+              <TextField
+                label="Target Demographic"
+                // type="text"
+                className={styles.inputText}
+                name="target_entrepreneur_demographic"
+                placeholder="Target Entrepreneur Demographic"
+                value={grantInfo.target_entrepreneur_demographic}
+                onChange={handleChanges}
+                margin="normal"
+                variant="outlined"
+              />
+            </div>
+            <div className={styles.formContainer}>
+              <TextField
+                label="Notes"
+                // type="text"
+                className={styles.notes}
+                name="notes"
+                multiline
+                rows="3"
+                placeholder="Notes"
+                value={grantInfo.notes}
+                onChange={handleChanges}
+                margin="normal"
+                variant="outlined"
+              />
+            </div>
+            <div className={styles.formContainer}>
+              <TextField
+                label="Early Stage Funding"
+                select
+                className={(styles.inputText, styles.dropDown)}
+                name="early_stage_funding"
+                placeholder="Early Stage Funding"
+                value={grantInfo.early_stage_funding}
+                onChange={handleChanges}
+                margin="normal"
+                variant="outlined"
+              >
+                {funding.map(option => (
+                  <MenuItem key={option.value} value={option.value}>
+                    {option.label}
+                  </MenuItem>
+                ))}
+              </TextField>
+              <TextField
+                // label="Application Due Date"
+                type="date"
+                className={styles.inputText}
+                name="most_recent_application_due_date"
+                // placeholder="Application Due Date"
+                value={grantInfo.most_recent_application_due_date}
+                onChange={handleChanges}
+                helperText="Application Due Date"
+                margin="normal"
+                variant="outlined"
+              />
+              <TextField
+                type="date"
+                className={styles.inputText}
+                name="details_last_updated"
+                value={grantInfo.details_last_updated}
+                onChange={handleChanges}
+                helperText="Details Last Updated"
+                margin="normal"
+                variant="outlined"
+              />
+            </div>
+            <div>
+              <Button
+                type="submit"
+                variant="contained"
+                color="primary"
+                size="large"
+                className={styles.submit}
+              >
+                <span className={styles.label}>Submit</span>
+              </Button>
+            </div>
+          </form>
+        </Grid>
+      </Grid>
+      {/* </Container> */}
+    </div>
 
-    //     <Grid className={styles.bottomBox}>
-    //       <div>
-    //         <form onSubmit={submitGrant}>
-    //           {/* <div className={styles.formContainer}>
-    //             <TextField
-    //               type="date"
-    //               className={styles.inputText}
-    //               name="details_last_updated"
-    //               value={grantInfo.details_last_updated}
-    //               onChange={handleChanges}
-    //               helperText="Details Last Updated"
-    //               margin="normal"
-    //               variant="outlined"
-    //             />
-    //           </div> */}
-    //           <div className={styles.divButton}>
-    //             <Button
-    //               type="submit"
-    //               variant="contained"
-    //               color="primary"
-    //               size="large"
-    //               className={styles.submit}
-    //             >
-    //               <span className={styles.label}>Submit</span>
-    //             </Button>
-    //           </div>
-    //         </form>
-    //       </div>
-    //     </Grid>
-    //   </Grid>
-    //   {/* </Container> */}
-    // </div>
   );
   // return (
   //   <div className={styles.root}>

@@ -58,5 +58,8 @@ export const showcaseStyles = makeStyles(theme => ({
     fontWeight: "500",
     fontFamily: "Roboto",
     color: "#222222"
+  },
+  editIcon: {
+    //
   }
 }));

@@ -21,6 +21,16 @@ import {
 } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
 
+import List from "@material-ui/core/List";
+import Divider from "@material-ui/core/Divider";
+import ListItem from "@material-ui/core/ListItem";
+import ListItemIcon from "@material-ui/core/ListItemIcon";
+import ListItemText from "@material-ui/core/ListItemText";
+import InboxIcon from "@material-ui/icons/MoveToInbox";
+import MailIcon from "@material-ui/icons/Mail";
+import SwipeableDrawer from "@material-ui/core/SwipeableDrawer";
+import SearchBar from "./SearchBar";
+
 
 export const NavBar = props => {
   const {
@@ -162,9 +172,9 @@ export const NavBar = props => {
                 <Button
                   className={classes.navButton}
                   color="inherit"
-                  onClick={() =>
-                    console.log("Why you gotta push me like that?")
-                  }
+                  // onClick={() =>
+                  //   console.log("Why you gotta push me like that?")
+                  // }
                 >
                   Admin
                 </Button>

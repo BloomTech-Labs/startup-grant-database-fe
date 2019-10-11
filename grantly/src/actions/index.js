@@ -16,6 +16,9 @@ import {
   UPDATE_GRANT_START,
   UPDATE_GRANT_SUCCESS,
   UPDATE_GRANT_FAILURE,
+  DELETE_GRANT_START,
+  DELETE_GRANT_SUCCESS,
+  DELETE_GRANT_FAILURE,
   FILTER_SAVE,
   CHECK_ADMIN,
   SET_USER,
@@ -34,11 +37,11 @@ export const fetchApi = () => dispatch => {
     // .get("http://localhost:5000/api/grants")
     .get(`https://grantly-staging.herokuapp.com/api/grants`)
     .then(response => {
-      console.log("GET response", response);
+      // console.log("GET response", response);
       dispatch({ type: FETCH_SUCCESS, payload: response.data });
     })
     .catch(error => {
-      console.log("GET error", error);
+      // console.log("GET error", error);
       dispatch({ type: FETCH_ERROR });
     });
 };
@@ -47,14 +50,14 @@ export const adminFetchApi = () => dispatch => {
   console.log("Calling admin");
   dispatch({ type: FETCH_START });
   axios
-    // .get(`https://labs16-grantly.herokuapp.com/api/grants/`)
+    // .get(`https://labs16-grantly.herokuapp.com/api/admin/`)
     .get(`https://grantly-staging.herokuapp.com/api/admin`)
     // .get("http://localhost:5000/api/admin")
     .then(response => {
       dispatch({ type: FETCH_SUCCESS, payload: response.data });
     })
     .catch(error => {
-      console.log("GET error", error);
+      // console.log("GET error", error);
       dispatch({ type: FETCH_ERROR });
     });
 };
@@ -89,46 +92,91 @@ export const changeTab = tab => dispatch => {
 export const postGrants = addGrant => dispatch => {
   dispatch({ type: ADD_GRANT_START });
   axios
-    // .post("https://grantly-staging.herokuapp.com/api/grants", addGrant)
+    .post("https://grantly-staging.herokuapp.com/api/grants", addGrant)
     // .post("https://labs16-grantly.herokuapp.com/api/grants/", addGrant)
-    .post("http://localhost:5000/api/grants/", addGrant)
+    // .post("http://localhost:5000/api/grants/", addGrant)
     .then(res => {
-      console.log("RES in postGrants, actions", res);
       dispatch({ type: ADD_GRANT_SUCCESS, payload: res.data });
     })
     .catch(err => {
-      console.log(err.response);
+      // console.log(err.response);
       dispatch({ type: ADD_GRANT_FAILURE });
     });
 };
 
-//Update a Grant
-// export const putGrants = updateGrant => dispatch => {
-//   dispatch({
-//     type: UPDATE_GRANT_START
-//   });
-//   axios
-//     .put(`http://localhost:5000/api/grants/${grantId}`, updateGrant)
-//     .then(res => {
-//       dispatch({ type: UPDATE_GRANT_SUCCESS, payload: res.data });
-//     })
-//     .catch(err => console.log(err.response));
-// };
+// Update a Grant
+export const putGrants = updateGrant => dispatch => {
+  dispatch({
+    type: UPDATE_GRANT_START
+  });
+  axios
+    .put(
+      `https://grantly-staging.herokuapp.com/api/admin/${updateGrant.id}`,
+      updateGrant
+    )
+    // .put(`http://localhost:5000/api/admin/${updateGrant.id}`, updateGrant)
+    .then(res => {
+      axios
+        // .get(`https://labs16-grantly.herokuapp.com/api/grants/`)
+        .get(`https://grantly-staging.herokuapp.com/api/admin`)
+        // .get("http://localhost:5000/api/admin")
+        .then(response => {
+          dispatch({
+            type: UPDATE_GRANT_SUCCESS,
+            payload: [response.data, updateGrant.id]
+          });
+        })
+        .catch(error => {
+          dispatch({ type: UPDATE_GRANT_FAILURE, payload: error });
+        });
+    })
+    .catch(err => {
+      dispatch({ type: UPDATE_GRANT_FAILURE, payload: err });
+    });
+};
+
+// Delete A grant
+
+export const deleteGrants = id => dispatch => {
+  dispatch({
+    type: DELETE_GRANT_START
+  });
+  axios
+    .delete(`https://grantly-staging.herokuapp.com/api/admin/${id}`)
+    // .delete(`http://localhost:5000/api/admin/${id}`)
+    .then(res => {
+      axios
+        // .get(`https://labs16-grantly.herokuapp.com/api/grants/`)
+        .get(`https://grantly-staging.herokuapp.com/api/admin`)
+        // .get("http://localhost:5000/api/admin")
+        .then(response => {
+          dispatch({
+            type: DELETE_GRANT_SUCCESS,
+            payload: response.data
+          });
+        })
+        .catch(error => {
+          dispatch({ type: DELETE_GRANT_FAILURE, payload: error });
+        });
+    })
+    .catch(err => {
+      dispatch({ type: DELETE_GRANT_FAILURE, payload: err });
+    });
+};
 
 //Check if user is admin
 export const checkUser = user => dispatch => {
   dispatch({ type: CHECK_ADMIN });
   const auth = { ...user, auth_id: user.sub };
-  console.log("SENT", JSON.stringify(auth));
+
   axios
-  // .get("http://localhost:5000/user", {
+    // .get("http://localhost:5000/user", {
     .get("https://grantly-staging.herokuapp.com/user", {
       headers: {
         auth_id: auth.auth_id
       }
     })
     .then(res => {
-      console.log("Success! Data sent to Store:", res.data);
       dispatch({ type: SET_USER, payload: res.data });
     })
     .catch(err => {
@@ -136,35 +184,36 @@ export const checkUser = user => dispatch => {
       const newUser = { role: "user", auth_id: auth.auth_id };
       if (err.response.status === 404) {
         axios
-        // .post("http://localhost:5000/user", newUser)
+          // .post("http://localhost:5000/user", newUser)
           .post("https://grantly-staging.herokuapp.com/user", newUser)
           .then(res => {
-            console.log("POst", res);
+            // console.log("POst", res);
             dispatch({ type: SET_USER, payload: res.data });
           })
           .catch(err => {
-            console.log("Oops", err.response);
+            // console.log("Oops", err.response);
           });
       }
 
-      console.log("Error", err.response);
+      // console.log("Error", err.response);
     });
 };
 //
 // Submit a grant suggestion
 
 export const submitSuggestion = suggestion => dispatch => {
-  console.log("submitSuggestion suggestion", suggestion);
+  // console.log("submitSuggestion suggestion", suggestion);
   dispatch({ type: SUBMIT_SUGGESTION_START });
   axios
     .post("https://grantly-staging.herokuapp.com/api/suggestion", suggestion)
+    // .post("http://localhost:5000/api/suggestion", suggestion)
 
     .then(response => {
-      console.log("submitSuggestion response", response);
+      // console.log("submitSuggestion response", response);
       dispatch({ type: SUBMIT_SUGGESTION_SUCCESS, payload: response.data });
     })
     .catch(error => {
-      console.log("submitSuggestion error", error);
+      // console.log("submitSuggestion error", error);
       dispatch({ type: SUBMIT_SUGGESTION_FAILURE });
     });
 };

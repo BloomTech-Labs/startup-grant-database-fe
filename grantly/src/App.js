@@ -28,16 +28,18 @@ function App({ checkUser, currentUser }) {
       checkUser(user);
     }
   }, [user]);
+
   return (
     <Router>
       <ThemeProvider theme={theme}>
         <div className="App">
-          {/* <Route path = "/login" component={LoginForm} /> */}
-          <Route path="/" render={props => <NavBar {...props} role={currentUser.role} />} />
+
+          <NavBar location={window.location.pathname} role={currentUser.role} />
           <Route exact path="/" component={Landing} />
           <Route exact path="/grants" component={Home} />
           <Route path="/form" component={SubmitForm} />
           <Route path="/about" component={About} />
+          
 
           {/* <Route path="/admin" component={Admin} /> */}
           {isAuthenticated && (
