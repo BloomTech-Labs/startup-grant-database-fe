@@ -14,7 +14,7 @@ export const theme = createMuiTheme({
     },
     MuiBox: {
       root: {
-        padding: "0",
+        padding: "0"
       }
     }
   },

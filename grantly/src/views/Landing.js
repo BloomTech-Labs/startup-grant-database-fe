@@ -13,7 +13,6 @@ import { flexbox } from "@material-ui/system";
 
 function Landing(props) {
   const classes = landingStyles();
-
   return (
     <div className={classes.container}>
       {/* <Navbar className={classes.nav} location={props.location.pathname} /> */}

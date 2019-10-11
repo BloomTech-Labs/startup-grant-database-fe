@@ -4,7 +4,7 @@ export const showcaseStyles = makeStyles(theme => ({
   showcaseCard: {
     // position: "fixed",
     textAlign: "left",
-    padding: "50px",
+    padding: "30px",
     // width: "50%",
     borderTop: "#3DB8B3 5px solid",
     minHeight: "100vh",
