@@ -24,7 +24,8 @@ export const SuggestionList = props => {
 };
 
 const mapStateToProps = state => {
-  console.log("DATA IN SHOWCASE", state.grantShowcase)
+
+
   return {
     error: state.error,
     isFetching: state.isFetching,
