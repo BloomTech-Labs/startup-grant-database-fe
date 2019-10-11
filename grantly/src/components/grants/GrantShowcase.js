@@ -80,7 +80,13 @@ export const GrantShowcase = props => {
 
   return (
     <div>
-      <Card className={showcase.showcaseCard}>
+      <Card
+        className={
+          props.inAdmin
+            ? `${showcase.showcaseCard} ${showcase.inAdmin}`
+            : showcase.showcaseCard
+        }
+      >
         {/* ================= Top container ================= */}
         <div>
           <Grid
@@ -109,16 +115,16 @@ export const GrantShowcase = props => {
               </Grid>
             </Grid>
             <Grid>
-            <Grid item>
-              {props.inAdmin ? (
-                <EditGrantDialog
-                  className={showcase.editIcon}
-                  grant={props.grant}
-                />
-              ) : (
-                <BookmarkBorderOutlinedIcon className={showcase.bookmark} />
-              )}
-            </Grid>
+              <Grid item>
+                {props.inAdmin ? (
+                  <EditGrantDialog
+                    className={showcase.editIcon}
+                    grant={props.grant}
+                  />
+                ) : (
+                  <BookmarkBorderOutlinedIcon className={showcase.bookmark} />
+                )}
+              </Grid>
             </Grid>
           </Grid>
 
@@ -133,27 +139,26 @@ export const GrantShowcase = props => {
             <a href={props.grant.website} target="_blank">
               {props.grant.website}
             </a>
-         
 
-          <Grid item>
-            <a href={props.grant.website} target="_blank">
-              <Button
-                className={showcase.applyButton}
-                variant="contained"
-                color="primary"
-              >
-                Apply to Grant
-              </Button>
-            </a>
+            <Grid item>
+              <a href={props.grant.website} target="_blank">
+                <Button
+                  className={showcase.applyButton}
+                  variant="contained"
+                  color="primary"
+                >
+                  Apply to Grant
+                </Button>
+              </a>
 
-            {/* <Button
+              {/* <Button
             className={showcase.applyButton}
             variant="contained"
             color="primary"
             >
             Edit Grant
           </Button> */}
-          </Grid>
+            </Grid>
           </Grid>
         </div>
         {/* ================= Main content ================= */}
@@ -206,7 +211,7 @@ export const GrantShowcase = props => {
           alignItems="center"
           className={showcase.topContent}
         >
-          <Grid item>
+          {/* <Grid item>
             <Button
               className={showcase.applyButton}
               variant="contained"
@@ -214,13 +219,14 @@ export const GrantShowcase = props => {
             >
               Apply to Grant
             </Button>
-          </Grid>
-          <Grid item>
-            <SuggestionDialog id={props.grant.id} />
-          </Grid>
+          </Grid> */}
+          {!props.inAdmin && (
+            <Grid item>
+              <SuggestionDialog id={props.grant.id} />
+            </Grid>
+          )}
         </Grid>
       </Card>
-
     </div>
   );
 };

@@ -49,5 +49,21 @@ export const adminStyles = makeStyles(theme => ({
     boxShadow:
       "0px 1px 0px 0px #3DB8B3, 0px 1px 0px 0px #3DB8B3, 0px 2px 0px -1px #3DB8B3"
   },
-  toolbar: theme.mixins.toolbar
+  toolbar: theme.mixins.toolbar,
+  approve: {
+    color: "#fff"
+  },
+  adminActions: {
+    fontFamily: "Nunito Sans",
+    fontWeight: "500",
+
+  },
+  buttons: {
+    textTransform: "capitalize",
+    fontSize: "1.2rem",
+    letterSpacing: "1px",
+    padding: "5px 3rem",
+    fontFamily: "Nunito Sans"
+
+  }
 }));
