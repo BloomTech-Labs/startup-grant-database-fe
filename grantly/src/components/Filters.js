@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { useStylesGrants, useStylesLanding } from "../styles/filterStyles";
+import {
+  useStylesGrants,
+  useStylesLanding,
+  useStylesMobile
+} from "../styles/filterStyles";
 import Checkbox from "@material-ui/core/Checkbox";
-import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
+import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import FormControl from "@material-ui/core/FormControl";
 import FormGroup from "@material-ui/core/FormGroup";
@@ -13,11 +17,19 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { filterGrants, saveFilters } from "../actions/index";
 
-const Filters = ({ saveFilters, filterGrants, savedFilters, location }) => {
+const Filters = ({
+  saveFilters,
+  filterGrants,
+  savedFilters,
+  location,
+  inAdmin,
+  mobile
+}) => {
   const [filters, setFilters] = useState({
     amount: [],
     geographic_region: [],
-    domain_areas: []
+    domain_areas: [],
+    admin_filters: []
   });
   const [open, setOpen] = useState(false);
 
@@ -25,7 +37,6 @@ const Filters = ({ saveFilters, filterGrants, savedFilters, location }) => {
     setOpen(true);
   };
 
- 
   //Makes sure that the current state is being sent to the action creator
   useEffect(() => {
     saveFilters(filters);
@@ -45,7 +56,8 @@ const Filters = ({ saveFilters, filterGrants, savedFilters, location }) => {
       "Africa"
     ],
     amount: ["Under $1,000", "$1,000-$5,000", "$5,000-$10,000", "$10,000+"],
-    domain_areas: ["Tech", "Agriculture", "Social", "Energy"]
+    domain_areas: ["Tech", "Agriculture", "Social", "Energy"],
+    admin_filters: ["New", "Expired", "Reported", "Suggestions"]
   };
 
   const handleChanges = (type, value) => {
@@ -69,8 +81,18 @@ const Filters = ({ saveFilters, filterGrants, savedFilters, location }) => {
   // Logic to determine styles to use depending on current location of component -PJ
   const grantStyles = useStylesGrants();
   const landingStyles = useStylesLanding();
+  const mobileStyles = useStylesMobile();
   let classes;
-  location === "/grants" ? (classes = grantStyles) : (classes = landingStyles);
+  if (mobile) {
+    classes = mobileStyles;
+  } else if (location === "/grants" || location === "/admin") {
+    classes = grantStyles;
+  } else {
+    classes = landingStyles;
+  }
+  // location === "/grants" || location === "/admin"
+  //   ? (classes = grantStyles)
+  //   : (classes = landingStyles);
 
   return (
     <Card className={classes.card}>
@@ -80,6 +102,32 @@ const Filters = ({ saveFilters, filterGrants, savedFilters, location }) => {
           : "Filter grants by:"}
       </Typography>
       <FormGroup className={classes.filterCard}>
+        {inAdmin && (
+          <FormControl className={classes.set} component="fieldset">
+            <FormLabel className={classes.label} component="legend">
+              View grant by
+            </FormLabel>
+            {grantFilters.admin_filters.map(name => {
+              return (
+                <FormControlLabel
+                  control={
+                    <Checkbox
+                      checked={savedFilters.admin_filters.includes(
+                        name.toLowerCase()
+                      )}
+                      value={name}
+                      color={grantFilters.color}
+                      onClick={() => handleChanges("admin_filters", name)}
+                    />
+                  }
+                  key={name}
+                  label={name}
+                />
+              );
+            })}
+          </FormControl>
+        )}
+
         <FormControl className={classes.set} component="fieldset">
           <FormLabel className={classes.label} component="legend">
             Grant Amount
@@ -87,6 +135,7 @@ const Filters = ({ saveFilters, filterGrants, savedFilters, location }) => {
           {grantFilters.amount.map(name => {
             return (
               <FormControlLabel
+              className={classes.mobileSet}
                 control={
                   <Checkbox
                     checked={savedFilters.amount.includes(name.toLowerCase())}

@@ -15,7 +15,7 @@ export const useStylesGrants = makeStyles(theme => ({
       height: "initial"
     }
   },
-  arrow: {
+  filterIcon: {
     position: "fixed",
     right: "16.5%",
     zIndex: "2000",
@@ -27,7 +27,9 @@ export const useStylesGrants = makeStyles(theme => ({
   filterCard: {
     display: "block",
     alignSelf: "flex-end",
-    margin: "0 auto"
+    margin: "0 auto",
+    textAlign: "left",
+    padding: "0 10px"
   },
   title: {
     fontWeight: "bold",
@@ -44,7 +46,6 @@ export const useStylesGrants = makeStyles(theme => ({
     // fontWeight: "bold"
   },
   set: {
-    width: "60%",
     alignSelf: "center",
     margin: ".8em"
   },
@@ -163,5 +164,31 @@ export const useStylesLanding = makeStyles(theme => ({
         marginBottom: "20px"
       }
     }
+  }
+}));
+
+export const useStylesMobile = makeStyles(theme => ({
+  filterCard: {
+    display: "flex",
+    padding: "10px",
+    flexWrap: "nowrap",
+    flexDirection: "column",
+    justifyContent: "space-between",
+  },
+  mobileSet: {
+    display: "inline-block",
+    margin: "0",
+    justifyContent: "space-between",
+    flexWrap: "no-wrap",
+  },
+  set: {
+    display: "flex",
+    flexDirection: "row",
+  },
+  label: {
+    display: "inline-block",
+  },
+  landingButton: {
+    display: "none"
   }
 }));

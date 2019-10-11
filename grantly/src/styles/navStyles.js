@@ -1,6 +1,16 @@
 import { makeStyles } from "@material-ui/core/styles";
 
 export const navStyles = makeStyles(theme => ({
+  logo: {
+    display: "flex",
+    alignItems: "center",
+  },
+  siteMap: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+
+  },
   navButton: {
     marginRight: theme.spacing(3),
     color: "#000",
@@ -73,5 +83,6 @@ export const navStyles = makeStyles(theme => ({
     margin: "1em auto",
     padding: ".5em",
     color: "#696969",
-  }
+  },
+  
 }));
