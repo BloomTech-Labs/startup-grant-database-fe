@@ -64,8 +64,6 @@ const GrantDemo = props => {
             placeholder="Early Stage Funding"
             value={props.grantInfo.early_stage_funding}
             onChange={props.handleChanges}
-            // margin="normal"
-            // variant="outlined"
           >
             {funding.map(option => (
               <MenuItem key={option.value} value={option.value}>
