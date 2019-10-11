@@ -37,5 +37,5 @@ const AppWithProvider = (
     </Provider>
   </Auth0Provider>
 );
-console.log(window.location.origin);
+// console.log(window.location.origin);
 ReactDOM.render(AppWithProvider, document.getElementById("root"));

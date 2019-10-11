@@ -27,8 +27,8 @@ export const GrantList = props => {
       props.fetchApi();
     }
 
-    console.log("Grants", props.data);
-    console.log("Use effect", props);
+    // console.log("Grants", props.data);
+    // console.log("Use effect", props);
   }, []);
 
   if (props.isFetching) {

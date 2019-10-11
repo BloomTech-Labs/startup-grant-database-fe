@@ -49,7 +49,6 @@ export const rooterReducer = (state = initialState, { type, payload }) => {
       };
     }
     case SET_USER: {
-      console.log("reducer", payload);
       return {
         ...state,
         currentUser: payload
@@ -176,11 +175,10 @@ export const rooterReducer = (state = initialState, { type, payload }) => {
         error: ""
       };
     case UPDATE_GRANT_SUCCESS:
-      console.log("UPDATE_GRANT PAYLOAD", payload);
       let [showCase] = payload[0].filter(grant => {
         return grant.id === payload[1];
       });
-      console.log("TEST SHOWCASE", showCase);
+
       return {
         ...state,
         isFetching: false,

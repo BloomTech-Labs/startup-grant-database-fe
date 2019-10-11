@@ -30,23 +30,24 @@ const funding = [
 const formattedGrantObj = props => {
   return {
     id: props.grant.id,
-    competition_name: props.grant.competition_name,
-    type: props.grant.type,
-    area_focus: props.grant.area_focus,
-    sponsoring_entity: props.grant.sponsoring_entity,
-    website: props.grant.website,
-    most_recent_application_due_date: moment(
-      props.grant.most_recent_application_due_date
-    ).format("YYYY-MM-DD"),
-    amount: props.grant.amount,
-    amount_notes: props.grant.amount_notes,
-    geographic_region: props.grant.geographic_region,
-    domain_areas: props.grant.domain_areas,
+    competition_name: props.grant.competition_name || "",
+    type: props.grant.type || "",
+    area_focus: props.grant.area_focus || "",
+    sponsoring_entity: props.grant.sponsoring_entity || "",
+    website: props.grant.website || "",
+    most_recent_application_due_date:
+      moment(props.grant.most_recent_application_due_date).format(
+        "YYYY-MM-DD"
+      ) || "",
+    amount: props.grant.amount || "",
+    amount_notes: props.grant.amount_notes || "",
+    geographic_region: props.grant.geographic_region || "",
+    domain_areas: props.grant.domain_areas || "",
     target_entrepreneur_demographic:
-      props.grant.target_entrepreneur_demographic,
-    notes: props.grant.notes,
+      props.grant.target_entrepreneur_demographic || "",
+    notes: props.grant.notes || "",
     early_stage_funding: props.grant.early_stage_funding,
-    details_last_updated: moment().format("YYYY-MM-DD")
+    details_last_updated: props.grant.details_last_updated
   };
 };
 
@@ -64,7 +65,10 @@ const GrantForm = props => {
 
   const editGrant = event => {
     event.preventDefault();
-    props.putGrants({ ...grantInfo });
+    props.putGrants({
+      ...grantInfo,
+      details_last_updated: moment().format("YYYY-MM-DD")
+    });
     props.handleClose();
   };
 
@@ -255,16 +259,7 @@ const GrantForm = props => {
                 helperText="Application Due Date"
                 margin="normal"
                 variant="outlined"
-              />
-              <TextField
-                type="date"
-                className={styles.inputText}
-                name="details_last_updated"
-                value={grantInfo.details_last_updated}
-                onChange={handleChanges}
-                helperText="Details Last Updated"
-                margin="normal"
-                variant="outlined"
+                required
               />
             </div>
             <div>
