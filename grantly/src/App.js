@@ -6,7 +6,6 @@ import { checkUser } from "./actions/index";
 import { useAuth0 } from "./react-auth0-wrapper";
 
 // Objects
-
 import SubmitForm from "./components/SubmitForm";
 import Home from "./views/Home";
 import Admin from "./views/Admin";
@@ -28,6 +27,7 @@ function App({ checkUser, currentUser }) {
       checkUser(user);
     }
   }, [user]);
+
   return (
     <Router>
       <ThemeProvider theme={theme}>

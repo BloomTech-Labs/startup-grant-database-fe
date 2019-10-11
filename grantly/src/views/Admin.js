@@ -22,11 +22,7 @@ const Admin = props => {
   //   console.log("toggle");
   //   if (
   //     event &&
-  //     event.type === "keydown" &&S
   //     (event.key === "Tab" || event.key === "Shift")
-  //   ) {
-  //     return;
-  //   }
 
   //   setIsOpen(!isOpen);
   // };
@@ -38,21 +34,17 @@ const Admin = props => {
 
   return (
     <div>
-      {/* <Navbar location={props.location.pathname} /> */}
-
       <Grid
         container
         direction="row"
         justify="space-between"
         className={classes.gridContainer}
       >
-        <Grid item xs={6} md={3}   className={classes.grantList}>
-          <GrantList inAdmin={true} />
+        <Grid item xs={6} md={3} className={classes.grantList} >
+          <GrantList inAdmin={true} history={props.history} />
         </Grid>
         <Grid item xs={6} className={classes.gridItem}>
-          <GrantShowcase />
-          
-          <SuggestionList />
+          <GrantShowcase inAdmin={true} history={props.history} />
         </Grid>
         <Grid item xs={2}>
           <TuneIcon

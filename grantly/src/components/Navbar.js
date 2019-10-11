@@ -160,9 +160,9 @@ export const NavBar = props => {
                 <Button
                   className={classes.navButton}
                   color="inherit"
-                  onClick={() =>
-                    console.log("Why you gotta push me like that?")
-                  }
+                  // onClick={() =>
+                  //   console.log("Why you gotta push me like that?")
+                  // }
                 >
                   Admin
                 </Button>

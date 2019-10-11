@@ -24,3 +24,11 @@ export const dialogStyles = makeStyles(theme => ({
     paddingLeft: 50
   }
 }));
+
+export const editGrantStyles = makeStyles(theme => ({
+  editIcon: {},
+  editButton: {
+    alignSelf: "flex-start",
+    minWidth: "24px"
+  }
+}));

@@ -1,21 +1,20 @@
 //Dependencies
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import Media from "react-media";
-import { postGrants, fetchApi } from "../../actions/index";
+import { putGrants, deleteGrants, adminFetchApi } from "../actions/index";
+import moment from "moment";
 
 //Objects
-import formStyles from "../grants/styles/FormStyles";
+import formStyles from "../styles/FormStyles";
 import {
   TextField,
   MenuItem,
   Button,
-  Grid,
-  Container,
-  Link
+  Grid
+  // Container,
+  // Link
 } from "@material-ui/core";
-import Admin from "../../views/Landing";
-import NavBar from "../Navbar";
+// import Admin from "../views/Landing";
 
 const funding = [
   {
@@ -27,24 +26,37 @@ const funding = [
     label: "no"
   }
 ];
+const formattedGrantObj = props => {
+  return {
+    id: props.grant.id,
+    competition_name: props.grant.competition_name || "",
+    type: props.grant.type || "",
+    area_focus: props.grant.area_focus || "",
+    sponsoring_entity: props.grant.sponsoring_entity || "",
+    website: props.grant.website || "",
+    most_recent_application_due_date:
+      moment(props.grant.most_recent_application_due_date).format(
+        "YYYY-MM-DD"
+      ) === "Invalid date"
+        ? undefined
+        : moment(props.grant.most_recent_application_due_date).format(
+            "YYYY-MM-DD"
+          ),
+    amount: props.grant.amount || "",
+    amount_notes: props.grant.amount_notes || "",
+    geographic_region: props.grant.geographic_region || "",
+    domain_areas: props.grant.domain_areas || "",
+    target_entrepreneur_demographic:
+      props.grant.target_entrepreneur_demographic || "",
+    notes: props.grant.notes || "",
+    early_stage_funding: props.grant.early_stage_funding,
+    details_last_updated: props.grant.details_last_updated
+  };
+};
 
 const GrantForm = props => {
-  const [grantInfo, setGrantInfo] = useState({
-    competition_name: "",
-    type: "",
-    area_focus: "",
-    sponsoring_entity: "",
-    website: "",
-    most_recent_application_due_date: "",
-    amount: "",
-    amount_notes: "",
-    geographic_region: "",
-    domain_areas: "",
-    target_entrepreneur_demographic: "",
-    notes: "",
-    early_stage_funding: "",
-    details_last_updated: ""
-  });
+  // Set initial state of form
+  const [grantInfo, setGrantInfo] = useState(formattedGrantObj(props));
 
   const handleChanges = event => {
     event.preventDefault();
@@ -54,42 +66,25 @@ const GrantForm = props => {
     });
   };
 
-  const submitGrant = event => {
-    console.log("SubmitForm.js submitGrant", event);
+  const editGrant = event => {
     event.preventDefault();
-    props.postGrants({ ...grantInfo });
-    setGrantInfo({
-      competition_name: "",
-      type: "",
-      area_focus: "",
-      sponsoring_entity: "",
-      website: "",
-      most_recent_application_due_date: "",
-      amount: "",
-      amount_notes: "",
-      geographic_region: "",
-      domain_areas: "",
-      target_entrepreneur_demographic: "",
-      notes: "",
-      early_stage_funding: "",
-      details_last_updated: ""
+    props.putGrants({
+      ...grantInfo,
+      details_last_updated: moment().format("YYYY-MM-DD")
     });
-    setTimeout(() => {
-      props.fetchApi();
-      props.history.push("/grants");
-    }, 2000);
+    props.handleClose();
   };
 
+  const removeGrant = event => {
+    event.preventDefault();
+    // console.log("GRANT ID IN STATE", grantInfo.id);
+    props.deleteGrants(grantInfo.id);
+    props.handleClose();
+  };
   const styles = formStyles();
 
-  console.log(props);
   return (
     <div>
-      {/* <Container fixed> */}
-      <Media query="(max-width:850px)">
-        {matches => (matches ? null : <NavBar />)}
-      </Media>
-      {/* <h1>Submit a New Grant to Founder Grants</h1> */}
       <Grid
         className={styles.grid}
         container
@@ -97,20 +92,8 @@ const GrantForm = props => {
         // justify="center"
         alignItems="center"
       >
-        {/* <Grid item className={styles.leftBox} sm={12} md={5}> */}
-        <Grid sm={12} md={4}>
-          {/* <div> */}
-          <div className={styles.leftBox}>
-            <h1>Submit a New Grant to Founder Grants</h1>
-            <p>
-              Please fill out all of the form fields on this page regarding the
-              grant you are submitting. If you are unsure of anything please
-              write “N/A” Thank you!
-            </p>
-          </div>
-        </Grid>
-        <Grid item sm={12} md={8}>
-          <form className={styles.form} onSubmit={submitGrant}>
+        <Grid item sm={12} md={12}>
+          <form className={styles.form}>
             <div className={styles.formContainer}>
               <TextField
                 // id="outlined-name"
@@ -279,42 +262,49 @@ const GrantForm = props => {
                 helperText="Application Due Date"
                 margin="normal"
                 variant="outlined"
-              />
-              <TextField
-                type="date"
-                className={styles.inputText}
-                name="details_last_updated"
-                value={grantInfo.details_last_updated}
-                onChange={handleChanges}
-                helperText="Details Last Updated"
-                margin="normal"
-                variant="outlined"
+                required
               />
             </div>
             <div>
               <Button
-                type="submit"
+                className={styles.adminButtons}
+                onClick={props.handleClose}
                 variant="outlined"
                 color="primary"
                 size="large"
               >
-                Submit
+                Cancel
+              </Button>
+              <Button
+                className={styles.adminButtons}
+                onClick={editGrant}
+                variant="outlined"
+                color="primary"
+                size="large"
+              >
+                Save Changes
+              </Button>
+              <Button
+                className={styles.adminButtons}
+                onClick={removeGrant}
+                variant="outlined"
+                size="large"
+              >
+                Delete
               </Button>
             </div>
           </form>
         </Grid>
       </Grid>
-      {/* </Container> */}
     </div>
   );
 };
-const mapStateToProps = ({ grantData, isFetching, error }) => ({
-  grantData,
+const mapStateToProps = ({ isFetching, error }) => ({
   isFetching,
   error
 });
 
 export default connect(
   mapStateToProps,
-  { postGrants, fetchApi }
+  { putGrants, deleteGrants, adminFetchApi }
 )(GrantForm);

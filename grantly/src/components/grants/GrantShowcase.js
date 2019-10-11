@@ -28,6 +28,7 @@ import SuggestionDialog from "./dialogs/SuggestionDialog";
 import ExpansionPanel from "@material-ui/core/ExpansionPanel";
 import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
 import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
+import EditGrantDialog from "./dialogs/EditGrantDialog";
 
 // =========== STYLES ===========
 import { showcaseStyles } from "../../styles/grantShowcaseStyles";
@@ -54,10 +55,9 @@ export const GrantShowcase = props => {
   //   setOpen(false);
   // };
 
-  console.log("GrantShowcase props", props);
-  function formatNumbers(num) {
-    return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-  }
+  // function formatNumbers(num) {
+  //   return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  // }
 
   const deadline = props.grant.most_recent_application_due_date ? (
     <Moment format={"MMMM Do YYYY"}>
@@ -129,6 +129,17 @@ export const GrantShowcase = props => {
             <a href={props.grant.website} target="_blank">
               {props.grant.website}
             </a>
+          <Grid>
+            <Grid item>
+              {props.inAdmin ? (
+                <EditGrantDialog
+                  className={showcase.editIcon}
+                  grant={props.grant}
+                />
+              ) : (
+                <BookmarkBorderOutlinedIcon className={showcase.bookmark} />
+              )}
+            </Grid>
           </Grid>
 
           <Grid item>
@@ -149,6 +160,7 @@ export const GrantShowcase = props => {
             >
             Edit Grant
           </Button> */}
+          </Grid>
           </Grid>
         </div>
         {/* ================= Main content ================= */}

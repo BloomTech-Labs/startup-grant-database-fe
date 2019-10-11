@@ -81,9 +81,10 @@ export const useStylesGrants = makeStyles(theme => ({
     // fontWeight: "bold"
   },
   set: {
-    width: "60%",
+    width: "70%",
     alignSelf: "center",
-    margin: ".8em"
+    margin: ".8em",
+
   },
   landingButton: {
     display: "none"
