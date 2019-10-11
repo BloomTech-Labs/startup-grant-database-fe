@@ -107,6 +107,7 @@ export const postGrants = addGrant => dispatch => {
 
 // Update a Grant
 export const putGrants = updateGrant => dispatch => {
+  console.log("Put", updateGrant)
   dispatch({
     type: UPDATE_GRANT_START
   });

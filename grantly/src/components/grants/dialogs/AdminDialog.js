@@ -15,7 +15,7 @@ import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
 
 import { adminStyles } from "../../../styles/adminStyles";
 
-import { deleteSuggestion, adminFetchApi } from "../../../actions/index";
+import { putGrants } from "../../../actions/index";
 
 export const AdminDialog = props => {
   const styles = adminStyles();
@@ -26,11 +26,8 @@ export const AdminDialog = props => {
     setExpanded(!expanded);
   };
 
-  const handleSubmit = () => {
-    props.deleteSuggestion(props.request.id);
-    setTimeout(() => {
-      props.adminFetchApi();
-    }, 500);
+  const approveGrant = () => {
+    props.putGrants({ ...props.grant, is_reviewed: true });
   };
   if (props.isFetching) {
     return <Loader type="Triangle" color="#3DB8B3" height="100" width="100" />;
@@ -61,6 +58,7 @@ export const AdminDialog = props => {
                 color="primary"
                 size="large"
                 className={`${styles.approve} ${styles.buttons}`}
+                onClick={approveGrant}
               >
                 <CheckIcon />
                 Approve
@@ -82,5 +80,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { deleteSuggestion, adminFetchApi }
+  {putGrants}
 )(AdminDialog);
