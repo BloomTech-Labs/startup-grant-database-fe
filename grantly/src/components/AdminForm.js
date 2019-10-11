@@ -38,7 +38,11 @@ const formattedGrantObj = props => {
     most_recent_application_due_date:
       moment(props.grant.most_recent_application_due_date).format(
         "YYYY-MM-DD"
-      ) || "",
+      ) === "Invalid date"
+        ? undefined
+        : moment(props.grant.most_recent_application_due_date).format(
+            "YYYY-MM-DD"
+          ),
     amount: props.grant.amount || "",
     amount_notes: props.grant.amount_notes || "",
     geographic_region: props.grant.geographic_region || "",
