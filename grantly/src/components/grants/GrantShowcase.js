@@ -25,10 +25,13 @@ import LanguageIcon from "@material-ui/icons/Language";
 // import BookmarkIcon from "@material-ui/icons/Bookmark";
 import Typography from "@material-ui/core/Typography";
 import SuggestionDialog from "./dialogs/SuggestionDialog";
+
+import EditGrantDialog from "./dialogs/EditGrantDialog";
+
 import ExpansionPanel from "@material-ui/core/ExpansionPanel";
 import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
 import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
-import EditGrantDialog from "./dialogs/EditGrantDialog";
+
 
 // =========== STYLES ===========
 import { showcaseStyles } from "../../styles/grantShowcaseStyles";
@@ -38,6 +41,7 @@ export const GrantShowcase = props => {
   const showcase = showcaseStyles();
   const suggestion = suggestionStyles();
 
+
   const [open, setOpen] = React.useState(false);
   const [expanded, setExpanded] = React.useState(false);
 
@@ -45,11 +49,13 @@ export const GrantShowcase = props => {
     setExpanded(!expanded);
   };
 
+
   // ===== not needed? =====
 
   // const handleOpen = () => {
   //   setOpen(true);
   // };
+
 
   // const handleClose = () => {
   //   setOpen(false);
@@ -114,6 +120,7 @@ export const GrantShowcase = props => {
                 </Typography>
               </Grid>
             </Grid>
+
             <Grid>
               <Grid item>
                 {props.inAdmin ? (
@@ -127,6 +134,7 @@ export const GrantShowcase = props => {
               </Grid>
             </Grid>
           </Grid>
+
 
           <Grid
             container
@@ -162,6 +170,7 @@ export const GrantShowcase = props => {
           </Grid>
         </div>
         {/* ================= Main content ================= */}
+
 
         <Grid
           container
@@ -203,6 +212,7 @@ export const GrantShowcase = props => {
             <span className={showcase.showcaseSpan}>Notes: </span>
             {props.grant.notes}
           </Grid>
+
         </Grid>
         <Grid
           container
