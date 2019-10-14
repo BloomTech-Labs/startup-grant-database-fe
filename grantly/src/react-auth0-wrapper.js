@@ -1,12 +1,53 @@
-// src/react-auth0-wrapper.js
 import React, { useState, useEffect, useContext } from "react";
 import createAuth0Client from "@auth0/auth0-spa-js";
+import Auth0Lock from "auth0-lock";
 
 const DEFAULT_REDIRECT_CALLBACK = () =>
   window.history.replaceState({}, document.title, window.location.pathname);
 
 export const Auth0Context = React.createContext();
 export const useAuth0 = () => useContext(Auth0Context);
+
+const clientId = "F7IQ07DmUMWVnqKE0D34lJx67vAd3a2e";
+const domain = "founder-grants.auth0.com";
+const options = {
+  languageDictionary: {
+    emailInputPlaceholder: "Enter your email",
+    passwordInputPlaceholder: "Enter your password",
+
+    title: "Welcome"
+  },
+  popupOptions: { width: 300, height: 400, left: 200, top: 300 },
+
+  theme: {
+    primaryColor: "#3DB8B3",
+
+    authButtons: {
+      testConnection: {
+        displayName: "Test Conn",
+        primaryColor: "#3DB8B3",
+        foregroundColor: "#000000",
+        icon: "http://example.com/icon.png"
+      },
+      testConnection2: {
+        primaryColor: "#000000",
+        foregroundColor: "#ffffff"
+      }
+    }
+  },
+  additionalSignUpFields: [
+    {
+      name: "First_name",
+      placeholder: "Enter your first name"
+    },
+    {
+      name: "Last_name",
+      placeholder: "Enter your last name"
+    }
+  ]
+};
+export const lock = new Auth0Lock(clientId, domain, options);
+
 export const Auth0Provider = ({
   children,
   onRedirectCallback = DEFAULT_REDIRECT_CALLBACK,
@@ -36,11 +77,9 @@ export const Auth0Provider = ({
         const user = await auth0FromHook.getUser();
         setUser(user);
       }
-
       setLoading(false);
     };
     initAuth0();
-    // eslint-disable-next-line
   }, []);
 
   const loginWithPopup = async (params = {}) => {
@@ -65,6 +104,23 @@ export const Auth0Provider = ({
     setIsAuthenticated(true);
     setUser(user);
   };
+
+  lock.on("authenticated", function(authResult) {
+    lock.getUserInfo(authResult.accessToken, function(error, profile) {
+      if (error) {
+        // Handle error
+        return;
+      }
+
+      localStorage.setItem("accessToken", authResult.accessToken);
+      localStorage.setItem("profile", JSON.stringify(profile));
+      setIsAuthenticated(true);
+      setUser(JSON.stringify(profile));
+
+      return "Success";
+      // Update DOM
+    });
+  });
   return (
     <Auth0Context.Provider
       value={{

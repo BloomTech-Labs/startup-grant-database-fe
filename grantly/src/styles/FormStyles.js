@@ -34,7 +34,6 @@ const formStyles = makeStyles(theme => ({
     },
     "& p": {
       fontFamily: "Roboto",
-      color: "white",
       fontSize: "1.3rem",
       fontWeight: 200,
       lineHeight: 1.5
@@ -60,7 +59,17 @@ const formStyles = makeStyles(theme => ({
     color: "white"
   },
   dropDown: {
-    width: 200
+    width: 200,
+    color: "#fff",
+    [theme.breakpoints.down("sm")]: {
+      width: "90%"
+    }
+  },
+  label: {
+    color: "#fff"
+  },
+  adminButtons: {
+    margin: "30px"
   }
 }));
 

@@ -1,35 +1,32 @@
 import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import {homeStyles} from "../styles/homeStyles";
+import { homeStyles } from "../styles/homeStyles";
 import GrantList from "../components/grants/GrantList";
 import Filters from "../components/Filters";
 import GrantShowcase from "../components/grants/GrantShowcase";
 import MobileTabs from "../components/mobile/MobileTabs";
 import SearchBar from "../components/SearchBar";
 import Grid from "@material-ui/core/Grid";
+import TuneIcon from "@material-ui/icons/Tune";
 import Navbar from "../components/Navbar";
 import Media from "react-media";
 import SwipeableDrawer from "@material-ui/core/SwipeableDrawer";
 import MobileFilters from "../components/mobile/MobileFilters";
 
-
+// delete this sometime
 
 const Home = props => {
   const [isOpen, setIsOpen] = useState(false);
-  const toggleDrawer = open => event => {
-    console.log("toggle")
-    if (
-      event &&
-      event.type === "keydown" &&
-      (event.key === "Tab" || event.key === "Shift")
-    ) {
-      return;
-    }
-
+  //Show filters
+  const [filterOpen, setFilterOpen] = useState();
+  const toggleDrawer = () => {
     setIsOpen(!isOpen);
   };
-  const classes = homeStyles();
 
+  const toggleFilters = () => {
+    setFilterOpen(!filterOpen);
+  };
+  const classes = homeStyles();
   return (
     <>
       {/* <Navbar location={props.location.pathname} /> */}
@@ -38,15 +35,15 @@ const Home = props => {
         {matches =>
           matches ? (
             <>
-              <MobileTabs /> 
-              <MobileFilters />
+              <MobileTabs />
+              <MobileFilters toggleDrawer={toggleDrawer} />
               <SwipeableDrawer
                 anchor="bottom"
                 open={isOpen}
-                onClose={toggleDrawer(false)}
-                onOpen={toggleDrawer(true)}
+                onClose={() => toggleDrawer()}
+                onOpen={() => toggleDrawer()}
               >
-                <Filters location={props.location.pathname} />
+                <Filters location={props.location.pathname} mobile={true}/>
               </SwipeableDrawer>
             </>
           ) : (
@@ -66,19 +63,32 @@ const Home = props => {
                   // style={{ padding: "30px 0 0 30px" }}
                 >
                   {/* <div className={classes.scrollBox}> */}
-                  <GrantList />
+                  <GrantList inAdmin={false} />
                   {/* </div> */}
                 </Grid>
                 <Grid
                   item
                   xs={6}
                   className={classes.gridItem}
-                  style={{ padding: "30px 30px 0 30px" }}
+                  // style={{ padding: "30px 30px 0 30px" }}
                 >
                   <GrantShowcase />
                 </Grid>
-                <Grid item xs={2}>
-                  <Filters location={props.location.pathname} />
+                <Grid item xs={4} md={2}>
+                  <TuneIcon
+                    className={`${classes.filterIcon} ${filterOpen &&
+                      classes.filterIconSelected}`}
+                    onClick={toggleFilters}
+                  >
+                    Filters
+                  </TuneIcon>
+                  <div
+                    className={`${classes.filters} ${
+                      filterOpen ? classes.showFilters : classes.hideFilters
+                    }`}
+                  >
+                    <Filters location={props.location.pathname} />
+                  </div>
                 </Grid>
               </Grid>
             </div>

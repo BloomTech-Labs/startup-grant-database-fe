@@ -4,11 +4,12 @@ export const showcaseStyles = makeStyles(theme => ({
   showcaseCard: {
     // position: "fixed",
     textAlign: "left",
-    padding: "50px",
+    padding: "30px",
     // width: "50%",
     borderTop: "#3DB8B3 5px solid",
     minHeight: "100vh",
     fontFamily: "adobe-garamond-pro",
+    marginBottom: "1rem",
     [theme.breakpoints.down("sm")]: {
       position: "initial",
       width: "100%",
@@ -39,7 +40,9 @@ export const showcaseStyles = makeStyles(theme => ({
   },
   applyButton: {
     color: "#fff",
-    margin: "20px auto"
+    margin: "20px auto",
+    fontFamily: "Nunito Sans",
+    fontWeight: "600"
   },
   showcase_header: {
     width: "initial"
@@ -55,5 +58,8 @@ export const showcaseStyles = makeStyles(theme => ({
     fontWeight: "500",
     fontFamily: "Roboto",
     color: "#222222"
+  },
+  editIcon: {
+    //
   }
 }));
