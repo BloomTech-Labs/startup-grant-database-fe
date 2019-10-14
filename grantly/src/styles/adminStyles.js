@@ -12,6 +12,12 @@ export const adminStyles = makeStyles(theme => ({
   gridItem: {
     padding: 30
   },
+  grantList: {
+    height: "100vh",
+    overflow: "auto",
+    marginTop: "2em",
+    position: "relative"
+  },
   root: {
     display: "flex"
   },

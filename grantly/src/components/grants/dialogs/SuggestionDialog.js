@@ -8,14 +8,19 @@ import {
   DialogContent,
   DialogContentText,
   DialogTitle,
-  TextField
+  TextField,
+  Grid,
+  Typography
 } from "@material-ui/core";
 import { submitSuggestion } from "../../../actions/index";
 
 const SuggestionDialog = props => {
-  const [suggestion, setSuggestion] = React.useState("");
+  const [suggestion, setSuggestion] = React.useState({
+    subject: "",
+    suggestion: ""
+  });
+
   const [submitValue, setSubmitValue] = React.useState("");
-  console.log("SuggestionDialog suggestion:", suggestion);
   //   console.log("SuggestionDialog props", props);
 
   const [open, setOpen] = React.useState(false);
@@ -32,18 +37,24 @@ const SuggestionDialog = props => {
   };
 
   const handleChanges = name => ({ target: { value } }) => {
-    setSuggestion(value);
+    setSuggestion({
+      ...suggestion,
+      [name]: value
+    });
   };
 
   const handleSubmit = () => {
     const sendObject = {
-      suggestion: suggestion,
-      id: props.id
+      
+      subject: suggestion.subject,
+      suggestion: suggestion.suggestion,
+      grant_id: props.id
     };
-
+    console.log("OBJECT BEING SENT TO ACTION", sendObject)
     props.submitSuggestion(sendObject);
     handleClose();
     setSuggestion("");
+
   };
 
   return (
@@ -57,27 +68,72 @@ const SuggestionDialog = props => {
         Suggest Changes
       </Button>
       <Dialog open={open} onClose={handleClose}>
-        <DialogTitle>Suggest changes</DialogTitle>
+        <Grid
+          container
+          justify="center"
+          direction="column"
+          alignItems="center"
+          className={classes.header}
+        >
+          <Grid item>
+            <DialogTitle className={classes.headerText}>
+              <Typography variant="h5">
+                Submit your suggestion to Founder Grants
+              </Typography>
+            </DialogTitle>
+          </Grid>
+          <Grid item>
+            <DialogContentText className={classes.headerText}>
+              Our admins will review your suggestions and make the appropriate
+              changes
+            </DialogContentText>
+          </Grid>
+        </Grid>
         <DialogContent>
-          <DialogContentText>
-            Please suggest changes in the below dialog
-          </DialogContentText>
           <form>
+            <br />
             <TextField
+              margin="normal"
+              label="subject"
+              onChange={handleChanges("subject")}
+              variant="outlined"
+            />
+            <br />
+            <TextField
+              label="suggestion"
               multiline
               rows="4"
-              value={suggestion}
               onChange={handleChanges("suggestion")}
               margin="normal"
               className={classes.formField}
+              variant="outlined"
             />
             <br />
           </form>
         </DialogContent>
         <DialogActions>
-          <Button color="primary" variant="outlined" onClick={handleSubmit}>
-            Send
-          </Button>
+          <Grid container justify="center">
+            <Grid item>
+              <Button
+                color="secondary"
+                variant="outlined"
+                onClick={handleClose}
+                className={classes.btn}
+              >
+                Cancel
+              </Button>
+            </Grid>
+            <Grid>
+              <Button
+                color="primary"
+                variant="outlined"
+                onClick={handleSubmit}
+                className={classes.btn}
+              >
+                Send
+              </Button>
+            </Grid>
+          </Grid>
         </DialogActions>
       </Dialog>
     </>

@@ -14,7 +14,7 @@ export const theme = createMuiTheme({
     },
     MuiBox: {
       root: {
-        padding: "0",
+        padding: "0"
       }
     }
   },
@@ -22,6 +22,9 @@ export const theme = createMuiTheme({
   palette: {
     primary: {
       main: "#3DB8B3"
+    },
+    secondary: {
+      main: "#F1603A"
     }
   },
   typography: {

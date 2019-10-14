@@ -2,102 +2,74 @@ import { makeStyles } from "@material-ui/core/styles";
 import { height } from "@material-ui/system";
 
 const formStyles = makeStyles(theme => ({
-  grid: {
-    // justifyContent: "space-between",
-    maxWidth: "100%"
-    // height: "80%"
-    // zIndex: 0
-  },
-  form: {
-    display: "flex",
-    flexDirection: "column",
-    margin: "0 auto",
-    height: "70vh",
-    width: "80%",
-    justifyContent: "space-around",
-    [theme.breakpoints.down("sm")]: {
-      height: "initial",
-      justifyContent: "center",
-      width: "90%"
+  layout: {
+    width: "auto",
+    marginLeft: theme.spacing(2),
+    marginRight: theme.spacing(2),
+    [theme.breakpoints.up(600 + theme.spacing(2) * 2)]: {
+      width: 700,
+      marginLeft: "auto",
+      marginRight: "auto"
     }
   },
-  formContainer: {
-    display: "flex",
-    flexWrap: "wrap",
-    justifyContent: "space-between",
-    // justifyContent: "space-evenly"
-    // margin: "10%"
-    // margin: "2rem"
-    [theme.breakpoints.down("sm")]: {
-      justifyContent: "center"
-    }
-  },
-  notes: {
-    width: "50%",
-    [theme.breakpoints.down("sm")]: {
-      width: "90%"
-    }
-  },
-  inputText: {
-    // marginLeft: theme.spacing(1)
-    // marginRight: theme.spacing(1)
+  paper: {
+    marginTop: theme.spacing(3),
+    marginBottom: theme.spacing(3),
 
-    marginLeft: "30px",
-    marginRight: "30px",
-    [theme.breakpoints.down("sm")]: {
-      width: "90%"
+    [theme.breakpoints.up(600 + theme.spacing(3) * 2)]: {
+      marginTop: theme.spacing(6),
+      marginBottom: theme.spacing(6)
     }
   },
-  dense: {
-    // marginTop: theme.spacing(2)
-  },
-  dropDown: {
-    width: 200,
-    [theme.breakpoints.down("sm")]: {
-      width: "90%"
-    }
-  },
-  leftBox: {
-    // background: "primary"
+
+  topBox: {
+    padding: theme.spacing(3),
+
     "& h1": {
       fontSize: "2.8rem",
       fontFamily: "adobe-garamond-pro",
-      fontWeight: "400",
-      margin: "1rem",
-      color: "white",
-      padding: "30px"
+      fontWeight: 400,
+
+      color: "white"
     },
     "& p": {
       fontFamily: "Roboto",
-      color: "white",
       fontSize: "1.3rem",
-      fontWeight: "200",
-      lineHeight: "1.5"
+      fontWeight: 200,
+      lineHeight: 1.5
     },
-    paddingTop: "70px",
-    background: "#3DB8B3",
-    padding: "2rem",
-    paddingTop: "12rem",
-    height: "100vh",
-    [theme.breakpoints.down("sm")]: {
-      height: "30%",
-      background: "#3DB8B3",
-      paddingTop: "3rem",
-      paddingBottom: "3rem",
-      width: "100%"
-    }
+
+    background: "#3DB8B3"
+  },
+  stepper: {
+    padding: theme.spacing(3, 0, 5)
+  },
+  bottomBox: {
+    padding: theme.spacing(2, 6, 1, 2)
   },
   submit: {
     width: "30%",
     height: "4em",
+    color: "white"
+  },
+  back: {
+    width: "30%",
+    height: "4em",
+    border: "1px solid black",
+    color: "white"
+  },
+  dropDown: {
+    width: 200,
     color: "#fff",
     [theme.breakpoints.down("sm")]: {
-      width: "90%",
-       
-     }
+      width: "90%"
+    }
   },
   label: {
     color: "#fff"
+  },
+  adminButtons: {
+    margin: "30px"
   }
 }));
 

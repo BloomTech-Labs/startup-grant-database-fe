@@ -28,8 +28,8 @@ const AppWithProvider = (
   <Auth0Provider
     domain={config.domain}
     client_id={config.clientId}
-    redirect_uri={window.location.origin}
-    audience={config.audience} 
+    redirect_uri={`${window.location.origin}`}
+    audience={config.audience}
     onRedirectCallback={onRedirectCallback}
   >
     <Provider store={store}>
@@ -37,5 +37,5 @@ const AppWithProvider = (
     </Provider>
   </Auth0Provider>
 );
-console.log(window.location.origin);
+// console.log(window.location.origin);
 ReactDOM.render(AppWithProvider, document.getElementById("root"));

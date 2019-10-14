@@ -18,24 +18,15 @@ import MobileFilters from "../components/mobile/MobileFilters";
 const Home = props => {
   const [isOpen, setIsOpen] = useState(false);
   //Show filters
-  const [open, setOpen] = useState();
-  const toggleDrawer = open => event => {
-    if (
-      event &&
-      event.type === "keydown" &&
-      (event.key === "Tab" || event.key === "Shift")
-    ) {
-      return;
-    }
-
+  const [filterOpen, setFilterOpen] = useState();
+  const toggleDrawer = () => {
     setIsOpen(!isOpen);
   };
 
   const toggleFilters = () => {
-    setOpen(!open);
+    setFilterOpen(!filterOpen);
   };
   const classes = homeStyles();
-
   return (
     <>
       {/* <Navbar location={props.location.pathname} /> */}
@@ -49,10 +40,10 @@ const Home = props => {
               <SwipeableDrawer
                 anchor="bottom"
                 open={isOpen}
-                onClose={toggleDrawer(false)}
-                onOpen={toggleDrawer(true)}
+                onClose={() => toggleDrawer()}
+                onOpen={() => toggleDrawer()}
               >
-                <Filters location={props.location.pathname} />
+                <Filters location={props.location.pathname} mobile={true} />
               </SwipeableDrawer>
             </>
           ) : (
@@ -66,7 +57,7 @@ const Home = props => {
               >
                 <Grid
                   item
-                  md={4}
+                  md={3}
                   xs={12}
                   className={classes.grantList}
                   // style={{ padding: "30px 0 0 30px" }}
@@ -84,9 +75,16 @@ const Home = props => {
                   <GrantShowcase />
                 </Grid>
                 <Grid item xs={4} md={2}>
+                  <TuneIcon
+                    className={`${classes.filterIcon} ${filterOpen &&
+                      classes.filterIconSelected}`}
+                    onClick={toggleFilters}
+                  >
+                    Filters
+                  </TuneIcon>
                   <div
                     className={`${classes.filters} ${
-                      open ? classes.showFilters : classes.hideFilters
+                      filterOpen ? classes.showFilters : classes.hideFilters
                     }`}
                   >
                     <Filters location={props.location.pathname} />

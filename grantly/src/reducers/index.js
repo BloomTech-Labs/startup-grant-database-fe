@@ -11,9 +11,17 @@ import {
   ADD_GRANT_START,
   ADD_GRANT_SUCCESS,
   ADD_GRANT_FAILURE,
+  UPDATE_GRANT_START,
+  UPDATE_GRANT_SUCCESS,
+  UPDATE_GRANT_FAILURE,
+  DELETE_GRANT_START,
+  DELETE_GRANT_SUCCESS,
+  DELETE_GRANT_FAILURE,
   CHECK_ADMIN,
   SET_USER
 } from "../actions/types";
+import moment from "moment";
+
 
 // Initial state
 
@@ -29,7 +37,8 @@ const initialState = {
     admin_filters: []
   },
   currentTab: 0,
-  currentUser: {}
+  currentUser: {},
+  error: ""
 };
 
 // Reducer
@@ -42,7 +51,6 @@ export const rooterReducer = (state = initialState, { type, payload }) => {
       };
     }
     case SET_USER: {
-      console.log("reducer", payload);
       return {
         ...state,
         currentUser: payload
@@ -86,11 +94,10 @@ export const rooterReducer = (state = initialState, { type, payload }) => {
         filters: payload
       };
     case FILTER_GRANTS:
-      const filtersWithoutAdmin = Object.entries(state.filters)
-      filtersWithoutAdmin.pop()
+      const filtersWithoutAdmin = Object.entries(state.filters);
+      filtersWithoutAdmin.pop();
       let newList = [];
       state.data.map(grant => {
-
         filtersWithoutAdmin.map(filter => {
           filter[1].map(userFilters => {
             if (filter[0] === "amount") {
@@ -118,10 +125,13 @@ export const rooterReducer = (state = initialState, { type, payload }) => {
 
       if (payload.admin_filters.length !== 0) {
         newList = state.data.filter(grant => {
+
           if (payload.admin_filters.includes("new")) {
             return grant.is_reviewed === false;
+          } else if (payload.admin_filters.includes("expired")) {
+            return moment(grant.most_recent_application_due_date).format() <= moment().format();
           } else if (payload.admin_filters.includes("suggestions")) {
-            return grant.has_requests === true;
+            return grant.requests.length > 0;
           }
         });
       }
@@ -145,7 +155,6 @@ export const rooterReducer = (state = initialState, { type, payload }) => {
         ...state,
         filteredGrants: state.data
       };
-
     case ADD_GRANT_START:
       return {
         ...state,
@@ -158,6 +167,57 @@ export const rooterReducer = (state = initialState, { type, payload }) => {
         isFetching: false,
         error: payload
       };
+    case ADD_GRANT_FAILURE:
+      return {
+        ...state,
+        isFetching: false,
+        error: payload
+      };
+    case UPDATE_GRANT_START:
+      return {
+        ...state,
+        isFetching: true,
+        error: ""
+      };
+    case UPDATE_GRANT_SUCCESS:
+      let [showCase] = payload[0].filter(grant => {
+        return grant.id === payload[1];
+      });
+
+      return {
+        ...state,
+        isFetching: false,
+        data: payload,
+        filteredGrants: payload[0],
+        grantShowcase: showCase
+      };
+    case UPDATE_GRANT_FAILURE:
+      return {
+        ...state,
+        isFetching: false,
+        error: payload
+      };
+    case DELETE_GRANT_START:
+      return {
+        ...state,
+        isFetching: true,
+        error: ""
+      };
+    case DELETE_GRANT_SUCCESS:
+      return {
+        ...state,
+        isFetching: false,
+        data: payload,
+        filteredGrants: payload,
+        grantShowcase: payload[0]
+      };
+    case DELETE_GRANT_FAILURE:
+      return {
+        ...state,
+        isFetching: false,
+        error: payload
+      };
+
     default:
       return state;
   }
