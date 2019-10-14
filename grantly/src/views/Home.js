@@ -43,7 +43,7 @@ const Home = props => {
                 onClose={() => toggleDrawer()}
                 onOpen={() => toggleDrawer()}
               >
-                <Filters location={props.location.pathname} mobile={true}/>
+                <Filters location={props.location.pathname} mobile={true} />
               </SwipeableDrawer>
             </>
           ) : (

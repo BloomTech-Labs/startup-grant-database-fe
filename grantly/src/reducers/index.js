@@ -141,12 +141,12 @@ export const rooterReducer = (state = initialState, { type, payload }) => {
           return newList.find(grant => grant.id === id);
         }
       );
-      console.log(testing);
+      console.log(" filters reducer",testing);
       return {
         ...state,
-        data: Array.from(new Set(state.data.map(grant => grant.id))).map(id => {
-          return state.data.find(grant => grant.id === id);
-        }),
+        // data: Array.from(new Set(state.data.map(grant => grant.id))).map(id => {
+        //   return state.data.find(grant => grant.id === id);
+        // }),
         filters: payload,
         filteredGrants: testing
       };

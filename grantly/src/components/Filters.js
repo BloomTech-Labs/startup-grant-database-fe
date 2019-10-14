@@ -23,7 +23,8 @@ const Filters = ({
   savedFilters,
   location,
   inAdmin,
-  mobile
+  mobile,
+  grants
 }) => {
   const [filters, setFilters] = useState({
     amount: [],
@@ -45,7 +46,7 @@ const Filters = ({
   useEffect(() => {
     filterGrants(savedFilters);
   }, [savedFilters]);
-
+  console.log("filters components", grants);
   const grantFilters = {
     color: "primary",
     geographic_region: [
@@ -135,7 +136,7 @@ const Filters = ({
           {grantFilters.amount.map(name => {
             return (
               <FormControlLabel
-              className={classes.mobileSet}
+                className={classes.mobileSet}
                 control={
                   <Checkbox
                     checked={savedFilters.amount.includes(name.toLowerCase())}
