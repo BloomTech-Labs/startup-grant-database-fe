@@ -18,10 +18,10 @@ import {
   DELETE_GRANT_SUCCESS,
   DELETE_GRANT_FAILURE,
   CHECK_ADMIN,
-  SET_USER
+  SET_USER,
+  SET_TOKEN_IN_STORE
 } from "../actions/types";
 import moment from "moment";
-
 
 // Initial state
 
@@ -54,6 +54,13 @@ export const rooterReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         currentUser: payload
+      };
+    }
+    case SET_TOKEN_IN_STORE: {
+      console.log("In reducer", payload);
+      return {
+        ...state,
+        currentUser: { ...state.currentUser, token: payload }
       };
     }
     case FETCH_START:
@@ -125,11 +132,13 @@ export const rooterReducer = (state = initialState, { type, payload }) => {
 
       if (payload.admin_filters.length !== 0) {
         newList = state.data.filter(grant => {
-
           if (payload.admin_filters.includes("new")) {
             return grant.is_reviewed === false;
           } else if (payload.admin_filters.includes("expired")) {
-            return moment(grant.most_recent_application_due_date).format() <= moment().format();
+            return (
+              moment(grant.most_recent_application_due_date).format() <=
+              moment().format()
+            );
           } else if (payload.admin_filters.includes("suggestions")) {
             return grant.requests.length > 0;
           }
@@ -141,7 +150,7 @@ export const rooterReducer = (state = initialState, { type, payload }) => {
           return newList.find(grant => grant.id === id);
         }
       );
-      console.log(" filters reducer",testing);
+      console.log(" filters reducer", testing);
       return {
         ...state,
         // data: Array.from(new Set(state.data.map(grant => grant.id))).map(id => {

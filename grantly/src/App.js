@@ -21,10 +21,19 @@ import Sitemap from "./components/Sitemap";
 import PrivateRoute from "./util/PrivateRoute";
 
 function App({ checkUser, currentUser }) {
-  const { user, isAuthenticated } = useAuth0();
+  const { user, isAuthenticated, getTokenSilently } = useAuth0();
   useEffect(() => {
     if (isAuthenticated) {
-      checkUser(user);
+      // const authToken = getTokenSilently().then(res => res);
+      const auth = getTokenSilently().then(res => {
+        const authToken = res;
+        console.log("console", authToken);
+        checkUser({ ...user, token: authToken });
+
+        // return authToken;
+      });
+      // console.log("app.js", authToken);
+      // checkUser({ ...user, token: auth });
     }
   }, [user]);
 
@@ -33,7 +42,10 @@ function App({ checkUser, currentUser }) {
       <ThemeProvider theme={theme}>
         <div className="App">
           {/* <Route path = "/login" component={LoginForm} /> */}
-          <Route path="/" render={props => <NavBar {...props} role={currentUser.role} />} />
+          <Route
+            path="/"
+            render={props => <NavBar {...props} role={currentUser.role} />}
+          />
           <Route exact path="/" component={Landing} />
           <Route exact path="/grants" component={Home} />
           <Route path="/form" component={SubmitForm} />
