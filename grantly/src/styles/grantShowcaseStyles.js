@@ -18,6 +18,9 @@ export const showcaseStyles = makeStyles(theme => ({
       margin: 0
     }
   },
+  inAdmin: {
+    minHeight: "70vh",
+  },
   topContent: {
     margin: " 0",
     fontWeight: "700"
@@ -56,7 +59,7 @@ export const showcaseStyles = makeStyles(theme => ({
   },
   grant_name: {
     fontWeight: "500",
-    fontFamily: "Roboto",
+    fontFamily: "Nunito Sans",
     color: "#222222"
   },
   editIcon: {

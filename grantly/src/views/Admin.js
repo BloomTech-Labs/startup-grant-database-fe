@@ -9,40 +9,21 @@ import SuggestionList from "../components/SuggestionList";
 // import SearchBar from "../components/SearchBar";
 import Grid from "@material-ui/core/Grid";
 // import Navbar from "../components/Navbar";
-// import Media from "react-media";
-// import SwipeableDrawer from "@material-ui/core/SwipeableDrawer";
-// import MobileFilters from "../components/mobile/MobileFilters";
-import { adminStyles } from "../styles/adminStyles";
+import Media from "react-media";
+import SwipeableDrawer from "@material-ui/core/SwipeableDrawer";
+import MobileFilters from "../components/mobile/MobileFilters";
+import MobileTabs from "../components/mobile/MobileTabs";
 
-// const useStyles = makeStyles(theme => ({
-//   content: {
-//     flexGrow: 1,
-//     padding: theme.spacing(3)
-//   },
-//   gridContainer: {
-//     flexWrap: "nowrap"
-//   },
-//   gridItem: {
-//     padding: 30
-//   },
-//   root: {
-//     display: "flex"
-//   },
-//   toolbar: theme.mixins.toolbar
-// }));
+import { adminStyles } from "../styles/adminStyles";
+import AdminDialog from "../components/grants/dialogs/AdminDialog";
 
 const Admin = props => {
-  // const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
   //Show filters
   const [open, setOpen] = useState();
-  // const toggleDrawer = open => event => {
-  //   console.log("toggle");
-  //   if (
-  //     event &&
-  //     (event.key === "Tab" || event.key === "Shift")
-
-  //   setIsOpen(!isOpen);
-  // };
+  const toggleDrawer = () => {
+    setIsOpen(!isOpen);
+  };
 
   const toggleFilters = () => {
     setOpen(!open);
@@ -51,35 +32,58 @@ const Admin = props => {
 
   return (
     <div>
-      <Grid
-        container
-        direction="row"
-        justify="space-between"
-        className={classes.gridContainer}
-      >
-        <Grid item xs={6} md={3} className={classes.grantList}>
-          <GrantList inAdmin={true} history={props.history} />
-        </Grid>
-
-        <Grid item xs={6} className={classes.gridItem}>
-          <GrantShowcase inAdmin={true} history={props.history} />
-          <SuggestionList />
-        </Grid>
-        <Grid item xs={2}>
-          <TuneIcon
-            className={`${classes.filterIcon} ${open &&
-              classes.filterIconSelected}`}
-            onClick={toggleFilters}
-          ></TuneIcon>
-          <div
-            className={`${classes.filters} ${
-              open ? classes.showFilters : classes.hideFilters
-            }`}
-          >
-            <Filters inAdmin={true} location={props.location.pathname} />
-          </div>
-        </Grid>
-      </Grid>
+      <Media query="(max-width:850px)">
+        {matches =>
+          matches ? (
+            <>
+              <MobileTabs inAdmin={true} />
+              <MobileFilters toggleDrawer={toggleDrawer} />
+              <SwipeableDrawer
+                anchor="bottom"
+                open={isOpen}
+                onClose={() => toggleDrawer()}
+                onOpen={() => toggleDrawer()}
+              >
+                <Filters
+                  location={props.location.pathname}
+                  mobile={true}
+                  inAdmin={true}
+                />
+              </SwipeableDrawer>
+            </>
+          ) : (
+            <Grid
+              container
+              direction="row"
+              justify="space-between"
+              className={classes.gridContainer}
+            >
+              <Grid item xs={6} md={3} className={classes.grantList}>
+                <GrantList inAdmin={true} history={props.history} />
+              </Grid>
+              <Grid item xs={6} className={classes.gridItem}>
+                <GrantShowcase inAdmin={true} history={props.history} />
+                <AdminDialog />
+                <SuggestionList />
+              </Grid>
+              <Grid item xs={2}>
+                <TuneIcon
+                  className={`${classes.filterIcon} ${open &&
+                    classes.filterIconSelected}`}
+                  onClick={toggleFilters}
+                ></TuneIcon>
+                <div
+                  className={`${classes.filters} ${
+                    open ? classes.showFilters : classes.hideFilters
+                  }`}
+                >
+                  <Filters inAdmin={true} location={props.location.pathname} />
+                </div>
+              </Grid>
+            </Grid>
+          )
+        }
+      </Media>
     </div>
   );
 };
