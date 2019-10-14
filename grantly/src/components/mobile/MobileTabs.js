@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { useTheme } from "@material-ui/core/styles";
-import {mobileTabStyles} from "../../styles/mobileTabStyles";
+import { mobileTabStyles } from "../../styles/mobileTabStyles";
 
 import SwipeableViews from "react-swipeable-views";
 import Tabs from "@material-ui/core/Tabs";
@@ -38,7 +38,7 @@ function a11yProps(index) {
   };
 }
 
-const MobileTabs = ({ grant, currentTab, changeTab }) => {
+const MobileTabs = ({ grant, currentTab, changeTab, inAdmin }) => {
   const classes = mobileTabStyles();
   const theme = useTheme();
   const [value, setValue] = React.useState(0);
@@ -76,11 +76,10 @@ const MobileTabs = ({ grant, currentTab, changeTab }) => {
         onChangeIndex={handleChangeIndex}
       >
         <TabPanel value={value} index={0} dir={theme.direction}>
-          <GrantList />
-
+          <GrantList inAdmin={inAdmin} />
         </TabPanel>
         <TabPanel value={value} index={1} dir={theme.direction}>
-          <GrantShowcase />
+          <GrantShowcase inAdmin={inAdmin} />
         </TabPanel>
         <TabPanel value={value} index={2} dir={theme.direction}>
           <SubmitForm />

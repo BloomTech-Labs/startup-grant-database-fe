@@ -25,22 +25,23 @@ export const GrantList = props => {
       props.adminFetchApi();
     } else if (props.data.length === 0) {
       props.fetchApi();
-    } else {
-      props.fetchApi();
     }
   }, []);
-const needToBeReviewed = props.data.filter(grant => grant.is_reviewed === false).length;
-// const numberOfSuggestions = props.data.filter(grant => grant.requests.length > 0).length;
+  const needToBeReviewed = props.data.filter(
+    grant => grant.is_reviewed === false
+  ).length;
+  // const numberOfSuggestions = props.data.filter(grant => grant.requests.length > 0).length;
   if (props.isFetching) {
     return <Loader type="Triangle" color="#3DB8B3" height="100" width="100" />;
   }
   // console.log(user);
+  console.log("List", props.data);
   return (
     <div>
       {props.data.length && (
         <p className={styles.results}>{props.data.length} Grants</p>
       )}
-      {props.inAdmin && <p>{needToBeReviewed} grant(s) need to be reviewed</p>}      
+      {props.inAdmin && <p>{needToBeReviewed} grant(s) need to be reviewed</p>}
 
       {props.data.length > 0 ? (
         props.data.map(grant => {
