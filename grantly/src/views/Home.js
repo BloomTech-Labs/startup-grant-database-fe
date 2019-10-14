@@ -84,13 +84,6 @@ const Home = props => {
                   <GrantShowcase />
                 </Grid>
                 <Grid item xs={4} md={2}>
-                  <TuneIcon
-                    className={`${classes.filterIcon} ${open &&
-                      classes.filterIconSelected}`}
-                    onClick={toggleFilters}
-                  >
-                    Filters
-                  </TuneIcon>
                   <div
                     className={`${classes.filters} ${
                       open ? classes.showFilters : classes.hideFilters
