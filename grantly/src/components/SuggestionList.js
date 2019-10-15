@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { connect } from "react-redux";
 
 import Typography from "@material-ui/core/Typography";
@@ -29,8 +29,6 @@ export const SuggestionList = props => {
 };
 
 const mapStateToProps = state => {
-
-
   return {
     error: state.error,
     isFetching: state.isFetching,

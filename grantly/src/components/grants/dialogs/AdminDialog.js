@@ -8,10 +8,6 @@ import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import CloseIcon from "@material-ui/icons/Close";
 import CheckIcon from "@material-ui/icons/Check";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import ExpansionPanel from "@material-ui/core/ExpansionPanel";
-import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
-import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
 
 import { adminStyles } from "../../../styles/adminStyles";
 
@@ -19,12 +15,6 @@ import { putGrants } from "../../../actions/index";
 
 export const AdminDialog = props => {
   const styles = adminStyles();
-
-  const [expanded, setExpanded] = React.useState(false);
-
-  const handleExpandClick = () => {
-    setExpanded(!expanded);
-  };
 
   const approveGrant = () => {
     props.putGrants({ ...props.grant, is_reviewed: true });
@@ -80,5 +70,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  {putGrants}
+  { putGrants }
 )(AdminDialog);

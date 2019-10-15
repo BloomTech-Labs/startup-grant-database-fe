@@ -21,6 +21,8 @@ import EditGrantDialog from "./dialogs/EditGrantDialog";
 import { showcaseStyles } from "../../styles/grantShowcaseStyles";
 
 export const GrantShowcase = props => {
+  console.log("GrantShowcase props", props);
+
   const showcase = showcaseStyles();
 
   const deadline = props.grant.most_recent_application_due_date ? (
