@@ -131,7 +131,7 @@ export const GrantShowcase = props => {
         <Grid container direction="row" className="headers-1">
           <Grid item className={showcase.showcaseDetailsTop} xs={2}>
             <Grid className={showcase.showcaseSpan}>Amount:</Grid>
-            <Grid>
+            <Grid className={showcase.innerDetails}>
               {props.grant.amount
                 ? "$" + formatNumbers(props.grant.amount)
                 : "See website for details"}
@@ -139,25 +139,35 @@ export const GrantShowcase = props => {
           </Grid>
           <Grid item xs={4} className={showcase.showcaseDetailsTop}>
             <Grid className={showcase.showcaseSpan}>Deadline:</Grid>
-            <Grid>{momentDeadline}</Grid>
+            <Grid className={showcase.innerDetails}>{momentDeadline}</Grid>
           </Grid>
           <Grid item xs={5} className={showcase.showcaseDetailsTop}>
             <Grid className={showcase.showcaseSpan}>Grant Categories:</Grid>
-            <Grid>{props.grant.domain_areas}</Grid>
+            <Grid className={showcase.innerDetails}>
+              {props.grant.domain_areas}
+            </Grid>
           </Grid>
         </Grid>
         <Grid container className="headers-2">
           <Grid item xs={2} className={showcase.showcaseDetailsBottom}>
             <Grid className={showcase.showcaseSpan}>Region:</Grid>
-            <Grid> {props.grant.geographic_region}</Grid>
+            <Grid className={showcase.innerDetails}>
+              {" "}
+              {props.grant.geographic_region}
+            </Grid>
           </Grid>
           <Grid item xs={4} className={showcase.showcaseDetailsBottom}>
             <Grid className={showcase.showcaseSpan}>Focus Area:</Grid>
-            <Grid> {props.grant.area_focus}</Grid>
+            <Grid className={showcase.innerDetails}>
+              {props.grant.area_focus}
+            </Grid>
           </Grid>
           <Grid item xs={5} className={showcase.showcaseDetailsBottom}>
             <Grid className={showcase.showcaseSpan}>Sponsor:</Grid>
-            <Grid> {props.grant.sponsoring_entity}</Grid>
+            <Grid className={showcase.innerDetails}>
+              {" "}
+              {props.grant.sponsoring_entity}
+            </Grid>
           </Grid>
         </Grid>
         <Grid container className="headers-3">

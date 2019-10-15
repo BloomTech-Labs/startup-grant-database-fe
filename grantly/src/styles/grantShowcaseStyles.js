@@ -39,7 +39,7 @@ export const showcaseStyles = makeStyles(theme => ({
   },
 
   showcaseDetailsTop: {
-    height: 80,
+    height: 90,
     marginTop: 20,
     marginBottom: 10,
     marginLeft: 5,
@@ -49,10 +49,11 @@ export const showcaseStyles = makeStyles(theme => ({
     paddingLeft: 5,
     paddingRight: 5,
     border: "1px solid red",
-    lineHeight: "1.2rem"
+    lineHeight: "1.2rem",
+    fontFamily: "EB Garamond"
   },
   showcaseDetailsBottom: {
-    height: 80,
+    height: 90,
     marginTop: 10,
     marginBottom: 20,
     marginLeft: 5,
@@ -62,6 +63,7 @@ export const showcaseStyles = makeStyles(theme => ({
     paddingLeft: 5,
     paddingRight: 5,
     lineHeight: "1.2rem",
+    fontFamily: "EB Garamond",
     border: "1px solid red"
   },
   applyButton: {
@@ -84,5 +86,8 @@ export const showcaseStyles = makeStyles(theme => ({
     fontWeight: "500",
     fontFamily: "Nunito Sans",
     color: "#222222"
+  },
+  innerDetails: {
+    color: "red"
   }
 }));
