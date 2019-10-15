@@ -37,8 +37,8 @@ export const Grant = props => {
       className={`${
         props.grantShowcase.id === props.grant.id
           ? styles.grantCardSelected
-          : styles.grantCard} ${!props.grant.is_reviewed && styles.grant_new}`
-      }
+          : styles.grantCard
+      } ${!props.grant.is_reviewed && styles.grant_new}`}
       onClick={selectGrant}
     >
       <div className={styles.grant_layout}>
@@ -48,14 +48,27 @@ export const Grant = props => {
           direction="column"
           alignItems="flex-start"
           justify="space-between"
-          className={props.grant.is_reviewed ? styles.grant_info : `${styles.grant_info} ${styles.grant_new}`}
+          className={
+            props.grant.is_reviewed
+              ? styles.grant_info
+              : `${styles.grant_info} ${styles.grant_new}`
+          }
         >
-          <Typography variant="subtitle1" className={props.grant.is_reviewed ? styles.grantName : `${styles.grantName} ${styles.grant_new}`}>
+          <Typography
+            variant="subtitle1"
+            className={
+              props.grant.is_reviewed
+                ? styles.grantName
+                : `${styles.grantName} ${styles.grant_new}`
+            }
+          >
             {props.grant.competition_name}
           </Typography>
           <Grid item>
             <Typography variant="body2" component="p">
-              {props.grant.website}
+              <a href={props.grant.website}>
+                {props.grant.website.substring(0, 30)}...
+              </a>
             </Typography>
           </Grid>
           <Typography variant="subtitle1" component="p">
