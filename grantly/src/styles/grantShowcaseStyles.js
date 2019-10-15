@@ -19,7 +19,7 @@ export const showcaseStyles = makeStyles(theme => ({
     }
   },
   inAdmin: {
-    minHeight: "70vh",
+    minHeight: "70vh"
   },
   topContent: {
     margin: " 0",
@@ -39,7 +39,8 @@ export const showcaseStyles = makeStyles(theme => ({
   },
 
   showcaseDetails: {
-    marginBottom: "30px"
+    marginBottom: "30px",
+    border: "1px solid red"
   },
   applyButton: {
     color: "#fff",
