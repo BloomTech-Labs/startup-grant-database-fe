@@ -19,22 +19,9 @@ import EditGrantDialog from "./dialogs/EditGrantDialog";
 
 // =========== STYLES ===========
 import { showcaseStyles } from "../../styles/grantShowcaseStyles";
-import { suggestionStyles } from "../../styles/suggestionStyles";
 
 export const GrantShowcase = props => {
   const showcase = showcaseStyles();
-
-  const [expanded, setExpanded] = React.useState(false);
-
-  const handleExpandClick = () => {
-    setExpanded(!expanded);
-  };
-
-  // ===== not needed? =====
-
-  // function formatNumbers(num) {
-  //   return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-  // }
 
   const deadline = props.grant.most_recent_application_due_date ? (
     <Moment format={"MMMM Do YYYY"}>
