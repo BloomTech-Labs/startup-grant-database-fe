@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 import { connect } from "react-redux";
 import { postGrants, fetchApi } from "../../actions/index.js";
-import { Grid, Typography, TextField } from "@material-ui/core";
+import { Grid, Typography, TextField, Divider } from "@material-ui/core";
 import formStyles from "../../styles/FormStyles";
 
 const GrantInfo = props => {
@@ -11,7 +11,7 @@ const GrantInfo = props => {
       <Typography variant="h5" className={styles.subjectHeader}>
         Grant Info
       </Typography>
-      <hr className={styles.hr} />
+      <Divider variant="middle" />
       <Grid container spacing={3} className={styles.bottomBox}>
         <Grid item xs={12}>
           <TextField

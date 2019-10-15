@@ -93,13 +93,18 @@ const formStyles = makeStyles(theme => ({
     paddingLeft: theme.spacing(6)
   },
   hr: {
-    width: 600
+    width: 600,
+    color: "#808080"
   },
   label: {
     color: "#fff"
   },
   adminButtons: {
     margin: "30px"
+  },
+  buttonsContainer: {
+    display: "flex",
+    justifyContent: "center"
   }
 }));
 
