@@ -124,8 +124,46 @@ export const GrantShowcase = props => {
           </Grid>
         </div>
         {/* ================= Main content ================= */}
+        <Grid container className="headers-1">
+          <Grid item className={showcase.showcaseDetails}>
+            <span className={showcase.showcaseSpan}>Amount: </span>
+            {props.grant.amount
+              ? props.grant.amount_notes
+              : "See website for details"}
+          </Grid>
+          <Grid item className={showcase.showcaseDetails}>
+            <span className={showcase.showcaseSpan}>Deadline: </span>
+            {deadline}
+            {momentDeadline}
+          </Grid>
+          <Grid item className={showcase.showcaseDetails}>
+            <span className={showcase.showcaseSpan}>Grant Categories:</span>
+            {props.grant.domain_areas}
+          </Grid>
+        </Grid>
+        <Grid container className="headers-2">
+          <Grid item className={showcase.showcaseDetails}>
+            <span className={showcase.showcaseSpan}>Focus Area: </span>
+            {props.grant.area_focus}
+          </Grid>
+          <Grid item className={showcase.showcaseDetails}>
+            <span className={showcase.showcaseSpan}>Region: </span>
+            {props.grant.geographic_region}
+          </Grid>
+          <Grid item className={showcase.showcaseDetails}>
+            <span className={showcase.showcaseSpan}>Sponsor: </span>
+            {props.grant.sponsoring_entity}
+          </Grid>
+        </Grid>
+        <Grid container className="headers-3">
+          <Grid item>
+            {" "}
+            <span className={showcase.showcaseSpan}>Notes: </span>
+            {props.grant.notes}
+          </Grid>
+        </Grid>
 
-        <Grid
+        {/* <Grid
           container
           direction="column"
           justify="space-around"
@@ -133,7 +171,7 @@ export const GrantShowcase = props => {
           className={showcase.grantInfo}
         >
           <Grid item className={showcase.showcaseDetails}>
-            <span className={showcase.showcaseSpan}>Amount: </span>{" "}
+            <span className={showcase.showcaseSpan}>Amount: </span>
             {props.grant.amount
               ? props.grant.amount_notes
               : "See website for details"}
@@ -163,7 +201,7 @@ export const GrantShowcase = props => {
             <span className={showcase.showcaseSpan}>Notes: </span>
             {props.grant.notes}
           </Grid>
-        </Grid>
+        </Grid> */}
         <Grid
           container
           direction="row"
