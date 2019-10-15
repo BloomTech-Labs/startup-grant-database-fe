@@ -39,7 +39,7 @@ export const showcaseStyles = makeStyles(theme => ({
   },
 
   showcaseDetailsTop: {
-    height: 100,
+    height: 80,
     marginTop: 20,
     marginBottom: 10,
     marginLeft: 5,
@@ -49,7 +49,6 @@ export const showcaseStyles = makeStyles(theme => ({
     paddingLeft: 5,
     paddingRight: 5,
     border: "1px solid red",
-    color: "red",
     lineHeight: "1.2rem"
   },
   showcaseDetailsBottom: {
@@ -62,6 +61,7 @@ export const showcaseStyles = makeStyles(theme => ({
     paddingBottom: 5,
     paddingLeft: 5,
     paddingRight: 5,
+    lineHeight: "1.2rem",
     border: "1px solid red"
   },
   applyButton: {

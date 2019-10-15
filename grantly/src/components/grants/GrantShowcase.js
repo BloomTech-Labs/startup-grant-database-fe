@@ -25,6 +25,10 @@ export const GrantShowcase = props => {
 
   const showcase = showcaseStyles();
 
+  function formatNumbers(num) {
+    return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  }
+
   const deadline = props.grant.most_recent_application_due_date ? (
     <Moment format={"MMMM Do YYYY"}>
       {props.grant.most_recent_application_due_date}
@@ -129,7 +133,7 @@ export const GrantShowcase = props => {
             <Grid className={showcase.showcaseSpan}>Amount:</Grid>
             <Grid>
               {props.grant.amount
-                ? props.grant.amount_notes
+                ? "$" + formatNumbers(props.grant.amount)
                 : "See website for details"}
             </Grid>
           </Grid>
