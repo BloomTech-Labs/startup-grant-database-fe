@@ -32,7 +32,6 @@ import ExpansionPanel from "@material-ui/core/ExpansionPanel";
 import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
 import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
 
-
 // =========== STYLES ===========
 import { showcaseStyles } from "../../styles/grantShowcaseStyles";
 import { suggestionStyles } from "../../styles/suggestionStyles";
@@ -41,7 +40,6 @@ export const GrantShowcase = props => {
   const showcase = showcaseStyles();
   const suggestion = suggestionStyles();
 
-
   const [open, setOpen] = React.useState(false);
   const [expanded, setExpanded] = React.useState(false);
 
@@ -49,13 +47,11 @@ export const GrantShowcase = props => {
     setExpanded(!expanded);
   };
 
-
   // ===== not needed? =====
 
   // const handleOpen = () => {
   //   setOpen(true);
   // };
-
 
   // const handleClose = () => {
   //   setOpen(false);
@@ -135,7 +131,6 @@ export const GrantShowcase = props => {
             </Grid>
           </Grid>
 
-
           <Grid
             container
             justify="flex-start"
@@ -148,7 +143,7 @@ export const GrantShowcase = props => {
               {props.grant.website}
             </a>
 
-            <Grid item>
+            {/* <Grid item>
               <a href={props.grant.website} target="_blank">
                 <Button
                   className={showcase.applyButton}
@@ -158,19 +153,15 @@ export const GrantShowcase = props => {
                   Apply to Grant
                 </Button>
               </a>
-
-              {/* <Button
-            className={showcase.applyButton}
-            variant="contained"
-            color="primary"
-            >
-            Edit Grant
-          </Button> */}
-            </Grid>
+              {!props.inAdmin && (
+                <Grid item>
+                  <SuggestionDialog id={props.grant.id} />
+                </Grid>
+              )}
+            </Grid> */}
           </Grid>
         </div>
         {/* ================= Main content ================= */}
-
 
         <Grid
           container
@@ -212,7 +203,6 @@ export const GrantShowcase = props => {
             <span className={showcase.showcaseSpan}>Notes: </span>
             {props.grant.notes}
           </Grid>
-
         </Grid>
         <Grid
           container
@@ -221,7 +211,7 @@ export const GrantShowcase = props => {
           alignItems="center"
           className={showcase.topContent}
         >
-          {/* <Grid item>
+          <Grid item>
             <Button
               className={showcase.applyButton}
               variant="contained"
@@ -229,7 +219,7 @@ export const GrantShowcase = props => {
             >
               Apply to Grant
             </Button>
-          </Grid> */}
+          </Grid>
           {!props.inAdmin && (
             <Grid item>
               <SuggestionDialog id={props.grant.id} />
