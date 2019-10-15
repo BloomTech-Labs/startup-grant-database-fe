@@ -133,7 +133,7 @@ export const GrantShowcase = props => {
           className={showcase.grantInfo}
         >
           <Grid item className={showcase.showcaseDetails}>
-            <span className={showcase.showcaseSpan}>What it is: </span>{" "}
+            <span className={showcase.showcaseSpan}>Amount: </span>{" "}
             {props.grant.amount
               ? props.grant.amount_notes
               : "See website for details"}
@@ -144,9 +144,7 @@ export const GrantShowcase = props => {
             {momentDeadline}
           </Grid>
           <Grid item className={showcase.showcaseDetails}>
-            <span className={showcase.showcaseSpan}>
-              This grant is in the areas of:{" "}
-            </span>
+            <span className={showcase.showcaseSpan}>Grant Categories:</span>
             {props.grant.domain_areas}
           </Grid>
           <Grid item className={showcase.showcaseDetails}>
@@ -158,7 +156,7 @@ export const GrantShowcase = props => {
             {props.grant.geographic_region}
           </Grid>
           <Grid item className={showcase.showcaseDetails}>
-            <span className={showcase.showcaseSpan}>Sponsored by: </span>
+            <span className={showcase.showcaseSpan}>Sponsor: </span>
             {props.grant.sponsoring_entity}
           </Grid>
           <Grid item className={showcase.showcaseDetails}>
