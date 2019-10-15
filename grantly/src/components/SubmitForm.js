@@ -157,11 +157,11 @@ const AddGrant = props => {
                       onClick={handleBack}
                       variant="outlined"
                       className={styles.back}
+                      style={{ marginRight: "30px" }}
                     >
                       Back
                     </Button>
                   )}
-
                   <Button
                     variant="contained"
                     color="primary"

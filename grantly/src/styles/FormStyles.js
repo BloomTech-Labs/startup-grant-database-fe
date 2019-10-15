@@ -9,7 +9,9 @@ const formStyles = makeStyles(theme => ({
     [theme.breakpoints.up(600 + theme.spacing(2) * 2)]: {
       width: 700,
       marginLeft: "auto",
-      marginRight: "auto"
+      marginRight: "auto",
+      // height: "auto"
+      height: 1000
     }
   },
   paper: {
@@ -17,10 +19,12 @@ const formStyles = makeStyles(theme => ({
     marginBottom: theme.spacing(3),
 
     [theme.breakpoints.up(600 + theme.spacing(3) * 2)]: {
-      marginTop: theme.spacing(6),
+      marginTop: theme.spacing(3),
       marginBottom: theme.spacing(6),
-      height: 1000,
-      position: "relative"
+      paddingBottom: theme.spacing(6)
+
+      // height: 1000,
+      // position: "relative"
     }
   },
 
@@ -47,28 +51,35 @@ const formStyles = makeStyles(theme => ({
     padding: theme.spacing(3, 0, 5)
   },
   bottomBox: {
-    padding: theme.spacing(2, 6, 1, 2)
+    padding: theme.spacing(2, 6, 1, 6)
   },
   button: {
-    // display: "flex",
-    // alignItems: "flex-end"
+    display: "flex",
+    // alignItems: "flex-end",
     // justifyContent: "flex-end"
-    // justifyContent: "flex-end"
-    // alignSelf: "flex-end"
-    position: "absolute",
-    bottom: theme.spacing(3)
-    // right: theme.spacing(2)
+    // justifyContent: "flex-end",
+    // alignSelf: "flex-end",
+    // position: "absolute",
+    // width: 800,
+    bottom: theme.spacing(5),
+    paddingLeft: theme.spacing(6),
+    marginTop: theme.spacing(3),
+    marginRight: theme.spacing(3)
   },
   submit: {
     width: "30%",
     height: "4em",
     color: "white"
   },
+  submitContainer: {
+    marginLeft: theme.spacing(3)
+  },
   back: {
     width: "30%",
     height: "4em",
     border: "1px solid black",
-    color: "white"
+    color: "white",
+    marginRight: "50px"
   },
   dropDown: {
     width: 200,
@@ -76,6 +87,13 @@ const formStyles = makeStyles(theme => ({
     [theme.breakpoints.down("sm")]: {
       width: "90%"
     }
+  },
+  subjectHeader: {
+    textAlign: "left",
+    paddingLeft: theme.spacing(6)
+  },
+  hr: {
+    width: 600
   },
   label: {
     color: "#fff"
