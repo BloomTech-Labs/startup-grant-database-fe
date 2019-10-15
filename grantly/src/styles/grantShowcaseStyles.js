@@ -26,9 +26,9 @@ export const showcaseStyles = makeStyles(theme => ({
     fontWeight: "700"
     // fontSize: "1.8rem"
   },
-  grantInfo: {},
   showcaseSpan: {
-    fontWeight: "bold"
+    fontWeight: "bold",
+    fontSize: "1.1rem"
   },
   bookmark: {
     fill: "#C4C4C4"
@@ -38,8 +38,30 @@ export const showcaseStyles = makeStyles(theme => ({
     marginRight: ".2rem"
   },
 
-  showcaseDetails: {
-    marginBottom: "30px",
+  showcaseDetailsTop: {
+    height: 100,
+    marginTop: 20,
+    marginBottom: 10,
+    marginLeft: 5,
+    marginRight: 5,
+    paddingTop: 5,
+    paddingBottom: 5,
+    paddingLeft: 5,
+    paddingRight: 5,
+    border: "1px solid red",
+    color: "red",
+    lineHeight: "1.2rem"
+  },
+  showcaseDetailsBottom: {
+    height: 80,
+    marginTop: 10,
+    marginBottom: 20,
+    marginLeft: 5,
+    marginRight: 5,
+    paddingTop: 5,
+    paddingBottom: 5,
+    paddingLeft: 5,
+    paddingRight: 5,
     border: "1px solid red"
   },
   applyButton: {
@@ -62,8 +84,5 @@ export const showcaseStyles = makeStyles(theme => ({
     fontWeight: "500",
     fontFamily: "Nunito Sans",
     color: "#222222"
-  },
-  editIcon: {
-    //
   }
 }));
