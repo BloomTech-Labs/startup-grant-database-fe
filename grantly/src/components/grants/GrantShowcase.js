@@ -49,14 +49,6 @@ export const GrantShowcase = props => {
 
   // ===== not needed? =====
 
-  // const handleOpen = () => {
-  //   setOpen(true);
-  // };
-
-  // const handleClose = () => {
-  //   setOpen(false);
-  // };
-
   // function formatNumbers(num) {
   //   return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   // }
