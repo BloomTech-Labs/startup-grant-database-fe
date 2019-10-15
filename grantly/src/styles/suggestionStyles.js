@@ -8,7 +8,6 @@ export const suggestionStyles = makeStyles(theme => ({
     borderRadius: "2px",
     marginBottom: "0.5rem",
     fontFamily: "Roboto",
-    borderLeft: "5px solid #3DB8B3"
   },
   subject: {
     fontSize: "1.6rem",

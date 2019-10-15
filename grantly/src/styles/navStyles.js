@@ -24,7 +24,12 @@ export const navStyles = makeStyles(theme => ({
   title: {
     textAlign: "left",
     marginLeft: "20px",
-    color: "#000"
+    color: "#000",
+    [theme.breakpoints.down("xs")]: {
+      fontSize: "1.5rem",
+      marginLeft: "5px",
+
+    }
   },
   navbar: {
     background: "#fff",

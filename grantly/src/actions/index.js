@@ -22,6 +22,7 @@ import {
   FILTER_SAVE,
   CHECK_ADMIN,
   SET_USER,
+  SET_TOKEN_IN_STORE,
   SUBMIT_SUGGESTION_START,
   SUBMIT_SUGGESTION_SUCCESS,
   SUBMIT_SUGGESTION_FAILURE,
@@ -46,12 +47,15 @@ export const fetchApi = () => dispatch => {
     });
 };
 
-export const adminFetchApi = () => dispatch => {
-  console.log("Calling admin");
+export const adminFetchApi = user => dispatch => {
+  console.log("USER:", user);
+
   dispatch({ type: FETCH_START });
   axios
     // .get(`https://labs16-grantly.herokuapp.com/api/admin/`)
-    .get(`https://grantly-staging.herokuapp.com/api/admin`)
+    .get(`http://localhost:5000/api/admin`, {
+      headers: { auth0id: user.auth_id, authorization: `Bearer ${user.token}` }
+    })
     // .get("http://localhost:5000/api/admin")
     .then(response => {
       dispatch({ type: FETCH_SUCCESS, payload: response.data });
@@ -92,9 +96,9 @@ export const changeTab = tab => dispatch => {
 export const postGrants = addGrant => dispatch => {
   dispatch({ type: ADD_GRANT_START });
   axios
-    .post("https://grantly-staging.herokuapp.com/api/grants", addGrant)
+    // .post("https://grantly-staging.herokuapp.com/api/grants", addGrant)
     // .post("https://labs16-grantly.herokuapp.com/api/grants/", addGrant)
-    // .post("http://localhost:5000/api/grants/", addGrant)
+    .post("http://localhost:5000/api/grants/", addGrant)
     .then(res => {
       dispatch({ type: ADD_GRANT_SUCCESS, payload: res.data });
     })
@@ -106,6 +110,7 @@ export const postGrants = addGrant => dispatch => {
 
 // Update a Grant
 export const putGrants = updateGrant => dispatch => {
+  console.log("Put", updateGrant);
   dispatch({
     type: UPDATE_GRANT_START
   });
@@ -178,6 +183,7 @@ export const checkUser = user => dispatch => {
     })
     .then(res => {
       dispatch({ type: SET_USER, payload: res.data });
+      dispatch({ type: SET_TOKEN_IN_STORE, payload: user.token });
     })
     .catch(err => {
       // What error code is ok to post to the db?
@@ -203,15 +209,18 @@ export const checkUser = user => dispatch => {
 
 export const submitSuggestion = suggestion => dispatch => {
   // console.log("submitSuggestion suggestion", suggestion);
-  console.log("im submitting")
+  console.log("im submitting");
   dispatch({ type: SUBMIT_SUGGESTION_START });
   axios
-    .post("https://grantly-staging.herokuapp.com/api/grants/suggestion", suggestion)
+    .post(
+      "https://grantly-staging.herokuapp.com/api/grants/suggestion",
+      suggestion
+    )
     // .post("http://localhost:5000/api/suggestion", suggestion)
 
     .then(response => {
       // console.log("submitSuggestion response", response);
-      console.log("Success")
+      console.log("Success");
       dispatch({ type: SUBMIT_SUGGESTION_SUCCESS, payload: response.data });
     })
     .catch(error => {
@@ -223,7 +232,7 @@ export const submitSuggestion = suggestion => dispatch => {
 // Delete a grant suggestion
 export const deleteSuggestion = requestId => dispatch => {
   dispatch({ type: DELETE_SUGGESTION_START });
-  console.log('hello')
+  console.log("hello");
   axios
     .delete(
       `https://grantly-staging.herokuapp.com/api/admin/suggestion/${requestId}`
