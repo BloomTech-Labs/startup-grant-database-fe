@@ -19,7 +19,8 @@ import AdminForm from "../../AdminForm";
 const useStyles = makeStyles(theme => ({
   appBar: {
     position: "relative",
-    marginBottom: "5rem"
+    // marginBottom: "5rem"
+    color: "white"
   },
   title: {
     marginLeft: theme.spacing(2),

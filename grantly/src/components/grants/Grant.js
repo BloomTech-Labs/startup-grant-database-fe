@@ -66,7 +66,9 @@ export const Grant = props => {
           </Typography>
           <Grid item>
             <Typography variant="body2" component="p">
-              {props.grant.website}
+              <a href={props.grant.website}>
+                {props.grant.website.substring(0, 30)}...
+              </a>
             </Typography>
           </Grid>
           <Typography variant="subtitle1" component="p">
