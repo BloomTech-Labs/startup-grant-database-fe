@@ -21,9 +21,12 @@ import Sitemap from "./components/Sitemap";
 import PrivateRoute from "./util/PrivateRoute";
 
 function App({ checkUser, currentUser }) {
-  const { user, isAuthenticated } = useAuth0();
+  const { user, isAuthenticated,  getTokenSilently } = useAuth0();
   useEffect(() => {
     if (isAuthenticated) {
+      const authToken = getTokenSilently();
+      console.log("auth", authToken)
+
       checkUser(user);
     }
   }, [user]);

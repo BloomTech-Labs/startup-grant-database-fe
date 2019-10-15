@@ -1,5 +1,7 @@
 // Dependencies
 import axios from "axios";
+import { useAuth0 } from "./react-auth0-wrapper";
+
 
 // Objects
 import {
