@@ -169,6 +169,7 @@ const AddGrant = props => {
                       activeStep === steps.length - 1 ? submitGrant : handleNext
                     }
                     className={styles.submit}
+                    style={{ color: "#fff" }}
                   >
                     {activeStep === steps.length - 1 ? "submit" : "Next"}
                   </Button>

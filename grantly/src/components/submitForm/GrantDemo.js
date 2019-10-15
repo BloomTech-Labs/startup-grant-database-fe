@@ -17,9 +17,13 @@ const funding = [
 
 const GrantDemo = props => {
   const styles = formStyles();
+
   return (
     <React.Fragment>
-      <Typography variant="h5">Grant Demo</Typography>
+      <Typography variant="h5" className={styles.subjectHeader}>
+        Grant Demo
+      </Typography>
+      <hr className={styles.hr} />
       <Grid container spacing={3} className={styles.bottomBox}>
         <Grid item xs={12}>
           <TextField
@@ -45,17 +49,20 @@ const GrantDemo = props => {
         </Grid>
         <Grid item xs={12} sm={6}>
           <TextField
-            // label="Application Due Date"
+            InputLabelProps={{ shrink: true }}
+            label="Application Due Date"
             type="date"
             name="most_recent_application_due_date"
             // placeholder="Application Due Date"
             value={props.grantInfo.most_recent_application_due_date}
             onChange={props.handleChanges}
+
             // helperText="Application Due Date"
           />
         </Grid>
         <Grid item xs={12} sm={6}>
           <TextField
+            InputLabelProps={{ shrink: true }}
             label="Early Stage Funding"
             select
             // className={(styles.inputText, styles.dropDown)}

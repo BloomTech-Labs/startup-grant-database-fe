@@ -42,7 +42,8 @@ const formStyles = makeStyles(theme => ({
       fontFamily: "Roboto",
       fontSize: "1.3rem",
       fontWeight: 200,
-      lineHeight: 1.5
+      lineHeight: 1.5,
+      color: "white"
     },
 
     background: "#3DB8B3"
@@ -68,8 +69,7 @@ const formStyles = makeStyles(theme => ({
   },
   submit: {
     width: "30%",
-    height: "4em",
-    color: "white"
+    height: "4em"
   },
   submitContainer: {
     marginLeft: theme.spacing(3)

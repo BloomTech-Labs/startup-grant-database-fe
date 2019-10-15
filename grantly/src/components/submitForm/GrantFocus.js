@@ -8,7 +8,10 @@ const GrantFocus = props => {
   const styles = formStyles();
   return (
     <Fragment>
-      <Typography variant="h5">Grant Focus</Typography>
+      <Typography variant="h5" className={styles.subjectHeader}>
+        Grant Focus
+      </Typography>
+      <hr className={styles.hr} />
       <Grid container spacing={3} className={styles.bottomBox}>
         <Grid item xs={12}>
           <TextField
