@@ -172,9 +172,8 @@ export const GrantShowcase = props => {
         </Grid>
         <Grid container className="headers-3">
           <Grid item>
-            {" "}
-            <span className={showcase.showcaseSpan}>Notes: </span>
-            {props.grant.notes}
+            <Grid className={showcase.showcaseSpan}>Notes:</Grid>
+            <Grid className={showcase.innerDetails}>{props.grant.notes}</Grid>
           </Grid>
         </Grid>
 
