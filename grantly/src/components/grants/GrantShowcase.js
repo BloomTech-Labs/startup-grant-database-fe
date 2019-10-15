@@ -1,7 +1,6 @@
 // Dependencies
 import React from "react";
 import { connect } from "react-redux";
-import clsx from "clsx";
 
 import Loader from "react-loader-spinner";
 
@@ -10,27 +9,13 @@ import moment from "moment";
 
 // Objects
 import Card from "@material-ui/core/Card";
-import CardContent from "@material-ui/core/CardContent";
-import Collapse from "@material-ui/core/Collapse";
-import IconButton from "@material-ui/core/IconButton";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import CardActions from "@material-ui/core/CardActions";
 import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
 import BookmarkBorderOutlinedIcon from "@material-ui/icons/BookmarkBorderOutlined";
 import LanguageIcon from "@material-ui/icons/Language";
-// import Modal from "@material-ui/core/Modal";
-// import Fade from "@material-ui/core/Fade";
-// import Backdrop from "@material-ui/core/Backdrop";
-// import BookmarkIcon from "@material-ui/icons/Bookmark";
 import Typography from "@material-ui/core/Typography";
 import SuggestionDialog from "./dialogs/SuggestionDialog";
-
 import EditGrantDialog from "./dialogs/EditGrantDialog";
-
-import ExpansionPanel from "@material-ui/core/ExpansionPanel";
-import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
-import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
 
 // =========== STYLES ===========
 import { showcaseStyles } from "../../styles/grantShowcaseStyles";
@@ -38,9 +23,7 @@ import { suggestionStyles } from "../../styles/suggestionStyles";
 
 export const GrantShowcase = props => {
   const showcase = showcaseStyles();
-  const suggestion = suggestionStyles();
 
-  const [open, setOpen] = React.useState(false);
   const [expanded, setExpanded] = React.useState(false);
 
   const handleExpandClick = () => {
@@ -65,8 +48,6 @@ export const GrantShowcase = props => {
     props.grant.most_recent_application_due_date &&
     " or in about " +
       moment(props.grant.most_recent_application_due_date).fromNow();
-
-  // console.log("moment test", momentDeadline);
 
   if (props.isFetching) {
     return <Loader type="Triangle" color="#3DB8B3" height="200" width="200" />;
