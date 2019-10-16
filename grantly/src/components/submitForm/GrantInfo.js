@@ -17,10 +17,10 @@ const GrantInfo = props => {
           <TextField
             // id="outlined-name"
             fullWidth
-            label="Competition Name"
+            label="Grant Name"
             type="text"
             name="competition_name"
-            placeholder="Competition Name"
+            placeholder="Grant Name"
             value={props.grantInfo.competition_name}
             onChange={props.handleChanges}
           />

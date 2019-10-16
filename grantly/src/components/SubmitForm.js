@@ -92,10 +92,10 @@ const AddGrant = props => {
       early_stage_funding: "",
       details_last_updated: ""
     });
-    // setTimeout(() => {
-    //   props.fetchApi();
-    //   props.history.push("/grants");
-    // }, 2000);
+    setTimeout(() => {
+      props.fetchApi();
+      props.history.push("/grants");
+    }, 2000);
   };
 
   const styles = formStyles();

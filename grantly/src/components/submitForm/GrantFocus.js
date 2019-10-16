@@ -6,6 +6,8 @@ import formStyles from "../../styles/FormStyles";
 
 const GrantFocus = props => {
   const styles = formStyles();
+  // const areaFocus = []
+  // const domainAreas = []
   return (
     <Fragment>
       <Typography variant="h5" className={styles.subjectHeader}>
