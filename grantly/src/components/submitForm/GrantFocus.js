@@ -1,13 +1,98 @@
 import React, { Fragment } from "react";
-import { Grid, Typography, TextField, Divider } from "@material-ui/core";
+import {
+  Grid,
+  Typography,
+  TextField,
+  Divider,
+  MenuItem,
+  FormControl,
+  FormLabel,
+  FormGroup,
+  FormControlLabel,
+  Checkbox
+} from "@material-ui/core";
 import { connect } from "react-redux";
 import { postGrants, fetchApi } from "../../actions/index.js";
 import formStyles from "../../styles/FormStyles";
 
 const GrantFocus = props => {
   const styles = formStyles();
-  // const areaFocus = []
-  // const domainAreas = []
+  const areaFocus = [
+    {
+      value: "Communication Services",
+      label: "Communication Services"
+    },
+    {
+      value: "Consumer Discretionary",
+      label: "Consumer Discretionary"
+    },
+    {
+      value: "Consumer Staples",
+      label: "Consumer Staples"
+    },
+    {
+      value: "Energy",
+      label: "Energy"
+    },
+    {
+      value: "Financials",
+      label: "Financials"
+    },
+    {
+      value: "Industrials",
+      label: "Industrials"
+    },
+    {
+      value: "Information Technology",
+      label: "Information Technology"
+    },
+    {
+      value: "Materials",
+      label: "Materials"
+    },
+    {
+      value: "Real Estate",
+      label: "Real Estate"
+    },
+    {
+      value: "Utilities",
+      label: "Utilities"
+    },
+    {
+      value: "N/A",
+      label: "N/A"
+    }
+  ];
+  const domainAreas = [
+    {
+      value: "Social Entrepreneurship",
+      label: "Social Entrepreneurship"
+    },
+    {
+      value: "Conservation",
+      label: "Conservation"
+    },
+    {
+      value: "Economic Opportunity",
+      label: "Economic Opportunity"
+    },
+    {
+      value: "Agriculture",
+      label: "Agriculture"
+    },
+    {
+      value: "Social Change",
+      label: "Social Change"
+    },
+    {
+      value: "Other",
+      label: "Other"
+    },
+    {
+      value: "N/A",
+      label: "N/A"
+    }
+  ];
   return (
     <Fragment>
       <Typography variant="h5" className={styles.subjectHeader}>
@@ -29,25 +114,38 @@ const GrantFocus = props => {
         <Grid item xs={12}>
           <TextField
             label="Domain Areas"
-            type="text"
+            select
+            className={styles.dropDown}
             name="domain_areas"
             fullWidth
             placeholder="Domain Areas"
             value={props.grantInfo.domain_areas}
             onChange={props.handleChanges}
-          />
+          >
+            {domainAreas.map(option => (
+              <MenuItem key={option.value} value={option.value}>
+                {option.label}
+              </MenuItem>
+            ))}
+          </TextField>
         </Grid>
         <Grid item xs={12}>
           <TextField
             label="Area Focus"
-            type="text"
-            className={styles.inputText}
+            select
+            className={styles.dropDown}
             name="area_focus"
             placeholder="Area Focus"
             fullWidth
             value={props.grantInfo.area_focus}
             onChange={props.handleChanges}
-          />
+          >
+            {areaFocus.map(option => (
+              <MenuItem key={option.value} value={option.value}>
+                {option.label}
+              </MenuItem>
+            ))}
+          </TextField>
         </Grid>
       </Grid>
     </Fragment>
@@ -64,3 +162,21 @@ export default connect(
   mapStateToProps,
   { postGrants, fetchApi }
 )(GrantFocus);
+
+{
+  /* <FormControl>
+          <FormLabel> Area Focus</FormLabel>
+          <FormGroup
+            value={props.grantInfo.area_focus}
+            onChange={props.handleChanges}
+          >
+            {areaFocus.map(option => (
+              <FormControlLabel
+                control={<Checkbox key={option.value} value={option.value} />}
+                label={option.label}
+              />
+            ))}
+            
+          </FormGroup>
+        </FormControl> */
+}

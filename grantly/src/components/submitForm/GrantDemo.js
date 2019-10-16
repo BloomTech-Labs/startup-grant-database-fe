@@ -52,6 +52,10 @@ const GrantDemo = props => {
     {
       value: "Other",
       label: "Other"
+    },
+    {
+      value: "N/A",
+      label: "N/A"
     }
   ];
 
@@ -73,8 +77,12 @@ const GrantDemo = props => {
       label: "Veteran Business Enterprise"
     },
     {
-      value: "Owned",
-      label: "Owned"
+      value: "Other",
+      label: "Other"
+    },
+    {
+      value: "N/A",
+      label: "N/A"
     }
   ];
 
@@ -89,6 +97,7 @@ const GrantDemo = props => {
           <TextField
             label="Geographic Region"
             select
+            fullWidth
             className={styles.dropDown}
             name="geographic_region"
             placeholder="Geographic Region"
@@ -106,6 +115,7 @@ const GrantDemo = props => {
           <TextField
             label="Target Demographic"
             select
+            fullWidth
             className={styles.dropDown}
             name="target_entrepreneur_demographic"
             placeholder="Target Entrepreneur Demographic"
@@ -123,6 +133,7 @@ const GrantDemo = props => {
           <TextField
             InputLabelProps={{ shrink: true }}
             label="Application Due Date"
+            fullWidth
             type="date"
             name="most_recent_application_due_date"
             value={props.grantInfo.most_recent_application_due_date}
@@ -134,6 +145,7 @@ const GrantDemo = props => {
             InputLabelProps={{ shrink: true }}
             label="Early Stage Funding"
             select
+            fullWidth
             className={styles.dropDown}
             name="early_stage_funding"
             placeholder="Early Stage Funding"
