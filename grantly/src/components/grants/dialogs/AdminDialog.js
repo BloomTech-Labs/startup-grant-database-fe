@@ -16,12 +16,14 @@ import { putGrants, deleteGrants } from "../../../actions/index";
 export const AdminDialog = props => {
   const styles = adminStyles();
 
+  // Approval allows grant to be displayed in non-admin views
   const approveGrant = () => {
     props.putGrants(
       { id: props.grant.id, is_reviewed: true },
       props.currentUser
     );
   };
+  // Rejection deletes grant all-together from DB
   const rejectGrant = () => {
     props.deleteGrants(props.grant.id, props.currentUser);
   };
