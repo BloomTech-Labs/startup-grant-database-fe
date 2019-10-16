@@ -157,11 +157,11 @@ const AddGrant = props => {
                       onClick={handleBack}
                       variant="outlined"
                       className={styles.back}
+                      style={{ marginRight: "30px" }}
                     >
                       Back
                     </Button>
                   )}
-
                   <Button
                     variant="contained"
                     color="primary"
@@ -169,6 +169,7 @@ const AddGrant = props => {
                       activeStep === steps.length - 1 ? submitGrant : handleNext
                     }
                     className={styles.submit}
+                    style={{ color: "#fff" }}
                   >
                     {activeStep === steps.length - 1 ? "submit" : "Next"}
                   </Button>
