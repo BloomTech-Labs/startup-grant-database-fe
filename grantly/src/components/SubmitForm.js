@@ -52,7 +52,7 @@ const AddGrant = props => {
     sponsoring_entity: "",
     website: "",
     most_recent_application_due_date: "",
-    amount: "",
+    amount: null,
     amount_notes: "",
     geographic_region: "",
     domain_areas: "",
@@ -73,9 +73,9 @@ const AddGrant = props => {
   };
 
   const submitGrant = event => {
-    console.log("SubmitForm.js submitGrant", event);
     event.preventDefault();
     props.postGrants({ ...grantInfo });
+    console.log("SubmitForm.js submitGrant", grantInfo);
     setGrantInfo({
       competition_name: "",
       type: "",
