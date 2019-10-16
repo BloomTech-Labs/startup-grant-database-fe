@@ -15,7 +15,7 @@ import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { filterGrants, saveFilters } from "../actions/index";
+import { filterGrants, saveFilters, fetchApi } from "../actions/index";
 
 const Filters = ({
   saveFilters,
@@ -24,7 +24,8 @@ const Filters = ({
   location,
   inAdmin,
   mobile,
-  grants
+  grants,
+  fetchApi
 }) => {
   const [filters, setFilters] = useState({
     amount: [],
@@ -44,6 +45,11 @@ const Filters = ({
   }, [filters]);
 
   useEffect(() => {
+    if(grants.length === 0){
+      console.log("if")
+      fetchApi();
+    }
+    console.log("filtering", savedFilters)
     filterGrants(savedFilters);
   }, [savedFilters]);
   console.log("filters components", grants);
@@ -216,5 +222,5 @@ const mapStateToProps = state => {
 };
 export default connect(
   mapStateToProps,
-  { filterGrants, saveFilters }
+  { filterGrants, saveFilters, fetchApi }
 )(Filters);

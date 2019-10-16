@@ -28,6 +28,7 @@ export const NavBar = props => {
     // user,
     getTokenSilently
   } = useAuth0();
+
   const [isOpen, setIsOpen] = useState(false);
   const toggleDrawer = open => event => {
     if (
@@ -117,9 +118,11 @@ export const NavBar = props => {
       <Toolbar>
         <Link to="/" className={classes.titleLink}>
           <Typography variant="h4" className={classes.title}>
-            {props.role === "admin" && window.location.pathname === "/admin"
-              ? <FGLogo inAdmin={true} />
-              : <FGLogo /> }
+            {props.role === "admin" && window.location.pathname === "/admin" ? (
+              <FGLogo inAdmin={true} />
+            ) : (
+              <FGLogo />
+            )}
           </Typography>
         </Link>
         <Media query="(min-width:800px)">

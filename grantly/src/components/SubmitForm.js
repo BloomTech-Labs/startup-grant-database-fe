@@ -1,31 +1,26 @@
 //Dependencies
 import React, { useState, Fragment } from "react";
 import { connect } from "react-redux";
-import Media from "react-media";
+
 import { postGrants, fetchApi } from "../actions/index.js";
 
 //Objects
 import formStyles from "../styles/FormStyles";
 import {
-  TextField,
-  MenuItem,
   Button,
   Paper,
   Grid,
   Stepper,
   Step,
   Typography,
-  Container,
-  Link,
   CssBaseline,
   StepLabel
 } from "@material-ui/core";
-import Home from "../views/Home";
-import NavBar from "./Navbar";
+
 import GrantInfo from "./submitForm/GrantInfo";
 import GrantFocus from "./submitForm/GrantFocus";
 import GrantDemo from "./submitForm/GrantDemo";
-import { typography } from "@material-ui/system";
+
 import moment from "moment";
 
 const AddGrant = props => {
@@ -97,10 +92,10 @@ const AddGrant = props => {
       early_stage_funding: "",
       details_last_updated: ""
     });
-    setTimeout(() => {
-      props.fetchApi();
-      props.history.push("/grants");
-    }, 2000);
+    // setTimeout(() => {
+    //   props.fetchApi();
+    //   props.history.push("/grants");
+    // }, 2000);
   };
 
   const styles = formStyles();
@@ -155,9 +150,14 @@ const AddGrant = props => {
             ) : (
               <Fragment>
                 {getStepContent(activeStep)}
+
                 <div className={styles.button}>
                   {activeStep !== 0 && (
-                    <Button onClick={handleBack} className={styles.back}>
+                    <Button
+                      onClick={handleBack}
+                      variant="outlined"
+                      className={styles.back}
+                    >
                       Back
                     </Button>
                   )}
