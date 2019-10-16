@@ -71,17 +71,20 @@ const GrantForm = props => {
 
   const editGrant = event => {
     event.preventDefault();
-    props.putGrants({
-      ...grantInfo,
-      details_last_updated: moment().format("YYYY-MM-DD")
-    });
+    props.putGrants(
+      {
+        ...grantInfo,
+        details_last_updated: moment().format("YYYY-MM-DD")
+      },
+      props.currentUser
+    );
     props.handleClose();
   };
 
   const removeGrant = event => {
     event.preventDefault();
-    // console.log("GRANT ID IN STATE", grantInfo.id);
-    props.deleteGrants(grantInfo.id);
+
+    props.deleteGrants(grantInfo.id, props.currentUser);
     props.handleClose();
   };
   const styles = formStyles();
@@ -322,9 +325,10 @@ const GrantForm = props => {
     </main>
   );
 };
-const mapStateToProps = ({ isFetching, error }) => ({
+const mapStateToProps = ({ isFetching, error, currentUser }) => ({
   isFetching,
-  error
+  error,
+  currentUser
 });
 
 export default connect(

@@ -122,10 +122,15 @@ export const putGrants = (updateGrant, user) => dispatch => {
       }
     )
 
-    .then(res => {
+    .then(success => {
       axios
         // .get(`https://labs16-grantly.herokuapp.com/api/grants/`)
-        .get(`https://grantly-staging.herokuapp.com/api/admin`)
+        .get(`https://grantly-staging.herokuapp.com/api/admin`, {
+          headers: {
+            auth0id: user.auth_id,
+            authorization: `Bearer ${user.token}`
+          }
+        })
 
         .then(response => {
           dispatch({
@@ -159,7 +164,12 @@ export const deleteGrants = (id, user) => dispatch => {
     .then(res => {
       axios
         // .get(`https://labs16-grantly.herokuapp.com/api/grants/`)
-        .get(`https://grantly-staging.herokuapp.com/api/admin`)
+        .get(`https://grantly-staging.herokuapp.com/api/admin`, {
+          headers: {
+            auth0id: user.auth_id,
+            authorization: `Bearer ${user.token}`
+          }
+        })
 
         .then(response => {
           dispatch({
@@ -234,7 +244,7 @@ export const deleteSuggestion = (requestId, user) => dispatch => {
       `https://grantly-staging.herokuapp.com/api/admin/suggestion/${requestId}`,
       {
         headers: {
-          auth_id: user.auth_id,
+          auth0id: user.auth_id,
           authorization: `Bearer ${user.token}`
         }
       }
