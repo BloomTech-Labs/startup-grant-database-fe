@@ -20,9 +20,6 @@ const SuggestionDialog = props => {
     suggestion: ""
   });
 
-  const [submitValue, setSubmitValue] = React.useState("");
-  //   console.log("SuggestionDialog props", props);
-
   const [open, setOpen] = React.useState(false);
 
   const classes = dialogStyles();
@@ -45,16 +42,14 @@ const SuggestionDialog = props => {
 
   const handleSubmit = () => {
     const sendObject = {
-      
       subject: suggestion.subject,
       suggestion: suggestion.suggestion,
       grant_id: props.id
     };
-    console.log("OBJECT BEING SENT TO ACTION", sendObject)
+    console.log("OBJECT BEING SENT TO ACTION", sendObject);
     props.submitSuggestion(sendObject);
     handleClose();
     setSuggestion("");
-
   };
 
   return (
