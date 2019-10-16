@@ -17,7 +17,10 @@ export const AdminDialog = props => {
   const styles = adminStyles();
 
   const approveGrant = () => {
-    props.putGrants({ ...props.grant, is_reviewed: true });
+    props.putGrants(
+      { id: props.grant.id, is_reviewed: true },
+      props.currentUser
+    );
   };
   if (props.isFetching) {
     return <Loader type="Triangle" color="#3DB8B3" height="100" width="100" />;
@@ -64,7 +67,8 @@ export const AdminDialog = props => {
 const mapStateToProps = state => {
   return {
     grant: state.grantShowcase,
-    isFetching: state.isFetching
+    isFetching: state.isFetching,
+    currentUser: state.currentUser
   };
 };
 
