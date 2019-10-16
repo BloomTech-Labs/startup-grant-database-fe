@@ -31,10 +31,10 @@ export const showcaseStyles = makeStyles(theme => ({
     fontSize: "1.1rem"
   },
   bookmark: {
-    fill: "#C4C4C4"
+    fill: "#696969"
   },
   website: {
-    fill: "#C4C4C4",
+    fill: "#696969",
     marginRight: ".2rem"
   },
 
