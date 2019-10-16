@@ -56,7 +56,7 @@ export const showcaseStyles = makeStyles(theme => ({
   showcaseDetailsBottom: {
     height: 90,
     marginTop: 10,
-    marginBottom: 20,
+    marginBottom: 10,
     marginLeft: 5,
     marginRight: 5,
     paddingTop: 5,
@@ -92,5 +92,10 @@ export const showcaseStyles = makeStyles(theme => ({
     color: "#696969",
     fontSize: "1.1rem",
     marginTop: 5
+  },
+  headersThree: {
+    // border: "1px solid red"
+    marginTop: 10,
+    marginBottom: 20
   }
 }));

@@ -8,12 +8,9 @@ import Moment from "react-moment";
 import moment from "moment";
 
 // Objects
-import Card from "@material-ui/core/Card";
-import Grid from "@material-ui/core/Grid";
-import Button from "@material-ui/core/Button";
+import { Card, Grid, Button, Typography, Divider } from "@material-ui/core";
 import BookmarkBorderOutlinedIcon from "@material-ui/icons/BookmarkBorderOutlined";
 import LanguageIcon from "@material-ui/icons/Language";
-import Typography from "@material-ui/core/Typography";
 import SuggestionDialog from "./dialogs/SuggestionDialog";
 import EditGrantDialog from "./dialogs/EditGrantDialog";
 
@@ -167,12 +164,13 @@ export const GrantShowcase = props => {
             </Grid>
           </Grid>
         </Grid>
-        <Grid container className="headers-3">
+        <Grid container className={showcase.headersThree}>
           <Grid item>
             <Grid className={showcase.showcaseSpan}>Notes:</Grid>
             <Grid className={showcase.innerDetails}>{props.grant.notes}</Grid>
           </Grid>
         </Grid>
+        <Divider color="primary" />
 
         <Grid
           container
