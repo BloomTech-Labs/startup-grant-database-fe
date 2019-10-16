@@ -80,7 +80,7 @@ const GrantForm = props => {
 
   const removeGrant = event => {
     event.preventDefault();
-    // console.log("GRANT ID IN STATE", grantInfo.id);
+
     props.deleteGrants(grantInfo.id, props.currentUser);
     props.handleClose();
   };
