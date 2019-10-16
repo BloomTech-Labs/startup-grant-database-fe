@@ -35,7 +35,8 @@ export const showcaseStyles = makeStyles(theme => ({
   },
   website: {
     fill: "#696969",
-    marginRight: ".2rem"
+    marginRight: ".2rem",
+    fontSize: "1.2rem"
   },
 
   showcaseDetailsTop: {

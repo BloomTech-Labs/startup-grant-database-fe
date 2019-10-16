@@ -70,13 +70,10 @@ export const GrantShowcase = props => {
               alignItems="center"
             >
               <Grid item>
-                <div className={showcase.grant_logo}></div>
-              </Grid>
-              <Grid item>
                 <Typography
                   className={showcase.grant_name}
-                  variant="h4"
-                  component="h4"
+                  variant="h5"
+                  component="h5"
                 >
                   {props.grant.competition_name}
                 </Typography>
@@ -104,7 +101,7 @@ export const GrantShowcase = props => {
             alignContent="flex-end"
           >
             <LanguageIcon className={showcase.website}></LanguageIcon>
-            <span className={showcase.website}>Visit Website:</span>
+
             <a href={props.grant.website} target="_blank">
               {props.grant.website}
             </a>
@@ -177,45 +174,6 @@ export const GrantShowcase = props => {
           </Grid>
         </Grid>
 
-        {/* <Grid
-          container
-          direction="column"
-          justify="space-around"
-          alignItems="flex-start"
-          className={showcase.grantInfo}
-        >
-          <Grid item className={showcase.showcaseDetails}>
-            <span className={showcase.showcaseSpan}>Amount: </span>
-            {props.grant.amount
-              ? props.grant.amount_notes
-              : "See website for details"}
-          </Grid>
-          <Grid item className={showcase.showcaseDetails}>
-            <span className={showcase.showcaseSpan}>Deadline: </span>
-            {deadline}
-            {momentDeadline}
-          </Grid>
-          <Grid item className={showcase.showcaseDetails}>
-            <span className={showcase.showcaseSpan}>Grant Categories:</span>
-            {props.grant.domain_areas}
-          </Grid>
-          <Grid item className={showcase.showcaseDetails}>
-            <span className={showcase.showcaseSpan}>Focus Area: </span>
-            {props.grant.area_focus}
-          </Grid>
-          <Grid item className={showcase.showcaseDetails}>
-            <span className={showcase.showcaseSpan}>Region: </span>
-            {props.grant.geographic_region}
-          </Grid>
-          <Grid item className={showcase.showcaseDetails}>
-            <span className={showcase.showcaseSpan}>Sponsor: </span>
-            {props.grant.sponsoring_entity}
-          </Grid>
-          <Grid item className={showcase.showcaseDetails}>
-            <span className={showcase.showcaseSpan}>Notes: </span>
-            {props.grant.notes}
-          </Grid>
-        </Grid> */}
         <Grid
           container
           direction="row"
