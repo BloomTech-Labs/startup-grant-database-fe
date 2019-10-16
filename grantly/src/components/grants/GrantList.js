@@ -22,11 +22,10 @@ export const GrantList = props => {
   const styles = homeStyles();
 
   useEffect(() => {
+    console.log("grants", props.data)
     if (props.inAdmin) {
       props.adminFetchApi(props.currentUser);
     } else if (props.data.length === 0) {
-      props.fetchApi();
-    } else {
       props.fetchApi();
     }
   }, []);
@@ -72,7 +71,8 @@ const mapStateToProps = state => {
     isFetching: state.isFetching,
     data: state.filteredGrants,
     grantStore: state.data,
-    currentUser: state.currentUser
+    currentUser: state.currentUser,
+    savedFilters: state.filters,
   };
 };
 export default connect(
