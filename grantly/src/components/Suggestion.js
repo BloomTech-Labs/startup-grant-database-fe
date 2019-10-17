@@ -25,9 +25,9 @@ export const Suggestion = props => {
   };
 
   const handleSubmit = () => {
-    props.deleteSuggestion(props.request.id);
+    props.deleteSuggestion(props.request.id, props.currentUser);
     setTimeout(() => {
-      props.adminFetchApi();
+      props.adminFetchApi(props.currentUser);
     }, 500);
   };
 
@@ -62,7 +62,8 @@ export const Suggestion = props => {
 const mapStateToProps = state => {
   return {
     grant: state.grantShowcase,
-    isFetching: state.isFetching
+    isFetching: state.isFetching,
+    currentUser: state.currentUser
   };
 };
 
