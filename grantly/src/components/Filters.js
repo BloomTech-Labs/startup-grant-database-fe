@@ -29,6 +29,7 @@ const Filters = ({
   fetchApi,
   ogGrants
 }) => {
+  console.log("THIS IS THE LOCATION OF THE FILTER's COMPONENT", location);
   const [filters, setFilters] = useState({
     amount: [],
     geographic_region: [],
@@ -49,7 +50,7 @@ const Filters = ({
     if (ogGrants.length === 0) {
       fetchApi();
     }
-    if (location === "/grants" || location === "/admin") {
+    if (location.pathname === "/grants" || location.pathname === "/admin") {
       filterGrants(savedFilters);
     }
   }, [savedFilters]);
@@ -89,7 +90,10 @@ const Filters = ({
   let classes;
   if (mobile) {
     classes = mobileStyles;
-  } else if (location === "/grants" || location === "/admin") {
+  } else if (
+    location.pathname === "/grants" ||
+    location.pathname === "/admin"
+  ) {
     classes = grantStyles;
   } else {
     classes = landingStyles;
