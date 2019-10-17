@@ -93,50 +93,6 @@ export const Grant = props => {
           <BookmarkBorderOutlinedIcon className={styles.bookmark} />
         )}
       </div>
-      {/* <Grid
-        container
-        direction="row"
-        justify="flex-end"
-        alignItems="flex-start"
-      >
-        <Grid item>
-          <BookmarkIcon></BookmarkIcon>
-        </Grid>
-      </Grid>
-      <Grid
-        container
-        direction="row"
-        justify="space-evenly"
-        alignItems="center"
-      >
-        <Grid item>
-          <div className={styles.grantName}>{props.grant.competition_name}</div>
-        </Grid>
-      </Grid>
-      <Container className={styles.detailsWrapper}>
-        <Grid container direction="column" className={styles.amount}>
-          <div className={styles.detailsHeader}>Amount</div>
-          <div>
-            {props.grant.amount
-              ? "$" + formatNumbers(props.grant.amount)
-              : "See website for details"}
-          </div>
-        </Grid>
-        <Grid container direction="column" className={styles.deadline}>
-          <div className={styles.detailsHeader}>Deadline</div>
-          {deadline}
-        </Grid>
-      </Container>
-      <Container maxWidth="sm">
-        <Button
-          className={styles.btn}
-          variant="contained"
-          color="default"
-          onClick={selectGrant}
-        >
-          Select
-        </Button>
-      </Container> */}
     </Card>
   );
 };

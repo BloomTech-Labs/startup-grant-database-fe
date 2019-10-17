@@ -22,11 +22,10 @@ export const GrantList = props => {
   const styles = homeStyles();
 
   useEffect(() => {
+    console.log("grants", props.data)
     if (props.inAdmin) {
       props.adminFetchApi(props.currentUser);
     } else if (props.data.length === 0) {
-      props.fetchApi();
-    } else {
       props.fetchApi();
     }
   }, []);
@@ -39,7 +38,7 @@ export const GrantList = props => {
     return <Loader type="Triangle" color="#3DB8B3" height="100" width="100" />;
   }
   // console.log(user);
-  console.log("CurrentUser Data from Store", props.currentUser);
+  // console.log("CurrentUser Data from Store", props.currentUser);
   return (
     <div>
       {props.data.length && (
@@ -72,7 +71,8 @@ const mapStateToProps = state => {
     isFetching: state.isFetching,
     data: state.filteredGrants,
     grantStore: state.data,
-    currentUser: state.currentUser
+    currentUser: state.currentUser,
+    savedFilters: state.filters,
   };
 };
 export default connect(
