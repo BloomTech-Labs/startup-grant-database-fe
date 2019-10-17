@@ -1,7 +1,12 @@
 //Dependencies
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import { putGrants, deleteGrants, adminFetchApi } from "../actions/index";
+import {
+  putGrants,
+  deleteGrants,
+  adminFetchApi,
+  changeTab
+} from "../actions/index";
 import moment from "moment";
 
 //Objects
@@ -79,16 +84,22 @@ const GrantForm = props => {
       props.currentUser
     );
     props.handleClose();
+    setTimeout(() => {
+      props.changeTab(0);
+    }, 2000);
   };
 
   const removeGrant = event => {
     event.preventDefault();
 
     props.deleteGrants(grantInfo.id, props.currentUser);
+
     props.handleClose();
+    setTimeout(() => {
+      props.changeTab(0);
+    }, 2000);
   };
   const styles = formStyles();
-
   return (
     <main className={styles.layout}>
       <Paper className={styles.paper}>
@@ -333,7 +344,7 @@ const mapStateToProps = ({ isFetching, error, currentUser }) => ({
 
 export default connect(
   mapStateToProps,
-  { putGrants, deleteGrants, adminFetchApi }
+  { putGrants, deleteGrants, adminFetchApi, changeTab }
 )(GrantForm);
 
 {
