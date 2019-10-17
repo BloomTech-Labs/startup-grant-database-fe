@@ -99,6 +99,6 @@ export const showcaseStyles = makeStyles(theme => ({
     marginBottom: 20
   },
   loaderDiv: {
-    marginTop: '150px'
+    marginTop: "150px"
   }
 }));

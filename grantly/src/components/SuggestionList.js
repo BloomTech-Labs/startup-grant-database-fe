@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 
 import Typography from "@material-ui/core/Typography";
 import Suggestion from "./Suggestion";
-import Loader from "react-loader-spinner";
 import { adminFetchApi } from "../actions";
 
 import { adminStyles } from "../styles/adminStyles";

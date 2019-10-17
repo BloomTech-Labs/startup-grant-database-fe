@@ -5,7 +5,6 @@ import { useAuth0 } from "../../react-auth0-wrapper";
 
 // Objects
 import Grant from "./Grant";
-import Loader from "react-loader-spinner";
 import Typography from "@material-ui/core/Typography";
 
 import { fetchApi, adminFetchApi } from "../../actions";
