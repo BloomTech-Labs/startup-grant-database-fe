@@ -57,8 +57,8 @@ const Home = props => {
               >
                 <Grid
                   item
-                  md={3}
-                  xs={12}
+                  md={4}
+                  xs={4}
                   className={classes.grantList}
                   // style={{ padding: "30px 0 0 30px" }}
                 >
@@ -69,12 +69,14 @@ const Home = props => {
                 <Grid
                   item
                   xs={6}
+                  sm={9}
+                  md={7}
                   className={classes.gridItem}
                   // style={{ padding: "30px 30px 0 30px" }}
                 >
                   <GrantShowcase />
                 </Grid>
-                <Grid item xs={4} md={2}>
+                <Grid item xs={4} sm={2} md={2}>
                   <TuneIcon
                     className={`${classes.filterIcon} ${filterOpen &&
                       classes.filterIconSelected}`}

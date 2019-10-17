@@ -2,7 +2,10 @@ import { makeStyles } from "@material-ui/core/styles";
 
 export const dialogStyles = makeStyles(theme => ({
   applyButton: {
-    color: "#fff"
+    color: "#fff",
+    fontFamily: "Nunito Sans",
+    fontWeight: "600",
+    marginTop: "20px"
   },
   formField: {
     width: 500

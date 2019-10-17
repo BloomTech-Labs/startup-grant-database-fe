@@ -1,6 +1,5 @@
 import React from "react";
 import { connect } from "react-redux";
-import { dialogStyles } from "../styles/DialogStyles";
 import {
   Button,
   Dialog,
@@ -12,6 +11,7 @@ import {
   Grid,
   Typography
 } from "@material-ui/core";
+import { dialogStyles } from "../styles/DialogStyles";
 import { submitSuggestion } from "../../../actions/index";
 
 const SuggestionDialog = props => {

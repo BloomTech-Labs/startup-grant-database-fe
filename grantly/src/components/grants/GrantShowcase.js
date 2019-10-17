@@ -120,10 +120,22 @@ export const GrantShowcase = props => {
               )}
             </Grid> */}
           </Grid>
+          {/* <Divider color="primary" /> */}
         </div>
         {/* ================= Main content ================= */}
-        <Grid container direction="row" className="headers-1">
-          <Grid item className={showcase.showcaseDetailsTop} xs={2}>
+        <Grid
+          container
+          justify="space-between"
+          direction="row"
+          className="headers-1"
+        >
+          <Grid
+            item
+            className={showcase.showcaseDetailsTop}
+            xs={4}
+            sm={5}
+            md={2}
+          >
             <Grid className={showcase.showcaseSpan}>Amount:</Grid>
             <Grid className={showcase.innerDetails}>
               {props.grant.amount
@@ -131,32 +143,44 @@ export const GrantShowcase = props => {
                 : "See website for details"}
             </Grid>
           </Grid>
-          <Grid item xs={4} className={showcase.showcaseDetailsTop}>
+          <Grid
+            item
+            xs={4}
+            sm={5}
+            md={3}
+            className={showcase.showcaseDetailsTop}
+          >
             <Grid className={showcase.showcaseSpan}>Deadline:</Grid>
             <Grid className={showcase.innerDetails}>{momentDeadline}</Grid>
           </Grid>
-          <Grid item xs={5} className={showcase.showcaseDetailsTop}>
+          <Grid
+            item
+            xs={9}
+            sm={10}
+            md={6}
+            className={showcase.showcaseDetailsTop}
+          >
             <Grid className={showcase.showcaseSpan}>Grant Categories:</Grid>
             <Grid className={showcase.innerDetails}>
               {props.grant.domain_areas}
             </Grid>
           </Grid>
         </Grid>
-        <Grid container className="headers-2">
-          <Grid item xs={2} className={showcase.showcaseDetailsBottom}>
+        <Grid container justify="space-between" className="headers-2">
+          <Grid item xs={5} md={2} className={showcase.showcaseDetailsBottom}>
             <Grid className={showcase.showcaseSpan}>Region:</Grid>
             <Grid className={showcase.innerDetails}>
               {" "}
               {props.grant.geographic_region}
             </Grid>
           </Grid>
-          <Grid item xs={4} className={showcase.showcaseDetailsBottom}>
+          <Grid item xs={5} md={4} className={showcase.showcaseDetailsBottom}>
             <Grid className={showcase.showcaseSpan}>Focus Area:</Grid>
             <Grid className={showcase.innerDetails}>
               {props.grant.area_focus}
             </Grid>
           </Grid>
-          <Grid item xs={5} className={showcase.showcaseDetailsBottom}>
+          <Grid item xs={8} md={5} className={showcase.showcaseDetailsBottom}>
             <Grid className={showcase.showcaseSpan}>Sponsor:</Grid>
             <Grid className={showcase.innerDetails}>
               {" "}
