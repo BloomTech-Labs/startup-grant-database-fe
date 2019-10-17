@@ -84,10 +84,7 @@ const Filters = ({
   const grantStyles = useStylesGrants();
   const landingStyles = useStylesLanding();
   const mobileStyles = useStylesMobile();
-  console.log("THIS IS THE LOCATION OF THE FILTER's COMPONENT", location);
-  console.log("Is this the landing page?", location === "/");
-  console.log("Is this the grants page?", location === "/grants");
-  console.log("Is this the admin page?", location === "/admin");
+
   let classes;
   if (mobile) {
     classes = mobileStyles;
