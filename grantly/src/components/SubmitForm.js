@@ -2,7 +2,7 @@
 import React, { useState, Fragment } from "react";
 import { connect } from "react-redux";
 
-import { postGrants, fetchApi } from "../actions/index.js";
+import { postGrants, fetchApi, changeTab } from "../actions/index.js";
 
 //Objects
 import formStyles from "../styles/FormStyles";
@@ -93,6 +93,7 @@ const AddGrant = props => {
     });
     setTimeout(() => {
       props.fetchApi();
+      props.changeTab(0)
       props.history.push("/grants");
     }, 2000);
   };
@@ -109,7 +110,6 @@ const AddGrant = props => {
     setActiveStep(activeStep - 1);
   };
 
-  console.log(props);
   return (
     <Fragment>
       <CssBaseline />
@@ -189,5 +189,5 @@ const mapStateToProps = ({ grantData, isFetching, error }) => ({
 
 export default connect(
   mapStateToProps,
-  { postGrants, fetchApi }
+  { postGrants, fetchApi, changeTab }
 )(AddGrant);

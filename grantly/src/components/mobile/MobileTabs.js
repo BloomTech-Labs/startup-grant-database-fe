@@ -38,7 +38,7 @@ function a11yProps(index) {
   };
 }
 
-const MobileTabs = ({ grant, currentTab, changeTab, inAdmin }) => {
+const MobileTabs = ({ grant, currentTab, changeTab, inAdmin, history }) => {
   const classes = mobileTabStyles();
   const theme = useTheme();
   const [value, setValue] = React.useState(0);
@@ -82,7 +82,7 @@ const MobileTabs = ({ grant, currentTab, changeTab, inAdmin }) => {
           <GrantShowcase inAdmin={inAdmin} />
         </TabPanel>
         <TabPanel value={value} index={2} dir={theme.direction}>
-          <SubmitForm />
+          <SubmitForm history={history}/>
         </TabPanel>
       </SwipeableViews>
     </div>

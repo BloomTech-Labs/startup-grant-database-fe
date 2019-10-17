@@ -97,10 +97,7 @@ const Filters = ({
   } else {
     classes = landingStyles;
   }
-  if (isFetching) {
-    return <Loader type="Triangle" color="#3DB8B3" height="200" width="200" />;
-  }
-console.log("data", ogGrants)
+
   return (
     <Card className={classes.card}>
       <Typography className={classes.title} variant="h5" component="h2">

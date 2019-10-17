@@ -35,7 +35,7 @@ const Home = props => {
         {matches =>
           matches ? (
             <>
-              <MobileTabs />
+              <MobileTabs history={props.history}/>
               <MobileFilters toggleDrawer={toggleDrawer} />
               <SwipeableDrawer
                 anchor="bottom"
