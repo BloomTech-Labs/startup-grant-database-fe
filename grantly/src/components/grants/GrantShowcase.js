@@ -1,7 +1,6 @@
 // Dependencies
 import React from "react";
 import { connect } from "react-redux";
-import clsx from "clsx";
 
 import Loader from "react-loader-spinner";
 
@@ -10,60 +9,25 @@ import moment from "moment";
 
 // Objects
 import Card from "@material-ui/core/Card";
-import CardContent from "@material-ui/core/CardContent";
-import Collapse from "@material-ui/core/Collapse";
-import IconButton from "@material-ui/core/IconButton";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import CardActions from "@material-ui/core/CardActions";
 import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
 import BookmarkBorderOutlinedIcon from "@material-ui/icons/BookmarkBorderOutlined";
 import LanguageIcon from "@material-ui/icons/Language";
-// import Modal from "@material-ui/core/Modal";
-// import Fade from "@material-ui/core/Fade";
-// import Backdrop from "@material-ui/core/Backdrop";
-// import BookmarkIcon from "@material-ui/icons/Bookmark";
 import Typography from "@material-ui/core/Typography";
 import SuggestionDialog from "./dialogs/SuggestionDialog";
-
 import EditGrantDialog from "./dialogs/EditGrantDialog";
-
-import ExpansionPanel from "@material-ui/core/ExpansionPanel";
-import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
-import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
-
 
 // =========== STYLES ===========
 import { showcaseStyles } from "../../styles/grantShowcaseStyles";
-import { suggestionStyles } from "../../styles/suggestionStyles";
 
 export const GrantShowcase = props => {
+  console.log("GrantShowcase props", props);
+
   const showcase = showcaseStyles();
-  const suggestion = suggestionStyles();
 
-
-  const [open, setOpen] = React.useState(false);
-  const [expanded, setExpanded] = React.useState(false);
-
-  const handleExpandClick = () => {
-    setExpanded(!expanded);
-  };
-
-
-  // ===== not needed? =====
-
-  // const handleOpen = () => {
-  //   setOpen(true);
-  // };
-
-
-  // const handleClose = () => {
-  //   setOpen(false);
-  // };
-
-  // function formatNumbers(num) {
-  //   return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-  // }
+  function formatNumbers(num) {
+    return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  }
 
   const deadline = props.grant.most_recent_application_due_date ? (
     <Moment format={"MMMM Do YYYY"}>
@@ -77,8 +41,6 @@ export const GrantShowcase = props => {
     props.grant.most_recent_application_due_date &&
     " or in about " +
       moment(props.grant.most_recent_application_due_date).fromNow();
-
-  // console.log("moment test", momentDeadline);
 
   if (props.isFetching) {
     return <Loader type="Triangle" color="#3DB8B3" height="200" width="200" />;
@@ -135,7 +97,6 @@ export const GrantShowcase = props => {
             </Grid>
           </Grid>
 
-
           <Grid
             container
             justify="flex-start"
@@ -148,7 +109,7 @@ export const GrantShowcase = props => {
               {props.grant.website}
             </a>
 
-            <Grid item>
+            {/* <Grid item>
               <a href={props.grant.website} target="_blank">
                 <Button
                   className={showcase.applyButton}
@@ -158,21 +119,65 @@ export const GrantShowcase = props => {
                   Apply to Grant
                 </Button>
               </a>
-
-              {/* <Button
-            className={showcase.applyButton}
-            variant="contained"
-            color="primary"
-            >
-            Edit Grant
-          </Button> */}
-            </Grid>
+              {!props.inAdmin && (
+                <Grid item>
+                  <SuggestionDialog id={props.grant.id} />
+                </Grid>
+              )}
+            </Grid> */}
           </Grid>
         </div>
         {/* ================= Main content ================= */}
+        <Grid container direction="row" className="headers-1">
+          <Grid item className={showcase.showcaseDetailsTop} xs={2}>
+            <Grid className={showcase.showcaseSpan}>Amount:</Grid>
+            <Grid className={showcase.innerDetails}>
+              {props.grant.amount
+                ? "$" + formatNumbers(props.grant.amount)
+                : "See website for details"}
+            </Grid>
+          </Grid>
+          <Grid item xs={4} className={showcase.showcaseDetailsTop}>
+            <Grid className={showcase.showcaseSpan}>Deadline:</Grid>
+            <Grid className={showcase.innerDetails}>{momentDeadline}</Grid>
+          </Grid>
+          <Grid item xs={5} className={showcase.showcaseDetailsTop}>
+            <Grid className={showcase.showcaseSpan}>Grant Categories:</Grid>
+            <Grid className={showcase.innerDetails}>
+              {props.grant.domain_areas}
+            </Grid>
+          </Grid>
+        </Grid>
+        <Grid container className="headers-2">
+          <Grid item xs={2} className={showcase.showcaseDetailsBottom}>
+            <Grid className={showcase.showcaseSpan}>Region:</Grid>
+            <Grid className={showcase.innerDetails}>
+              {" "}
+              {props.grant.geographic_region}
+            </Grid>
+          </Grid>
+          <Grid item xs={4} className={showcase.showcaseDetailsBottom}>
+            <Grid className={showcase.showcaseSpan}>Focus Area:</Grid>
+            <Grid className={showcase.innerDetails}>
+              {props.grant.area_focus}
+            </Grid>
+          </Grid>
+          <Grid item xs={5} className={showcase.showcaseDetailsBottom}>
+            <Grid className={showcase.showcaseSpan}>Sponsor:</Grid>
+            <Grid className={showcase.innerDetails}>
+              {" "}
+              {props.grant.sponsoring_entity}
+            </Grid>
+          </Grid>
+        </Grid>
+        <Grid container className="headers-3">
+          <Grid item>
+            <Grid className={showcase.showcaseSpan}>Notes:</Grid>
+            <Grid className={showcase.innerDetails}>{props.grant.notes}</Grid>
+          </Grid>
+        </Grid>
 
-
-        <Grid
+        {/* <Grid
           container
           direction="column"
           justify="space-around"
@@ -180,7 +185,7 @@ export const GrantShowcase = props => {
           className={showcase.grantInfo}
         >
           <Grid item className={showcase.showcaseDetails}>
-            <span className={showcase.showcaseSpan}>What it is: </span>{" "}
+            <span className={showcase.showcaseSpan}>Amount: </span>
             {props.grant.amount
               ? props.grant.amount_notes
               : "See website for details"}
@@ -191,9 +196,7 @@ export const GrantShowcase = props => {
             {momentDeadline}
           </Grid>
           <Grid item className={showcase.showcaseDetails}>
-            <span className={showcase.showcaseSpan}>
-              This grant is in the areas of:{" "}
-            </span>
+            <span className={showcase.showcaseSpan}>Grant Categories:</span>
             {props.grant.domain_areas}
           </Grid>
           <Grid item className={showcase.showcaseDetails}>
@@ -205,15 +208,14 @@ export const GrantShowcase = props => {
             {props.grant.geographic_region}
           </Grid>
           <Grid item className={showcase.showcaseDetails}>
-            <span className={showcase.showcaseSpan}>Sponsored by: </span>
+            <span className={showcase.showcaseSpan}>Sponsor: </span>
             {props.grant.sponsoring_entity}
           </Grid>
           <Grid item className={showcase.showcaseDetails}>
             <span className={showcase.showcaseSpan}>Notes: </span>
             {props.grant.notes}
           </Grid>
-
-        </Grid>
+        </Grid> */}
         <Grid
           container
           direction="row"
@@ -221,7 +223,7 @@ export const GrantShowcase = props => {
           alignItems="center"
           className={showcase.topContent}
         >
-          {/* <Grid item>
+          <Grid item>
             <Button
               className={showcase.applyButton}
               variant="contained"
@@ -229,7 +231,7 @@ export const GrantShowcase = props => {
             >
               Apply to Grant
             </Button>
-          </Grid> */}
+          </Grid>
           {!props.inAdmin && (
             <Grid item>
               <SuggestionDialog id={props.grant.id} />

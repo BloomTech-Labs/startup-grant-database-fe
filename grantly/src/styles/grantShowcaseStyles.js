@@ -19,27 +19,52 @@ export const showcaseStyles = makeStyles(theme => ({
     }
   },
   inAdmin: {
-    minHeight: "70vh",
+    minHeight: "70vh"
   },
   topContent: {
     margin: " 0",
     fontWeight: "700"
     // fontSize: "1.8rem"
   },
-  grantInfo: {},
   showcaseSpan: {
-    fontWeight: "bold"
+    fontWeight: "bold",
+    fontSize: "1.1rem"
   },
   bookmark: {
-    fill: "#C4C4C4"
+    fill: "#696969"
   },
   website: {
-    fill: "#C4C4C4",
+    fill: "#696969",
     marginRight: ".2rem"
   },
 
-  showcaseDetails: {
-    marginBottom: "30px"
+  showcaseDetailsTop: {
+    height: 90,
+    marginTop: 20,
+    marginBottom: 10,
+    marginLeft: 5,
+    marginRight: 5,
+    paddingTop: 5,
+    paddingBottom: 5,
+    paddingLeft: 5,
+    paddingRight: 5,
+    // border: "1px solid red",
+    lineHeight: "1.2rem",
+    fontFamily: "EB Garamond"
+  },
+  showcaseDetailsBottom: {
+    height: 90,
+    marginTop: 10,
+    marginBottom: 20,
+    marginLeft: 5,
+    marginRight: 5,
+    paddingTop: 5,
+    paddingBottom: 5,
+    paddingLeft: 5,
+    paddingRight: 5,
+    lineHeight: "1.2rem",
+    fontFamily: "EB Garamond"
+    // border: "1px solid red"
   },
   applyButton: {
     color: "#fff",
@@ -62,7 +87,9 @@ export const showcaseStyles = makeStyles(theme => ({
     fontFamily: "Nunito Sans",
     color: "#222222"
   },
-  editIcon: {
-    //
+  innerDetails: {
+    color: "#696969",
+    fontSize: "1.1rem",
+    marginTop: 5
   }
 }));

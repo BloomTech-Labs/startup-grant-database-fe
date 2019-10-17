@@ -2,14 +2,12 @@ import React from "react";
 import { connect } from "react-redux";
 import Navbar from "../components/Navbar";
 import Grid from "@material-ui/core/Grid";
-import {landingStyles} from "../styles/landingStyles"
+import { landingStyles } from "../styles/landingStyles";
 import Button from "@material-ui/core/Button";
 import { Link } from "react-router-dom";
 import Filter from "../components/Filters";
 import { fetchApi } from "../actions/index";
 import { flexbox } from "@material-ui/system";
-
-
 
 function Landing(props) {
   const classes = landingStyles();

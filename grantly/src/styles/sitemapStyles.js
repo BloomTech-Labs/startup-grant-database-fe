@@ -45,6 +45,9 @@ export const sitemapStyles = makeStyles(theme => ({
   },
   link: {
     color: "#696969",
+    "&:hover": {
+      cursor: "pointer"
+    },
     [theme.breakpoints.down("xs")]: {
       color: "#fff"
     }

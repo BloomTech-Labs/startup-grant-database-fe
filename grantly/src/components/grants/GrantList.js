@@ -1,6 +1,7 @@
 // Dependencies
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
+import { useAuth0 } from "../../react-auth0-wrapper";
 
 // Objects
 import Grant from "./Grant";
@@ -26,9 +27,11 @@ export const GrantList = props => {
     } else if (props.data.length === 0) {
       props.fetchApi();
     } else {
-      props.fetchApi();
+      // props.fetchApi();
     }
+    console.log("grants", props.data);
   }, []);
+
   const needToBeReviewed = props.data.filter(
     grant => grant.is_reviewed === false
   ).length;
@@ -37,12 +40,13 @@ export const GrantList = props => {
     return <Loader type="Triangle" color="#3DB8B3" height="100" width="100" />;
   }
   // console.log(user);
+  // console.log("CurrentUser Data from Store", props.currentUser);
   return (
     <div>
       {props.data.length && (
         <p className={styles.results}>{props.data.length} Grants</p>
       )}
-      {props.inAdmin && <p>{needToBeReviewed} grant(s) need to be reviewed</p>}
+      {/* {props.inAdmin && <p>{needToBeReviewed} grant(s) need to be reviewed</p>} */}
 
       {props.data.length > 0 ? (
         props.data.map(grant => {
@@ -69,7 +73,8 @@ const mapStateToProps = state => {
     isFetching: state.isFetching,
     data: state.filteredGrants,
     grantStore: state.data,
-    currentUser: state.currentUser
+    currentUser: state.currentUser,
+    savedFilters: state.filters
   };
 };
 export default connect(

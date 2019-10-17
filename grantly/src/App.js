@@ -19,12 +19,17 @@ import LoginForm from "./components/LoginForm";
 import NavBar from "./components/Navbar";
 import Sitemap from "./components/Sitemap";
 import PrivateRoute from "./util/PrivateRoute";
+import EmailDialog from "./components/grants/dialogs/EmailDialog";
 
 function App({ checkUser, currentUser }) {
-  const { user, isAuthenticated } = useAuth0();
+  const { user, isAuthenticated, getTokenSilently } = useAuth0();
   useEffect(() => {
     if (isAuthenticated) {
-      checkUser(user);
+      // const authToken = getTokenSilently().then(res => res);
+      const auth = getTokenSilently().then(res => {
+        const authToken = res;
+        checkUser({ ...user, token: authToken });
+      });
     }
   }, [user]);
   console.log("User", currentUser);
@@ -32,17 +37,16 @@ function App({ checkUser, currentUser }) {
     <Router>
       <ThemeProvider theme={theme}>
         <div className="App">
-          {/* <Route path = "/login" component={LoginForm} /> */}
           <Route
             path="/"
             render={props => <NavBar {...props} role={currentUser.role} />}
           />
+          {/* <EmailDialog /> */}
           <Route exact path="/" component={Landing} />
           <Route exact path="/grants" component={Home} />
           <Route path="/form" component={SubmitForm} />
           <Route path="/login" component={LoginForm} />
           <Route path="/about" component={About} />
-          {/* <Route path="/admin" component={Admin} /> */}
           {isAuthenticated && (
             <PrivateRoute exact path="/admin" component={Admin} />
           )}

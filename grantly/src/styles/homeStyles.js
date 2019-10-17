@@ -6,6 +6,9 @@ import { border } from "@material-ui/system";
 //   }))
 
 export const homeStyles = makeStyles(theme => ({
+  loader: {
+    minHeight: "100vh"
+  },
   content: {
     flexGrow: 1,
     padding: theme.spacing(3)

@@ -47,7 +47,7 @@ const SuggestionDialog = props => {
       grant_id: props.id
     };
     console.log("OBJECT BEING SENT TO ACTION", sendObject);
-    props.submitSuggestion(sendObject);
+    // props.submitSuggestion(sendObject);
     handleClose();
     setSuggestion("");
   };
@@ -73,14 +73,13 @@ const SuggestionDialog = props => {
           <Grid item>
             <DialogTitle className={classes.headerText}>
               <Typography variant="h5">
-                Submit your suggestion to Founder Grants
+                Please enter your email to contact you for your submitted grant
               </Typography>
             </DialogTitle>
           </Grid>
           <Grid item>
             <DialogContentText className={classes.headerText}>
-              Our admins will review your suggestions and make the appropriate
-              changes
+              Our admins will review your grant for approval
             </DialogContentText>
           </Grid>
         </Grid>
@@ -89,21 +88,12 @@ const SuggestionDialog = props => {
             <br />
             <TextField
               margin="normal"
-              label="subject"
+              label="Enter email"
               onChange={handleChanges("subject")}
               variant="outlined"
             />
             <br />
-            <TextField
-              label="suggestion"
-              multiline
-              rows="4"
-              onChange={handleChanges("suggestion")}
-              margin="normal"
-              className={classes.formField}
-              variant="outlined"
-            />
-            <br />
+
           </form>
         </DialogContent>
         <DialogActions>

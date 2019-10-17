@@ -1,31 +1,26 @@
 //Dependencies
 import React, { useState, Fragment } from "react";
 import { connect } from "react-redux";
-import Media from "react-media";
+
 import { postGrants, fetchApi } from "../actions/index.js";
 
 //Objects
 import formStyles from "../styles/FormStyles";
 import {
-  TextField,
-  MenuItem,
   Button,
   Paper,
   Grid,
   Stepper,
   Step,
   Typography,
-  Container,
-  Link,
   CssBaseline,
   StepLabel
 } from "@material-ui/core";
-import Home from "../views/Home";
-import NavBar from "./Navbar";
+
 import GrantInfo from "./submitForm/GrantInfo";
 import GrantFocus from "./submitForm/GrantFocus";
 import GrantDemo from "./submitForm/GrantDemo";
-import { typography } from "@material-ui/system";
+
 import moment from "moment";
 
 const AddGrant = props => {
@@ -80,7 +75,7 @@ const AddGrant = props => {
   const submitGrant = event => {
     console.log("SubmitForm.js submitGrant", event);
     event.preventDefault();
-    props.postGrants({ ...grantInfo });
+    props.postGrants({ ...grantInfo});
     setGrantInfo({
       competition_name: "",
       type: "",
@@ -97,10 +92,10 @@ const AddGrant = props => {
       early_stage_funding: "",
       details_last_updated: ""
     });
-    setTimeout(() => {
-      props.fetchApi();
-      props.history.push("/grants");
-    }, 2000);
+    // setTimeout(() => {
+    //   props.fetchApi();
+    //   props.history.push("/grants");
+    // }, 2000);
   };
 
   const styles = formStyles();
@@ -155,13 +150,18 @@ const AddGrant = props => {
             ) : (
               <Fragment>
                 {getStepContent(activeStep)}
+
                 <div className={styles.button}>
                   {activeStep !== 0 && (
-                    <Button onClick={handleBack} className={styles.back}>
+                    <Button
+                      onClick={handleBack}
+                      variant="outlined"
+                      className={styles.back}
+                      style={{ marginRight: "30px" }}
+                    >
                       Back
                     </Button>
                   )}
-
                   <Button
                     variant="contained"
                     color="primary"
@@ -169,6 +169,7 @@ const AddGrant = props => {
                       activeStep === steps.length - 1 ? submitGrant : handleNext
                     }
                     className={styles.submit}
+                    style={{ color: "#fff" }}
                   >
                     {activeStep === steps.length - 1 ? "submit" : "Next"}
                   </Button>
