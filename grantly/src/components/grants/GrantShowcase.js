@@ -40,7 +40,11 @@ export const GrantShowcase = props => {
       moment(props.grant.most_recent_application_due_date).fromNow();
 
   if (props.isFetching) {
-    return <Loader type="Triangle" color="#3DB8B3" height="200" width="200" />;
+    return (
+      <div className={showcase.loaderDiv}>
+        <Loader type="Triangle" color="#3DB8B3" height="400" />;
+      </div>
+    );
   }
 
   return (

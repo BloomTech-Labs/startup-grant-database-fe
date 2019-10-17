@@ -97,5 +97,8 @@ export const showcaseStyles = makeStyles(theme => ({
     // border: "1px solid red"
     marginTop: 10,
     marginBottom: 20
+  },
+  loaderDiv: {
+    marginTop: '150px'
   }
 }));
