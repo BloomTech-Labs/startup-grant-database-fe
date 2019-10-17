@@ -1,6 +1,9 @@
 import { makeStyles } from "@material-ui/core/styles";
 
 export const adminStyles = makeStyles(theme => ({
+  loader: {
+    minHeight: "100vh"
+  },
   content: {
     flexGrow: 1,
     padding: theme.spacing(3)
@@ -31,7 +34,7 @@ export const adminStyles = makeStyles(theme => ({
     transform: "translateX(0)"
   },
   filterIcon: {
-    position: "fixed",
+    position: "absolute",
     top: "11%",
     fill: "#BBB",
     right: "1%",
@@ -40,7 +43,7 @@ export const adminStyles = makeStyles(theme => ({
     width: "50px",
     height: "50px",
     borderRadius: "50%",
-    zIndex: "2000",
+    zIndex: "1000",
     boxShadow:
       "0px 1px 0px 0px rgba(0,0,0,0.2), 0px 1px 0px 0px rgba(0,0,0,0.14), 0px 2px 0px -1px rgba(0,0,0,0.12)"
   },

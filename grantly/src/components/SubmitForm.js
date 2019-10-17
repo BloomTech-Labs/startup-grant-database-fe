@@ -52,7 +52,7 @@ const AddGrant = props => {
     sponsoring_entity: "",
     website: "",
     most_recent_application_due_date: "",
-    amount: "",
+    amount: null,
     amount_notes: "",
     geographic_region: "",
     domain_areas: "",
@@ -73,7 +73,6 @@ const AddGrant = props => {
   };
 
   const submitGrant = event => {
-    console.log("SubmitForm.js submitGrant", event);
     event.preventDefault();
     props.postGrants({ ...grantInfo });
     setGrantInfo({
@@ -92,10 +91,10 @@ const AddGrant = props => {
       early_stage_funding: "",
       details_last_updated: ""
     });
-    // setTimeout(() => {
-    //   props.fetchApi();
-    //   props.history.push("/grants");
-    // }, 2000);
+    setTimeout(() => {
+      props.fetchApi();
+      props.history.push("/grants");
+    }, 2000);
   };
 
   const styles = formStyles();

@@ -3,18 +3,21 @@ import { makeStyles } from "@material-ui/core/styles";
 export const navStyles = makeStyles(theme => ({
   logo: {
     display: "flex",
-    alignItems: "center",
+    alignItems: "center"
   },
   siteMap: {
     display: "flex",
     justifyContent: "center",
-    alignItems: "center",
-
+    alignItems: "center"
   },
   navButton: {
     marginRight: theme.spacing(3),
     color: "#000",
-    fontFamily: "Nunito Sans"
+    textTransform: "uppercase",
+    padding: "6px 8px",
+    fontSize: "0.875rem",
+    fontFamily: "Nunito Sans",
+    transition: "all .3s ease-in-out"
   },
   submitNavButton: {
     marginRight: theme.spacing(3),
@@ -27,8 +30,7 @@ export const navStyles = makeStyles(theme => ({
     color: "#000",
     [theme.breakpoints.down("xs")]: {
       fontSize: "1.5rem",
-      marginLeft: "5px",
-
+      marginLeft: "5px"
     }
   },
   navbar: {
@@ -66,6 +68,9 @@ export const navStyles = makeStyles(theme => ({
   link: {
     textDecoration: "none"
   },
+  active: {
+    color: "#3DB8B3"
+  },
   tabs: {
     position: "fixed",
     marginTop: "3em"
@@ -74,20 +79,18 @@ export const navStyles = makeStyles(theme => ({
     display: "flex",
     marginTop: "1em",
     fontSize: "2rem",
-    height: "100%",
-
+    height: "100%"
   },
   links: {
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
     alignContent: "center",
-    width: "100%",
-},
+    width: "100%"
+  },
   drawerLink: {
     margin: "1em auto",
     padding: ".5em",
-    color: "#696969",
-  },
-  
+    color: "#696969"
+  }
 }));

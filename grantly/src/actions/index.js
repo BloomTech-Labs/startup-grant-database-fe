@@ -36,6 +36,7 @@ export const fetchApi = () => dispatch => {
   axios
     // .get(`https://labs16-grantly.herokuapp.com/api/grants/`)
     .get(`https://grantly-staging.herokuapp.com/api/grants`)
+    // .get(`http://localhost:5000/api/grants`)
 
     .then(response => {
       dispatch({ type: FETCH_SUCCESS, payload: response.data });
@@ -93,6 +94,7 @@ export const postGrants = addGrant => dispatch => {
   dispatch({ type: ADD_GRANT_START });
   axios
     .post("https://grantly-staging.herokuapp.com/api/grants", addGrant)
+    // .post("http://localhost:5000/api/grants", addGrant)
     // .post("https://labs16-grantly.herokuapp.com/api/grants/", addGrant)
 
     .then(res => {
@@ -203,6 +205,8 @@ export const checkUser = user => dispatch => {
       dispatch({ type: SET_TOKEN_IN_STORE, payload: user.token });
     })
     .catch(err => {
+      // const newUser = { role: "user", auth_id: auth.auth_id, email: user.email, last_name: user.family_name, first_name: user.given_name};
+
       const newUser = { role: "user", auth_id: auth.auth_id };
       if (err.response.status === 404) {
         axios

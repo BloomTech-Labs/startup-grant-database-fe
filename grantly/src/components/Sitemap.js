@@ -39,7 +39,11 @@ const Sitemap = () => {
         </Grid>
         <Grid item className={styles.item}>
           {/* <Link to="/admin" className={styles.link}> */}
-          <Typography variant="subtitle2" onClick={() => loginWithRedirect({})}>
+          <Typography
+            className={styles.link}
+            variant="subtitle2"
+            onClick={() => loginWithRedirect({})}
+          >
             ADMIN LOGIN
           </Typography>
           {/* </Link> */}

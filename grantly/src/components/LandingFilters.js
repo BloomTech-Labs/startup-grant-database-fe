@@ -16,18 +16,16 @@ import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { filterGrants, saveFilters, fetchApi } from "../actions/index";
+import { filterGrants, saveFilters, fetchApi } from "../actions";
 
-const Filters = ({
+const LandingFilters = ({
   saveFilters,
-  filterGrants,
   savedFilters,
   location,
   inAdmin,
   mobile,
-  grants,
-  fetchApi,
-  ogGrants
+  ogGrants,
+  fetchApi
 }) => {
   const [filters, setFilters] = useState({
     amount: [],
@@ -41,18 +39,15 @@ const Filters = ({
     setOpen(true);
   };
 
+  //Makes sure that the current state is being sent to the action creator
   useEffect(() => {
     saveFilters(filters);
   }, [filters]);
 
   useEffect(() => {
-    if (ogGrants.length === 0) {
-      fetchApi();
-    }
-    if (location === "/grants" || location === "/admin") {
-      filterGrants(savedFilters);
-    }
-  }, [savedFilters]);
+    fetchApi();
+  }, []);
+
   const grantFilters = {
     color: "primary",
     geographic_region: [
@@ -252,4 +247,4 @@ const mapStateToProps = state => {
 export default connect(
   mapStateToProps,
   { filterGrants, saveFilters, fetchApi }
-)(Filters);
+)(LandingFilters);

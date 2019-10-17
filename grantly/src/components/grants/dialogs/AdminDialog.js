@@ -11,13 +11,21 @@ import CheckIcon from "@material-ui/icons/Check";
 
 import { adminStyles } from "../../../styles/adminStyles";
 
-import { putGrants } from "../../../actions/index";
+import { putGrants, deleteGrants } from "../../../actions/index";
 
 export const AdminDialog = props => {
   const styles = adminStyles();
 
+  // Approval allows grant to be displayed in non-admin views
   const approveGrant = () => {
-    props.putGrants({ ...props.grant, is_reviewed: true });
+    props.putGrants(
+      { id: props.grant.id, is_reviewed: true },
+      props.currentUser
+    );
+  };
+  // Rejection deletes grant all-together from DB
+  const rejectGrant = () => {
+    props.deleteGrants(props.grant.id, props.currentUser);
   };
   if (props.isFetching) {
     return <Loader type="Triangle" color="#3DB8B3" height="100" width="100" />;
@@ -33,17 +41,6 @@ export const AdminDialog = props => {
           <Grid container justify="center" spacing={4}>
             <Grid item>
               <Button
-                variant="outlined"
-                color="secondary"
-                size="large"
-                className={styles.buttons}
-              >
-                <CloseIcon />
-                Reject
-              </Button>
-            </Grid>
-            <Grid item>
-              <Button
                 variant="contained"
                 color="primary"
                 size="large"
@@ -52,6 +49,18 @@ export const AdminDialog = props => {
               >
                 <CheckIcon />
                 Approve
+              </Button>
+            </Grid>
+            <Grid item>
+              <Button
+                onClick={rejectGrant}
+                variant="outlined"
+                color="secondary"
+                size="large"
+                className={styles.buttons}
+              >
+                <CloseIcon />
+                Reject
               </Button>
             </Grid>
           </Grid>
@@ -64,11 +73,12 @@ export const AdminDialog = props => {
 const mapStateToProps = state => {
   return {
     grant: state.grantShowcase,
-    isFetching: state.isFetching
+    isFetching: state.isFetching,
+    currentUser: state.currentUser
   };
 };
 
 export default connect(
   mapStateToProps,
-  { putGrants }
+  { putGrants, deleteGrants }
 )(AdminDialog);

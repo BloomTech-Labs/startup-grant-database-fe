@@ -27,8 +27,9 @@ export const GrantList = props => {
     } else if (props.data.length === 0) {
       props.fetchApi();
     } else {
-      props.fetchApi();
+      // props.fetchApi();
     }
+    console.log("grants", props.data);
   }, []);
 
   const needToBeReviewed = props.data.filter(
@@ -45,7 +46,7 @@ export const GrantList = props => {
       {props.data.length && (
         <p className={styles.results}>{props.data.length} Grants</p>
       )}
-      {props.inAdmin && <p>{needToBeReviewed} grant(s) need to be reviewed</p>}
+      {/* {props.inAdmin && <p>{needToBeReviewed} grant(s) need to be reviewed</p>} */}
 
       {props.data.length > 0 ? (
         props.data.map(grant => {
@@ -72,7 +73,8 @@ const mapStateToProps = state => {
     isFetching: state.isFetching,
     data: state.filteredGrants,
     grantStore: state.data,
-    currentUser: state.currentUser
+    currentUser: state.currentUser,
+    savedFilters: state.filters
   };
 };
 export default connect(
