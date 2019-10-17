@@ -72,7 +72,7 @@ export const NavBar = props => {
     >
       {" "}
       <ul className={classes.links}>
-        <Link to="/" className={classes.drawerLink}>
+        <Link to="/about" className={classes.drawerLink}>
           <Typography variant="h5">ABOUT</Typography>
         </Link>
         <a href="mailto:labs16grantly@gmail.com" className={classes.drawerLink}>
@@ -127,15 +127,19 @@ export const NavBar = props => {
         </Link>
         <Media query="(min-width:800px)">
           <div>
-            <NavLink to="/grants" className={classes.link}>
-              <Button className={classes.navButton} color="inherit">
-                Grants
-              </Button>
+            <NavLink
+              to="/grants"
+              className={classes.navButton}
+              activeClassName={classes.active}
+            >
+              Grants
             </NavLink>
-            <NavLink to="/about" className={classes.link}>
-              <Button className={classes.navButton} color="inherit">
-                About
-              </Button>
+            <NavLink
+              to="/about"
+              className={classes.navButton}
+              activeClassName={classes.active}
+            >
+              About
             </NavLink>
             {/* <Button className={classes.navButton} color="inherit">
               ABOUT
@@ -159,16 +163,12 @@ export const NavBar = props => {
               </Button>
             </NavLink>
             {props.role === "admin" && (
-              <NavLink to="/admin" className={classes.link}>
-                <Button
-                  className={classes.navButton}
-                  color="inherit"
-                  // onClick={() =>
-                  //   console.log("Why you gotta push me like that?")
-                  // }
-                >
-                  Admin
-                </Button>
+              <NavLink
+                to="/admin"
+                className={classes.navButton}
+                activeClassName={classes.active}
+              >
+                Admin
               </NavLink>
             )}
 

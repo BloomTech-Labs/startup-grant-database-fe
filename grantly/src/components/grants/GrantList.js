@@ -22,12 +22,14 @@ export const GrantList = props => {
   const styles = homeStyles();
 
   useEffect(() => {
-    console.log("grants", props.data)
     if (props.inAdmin) {
       props.adminFetchApi(props.currentUser);
     } else if (props.data.length === 0) {
       props.fetchApi();
+    } else {
+      // props.fetchApi();
     }
+    console.log("grants", props.data);
   }, []);
 
   const needToBeReviewed = props.data.filter(
@@ -44,7 +46,7 @@ export const GrantList = props => {
       {props.data.length && (
         <p className={styles.results}>{props.data.length} Grants</p>
       )}
-      {props.inAdmin && <p>{needToBeReviewed} grant(s) need to be reviewed</p>}
+      {/* {props.inAdmin && <p>{needToBeReviewed} grant(s) need to be reviewed</p>} */}
 
       {props.data.length > 0 ? (
         props.data.map(grant => {
@@ -72,7 +74,7 @@ const mapStateToProps = state => {
     data: state.filteredGrants,
     grantStore: state.data,
     currentUser: state.currentUser,
-    savedFilters: state.filters,
+    savedFilters: state.filters
   };
 };
 export default connect(

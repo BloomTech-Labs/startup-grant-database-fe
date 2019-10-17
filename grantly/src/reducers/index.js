@@ -57,7 +57,6 @@ export const rooterReducer = (state = initialState, { type, payload }) => {
       };
     }
     case SET_TOKEN_IN_STORE: {
-      console.log("In reducer", payload);
       return {
         ...state,
         currentUser: { ...state.currentUser, token: payload }
@@ -101,10 +100,11 @@ export const rooterReducer = (state = initialState, { type, payload }) => {
         filters: payload
       };
     case FILTER_GRANTS:
-      const filtersWithoutAdmin = Object.entries(state.filters);
+      const filtersWithoutAdmin = Object.entries(payload);
       filtersWithoutAdmin.pop();
       let newList = [];
       state.data.map(grant => {
+        // console.log("Im in", filtersWithoutAdmin);
         filtersWithoutAdmin.map(filter => {
           filter[1].map(userFilters => {
             if (filter[0] === "amount") {
@@ -150,12 +150,9 @@ export const rooterReducer = (state = initialState, { type, payload }) => {
           return newList.find(grant => grant.id === id);
         }
       );
-      console.log(" filters reducer", testing);
+
       return {
         ...state,
-        // data: Array.from(new Set(state.data.map(grant => grant.id))).map(id => {
-        //   return state.data.find(grant => grant.id === id);
-        // }),
         filters: payload,
         filteredGrants: testing
       };

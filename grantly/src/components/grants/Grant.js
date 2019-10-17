@@ -90,7 +90,8 @@ export const Grant = props => {
         {props.inAdmin ? (
           <EditGrantDialog className={styles.editIcon} grant={props.grant} />
         ) : (
-          <BookmarkBorderOutlinedIcon className={styles.bookmark} />
+          // <BookmarkBorderOutlinedIcon className={styles.bookmark} />
+          null
         )}
       </div>
     </Card>

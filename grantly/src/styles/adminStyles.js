@@ -1,6 +1,9 @@
 import { makeStyles } from "@material-ui/core/styles";
 
 export const adminStyles = makeStyles(theme => ({
+  loader: {
+    minHeight: "100vh"
+  },
   content: {
     flexGrow: 1,
     padding: theme.spacing(3)
