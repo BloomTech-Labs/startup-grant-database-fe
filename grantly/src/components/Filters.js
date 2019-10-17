@@ -29,6 +29,7 @@ const Filters = ({
   fetchApi,
   ogGrants
 }) => {
+  console.log("THIS IS THE LOCATION OF THE FILTER's COMPONENT", location);
   const [filters, setFilters] = useState({
     amount: [],
     geographic_region: [],
