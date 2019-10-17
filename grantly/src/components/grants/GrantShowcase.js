@@ -84,9 +84,8 @@ export const GrantShowcase = props => {
                     className={showcase.editIcon}
                     grant={props.grant}
                   />
-                ) : (
-                  <BookmarkBorderOutlinedIcon className={showcase.bookmark} />
-                )}
+                ) : //( <BookmarkBorderOutlinedIcon className={showcase.bookmark} />)
+                null}
               </Grid>
             </Grid>
           </Grid>
