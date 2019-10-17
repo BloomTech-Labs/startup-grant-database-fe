@@ -1,9 +1,28 @@
 import { makeStyles } from "@material-ui/core/styles";
 
 export const aboutStyles = makeStyles(theme => ({
+  // layout: {
+  //   width: "auto",
+  //   marginLeft: theme.spacing(2),
+  //   marginRight: theme.spacing(2),
+  //   height: "auto",
+  //   [theme.breakpoints.up(600 + theme.spacing(2) * 2)]: {
+  //     marginLeft: "auto",
+  //     marginRight: "auto",
+  //     height: "100vh"
+  //   }
+  // },
+  layout: {
+    height: "calc(100vh - 84px)",
+    [theme.breakpoints.down("sm")]: {
+      // height: "100vh"
+      height: "auto"
+    }
+  },
   aboutCardContainer: {
     // border: "1px solid fuchsia"
     margin: 20
+    // height: 500
   },
   aboutIntroCardContainer: {
     // border: "1px solid fuchsia"
@@ -19,6 +38,14 @@ export const aboutStyles = makeStyles(theme => ({
     //   color: "#ffffff"
     // }
   },
+  aboutContainer: {
+    [theme.breakpoints.down("sm")]: {
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center"
+      // alignSelf: "center"
+    }
+  },
   aboutCard: {
     // border: "1px solid fuchsia",
     width: 350,
@@ -28,6 +55,7 @@ export const aboutStyles = makeStyles(theme => ({
     opacity: 0.7,
     display: "flex",
     alignItems: "center",
+    flexDirection: "column",
     justifyContent: "center",
     // transition: "margin 2s",
     "&:hover": {
@@ -37,6 +65,7 @@ export const aboutStyles = makeStyles(theme => ({
       background: "#3DB8B3",
       color: "#ffffff"
     }
+
     //   '&:active': {
     //     transform: "translateY(0)"
     //   }
