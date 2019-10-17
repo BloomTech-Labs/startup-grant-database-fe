@@ -1,21 +1,9 @@
 import { makeStyles } from "@material-ui/core/styles";
 
 export const aboutStyles = makeStyles(theme => ({
-  // layout: {
-  //   width: "auto",
-  //   marginLeft: theme.spacing(2),
-  //   marginRight: theme.spacing(2),
-  //   height: "auto",
-  //   [theme.breakpoints.up(600 + theme.spacing(2) * 2)]: {
-  //     marginLeft: "auto",
-  //     marginRight: "auto",
-  //     height: "100vh"
-  //   }
-  // },
   layout: {
     height: "calc(100vh - 84px)",
     [theme.breakpoints.down("sm")]: {
-      // height: "100vh"
       height: "auto"
     }
   },
@@ -43,7 +31,6 @@ export const aboutStyles = makeStyles(theme => ({
       display: "flex",
       flexDirection: "column",
       alignItems: "center"
-      // alignSelf: "center"
     }
   },
   aboutCard: {

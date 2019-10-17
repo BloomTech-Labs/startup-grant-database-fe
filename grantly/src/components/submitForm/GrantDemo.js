@@ -89,7 +89,7 @@ const GrantDemo = props => {
   return (
     <React.Fragment>
       <Typography variant="h5" className={styles.subjectHeader}>
-        Grant Demo
+        Grant Demographics
       </Typography>
       <Divider variant="middle" />
       <Grid container spacing={3} className={styles.bottomBox}>
@@ -161,13 +161,13 @@ const GrantDemo = props => {
         </Grid>
         <Grid item xs={12}>
           <TextField
-            label="Notes"
+            label="Description"
             type="text"
             name="notes"
             multiline
             fullWidth
             rows="3"
-            placeholder="Notes"
+            placeholder="Please provide a description of the grant here!"
             value={props.grantInfo.notes}
             onChange={props.handleChanges}
             margin="normal"

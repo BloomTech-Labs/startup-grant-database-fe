@@ -280,6 +280,7 @@ const GrantForm = props => {
               label="Notes"
               type="text"
               name="notes"
+              helperText="Please provide a description from the linked grants website if there is none"
               multiline
               fullWidth
               rows="3"
