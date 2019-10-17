@@ -27,13 +27,16 @@ function App({ checkUser, currentUser }) {
       checkUser(user);
     }
   }, [user]);
-
+  console.log("User", currentUser);
   return (
     <Router>
       <ThemeProvider theme={theme}>
         <div className="App">
           {/* <Route path = "/login" component={LoginForm} /> */}
-          <Route path="/" render={props => <NavBar {...props} role={currentUser.role} />} />
+          <Route
+            path="/"
+            render={props => <NavBar {...props} role={currentUser.role} />}
+          />
           <Route exact path="/" component={Landing} />
           <Route exact path="/grants" component={Home} />
           <Route path="/form" component={SubmitForm} />

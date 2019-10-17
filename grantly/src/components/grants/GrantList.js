@@ -22,7 +22,7 @@ export const GrantList = props => {
 
   useEffect(() => {
     if (props.inAdmin) {
-      props.adminFetchApi();
+      props.adminFetchApi(props.currentUser);
     } else if (props.data.length === 0) {
       props.fetchApi();
     } else {
@@ -37,7 +37,6 @@ export const GrantList = props => {
     return <Loader type="Triangle" color="#3DB8B3" height="100" width="100" />;
   }
   // console.log(user);
-  console.log("List", props.data);
   return (
     <div>
       {props.data.length && (
@@ -69,7 +68,8 @@ const mapStateToProps = state => {
     error: state.error,
     isFetching: state.isFetching,
     data: state.filteredGrants,
-    grantStore: state.data
+    grantStore: state.data,
+    currentUser: state.currentUser
   };
 };
 export default connect(

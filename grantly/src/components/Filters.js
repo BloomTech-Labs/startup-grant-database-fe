@@ -46,7 +46,6 @@ const Filters = ({
   useEffect(() => {
     filterGrants(savedFilters);
   }, [savedFilters]);
-  console.log("filters components", grants);
   const grantFilters = {
     color: "primary",
     geographic_region: [
