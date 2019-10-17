@@ -37,7 +37,7 @@ export const GrantList = props => {
   ).length;
   // const numberOfSuggestions = props.data.filter(grant => grant.requests.length > 0).length;
   if (props.isFetching) {
-    return <Loader type="Triangle" color="#3DB8B3" height="100" width="100" />;
+    return null
   }
   // console.log(user);
   // console.log("CurrentUser Data from Store", props.currentUser);
