@@ -40,7 +40,7 @@ function Landing(props) {
           </div>
         </Grid>
         <Grid item md={6} xs={12}>
-          <Filter location={props.location.pathname} />
+          <Filter location={props.location} />
         </Grid>
       </Grid>
     </div>
