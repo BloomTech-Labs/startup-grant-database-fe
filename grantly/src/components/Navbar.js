@@ -72,7 +72,7 @@ export const NavBar = props => {
     >
       {" "}
       <ul className={classes.links}>
-        <Link to="/" className={classes.drawerLink}>
+        <Link to="/about" className={classes.drawerLink}>
           <Typography variant="h5">ABOUT</Typography>
         </Link>
         <a href="mailto:labs16grantly@gmail.com" className={classes.drawerLink}>

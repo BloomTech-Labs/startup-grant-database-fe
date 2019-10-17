@@ -5,6 +5,7 @@ import {
   useStylesMobile
 } from "../styles/filterStyles";
 import Checkbox from "@material-ui/core/Checkbox";
+import moment from "moment";
 import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import FormControl from "@material-ui/core/FormControl";
@@ -25,7 +26,8 @@ const Filters = ({
   inAdmin,
   mobile,
   grants,
-  fetchApi
+  fetchApi,
+  ogGrants,
 }) => {
   const [filters, setFilters] = useState({
     amount: [],
@@ -45,14 +47,17 @@ const Filters = ({
   }, [filters]);
 
   useEffect(() => {
-    if(grants.length === 0){
-      console.log("if")
+    console.log("im rendered")
+    if (ogGrants.length === 0) {
+      console.log("if");
       fetchApi();
     }
-    console.log("filtering", savedFilters)
-    filterGrants(savedFilters);
+    // console.log("fil", grants)
+    // if(location === "/grants" || location === "/admin"){
+    //   console.log("filters", savedFilters)
+      filterGrants(savedFilters);
+    // }
   }, [savedFilters]);
-  // console.log("filters components", grants);
   const grantFilters = {
     color: "primary",
     geographic_region: [
@@ -64,7 +69,7 @@ const Filters = ({
     ],
     amount: ["Under $1,000", "$1,000-$5,000", "$5,000-$10,000", "$10,000+"],
     domain_areas: ["Tech", "Agriculture", "Social", "Energy"],
-    admin_filters: ["New", "Expired", "Reported", "Suggestions"]
+    admin_filters: ["New", "Expired", "Suggestions"]
   };
 
   const handleChanges = (type, value) => {
@@ -82,10 +87,8 @@ const Filters = ({
       });
     }
 
-    //Pass object of user filters to the action creator
   };
 
-  // Logic to determine styles to use depending on current location of component -PJ
   const grantStyles = useStylesGrants();
   const landingStyles = useStylesLanding();
   const mobileStyles = useStylesMobile();
@@ -97,9 +100,7 @@ const Filters = ({
   } else {
     classes = landingStyles;
   }
-  // location === "/grants" || location === "/admin"
-  //   ? (classes = grantStyles)
-  //   : (classes = landingStyles);
+
 
   return (
     <Card className={classes.card}>
@@ -129,6 +130,40 @@ const Filters = ({
                   }
                   key={name}
                   label={name}
+                  label={
+                    name === "New" ? (
+                      <span>
+                        New (
+                        {
+                        ogGrants.filter(grant => grant.is_reviewed === false)
+                            .length
+                        })
+                        
+                      </span>
+                    ) : (
+                      name
+                    )
+                  }
+                  // label={
+                  //   name === "Expired" &&
+                  //   name +
+                  //     ` (${grants.filter(
+                  //       grant =>
+                  //         moment(
+                  //           grant.most_recent_application_due_date
+                  //         ).format() <= moment().format()
+                  //     ).length}`
+                  // }
+                  // label={
+                  //   name === "Suggestions" &&
+                  //   name +
+                  //     ` (${
+                  //       grants.filter(grant => grant.is_reviewed === false)
+                  //         .length
+                  //     })`
+                  // }
+
+                  // label={name + `34`}
                 />
               );
             })}
@@ -217,7 +252,8 @@ const Filters = ({
 const mapStateToProps = state => {
   return {
     grants: state.filteredGrants,
-    savedFilters: state.filters
+    savedFilters: state.filters,
+    ogGrants: state.data,
   };
 };
 export default connect(

@@ -75,7 +75,7 @@ const AddGrant = props => {
   const submitGrant = event => {
     console.log("SubmitForm.js submitGrant", event);
     event.preventDefault();
-    props.postGrants({ ...grantInfo });
+    props.postGrants({ ...grantInfo});
     setGrantInfo({
       competition_name: "",
       type: "",

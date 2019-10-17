@@ -26,7 +26,11 @@ export const GrantList = props => {
     if (props.inAdmin) {
       props.adminFetchApi(props.currentUser);
     } else if (props.data.length === 0) {
+      console.log("second fetch", props.data)
       props.fetchApi();
+    } else if(props.data.length > 0) {
+      console.log("yes")
+      return;
     }
   }, []);
 
@@ -44,7 +48,7 @@ export const GrantList = props => {
       {props.data.length && (
         <p className={styles.results}>{props.data.length} Grants</p>
       )}
-      {props.inAdmin && <p>{needToBeReviewed} grant(s) need to be reviewed</p>}
+      {/* {props.inAdmin && <p>{needToBeReviewed} grant(s) need to be reviewed</p>} */}
 
       {props.data.length > 0 ? (
         props.data.map(grant => {

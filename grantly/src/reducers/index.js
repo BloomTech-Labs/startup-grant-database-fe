@@ -57,7 +57,6 @@ export const rooterReducer = (state = initialState, { type, payload }) => {
       };
     }
     case SET_TOKEN_IN_STORE: {
-      console.log("In reducer", payload);
       return {
         ...state,
         currentUser: { ...state.currentUser, token: payload }
@@ -150,12 +149,9 @@ export const rooterReducer = (state = initialState, { type, payload }) => {
           return newList.find(grant => grant.id === id);
         }
       );
-      console.log(" filters reducer", testing);
+      console.log("im filtering", testing)
       return {
         ...state,
-        // data: Array.from(new Set(state.data.map(grant => grant.id))).map(id => {
-        //   return state.data.find(grant => grant.id === id);
-        // }),
         filters: payload,
         filteredGrants: testing
       };
