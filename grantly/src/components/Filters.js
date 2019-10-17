@@ -29,7 +29,6 @@ const Filters = ({
   fetchApi,
   ogGrants
 }) => {
-  console.log("THIS IS THE LOCATION OF THE FILTER's COMPONENT", location);
   const [filters, setFilters] = useState({
     amount: [],
     geographic_region: [],
@@ -50,7 +49,7 @@ const Filters = ({
     if (ogGrants.length === 0) {
       fetchApi();
     }
-    if (location.pathname === "/grants" || location.pathname === "/admin") {
+    if (location == "/grants" || location == "/admin") {
       filterGrants(savedFilters);
     }
   }, [savedFilters]);
@@ -87,16 +86,17 @@ const Filters = ({
   const grantStyles = useStylesGrants();
   const landingStyles = useStylesLanding();
   const mobileStyles = useStylesMobile();
+  console.log("THIS IS THE LOCATION OF THE FILTER's COMPONENT", location);
+  console.log("Is this the landing page?", location === "/");
+  console.log("Is this the grants page?", location === "/grants");
+  console.log("Is this the admin page?", location === "/admin");
   let classes;
   if (mobile) {
     classes = mobileStyles;
-  } else if (
-    location.pathname === "/grants" ||
-    location.pathname === "/admin"
-  ) {
-    classes = grantStyles;
-  } else {
+  } else if (location == "/") {
     classes = landingStyles;
+  } else {
+    classes = grantStyles;
   }
 
   return (
