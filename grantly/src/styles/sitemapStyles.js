@@ -15,6 +15,7 @@ export const sitemapStyles = makeStyles(theme => ({
     fontFamily: "Roboto, sans-serif",
     letterSpacing: "1px",
     zIndex: "3000",
+
     [theme.breakpoints.down("xs")]: {
       background: "#65D8CF",
       color: "#fff",
@@ -32,13 +33,17 @@ export const sitemapStyles = makeStyles(theme => ({
   },
   sitemap: {
     height: "100%",
-    margin: "0 -32px"
+    margin: "0 -32px",
+    [theme.breakpoints.down("md")]: {
+      display: "block"
+    }
   },
   links: {
     display: "flex",
     height: "100%",
     flexDirection: "column",
     justifyContent: "space-between",
+
     [theme.breakpoints.down("xs")]: {
       height: "150%"
     }
@@ -48,6 +53,10 @@ export const sitemapStyles = makeStyles(theme => ({
     "&:hover": {
       cursor: "pointer"
     },
+    [theme.breakpoints.down("md")]: {
+      margin: "15px"
+    },
+
     [theme.breakpoints.down("xs")]: {
       color: "#fff"
     }
