@@ -63,7 +63,7 @@ const Home = props => {
                   // style={{ padding: "30px 0 0 30px" }}
                 >
                   {/* <div className={classes.scrollBox}> */}
-                  <GrantList inAdmin={false} />
+                  <GrantList inAdmin={false} location={props.location}/>
                   {/* </div> */}
                 </Grid>
                 <Grid
