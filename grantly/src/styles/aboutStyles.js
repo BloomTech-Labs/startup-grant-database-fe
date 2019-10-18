@@ -27,7 +27,7 @@ export const aboutStyles = makeStyles(theme => ({
     // }
   },
   aboutContainer: {
-    [theme.breakpoints.down("sm")]: {
+    [theme.breakpoints.down(1150 + theme.spacing(2) * 2)]: {
       display: "flex",
       flexDirection: "column",
       alignItems: "center"
@@ -35,7 +35,7 @@ export const aboutStyles = makeStyles(theme => ({
   },
   aboutCard: {
     // border: "1px solid fuchsia",
-    width: 350,
+    width: "100%",
     height: 150,
     margin: 10,
     padding: 10,
@@ -52,16 +52,62 @@ export const aboutStyles = makeStyles(theme => ({
       background: "#3DB8B3",
       color: "#ffffff"
     },
-    // [theme.breakpoints.down("md")]: {
+    [theme.breakpoints.down(1150 + theme.spacing(2) * 2)]: {
+      // marginLeft: theme.spacing(2),
+      // marginRight: theme.spacing(2),
+      width: 300,
+      // height: 150,
+      // margin: 10,
+      // padding: 10,
+      // opacity: 0.7,
+      height: "auto",
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      justifyContent: "center",
+      marginTop: "30px",
+      "&:hover": {
+        boxShadow: "0px 5px 10px #BBB",
+        transform: "translateY(-5px)",
+        opacity: 1,
+        background: "#3DB8B3",
+        color: "#ffffff"
+      }
+    },
+    [theme.breakpoints.down(800 + theme.spacing(2) * 2)]: {
+      marginLeft: theme.spacing(2),
+      marginRight: theme.spacing(2),
+      width: 350,
+      height: 150,
+      margin: 10,
+      padding: 10,
+      opacity: 0.7,
+      height: "auto",
+      display: "flex",
+      alignItems: "center",
+      flexDirection: "column",
+      justifyContent: "center",
+      marginTop: "30px",
+      "&:hover": {
+        boxShadow: "0px 5px 10px #BBB",
+        transform: "translateY(-5px)",
+        opacity: 1,
+        background: "#3DB8B3",
+        color: "#ffffff"
+      }
+    }
+    // [theme.breakpoints.down("xs")]: {
     //   height: "auto",
     //   width: "90%",
-    //   marginTop: "30px"
-    // },
-    [theme.breakpoints.down("xs")]: {
-      height: "auto",
-      width: "90%",
-      marginTop: "30px"
-    }
+    //   marginTop: "30px",
+    //   "&:hover": {
+    //     boxShadow: "0px 5px 10px #BBB",
+    //     transform: "translateY(-5px)",
+    //     opacity: 1,
+    //     background: "#3DB8B3",
+    //     color: "#ffffff"
+    //   }
+    // }
 
     //   '&:active': {
     //     transform: "translateY(0)"
