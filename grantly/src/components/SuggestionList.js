@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 
 import Typography from "@material-ui/core/Typography";
 import Suggestion from "./Suggestion";
-import Loader from "react-loader-spinner";
 import { adminFetchApi } from "../actions";
 
 import { adminStyles } from "../styles/adminStyles";
@@ -11,7 +10,7 @@ import { adminStyles } from "../styles/adminStyles";
 export const SuggestionList = props => {
   const styles = adminStyles();
   if (props.isFetching || !props.data.requests) {
-    return <Loader type="Triangle" color="#3DB8B3" height="100" width="100" />;
+    return null
   }
 
   return (

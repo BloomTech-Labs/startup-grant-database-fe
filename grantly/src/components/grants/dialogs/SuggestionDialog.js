@@ -78,15 +78,14 @@ const SuggestionDialog = props => {
             </DialogTitle>
           </Grid>
           <Grid item>
-            <DialogContentText className={classes.headerText}>
+            <DialogContentText className={classes.subheaderText}>
               Our admins will review your suggestions and make the appropriate
               changes
             </DialogContentText>
           </Grid>
         </Grid>
-        <DialogContent>
+        <DialogContent style={{ paddingBottom: "0" }}>
           <form>
-            <br />
             <TextField
               margin="normal"
               label="subject"
@@ -95,13 +94,13 @@ const SuggestionDialog = props => {
             />
             <br />
             <TextField
+              margin="normal"
               label="suggestion"
+              onChange={handleChanges("suggestion")}
+              variant="outlined"
               multiline
               rows="4"
-              onChange={handleChanges("suggestion")}
-              margin="normal"
               className={classes.formField}
-              variant="outlined"
             />
             <br />
           </form>
@@ -114,6 +113,7 @@ const SuggestionDialog = props => {
                 variant="outlined"
                 onClick={handleClose}
                 className={classes.btn}
+                style={{ marginBottom: "0" }}
               >
                 Cancel
               </Button>

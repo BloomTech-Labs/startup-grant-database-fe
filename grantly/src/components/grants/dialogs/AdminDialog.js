@@ -1,7 +1,6 @@
 // Dependencies
 import React from "react";
 import { connect } from "react-redux";
-import Loader from "react-loader-spinner";
 
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
@@ -28,7 +27,7 @@ export const AdminDialog = props => {
     props.deleteGrants(props.grant.id, props.currentUser);
   };
   if (props.isFetching) {
-    return <Loader type="Triangle" color="#3DB8B3" height="100" width="100" />;
+    return null
   }
 
   return (
