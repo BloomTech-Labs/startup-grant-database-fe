@@ -19,7 +19,7 @@ export const showcaseStyles = makeStyles(theme => ({
     }
   },
   inAdmin: {
-    minHeight: "70vh"
+    // minHeight: "70vh"
   },
   topContent: {
     margin: " 0",
