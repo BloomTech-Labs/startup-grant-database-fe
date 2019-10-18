@@ -193,7 +193,6 @@ export const rooterReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         isFetching: false,
-        data: payload,
         filteredGrants: payload[0],
         grantShowcase: showCase
       };

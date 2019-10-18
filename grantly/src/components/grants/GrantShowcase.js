@@ -40,7 +40,11 @@ export const GrantShowcase = props => {
       moment(props.grant.most_recent_application_due_date).fromNow();
 
   if (props.isFetching) {
-    return <Loader type="Triangle" color="#3DB8B3" height="200" width="200" />;
+    return (
+      <div className={showcase.loaderDiv}>
+        <Loader type="Triangle" color="#3DB8B3" height="400" />;
+      </div>
+    );
   }
 
   return (
@@ -84,9 +88,8 @@ export const GrantShowcase = props => {
                     className={showcase.editIcon}
                     grant={props.grant}
                   />
-                ) : (
-                  <BookmarkBorderOutlinedIcon className={showcase.bookmark} />
-                )}
+                ) : //( <BookmarkBorderOutlinedIcon className={showcase.bookmark} />)
+                null}
               </Grid>
             </Grid>
           </Grid>
@@ -120,10 +123,22 @@ export const GrantShowcase = props => {
               )}
             </Grid> */}
           </Grid>
+          {/* <Divider color="primary" /> */}
         </div>
         {/* ================= Main content ================= */}
-        <Grid container direction="row" className="headers-1">
-          <Grid item className={showcase.showcaseDetailsTop} xs={2}>
+        <Grid
+          container
+          justify="space-between"
+          direction="row"
+          className="headers-1"
+        >
+          <Grid
+            item
+            className={showcase.showcaseDetailsTop}
+            xs={4}
+            sm={5}
+            md={2}
+          >
             <Grid className={showcase.showcaseSpan}>Amount:</Grid>
             <Grid className={showcase.innerDetails}>
               {props.grant.amount
@@ -131,32 +146,44 @@ export const GrantShowcase = props => {
                 : "See website for details"}
             </Grid>
           </Grid>
-          <Grid item xs={4} className={showcase.showcaseDetailsTop}>
+          <Grid
+            item
+            xs={4}
+            sm={5}
+            md={3}
+            className={showcase.showcaseDetailsTop}
+          >
             <Grid className={showcase.showcaseSpan}>Deadline:</Grid>
             <Grid className={showcase.innerDetails}>{momentDeadline}</Grid>
           </Grid>
-          <Grid item xs={5} className={showcase.showcaseDetailsTop}>
+          <Grid
+            item
+            xs={9}
+            sm={10}
+            md={6}
+            className={showcase.showcaseDetailsTop}
+          >
             <Grid className={showcase.showcaseSpan}>Grant Categories:</Grid>
             <Grid className={showcase.innerDetails}>
               {props.grant.domain_areas}
             </Grid>
           </Grid>
         </Grid>
-        <Grid container className="headers-2">
-          <Grid item xs={2} className={showcase.showcaseDetailsBottom}>
+        <Grid container justify="space-between" className="headers-2">
+          <Grid item xs={5} md={2} className={showcase.showcaseDetailsBottom}>
             <Grid className={showcase.showcaseSpan}>Region:</Grid>
             <Grid className={showcase.innerDetails}>
               {" "}
               {props.grant.geographic_region}
             </Grid>
           </Grid>
-          <Grid item xs={4} className={showcase.showcaseDetailsBottom}>
+          <Grid item xs={5} md={4} className={showcase.showcaseDetailsBottom}>
             <Grid className={showcase.showcaseSpan}>Focus Area:</Grid>
             <Grid className={showcase.innerDetails}>
               {props.grant.area_focus}
             </Grid>
           </Grid>
-          <Grid item xs={5} className={showcase.showcaseDetailsBottom}>
+          <Grid item xs={8} md={5} className={showcase.showcaseDetailsBottom}>
             <Grid className={showcase.showcaseSpan}>Sponsor:</Grid>
             <Grid className={showcase.innerDetails}>
               {" "}
@@ -180,6 +207,7 @@ export const GrantShowcase = props => {
           className={showcase.topContent}
         >
           <Grid item>
+            <a href={props.grant.website} target="_blank">
             <Button
               className={showcase.applyButton}
               variant="contained"
@@ -187,6 +215,7 @@ export const GrantShowcase = props => {
             >
               Apply to Grant
             </Button>
+            </a>
           </Grid>
           {!props.inAdmin && (
             <Grid item>

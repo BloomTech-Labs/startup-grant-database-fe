@@ -5,7 +5,6 @@ import { useAuth0 } from "../../react-auth0-wrapper";
 
 // Objects
 import Grant from "./Grant";
-import Loader from "react-loader-spinner";
 import Typography from "@material-ui/core/Typography";
 
 import { fetchApi, adminFetchApi } from "../../actions";
@@ -20,27 +19,26 @@ import { homeStyles } from "../../styles/homeStyles";
 
 export const GrantList = props => {
   const styles = homeStyles();
-
   useEffect(() => {
     if (props.inAdmin) {
+      console.log("yes");
       props.adminFetchApi(props.currentUser);
     } else if (props.data.length === 0) {
       props.fetchApi();
-    } else {
+    } else  {
       // props.fetchApi();
     }
-    console.log("grants", props.data);
   }, []);
-
   const needToBeReviewed = props.data.filter(
     grant => grant.is_reviewed === false
   ).length;
   // const numberOfSuggestions = props.data.filter(grant => grant.requests.length > 0).length;
   if (props.isFetching) {
-    return <Loader type="Triangle" color="#3DB8B3" height="100" width="100" />;
+    return null
   }
   // console.log(user);
   // console.log("CurrentUser Data from Store", props.currentUser);
+
   return (
     <div>
       {props.data.length && (

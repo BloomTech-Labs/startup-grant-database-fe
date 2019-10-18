@@ -1,12 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {
-  useStylesGrants,
-  useStylesLanding,
-  useStylesMobile
-} from "../styles/filterStyles";
 import Checkbox from "@material-ui/core/Checkbox";
-import moment from "moment";
-import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import FormControl from "@material-ui/core/FormControl";
 import FormGroup from "@material-ui/core/FormGroup";
@@ -17,6 +10,11 @@ import Button from "@material-ui/core/Button";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { filterGrants, saveFilters, fetchApi } from "../actions/index";
+import {
+  useStylesGrants,
+  useStylesLanding,
+  useStylesMobile
+} from "../styles/filterStyles";
 
 const Filters = ({
   saveFilters,
@@ -27,9 +25,9 @@ const Filters = ({
   mobile,
   grants,
   fetchApi,
-  ogGrants
+  ogGrants,
+  isFetching
 }) => {
-  console.log("THIS IS THE LOCATION OF THE FILTER's COMPONENT", location);
   const [filters, setFilters] = useState({
     amount: [],
     geographic_region: [],
@@ -50,7 +48,7 @@ const Filters = ({
     if (ogGrants.length === 0) {
       fetchApi();
     }
-    if (location.pathname === "/grants" || location.pathname === "/admin") {
+    if (location == "/grants" || location == "/admin") {
       filterGrants(savedFilters);
     }
   }, [savedFilters]);
@@ -87,16 +85,14 @@ const Filters = ({
   const grantStyles = useStylesGrants();
   const landingStyles = useStylesLanding();
   const mobileStyles = useStylesMobile();
+
   let classes;
   if (mobile) {
     classes = mobileStyles;
-  } else if (
-    location.pathname === "/grants" ||
-    location.pathname === "/admin"
-  ) {
-    classes = grantStyles;
-  } else {
+  } else if (location == "/") {
     classes = landingStyles;
+  } else {
+    classes = grantStyles;
   }
 
   return (
@@ -250,7 +246,8 @@ const mapStateToProps = state => {
   return {
     grants: state.filteredGrants,
     savedFilters: state.filters,
-    ogGrants: state.data
+    ogGrants: state.data,
+    isFetching: state.isFetching
   };
 };
 export default connect(

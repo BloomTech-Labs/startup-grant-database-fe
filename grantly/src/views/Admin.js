@@ -29,14 +29,13 @@ const Admin = props => {
     setOpen(!open);
   };
   const classes = adminStyles();
-
   return (
     <div>
       <Media query="(max-width:850px)">
         {matches =>
           matches ? (
             <>
-              <MobileTabs inAdmin={true} />
+              <MobileTabs inAdmin={true} history={props.history}/>
               <MobileFilters toggleDrawer={toggleDrawer} />
               <SwipeableDrawer
                 anchor="bottom"

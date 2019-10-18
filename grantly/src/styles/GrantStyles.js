@@ -39,7 +39,7 @@ export const grantStyles = makeStyles(theme => ({
     display: "flex",
     minHeight: "125px",
     justifyContent: "space-between",
-    alignItems: "center"
+    alignItems: "start"
   },
   grant_logo: {
     background: "#ddd",

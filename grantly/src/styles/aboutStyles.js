@@ -1,9 +1,16 @@
 import { makeStyles } from "@material-ui/core/styles";
 
 export const aboutStyles = makeStyles(theme => ({
+  layout: {
+    height: "calc(100vh - 84px)",
+    [theme.breakpoints.down("sm")]: {
+      height: "auto"
+    }
+  },
   aboutCardContainer: {
     // border: "1px solid fuchsia"
     margin: 20
+    // height: 500
   },
   aboutIntroCardContainer: {
     // border: "1px solid fuchsia"
@@ -19,6 +26,13 @@ export const aboutStyles = makeStyles(theme => ({
     //   color: "#ffffff"
     // }
   },
+  aboutContainer: {
+    [theme.breakpoints.down("sm")]: {
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center"
+    }
+  },
   aboutCard: {
     // border: "1px solid fuchsia",
     width: 350,
@@ -28,6 +42,7 @@ export const aboutStyles = makeStyles(theme => ({
     opacity: 0.7,
     display: "flex",
     alignItems: "center",
+    flexDirection: "column",
     justifyContent: "center",
     // transition: "margin 2s",
     "&:hover": {
@@ -36,7 +51,18 @@ export const aboutStyles = makeStyles(theme => ({
       opacity: 1,
       background: "#3DB8B3",
       color: "#ffffff"
+    },
+    // [theme.breakpoints.down("md")]: {
+    //   height: "auto",
+    //   width: "90%",
+    //   marginTop: "30px"
+    // },
+    [theme.breakpoints.down("xs")]: {
+      height: "auto",
+      width: "90%",
+      marginTop: "30px"
     }
+
     //   '&:active': {
     //     transform: "translateY(0)"
     //   }

@@ -45,10 +45,6 @@ export const useStylesGrants = makeStyles(theme => ({
     marginBottom: "10px"
     // fontWeight: "bold"
   },
-  set: {
-    alignSelf: "center",
-    margin: ".8em"
-  },
   landingButton: {
     display: "none"
   },
@@ -61,33 +57,10 @@ export const useStylesGrants = makeStyles(theme => ({
     top: "11%",
     padding: "10px"
   },
-  filterCard: {
-    display: "block",
-    alignSelf: "flex-end",
-    margin: "0 auto"
-  },
-  title: {
-    fontWeight: "bold",
-    marginTop: "1em",
-    color: "#464646"
-  },
-  label: {
-    alignSelf: "flex-start",
-    textAlign: "left",
-    fontSize: "1.2rem",
-    fontFamily: "Nunito Sans",
-    color: "#222222",
-    marginBottom: "10px"
-    // fontWeight: "bold"
-  },
   set: {
     width: "70%",
     alignSelf: "center",
-    margin: ".8em",
-
-  },
-  landingButton: {
-    display: "none"
+    margin: ".8em"
   }
 }));
 
@@ -174,20 +147,20 @@ export const useStylesMobile = makeStyles(theme => ({
     padding: "10px",
     flexWrap: "nowrap",
     flexDirection: "column",
-    justifyContent: "space-between",
+    justifyContent: "space-between"
   },
   mobileSet: {
     display: "inline-block",
     margin: "0",
     justifyContent: "space-between",
-    flexWrap: "no-wrap",
+    flexWrap: "no-wrap"
   },
   set: {
     display: "flex",
-    flexDirection: "row",
+    flexDirection: "row"
   },
   label: {
-    display: "inline-block",
+    display: "inline-block"
   },
   landingButton: {
     display: "none"

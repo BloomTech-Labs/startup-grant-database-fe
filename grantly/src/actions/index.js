@@ -47,7 +47,6 @@ export const fetchApi = () => dispatch => {
 };
 
 export const adminFetchApi = user => dispatch => {
-  console.log("USER:", user);
 
   dispatch({ type: FETCH_START });
   axios
@@ -108,7 +107,6 @@ export const postGrants = addGrant => dispatch => {
 
 // Update a Grant
 export const putGrants = (updateGrant, user) => dispatch => {
-  console.log("Put", updateGrant);
   dispatch({
     type: UPDATE_GRANT_START
   });
@@ -221,7 +219,6 @@ export const checkUser = user => dispatch => {
 };
 
 export const submitSuggestion = suggestion => dispatch => {
-  console.log("im submitting");
   dispatch({ type: SUBMIT_SUGGESTION_START });
   axios
     .post(
@@ -230,7 +227,6 @@ export const submitSuggestion = suggestion => dispatch => {
     )
 
     .then(response => {
-      console.log("Success");
       dispatch({ type: SUBMIT_SUGGESTION_SUCCESS, payload: response.data });
     })
     .catch(error => {
@@ -242,7 +238,6 @@ export const submitSuggestion = suggestion => dispatch => {
 // Delete a grant suggestion
 export const deleteSuggestion = (requestId, user) => dispatch => {
   dispatch({ type: DELETE_SUGGESTION_START });
-  console.log("hello");
   axios
     .delete(
       `https://grantly-staging.herokuapp.com/api/admin/suggestion/${requestId}`,
