@@ -39,6 +39,7 @@ export const navStyles = makeStyles(theme => ({
     boxShadow: "0px 2px 6px rgba(0, 0, 0, 0.15)",
     // marginBottom: "2em",
     [theme.breakpoints.down("xs")]: {
+      position: "fixed",
       padding: "0",
       boxShadow: "none"
     }
