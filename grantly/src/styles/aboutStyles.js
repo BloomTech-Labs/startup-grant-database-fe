@@ -51,6 +51,16 @@ export const aboutStyles = makeStyles(theme => ({
       opacity: 1,
       background: "#3DB8B3",
       color: "#ffffff"
+    },
+    // [theme.breakpoints.down("md")]: {
+    //   height: "auto",
+    //   width: "90%",
+    //   marginTop: "30px"
+    // },
+    [theme.breakpoints.down("xs")]: {
+      height: "auto",
+      width: "90%",
+      marginTop: "30px"
     }
 
     //   '&:active': {
