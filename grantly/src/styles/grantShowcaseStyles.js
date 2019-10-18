@@ -7,13 +7,13 @@ export const showcaseStyles = makeStyles(theme => ({
     padding: "30px",
     // width: "50%",
     borderTop: "#3DB8B3 5px solid",
-    minHeight: "100vh",
+    // minHeight: "100vh",
     fontFamily: "adobe-garamond-pro",
-    marginBottom: "1rem",
+    // marginBottom: "1rem",
     [theme.breakpoints.down("sm")]: {
       position: "initial",
       width: "100%",
-      padding: "10px",
+      padding: "20px",
       height: "auto",
       margin: 0
     }
@@ -36,11 +36,12 @@ export const showcaseStyles = makeStyles(theme => ({
   website: {
     fill: "#696969",
     marginRight: ".2rem",
-    fontSize: "1.2rem"
+    fontSize: "1.2rem",
+    overflow: "none"
   },
 
   showcaseDetailsTop: {
-    height: 90,
+    // height: 90,
     marginTop: 20,
     marginBottom: 10,
     marginLeft: 5,
@@ -69,7 +70,7 @@ export const showcaseStyles = makeStyles(theme => ({
   },
   applyButton: {
     color: "#fff",
-    margin: "20px auto",
+    margin: "20px auto 0 auto",
     fontFamily: "Nunito Sans",
     fontWeight: "600"
   },
@@ -84,14 +85,16 @@ export const showcaseStyles = makeStyles(theme => ({
     height: "50px"
   },
   grant_name: {
-    fontWeight: "500",
+    fontWeight: "700",
     fontFamily: "Nunito Sans",
-    color: "#222222"
+    color: "#222222",
+    marginBottom: "15px"
   },
   innerDetails: {
     color: "#696969",
-    fontSize: "1.1rem",
-    marginTop: 5
+    fontSize: "0.9rem",
+    margin: 5,
+    height: "auto"
   },
   headersThree: {
     // border: "1px solid red"
