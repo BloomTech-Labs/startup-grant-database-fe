@@ -5,13 +5,22 @@ export const dialogStyles = makeStyles(theme => ({
     color: "#fff"
   },
   formField: {
-    width: 500
+    width: 500,
+    [theme.breakpoints.down("sm")]: {
+      width: 200
+    },
   },
   header: {
     background: "#3CBBB1"
   },
   headerText: {
-    color: "#ffffff"
+    color: "#ffffff",
+    marginTop: "10px",
+    textAlign: "center"
+  },
+  subheaderText: {
+    color: "#ffffff",
+    margin: "0 20px 20px 20px",
   },
   btn: {
     marginTop: 20,
