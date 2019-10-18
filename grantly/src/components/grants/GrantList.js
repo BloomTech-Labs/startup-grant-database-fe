@@ -20,18 +20,16 @@ import { homeStyles } from "../../styles/homeStyles";
 
 export const GrantList = props => {
   const styles = homeStyles();
-
   useEffect(() => {
     if (props.inAdmin) {
+      console.log("yes");
       props.adminFetchApi(props.currentUser);
     } else if (props.data.length === 0) {
       props.fetchApi();
-    } else {
+    } else  {
       // props.fetchApi();
     }
-    console.log("grants", props.data);
   }, []);
-
   const needToBeReviewed = props.data.filter(
     grant => grant.is_reviewed === false
   ).length;
@@ -41,6 +39,7 @@ export const GrantList = props => {
   }
   // console.log(user);
   // console.log("CurrentUser Data from Store", props.currentUser);
+
   return (
     <div>
       {props.data.length && (

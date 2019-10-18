@@ -6,6 +6,8 @@ import {
 } from "../styles/filterStyles";
 import Checkbox from "@material-ui/core/Checkbox";
 import moment from "moment";
+import Loader from "react-loader-spinner";
+
 import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import FormControl from "@material-ui/core/FormControl";
@@ -27,7 +29,8 @@ const Filters = ({
   mobile,
   grants,
   fetchApi,
-  ogGrants
+  ogGrants,
+  isFetching
 }) => {
   const [filters, setFilters] = useState({
     amount: [],
@@ -246,7 +249,8 @@ const mapStateToProps = state => {
   return {
     grants: state.filteredGrants,
     savedFilters: state.filters,
-    ogGrants: state.data
+    ogGrants: state.data,
+    isFetching: state.isFetching
   };
 };
 export default connect(

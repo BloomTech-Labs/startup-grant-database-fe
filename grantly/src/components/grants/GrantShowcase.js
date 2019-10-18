@@ -179,6 +179,7 @@ export const GrantShowcase = props => {
           className={showcase.topContent}
         >
           <Grid item>
+            <a href={props.grant.website} target="_blank">
             <Button
               className={showcase.applyButton}
               variant="contained"
@@ -186,6 +187,7 @@ export const GrantShowcase = props => {
             >
               Apply to Grant
             </Button>
+            </a>
           </Grid>
           {!props.inAdmin && (
             <Grid item>

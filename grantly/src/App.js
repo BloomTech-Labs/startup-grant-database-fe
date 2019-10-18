@@ -32,7 +32,6 @@ function App({ checkUser, currentUser }) {
       });
     }
   }, [user]);
-  console.log("User", currentUser);
   return (
     <Router>
       <ThemeProvider theme={theme}>
@@ -43,8 +42,8 @@ function App({ checkUser, currentUser }) {
           />
           {/* <EmailDialog /> */}
           <Route exact path="/" component={Landing} />
-          <Route exact path="/grants" component={Home} />
-          <Route path="/form" component={SubmitForm} />
+          <Route exact path="/grants" render={props => <Home {...props} /> } />
+          <Route path="/form" render={props => <SubmitForm {...props} /> } />
           <Route path="/login" component={LoginForm} />
           <Route path="/about" component={About} />
           {isAuthenticated && (
