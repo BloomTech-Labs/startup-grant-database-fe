@@ -125,7 +125,7 @@ export const NavBar = props => {
             )}
           </Typography>
         </Link>
-        <Media query="(min-width:800px)">
+        <Media query="(min-width:900px)">
           <div>
             <NavLink
               to="/grants"
@@ -195,7 +195,7 @@ export const NavBar = props => {
             )}
           </div>
         </Media>
-        <Media query="(max-width:800px)">
+        <Media query="(max-width:900px)">
           {matches =>
             matches ? (
               <IconButton

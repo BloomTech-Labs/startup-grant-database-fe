@@ -15,7 +15,9 @@ export const grantStyles = makeStyles(theme => ({
   },
   grantName: {
     fontSize: "1.2rem",
-    position: "relative",
+    // position: "relative",
+    width: "100%",
+    textAlign: "left",
     fontWeight: "700"
     // border: "1px solid fuchsia"
   },
