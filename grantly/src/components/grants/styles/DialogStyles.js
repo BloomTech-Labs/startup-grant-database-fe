@@ -8,10 +8,7 @@ export const dialogStyles = makeStyles(theme => ({
     marginTop: "20px"
   },
   formField: {
-    width: 500,
-    [theme.breakpoints.down("sm")]: {
-      width: 225
-    }
+    width: "100%"
   },
   header: {
     background: "#3CBBB1"
