@@ -35,7 +35,7 @@ const Admin = props => {
         {matches =>
           matches ? (
             <>
-              <MobileTabs inAdmin={true} history={props.history}/>
+              <MobileTabs inAdmin={true} history={props.history} />
               <MobileFilters toggleDrawer={toggleDrawer} />
               <SwipeableDrawer
                 anchor="bottom"

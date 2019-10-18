@@ -10,11 +10,11 @@ import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
 import BookmarkBorderOutlinedIcon from "@material-ui/icons/BookmarkBorderOutlined";
 import EditIcon from "@material-ui/icons/Edit";
-import { grantStyles } from "../../styles/GrantStyles";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 import EditGrantDialog from "./dialogs/EditGrantDialog";
+import { grantStyles } from "../../styles/GrantStyles";
 export const Grant = props => {
   const selectGrant = () => {
     props.selectGrant(props.grant);
@@ -56,6 +56,7 @@ export const Grant = props => {
         >
           <Typography
             variant="subtitle1"
+            style={{ textAlign: "left" }}
             className={
               props.grant.is_reviewed
                 ? styles.grantName
@@ -89,10 +90,8 @@ export const Grant = props => {
         </Grid>
         {props.inAdmin ? (
           <EditGrantDialog className={styles.editIcon} grant={props.grant} />
-        ) : (
-          // <BookmarkBorderOutlinedIcon className={styles.bookmark} />
-          null
-        )}
+        ) : // <BookmarkBorderOutlinedIcon className={styles.bookmark} />
+        null}
       </div>
     </Card>
   );
