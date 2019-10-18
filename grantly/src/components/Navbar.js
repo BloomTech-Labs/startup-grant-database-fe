@@ -2,7 +2,6 @@ import React, { useState } from "react";
 
 import { NavLink, Link } from "react-router-dom";
 import { useAuth0 } from "../react-auth0-wrapper";
-import { navStyles } from "../styles/navStyles";
 import FGLogo from "../assets/FGLogo";
 import Media from "react-media";
 import MobileTabs from "./mobile/MobileTabs";
@@ -19,6 +18,7 @@ import {
   SwipeableDrawer
 } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
+import { navStyles } from "../styles/navStyles";
 
 export const NavBar = props => {
   const {
@@ -131,6 +131,7 @@ export const NavBar = props => {
               to="/grants"
               className={classes.navButton}
               activeClassName={classes.active}
+              onClick={() => props.fetchApi()}
             >
               Grants
             </NavLink>

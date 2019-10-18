@@ -2,7 +2,7 @@
 import React, { useEffect } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import { connect } from "react-redux";
-import { checkUser } from "./actions/index";
+import { checkUser, fetchApi } from "./actions/index";
 import { useAuth0 } from "./react-auth0-wrapper";
 
 // Objects
@@ -21,7 +21,7 @@ import Sitemap from "./components/Sitemap";
 import PrivateRoute from "./util/PrivateRoute";
 import EmailDialog from "./components/grants/dialogs/EmailDialog";
 
-function App({ checkUser, currentUser }) {
+function App({ checkUser, currentUser, fetchApi }) {
   const { user, isAuthenticated, getTokenSilently } = useAuth0();
   useEffect(() => {
     if (isAuthenticated) {
@@ -38,7 +38,9 @@ function App({ checkUser, currentUser }) {
         <div className="App">
           <Route
             path="/"
-            render={props => <NavBar {...props} role={currentUser.role} />}
+            render={props => (
+              <NavBar {...props} fetchApi={fetchApi} role={currentUser.role} />
+            )}
           />
           {/* <EmailDialog /> */}
           <Route exact path="/" component={Landing} />
@@ -62,5 +64,5 @@ const mapStateToProps = state => {
 };
 export default connect(
   mapStateToProps,
-  { checkUser }
+  { checkUser, fetchApi }
 )(App);
