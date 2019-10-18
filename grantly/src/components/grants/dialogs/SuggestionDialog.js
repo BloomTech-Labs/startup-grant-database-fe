@@ -84,7 +84,7 @@ const SuggestionDialog = props => {
             </DialogContentText>
           </Grid>
         </Grid>
-        <DialogContent >
+        <DialogContent style={{ paddingBottom: "0" }}>
           <form>
             <TextField
               margin="normal"
@@ -113,6 +113,7 @@ const SuggestionDialog = props => {
                 variant="outlined"
                 onClick={handleClose}
                 className={classes.btn}
+                style={{ marginBottom: "0" }}
               >
                 Cancel
               </Button>

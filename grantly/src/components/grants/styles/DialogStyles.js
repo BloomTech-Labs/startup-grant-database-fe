@@ -7,7 +7,7 @@ export const dialogStyles = makeStyles(theme => ({
   formField: {
     width: 500,
     [theme.breakpoints.down("sm")]: {
-      width: 200
+      width: 225,
     },
   },
   header: {
