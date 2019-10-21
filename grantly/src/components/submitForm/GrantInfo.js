@@ -1,5 +1,8 @@
+//Dependencies
 import React, { Fragment } from "react";
 import { connect } from "react-redux";
+
+//Objects
 import { postGrants, fetchApi } from "../../actions/index.js";
 import { Grid, Typography, TextField, Divider } from "@material-ui/core";
 import formStyles from "../../styles/FormStyles";
