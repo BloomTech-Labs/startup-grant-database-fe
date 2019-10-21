@@ -17,6 +17,7 @@ import {
   StepLabel
 } from "@material-ui/core";
 
+//Grant form components for each step
 import GrantInfo from "./submitForm/GrantInfo";
 import GrantFocus from "./submitForm/GrantFocus";
 import GrantDemo from "./submitForm/GrantDemo";
