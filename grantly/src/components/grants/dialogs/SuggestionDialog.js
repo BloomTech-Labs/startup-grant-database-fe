@@ -14,7 +14,11 @@ import {
 } from "@material-ui/core";
 import { submitSuggestion } from "../../../actions/index";
 
+// When user clicks on
+
 const SuggestionDialog = props => {
+  // hold state locally before passing to API
+
   const [suggestion, setSuggestion] = React.useState({
     subject: "",
     suggestion: ""
@@ -24,6 +28,7 @@ const SuggestionDialog = props => {
 
   const classes = dialogStyles();
 
+  // need handlers for open and close based on how dialog works in Material UI (see docs)
   const handleOpen = () => {
     setOpen(true);
   };
@@ -33,12 +38,15 @@ const SuggestionDialog = props => {
     setSuggestion("");
   };
 
+  // change handler with event.target.value destructured
   const handleChanges = name => ({ target: { value } }) => {
     setSuggestion({
       ...suggestion,
       [name]: value
     });
   };
+
+  // Combining state from different sources
 
   const handleSubmit = () => {
     const sendObject = {
