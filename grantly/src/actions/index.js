@@ -31,6 +31,8 @@ import {
   DELETE_SUGGESTION_FAILURE
 } from "./types";
 
+// fetch grants for main view
+
 export const fetchApi = () => dispatch => {
   dispatch({ type: FETCH_START });
   axios
@@ -44,6 +46,8 @@ export const fetchApi = () => dispatch => {
       dispatch({ type: FETCH_ERROR });
     });
 };
+
+// fetch grants for admin
 
 export const adminFetchApi = user => dispatch => {
   console.log("USER:", user);
@@ -75,9 +79,11 @@ export const filterGrants = filters => dispatch => {
     ? dispatch({ type: FILTER_GRANTS_RESET })
     : dispatch({ type: FILTER_GRANTS, payload: filters });
 
-  //initial thoughts is to have filters be an array  becuase users will be able to select multiple grant filter
+  //initial thoughts is to have filters be an array  because users will be able to select multiple grant filter
   //Now filters will be an object that contains different arrays
 };
+
+// logic for main selecting grant card
 
 export const selectGrant = grant => dispatch => {
   dispatch({ type: SELECT_GRANT, payload: grant });
@@ -216,8 +222,9 @@ export const checkUser = user => dispatch => {
     });
 };
 
+// logic for suggestion modal
+
 export const submitSuggestion = suggestion => dispatch => {
-  console.log("im submitting");
   dispatch({ type: SUBMIT_SUGGESTION_START });
   axios
     .post(
@@ -235,10 +242,9 @@ export const submitSuggestion = suggestion => dispatch => {
     });
 };
 
-// Delete a grant suggestion
+// Delete a grant suggestion, must be an admin
 export const deleteSuggestion = (requestId, user) => dispatch => {
   dispatch({ type: DELETE_SUGGESTION_START });
-  console.log("hello");
   axios
     .delete(
       `https://grantly-staging.herokuapp.com/api/admin/suggestion/${requestId}`,
