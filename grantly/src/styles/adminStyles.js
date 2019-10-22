@@ -9,8 +9,10 @@ export const adminStyles = makeStyles(theme => ({
     padding: theme.spacing(3)
   },
   gridContainer: {
+    margin: "0",
     flexWrap: "nowrap",
-    overflowX: "hidden"
+    overflowX: "hidden",
+    marginBottom: "2%"
   },
   gridItem: {
     padding: 30
@@ -46,9 +48,9 @@ export const adminStyles = makeStyles(theme => ({
     zIndex: "1000",
     boxShadow:
       "0px 1px 0px 0px rgba(0,0,0,0.2), 0px 1px 0px 0px rgba(0,0,0,0.14), 0px 2px 0px -1px rgba(0,0,0,0.12)",
-          "&:hover": {
+    "&:hover": {
       cursor: "pointer"
-    },
+    }
   },
   filterIconSelected: {
     fill: "#3DB8B3",
@@ -62,7 +64,7 @@ export const adminStyles = makeStyles(theme => ({
   adminActions: {
     fontFamily: "Nunito Sans",
     fontWeight: "700",
-    margin: "10px",
+    margin: "10px"
   },
   buttons: {
     textTransform: "capitalize",
@@ -70,6 +72,5 @@ export const adminStyles = makeStyles(theme => ({
     letterSpacing: "1px",
     padding: "5px 3rem",
     fontFamily: "Nunito Sans"
-
   }
 }));

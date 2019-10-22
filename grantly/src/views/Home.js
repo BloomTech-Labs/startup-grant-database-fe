@@ -31,11 +31,11 @@ const Home = props => {
     <>
       {/* <Navbar location={props.location.pathname} /> */}
       {/* <SearchBar /> */}
-      <Media query="(max-width:850px)">
+      <Media query="(max-width:900px)">
         {matches =>
           matches ? (
             <>
-              <MobileTabs history={props.history}/>
+              <MobileTabs history={props.history} />
               <MobileFilters toggleDrawer={toggleDrawer} />
               <SwipeableDrawer
                 anchor="bottom"
@@ -63,7 +63,7 @@ const Home = props => {
                   // style={{ padding: "30px 0 0 30px" }}
                 >
                   {/* <div className={classes.scrollBox}> */}
-                  <GrantList inAdmin={false} location={props.location}/>
+                  <GrantList inAdmin={false} location={props.location} />
                   {/* </div> */}
                 </Grid>
                 <Grid

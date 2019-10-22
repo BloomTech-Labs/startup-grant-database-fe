@@ -17,7 +17,7 @@ export const homeStyles = makeStyles(theme => ({
     margin: "0",
     flexWrap: "nowrap",
     overflowX: "hidden",
-    marginBottom: "10%"
+    marginBottom: "2%"
   },
   gridItem: {
     padding: 30
@@ -38,7 +38,7 @@ export const homeStyles = makeStyles(theme => ({
     }
   },
   filterIcon: {
-    position: "fixed",
+    position: "absolute",
     top: "11%",
     fill: "#BBB",
     right: "1%",
@@ -47,12 +47,12 @@ export const homeStyles = makeStyles(theme => ({
     width: "50px",
     height: "50px",
     borderRadius: "50%",
-    zIndex: "2000",
+    zIndex: "1000",
     boxShadow:
       "0px 1px 0px 0px rgba(0,0,0,0.2), 0px 1px 0px 0px rgba(0,0,0,0.14), 0px 2px 0px -1px rgba(0,0,0,0.12)",
-          "&:hover": {
+    "&:hover": {
       cursor: "pointer"
-    },
+    }
   },
   filterIconSelected: {
     fill: "#3DB8B3",

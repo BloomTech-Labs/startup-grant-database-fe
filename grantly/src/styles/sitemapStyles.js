@@ -8,7 +8,6 @@ export const sitemapStyles = makeStyles(theme => ({
     color: "#696969",
     background: "#fff",
     maxWidth: "100%",
-    height: "180px",
     padding: "0 2%",
     // position: "fixed",
     // bottom: "0",

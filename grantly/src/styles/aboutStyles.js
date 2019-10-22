@@ -8,34 +8,21 @@ export const aboutStyles = makeStyles(theme => ({
     }
   },
   aboutCardContainer: {
-    // border: "1px solid fuchsia"
     margin: 20
-    // height: 500
   },
   aboutIntroCardContainer: {
-    // border: "1px solid fuchsia"
     margin: 1,
     padding: 20
-    // background: "#3DB8B3",
-    // color: "#ffffff",
-    // "&:hover": {
-    //   boxShadow: "0px 5px 10px #BBB",
-    //   transform: "translateY(-5px)",
-    //   opacity: 1,
-    //   background: "#3DB8B3",
-    //   color: "#ffffff"
-    // }
   },
   aboutContainer: {
-    [theme.breakpoints.down("sm")]: {
+    [theme.breakpoints.down(1150 + theme.spacing(2) * 2)]: {
       display: "flex",
       flexDirection: "column",
       alignItems: "center"
     }
   },
   aboutCard: {
-    // border: "1px solid fuchsia",
-    width: 350,
+    width: "100%",
     height: 150,
     margin: 10,
     padding: 10,
@@ -52,29 +39,53 @@ export const aboutStyles = makeStyles(theme => ({
       background: "#3DB8B3",
       color: "#ffffff"
     },
-    // [theme.breakpoints.down("md")]: {
-    //   height: "auto",
-    //   width: "90%",
-    //   marginTop: "30px"
-    // },
-    [theme.breakpoints.down("xs")]: {
-      height: "auto",
-      width: "90%",
-      marginTop: "30px"
-    }
+    [theme.breakpoints.down(1150 + theme.spacing(2) * 2)]: {
+      width: 300,
 
-    //   '&:active': {
-    //     transform: "translateY(0)"
-    //   }
+      height: "auto",
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      justifyContent: "center",
+      marginTop: "30px",
+      "&:hover": {
+        boxShadow: "0px 5px 10px #BBB",
+        transform: "translateY(-5px)",
+        opacity: 1,
+        background: "#3DB8B3",
+        color: "#ffffff"
+      }
+    },
+    [theme.breakpoints.down(800 + theme.spacing(2) * 2)]: {
+      marginLeft: theme.spacing(2),
+      marginRight: theme.spacing(2),
+      width: 350,
+      height: 150,
+      margin: 10,
+      padding: 10,
+      opacity: 0.7,
+      height: "auto",
+      display: "flex",
+      alignItems: "center",
+      flexDirection: "column",
+      justifyContent: "center",
+      marginTop: "30px",
+      "&:hover": {
+        boxShadow: "0px 5px 10px #BBB",
+        transform: "translateY(-5px)",
+        opacity: 1,
+        background: "#3DB8B3",
+        color: "#ffffff"
+      }
+    }
   },
   aboutIntro: {
-    // border: "1px solid fuchsia",
     marginTop: 15,
     marginBottom: 15
   },
   aboutTopCard: {
     width: "75%",
-    // border: "1px solid turquoise",
+
     margin: 20,
     padding: 15
   }
