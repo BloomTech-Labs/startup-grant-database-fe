@@ -20,9 +20,12 @@ export const Grant = props => {
     props.selectGrant(props.grant);
   };
 
+  // formats number with commas for display
   function formatNumbers(num) {
     return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   }
+
+  // Checks if due date is provided
 
   const deadline = props.grant.most_recent_application_due_date ? (
     <Moment format={"MMMM Do YYYY"}>
@@ -31,8 +34,11 @@ export const Grant = props => {
   ) : (
     <span>See website for details</span>
   );
+
+  // Use to declare classes/styles
   const styles = grantStyles();
   return (
+    // Checks if card is currently selected and if its been reviewed
     <Card
       className={`${
         props.grantShowcase.id === props.grant.id
@@ -67,6 +73,7 @@ export const Grant = props => {
           <Grid item>
             <Typography variant="body2" component="p">
               <a href={props.grant.website}>
+                {/* only displays substring of website */}
                 {props.grant.website.substring(0, 30)}...
               </a>
             </Typography>
