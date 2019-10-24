@@ -133,6 +133,7 @@ export const putGrants = (updateGrant, user) => dispatch => {
         })
 
         .then(response => {
+          console.log("response", response)
           dispatch({
             type: UPDATE_GRANT_SUCCESS,
             payload: [response.data, updateGrant.id]
