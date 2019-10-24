@@ -1,5 +1,8 @@
 import { makeStyles } from "@material-ui/core/styles";
 
+// We have styles in two different main places, could be combined or cleaned up
+// Using the makeStyles function to apply CSS in JS styles
+
 export const dialogStyles = makeStyles(theme => ({
   applyButton: {
     color: "#fff",

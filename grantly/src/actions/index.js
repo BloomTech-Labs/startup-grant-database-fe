@@ -31,6 +31,8 @@ import {
   DELETE_SUGGESTION_FAILURE
 } from "./types";
 
+// fetch grants for main view
+
 export const fetchApi = () => dispatch => {
   dispatch({ type: FETCH_START });
   axios
@@ -45,6 +47,8 @@ export const fetchApi = () => dispatch => {
       dispatch({ type: FETCH_ERROR });
     });
 };
+
+// fetch grants for admin
 
 export const adminFetchApi = user => dispatch => {
   dispatch({ type: FETCH_START });
@@ -77,7 +81,12 @@ export const filterGrants = filters => dispatch => {
   numCheck === 0
     ? dispatch({ type: FILTER_GRANTS_RESET })
     : dispatch({ type: FILTER_GRANTS, payload: filters });
+
+  //initial thoughts is to have filters be an array  because users will be able to select multiple grant filter
+  //Now filters will be an object that contains different arrays
 };
+
+// logic for main selecting grant card
 
 export const selectGrant = grant => dispatch => {
   dispatch({ type: SELECT_GRANT, payload: grant });
@@ -228,6 +237,8 @@ export const checkUser = user => dispatch => {
     });
 };
 
+// logic for suggestion modal
+
 export const submitSuggestion = suggestion => dispatch => {
   dispatch({ type: SUBMIT_SUGGESTION_START });
   axios
@@ -246,7 +257,7 @@ export const submitSuggestion = suggestion => dispatch => {
     });
 };
 
-// Delete a grant suggestion
+// Delete a grant suggestion, must be an admin
 export const deleteSuggestion = (requestId, user) => dispatch => {
   dispatch({ type: DELETE_SUGGESTION_START });
   axios
