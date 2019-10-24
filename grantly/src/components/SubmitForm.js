@@ -48,21 +48,21 @@ const AddGrant = props => {
     }
   }
 
-  //Default values for grants state.  Note is_reviewed is set to false so it will only show up on Admin
+  //Default values for grants state.  Note is_reviewed is set to false so it will only show up on Admin.  Also null values are set to avoid 500 error if inputs are left blank
   const [grantInfo, setGrantInfo] = useState({
     competition_name: "",
     type: "",
     area_focus: "",
     sponsoring_entity: "",
     website: "",
-    most_recent_application_due_date: "",
+    most_recent_application_due_date: null,
     amount: null,
     amount_notes: "",
     geographic_region: "",
     domain_areas: "",
     target_entrepreneur_demographic: "",
     notes: "",
-    early_stage_funding: "",
+    early_stage_funding: false,
     is_reviewed: false,
     has_requests: false,
     details_last_updated: moment().format("YYYY-MM-DD")
