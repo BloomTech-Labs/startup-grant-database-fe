@@ -33,9 +33,9 @@ export const GrantList = props => {
     grant => grant.is_reviewed === false
   ).length;
   // const numberOfSuggestions = props.data.filter(grant => grant.requests.length > 0).length;
-  if (props.isFetching) {
-    return null
-  }
+
+
+
   // console.log(user);
   // console.log("CurrentUser Data from Store", props.currentUser);
 

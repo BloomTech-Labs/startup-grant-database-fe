@@ -1,4 +1,8 @@
+//Dependencies
 import React from "react";
+import { connect } from "react-redux";
+
+//Objects
 import {
   Grid,
   Typography,
@@ -6,12 +10,14 @@ import {
   MenuItem,
   Divider
 } from "@material-ui/core";
-import { connect } from "react-redux";
 import { postGrants, fetchApi } from "../../actions/index.js";
 import formStyles from "../../styles/FormStyles";
 
 const GrantDemo = props => {
   const styles = formStyles();
+
+
+  //Array of values for the "Early Stage Funding" dropdown
 
   const funding = [
     {
@@ -23,6 +29,9 @@ const GrantDemo = props => {
       label: "no"
     }
   ];
+
+
+  //Array of values for the "Geographic Region" dropdown
 
   const geographicRegion = [
     {
@@ -58,6 +67,9 @@ const GrantDemo = props => {
       label: "N/A"
     }
   ];
+
+
+  //Array of values for the "Target Demographic" dropdown
 
   const targeDemographic = [
     {
@@ -104,6 +116,9 @@ const GrantDemo = props => {
             value={props.grantInfo.geographic_region}
             onChange={props.handleChanges}
           >
+
+            {/* Maps through the array to return values for dropdown */}
+
             {geographicRegion.map(option => (
               <MenuItem key={option.value} value={option.value}>
                 {option.label}
@@ -122,6 +137,9 @@ const GrantDemo = props => {
             value={props.grantInfo.target_entrepreneur_demographic}
             onChange={props.handleChanges}
           >
+
+            {/* Maps through the array to return values for dropdown */}
+
             {targeDemographic.map(option => (
               <MenuItem key={option.value} value={option.value}>
                 {option.label}
@@ -152,6 +170,7 @@ const GrantDemo = props => {
             value={props.grantInfo.early_stage_funding}
             onChange={props.handleChanges}
           >
+            {/* Maps through the array to return values for dropdown */}
             {funding.map(option => (
               <MenuItem key={option.value} value={option.value}>
                 {option.label}

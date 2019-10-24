@@ -52,6 +52,9 @@ const Filters = ({
       filterGrants(savedFilters);
     }
   }, [savedFilters]);
+
+  console.log("fil", savedFilters)
+
   const grantFilters = {
     color: "primary",
     geographic_region: [
@@ -94,6 +97,7 @@ const Filters = ({
   } else {
     classes = grantStyles;
   }
+
 
   return (
     <Card className={classes.card}>

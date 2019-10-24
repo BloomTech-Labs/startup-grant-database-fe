@@ -17,6 +17,7 @@ import {
   StepLabel
 } from "@material-ui/core";
 
+//Grant form components for each step
 import GrantInfo from "./submitForm/GrantInfo";
 import GrantFocus from "./submitForm/GrantFocus";
 import GrantDemo from "./submitForm/GrantDemo";
@@ -24,8 +25,10 @@ import GrantDemo from "./submitForm/GrantDemo";
 import moment from "moment";
 
 const AddGrant = props => {
+  //Steps are the different parts of the form.  They are broken down into components in the submitForm directory
   const steps = ["Grant Info", "Grant Focus", "Grant Demo"];
 
+  //Switch case that uses the "step" to determine what component to render
   function getStepContent(step) {
     switch (step) {
       case 0:
@@ -45,25 +48,29 @@ const AddGrant = props => {
     }
   }
 
+  //Default values for grants state.  Note is_reviewed is set to false so it will only show up on Admin.  Also null values are set to avoid 500 error if inputs are left blank
   const [grantInfo, setGrantInfo] = useState({
     competition_name: "",
     type: "",
     area_focus: "",
     sponsoring_entity: "",
     website: "",
-    most_recent_application_due_date: "",
+
+    most_recent_application_due_date: null,
+
     amount: null,
     amount_notes: "",
     geographic_region: "",
     domain_areas: "",
     target_entrepreneur_demographic: "",
     notes: "",
-    early_stage_funding: "",
+    early_stage_funding: false,
     is_reviewed: false,
     has_requests: false,
     details_last_updated: moment().format("YYYY-MM-DD")
   });
 
+  //HandleChanges for form
   const handleChanges = event => {
     event.preventDefault();
     setGrantInfo({
@@ -72,6 +79,7 @@ const AddGrant = props => {
     });
   };
 
+  //Submit for grant from
   const submitGrant = event => {
     event.preventDefault();
     props.postGrants({ ...grantInfo });
@@ -91,21 +99,27 @@ const AddGrant = props => {
       early_stage_funding: "",
       details_last_updated: ""
     });
+
+    //Once a user submits it will delay for 2 seconds before "pushing" the user to the grants page
     setTimeout(() => {
       props.fetchApi();
-      props.changeTab(0)
+      props.changeTab(0);
+
       props.history.push("/grants");
     }, 2000);
   };
 
   const styles = formStyles();
 
+  //State that keeps track of what component the user is on
   const [activeStep, setActiveStep] = useState(0);
 
+  //Used to move the "step" to the next value
   const handleNext = () => {
     setActiveStep(activeStep + 1);
   };
 
+  //Used to move the "step" to the previous value
   const handleBack = () => {
     setActiveStep(activeStep - 1);
   };
@@ -126,6 +140,7 @@ const AddGrant = props => {
               </p>
             </div>
           </Grid>
+          {/* Material UI for the stepper at the top of the page. */}
           <Stepper activeStep={activeStep} className={styles.stepper}>
             {steps.map(label => (
               <Step key={label}>
@@ -134,6 +149,7 @@ const AddGrant = props => {
             ))}
           </Stepper>
           <Fragment>
+            {/* Ternary statement to determine if the grant has been submitted.  This is not being used now, but will be once an email input option has been implemented in future releases  */}
             {activeStep === steps.length ? (
               <Fragment>
                 <Typography variant="h3">
@@ -147,6 +163,7 @@ const AddGrant = props => {
                 </Typography>
               </Fragment>
             ) : (
+              //else portion of ternary
               <Fragment>
                 {getStepContent(activeStep)}
 
@@ -164,12 +181,14 @@ const AddGrant = props => {
                   <Button
                     variant="contained"
                     color="primary"
+                    // Ternary that determines what button to display based on what component the user is on
                     onClick={
                       activeStep === steps.length - 1 ? submitGrant : handleNext
                     }
                     className={styles.submit}
                     style={{ color: "#fff" }}
                   >
+                    {/* Ternary that determine what button to display*/}
                     {activeStep === steps.length - 1 ? "submit" : "Next"}
                   </Button>
                 </div>

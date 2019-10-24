@@ -4,12 +4,9 @@ import {
   Typography,
   TextField,
   Divider,
-  MenuItem,
-  FormControl,
-  FormLabel,
-  FormGroup,
-  FormControlLabel,
-  Checkbox
+
+  MenuItem
+
 } from "@material-ui/core";
 import { connect } from "react-redux";
 import { postGrants, fetchApi } from "../../actions/index.js";
@@ -17,6 +14,9 @@ import formStyles from "../../styles/FormStyles";
 
 const GrantFocus = props => {
   const styles = formStyles();
+
+  //Array of values for the "Area Focus" dropdown
+
   const areaFocus = [
     {
       value: "Communication Services",
@@ -63,6 +63,9 @@ const GrantFocus = props => {
       label: "N/A"
     }
   ];
+
+  //Array of values for the "Domain Areas" dropdown
+
   const domainAreas = [
     {
       value: "Social Entrepreneurship",
@@ -122,6 +125,9 @@ const GrantFocus = props => {
             value={props.grantInfo.domain_areas}
             onChange={props.handleChanges}
           >
+
+            {/* Maps through the array to return values for dropdown */}
+
             {domainAreas.map(option => (
               <MenuItem key={option.value} value={option.value}>
                 {option.label}
@@ -140,6 +146,9 @@ const GrantFocus = props => {
             value={props.grantInfo.area_focus}
             onChange={props.handleChanges}
           >
+
+            {/* Maps through the array to return values for dropdown */}
+
             {areaFocus.map(option => (
               <MenuItem key={option.value} value={option.value}>
                 {option.label}
@@ -164,6 +173,9 @@ export default connect(
 )(GrantFocus);
 
 {
+
+  //Checkbox Implementation for future release
+
   /* <FormControl>
           <FormLabel> Area Focus</FormLabel>
           <FormGroup

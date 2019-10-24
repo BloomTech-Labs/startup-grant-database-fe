@@ -47,7 +47,7 @@ export const homeStyles = makeStyles(theme => ({
     width: "50px",
     height: "50px",
     borderRadius: "50%",
-    zIndex: "2000",
+    zIndex: "1000",
     boxShadow:
       "0px 1px 0px 0px rgba(0,0,0,0.2), 0px 1px 0px 0px rgba(0,0,0,0.14), 0px 2px 0px -1px rgba(0,0,0,0.12)",
     "&:hover": {

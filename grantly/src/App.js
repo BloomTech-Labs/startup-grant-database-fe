@@ -23,6 +23,8 @@ import EmailDialog from "./components/grants/dialogs/EmailDialog";
 
 function App({ checkUser, currentUser, fetchApi }) {
   const { user, isAuthenticated, getTokenSilently } = useAuth0();
+ 
+
   useEffect(() => {
     if (isAuthenticated) {
       // const authToken = getTokenSilently().then(res => res);
@@ -32,6 +34,7 @@ function App({ checkUser, currentUser, fetchApi }) {
       });
     }
   }, [user]);
+
   return (
     <Router>
       <ThemeProvider theme={theme}>

@@ -36,8 +36,10 @@ import {
 export const fetchApi = () => dispatch => {
   dispatch({ type: FETCH_START });
   axios
-    // .get(`https://labs16-grantly.herokuapp.com/api/grants/`)
-    .get(`https://grantly-staging.herokuapp.com/api/grants`)
+
+    .get(`https://labs16-grantly.herokuapp.com/api/grants/`)
+    // .get(`https://grantly-staging.herokuapp.com/api/grants`)
+
     // .get(`http://localhost:5000/api/grants`)
 
     .then(response => {
@@ -54,7 +56,8 @@ export const adminFetchApi = user => dispatch => {
 
   dispatch({ type: FETCH_START });
   axios
-    .get(`https://grantly-staging.herokuapp.com/api/admin`, {
+    .get(`https://labs16-grantly.herokuapp.com/api/admin`, {
+      // .get(`https://grantly-staging.herokuapp.com/api/admin`, {
       headers: { auth0id: user.auth_id, authorization: `Bearer ${user.token}` }
     })
 
@@ -65,16 +68,19 @@ export const adminFetchApi = user => dispatch => {
       dispatch({ type: FETCH_ERROR });
     });
 };
-
+// This action creator is here because we want to save filters that user selected on landing poge screen so we save our filters into our reducer
 export const saveFilters = filters => dispatch => {
   dispatch({ type: FILTER_SAVE, payload: filters });
 };
 export const filterGrants = filters => dispatch => {
   let numCheck = 0;
 
+  //See hoe many filters user selected
   Object.values(filters).map(filter => {
     filter.length !== 0 && numCheck++;
   });
+
+  //Check if user has chosen any flters if there is one selected dispatches the filter grants action or it none is select it shows all grants from the filter grants reset action
   numCheck === 0
     ? dispatch({ type: FILTER_GRANTS_RESET })
     : dispatch({ type: FILTER_GRANTS, payload: filters });
@@ -90,6 +96,7 @@ export const selectGrant = grant => dispatch => {
   dispatch({ type: CHANGE_TAB, payload: 1 });
 };
 
+// This action creator is for mobile, we use this in different components like the aubmit form to change the current tab a user is on after submitting
 export const changeTab = tab => dispatch => {
   dispatch({ type: CHANGE_TAB, payload: tab });
 };
@@ -98,9 +105,11 @@ export const changeTab = tab => dispatch => {
 export const postGrants = addGrant => dispatch => {
   dispatch({ type: ADD_GRANT_START });
   axios
-    .post("https://grantly-staging.herokuapp.com/api/grants", addGrant)
+
+    .post("https://labs16-grantly.herokuapp.com/api/grants/", addGrant)
+    // .post("https://grantly-staging.herokuapp.com/api/grants", addGrant)
     // .post("http://localhost:5000/api/grants", addGrant)
-    // .post("https://labs16-grantly.herokuapp.com/api/grants/", addGrant)
+
 
     .then(res => {
       dispatch({ type: ADD_GRANT_SUCCESS, payload: res.data });
@@ -118,7 +127,8 @@ export const putGrants = (updateGrant, user) => dispatch => {
   });
   axios
     .put(
-      `https://grantly-staging.herokuapp.com/api/admin/${updateGrant.id}`,
+      `https://labs16-grantly.herokuapp.com/api/admin/${updateGrant.id}`,
+      // `https://grantly-staging.herokuapp.com/api/admin/${updateGrant.id}`,
       updateGrant,
       {
         headers: {
@@ -130,8 +140,8 @@ export const putGrants = (updateGrant, user) => dispatch => {
 
     .then(success => {
       axios
-        // .get(`https://labs16-grantly.herokuapp.com/api/grants/`)
-        .get(`https://grantly-staging.herokuapp.com/api/admin`, {
+        .get(`https://labs16-grantly.herokuapp.com/api/grants/`, {
+          // .get(`https://grantly-staging.herokuapp.com/api/admin`, {
           headers: {
             auth0id: user.auth_id,
             authorization: `Bearer ${user.token}`
@@ -139,6 +149,7 @@ export const putGrants = (updateGrant, user) => dispatch => {
         })
 
         .then(response => {
+          console.log("response", response);
           dispatch({
             type: UPDATE_GRANT_SUCCESS,
             payload: [response.data, updateGrant.id]
@@ -160,7 +171,8 @@ export const deleteGrants = (id, user) => dispatch => {
     type: DELETE_GRANT_START
   });
   axios
-    .delete(`https://grantly-staging.herokuapp.com/api/admin/${id}`, {
+    .delete(`https://labs16-grantly.herokuapp.com/api/admin/${id}`, {
+      // .delete(`https://grantly-staging.herokuapp.com/api/admin/${id}`, {
       headers: {
         auth0id: user.auth_id,
         authorization: `Bearer ${user.token}`
@@ -169,8 +181,8 @@ export const deleteGrants = (id, user) => dispatch => {
 
     .then(res => {
       axios
-        // .get(`https://labs16-grantly.herokuapp.com/api/grants/`)
-        .get(`https://grantly-staging.herokuapp.com/api/admin`, {
+        .get(`https://labs16-grantly.herokuapp.com/api/grants/`, {
+          // .get(`https://grantly-staging.herokuapp.com/api/admin`, {
           headers: {
             auth0id: user.auth_id,
             authorization: `Bearer ${user.token}`
@@ -192,14 +204,17 @@ export const deleteGrants = (id, user) => dispatch => {
     });
 };
 
-//Check if user is admin
+//Check if user is admin this action is called after a successful login
 export const checkUser = user => dispatch => {
   dispatch({ type: CHECK_ADMIN });
   const auth = { ...user, auth_id: user.sub };
 
+  // First we call to our user database, we pass in the auth0 id provided by auth0 into our headers and our response will be an object detailing if
+  // the current signed in user is an admin or not
   axios
 
-    .get("https://grantly-staging.herokuapp.com/user", {
+    .get("https://labs16-grantly.herokuapp.com/user", {
+      // .get("https://grantly-staging.herokuapp.com/user", {
       headers: {
         auth_id: auth.auth_id
       }
@@ -209,13 +224,18 @@ export const checkUser = user => dispatch => {
       dispatch({ type: SET_TOKEN_IN_STORE, payload: user.token });
     })
     .catch(err => {
+
+      //Possibly for a future release will be to update our user database with the email and name provided by auth0
       // const newUser = { role: "user", auth_id: auth.auth_id, email: user.email, last_name: user.family_name, first_name: user.given_name};
+
+      // After a user successfully logs in if we do not have their auth0 id in our database we will create that user in our catch block. So first time users will be added to our db as users
 
       const newUser = { role: "user", auth_id: auth.auth_id };
       if (err.response.status === 404) {
         axios
 
-          .post("https://grantly-staging.herokuapp.com/user", newUser)
+          .post("https://labs16-grantly.herokuapp.com/user", newUser)
+          // .post("https://grantly-staging.herokuapp.com/user", newUser)
           .then(res => {
             dispatch({ type: SET_USER, payload: res.data });
           })
@@ -230,7 +250,8 @@ export const submitSuggestion = suggestion => dispatch => {
   dispatch({ type: SUBMIT_SUGGESTION_START });
   axios
     .post(
-      "https://grantly-staging.herokuapp.com/api/grants/suggestion",
+      "https://labs16-grantly.herokuapp.com/api/grants/suggestion",
+      // "https://grantly-staging.herokuapp.com/api/grants/suggestion",
       suggestion
     )
 
@@ -248,7 +269,8 @@ export const deleteSuggestion = (requestId, user) => dispatch => {
   dispatch({ type: DELETE_SUGGESTION_START });
   axios
     .delete(
-      `https://grantly-staging.herokuapp.com/api/admin/suggestion/${requestId}`,
+      `https://labs16-grantly.herokuapp.com/api/admin/suggestion/${requestId}`,
+      // `https://grantly-staging.herokuapp.com/api/admin/suggestion/${requestId}`,
       {
         headers: {
           auth0id: user.auth_id,
