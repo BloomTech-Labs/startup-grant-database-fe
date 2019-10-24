@@ -100,14 +100,20 @@ export const rooterReducer = (state = initialState, { type, payload }) => {
         filters: payload
       };
     case FILTER_GRANTS:
-      const filtersWithoutAdmin = Object.entries(payload);
-      filtersWithoutAdmin.pop();
+      // The payload is an object where the properties are the filter type
+      // and the values being an array with each item being the multiple filters
+      // Ex. { amount: [under $1,000, $5,000 - $10,000]}
+      const filtersWithoutAdmin = Object.entries(payload); // Change that object into an array
+      filtersWithoutAdmin.pop(); // Remove the admin properties
       let newList = [];
       state.data.map(grant => {
-        // console.log("Im in", filtersWithoutAdmin);
+        //Start to loop over every grant and check the filters to see if grant matches
         filtersWithoutAdmin.map(filter => {
+          //Loop through each individual filter, it is an array ex, ["ammount", ["under $1,000", $5,000 - $10,000]]
           filter[1].map(userFilters => {
+            //Loop through second array and decide if grant matches the filter, for example "uerFilters" will refer to under $1,000 first
             if (filter[0] === "amount") {
+              // This code block checks if the filter is the amoutn filter and will convert the strings in the array into an easily compared number
               if (userFilters.includes("-")) {
                 const min = userFilters.split("-")[0].replace(/\D/g, "");
                 const max = userFilters.split("-")[1].replace(/\D/g, "");
@@ -122,7 +128,7 @@ export const rooterReducer = (state = initialState, { type, payload }) => {
                 newList.push(grant);
               }
             } else if (
-              grant[filter[0]].toLowerCase().includes(userFilters.toLowerCase())
+              grant[filter[0]].toLowerCase().includes(userFilters.toLowerCase()) //This block checks if the grant property exists and if it includes the user filter
             ) {
               newList.push(grant);
             }
@@ -131,6 +137,7 @@ export const rooterReducer = (state = initialState, { type, payload }) => {
       });
 
       if (payload.admin_filters.length !== 0) {
+        // This block is for admin filters
         newList = state.data.filter(grant => {
           if (payload.admin_filters.includes("new")) {
             return grant.is_reviewed === false;
@@ -145,7 +152,8 @@ export const rooterReducer = (state = initialState, { type, payload }) => {
         });
       }
 
-      const testing = Array.from(new Set(newList.map(grant => grant.id))).map(
+      //This creates an array from a new Set created from the newList array. Set makes sure that we have no duplicate grants in our array
+      const setGrants = Array.from(new Set(newList.map(grant => grant.id))).map(
         id => {
           return newList.find(grant => grant.id === id);
         }
@@ -154,11 +162,12 @@ export const rooterReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         filters: payload,
-        filteredGrants: testing
+        filteredGrants: setGrants
       };
     case FILTER_GRANTS_RESET:
       return {
         ...state,
+
         filteredGrants: state.data
       };
     case ADD_GRANT_START:
@@ -189,10 +198,14 @@ export const rooterReducer = (state = initialState, { type, payload }) => {
       let [showCase] = payload[0].filter(grant => {
         return grant.id === payload[1];
       });
-
+      console.log("update", payload);
+      console.log("showcase", showCase)
       return {
         ...state,
         isFetching: false,
+        data: payload[0],
+        filters: {...state.filters,    admin_filters: []
+        },
         filteredGrants: payload[0],
         grantShowcase: showCase
       };
