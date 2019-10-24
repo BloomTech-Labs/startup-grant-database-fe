@@ -55,7 +55,9 @@ const AddGrant = props => {
     area_focus: "",
     sponsoring_entity: "",
     website: "",
+
     most_recent_application_due_date: null,
+
     amount: null,
     amount_notes: "",
     geographic_region: "",
@@ -97,10 +99,12 @@ const AddGrant = props => {
       early_stage_funding: "",
       details_last_updated: ""
     });
+
     //Once a user submits it will delay for 2 seconds before "pushing" the user to the grants page
     setTimeout(() => {
       props.fetchApi();
       props.changeTab(0);
+
       props.history.push("/grants");
     }, 2000);
   };

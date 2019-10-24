@@ -35,8 +35,6 @@ function App({ checkUser, currentUser, fetchApi }) {
     }
   }, [user]);
 
-
-
   return (
     <Router>
       <ThemeProvider theme={theme}>

@@ -100,6 +100,7 @@ export const rooterReducer = (state = initialState, { type, payload }) => {
         filters: payload
       };
     case FILTER_GRANTS:
+
       // The payload is an object where the properties are the filter type
       // and the values being an array with each item being the multiple filters
       // Ex. { amount: [under $1,000, $5,000 - $10,000]}
@@ -108,6 +109,7 @@ export const rooterReducer = (state = initialState, { type, payload }) => {
       let newList = [];
       state.data.map(grant => {
         //Start to loop over every grant and check the filters to see if grant matches
+
         filtersWithoutAdmin.map(filter => {
           //Loop through each individual filter, it is an array ex, ["ammount", ["under $1,000", $5,000 - $10,000]]
           filter[1].map(userFilters => {
@@ -203,9 +205,11 @@ export const rooterReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         isFetching: false,
+
         data: payload[0],
         filters: {...state.filters,    admin_filters: []
         },
+
         filteredGrants: payload[0],
         grantShowcase: showCase
       };

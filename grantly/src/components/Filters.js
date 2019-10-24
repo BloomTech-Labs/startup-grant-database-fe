@@ -52,7 +52,9 @@ const Filters = ({
       filterGrants(savedFilters);
     }
   }, [savedFilters]);
+
   console.log("fil", savedFilters)
+
   const grantFilters = {
     color: "primary",
     geographic_region: [

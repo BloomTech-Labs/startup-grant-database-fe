@@ -16,7 +16,9 @@ import formStyles from "../../styles/FormStyles";
 const GrantDemo = props => {
   const styles = formStyles();
 
+
   //Array of values for the "Early Stage Funding" dropdown
+
   const funding = [
     {
       value: true,
@@ -28,7 +30,9 @@ const GrantDemo = props => {
     }
   ];
 
+
   //Array of values for the "Geographic Region" dropdown
+
   const geographicRegion = [
     {
       value: "Global",
@@ -64,7 +68,9 @@ const GrantDemo = props => {
     }
   ];
 
+
   //Array of values for the "Target Demographic" dropdown
+
   const targeDemographic = [
     {
       value: "Minority Business Enterprise",
@@ -110,7 +116,9 @@ const GrantDemo = props => {
             value={props.grantInfo.geographic_region}
             onChange={props.handleChanges}
           >
+
             {/* Maps through the array to return values for dropdown */}
+
             {geographicRegion.map(option => (
               <MenuItem key={option.value} value={option.value}>
                 {option.label}
@@ -129,7 +137,9 @@ const GrantDemo = props => {
             value={props.grantInfo.target_entrepreneur_demographic}
             onChange={props.handleChanges}
           >
+
             {/* Maps through the array to return values for dropdown */}
+
             {targeDemographic.map(option => (
               <MenuItem key={option.value} value={option.value}>
                 {option.label}

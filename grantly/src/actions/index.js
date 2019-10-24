@@ -36,8 +36,10 @@ import {
 export const fetchApi = () => dispatch => {
   dispatch({ type: FETCH_START });
   axios
+
     .get(`https://labs16-grantly.herokuapp.com/api/grants/`)
     // .get(`https://grantly-staging.herokuapp.com/api/grants`)
+
     // .get(`http://localhost:5000/api/grants`)
 
     .then(response => {
@@ -51,6 +53,7 @@ export const fetchApi = () => dispatch => {
 // fetch grants for admin
 
 export const adminFetchApi = user => dispatch => {
+
   dispatch({ type: FETCH_START });
   axios
     .get(`https://labs16-grantly.herokuapp.com/api/admin`, {
@@ -102,9 +105,11 @@ export const changeTab = tab => dispatch => {
 export const postGrants = addGrant => dispatch => {
   dispatch({ type: ADD_GRANT_START });
   axios
+
     .post("https://labs16-grantly.herokuapp.com/api/grants/", addGrant)
     // .post("https://grantly-staging.herokuapp.com/api/grants", addGrant)
     // .post("http://localhost:5000/api/grants", addGrant)
+
 
     .then(res => {
       dispatch({ type: ADD_GRANT_SUCCESS, payload: res.data });
@@ -219,10 +224,12 @@ export const checkUser = user => dispatch => {
       dispatch({ type: SET_TOKEN_IN_STORE, payload: user.token });
     })
     .catch(err => {
+
       //Possibly for a future release will be to update our user database with the email and name provided by auth0
       // const newUser = { role: "user", auth_id: auth.auth_id, email: user.email, last_name: user.family_name, first_name: user.given_name};
 
       // After a user successfully logs in if we do not have their auth0 id in our database we will create that user in our catch block. So first time users will be added to our db as users
+
       const newUser = { role: "user", auth_id: auth.auth_id };
       if (err.response.status === 404) {
         axios
