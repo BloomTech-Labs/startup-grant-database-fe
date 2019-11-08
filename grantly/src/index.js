@@ -5,6 +5,7 @@ import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import { Auth0Provider } from "./react-auth0-wrapper";
 import config from "./auth_config.json";
+import * as Sentry from '@sentry/browser';
 
 // Objects
 import App from "./App";
@@ -23,6 +24,8 @@ const onRedirectCallback = appState => {
       : window.location.pathname
   );
 };
+
+Sentry.init({dsn: "https://3fff2a57bcec4d419f25f24c703f14b9@sentry.io/1811765"});
 
 const AppWithProvider = (
   <Auth0Provider
