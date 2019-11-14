@@ -11,8 +11,8 @@ import {
   Grid,
   Typography
 } from "@material-ui/core";
-import { dialogStyles } from "../../../styles/dialogStyles"
-import { submitSuggestion } from "../../../actions/index";
+import { dialogStyles } from "../../styles/dialogStyles"
+import { submitSuggestion } from "../../actions/index";
 
 // When user clicks on
 

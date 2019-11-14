@@ -11,8 +11,8 @@ import moment from "moment";
 import { Card, Grid, Button, Typography, Divider } from "@material-ui/core";
 import BookmarkBorderOutlinedIcon from "@material-ui/icons/BookmarkBorderOutlined";
 import LanguageIcon from "@material-ui/icons/Language";
-import SuggestionDialog from "./dialogs/SuggestionDialog";
-import EditGrantDialog from "./dialogs/EditGrantDialog";
+import SuggestionDialog from "../dialogs/SuggestionDialog";
+import EditGrantDialog from "../dialogs/EditGrantDialog";
 
 // =========== STYLES ===========
 import { showcaseStyles } from "../../styles/grantShowcaseStyles";

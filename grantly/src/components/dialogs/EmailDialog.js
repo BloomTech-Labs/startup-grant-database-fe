@@ -1,6 +1,5 @@
 import React from "react";
 import { connect } from "react-redux";
-import { dialogStyles } from "../../../styles/dialogStyles";
 import {
   Button,
   Dialog,
@@ -12,7 +11,8 @@ import {
   Grid,
   Typography
 } from "@material-ui/core";
-import { submitSuggestion } from "../../../actions/index";
+import { dialogStyles } from "../../styles/dialogStyles";
+import { submitSuggestion } from "../../actions/index";
 
 const SuggestionDialog = props => {
   const [suggestion, setSuggestion] = React.useState({
