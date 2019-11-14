@@ -31,6 +31,14 @@ export const dialogStyles = makeStyles(theme => ({
     // paddingBottom: 20,
     paddingRight: 50,
     paddingLeft: 50
+  }
+}));
+
+export const editGrantStyles = makeStyles(theme => ({
+  editIcon: {},
+  editButton: {
+    alignSelf: "flex-start",
+    minWidth: "24px"
   },
   appBar: {
     position: "relative",
@@ -40,13 +48,5 @@ export const dialogStyles = makeStyles(theme => ({
   title: {
     marginLeft: theme.spacing(2),
     flex: 1
-  }
-}));
-
-export const editGrantStyles = makeStyles(theme => ({
-  editIcon: {},
-  editButton: {
-    alignSelf: "flex-start",
-    minWidth: "24px"
   }
 }));
