@@ -19,11 +19,11 @@ import LoginForm from "./components/LoginForm";
 import NavBar from "./components/Navbar";
 import Sitemap from "./components/Sitemap";
 import PrivateRoute from "./util/PrivateRoute";
-import EmailDialog from "./components/grants/dialogs/EmailDialog";
+// import EmailDialog from "./components/dialogs/EmailDialog";
 
 function App({ checkUser, currentUser, fetchApi }) {
   const { user, isAuthenticated, getTokenSilently } = useAuth0();
- 
+
 
   useEffect(() => {
     if (isAuthenticated) {
