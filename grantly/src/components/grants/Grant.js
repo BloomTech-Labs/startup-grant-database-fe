@@ -14,7 +14,7 @@ import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 import EditGrantDialog from "./dialogs/EditGrantDialog";
-import { grantStyles } from "../../styles/GrantStyles";
+import { grantStyles } from "../../styles/grantStyles";
 export const Grant = props => {
   const selectGrant = () => {
     props.selectGrant(props.grant);

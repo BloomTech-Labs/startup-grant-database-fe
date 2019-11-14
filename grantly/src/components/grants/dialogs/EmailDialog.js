@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { dialogStyles } from "../styles/DialogStyles";
+import { dialogStyles } from "../../../styles/dialogStyles";
 import {
   Button,
   Dialog,
