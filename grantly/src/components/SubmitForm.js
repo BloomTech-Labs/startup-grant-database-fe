@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import { postGrants, fetchApi, changeTab } from "../actions/index.js";
 
 //Objects
-import formStyles from "../styles/formStyles";
+import formStyles from "../styles/FormStyles";
 import {
   Button,
   Paper,
