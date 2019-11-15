@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 //Objects
 import { postGrants, fetchApi } from "../../actions/index.js";
 import { Grid, Typography, TextField, Divider } from "@material-ui/core";
-import formStyles from "../../styles/formStyles";
+import formStyles from "../../styles/FormStyles";
 
 const GrantInfo = props => {
   const styles = formStyles();

@@ -8,9 +8,9 @@ import Typography from "@material-ui/core/Typography";
 import CloseIcon from "@material-ui/icons/Close";
 import CheckIcon from "@material-ui/icons/Check";
 
-import { adminStyles } from "../../styles/adminStyles";
+import { adminStyles } from "../../../styles/adminStyles";
 
-import { putGrants, deleteGrants } from "../../actions/index";
+import { putGrants, deleteGrants } from "../../../actions/index";
 
 export const AdminDialog = props => {
   const styles = adminStyles();

@@ -1,5 +1,8 @@
 import { makeStyles } from "@material-ui/core/styles";
 
+// We have styles in two different main places, could be combined or cleaned up
+// Using the makeStyles function to apply CSS in JS styles
+
 export const dialogStyles = makeStyles(theme => ({
   applyButton: {
     color: "#fff",
@@ -39,14 +42,5 @@ export const editGrantStyles = makeStyles(theme => ({
   editButton: {
     alignSelf: "flex-start",
     minWidth: "24px"
-  },
-  appBar: {
-    position: "relative",
-    // marginBottom: "5rem"
-    color: "white"
-  },
-  title: {
-    marginLeft: theme.spacing(2),
-    flex: 1
   }
 }));
