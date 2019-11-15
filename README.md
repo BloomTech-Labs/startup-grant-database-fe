@@ -4,10 +4,8 @@ You can find the deployed project at [Founder Grants](https://grantly-b5b58.fire
 
 ## Contributors
 
-🚫Add contributor info below, make sure add images and edit the social links for each member. Add to or delete these place-holders as needed
-
 [Mario Amaya: Team Lead, Web Dev](https://github.com/MAmaya1) 
-        
+
 [Kristin Barr: Web Dev](https://github.com/Kristinbarr)
 
 [Benita Beamer: Web Dev](https://github.com/bea03)
