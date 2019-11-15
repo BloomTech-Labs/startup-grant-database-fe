@@ -7,6 +7,7 @@
     "@material-ui/core": "^4.4.2",
     "@material-ui/icons": "^4.4.1",
     "@sentry/browser": "^5.7.1",
+    "@sentry/node": "^5.9.0",
     "@testing-library/react": "^9.1.4",
     "auth0-js": "^9.11.3",
     "auth0-lock": "^11.17.3",
