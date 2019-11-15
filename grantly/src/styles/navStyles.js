@@ -81,7 +81,8 @@ export const navStyles = makeStyles(theme => ({
     display: "flex",
     marginTop: "1em",
     fontSize: "2rem",
-    height: "100%"
+    height: "100%",
+    width: "20rem"
   },
   links: {
     display: "flex",

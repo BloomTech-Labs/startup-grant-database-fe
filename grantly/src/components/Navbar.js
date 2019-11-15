@@ -41,7 +41,9 @@ export const NavBar = props => {
 
     setIsOpen(!isOpen);
   };
+
   const classes = navStyles();
+
   const callApi = async () => {
     try {
       const token = await getTokenSilently();
@@ -113,9 +115,25 @@ export const NavBar = props => {
       </ul>
     </div>
   );
+
   return (
     <AppBar className={classes.navbar} color="primary" position="sticky">
       <Toolbar>
+        <Media query="(max-width:2000px)">
+          {matches =>
+            matches ? (
+              <IconButton
+                className={classes.menu}
+                edge="start"
+                color="primary"
+                aria-label="menu"
+                onClick={toggleDrawer()}
+              >
+                <MenuIcon className={classes.menu} />
+              </IconButton>
+            ) : null
+          }
+        </Media>
         <Link to="/" className={classes.titleLink}>
           <Typography variant="h4" className={classes.title}>
             {props.role === "admin" && window.location.pathname === "/admin" ? (
@@ -195,29 +213,14 @@ export const NavBar = props => {
             )}
           </div>
         </Media>
-        <Media query="(max-width:900px)">
-          {matches =>
-            matches ? (
-              <IconButton
-                className={classes.menu}
-                edge="start"
-                color="primary"
-                aria-label="menu"
-                onClick={toggleDrawer()}
-              >
-                <MenuIcon className={classes.menu} />
-              </IconButton>
-            ) : null
-          }
-        </Media>
 
         <SwipeableDrawer
-          anchor="right"
+          anchor="left"
           open={isOpen}
           onClose={toggleDrawer(false)}
           onOpen={toggleDrawer(true)}
         >
-          {sideList("right")}
+          {sideList("left")}
         </SwipeableDrawer>
       </Toolbar>
     </AppBar>
