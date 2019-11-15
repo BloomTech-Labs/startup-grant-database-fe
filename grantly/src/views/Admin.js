@@ -15,7 +15,7 @@ import MobileFilters from "../components/mobile/MobileFilters";
 import MobileTabs from "../components/mobile/MobileTabs";
 
 import { adminStyles } from "../styles/adminStyles";
-import AdminDialog from "../components/grants/dialogs/AdminDialog";
+import AdminDialog from "../components/dialogs/AdminDialog";
 
 const Admin = props => {
   const [isOpen, setIsOpen] = useState(false);

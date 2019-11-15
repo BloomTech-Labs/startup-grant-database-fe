@@ -10,7 +10,7 @@ import {
 } from "@material-ui/core";
 import { connect } from "react-redux";
 import { postGrants, fetchApi } from "../../actions/index.js";
-import formStyles from "../../styles/FormStyles";
+import formStyles from "../../styles/formStyles";
 
 const GrantFocus = props => {
   const styles = formStyles();
@@ -188,7 +188,7 @@ export default connect(
                 label={option.label}
               />
             ))}
-            
+
           </FormGroup>
         </FormControl> */
 }

@@ -1,6 +1,5 @@
 import React from "react";
 import { connect } from "react-redux";
-import { dialogStyles } from "../styles/DialogStyles";
 import {
   Button,
   Dialog,
@@ -12,9 +11,14 @@ import {
   Grid,
   Typography
 } from "@material-ui/core";
-import { submitSuggestion } from "../../../actions/index";
+import { dialogStyles } from "../../styles/dialogStyles"
+import { submitSuggestion } from "../../actions/index";
+
+// When user clicks on
 
 const SuggestionDialog = props => {
+  // hold state locally before passing to API
+
   const [suggestion, setSuggestion] = React.useState({
     subject: "",
     suggestion: ""
@@ -24,6 +28,7 @@ const SuggestionDialog = props => {
 
   const classes = dialogStyles();
 
+  // need handlers for open and close based on how dialog works in Material UI (see docs)
   const handleOpen = () => {
     setOpen(true);
   };
@@ -33,12 +38,15 @@ const SuggestionDialog = props => {
     setSuggestion("");
   };
 
+  // change handler with event.target.value destructured
   const handleChanges = name => ({ target: { value } }) => {
     setSuggestion({
       ...suggestion,
       [name]: value
     });
   };
+
+  // Combining state from different sources
 
   const handleSubmit = () => {
     const sendObject = {
@@ -47,7 +55,7 @@ const SuggestionDialog = props => {
       grant_id: props.id
     };
     console.log("OBJECT BEING SENT TO ACTION", sendObject);
-    // props.submitSuggestion(sendObject);
+    props.submitSuggestion(sendObject);
     handleClose();
     setSuggestion("");
   };
@@ -73,27 +81,36 @@ const SuggestionDialog = props => {
           <Grid item>
             <DialogTitle className={classes.headerText}>
               <Typography variant="h5">
-                Please enter your email to contact you for your submitted grant
+                Submit your suggestion to Founder Grants
               </Typography>
             </DialogTitle>
           </Grid>
           <Grid item>
-            <DialogContentText className={classes.headerText}>
-              Our admins will review your grant for approval
+            <DialogContentText className={classes.subheaderText}>
+              Our admins will review your suggestions and make the appropriate
+              changes
             </DialogContentText>
           </Grid>
         </Grid>
-        <DialogContent>
+        <DialogContent style={{ paddingBottom: "0" }}>
           <form>
-            <br />
             <TextField
               margin="normal"
-              label="Enter email"
+              label="subject"
               onChange={handleChanges("subject")}
               variant="outlined"
             />
             <br />
-
+            <TextField
+              margin="normal"
+              label="suggestion"
+              onChange={handleChanges("suggestion")}
+              variant="outlined"
+              multiline
+              rows="4"
+              className={classes.formField}
+            />
+            <br />
           </form>
         </DialogContent>
         <DialogActions>
@@ -104,6 +121,7 @@ const SuggestionDialog = props => {
                 variant="outlined"
                 onClick={handleClose}
                 className={classes.btn}
+                style={{ marginBottom: "0" }}
               >
                 Cancel
               </Button>
