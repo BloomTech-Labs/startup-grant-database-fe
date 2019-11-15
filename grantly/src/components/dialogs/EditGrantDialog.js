@@ -1,5 +1,4 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
 import ListItemText from "@material-ui/core/ListItemText";
@@ -13,27 +12,16 @@ import Typography from "@material-ui/core/Typography";
 import CloseIcon from "@material-ui/icons/Close";
 import Slide from "@material-ui/core/Slide";
 import EditIcon from "@material-ui/icons/Edit";
-import { editGrantStyles } from "../styles/DialogStyles";
-import AdminForm from "../../AdminForm";
-
-const useStyles = makeStyles(theme => ({
-  appBar: {
-    position: "relative",
-    // marginBottom: "5rem"
-    color: "white"
-  },
-  title: {
-    marginLeft: theme.spacing(2),
-    flex: 1
-  }
-}));
+import { editGrantStyles } from "../../styles/dialogStyles";
+import AdminForm from "../AdminForm";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
 export default function FullScreenDialog(props) {
-  const classes = useStyles();
+  const classes = editGrantStyles();
+
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -43,16 +31,16 @@ export default function FullScreenDialog(props) {
   const handleClose = () => {
     setOpen(false);
   };
-  const styles = editGrantStyles();
+
   return (
     <div>
       <Button
-        className={styles.editButton}
+        className={classes.editButton}
         variant="text"
         color="primary"
         onClick={handleClickOpen}
       >
-        <EditIcon className={styles.editIcon} color="disabled" />
+        <EditIcon className={classes.editIcon} color="disabled" />
       </Button>
       <Dialog
         fullScreen
