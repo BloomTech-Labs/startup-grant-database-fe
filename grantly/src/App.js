@@ -13,7 +13,7 @@ import About from "./components/About";
 
 // Stylings
 import { ThemeProvider } from "@material-ui/styles";
-import { theme } from "./styles/Theme";
+import { theme } from "./styles/theme";
 import Landing from "./views/Landing";
 import LoginForm from "./components/LoginForm";
 import NavBar from "./components/Navbar";
