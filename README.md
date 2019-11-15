@@ -14,9 +14,6 @@ You can find the deployed project at [Founder Grants](https://grantly-b5b58.fire
 
 [Daniel Jones: Web Dev](https://github.com/djones36)
 
-<br>
-<br>
-
 ## Project Overview
 
 [Trello Board](https://trello.com/b/T3ej9wIi/starup-grant-db-16)
