@@ -16,11 +16,11 @@ You can find the deployed project at [Founder Grants](https://grantly-b5b58.fire
 
 ## Project Overview
 
-[Trello Board](https://trello.com/b/T3ej9wIi/starup-grant-db-16)
+[Trello Board](https://trello.com/b/C6YCXNQh/startup-grant-database)
 
 [Product Canvas](https://www.notion.so/Startup-Grant-Database-f126d11906074d2d9ec6f77eb6b51363)
 
-[UX Design files](https://www.figma.com/file/BZuzHJNqgAdELNt3CnJuTt/Labs16_Startup-Grant-Database)
+[UX Design files](https://www.figma.com/file/ERQVRwQYEfzOh9VlQCBas5/Labs18_Startup-Grant-Database)
 
 Founder Grants connects early stage founders, hackers, and tinkerers with the resources they need to create the next wave of technology.
 
