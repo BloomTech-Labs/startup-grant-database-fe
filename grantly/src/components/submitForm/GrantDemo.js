@@ -11,7 +11,7 @@ import {
   Divider
 } from "@material-ui/core";
 import { postGrants, fetchApi } from "../../actions/index.js";
-import formStyles from "../../styles/FormStyles";
+import formStyles from "../../styles/formStyles";
 
 const GrantDemo = props => {
   const styles = formStyles();

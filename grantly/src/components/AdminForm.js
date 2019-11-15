@@ -10,7 +10,7 @@ import {
 import moment from "moment";
 
 //Objects
-import formStyles from "../styles/FormStyles";
+import formStyles from "../styles/formStyles";
 import {
   TextField,
   MenuItem,
@@ -432,7 +432,7 @@ export default connect(
           />
         </div>
         <div className={styles.formContainer}>
-          // <div> 
+          // <div>
           <TextField
             label="Amount Notes"
             type="text"
