@@ -169,7 +169,7 @@ export const NavBar = props => {
                 color="inherit"
                 onClick={() => loginWithRedirect()}
               >
-                SIGN UP
+                Login
               </Button>
             )}
             <NavLink to="/form" className={classes.link}>
