@@ -12,11 +12,12 @@ export const navStyles = makeStyles(theme => ({
   },
   navButton: {
     marginRight: theme.spacing(3),
-    color: "#000",
+    color: "#3DB8B3",
     textTransform: "uppercase",
-    padding: "6px 8px",
+    padding: ".5em 2.5em",
     fontSize: "0.875rem",
-    fontFamily: "Nunito Sans",
+    fontFamily: "Roboto",
+    backgroundColor: "#fff",
     transition: "all .3s ease-in-out"
   },
   submitNavButton: {
@@ -54,7 +55,7 @@ export const navStyles = makeStyles(theme => ({
     fontFamily: "Nunito Sans"
   },
   menu: {
-    width: "2em",
+    width: "3.5em",
     height: "2em",
     padding: "0"
   },
@@ -92,7 +93,7 @@ export const navStyles = makeStyles(theme => ({
     width: "100%"
   },
   drawerLink: {
-    margin: "1em auto",
+    margin: ".25em auto",
     padding: ".5em",
     color: "#696969"
   }
