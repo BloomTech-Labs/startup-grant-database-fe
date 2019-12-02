@@ -5,7 +5,6 @@ import { useAuth0 } from "../react-auth0-wrapper";
 import FGLogo from "../assets/FGLogo";
 
 // Material core imports
-
 import {
   AppBar,
   Toolbar,
@@ -16,7 +15,8 @@ import {
   List,
   ListItem,
   ListItemAvatar,
-  Avatar
+  Avatar,
+  ListItemIcon
 } from "@material-ui/core";
 
 import MenuIcon from "@material-ui/icons/Menu";
@@ -35,7 +35,9 @@ export const NavBar = props => {
     user,
     loading
   } = useAuth0();
-  // console.log("hereweare", user);
+
+  console.log("hereweare", user);
+
   const [isOpen, setIsOpen] = useState(false);
   const toggleDrawer = open => event => {
     if (
@@ -45,7 +47,6 @@ export const NavBar = props => {
     ) {
       return;
     }
-
     setIsOpen(!isOpen);
   };
 
@@ -59,44 +60,60 @@ export const NavBar = props => {
       className={classes.drawer}
     >
       <List className={classes.links}>
-        <ListItem>
+        <ListItem
+        className={classes.drawerStlye}
+        >
           <ListItemAvatar>
-            <Avatar>
+            <ListItemIcon
+              className={classes.icon}
+            >
               <ViewListIcon />
-            </Avatar>
+            </ListItemIcon>
           </ListItemAvatar>
           <Link to="/grants" className={classes.drawerLink}>
             <Typography variant="h5">View All Grants</Typography>
           </Link>
         </ListItem>
 
-        <ListItem>
+        <ListItem
+        className={classes.drawerStlye}
+        >
           <ListItemAvatar>
-            <Avatar>
+            <ListItemIcon
+              className={classes.icon}
+            >
               <MailIcon />
-            </Avatar>
+            </ListItemIcon>
           </ListItemAvatar>
           <Link to="/form" className={classes.drawerLink}>
             <Typography variant="h5">Suggest a Grant</Typography>
           </Link>
         </ListItem>
 
-        <ListItem>
+        <ListItem
+          className={classes.drawerStlye}
+        >
           <ListItemAvatar>
-            <Avatar>
+            <ListItemIcon
+              className={classes.icon}
+            >
               <DashboardIcon />
-            </Avatar>
+            </ListItemIcon>
           </ListItemAvatar>
           <Link to="/admin" className={classes.drawerLink}>
             <Typography variant="h5">Edit Grants</Typography>
           </Link>
         </ListItem>
 
-        <ListItem>
+        <ListItem
+        className={classes.drawerStlye}
+        >
           <ListItemAvatar>
-            <Avatar>
+            <ListItemIcon
+              className={classes.icon}
+            >
               <SupervisorAccountIcon />
-            </Avatar>
+            </ListItemIcon>
           </ListItemAvatar>
           <Link to="/grants" className={classes.drawerLink}>
             <Typography variant="h5">Promote Users</Typography>
@@ -134,7 +151,12 @@ export const NavBar = props => {
           {isAuthenticated && (
             <>
            
-              <h1>Hello, {user.nickname}</h1>
+              <h1
+                className={classes.helloUser}
+              >
+                Welcome, {user.nickname}
+              </h1>
+            
               <IconButton
                 className={classes.menu}
                 edge="start"
@@ -142,7 +164,9 @@ export const NavBar = props => {
                 aria-label="menu"
                 onClick={toggleDrawer()}
               >
-                <FaceIcon className={classes.menu} />
+              <MenuIcon 
+                className={classes.menu} 
+              />
               </IconButton>
             </>
           )}
@@ -152,7 +176,7 @@ export const NavBar = props => {
               <div>
               <Link
                   to="/grants"
-                  className={classes.navButton}
+                  className={classes.navLink}
                   activeClassName={classes.active}
                   onClick={() => props.fetchApi()}
                 >
@@ -160,20 +184,20 @@ export const NavBar = props => {
                 </Link>
                 <Link
                   to="/about"
-                  className={classes.navButton}
+                  className={classes.navLink}
                   activeClassName={classes.active}
                 >
                   About
                 </Link>
               
-              <Button
+              <Link
                 className={classes.navButton}
-                color="inherit"
-                variant="outlined"
+                // color="inherit"
+                // variant="outlined"
                 onClick={() => loginWithRedirect()}
               >
                 Log in
-              </Button>
+              </Link>
               </div>
             )}
           </div>

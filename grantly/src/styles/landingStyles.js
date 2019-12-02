@@ -56,6 +56,7 @@ export const landingStyles = makeStyles(theme => ({
   },
   button: {
     width: "266px",
-    height: "58px"
+    height: "58px",
+    // border: '1px solid red'
   }
 }));
