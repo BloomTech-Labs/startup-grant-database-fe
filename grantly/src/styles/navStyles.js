@@ -12,9 +12,10 @@ export const navStyles = makeStyles(theme => ({
   },
   navButton: {
     marginRight: theme.spacing(3),
-    border: "1px solid black",
+    border: "1px solid #3CBBB1",
     borderRadius: "2px",
-    color: "black",
+    backgroundColor: "#3CBBB1",
+    color: "white",
     textTransform: "uppercase",
     padding: ".5em 2.5em",
     fontSize: "0.875rem",
@@ -28,13 +29,13 @@ export const navStyles = makeStyles(theme => ({
     marginLeft: '2.5em',
 
     '&:hover': {
-      backgroundColor: "#3CBBB1",
+      backgroundColor: "#83D7D1",
       color: 'white'
     }
   },
   navLink: {
     marginRight: theme.spacing(3),
-    color: "black",
+    color: "#3CBBB1",
     textTransform: "uppercase",
     padding: ".5em 2.5em",
     fontSize: "0.875rem",
