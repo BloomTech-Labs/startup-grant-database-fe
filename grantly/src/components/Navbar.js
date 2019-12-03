@@ -28,6 +28,7 @@ import MailIcon from "@material-ui/icons/Mail";
 import { navStyles } from "../styles/navStyles";
 
 export const NavBar = props => {
+  
   const {
     isAuthenticated,
     loginWithRedirect,
