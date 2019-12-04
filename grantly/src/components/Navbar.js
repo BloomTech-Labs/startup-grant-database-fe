@@ -140,7 +140,7 @@ export const NavBar = props => {
     return <h1>App Loading</h1>;
   } else {
     return (
-      <AppBar className={classes.navbar} color="primary" position="sticky">
+      <AppBar data-testid="main-nav" className={classes.navbar} color="primary" position="sticky">
         <Toolbar>
           <Link to="/" className={classes.titleLink}>
             <Typography variant="h4" className={classes.title}>
