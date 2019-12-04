@@ -1,33 +1,43 @@
 import React, { useState } from "react";
 
-import { NavLink, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useAuth0 } from "../react-auth0-wrapper";
 import FGLogo from "../assets/FGLogo";
-import Media from "react-media";
-import MobileTabs from "./mobile/MobileTabs";
 
 // Material core imports
-
 import {
   AppBar,
   Toolbar,
   Typography,
   Button,
   IconButton,
-  Divider,
-  SwipeableDrawer
+  SwipeableDrawer,
+  List,
+  ListItem,
+  ListItemAvatar,
+  Avatar,
+  ListItemIcon
 } from "@material-ui/core";
+
 import MenuIcon from "@material-ui/icons/Menu";
+import SupervisorAccountIcon from "@material-ui/icons/SupervisorAccount";
+import FaceIcon from "@material-ui/icons/Face";
+import ViewListIcon from "@material-ui/icons/ViewList";
+import DashboardIcon from "@material-ui/icons/Dashboard";
+import MailIcon from "@material-ui/icons/Mail";
 import { navStyles } from "../styles/navStyles";
 
 export const NavBar = props => {
+  
   const {
     isAuthenticated,
     loginWithRedirect,
     logout,
-    // user,
-    getTokenSilently
+    user,
+    loading
   } = useAuth0();
+
+  console.log("hereweare", user);
 
   const [isOpen, setIsOpen] = useState(false);
   const toggleDrawer = open => event => {
@@ -38,32 +48,10 @@ export const NavBar = props => {
     ) {
       return;
     }
-
     setIsOpen(!isOpen);
   };
 
   const classes = navStyles();
-
-  const callApi = async () => {
-    try {
-      const token = await getTokenSilently();
-
-      const response = await fetch("/api/external", {
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
-      });
-
-      // console.log("AUTH *****************", token);
-      const responseData = await response.json();
-    } catch (error) {
-      console.error(error);
-    }
-  };
-  //If user is logged in call to get access token
-  {
-    isAuthenticated && callApi();
-  }
 
   const sideList = side => (
     <div
@@ -72,56 +60,104 @@ export const NavBar = props => {
       onKeyDown={toggleDrawer(side, false)}
       className={classes.drawer}
     >
-      {" "}
-      <ul className={classes.links}>
-        <Link to="/about" className={classes.drawerLink}>
-          <Typography variant="h5">ABOUT</Typography>
-        </Link>
-        <a href="mailto:labs16grantly@gmail.com" className={classes.drawerLink}>
-          <Typography variant="h5">CONTACT</Typography>
-        </a>
-        <a href="https://www.1517fund.com/" className={classes.drawerLink}>
-          <Typography variant="h5">1517 FUND</Typography>
-        </a>
-        {!isAuthenticated && (
-          <Typography
-            className={classes.drawerLink}
-            variant="h5"
-            onClick={() => loginWithRedirect({})}
-          >
-            ADMIN LOGIN
-          </Typography>
-        )}
-        <Divider />
-        {props.role === "admin" && props.location.pathname !== "/admin" ? (
-          <Link to="/admin" className={classes.drawerLink}>
-            Admin
-          </Link>
-        ) : null}
-        {props.role === "admin" && props.location.pathname === "/admin" ? (
+      <List className={classes.links}>
+        <ListItem
+        className={classes.drawerStlye}
+        >
+          <ListItemAvatar>
+            <ListItemIcon
+              className={classes.icon}
+            >
+              <ViewListIcon />
+            </ListItemIcon>
+          </ListItemAvatar>
           <Link to="/grants" className={classes.drawerLink}>
-            Grants
+            <Typography variant="h5">View All Grants</Typography>
           </Link>
-        ) : null}
-        {isAuthenticated && (
+        </ListItem>
+
+        <ListItem
+        className={classes.drawerStlye}
+        >
+          <ListItemAvatar>
+            <ListItemIcon
+              className={classes.icon}
+            >
+              <MailIcon />
+            </ListItemIcon>
+          </ListItemAvatar>
+          <Link to="/form" className={classes.drawerLink}>
+            <Typography variant="h5">Suggest a Grant</Typography>
+          </Link>
+        </ListItem>
+
+        <ListItem
+          className={classes.drawerStlye}
+        >
+          <ListItemAvatar>
+            <ListItemIcon
+              className={classes.icon}
+            >
+              <DashboardIcon />
+            </ListItemIcon>
+          </ListItemAvatar>
+          <Link to="/admin" className={classes.drawerLink}>
+            <Typography variant="h5">Edit Grants</Typography>
+          </Link>
+        </ListItem>
+
+        <ListItem
+        className={classes.drawerStlye}
+        >
+          <ListItemAvatar>
+            <ListItemIcon
+              className={classes.icon}
+            >
+              <SupervisorAccountIcon />
+            </ListItemIcon>
+          </ListItemAvatar>
+          <Link to="/grants" className={classes.drawerLink}>
+            <Typography variant="h5">Promote Users</Typography>
+          </Link>
+        </ListItem>
+
+        <ListItem>
           <Button
-            className={classes.drawerLink}
+            className={classes.navButton}
+            color="inherit"
             variant="outlined"
             onClick={() => logout()}
           >
             Log out
           </Button>
-        )}
-      </ul>
+        </ListItem>
+      </List>
     </div>
   );
 
-  return (
-    <AppBar className={classes.navbar} color="primary" position="sticky">
-      <Toolbar>
-        <Media query="(max-width:2000px)">
-          {matches =>
-            matches ? (
+  //delays for token
+  if (loading) {
+    return <h1>App Loading</h1>;
+  } else {
+    return (
+      <AppBar data-testid="main-nav" className={classes.navbar} color="primary" position="sticky">
+        <Toolbar>
+          <Link to="/" className={classes.titleLink}>
+            <Typography variant="h4" className={classes.title}>
+              <FGLogo />
+            </Typography>
+          </Link>
+          
+          {/* If there is a token, hamburger appears at right */}
+          {isAuthenticated && (
+            <>
+           
+              <h1
+                className={classes.helloUser}
+              >
+                Welcome, {user.nickname}
+              </h1>
+            
               <IconButton
                 className={classes.menu}
                 edge="start"
@@ -129,102 +165,56 @@ export const NavBar = props => {
                 aria-label="menu"
                 onClick={toggleDrawer()}
               >
-                <MenuIcon className={classes.menu} />
+              <MenuIcon 
+                className={classes.menu} 
+              />
               </IconButton>
-            ) : null
-          }
-        </Media>
-        <Link to="/" className={classes.titleLink}>
-          <Typography variant="h4" className={classes.title}>
-            {props.role === "admin" && window.location.pathname === "/admin" ? (
-              <FGLogo inAdmin={true} />
-            ) : (
-              <FGLogo />
-            )}
-          </Typography>
-        </Link>
-        <Media query="(min-width:900px)">
+            </>
+          )}
+          {/* If there is not a token, login button appears */}
           <div>
-            <NavLink
-              to="/grants"
-              className={classes.navButton}
-              activeClassName={classes.active}
-              onClick={() => props.fetchApi()}
-            >
-              Grants
-            </NavLink>
-            <NavLink
-              to="/about"
-              className={classes.navButton}
-              activeClassName={classes.active}
-            >
-              About
-            </NavLink>
-            {/* <Button className={classes.navButton} color="inherit">
-              ABOUT
-            </Button> */}
             {!isAuthenticated && (
-              <Button
+              <div>
+              <Link
+                  to="/grants"
+                  className={classes.navLink}
+                  activeClassName={classes.active}
+                  onClick={() => props.fetchApi()}
+                >
+                  Grants
+                </Link>
+                <Link
+                  to="/about"
+                  className={classes.navLink}
+                  activeClassName={classes.active}
+                >
+                  About
+                </Link>
+              
+              <Link
                 className={classes.navButton}
-                color="inherit"
+                // color="inherit"
+                // variant="outlined"
                 onClick={() => loginWithRedirect()}
               >
-                Login
-              </Button>
-            )}
-            <NavLink to="/form" className={classes.link}>
-              <Button
-                className={classes.submitNavButton}
-                color="primary"
-                variant="contained"
-              >
-                Submit a Grant
-              </Button>
-            </NavLink>
-            {props.role === "admin" && (
-              <NavLink
-                to="/admin"
-                className={classes.navButton}
-                activeClassName={classes.active}
-              >
-                Admin
-              </NavLink>
-            )}
-
-            {/* {!isAuthenticated && (
-              <Button
-                className={classes.log}
-                variant="contained"
-                color="primary"
-                onClick={() => loginWithRedirect({})}
-              >
                 Log in
-              </Button>
-            )} */}
-
-            {isAuthenticated && (
-              <Button
-                className={classes.logout}
-                variant="outlined"
-                onClick={() => logout()}
-              >
-                Log out
-              </Button>
+              </Link>
+              </div>
             )}
           </div>
-        </Media>
 
-        <SwipeableDrawer
-          anchor="left"
-          open={isOpen}
-          onClose={toggleDrawer(false)}
-          onOpen={toggleDrawer(true)}
-        >
-          {sideList("left")}
-        </SwipeableDrawer>
-      </Toolbar>
-    </AppBar>
-  );
+          <SwipeableDrawer
+            anchor="right"
+            open={isOpen}
+            onClose={toggleDrawer(false)}
+            onOpen={toggleDrawer(true)}
+          >
+            {sideList("right")}
+          </SwipeableDrawer>
+        </Toolbar>
+      </AppBar>
+    );
+  }
 };
 
 export default NavBar;

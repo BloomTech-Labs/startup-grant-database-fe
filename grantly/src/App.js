@@ -50,7 +50,7 @@ function App({ checkUser, currentUser, fetchApi }) {
           <Route exact path="/" component={Landing} />
           <Route exact path="/grants" render={props => <Home {...props} />} />
           <Route path="/form" render={props => <SubmitForm {...props} />} />
-          <Route path="/login" component={LoginForm} />
+          {/* <Route path="/login" component={LoginForm} /> */}
           <Route path="/about" component={About} />
           <Route path="/table" component={GrantTable} />
           {isAuthenticated && (
