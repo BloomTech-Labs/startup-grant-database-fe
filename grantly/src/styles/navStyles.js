@@ -12,12 +12,43 @@ export const navStyles = makeStyles(theme => ({
   },
   navButton: {
     marginRight: theme.spacing(3),
-    color: "#000",
+    border: "1px solid #3CBBB1",
+    borderRadius: "2px",
+    backgroundColor: "#3CBBB1",
+    color: "white",
     textTransform: "uppercase",
-    padding: "6px 8px",
+    padding: ".5em 2.5em",
     fontSize: "0.875rem",
-    fontFamily: "Nunito Sans",
-    transition: "all .3s ease-in-out"
+    fontFamily: "Roboto",
+    
+    transition: "all .3s ease-in-out",
+
+    width: '15em',
+    height: '3.5em',
+
+    marginLeft: '2.5em',
+
+    '&:hover': {
+      backgroundColor: "#83D7D1",
+      color: 'white'
+    }
+  },
+  navLink: {
+    marginRight: theme.spacing(3),
+    color: "#3CBBB1",
+    textTransform: "uppercase",
+    padding: ".5em 2.5em",
+    fontSize: "0.875rem",
+    fontFamily: "Roboto",
+
+    width: '15em',
+    height: '3.5em',
+
+    marginLeft: '2.5em',
+
+    '&:hover': {
+      textDecoration: "underline"
+    }
   },
   submitNavButton: {
     marginRight: theme.spacing(3),
@@ -54,7 +85,7 @@ export const navStyles = makeStyles(theme => ({
     fontFamily: "Nunito Sans"
   },
   menu: {
-    width: "2em",
+    width: "2.5em",
     height: "2em",
     padding: "0"
   },
@@ -81,7 +112,8 @@ export const navStyles = makeStyles(theme => ({
     display: "flex",
     marginTop: "1em",
     fontSize: "2rem",
-    height: "100%"
+    height: "100%",
+    width: "20rem"
   },
   links: {
     display: "flex",
@@ -91,8 +123,23 @@ export const navStyles = makeStyles(theme => ({
     width: "100%"
   },
   drawerLink: {
-    margin: "1em auto",
-    padding: ".5em",
-    color: "#696969"
+    margin: ".25em",
+    // padding: ".5em",
+    color: "#696969",
+  },
+  helloUser: {
+    fontFamily: "Roboto",
+    padding: '15px'
+  }, 
+  drawerStlye: {
+    paddingLeft: '40px',
+    margin: '0.5em 0em',
+    '&:hover': {
+    backgroundColor: '#83D7D1'
+  }
+  },
+
+  icon: {
+    paddingLeft: '0.5em'
   }
 }));

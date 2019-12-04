@@ -10,6 +10,7 @@ import SubmitForm from "./components/SubmitForm";
 import Home from "./views/Home";
 import Admin from "./views/Admin";
 import About from "./components/About";
+import GrantTable from "./components/grants/GrantTable"
 
 // Stylings
 import { ThemeProvider } from "@material-ui/styles";
@@ -49,8 +50,9 @@ function App({ checkUser, currentUser, fetchApi }) {
           <Route exact path="/" component={Landing} />
           <Route exact path="/grants" render={props => <Home {...props} />} />
           <Route path="/form" render={props => <SubmitForm {...props} />} />
-          <Route path="/login" component={LoginForm} />
+          {/* <Route path="/login" component={LoginForm} /> */}
           <Route path="/about" component={About} />
+          <Route path="/table" component={GrantTable} />
           {isAuthenticated && (
             <PrivateRoute exact path="/admin" component={Admin} />
           )}

@@ -23,6 +23,9 @@ export const adminStyles = makeStyles(theme => ({
     marginTop: "2em",
     position: "relative"
   },
+  list: {
+    width: 250
+  },
   root: {
     display: "flex"
   },
