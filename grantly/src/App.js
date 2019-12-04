@@ -9,17 +9,18 @@ import { useAuth0 } from "./react-auth0-wrapper";
 import SubmitForm from "./components/SubmitForm";
 import Home from "./views/Home";
 import Admin from "./views/Admin";
-import About from "./components/About";
-import GrantTable from "./components/grants/GrantTable"
-
-// Stylings
-import { ThemeProvider } from "@material-ui/styles";
-import { theme } from "./styles/theme";
 import Landing from "./views/Landing";
+import About from "./components/About";
+import GrantTable from "./components/grants/GrantTable";
 import LoginForm from "./components/LoginForm";
 import NavBar from "./components/Navbar";
 import Sitemap from "./components/Sitemap";
 import PrivateRoute from "./util/PrivateRoute";
+
+// Stylings
+import { ThemeProvider } from "@material-ui/styles";
+import { theme } from "./styles/theme";
+
 // import EmailDialog from "./components/dialogs/EmailDialog";
 
 function App({ checkUser, currentUser, fetchApi }) {

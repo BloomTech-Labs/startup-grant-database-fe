@@ -87,7 +87,7 @@ export const NavBar = props => {
             </ListItemIcon>
           </ListItemAvatar>
           <Link to="/form" className={classes.drawerLink}>
-            <Typography variant="h5">Suggest a Grant</Typography>
+            <Typography variant="h5">Submit a Grant</Typography>
           </Link>
         </ListItem>
 

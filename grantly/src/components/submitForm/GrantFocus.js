@@ -116,7 +116,7 @@ const GrantFocus = props => {
         </Grid>
         <Grid item xs={12}>
           <TextField
-            label="Domain Areas"
+            label="Focus Area"
             select
             className={styles.dropDown}
             name="domain_areas"
@@ -137,7 +137,7 @@ const GrantFocus = props => {
         </Grid>
         <Grid item xs={12}>
           <TextField
-            label="Area Focus"
+            label="Grant Categories"
             select
             className={styles.dropDown}
             name="area_focus"
