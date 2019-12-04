@@ -55,6 +55,7 @@ function App({ checkUser, currentUser, fetchApi }) {
           <Route path="/table" component={GrantTable} />
           {isAuthenticated && (
             <PrivateRoute exact path="/admin" component={Admin} />
+            // <PrivateRoute exact path="/promote" component
           )}
           <Sitemap />
         </div>
