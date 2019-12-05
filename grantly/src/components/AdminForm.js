@@ -38,6 +38,7 @@ const formattedGrantObj = props => {
   return {
     id: props.grant.id,
     competition_name: props.grant.competition_name || "",
+    suggestions: props.grant.suggestions || "",
     type: props.grant.type || "",
     area_focus: props.grant.area_focus || "",
     sponsoring_entity: props.grant.sponsoring_entity || "",

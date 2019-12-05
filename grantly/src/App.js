@@ -53,7 +53,7 @@ function App({ checkUser, currentUser, fetchApi }) {
           <Route path="/form" render={props => <SubmitForm {...props} />} />
           {/* <Route path="/login" component={LoginForm} /> */}
           <Route path="/about" component={About} />
-          <Route path="/table" component={GrantTable} />
+            <Route path="/table" component={GrantTable} />} />
           {isAuthenticated && (
             <PrivateRoute exact path="/admin" component={Admin} />
             // <PrivateRoute exact path="/promote" component
