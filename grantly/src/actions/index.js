@@ -37,10 +37,9 @@ export const fetchApi = () => dispatch => {
   dispatch({ type: FETCH_START });
   axios
 
+    // .get(`http://localhost:5000/api/grants`)
     .get(`https://labs16-grantly.herokuapp.com/api/grants/`)
     // .get(`https://grantly-staging.herokuapp.com/api/grants`)
-
-    // .get(`http://localhost:5000/api/grants`)
 
     .then(response => {
       dispatch({ type: FETCH_SUCCESS, payload: response.data });
@@ -56,6 +55,7 @@ export const adminFetchApi = user => dispatch => {
 
   dispatch({ type: FETCH_START });
   axios
+    // .get(`http://localhost:5000/api/admin`, {
     .get(`https://labs16-grantly.herokuapp.com/api/admin`, {
       // .get(`https://grantly-staging.herokuapp.com/api/admin`, {
       headers: { auth0id: user.auth_id, authorization: `Bearer ${user.token}` }
@@ -106,9 +106,9 @@ export const postGrants = addGrant => dispatch => {
   dispatch({ type: ADD_GRANT_START });
   axios
 
+    // .post("http://localhost:5000/api/grants", addGrant)
     .post("https://labs16-grantly.herokuapp.com/api/grants/", addGrant)
     // .post("https://grantly-staging.herokuapp.com/api/grants", addGrant)
-    // .post("http://localhost:5000/api/grants", addGrant)
 
 
     .then(res => {
@@ -129,6 +129,7 @@ export const putGrants = (updateGrant, user) => dispatch => {
   });
   axios
     .put(
+      // `http://localhost:5000/api/admin/${updateGrant.id}`,
       `https://labs16-grantly.herokuapp.com/api/admin/${updateGrant.id}`,
       // `https://grantly-staging.herokuapp.com/api/admin/${updateGrant.id}`,
       updateGrant,
@@ -142,6 +143,7 @@ export const putGrants = (updateGrant, user) => dispatch => {
 
     .then(success => {
       axios
+        // .get(`http://localhost:5000/api/grants/`, {
         .get(`https://labs16-grantly.herokuapp.com/api/grants/`, {
           // .get(`https://grantly-staging.herokuapp.com/api/admin`, {
           headers: {
@@ -159,7 +161,7 @@ export const putGrants = (updateGrant, user) => dispatch => {
         })
         .catch(error => {
           dispatch({ type: UPDATE_GRANT_FAILURE, payload: error });
-        });
+        })
     })
     .catch(err => {
       console.log('made this error');
