@@ -21,7 +21,8 @@ export const GrantList = props => {
   const styles = homeStyles();
   useEffect(() => {
     if (props.inAdmin) {
-      console.log("yes");
+      // console.log("what?", props.inAdmin);
+      // console.log("yes");
       props.adminFetchApi(props.currentUser);
     } else if (props.data.length === 0) {
       props.fetchApi();
@@ -33,8 +34,6 @@ export const GrantList = props => {
     grant => grant.is_reviewed === false
   ).length;
   // const numberOfSuggestions = props.data.filter(grant => grant.requests.length > 0).length;
-
-
 
   // console.log(user);
   // console.log("CurrentUser Data from Store", props.currentUser);

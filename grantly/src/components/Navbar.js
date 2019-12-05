@@ -37,7 +37,7 @@ export const NavBar = props => {
     loading
   } = useAuth0();
 
-  console.log("hereweare", user);
+  // console.log("hereweare", user);
 
   const [isOpen, setIsOpen] = useState(false);
   const toggleDrawer = open => event => {
@@ -87,7 +87,7 @@ export const NavBar = props => {
             </ListItemIcon>
           </ListItemAvatar>
           <Link to="/form" className={classes.drawerLink}>
-            <Typography variant="h5">Suggest a Grant</Typography>
+            <Typography variant="h5">Submit a Grant</Typography>
           </Link>
         </ListItem>
 
@@ -181,16 +181,15 @@ export const NavBar = props => {
                   activeClassName={classes.active}
                   onClick={() => props.fetchApi()}
                 >
-                  Grants
-                </Link>
-                <Link
-                  to="/about"
-                  className={classes.navLink}
-                  activeClassName={classes.active}
-                >
-                  About
-                </Link>
-              
+                Grants
+              </Link>
+              <Link
+                to="/about"
+                className={classes.navLink}
+                activeClassName={classes.active}
+              >
+                About
+              </Link>
               <Link
                 className={classes.navButton}
                 // color="inherit"
