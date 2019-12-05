@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import MaterialTable from "material-table";
 import Typography from "@material-ui/core/Typography";
 import { useAuth0 } from "../../react-auth0-wrapper";
-import { fetchApi, adminFetchApi } from "../../actions";
+import { fetchApi, adminFetchApi, postGrants, putGrants, deleteGrants } from "../../actions";
 import moment from 'moment';
 
 export const GrantTable = (props) => {
@@ -11,53 +11,60 @@ export const GrantTable = (props) => {
   // console.log('GrantTable current user',props.currentUser)
   // console.log('adminprops', props.inAdmin);
 
-  props.data.forEach(grant => {
-    grant.most_recent_application_due_date = 
-      moment(grant.most_recent_application_due_date).format(
-        "YYYY-MM-DD"
-      ) === "Invalid date"
-        ? undefined
-        : moment(grant.most_recent_application_due_date).format(
-            "YYYY-MM-DD"
-      )
-  })
+  // reformat deadline and last updated dates
+  // props.data.forEach(grant => {
+  //   grant.most_recent_application_due_date = 
+  //     moment(grant.most_recent_application_due_date).format(
+  //       "MMM DD, YYYY"
+  //     ) === "Invalid date"
+  //       ? undefined
+  //       : moment(grant.most_recent_application_due_date).format(
+  //           "MMM DD, YYYY"
+  //     )
+  //   grant.details_last_updated = 
+  //     moment(grant.details_last_updated).format(
+  //       "L LT"
+  //     ) === "Invalid date"
+  //       ? undefined
+  //       : moment(grant.details_last_updated).format(
+  //           "L LT"
+  //     )
+  // })
 
   const [state, setState] = useState({
-    columns: [
-      { title: "Name", field: "competition_name" },
-      { title: "Amount", field: "amount", type: "numeric" },
-      { title: "Suggestions", field: "has_requests", lookup: {
-        "Approve": "Approve",
-        "Deny": "Deny"
-      } },
-      { title: "Deadline", field: "most_recent_application_due_date", type: "date" },
-      // {
-      //   title: "Grant Categories",
-      //   field: "domain_areas",
-      //   lookup: { "Environment": "Environment", 63: "Economic Opportunity" }
-      // },
-      {
-        title: "Focus Area",
-        field: "area_focus",
-        lookup: { 
-          "Arts": "Arts", 
-          "Child Care": "Child Care", 
-          "Economic Opportunity": "Economic Opportunity", 
-          "Energy & Resources": "Energy & Resources",
-          "Environment": "Environment",
-          "Financial": "Financial", 
-          "Food": "Food", 
-          "Health": "Health", 
-          "Housing": "Housing", 
-          "Information Technology": "Information Technology", 
-          "Life Improvement": "Life Improvement", 
-          "Social Entrepreneurship": "Social Entrepreneurship", 
-          "Workforce Development": "Workforce Development" }
-      },
-      { title: "Sponsor", field: "sponsoring_entity" },
-      { title: "Notes", field: "notes" },
-      { title: "Website", field: "website"}
-    ]
+    // columns: [
+    //   { title: "Name", field: "competition_name" },
+    //   { title: "Amount", field: "amount", type: "numeric" },
+    //   { title: "Suggestions", field: "has_requests", lookup: {
+    //     "Approve": "Approve",
+    //     "Deny": "Deny"
+    //   } },
+    //   { title: "Deadline", field: "most_recent_application_due_date", type: "date" },
+    //   {
+    //     title: "Focus Area",
+    //     field: "area_focus",
+    //     lookup: { 
+    //       "Arts": "Arts", 
+    //       "Child Care": "Child Care", 
+    //       "Economic Opportunity": "Economic Opportunity", 
+    //       "Energy & Resources": "Energy & Resources",
+    //       "Environment": "Environment",
+    //       "Financial": "Financial", 
+    //       "Food": "Food", 
+    //       "Health": "Health", 
+    //       "Housing": "Housing", 
+    //       "Information Technology": "Information Technology", 
+    //       "Life Improvement": "Life Improvement", 
+    //       "Social Entrepreneurship": "Social Entrepreneurship", 
+    //       "Workforce Development": "Workforce Development" }
+    //   },
+    //   { title: "Sponsor", field: "sponsoring_entity" },
+    //   { title: "Last Updated", field: "details_last_updated" },
+    //   { title: "Notes", field: "notes" },
+    //   { title: "Website", field: "website"}
+    // ],
+    // This array is currently needed in order for state to save onRowUpdate
+    data: []
   });
 
   // const [hasCurrentUser, setHasCurrentUser] = useState({});
@@ -78,11 +85,9 @@ export const GrantTable = (props) => {
   console.log("Current user from reducer", props.currentUser);
 
   useEffect(() => {
-
       if (props.currentUser.id) {
         props.adminFetchApi(props.currentUser);
       }
-
   }, [props.currentUser]);
 
   // TODO: display a count of items needing to be reviewed
@@ -93,19 +98,20 @@ export const GrantTable = (props) => {
   return (
     <div>
       <MaterialTable
-        title="Editable Example"
-        columns={state.columns}
+        title="Edit and Approve Grants"
+        columns={props.columns}
         data={props.data}
         editable={{
           onRowAdd: newData =>
             new Promise(resolve => {
               setTimeout(() => {
                 resolve();
-                setState(prevState => {
-                  const data = [...prevState.data];
-                  data.push(newData);
-                  return { ...prevState, data };
-                });
+                props.postGrants(newData)
+                // setState(prevState => {
+                //   const data = [...prevState.data];
+                //   data.push(newData);
+                //   return { ...prevState, data };
+                // });
               }, 600);
             }),
           onRowUpdate: (newData, oldData) =>
@@ -113,11 +119,14 @@ export const GrantTable = (props) => {
               setTimeout(() => {
                 resolve();
                 if (oldData) {
-                  setState(prevState => {
-                    const data = [...prevState.data];
-                    data[data.indexOf(oldData)] = newData;
-                    return { ...prevState, data };
-                  });
+                  console.log('old data: ', oldData)
+                  console.log('new data: ', newData)
+                  props.putGrants(newData, props.currentUser)
+                  // setState(prevState => {
+                  //   const data = [...prevState.data];
+                  //   data[data.indexOf(oldData)] = newData;
+                  //   return { ...prevState, data };
+                  // });
                 }
               }, 600);
             }),
@@ -147,11 +156,12 @@ const mapStateToProps = state => {
     data: state.filteredGrants,
     grantStore: state.data,
     currentUser: state.currentUser,
-    savedFilters: state.filters
+    savedFilters: state.filters,
+    columns: state.columns
   };
 };
 
 export default connect(
   mapStateToProps,
-  { fetchApi, adminFetchApi }
+  { fetchApi, adminFetchApi, postGrants, putGrants, deleteGrants }
 )(GrantTable);

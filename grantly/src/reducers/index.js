@@ -38,7 +38,38 @@ const initialState = {
   },
   currentTab: 0,
   currentUser: {},
-  error: ""
+  error: "",
+  columns: [
+      { title: "Name", field: "competition_name" },
+      { title: "Amount", field: "amount", type: "numeric" },
+      { title: "Suggestions", field: "has_requests", lookup: {
+        "Approve": "Approve",
+        "Deny": "Deny"
+      } },
+      { title: "Deadline", field: "most_recent_application_due_date", type: "date" },
+      {
+        title: "Focus Area",
+        field: "area_focus",
+        lookup: { 
+          "Arts": "Arts", 
+          "Child Care": "Child Care", 
+          "Economic Opportunity": "Economic Opportunity", 
+          "Energy & Resources": "Energy & Resources",
+          "Environment": "Environment",
+          "Financial": "Financial", 
+          "Food": "Food", 
+          "Health": "Health", 
+          "Housing": "Housing", 
+          "Information Technology": "Information Technology", 
+          "Life Improvement": "Life Improvement", 
+          "Social Entrepreneurship": "Social Entrepreneurship", 
+          "Workforce Development": "Workforce Development" }
+      },
+      { title: "Sponsor", field: "sponsoring_entity" },
+      { title: "Last Updated", field: "details_last_updated" },
+      { title: "Notes", field: "notes" },
+      { title: "Website", field: "website"}
+    ],
 };
 
 // Reducer

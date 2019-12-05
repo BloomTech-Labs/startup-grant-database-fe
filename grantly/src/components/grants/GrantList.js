@@ -21,8 +21,8 @@ export const GrantList = props => {
   const styles = homeStyles();
   useEffect(() => {
     if (props.inAdmin) {
-      console.log("what?", props.inAdmin);
-      console.log("yes");
+      // console.log("what?", props.inAdmin);
+      // console.log("yes");
       props.adminFetchApi(props.currentUser);
     } else if (props.data.length === 0) {
       props.fetchApi();

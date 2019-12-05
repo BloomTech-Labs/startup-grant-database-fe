@@ -122,6 +122,8 @@ export const postGrants = addGrant => dispatch => {
 
 // Update a Grant
 export const putGrants = (updateGrant, user) => dispatch => {
+  console.log('updatedGrant', updateGrant)
+  console.log('updatedGrant user', user)
   dispatch({
     type: UPDATE_GRANT_START
   });
@@ -160,12 +162,12 @@ export const putGrants = (updateGrant, user) => dispatch => {
         });
     })
     .catch(err => {
+      console.log('made this error');
       dispatch({ type: UPDATE_GRANT_FAILURE, payload: err });
     });
 };
 
 // Delete A grant
-
 export const deleteGrants = (id, user) => dispatch => {
   dispatch({
     type: DELETE_GRANT_START
