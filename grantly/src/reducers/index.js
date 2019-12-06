@@ -40,12 +40,14 @@ const initialState = {
   currentUser: {},
   error: "",
   columns: [
+      { title: "Grant Status", field: "is_reviewed", lookup: {
+        "true": "Approved",
+        "false": "Pending"
+      } },
+      { title: "Last Updated", field: "details_last_updated", type: "date", editable: "never" }, //sent to server in action. not editable by user
       { title: "Name", field: "competition_name" },
       { title: "Amount", field: "amount", type: "numeric" },
-      { title: "Suggestions", field: "has_requests", lookup: {
-        "Approve": "Approve",
-        "Deny": "Deny"
-      } },
+      { title: "Amount Notes", field: "amount_notes" },
       { title: "Deadline", field: "most_recent_application_due_date", type: "date" },
       {
         title: "Focus Area",
@@ -66,9 +68,29 @@ const initialState = {
           "Workforce Development": "Workforce Development" }
       },
       { title: "Sponsor", field: "sponsoring_entity" },
-      { title: "Last Updated", field: "details_last_updated" },
       { title: "Notes", field: "notes" },
-      { title: "Website", field: "website"}
+      { title: "Website", field: "website"},
+      { title: "Geographic Region", field: "geographic_region", lookup: {
+        "Global": "Global",
+        "North America": "North America",
+        "Europe": "Europe",
+        "South America": "South America",
+        "Africa": "Africa",
+        "Asia": "Asia",
+        "Australia": "Australia"
+      }},
+      { title: "Target Demographic", field: "target_entrepreneur_demographic", lookup: {
+        "Minority Business Enterprise": "Minority Business Enterprise",
+        "Women Business Enterprise": "Women Business Enterprise",
+        "Disadvantaged Business Enterprise": "Disadvantaged Business Enterprise",
+        "Veteran Business Enterprise": "Veteran Business Enterprise",
+        "Other": "Other",
+        "All": "All"
+      }},
+      { title: "Early Stage Funding", field: "early_stage_funding", lookup: {
+        "true": "Yes",
+        "false": "No"
+      }}
     ],
 };
 

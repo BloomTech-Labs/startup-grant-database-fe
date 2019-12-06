@@ -37,17 +37,6 @@ const Sitemap = () => {
             </a>
           </ul>
         </Grid>
-        <Grid item className={styles.item}>
-          {/* <Link to="/admin" className={styles.link}> */}
-          <Typography
-            className={styles.link}
-            variant="subtitle2"
-            onClick={() => loginWithRedirect({})}
-          >
-            ADMIN LOGIN
-          </Typography>
-          {/* </Link> */}
-        </Grid>
         <Grid container justify="center" alignItems="flex-end">
           <Typography variant="subtitle2" className={styles.copy}>
             &copy; 2019 FOUNDER GRANTS. ALL RIGHTS RESERVED.
