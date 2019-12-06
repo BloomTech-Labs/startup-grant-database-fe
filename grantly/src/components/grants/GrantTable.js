@@ -32,37 +32,6 @@ export const GrantTable = (props) => {
   // })
 
   const [state, setState] = useState({
-    // columns: [
-    //   { title: "Name", field: "competition_name" },
-    //   { title: "Amount", field: "amount", type: "numeric" },
-    //   { title: "Suggestions", field: "has_requests", lookup: {
-    //     "Approve": "Approve",
-    //     "Deny": "Deny"
-    //   } },
-    //   { title: "Deadline", field: "most_recent_application_due_date", type: "date" },
-    //   {
-    //     title: "Focus Area",
-    //     field: "area_focus",
-    //     lookup: { 
-    //       "Arts": "Arts", 
-    //       "Child Care": "Child Care", 
-    //       "Economic Opportunity": "Economic Opportunity", 
-    //       "Energy & Resources": "Energy & Resources",
-    //       "Environment": "Environment",
-    //       "Financial": "Financial", 
-    //       "Food": "Food", 
-    //       "Health": "Health", 
-    //       "Housing": "Housing", 
-    //       "Information Technology": "Information Technology", 
-    //       "Life Improvement": "Life Improvement", 
-    //       "Social Entrepreneurship": "Social Entrepreneurship", 
-    //       "Workforce Development": "Workforce Development" }
-    //   },
-    //   { title: "Sponsor", field: "sponsoring_entity" },
-    //   { title: "Last Updated", field: "details_last_updated" },
-    //   { title: "Notes", field: "notes" },
-    //   { title: "Website", field: "website"}
-    // ],
     // This array is currently needed in order for state to save onRowUpdate
     data: []
   });
@@ -106,7 +75,11 @@ export const GrantTable = (props) => {
             new Promise(resolve => {
               setTimeout(() => {
                 resolve();
-                props.postGrants(newData)
+                
+                let filteredData = Object.assign({}, newData);
+                delete filteredData.requests;
+
+                props.postGrants(filteredData)
                 // setState(prevState => {
                 //   const data = [...prevState.data];
                 //   data.push(newData);
@@ -121,7 +94,11 @@ export const GrantTable = (props) => {
                 if (oldData) {
                   console.log('old data: ', oldData)
                   console.log('new data: ', newData)
-                  props.putGrants(newData, props.currentUser)
+
+                  let filteredData = Object.assign({}, newData);
+                  delete filteredData.requests;
+
+                  props.putGrants(filteredData, props.currentUser)
                   // setState(prevState => {
                   //   const data = [...prevState.data];
                   //   data[data.indexOf(oldData)] = newData;
