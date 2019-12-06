@@ -70,6 +70,18 @@ export const GrantTable = (props) => {
         title="Edit and Approve Grants"
         columns={props.columns}
         data={props.data}
+        detailPanel={rowData => {
+          console.log('rowData', rowData);
+          if (rowData.requests.length > 0) 
+          {return (
+            //create a list that renders each item of requests array and have button to delete each item.
+          <h1>HAs suggestions</h1>
+          )} else {
+            return (
+              <h1>There are no suggestions at this time</h1>
+            )
+          }
+        }}
         editable={{
           onRowAdd: newData =>
             new Promise(resolve => {
@@ -111,11 +123,19 @@ export const GrantTable = (props) => {
             new Promise(resolve => {
               setTimeout(() => {
                 resolve();
-                setState(prevState => {
-                  const data = [...prevState.data];
-                  data.splice(data.indexOf(oldData), 1);
-                  return { ...prevState, data };
-                });
+
+                if(oldData){
+                console.log('HERE is oldData from DELETE', oldData)
+                
+                delete oldData.requests
+                props.deleteGrants(oldData.id, props.currentUser)
+                console.log('HERE is oldData from DELETE', oldData)
+                }
+                // setState(prevState => {
+                //   const data = [...prevState.data];
+                //   data.splice(data.indexOf(oldData), 1);
+                //   return { ...prevState, data };
+                // });
               }, 600);
             })
         }}

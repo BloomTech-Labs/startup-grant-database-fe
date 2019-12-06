@@ -175,8 +175,9 @@ export const deleteGrants = (id, user) => dispatch => {
     type: DELETE_GRANT_START
   });
   axios
-    .delete(`https://labs16-grantly.herokuapp.com/api/admin/${id}`, {
-      // .delete(`https://grantly-staging.herokuapp.com/api/admin/${id}`, {
+  // .delete(`http://localhost:5000/api/admin/${id}`, {
+    // .delete(`https://labs16-grantly.herokuapp.com/api/admin/${id}`, {
+      .delete(`https://grantly-staging.herokuapp.com/api/admin/${id}`, {
       headers: {
         auth0id: user.auth_id,
         authorization: `Bearer ${user.token}`
@@ -185,8 +186,9 @@ export const deleteGrants = (id, user) => dispatch => {
 
     .then(res => {
       axios
-        .get(`https://labs16-grantly.herokuapp.com/api/grants/`, {
-          // .get(`https://grantly-staging.herokuapp.com/api/admin`, {
+      // .get(`http://localhost:5000/api/grants/`, {
+        // .get(`https://labs16-grantly.herokuapp.com/api/grants/`, {
+          .get(`https://grantly-staging.herokuapp.com/api/admin`, {
           headers: {
             auth0id: user.auth_id,
             authorization: `Bearer ${user.token}`
