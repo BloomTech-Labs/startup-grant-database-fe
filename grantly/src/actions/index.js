@@ -38,8 +38,8 @@ export const fetchApi = () => dispatch => {
   axios
 
     // .get(`http://localhost:5000/api/grants`)
-    .get(`https://labs16-grantly.herokuapp.com/api/grants/`)
-    // .get(`https://grantly-staging.herokuapp.com/api/grants`)
+    // .get(`https://labs16-grantly.herokuapp.com/api/grants/`)
+    .get(`https://grantly-staging.herokuapp.com/api/grants`)
 
     .then(response => {
       dispatch({ type: FETCH_SUCCESS, payload: response.data });
@@ -56,8 +56,8 @@ export const adminFetchApi = user => dispatch => {
   dispatch({ type: FETCH_START });
   axios
     // .get(`http://localhost:5000/api/admin`, {
-    .get(`https://labs16-grantly.herokuapp.com/api/admin`, {
-      // .get(`https://grantly-staging.herokuapp.com/api/admin`, {
+    // .get(`https://labs16-grantly.herokuapp.com/api/admin`, {
+      .get(`https://grantly-staging.herokuapp.com/api/admin`, {
       headers: { auth0id: user.auth_id, authorization: `Bearer ${user.token}` }
     })
 
@@ -107,8 +107,8 @@ export const postGrants = addGrant => dispatch => {
   axios
 
     // .post("http://localhost:5000/api/grants", addGrant)
-    .post("https://labs16-grantly.herokuapp.com/api/grants/", addGrant)
-    // .post("https://grantly-staging.herokuapp.com/api/grants", addGrant)
+    // .post("https://labs16-grantly.herokuapp.com/api/grants/", addGrant)
+    .post("https://grantly-staging.herokuapp.com/api/grants", addGrant)
 
 
     .then(res => {
@@ -130,8 +130,8 @@ export const putGrants = (updateGrant, user) => dispatch => {
   axios
     .put(
       // `http://localhost:5000/api/admin/${updateGrant.id}`,
-      `https://labs16-grantly.herokuapp.com/api/admin/${updateGrant.id}`,
-      // `https://grantly-staging.herokuapp.com/api/admin/${updateGrant.id}`,
+      // `https://labs16-grantly.herokuapp.com/api/admin/${updateGrant.id}`,
+      `https://grantly-staging.herokuapp.com/api/admin/${updateGrant.id}`,
       updateGrant,
       {
         headers: {
@@ -144,8 +144,8 @@ export const putGrants = (updateGrant, user) => dispatch => {
     .then(success => {
       axios
         // .get(`http://localhost:5000/api/grants/`, {
-        .get(`https://labs16-grantly.herokuapp.com/api/grants/`, {
-          // .get(`https://grantly-staging.herokuapp.com/api/admin`, {
+        // .get(`https://labs16-grantly.herokuapp.com/api/grants/`, {
+          .get(`https://grantly-staging.herokuapp.com/api/admin`, {
           headers: {
             auth0id: user.auth_id,
             authorization: `Bearer ${user.token}`
@@ -219,8 +219,8 @@ export const checkUser = user => dispatch => {
   // the current signed in user is an admin or not
   axios
 
-    .get("https://labs16-grantly.herokuapp.com/user", {
-      // .get("https://grantly-staging.herokuapp.com/user", {
+    // .get("https://labs16-grantly.herokuapp.com/user", {
+      .get("https://grantly-staging.herokuapp.com/user", {
       headers: {
         auth_id: auth.auth_id
       }
@@ -240,8 +240,8 @@ export const checkUser = user => dispatch => {
       if (err.response.status === 404) {
         axios
 
-          .post("https://labs16-grantly.herokuapp.com/user", newUser)
-          // .post("https://grantly-staging.herokuapp.com/user", newUser)
+          // .post("https://labs16-grantly.herokuapp.com/user", newUser)
+          .post("https://grantly-staging.herokuapp.com/user", newUser)
           .then(res => {
             dispatch({ type: SET_USER, payload: res.data });
           })
@@ -256,8 +256,8 @@ export const submitSuggestion = suggestion => dispatch => {
   dispatch({ type: SUBMIT_SUGGESTION_START });
   axios
     .post(
-      "https://labs16-grantly.herokuapp.com/api/grants/suggestion",
-      // "https://grantly-staging.herokuapp.com/api/grants/suggestion",
+      // "https://labs16-grantly.herokuapp.com/api/grants/suggestion",
+      "https://grantly-staging.herokuapp.com/api/grants/suggestion",
       suggestion
     )
 
@@ -275,8 +275,8 @@ export const deleteSuggestion = (requestId, user) => dispatch => {
   dispatch({ type: DELETE_SUGGESTION_START });
   axios
     .delete(
-      `https://labs16-grantly.herokuapp.com/api/admin/suggestion/${requestId}`,
-      // `https://grantly-staging.herokuapp.com/api/admin/suggestion/${requestId}`,
+      // `https://labs16-grantly.herokuapp.com/api/admin/suggestion/${requestId}`,
+      `https://grantly-staging.herokuapp.com/api/admin/suggestion/${requestId}`,
       {
         headers: {
           auth0id: user.auth_id,

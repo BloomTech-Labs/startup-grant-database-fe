@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import MaterialTable from "material-table";
 import Typography from "@material-ui/core/Typography";
 import { useAuth0 } from "../../react-auth0-wrapper";
-import { fetchApi, adminFetchApi, postGrants, putGrants, deleteGrants } from "../../actions";
+import { fetchApi, adminFetchApi, postGrants, putGrants, deleteGrants, deleteSuggestion } from "../../actions";
 import moment from 'moment';
 
 export const GrantTable = (props) => {
@@ -36,6 +36,8 @@ export const GrantTable = (props) => {
     data: []
   });
 
+  // const [stateRowData, setStateRowData] = useState([]);
+
   // const [hasCurrentUser, setHasCurrentUser] = useState({});
 
   // useEffect(() => {
@@ -63,6 +65,11 @@ export const GrantTable = (props) => {
   // const needToBeReviewed = props.data.filter(
   //   grant => grant.is_reviewed === false
   // ).length;
+const onClickDelete = (suggestion_id, currentUser) => {
+  console.log(suggestion_id, currentUser)
+  props.deleteSuggestion(suggestion_id, currentUser);
+};
+
 
   return (
     <div>
@@ -70,18 +77,31 @@ export const GrantTable = (props) => {
         title="Edit and Approve Grants"
         columns={props.columns}
         data={props.data}
-        detailPanel={rowData => {
+        detailPanel={[{
+          tooltip: 'Suggestions',
+
+          // what if we could trigger this to rerender on some sort of change?  Like a useEffect, so it renders when an item is deleted?
+          render: rowData => {
           console.log('rowData', rowData);
-          if (rowData.requests.length > 0) 
-          {return (
-            //create a list that renders each item of requests array and have button to delete each item.
-          <h1>HAs suggestions</h1>
+          
+          if (rowData.requests.length > 0) {
+            // setStateRowData(rowData.requests);
+              return (
+              //create a list that renders each item of requests array and have button to delete each item.
+              <div><h1>User Suggestions</h1>
+              <ul>{rowData.requests.map(suggestion => <li key={suggestion.id}> <button onClick={() => onClickDelete(suggestion.id, props.currentUser) }>Click Me</button>{suggestion.subject}{suggestion.suggestion} </li>)}</ul>
+              </div>
+          
+          // TODO: Create "rowData" component, and pass rowData (variable from up top line 84 as a prop into that component)
+          // that component will have a use effect that will look out for a change of props.rowData
+
+
           )} else {
             return (
-              <h1>There are no suggestions at this time</h1>
+              <h1>There are no user suggestions at this time</h1>
             )
           }
-        }}
+        }}]}
         editable={{
           onRowAdd: newData =>
             new Promise(resolve => {
@@ -160,5 +180,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { fetchApi, adminFetchApi, postGrants, putGrants, deleteGrants }
+  { fetchApi, adminFetchApi, postGrants, putGrants, deleteGrants, deleteSuggestion }
 )(GrantTable);
