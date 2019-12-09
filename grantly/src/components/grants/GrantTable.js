@@ -81,7 +81,7 @@ export const GrantTable = (props) => {
         options={{
          rowStyle: rowData => ({
         //  backgroundColor: (rowData.requests.length > 0 || rowData.is_reveiwed === false) ? '#EF7B5C' : 'none'
-        backgroundColor: (rowData.requests.length > 0) ? '#EF7B5C' : (rowData.is_reveiwed === false) ? 'blue' : 'none'  
+            backgroundColor: (rowData.requests.length > 0) ? '#EF7B5C' : (rowData.is_reveiwed === false) ? 'blue' : 'none'  
         })
         }}
         
