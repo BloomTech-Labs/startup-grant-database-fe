@@ -2,42 +2,53 @@ import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { deleteSuggestion } from "../../actions";
 import DeleteOutlineRoundedIcon from '@material-ui/icons/DeleteOutlineRounded';
+import Divider from '@material-ui/core/Divider';
+import ListItemText from '@material-ui/core/ListItemText';
+
 
 // Styling
-import { GrantSuggestionStyle } from './GrantSuggestionListStyle';
-
+import { grantTableStyles } from '../../styles/grantTableStyles';
 
 const GrantSuggestionList = (props) => {
-
   // console.log('grantSuggestionList props: ', props)
   const [suggestions, setSuggestions] = useState(props.rowData.requests)
-  console.log('before filter', suggestions)
 
   const onClickDelete = (suggestion_id, currentUser) => {
     props.deleteSuggestion(suggestion_id, currentUser)
-    const updatedSuggs = suggestions.filter(sugg =>sugg.id !== suggestion_id)
+    const updatedSuggs = suggestions.filter(sugg => sugg.id !== suggestion_id)
     setSuggestions(updatedSuggs)
   };
 
- 
-  const suggestionStyle = GrantSuggestionStyle();
+  const classes = grantTableStyles();
 
   return (
     <>
-      {suggestions.length ?  (
-      <div>
-        <h1>User Suggestions</h1>
-        <ul>{suggestions.map(suggestion => (
-          <li key={suggestion.id}> 
-          <button
-            className={suggestionStyle}
-            onClick={() => onClickDelete(suggestion.id, props.currentUser)}
-            ><DeleteOutlineRoundedIcon/></button>
-            <span>{suggestion.subject}: {suggestion.suggestion}</span>
-          </li>))}
-        </ul>
-      </div>
-      ) : (<h1>There are no user suggestions at this time</h1>)
+      {suggestions.length ? (
+        <div className={classes.suggestionWrapper}>
+          <h1 className={classes.userSuggestion}>User Suggestions</h1>
+          <ul className={classes.suggestionUl}>
+            {suggestions.map(suggestion => (
+              <li
+                alignItems="flex-start"
+                className={classes.suggestionLi}
+                key={suggestion.id}
+              >
+              <button
+                className={classes.delSuggestBtn}
+                onClick={() => onClickDelete(suggestion.id, props.currentUser)}
+              >
+                <DeleteOutlineRoundedIcon />
+              </button>
+              <p className={classes.suggestionParagraph}>
+                {suggestion.subject}:{suggestion.suggestion}
+              </p>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ) : (<h1
+        className={classes.suggestionNone}
+      >There are no user suggestions at this time</h1>)
       }
     </>
   )

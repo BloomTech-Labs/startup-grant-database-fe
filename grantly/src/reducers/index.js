@@ -40,13 +40,17 @@ const initialState = {
   currentUser: {},
   error: "",
   columns: [
-      { title: "Grant Status", field: "is_reviewed", lookup: {
+      { title: "Grant Status", 
+      // cellStyle: {
+      //   backgroundColor: (is_reviewed === false) ? '#3DB8B3' : 'none'
+      // },
+      field: "is_reviewed", lookup: {
         "true": "Approved",
         "false": "Pending"
       } },
       { title: "Last Updated", field: "details_last_updated", type: "date", editable: "never" }, //sent to server in action. not editable by user
       { title: "Name", field: "competition_name" },
-      { title: "Amount", field: "amount", type: "numeric" },
+      { title: "Amount", field: "amount", type: "integer" },
       { title: "Amount Notes", field: "amount_notes" },
       { title: "Deadline", field: "most_recent_application_due_date", type: "date" },
       {

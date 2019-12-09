@@ -1,0 +1,59 @@
+import { makeStyles } from "@material-ui/core/styles";
+
+export const grantTableStyles = makeStyles(theme => ({
+
+  suggestionWrapper: {
+    display: 'flex',
+    flexDirection: 'column',
+    margin: "1em",
+  },
+  delSuggestBtn: {
+    borderRadius: '50px',
+    alignSelf: 'center',
+    backgroundColor: '#EF7B5C',
+    boxShadow: 'none',
+    borderWidth: '0px',
+    margin: '2px 5px 2px 0',
+    padding: '6px',
+    height: '40px',
+    width: '40px',
+    "&:hover": {
+      backgroundColor: '#f0a692'
+    }
+  },
+
+  userSuggestion: {
+    fontFamily: "Nunito Sans",
+    fontSize: '1.2em',
+    width: '8.25em',
+  },
+
+  suggestionUl: {
+
+  },
+
+  suggestionLi: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    marginTop: '.5em'
+  },
+
+  suggestionParagraph: {
+    // border: '1.2px solid #77D4D0',
+    // boxShadow: '3px 3px grey',
+    width: '50%',
+    // overflow: "scroll",
+    borderBottom: '3px solid #77D4D0',
+    padding: '10px',
+    marginTop: '5px'
+  },
+
+  suggestionNone: {
+    width: '20%',
+    borderBottom: '3px solid #77D4D0',
+    padding: '10px',
+    marginTop: '5px',
+    fontSize: '1.25rem'
+  },
+
+}));

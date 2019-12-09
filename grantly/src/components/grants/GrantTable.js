@@ -54,8 +54,6 @@ export const GrantTable = (props) => {
   //   }
   // }, []);
 
-  console.log("Current user from reducer", props.currentUser);
-
   useEffect(() => {
       if (props.currentUser.id) {
         props.adminFetchApi(props.currentUser);
@@ -76,12 +74,67 @@ export const GrantTable = (props) => {
     <div>
       <MaterialTable
         title="Edit and Approve Grants"
-        columns={props.columns}
+        columns={[
+          { title: "Grant Status", 
+          // cellStyle: rowData => ({
+          //   backgroundColor: (rowData.is_reviewed === false) ? '#3DB8B3' : 'none'
+          // }),
+          field: "is_reviewed", lookup: {
+            "true": "Approved",
+            "false": "Pending"
+          } },
+          { title: "Last Updated", field: "details_last_updated", type: "date", editable: "never" }, //sent to server in action. not editable by user
+          { title: "Name", field: "competition_name" },
+          { title: "Amount", field: "amount", type: "integer" },
+          { title: "Amount Notes", field: "amount_notes" },
+          { title: "Deadline", field: "most_recent_application_due_date", type: "date" },
+          {
+            title: "Focus Area",
+            field: "area_focus",
+            lookup: { 
+              "Arts": "Arts", 
+              "Child Care": "Child Care", 
+              "Economic Opportunity": "Economic Opportunity", 
+              "Energy & Resources": "Energy & Resources",
+              "Environment": "Environment",
+              "Financial": "Financial", 
+              "Food": "Food", 
+              "Health": "Health", 
+              "Housing": "Housing", 
+              "Information Technology": "Information Technology", 
+              "Life Improvement": "Life Improvement", 
+              "Social Entrepreneurship": "Social Entrepreneurship", 
+              "Workforce Development": "Workforce Development" }
+          },
+          { title: "Sponsor", field: "sponsoring_entity" },
+          { title: "Notes", field: "notes" },
+          { title: "Website", field: "website"},
+          { title: "Geographic Region", field: "geographic_region", lookup: {
+            "Global": "Global",
+            "North America": "North America",
+            "Europe": "Europe",
+            "South America": "South America",
+            "Africa": "Africa",
+            "Asia": "Asia",
+            "Australia": "Australia"
+          }},
+          { title: "Target Demographic", field: "target_entrepreneur_demographic", lookup: {
+            "Minority Business Enterprise": "Minority Business Enterprise",
+            "Women Business Enterprise": "Women Business Enterprise",
+            "Disadvantaged Business Enterprise": "Disadvantaged Business Enterprise",
+            "Veteran Business Enterprise": "Veteran Business Enterprise",
+            "Other": "Other",
+            "All": "All"
+          }},
+          { title: "Early Stage Funding", field: "early_stage_funding", lookup: {
+            "true": "Yes",
+            "false": "No"
+          }}
+        ]}
         data={props.data}
         options={{
-         rowStyle: rowData => ({
-        //  backgroundColor: (rowData.requests.length > 0 || rowData.is_reveiwed === false) ? '#EF7B5C' : 'none'
-            backgroundColor: (rowData.requests.length > 0) ? '#EF7B5C' : (rowData.is_reveiwed === false) ? 'blue' : 'none'  
+        rowStyle: rowData => ({
+            backgroundColor: (rowData.requests.length > 0) ? '#EF7B5C' : (rowData.is_reviewed === false) ? '#3DB8B3' : 'none'  
         })
         }}
         
@@ -100,17 +153,10 @@ export const GrantTable = (props) => {
           onRowAdd: newData =>
             new Promise(resolve => {
               setTimeout(() => {
-                resolve();
-                
+                resolve();                
                 let filteredData = Object.assign({}, newData);
                 delete filteredData.requests;
-
                 props.postGrants(filteredData)
-                // setState(prevState => {
-                //   const data = [...prevState.data];
-                //   data.push(newData);
-                //   return { ...prevState, data };
-                // });
               }, 600);
             }),
           onRowUpdate: (newData, oldData) =>
@@ -118,18 +164,9 @@ export const GrantTable = (props) => {
               setTimeout(() => {
                 resolve();
                 if (oldData) {
-                  console.log('old data: ', oldData)
-                  console.log('new data: ', newData)
-
                   let filteredData = Object.assign({}, newData);
                   delete filteredData.requests;
-
-                  props.putGrants(filteredData, props.currentUser)
-                  // setState(prevState => {
-                  //   const data = [...prevState.data];
-                  //   data[data.indexOf(oldData)] = newData;
-                  //   return { ...prevState, data };
-                  // });
+                  props.putGrants({...filteredData, details_last_updated: moment().format("YYYY-MM-DD")}, props.currentUser)
                 }
               }, 600);
             }),
@@ -137,19 +174,10 @@ export const GrantTable = (props) => {
             new Promise(resolve => {
               setTimeout(() => {
                 resolve();
-
-                if(oldData){
-                console.log('HERE is oldData from DELETE', oldData)
-                
-                delete oldData.requests
-                props.deleteGrants(oldData.id, props.currentUser)
-                console.log('HERE is oldData from DELETE', oldData)
+                if (oldData) {
+                  delete oldData.requests
+                  props.deleteGrants(oldData.id, props.currentUser)
                 }
-                // setState(prevState => {
-                //   const data = [...prevState.data];
-                //   data.splice(data.indexOf(oldData), 1);
-                //   return { ...prevState, data };
-                // });
               }, 600);
             })
         }}
@@ -160,7 +188,6 @@ export const GrantTable = (props) => {
 }
 
 const mapStateToProps = state => {
-  // console.log("GrantList mapStateToProps state", state);
   return {
     error: state.error,
     isFetching: state.isFetching,
