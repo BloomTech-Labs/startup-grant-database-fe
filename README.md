@@ -165,6 +165,12 @@ Please note we have a [code of conduct](./CODE_OF_CONDUCT.md). Please follow it 
 
 We would love to hear from you about new features which would improve this app and further the aims of our project. Please provide as much detail and information as possible to show us why you think your new feature should be implemented.
 
+### Added Features (Labs 18)
+
+- Toggle Navigation Drawer
+- Administrator table view of Grants
+- User Interface Cleanup
+
 ### Pull Requests
 
 If you have developed a patch, bug fix, or new feature that would improve this app, please submit a pull request. It is best to communicate your ideas with the developers first before investing a great deal of time into a pull request to ensure that it will mesh smoothly with the project.
