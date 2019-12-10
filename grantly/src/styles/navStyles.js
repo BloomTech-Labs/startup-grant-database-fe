@@ -99,11 +99,12 @@ export const navStyles = makeStyles(theme => ({
     color: "#3DB8B3",
     fontFamily: "Nunito Sans"
   },
+  toolBar: {
+    backgroundColor: 'white'
+  },
   titleLink: {
     flexGrow: 1,
-    textDecoration: "none",
-    backgroundColor: 'white',
-
+    textDecoration: "none"
   },
   link: {
     textDecoration: "none"
