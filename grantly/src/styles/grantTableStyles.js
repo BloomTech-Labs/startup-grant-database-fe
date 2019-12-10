@@ -28,10 +28,6 @@ export const grantTableStyles = makeStyles(theme => ({
     width: '8.25em',
   },
 
-  suggestionUl: {
-
-  },
-
   suggestionLi: {
     display: 'flex',
     flexWrap: 'wrap',
@@ -39,8 +35,6 @@ export const grantTableStyles = makeStyles(theme => ({
   },
 
   suggestionParagraph: {
-    // border: '1.2px solid #77D4D0',
-    // boxShadow: '3px 3px grey',
     width: '50%',
     overflow: "auto",
     borderBottom: '3px solid #77D4D0',
@@ -49,8 +43,6 @@ export const grantTableStyles = makeStyles(theme => ({
     fontSize: '1.11rem'
   },
   suggestionHeader: {
-    // border: '1.2px solid #77D4D0',
-    // boxShadow: '3px 3px grey',
     width: '50%',
     paddingLeft: '10px',
     paddingBottom: '5px',

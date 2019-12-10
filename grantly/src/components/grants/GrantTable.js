@@ -6,6 +6,7 @@ import moment from 'moment';
 import { useAuth0 } from "../../react-auth0-wrapper";
 import { fetchApi, adminFetchApi, postGrants, putGrants, deleteGrants, deleteSuggestion } from "../../actions";
 import GrantSuggestionList from './GrantSuggestionList'
+import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 
 export const GrantTable = (props) => {
   console.log('GrantTable props',props)
@@ -75,12 +76,16 @@ export const GrantTable = (props) => {
       <MaterialTable
         title="Edit and Approve Grants"
         columns={[
+          {
+            title: "User Suggestions", field: "has_requests", lookup: { "true": "Yes", "false": "No"}
+          },
           { title: "Grant Status", 
             cellStyle: cellData => ({ backgroundColor: (cellData === "Pending") ? '#3DB8B3' : 'none'}),
           field: "is_reviewed", lookup: {
             "true": "Approved",
             "false": "Pending"
           } },
+          
           { title: "Last Updated", field: "details_last_updated", type: "date", editable: "never" }, //sent to server in action. not editable by user
           { title: "Name", field: "competition_name" },
           { title: "Amount", field: "amount", type: "integer" },
@@ -132,18 +137,20 @@ export const GrantTable = (props) => {
         data={props.data}
         // options={{
         //   rowStyle: rowData => ({
-        //       backgroundColor: (rowData.requests.length > 0) ? '#EF7B5C' : (rowData.is_reviewed === false) ? '#3DB8B3' : 'none'  
+        //       backgroundColor: (rowData.requests.length > 0) ? '#EF7B5C' : 'none'  
         //   })
         // }}
         detailPanel={[{
           tooltip: 'Suggestions',
-          // iconProps: cellData => ({ backgroundColor: (cellData.length > 0) ? '#3DB8B3' : 'none'}),
-          // iconProps: {style: {color: '#EF7B5C'}},
-
+          // icon: cellData => ({style: {color: (cellData.length > 0) ? 'action' : 'inherit'}}),
+          // iconProps: cellData => ({style: {color: (cellData.length > 0) ? 'action' : 'inherit'}}),
+          // iconProps: {color: 'yellow'},
+          // icon: <ChevronRightIcon style={{ color: "yellow" }}/>,
           render: rowData => {
             return (
             <GrantSuggestionList rowData={rowData} />)
-        }}]}
+          }
+        }]}
         editable={{
           onRowAdd: newData =>
             new Promise(resolve => {

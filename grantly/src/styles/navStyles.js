@@ -3,12 +3,15 @@ import { makeStyles } from "@material-ui/core/styles";
 export const navStyles = makeStyles(theme => ({
   logo: {
     display: "flex",
-    alignItems: "center"
+    alignItems: "center",
+    // [theme.breakpoints.down("sm")]: {
+    //   fontSize: "1.6rem"
+    // }
   },
   siteMap: {
     display: "flex",
     justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
   },
   navButton: {
     marginRight: theme.spacing(3),
@@ -20,18 +23,19 @@ export const navStyles = makeStyles(theme => ({
     padding: ".5em 2.5em",
     fontSize: "0.875rem",
     fontFamily: "Roboto",
-    
     transition: "all .3s ease-in-out",
-
     width: '15em',
     height: '3.5em',
-
     marginLeft: '2.5em',
-
     '&:hover': {
       backgroundColor: "#83D7D1",
       color: 'white'
-    }
+    },
+    [theme.breakpoints.down("sm")]: {
+      marginLeft: '0',
+      padding: ".5em 1em",
+      width: '5em',
+    },
   },
   navLink: {
     marginRight: theme.spacing(3),
@@ -40,14 +44,16 @@ export const navStyles = makeStyles(theme => ({
     padding: ".5em 2.5em",
     fontSize: "0.875rem",
     fontFamily: "Roboto",
-
     width: '15em',
     height: '3.5em',
-
     marginLeft: '2.5em',
-
     '&:hover': {
       textDecoration: "underline"
+    },
+    [theme.breakpoints.down("sm")]: {
+      marginRight: theme.spacing(1),
+      marginLeft: '0',
+      padding: ".5em .5em",
     }
   },
   submitNavButton: {
@@ -71,10 +77,9 @@ export const navStyles = makeStyles(theme => ({
     // marginBottom: "2em",
     [theme.breakpoints.down("xs")]: {
       position: "fixed",
-
       padding: "0",
-      boxShadow: "none"
-    }
+      // boxShadow: "none"
+    },
   },
   log: {
     color: "#fff",
@@ -128,7 +133,7 @@ export const navStyles = makeStyles(theme => ({
     color: "#696969",
   },
   helloUser: {
-    fontFamily: "Roboto",
+    fontFamily: "Nunito Sans",
     padding: '15px'
   }, 
   drawerStlye: {
@@ -138,8 +143,11 @@ export const navStyles = makeStyles(theme => ({
     backgroundColor: '#83D7D1'
   }
   },
-
   icon: {
     paddingLeft: '0.5em'
+  },
+  navLoading: {
+    margin: '2em',
+    fontFamily: "Nunito Sans"
   }
 }));

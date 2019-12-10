@@ -152,7 +152,7 @@ export const NavBar = props => {
 
   //delays for token
   if (loading) {
-    return <h1>App Loading</h1>;
+    return <h1 className={classes.navLoading}>App Loading...</h1>;
   } else {
     return (
       <AppBar data-testid="main-nav" className={classes.navbar} color="primary" position="sticky">
@@ -166,13 +166,9 @@ export const NavBar = props => {
           {/* If there is a token, hamburger appears at right */}
           {isAuthenticated && (
             <>
-           
-              <h1
-                className={classes.helloUser}
-              >
+              <h1 className={classes.helloUser} >
                 Welcome, {user.nickname}
               </h1>
-            
               <IconButton
                 className={classes.menu}
                 edge="start"
@@ -186,16 +182,17 @@ export const NavBar = props => {
               </IconButton>
             </>
           )}
+
           {/* If there is not a token, login button appears */}
           <div>
-            {!isAuthenticated && (
-              <div>
+          {!isAuthenticated && (
+            <div>
               <Link
-                  to="/grants"
-                  className={classes.navLink}
-                  activeClassName={classes.active}
-                  onClick={() => props.fetchApi()}
-                >
+                to="/grants"
+                className={classes.navLink}
+                activeClassName={classes.active}
+                onClick={() => props.fetchApi()}
+              >
                 Grants
               </Link>
               <Link
@@ -213,8 +210,8 @@ export const NavBar = props => {
               >
                 Log in
               </Link>
-              </div>
-            )}
+            </div>
+          )}
           </div>
 
           <SwipeableDrawer
