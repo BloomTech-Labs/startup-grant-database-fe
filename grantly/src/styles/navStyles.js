@@ -4,9 +4,6 @@ export const navStyles = makeStyles(theme => ({
   logo: {
     display: "flex",
     alignItems: "center",
-    // [theme.breakpoints.down("sm")]: {
-    //   fontSize: "1.6rem"
-    // }
   },
   siteMap: {
     display: "flex",
@@ -31,11 +28,6 @@ export const navStyles = makeStyles(theme => ({
     '&:hover': {
       backgroundColor: "#83D7D1",
       color: 'white'
-    },
-    [theme.breakpoints.down("sm")]: {
-      marginLeft: '0',
-      padding: ".5em 1em",
-      width: '5em',
     },
   },
   navLink: {

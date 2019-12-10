@@ -172,15 +172,15 @@ export const NavBar = props => {
                 Welcome, {user.nickname}
               </h1>
               <IconButton
-                className={classes.menu}
+                // className={classes.menu}
                 edge="start"
                 color="primary"
                 aria-label="menu"
                 onClick={toggleDrawer()}
               >
-              <MenuIcon 
-                className={classes.menu} 
-              />
+                <MenuIcon 
+                  className={classes.menu} 
+                />
               </IconButton>
             </>
           )}
