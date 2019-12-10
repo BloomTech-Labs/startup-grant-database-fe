@@ -15,6 +15,7 @@ export const navStyles = makeStyles(theme => ({
   },
   navButton: {
     marginRight: theme.spacing(3),
+    alignSelf: 'baseline',
     border: "1px solid #3CBBB1",
     borderRadius: "2px",
     backgroundColor: "#3CBBB1",
