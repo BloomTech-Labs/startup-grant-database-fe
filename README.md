@@ -4,24 +4,23 @@ You can find the deployed project at [Founder Grants](https://grantly-b5b58.fire
 
 ## Contributors
 
-🚫Add contributor info below, make sure add images and edit the social links for each member. Add to or delete these place-holders as needed
+[Mario Amaya: Team Lead, Web Dev](https://github.com/MAmaya1) 
 
-|                                                      [Student 1](https://github.com/)                                                       |                                                       [Student 2](https://github.com/)                                                        |                                                      [Student 3](https://github.com/)                                                       |                                                       [Student 4](https://github.com/)                                                        |                                                      [Student 5](https://github.com/)                                                       |                                                      [Student 6](https://github.com/)                                                       |                                                      [Student 7](https://github.com/)                                                       |                                                      [Student 8](https://github.com/)                                                       |
-| :-----------------------------------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------------------------: |
-| [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-male.png" width = "200" />](https://github.com/) | [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-female.png" width = "200" />](https://github.com/) | [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-male.png" width = "200" />](https://github.com/) | [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-female.png" width = "200" />](https://github.com/) | [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-male.png" width = "200" />](https://github.com/) | [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-male.png" width = "200" />](https://github.com/) | [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-male.png" width = "200" />](https://github.com/) | [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-male.png" width = "200" />](https://github.com/) |
-|                                [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/)                                |                            [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/honda0306)                             |                          [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/Mister-Corn)                           |                          [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/NandoTheessen)                           |                           [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/wvandolah)                            |                           [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/wvandolah)                            |                           [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/wvandolah)                            |                           [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/wvandolah)                            |
-|                [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/)                |                 [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/)                 |                [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/)                |                 [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/)                 |                [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/)                |                [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/)                |                [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/)                |                [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/)                |
+[Kristin Barr: Web Dev](https://github.com/Kristinbarr)
 
-<br>
-<br>
+[Benita Beamer: Web Dev](https://github.com/bea03)
+
+[Ben Griffin: Web Dev](https://github.com/B-Griffinn)
+
+[Daniel Jones: Web Dev](https://github.com/djones36)
 
 ## Project Overview
 
-[Trello Board](https://trello.com/b/T3ej9wIi/starup-grant-db-16)
+[Trello Board](https://trello.com/b/C6YCXNQh/startup-grant-database)
 
 [Product Canvas](https://www.notion.so/Startup-Grant-Database-f126d11906074d2d9ec6f77eb6b51363)
 
-[UX Design files](https://www.figma.com/file/BZuzHJNqgAdELNt3CnJuTt/Labs16_Startup-Grant-Database)
+[UX Design files](https://www.figma.com/file/ERQVRwQYEfzOh9VlQCBas5/Labs18_Startup-Grant-Database)
 
 Founder Grants connects early stage founders, hackers, and tinkerers with the resources they need to create the next wave of technology.
 
@@ -165,6 +164,12 @@ Please note we have a [code of conduct](./CODE_OF_CONDUCT.md). Please follow it 
 ### Feature Requests
 
 We would love to hear from you about new features which would improve this app and further the aims of our project. Please provide as much detail and information as possible to show us why you think your new feature should be implemented.
+
+### Added Features (Labs 18)
+
+- Toggle Navigation Drawer
+- Administrator table view of Grants
+- User Interface Cleanup
 
 ### Pull Requests
 
