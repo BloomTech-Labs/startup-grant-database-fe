@@ -24,7 +24,7 @@ export const grantTableStyles = makeStyles(theme => ({
 
   userSuggestion: {
     fontFamily: "Nunito Sans",
-    fontSize: '1.2em',
+    fontSize: '1.5em',
     width: '8.25em',
   },
 
@@ -42,10 +42,20 @@ export const grantTableStyles = makeStyles(theme => ({
     // border: '1.2px solid #77D4D0',
     // boxShadow: '3px 3px grey',
     width: '50%',
-    // overflow: "scroll",
+    overflow: "auto",
     borderBottom: '3px solid #77D4D0',
     padding: '10px',
-    marginTop: '5px'
+    marginTop: '5px',
+    fontSize: '1.11rem'
+  },
+  suggestionHeader: {
+    // border: '1.2px solid #77D4D0',
+    // boxShadow: '3px 3px grey',
+    width: '50%',
+    paddingLeft: '10px',
+    paddingBottom: '5px',
+    marginTop: '5px',
+    fontSize: '1.3rem'
   },
 
   suggestionNone: {
@@ -55,5 +65,5 @@ export const grantTableStyles = makeStyles(theme => ({
     marginTop: '5px',
     fontSize: '1.25rem'
   },
-
+  
 }));

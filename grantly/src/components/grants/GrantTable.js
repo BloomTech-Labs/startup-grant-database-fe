@@ -76,9 +76,7 @@ export const GrantTable = (props) => {
         title="Edit and Approve Grants"
         columns={[
           { title: "Grant Status", 
-          // cellStyle: rowData => ({
-          //   backgroundColor: (rowData.is_reviewed === false) ? '#3DB8B3' : 'none'
-          // }),
+            cellStyle: cellData => ({ backgroundColor: (cellData === "Pending") ? '#3DB8B3' : 'none'}),
           field: "is_reviewed", lookup: {
             "true": "Approved",
             "false": "Pending"
@@ -132,22 +130,19 @@ export const GrantTable = (props) => {
           }}
         ]}
         data={props.data}
-        options={{
-        rowStyle: rowData => ({
-            backgroundColor: (rowData.requests.length > 0) ? '#EF7B5C' : (rowData.is_reviewed === false) ? '#3DB8B3' : 'none'  
-        })
-        }}
-        
+        // options={{
+        //   rowStyle: rowData => ({
+        //       backgroundColor: (rowData.requests.length > 0) ? '#EF7B5C' : (rowData.is_reviewed === false) ? '#3DB8B3' : 'none'  
+        //   })
+        // }}
         detailPanel={[{
           tooltip: 'Suggestions',
+          // iconProps: cellData => ({ backgroundColor: (cellData.length > 0) ? '#3DB8B3' : 'none'}),
+          // iconProps: {style: {color: '#EF7B5C'}},
 
-          // what if we could trigger this to rerender on some sort of change?  Like a useEffect, so it renders when an item is deleted?
           render: rowData => {
             return (
             <GrantSuggestionList rowData={rowData} />)
-          
-          // TODO: Create "rowData" component, and pass rowData (variable from up top line 84 as a prop into that component)
-          // that component will have a use effect that will look out for a change of props.rowData
         }}]}
         editable={{
           onRowAdd: newData =>

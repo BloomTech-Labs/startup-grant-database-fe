@@ -25,11 +25,11 @@ const GrantSuggestionList = (props) => {
     <>
       {suggestions.length ? (
         <div className={classes.suggestionWrapper}>
-          <h1 className={classes.userSuggestion}>User Suggestions</h1>
+          <h1 className={classes.userSuggestion}>User Suggestions </h1>
           <ul className={classes.suggestionUl}>
             {suggestions.map(suggestion => (
               <li
-                alignItems="flex-start"
+                alignItems="center"
                 className={classes.suggestionLi}
                 key={suggestion.id}
               >
@@ -39,8 +39,9 @@ const GrantSuggestionList = (props) => {
               >
                 <DeleteOutlineRoundedIcon />
               </button>
+              <p className={classes.suggestionHeader}> {suggestion.subject}</p>
               <p className={classes.suggestionParagraph}>
-                {suggestion.subject}:{suggestion.suggestion}
+                {suggestion.suggestion}
               </p>
               </li>
             ))}
@@ -48,7 +49,7 @@ const GrantSuggestionList = (props) => {
         </div>
       ) : (<h1
         className={classes.suggestionNone}
-      >There are no user suggestions at this time</h1>)
+      > There are no user suggestions at this time</h1>)
       }
     </>
   )
