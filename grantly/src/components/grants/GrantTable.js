@@ -6,7 +6,8 @@ import moment from 'moment';
 import { useAuth0 } from "../../react-auth0-wrapper";
 import { fetchApi, adminFetchApi, postGrants, putGrants, deleteGrants, deleteSuggestion } from "../../actions";
 import GrantSuggestionList from './GrantSuggestionList'
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+
+import { grantTableStyles } from '../../styles/grantTableStyles';
 
 export const GrantTable = (props) => {
   console.log('GrantTable props',props)
@@ -89,10 +90,7 @@ export const GrantTable = (props) => {
           { title: "Last Updated", field: "details_last_updated", type: "date", editable: "never" }, //sent to server in action. not editable by user
           { title: "Name", field: "competition_name" },
           { title: "Amount", field: "amount", type: "integer" },
-          { title: "Amount Notes", cellStyle: {
-            width: 200,
-            maxWidth: 200
-          }, field: "amount_notes" },
+          { title: "Amount Notes", field: "amount_notes" },
           { title: "Deadline", field: "most_recent_application_due_date", type: "date" },
           {
             title: "Focus Area",
