@@ -76,9 +76,9 @@ export const GrantTable = (props) => {
       <MaterialTable
         title="Edit and Approve Grants"
         columns={[
-          {
-            title: "User Suggestions", field: "has_requests", lookup: { "true": "Yes", "false": "No"}
-          },
+          // {
+          //   title: "User Suggestions", field: "has_requests", lookup: { "true": "Yes", "false": "No"}
+          // },
           { title: "Grant Status", 
             cellStyle: cellData => ({ backgroundColor: (cellData === "Pending") ? '#3DB8B3' : 'none'}),
           field: "is_reviewed", lookup: {

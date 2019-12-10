@@ -156,7 +156,9 @@ export const NavBar = props => {
   } else {
     return (
       <AppBar data-testid="main-nav" className={classes.navbar} color="primary" position="sticky">
-        <Toolbar>
+        <Toolbar
+          className={classes.toolBar}
+        >
           <Link to="/" className={classes.titleLink}>
             <Typography variant="h4" className={classes.title}>
               <FGLogo />
