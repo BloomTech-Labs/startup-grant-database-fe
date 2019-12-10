@@ -101,7 +101,9 @@ export const navStyles = makeStyles(theme => ({
   },
   titleLink: {
     flexGrow: 1,
-    textDecoration: "none"
+    textDecoration: "none",
+    backgroundColor: 'white',
+
   },
   link: {
     textDecoration: "none"
