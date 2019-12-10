@@ -1,16 +1,20 @@
 import React, { useState } from "react";
+import Media from "react-media";
+
+// Styling
 import { makeStyles } from "@material-ui/core/styles";
 import { homeStyles } from "../styles/homeStyles";
-import GrantList from "../components/grants/GrantList";
+import Grid from "@material-ui/core/Grid";
+import TuneIcon from "@material-ui/icons/Tune";
+import SwipeableDrawer from "@material-ui/core/SwipeableDrawer";
+
+// components
+import Navbar from "../components/Navbar";
 import Filters from "../components/Filters";
+import GrantList from "../components/grants/GrantList";
 import GrantShowcase from "../components/grants/GrantShowcase";
 import MobileTabs from "../components/mobile/MobileTabs";
 import SearchBar from "../components/SearchBar";
-import Grid from "@material-ui/core/Grid";
-import TuneIcon from "@material-ui/icons/Tune";
-import Navbar from "../components/Navbar";
-import Media from "react-media";
-import SwipeableDrawer from "@material-ui/core/SwipeableDrawer";
 import MobileFilters from "../components/mobile/MobileFilters";
 
 // delete this sometime

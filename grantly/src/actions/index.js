@@ -68,7 +68,7 @@ export const adminFetchApi = user => dispatch => {
       dispatch({ type: FETCH_ERROR });
     });
 };
-// This action creator is here because we want to save filters that user selected on landing poge screen so we save our filters into our reducer
+// This action creator is here because we want to save filters that user selected on landing page screen so we save our filters into our reducer
 export const saveFilters = filters => dispatch => {
   dispatch({ type: FILTER_SAVE, payload: filters });
 };

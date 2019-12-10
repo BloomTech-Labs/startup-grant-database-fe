@@ -30,18 +30,18 @@ export const GrantShowcase = props => {
       {props.grant.most_recent_application_due_date}
     </Moment>
   ) : (
-    <div>See website for details</div>
-  );
+      <div>See website for details</div>
+    );
 
   const momentDeadline =
     props.grant.most_recent_application_due_date &&
     " or in about " +
-      moment(props.grant.most_recent_application_due_date).fromNow();
+    moment(props.grant.most_recent_application_due_date).fromNow();
 
   if (props.isFetching) {
     return (
       <div className={showcase.loaderDiv}>
-        <Loader type="Triangle" color="#3DB8B3" height="400" />;
+        <Loader type="Triangle" color="#3DB8B3" height="400" />
       </div>
     );
   }
@@ -88,7 +88,7 @@ export const GrantShowcase = props => {
                     grant={props.grant}
                   />
                 ) : //( <BookmarkBorderOutlinedIcon className={showcase.bookmark} />)
-                null}
+                  null}
               </Grid>
             </Grid>
           </Grid>
@@ -207,12 +207,12 @@ export const GrantShowcase = props => {
         >
           <Grid item>
             <a href={props.grant.website} target="_blank">
-            <Button
-              className={showcase.applyButton}
-              variant="contained"
-              color="primary"
-            >
-              Apply to Grant
+              <Button
+                className={showcase.applyButton}
+                variant="contained"
+                color="primary"
+              >
+                Apply to Grant
             </Button>
             </a>
           </Grid>

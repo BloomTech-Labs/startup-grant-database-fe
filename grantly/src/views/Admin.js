@@ -1,21 +1,23 @@
 import React, { useState } from "react";
+import Media from "react-media";
+
+// Stlying 
+import { adminStyles } from "../styles/adminStyles";
+import Grid from "@material-ui/core/Grid";
+import TuneIcon from "@material-ui/icons/Tune";
+import SwipeableDrawer from "@material-ui/core/SwipeableDrawer";
+
+// Components
 import GrantList from "../components/grants/GrantList";
 import Filters from "../components/Filters";
-import TuneIcon from "@material-ui/icons/Tune";
-
 import GrantShowcase from "../components/grants/GrantShowcase";
 import SuggestionList from "../components/SuggestionList";
-// import MobileTabs from "../components/mobile/MobileTabs";
-// import SearchBar from "../components/SearchBar";
-import Grid from "@material-ui/core/Grid";
-// import Navbar from "../components/Navbar";
-import Media from "react-media";
-import SwipeableDrawer from "@material-ui/core/SwipeableDrawer";
 import MobileFilters from "../components/mobile/MobileFilters";
 import MobileTabs from "../components/mobile/MobileTabs";
-
-import { adminStyles } from "../styles/adminStyles";
 import AdminDialog from "../components/dialogs/AdminDialog";
+// import MobileTabs from "../components/mobile/MobileTabs";
+// import SearchBar from "../components/SearchBar";
+// import Navbar from "../components/Navbar";
 
 const Admin = props => {
   const [isOpen, setIsOpen] = useState(false);
