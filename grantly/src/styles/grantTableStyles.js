@@ -1,7 +1,10 @@
 import { makeStyles } from "@material-ui/core/styles";
 
 export const grantTableStyles = makeStyles(theme => ({
-
+  headerStyle: {
+    fontFamily: "Nunito Sans",
+    fontSize: "1em",
+  },
   suggestionWrapper: {
     display: 'flex',
     flexDirection: 'column',
@@ -21,19 +24,16 @@ export const grantTableStyles = makeStyles(theme => ({
       backgroundColor: '#f0a692'
     }
   },
-
   userSuggestion: {
     fontFamily: "Nunito Sans",
     fontSize: '1.5em',
     width: '8.25em',
   },
-
   suggestionLi: {
     display: 'flex',
     flexWrap: 'wrap',
     marginTop: '.5em'
   },
-
   suggestionParagraph: {
     width: '50%',
     overflow: "auto",
@@ -49,7 +49,6 @@ export const grantTableStyles = makeStyles(theme => ({
     marginTop: '5px',
     fontSize: '1.3rem'
   },
-
   suggestionNone: {
     width: '20%',
     borderBottom: '3px solid #77D4D0',
@@ -57,5 +56,5 @@ export const grantTableStyles = makeStyles(theme => ({
     marginTop: '5px',
     fontSize: '1.25rem'
   },
-  
+
 }));
