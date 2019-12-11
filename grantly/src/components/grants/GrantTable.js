@@ -1,42 +1,47 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
-import { fetchApi, adminFetchApi, postGrants, putGrants, deleteGrants, deleteSuggestion } from "../../actions";
+import {
+  fetchApi,
+  adminFetchApi,
+  postGrants,
+  putGrants,
+  deleteGrants,
+  deleteSuggestion
+} from "../../actions";
 import { useAuth0 } from "../../react-auth0-wrapper";
-import moment from 'moment';
+import moment from "moment";
 
 // Styling
 import MaterialTable from "material-table";
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import Typography from "@material-ui/core/Typography";
-import { grantTableStyles, suggestionStyles } from '../../styles/grantTableStyles';
+import TextField from "@material-ui/core/TextField";
+import Paper from "@material-ui/core/Paper";
+import {
+  grantTableStyles,
+  suggestionStyles
+} from "../../styles/grantTableStyles";
 
 // Components
-import GrantSuggestionList from './GrantSuggestionList'
+import GrantSuggestionList from "./GrantSuggestionList";
 
-export const GrantTable = (props) => {
-  console.log('GrantTable props',props)
+export const GrantTable = props => {
+  console.log("GrantTable props", props);
   // console.log('GrantTable current user',props.currentUser)
   // console.log('adminprops', props.inAdmin);
 
   // reformat deadline and last updated dates
   props.data.forEach(grant => {
     grant.most_recent_application_due_date =
-      moment(grant.most_recent_application_due_date).format(
-        "MMM DD, YYYY"
-      ) === "Invalid date"
+      moment(grant.most_recent_application_due_date).format("MMM DD, YYYY") ===
+      "Invalid date"
         ? undefined
-        : moment(grant.most_recent_application_due_date).format(
-            "MMM DD, YYYY"
-      )
+        : moment(grant.most_recent_application_due_date).format("MMM DD, YYYY");
     grant.details_last_updated =
-      moment(grant.details_last_updated).format(
-        "L LT"
-      ) === "Invalid date"
+      moment(grant.details_last_updated).format("L LT") === "Invalid date"
         ? undefined
-        : moment(grant.details_last_updated).format(
-            "L LT"
-      )
-  })
+        : moment(grant.details_last_updated).format("L LT");
+  });
 
   const [state, setState] = useState({
     // This array is currently needed in order for state to save onRowUpdate
@@ -61,39 +66,50 @@ export const GrantTable = (props) => {
   // }, []);
 
   useEffect(() => {
-      if (props.currentUser.id) {
-        props.adminFetchApi(props.currentUser);
-      }
+    if (props.currentUser.id) {
+      props.adminFetchApi(props.currentUser);
+    }
   }, [props.currentUser]);
 
   // TODO: display a count of items needing to be reviewed
   // const needToBeReviewed = props.data.filter(
   //   grant => grant.is_reviewed === false
   // ).length;
-// const onClickDelete = (suggestion_id, currentUser) => {
-//   console.log(suggestion_id, currentUser)
-//   props.deleteSuggestion(suggestion_id, currentUser);
-// };
+  // const onClickDelete = (suggestion_id, currentUser) => {
+  //   console.log(suggestion_id, currentUser)
+  //   props.deleteSuggestion(suggestion_id, currentUser);
+  // };
 
-const editComponentFunc = props => {
-  console.log("edit props", props);
-  return (
-    <textarea
-      type="text"
-      value={props.value}
-      style={{ minWidth: "300px", padding: "0 1em", fontFamily: "EB Garamond" }}
-      onChange={e => props.onChange(e.target.value)}
-    />
-  );
-};
+  const editComponentFunc = props => {
+    console.log("edit props", props);
+    return (
+      <TextField
+        id="standard basic"
+        style={{
+          minWidth: "400px",
+          fontFamily: "EB Garamond"
+        }}
+        multiline
+        value={props.value}
+        onChange={e => props.onChange(e.target.value)}
+      />
+    );
+  };
+
+  const style = grantTableStyles();
 
   return (
-    <div>
+    <Paper className={style.paper}>
       <MaterialTable
         title="Edit and Approve Grants"
+        // title={() => (
+        //   <h2>Edit and Approve Grants</h2>
+        // )}
         columns={[
           {
-            title: "User Suggestions", field: "has_requests", type: "integer"
+            title: "User Suggestions",
+            customSort: (a, b) => a.requests.length - b.requests.length,
+            render: rowData => (rowData.requests.length > 0 ? "Yes" : "No")
           },
           {
             title: "Grant Status",
@@ -136,15 +152,15 @@ const editComponentFunc = props => {
             title: "Focus Area",
             field: "area_focus",
             lookup: {
-              "Arts": "Arts",
+              Arts: "Arts",
               "Child Care": "Child Care",
               "Economic Opportunity": "Economic Opportunity",
               "Energy & Resources": "Energy & Resources",
-              "Environment": "Environment",
-              "Financial": "Financial",
-              "Food": "Food",
-              "Health": "Health",
-              "Housing": "Housing",
+              Environment: "Environment",
+              Financial: "Financial",
+              Food: "Food",
+              Health: "Health",
+              Housing: "Housing",
               "Information Technology": "Information Technology",
               "Life Improvement": "Life Improvement",
               "Social Entrepreneurship": "Social Entrepreneurship",
@@ -165,13 +181,13 @@ const editComponentFunc = props => {
             title: "Geographic Region",
             field: "geographic_region",
             lookup: {
-              "Global": "Global",
+              Global: "Global",
               "North America": "North America",
-              "Europe": "Europe",
+              Europe: "Europe",
               "South America": "South America",
-              "Africa": "Africa",
-              "Asia": "Asia",
-              "Australia": "Australia"
+              Africa: "Africa",
+              Asia: "Asia",
+              Australia: "Australia"
             }
           },
           {
@@ -183,16 +199,16 @@ const editComponentFunc = props => {
               "Disadvantaged Business Enterprise":
                 "Disadvantaged Business Enterprise",
               "Veteran Business Enterprise": "Veteran Business Enterprise",
-              "Other": "Other",
-              "All": "All"
+              Other: "Other",
+              All: "All"
             }
           },
           {
             title: "Early Stage Funding",
             field: "early_stage_funding",
             lookup: {
-              "true": "Yes",
-              "false": "No"
+              true: "Yes",
+              false: "No"
             }
           }
         ]}
@@ -203,24 +219,22 @@ const editComponentFunc = props => {
             fontSize: "1em",
             color: "#3A3A3A",
             // letterSpacing: "0.025em",
-            fontWidth: 700,
+            fontWeight: 700,
             backgroundColor: "#83D7D1"
           }
-          // rowStyle: rowData => ({
-          //     backgroundColor: (rowData.requests.length > 0) ? '#EF7B5C' : 'none'
-          // })
         }}
         detailPanel={[
-          {
+          rowData => ({
             tooltip: "Suggestions",
-            icon: cellData => (
+            disabled: !rowData.requests.length,
+            icon: () => (
               <ChevronRightIcon
-                style={{ color: cellData.length > 0 ? "#EF7B5C" : "" }}
+                className={!rowData.requests.length && style.displayNone}
+                style={{ color: "#EF7B5C" }}
               />
             ),
-            // cellData.length > 0 ? "yellow" : "inherit"
-            render: rowData => (<GrantSuggestionList rowData={rowData} />)
-          }
+            render: rowData => <GrantSuggestionList rowData={rowData} />
+          })
         ]}
         editable={{
           onRowAdd: newData =>
@@ -262,9 +276,9 @@ const editComponentFunc = props => {
         }}
         zeroMinWidth
       />
-    </div>
+    </Paper>
   );
-}
+};
 
 const mapStateToProps = state => {
   return {
@@ -278,7 +292,11 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  { fetchApi, adminFetchApi, postGrants, putGrants, deleteGrants, deleteSuggestion }
-)(GrantTable);
+export default connect(mapStateToProps, {
+  fetchApi,
+  adminFetchApi,
+  postGrants,
+  putGrants,
+  deleteGrants,
+  deleteSuggestion
+})(GrantTable);
