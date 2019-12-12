@@ -25,17 +25,19 @@ const Sitemap = () => {
           </Link>
         </Grid>
         <Grid item className={styles.item}>
-          <ul className={styles.links}>
             <Link to="/about" className={styles.link}>
               <Typography variant="subtitle2">ABOUT</Typography>
             </Link>
+            </Grid>
+            <Grid item className={styles.item}>
             <a href="mailto:labs16grantly@gmail.com" className={styles.link}>
               <Typography variant="subtitle2">CONTACT</Typography>
             </a>
+            </Grid>
+            <Grid item className={styles.item}>
             <a href="https://www.1517fund.com/" className={styles.link}>
               <Typography variant="subtitle2">1517 FUND</Typography>
             </a>
-          </ul>
         </Grid>
         <Grid container justify="center" alignItems="flex-end">
           <Typography variant="subtitle2" className={styles.copy}>
