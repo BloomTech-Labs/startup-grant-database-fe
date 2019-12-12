@@ -109,14 +109,14 @@ export const GrantTable = props => {
         //   <h2>Edit and Approve Grants</h2>
         // )}
         columns={[
-          // {
-          //   title: "User Suggestions",
-          //   cellStyle: {
-          //     minWidth: "75px"
-          //   },
-          //   customSort: (a, b) => a.requests.length - b.requests.length,
-          //   render: rowData => <SuggestionCol rowData={rowData} />
-          // },
+          {
+            title: "User Suggestions",
+            cellStyle: {
+              minWidth: "75px"
+            },
+            customSort: (a, b) => a.requests.length - b.requests.length,
+            render: rowData => <SuggestionCol rowData={rowData} />
+          },
           {
             title: "Grant Status",
             cellStyle: cellData => ({
