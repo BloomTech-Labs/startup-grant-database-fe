@@ -28,7 +28,8 @@ import {
   SUBMIT_SUGGESTION_FAILURE,
   DELETE_SUGGESTION_START,
   DELETE_SUGGESTION_SUCCESS,
-  DELETE_SUGGESTION_FAILURE
+  DELETE_SUGGESTION_FAILURE,
+  GET_SUGGESTIONS_SUCCESS
 } from "./types";
 
 // fetch grants for main view
@@ -269,6 +270,21 @@ export const submitSuggestion = suggestion => dispatch => {
       dispatch({ type: SUBMIT_SUGGESTION_FAILURE });
     });
 };
+
+// Get Suggestions by Grant ID
+
+export const getSuggetions = (currentUser, grant_id) => dispatch => {
+  dispatch({ type: GET_SUGGESTIONS_SUCCESS });
+  axios
+    .get(`https://grantly-staging.herokuapp.com/api/admin/suggestions/${grant_id}`,
+      {
+        headers: {
+          auth0id: currentUser.auth_id,
+          authorization: `Bearer ${currentUser.token}`
+        }
+      }
+    );
+}
 
 // Delete a grant suggestion, must be an admin
 export const deleteSuggestion = (requestId, user) => dispatch => {

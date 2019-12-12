@@ -70,9 +70,9 @@ export const GrantTable = props => {
     }
   }, [props.currentUser]);
 
-  useEffect(() => {
-    setSuggestions(suggestions)
-}, [suggestions])
+//   useEffect(() => {
+//     setSuggestions(suggestions)
+// }, [suggestions])
 
   // TODO: display a count of items needing to be reviewed
   // const needToBeReviewed = props.data.filter(
@@ -294,7 +294,7 @@ const mapStateToProps = state => {
     grantStore: state.data,
     currentUser: state.currentUser,
     savedFilters: state.filters,
-    columns: state.columns,
+    columns: state.columns
   };
 };
 

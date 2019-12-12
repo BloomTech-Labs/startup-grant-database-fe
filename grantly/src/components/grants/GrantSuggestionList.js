@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
-import { deleteSuggestion } from "../../actions";
+import { deleteSuggestion, getSuggetions } from "../../actions";
 import DeleteOutlineRoundedIcon from "@material-ui/icons/DeleteOutlineRounded";
+import axios from 'axios';
 
 // Styling
 import { suggestionStyles } from "../../styles/suggestionStyles";
@@ -12,7 +13,26 @@ const GrantSuggestionList = props => {
   // const forceUpdate = useForceUpdate();
 
   // console.log('grantSuggestionList props: ', props)
-  const [suggestions, setSuggestions] = useState(props.rowData.requests);
+  const [suggestions, setSuggestions] = useState([]);
+
+  useEffect(() => {
+    const grant_id = props.rowData.id;
+    axios.get(`https://grantly-staging.herokuapp.com/api/admin/suggestions/${grant_id}`, 
+      {
+        headers: {
+          auth0id: props.currentUser.auth_id,
+          authorization: `Bearer ${props.currentUser.token}`
+        }
+      }
+    )
+    .then(res => {
+      setSuggestions(res.data)
+      console.log('AXIOS WORKED', res.data)
+    })
+    .catch(err => {
+      console.log(err);
+    })
+  }, [props.rowData])
 
   const onClickDelete = (suggestion_id, currentUser) => {
     props.deleteSuggestion(suggestion_id, currentUser);
