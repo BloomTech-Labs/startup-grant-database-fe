@@ -14,6 +14,7 @@ export const sitemapStyles = makeStyles(theme => ({
     fontFamily: "Roboto, sans-serif",
     letterSpacing: "1px",
     zIndex: "3000",
+  
 
     [theme.breakpoints.down("xs")]: {
       background: "#65D8CF",
@@ -33,6 +34,7 @@ export const sitemapStyles = makeStyles(theme => ({
   sitemap: {
     height: "100%",
     margin: "0 -32px",
+    alignItems: "center",
     [theme.breakpoints.down("md")]: {
       display: "block"
     }

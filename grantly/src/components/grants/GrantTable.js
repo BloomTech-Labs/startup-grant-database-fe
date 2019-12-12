@@ -8,25 +8,24 @@ import {
   deleteGrants,
   deleteSuggestion
 } from "../../actions";
-import { useAuth0 } from "../../react-auth0-wrapper";
 import moment from "moment";
 
 // Styling
 import MaterialTable from "material-table";
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
-import Typography from "@material-ui/core/Typography";
 import TextField from "@material-ui/core/TextField";
 import Paper from "@material-ui/core/Paper";
-import {
-  grantTableStyles,
-  suggestionStyles
-} from "../../styles/grantTableStyles";
+import grantTableStyles from "../../styles/grantTableStyles";
 
 // Components
 import GrantSuggestionList from "./GrantSuggestionList";
+import SuggestionCol from "./SuggestionCol.js";
 
 export const GrantTable = props => {
   console.log("GrantTable props", props);
+
+  const [suggestions, setSuggestions] = useState(props.grantStore.requests)
+
   // console.log('GrantTable current user',props.currentUser)
   // console.log('adminprops', props.inAdmin);
 
@@ -71,6 +70,10 @@ export const GrantTable = props => {
     }
   }, [props.currentUser]);
 
+  useEffect(() => {
+    setSuggestions(suggestions)
+}, [suggestions])
+
   // TODO: display a count of items needing to be reviewed
   // const needToBeReviewed = props.data.filter(
   //   grant => grant.is_reviewed === false
@@ -108,8 +111,11 @@ export const GrantTable = props => {
         columns={[
           {
             title: "User Suggestions",
+            cellStyle: {
+              minWidth: "75px"
+            },
             customSort: (a, b) => a.requests.length - b.requests.length,
-            render: rowData => (rowData.requests.length > 0 ? "Yes" : "No")
+            render: rowData => <SuggestionCol rowData={rowData} />
           },
           {
             title: "Grant Status",
@@ -226,11 +232,11 @@ export const GrantTable = props => {
         detailPanel={[
           rowData => ({
             tooltip: "Suggestions",
-            disabled: !rowData.requests.length,
-            icon: () => (
+            // disabled: !rowData.requests.length,
+            icon: () => ( 
               <ChevronRightIcon
-                className={!rowData.requests.length && style.displayNone}
-                style={{ color: "#EF7B5C" }}
+                style={ {fontSize: 40} }
+                // className={rowData.requests.length && style.displayNone}
               />
             ),
             render: rowData => <GrantSuggestionList rowData={rowData} />
@@ -288,7 +294,7 @@ const mapStateToProps = state => {
     grantStore: state.data,
     currentUser: state.currentUser,
     savedFilters: state.filters,
-    columns: state.columns
+    columns: state.columns,
   };
 };
 

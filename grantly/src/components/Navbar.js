@@ -68,7 +68,7 @@ export const NavBar = props => {
             <ListItemIcon
               className={classes.icon}
             >
-              <ViewListIcon />
+              <DashboardIcon />
             </ListItemIcon>
           </ListItemAvatar>
           <Link to="/grants" className={classes.drawerLink}>
@@ -113,7 +113,7 @@ export const NavBar = props => {
             <ListItemIcon
               className={classes.icon}
             >
-              <DashboardIcon />
+              <ViewListIcon />
             </ListItemIcon>
           </ListItemAvatar>
           <Link to="/table" className={classes.drawerLink}>
