@@ -55,7 +55,11 @@ export const suggestionStyles = makeStyles(theme => ({
   suggestionLi: {
     display: 'flex',
     flexWrap: 'wrap',
-    marginTop: '.5em'
+    marginTop: '.5em',
+    padding: '13px'
+  },
+  p_wrapper: {
+    width: '400px'
   },
   suggestionParagraph: {
     width: '50%',

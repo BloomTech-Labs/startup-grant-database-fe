@@ -20,6 +20,7 @@ import grantTableStyles from "../../styles/grantTableStyles";
 // Components
 import GrantSuggestionList from "./GrantSuggestionList";
 import SuggestionCol from "./SuggestionCol.js";
+import Suggestions from "./Suggestions.js";
 
 export const GrantTable = props => {
   console.log("GrantTable props", props);
@@ -115,7 +116,7 @@ export const GrantTable = props => {
               minWidth: "75px"
             },
             customSort: (a, b) => a.requests.length - b.requests.length,
-            render: rowData => <SuggestionCol rowData={rowData} />
+            render: rowData => <Suggestions rowData={rowData} />
           },
           {
             title: "Grant Status",
@@ -229,19 +230,19 @@ export const GrantTable = props => {
             backgroundColor: "#83D7D1"
           }
         }}
-        detailPanel={[
-          rowData => ({
-            tooltip: "Suggestions",
-            // disabled: !rowData.requests.length,
-            icon: () => ( 
-              <ChevronRightIcon
-                style={ {fontSize: 40} }
-                // className={rowData.requests.length && style.displayNone}
-              />
-            ),
-            render: rowData => <GrantSuggestionList rowData={rowData} />
-          })
-        ]}
+        // detailPanel={[
+        //   rowData => ({
+        //     tooltip: "Suggestions",
+        //     // disabled: !rowData.requests.length,
+        //     icon: () => ( 
+        //       <ChevronRightIcon
+        //         style={ {fontSize: 40} }
+        //         // className={rowData.requests.length && style.displayNone}
+        //       />
+        //     ),
+        //     render: rowData => <GrantSuggestionList rowData={rowData} />
+        //   })
+        // ]}
         editable={{
           onRowAdd: newData =>
             new Promise(resolve => {
