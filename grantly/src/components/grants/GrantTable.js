@@ -17,7 +17,7 @@ import Paper from "@material-ui/core/Paper";
 import grantTableStyles from "../../styles/grantTableStyles";
 
 // Components
-import Suggestions from "./Suggestions.js";
+import TableSuggestions from "./TableSuggestions";
 
 export const GrantTable = props => {
   console.log("GrantTable props", props);
@@ -78,7 +78,7 @@ export const GrantTable = props => {
               minWidth: "75px"
             },
             customSort: (a, b) => a.requests.length - b.requests.length,
-            render: rowData => <Suggestions rowData={rowData} />
+            render: rowData => <TableSuggestions rowData={rowData} />
           },
           {
             title: "Grant Status",
@@ -200,6 +200,7 @@ export const GrantTable = props => {
             fontSize: "1em",
             color: "#3A3A3A",
             // letterSpacing: "0.025em",
+            padding: "1em",
             fontWeight: 700,
             backgroundColor: "#83D7D1"
           }
