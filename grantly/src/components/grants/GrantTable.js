@@ -12,23 +12,15 @@ import moment from "moment";
 
 // Styling
 import MaterialTable from "material-table";
-import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import TextField from "@material-ui/core/TextField";
 import Paper from "@material-ui/core/Paper";
 import grantTableStyles from "../../styles/grantTableStyles";
 
 // Components
-import GrantSuggestionList from "./GrantSuggestionList";
-import SuggestionCol from "./SuggestionCol.js";
 import Suggestions from "./Suggestions.js";
 
 export const GrantTable = props => {
   console.log("GrantTable props", props);
-
-  const [suggestions, setSuggestions] = useState(props.grantStore.requests)
-
-  // console.log('GrantTable current user',props.currentUser)
-  // console.log('adminprops', props.inAdmin);
 
   // reformat deadline and last updated dates
   props.data.forEach(grant => {
@@ -48,41 +40,11 @@ export const GrantTable = props => {
     data: []
   });
 
-  // const [stateRowData, setStateRowData] = useState([]);
-
-  // const [hasCurrentUser, setHasCurrentUser] = useState({});
-
-  // useEffect(() => {
-  //   if (props.inAdmin) {
-  //     console.log("what?", props.inAdmin);
-  //     console.log("yes");
-  //     props.adminFetchApi(props.currentUser);
-  //   } else if (props.data.length === 0) {
-  //     console.log('elseif');
-  //     props.fetchApi();
-  //   } else  {
-  //     // props.fetchApi();
-  //   }
-  // }, []);
-
   useEffect(() => {
     if (props.currentUser.id) {
       props.adminFetchApi(props.currentUser);
     }
   }, [props.currentUser]);
-
-//   useEffect(() => {
-//     setSuggestions(suggestions)
-// }, [suggestions])
-
-  // TODO: display a count of items needing to be reviewed
-  // const needToBeReviewed = props.data.filter(
-  //   grant => grant.is_reviewed === false
-  // ).length;
-  // const onClickDelete = (suggestion_id, currentUser) => {
-  //   console.log(suggestion_id, currentUser)
-  //   props.deleteSuggestion(suggestion_id, currentUser);
-  // };
 
   const editComponentFunc = props => {
     console.log("edit props", props);
@@ -159,19 +121,30 @@ export const GrantTable = props => {
             title: "Focus Area",
             field: "area_focus",
             lookup: {
-              Arts: "Arts",
+              "Agriculture": "Agriculture",
+              "Arts": "Arts",
               "Child Care": "Child Care",
+              "Communication Services": "Communication Services",
+              "Consumer Discretionary": "Consumer Discretionary",
+              "Consumer Staples": "Consumer Staples",
               "Economic Opportunity": "Economic Opportunity",
               "Energy & Resources": "Energy & Resources",
-              Environment: "Environment",
-              Financial: "Financial",
-              Food: "Food",
-              Health: "Health",
-              Housing: "Housing",
+              "Environment": "Environment",
+              "Financial": "Financial",
+              "Food": "Food",
+              "Industrials": "Industrials",
               "Information Technology": "Information Technology",
+              "Health": "Health",
+              "Housing": "Housing",
               "Life Improvement": "Life Improvement",
+              "Materials": "Materials",
+              "Real Estate": "Real Estate",
+              "Social Change": "Social Change",
               "Social Entrepreneurship": "Social Entrepreneurship",
-              "Workforce Development": "Workforce Development"
+              "Utilities": "Utilities",
+              "Workforce Development": "Workforce Development",
+              "Other": "Other",
+              "N/A": "N/A"
             }
           },
           { title: "Sponsor", field: "sponsoring_entity" },
@@ -188,13 +161,15 @@ export const GrantTable = props => {
             title: "Geographic Region",
             field: "geographic_region",
             lookup: {
-              Global: "Global",
+              "Global": "Global",
               "North America": "North America",
-              Europe: "Europe",
+              "Europe": "Europe",
               "South America": "South America",
-              Africa: "Africa",
-              Asia: "Asia",
-              Australia: "Australia"
+              "Africa": "Africa",
+              "Asia": "Asia",
+              "Australia": "Australia",
+              "Other": "Other",
+              "N/A": "N/A"
             }
           },
           {
@@ -203,11 +178,10 @@ export const GrantTable = props => {
             lookup: {
               "Minority Business Enterprise": "Minority Business Enterprise",
               "Women Business Enterprise": "Women Business Enterprise",
-              "Disadvantaged Business Enterprise":
-                "Disadvantaged Business Enterprise",
+              "Disadvantaged Business Enterprise": "Disadvantaged Business Enterprise",
               "Veteran Business Enterprise": "Veteran Business Enterprise",
-              Other: "Other",
-              All: "All"
+              "Other": "Other",
+              "All": "All"
             }
           },
           {
@@ -230,19 +204,6 @@ export const GrantTable = props => {
             backgroundColor: "#83D7D1"
           }
         }}
-        // detailPanel={[
-        //   rowData => ({
-        //     tooltip: "Suggestions",
-        //     // disabled: !rowData.requests.length,
-        //     icon: () => ( 
-        //       <ChevronRightIcon
-        //         style={ {fontSize: 40} }
-        //         // className={rowData.requests.length && style.displayNone}
-        //       />
-        //     ),
-        //     render: rowData => <GrantSuggestionList rowData={rowData} />
-        //   })
-        // ]}
         editable={{
           onRowAdd: newData =>
             new Promise(resolve => {

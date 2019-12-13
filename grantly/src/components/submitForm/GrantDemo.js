@@ -16,7 +16,6 @@ import formStyles from "../../styles/formStyles";
 const GrantDemo = props => {
   const styles = formStyles();
 
-
   //Array of values for the "Early Stage Funding" dropdown
 
   const funding = [
@@ -30,33 +29,36 @@ const GrantDemo = props => {
     }
   ];
 
-
   //Array of values for the "Geographic Region" dropdown
 
   const geographicRegion = [
     {
+      value: "North America",
+      label: "North America"
+    },
+    {
+      value: "Europe",
+      label: "Europe"
+    },
+    {
+      value: "South America",
+      label: "South America"
+    },
+    {
+      value: "Africa",
+      label: "Africa"
+    },
+    {
+      value: "Asia",
+      label: "Asia"
+    },
+    {
+      value: "Australia",
+      label: "Australia"
+    },
+    {
       value: "Global",
       label: "Global"
-    },
-    {
-      value: "United States",
-      label: "United States"
-    },
-    {
-      value: "Northeast",
-      label: "Northeast"
-    },
-    {
-      value: "Southeast",
-      label: "Southeast"
-    },
-    {
-      value: "Southwest",
-      label: "Southwest"
-    },
-    {
-      value: "Northwest",
-      label: "Northwest"
     },
     {
       value: "Other",
@@ -67,7 +69,6 @@ const GrantDemo = props => {
       label: "N/A"
     }
   ];
-
 
   //Array of values for the "Target Demographic" dropdown
 
@@ -116,7 +117,6 @@ const GrantDemo = props => {
             value={props.grantInfo.geographic_region}
             onChange={props.handleChanges}
           >
-
             {/* Maps through the array to return values for dropdown */}
 
             {geographicRegion.map(option => (
@@ -137,7 +137,6 @@ const GrantDemo = props => {
             value={props.grantInfo.target_entrepreneur_demographic}
             onChange={props.handleChanges}
           >
-
             {/* Maps through the array to return values for dropdown */}
 
             {targeDemographic.map(option => (
@@ -204,7 +203,4 @@ const mapStateToProps = ({ grantData, isFetching, error }) => ({
   error
 });
 
-export default connect(
-  mapStateToProps,
-  { postGrants, fetchApi }
-)(GrantDemo);
+export default connect(mapStateToProps, { postGrants, fetchApi })(GrantDemo);

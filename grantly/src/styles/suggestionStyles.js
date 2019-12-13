@@ -42,11 +42,11 @@ export const suggestionStyles = makeStyles(theme => ({
     fontFamily: "Nunito Sans",
     fontWeight: "600"
   },
-  suggestionWrapper: {
-    display: 'flex',
-    flexDirection: 'column',
-    margin: "1em",
-  },
+  // suggestionWrapper: {
+  //   display: 'flex',
+  //   flexDirection: 'column',
+  //   margin: "1em",
+  // },
   userSuggestion: {
     fontFamily: "Nunito Sans",
     fontSize: '1.5em',
@@ -54,9 +54,9 @@ export const suggestionStyles = makeStyles(theme => ({
   },
   suggestionLi: {
     display: 'flex',
-    flexWrap: 'wrap',
     marginTop: '.5em',
-    padding: '13px'
+    padding: '13px',
+    borderTop: '3px solid #77D4D0',
   },
   p_wrapper: {
     width: '400px'
@@ -96,5 +96,18 @@ export const suggestionStyles = makeStyles(theme => ({
     "&:hover": {
       backgroundColor: '#f0a692'
     }
-  }
+  },
+  iconBtnWithSuggestions: {
+    backgroundColor: '#3DB8B3',
+    paddingRight: "5px",
+    border: "none"
+  },
+  iconBtnWithOutSuggestions: {
+    backgroundColor: 'none',
+    color: "000",
+    cursor: "unset",
+    "&:hover":{
+      backgroundColor: 'white'
+    }
+  },
 }));

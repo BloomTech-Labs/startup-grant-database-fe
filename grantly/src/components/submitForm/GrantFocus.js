@@ -4,9 +4,7 @@ import {
   Typography,
   TextField,
   Divider,
-
   MenuItem
-
 } from "@material-ui/core";
 import { connect } from "react-redux";
 import { postGrants, fetchApi } from "../../actions/index.js";
@@ -18,6 +16,18 @@ const GrantFocus = props => {
   //Array of values for the "Area Focus" dropdown
 
   const areaFocus = [
+    {
+      value: "Agriculture",
+      label: "Agriculture"
+    },
+    {
+      value: "Arts",
+      label: "Arts"
+    },
+    {
+      value: "Child Care",
+      label: "Child Care"
+    },
     {
       value: "Communication Services",
       label: "Communication Services"
@@ -31,12 +41,20 @@ const GrantFocus = props => {
       label: "Consumer Staples"
     },
     {
-      value: "Energy",
-      label: "Energy"
+      value: "Economic Opportunity",
+      label: "Economic Opportunity"
     },
     {
-      value: "Financials",
-      label: "Financials"
+      value: "Energy & Resources",
+      label: "Energy & Resources"
+    },
+    {
+      value: "Financial",
+      label: "Financial"
+    },
+    {
+      value: "Food",
+      label: "Food"
     },
     {
       value: "Industrials",
@@ -47,6 +65,18 @@ const GrantFocus = props => {
       label: "Information Technology"
     },
     {
+      value: "Health",
+      label: "Health"
+    },
+    {
+      value: "Housing",
+      label: "Housing"
+    },
+    {
+      value: "Life Improvement",
+      label: "Life Improvement"
+    },
+    {
       value: "Materials",
       label: "Materials"
     },
@@ -55,37 +85,20 @@ const GrantFocus = props => {
       label: "Real Estate"
     },
     {
-      value: "Utilities",
-      label: "Utilities"
+      value: "Social Change",
+      label: "Social Change"
     },
-    {
-      value: "N/A",
-      label: "N/A"
-    }
-  ];
-
-  //Array of values for the "Domain Areas" dropdown
-
-  const domainAreas = [
     {
       value: "Social Entrepreneurship",
       label: "Social Entrepreneurship"
     },
     {
-      value: "Conservation",
-      label: "Conservation"
+      value: "Utilities",
+      label: "Utilities"
     },
     {
-      value: "Economic Opportunity",
-      label: "Economic Opportunity"
-    },
-    {
-      value: "Agriculture",
-      label: "Agriculture"
-    },
-    {
-      value: "Social Change",
-      label: "Social Change"
+      value: "Workforce Development",
+      label: "Workforce Development"
     },
     {
       value: "Other",
@@ -96,6 +109,43 @@ const GrantFocus = props => {
       label: "N/A"
     }
   ];
+
+  //Array of values for the "Domain Areas" dropdown
+
+  // const domainAreas = [
+    // {
+    //   value: "Agriculture",
+    //   label: "Agriculture"
+    // },
+  //   {
+  //     value: "Social Entrepreneurship",
+  //     label: "Social Entrepreneurship"
+  //   },
+  //   {
+  //     value: "Conservation",
+  //     label: "Conservation"
+  //   },
+  //   {
+  //     value: "Economic Opportunity",
+  //     label: "Economic Opportunity"
+  //   },
+  //   {
+  //     value: "Agriculture",
+  //     label: "Agriculture"
+  //   },
+  //   {
+  //     value: "Social Change",
+  //     label: "Social Change"
+  //   },
+  //   {
+  //     value: "Other",
+  //     label: "Other"
+  //   },
+  //   {
+  //     value: "N/A",
+  //     label: "N/A"
+  //   }
+  // ];
   return (
     <Fragment>
       <Typography variant="h5" className={styles.subjectHeader}>
@@ -114,7 +164,7 @@ const GrantFocus = props => {
             onChange={props.handleChanges}
           />
         </Grid>
-        <Grid item xs={12}>
+        {/* <Grid item xs={12}>
           <TextField
             label="Focus Area"
             select
@@ -127,14 +177,13 @@ const GrantFocus = props => {
           >
 
             {/* Maps through the array to return values for dropdown */}
-
-            {domainAreas.map(option => (
+        {/* {domainAreas.map(option => (
               <MenuItem key={option.value} value={option.value}>
                 {option.label}
               </MenuItem>
             ))}
           </TextField>
-        </Grid>
+        </Grid> */}
         <Grid item xs={12}>
           <TextField
             label="Grant Categories"
@@ -146,7 +195,6 @@ const GrantFocus = props => {
             value={props.grantInfo.area_focus}
             onChange={props.handleChanges}
           >
-
             {/* Maps through the array to return values for dropdown */}
 
             {areaFocus.map(option => (
@@ -167,15 +215,10 @@ const mapStateToProps = ({ grantData, isFetching, error }) => ({
   error
 });
 
-export default connect(
-  mapStateToProps,
-  { postGrants, fetchApi }
-)(GrantFocus);
+export default connect(mapStateToProps, { postGrants, fetchApi })(GrantFocus);
 
 {
-
   //Checkbox Implementation for future release
-
   /* <FormControl>
           <FormLabel> Area Focus</FormLabel>
           <FormGroup
