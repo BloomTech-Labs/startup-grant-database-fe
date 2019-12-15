@@ -1,10 +1,6 @@
 import { makeStyles } from "@material-ui/core/styles";
 import { border } from "@material-ui/system";
 
-// export const homeStyles = makeStyles(theme => ({
-//     marginBottom: "0",
-//   }))
-
 export const homeStyles = makeStyles(theme => ({
   loader: {
     minHeight: "100vh"
@@ -13,29 +9,50 @@ export const homeStyles = makeStyles(theme => ({
     flexGrow: 1,
     padding: theme.spacing(3)
   },
-  gridContainer: {
+  // homeContainer: {
+  //   minHeight: "100vh",
+  // },
+  homeGridContainer: {
+    minHeight: "92vh",
     margin: "0",
     flexWrap: "nowrap",
     overflowX: "hidden",
-    marginBottom: "2%"
+    // marginBottom: "2%"
   },
   gridItem: {
-    padding: 30
+    padding: "2em 1em 2em 2rem",
+  },
+  grantListResults: {
+    position: "relative",
+    overflow: "auto",
+    minHeight: "92vh",
+    padding: ".5em .5em .5em 1em",
+    // backgroundColor: "#f7f7f7",
   },
   grantList: {
-    height: "100vh",
+    maxHeight: "90vh",
     overflow: "auto",
-    marginTop: "2em",
-    position: "relative"
-  },
-  results: {
-    display: "flex",
-    justifyContent: "flex-end",
-    margin: "10px",
-    color: "#464646",
-    [theme.breakpoints.down("sm")]: {
-      display: "none"
+    position: "relative",
+    [theme.breakpoints.down("xs")]: {
+      // backgroundColor: "#65D8CF",
+      // color: "#fff",
+      backgroundColor: "#f7f7f7",
+      height: "100%",
+      justifyContent: "center",
+      flexDirection: "column",
+      marginBottom: "600px",
     }
+  },
+  grantListTitle: {
+    // display: "flex",
+    // justifyContent: "flex-end",
+    padding: ".8em 1em .2em 1em",
+    color: "#464646",
+    fontFamily: "Nunito Sans",
+    fontWeight: 700,
+    // [theme.breakpoints.down("sm")]: {
+    //   display: "none"
+    // }
   },
   filterIcon: {
     position: "absolute",
@@ -57,13 +74,13 @@ export const homeStyles = makeStyles(theme => ({
   filterIconSelected: {
     fill: "#3DB8B3",
     boxShadow:
-      "0px 1px 0px 0px #3DB8B3, 0px 1px 0px 0px #3DB8B3, 0px 2px 0px -1px #3DB8B3"
+      "0px 1px 0px 0px #3DB8B3, 0px 4px 0px 0px #3DB8B3, 0px 2px 0px -1px #3DB8B3"
   },
   filters: {
     transition: "all .3s ease-in-out"
   },
   hideFilters: {
-    transform: "translateX(100%)"
+    transform: "translateX(110%)"
   },
   showFilters: {
     transform: "translateX(0)"

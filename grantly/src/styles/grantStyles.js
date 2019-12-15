@@ -9,32 +9,32 @@ export const grantStyles = makeStyles(theme => ({
     // display: "flex",
     // flexDirection: "column",
     textAlign: "center",
-    borderRadius: "0",
-    marginBottom: "0.25rem",
-    padding: "25px 5px",
+    // borderRadius: "0",
+    marginBottom: "0.5rem",
+    padding: "15px 5px",
     transition: "all .3s ease-in-out",
-    fontFamily: "Roboto",
+    fontFamily: "Nunito Sans",
     "&:hover": {
-      boxShadow: "0px 5px 10px #BBB",
-      transform: "translateY(-5px)"
+      boxShadow: "0px 3px 6px #BBB",
+      transform: "translateX(5px)"
     },
     "&:active": {
-      transform: "translateY(0)"
+      // transform: "translateY(0)"
+      // transform: "translateX(5px)"
     }
   },
-
   grantCardSelected: {
-    display: "flex",
-    flexDirection: "column",
-    textAlign: "center",
-    borderRadius: "0",
-    marginBottom: "0.25rem",
-    padding: "25px 5px",
-    fontFamily: "Roboto",
-    borderTop: "2px solid #3DB8B3",
-    borderLeft: "5px solid #3DB8B3"
+    // display: "flex",
+    // flexDirection: "column",
+    // textAlign: "center",
+    // borderRadius: "0",
+    marginBottom: "0.5rem",
+    padding: "15px 5px",
+    // fontFamily: "Nunito Sans",
+    // borderTop: "2px solid #3DB8B3",
+    borderLeft: "5px solid #3DB8B3",
+    transform: "translateX(5px)"
   },
-
   grant_layout: {
     display: "flex",
     minHeight: "125px",
@@ -57,18 +57,16 @@ export const grantStyles = makeStyles(theme => ({
   grantName: {
     fontWeight: "500",
     fontFamily: "Roboto",
-    color: "#222222"
-    
+    color: "#222222",
     // border: "1px solid fuchsia"
   },
-        grant_new: {
-          background: "#EF7B5C",
-          color: "#F7F7F7",
-        },
+  grant_new: {
+    background: "#EF7B5C",
+    color: "#F7F7F7",
+  },
   bookmark: {
     alignSelf: "flex-start",
     fill: "#C4C4C4"
-
     // border: "1px solid fuchsia"
   },
   editIcon: {

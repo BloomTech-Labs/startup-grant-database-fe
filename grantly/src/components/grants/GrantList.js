@@ -2,15 +2,18 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { useAuth0 } from "../../react-auth0-wrapper";
-
-// Objects
-import Grant from "./Grant";
-import Typography from "@material-ui/core/Typography";
-
 import { fetchApi, adminFetchApi } from "../../actions";
+
+// Components
+import Grant from "./Grant";
 
 // Styles
 import { homeStyles } from "../../styles/homeStyles";
+
+// Material UI
+import Typography from "@material-ui/core/Typography";
+import Paper from "@material-ui/core/Paper";
+import { Container, Box } from "@material-ui/core";
 
 // test funcs
 // exports.sum = function(a, b) {
@@ -18,7 +21,9 @@ import { homeStyles } from "../../styles/homeStyles";
 // };
 
 export const GrantList = props => {
-  const styles = homeStyles();
+
+  const style = homeStyles();
+
   useEffect(() => {
     if (props.inAdmin) {
       console.log("what?", props.inAdmin);
@@ -26,10 +31,11 @@ export const GrantList = props => {
       props.adminFetchApi(props.currentUser);
     } else if (props.data.length === 0) {
       props.fetchApi();
-    } else  {
+    } else {
       // props.fetchApi();
     }
   }, []);
+
   const needToBeReviewed = props.data.filter(
     grant => grant.is_reviewed === false
   ).length;
@@ -39,27 +45,26 @@ export const GrantList = props => {
   // console.log("CurrentUser Data from Store", props.currentUser);
 
   return (
-    <div>
-      {props.data.length && (
-        <p className={styles.results}>{props.data.length} Grants</p>
-      )}
+    <>
+      {props.data.length ? (
+        <Typography className={style.grantListTitle}>
+          {props.data.length} Grants
+        </Typography>
+      ) : null }
       {/* {props.inAdmin && <p>{needToBeReviewed} grant(s) need to be reviewed</p>} */}
-
-      {props.data.length > 0 ? (
-        props.data.map(grant => {
+      <Container className={style.grantListResults}>
+        {props.data.map(grant => {
           return (
             <Grant
-              grant={grant}
-              key={grant.id}
-              inAdmin={props.inAdmin}
-              history={props.history}
+            grant={grant}
+            key={grant.id}
+            inAdmin={props.inAdmin}
+            history={props.history}
             />
-          );
-        })
-      ) : (
-        <div> Grants incoming! </div>
-      )}
-    </div>
+            );
+        })}
+      </Container>
+    </>
   );
 };
 
@@ -74,7 +79,4 @@ const mapStateToProps = state => {
     savedFilters: state.filters
   };
 };
-export default connect(
-  mapStateToProps,
-  { fetchApi, adminFetchApi }
-)(GrantList);
+export default connect(mapStateToProps, { fetchApi, adminFetchApi })(GrantList);
