@@ -1,9 +1,7 @@
 // Dependencies
 import React from "react";
 import { connect } from "react-redux";
-
 import Loader from "react-loader-spinner";
-
 import Moment from "react-moment";
 import moment from "moment";
 
@@ -14,12 +12,11 @@ import LanguageIcon from "@material-ui/icons/Language";
 import SuggestionDialog from "../dialogs/SuggestionDialog";
 import EditGrantDialog from "../dialogs/EditGrantDialog";
 
-// =========== STYLES ===========
+// Styles
 import { showcaseStyles } from "../../styles/grantShowcaseStyles";
 
 export const GrantShowcase = props => {
-
-  const showcase = showcaseStyles();
+  const style = showcaseStyles();
 
   function formatNumbers(num) {
     return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -40,8 +37,8 @@ export const GrantShowcase = props => {
 
   if (props.isFetching) {
     return (
-      <div className={showcase.loaderDiv}>
-        <Loader type="Triangle" color="#3DB8B3" height="400" />
+      <div className={style.loaderDiv}>
+        <Loader type="Triangle" color="#3DB8B3" height="300" />
       </div>
     );
   }
@@ -51,8 +48,8 @@ export const GrantShowcase = props => {
       <Card
         className={
           props.inAdmin
-            ? `${showcase.showcaseCard} ${showcase.inAdmin}`
-            : showcase.showcaseCard
+            ? `${style.showcaseCard} ${style.inAdmin}`
+            : style.showcaseCard
         }
       >
         {/* ================= Top container ================= */}
@@ -62,16 +59,16 @@ export const GrantShowcase = props => {
             direction="row"
             justify="space-between"
             alignItems="center"
-            className={showcase.topContent}
+            className={style.topContent}
           >
             <Grid
               container
-              className={showcase.showcase_header}
+              className={style.showcase_header}
               alignItems="center"
             >
               <Grid item>
                 <Typography
-                  className={showcase.grant_name}
+                  className={style.grant_name}
                   variant="h5"
                   component="h5"
                 >
@@ -84,11 +81,11 @@ export const GrantShowcase = props => {
               <Grid item>
                 {props.inAdmin ? (
                   <EditGrantDialog
-                    className={showcase.editIcon}
+                    className={style.editIcon}
                     grant={props.grant}
                   />
-                ) : //( <BookmarkBorderOutlinedIcon className={showcase.bookmark} />)
-                  null}
+                ) : //( <BookmarkBorderOutlinedIcon className={style.bookmark} />)
+                null}
               </Grid>
             </Grid>
           </Grid>
@@ -99,7 +96,7 @@ export const GrantShowcase = props => {
             alignItems="flex-end"
             alignContent="flex-end"
           >
-            <LanguageIcon className={showcase.website}></LanguageIcon>
+            <LanguageIcon className={style.website}></LanguageIcon>
 
             <a href={props.grant.website} target="_blank">
               {props.grant.website}
@@ -108,7 +105,7 @@ export const GrantShowcase = props => {
             {/* <Grid item>
               <a href={props.grant.website} target="_blank">
                 <Button
-                  className={showcase.applyButton}
+                  className={style.applyButton}
                   variant="contained"
                   color="primary"
                 >
@@ -129,71 +126,57 @@ export const GrantShowcase = props => {
           container
           justify="space-between"
           direction="row"
-          className="headers-1"
+          className={style.showcaseContainer}
         >
-          <Grid
-            item
-            className={showcase.showcaseDetailsTop}
-            xs={4}
-            sm={5}
-            md={2}
-          >
-            <Grid className={showcase.showcaseSpan}>Amount:</Grid>
-            <Grid className={showcase.innerDetails}>
+          <Grid item xs={4} sm={5} md={2} className={style.showcaseDetailsTop}>
+            <Typography className={style.showcaseSpan}>Amount</Typography>
+            <Typography className={style.innerDetails}>
               {props.grant.amount
                 ? "$" + formatNumbers(props.grant.amount)
                 : "See website for details"}
-            </Grid>
+            </Typography>
           </Grid>
-          <Grid
-            item
-            xs={4}
-            sm={5}
-            md={3}
-            className={showcase.showcaseDetailsTop}
-          >
-            <Grid className={showcase.showcaseSpan}>Deadline:</Grid>
-            <Grid className={showcase.innerDetails}>{momentDeadline}</Grid>
+          <Grid item xs={4} sm={5} md={4} className={style.showcaseDetailsTop}>
+            <Typography className={style.showcaseSpan}>Deadline</Typography>
+            <Typography className={style.innerDetails}>
+              {momentDeadline}
+            </Typography>
           </Grid>
-          <Grid
-            item
-            xs={9}
-            sm={10}
-            md={6}
-            className={showcase.showcaseDetailsTop}
-          >
-            <Grid className={showcase.showcaseSpan}>Grant Categories:</Grid>
-            <Grid className={showcase.innerDetails}>
+          <Grid item xs={9} sm={10} md={5} className={style.showcaseDetailsTop}>
+            <Typography className={style.showcaseSpan}>
+              Grant Categories
+            </Typography>
+            <Typography className={style.innerDetails}>
               {props.grant.domain_areas}
-            </Grid>
+            </Typography>
           </Grid>
         </Grid>
         <Grid container justify="space-between" className="headers-2">
-          <Grid item xs={5} md={2} className={showcase.showcaseDetailsBottom}>
-            <Grid className={showcase.showcaseSpan}>Region:</Grid>
-            <Grid className={showcase.innerDetails}>
-              {" "}
+          <Grid item xs={5} md={2} className={style.showcaseDetailsBottom}>
+            <Typography className={style.showcaseSpan}>Region</Typography>
+            <Typography className={style.innerDetails}>
               {props.grant.geographic_region}
-            </Grid>
+            </Typography>
           </Grid>
-          <Grid item xs={5} md={4} className={showcase.showcaseDetailsBottom}>
-            <Grid className={showcase.showcaseSpan}>Focus Area:</Grid>
-            <Grid className={showcase.innerDetails}>
+          <Grid item xs={5} md={4} className={style.showcaseDetailsBottom}>
+            <Typography className={style.showcaseSpan}>Focus Area</Typography>
+            <Typography className={style.innerDetails}>
               {props.grant.area_focus}
-            </Grid>
+            </Typography>
           </Grid>
-          <Grid item xs={8} md={5} className={showcase.showcaseDetailsBottom}>
-            <Grid className={showcase.showcaseSpan}>Sponsor:</Grid>
-            <Grid className={showcase.innerDetails}>
-              {" "}
+          <Grid item xs={8} md={5} className={style.showcaseDetailsBottom}>
+            <Typography className={style.showcaseSpan}>Sponsor</Typography>
+            <Typography className={style.innerDetails}>
               {props.grant.sponsoring_entity}
-            </Grid>
+            </Typography>
           </Grid>
         </Grid>
-        <Grid container className={showcase.headersThree}>
-          <Grid item>
-            <Grid className={showcase.showcaseSpan}>Notes:</Grid>
-            <Grid className={showcase.innerDetails}>{props.grant.notes}</Grid>
+        <Grid container className={style.headersThree}>
+          <Grid item xs={12}>
+            <Typography className={style.showcaseSpan}>Notes</Typography>
+            <Typography className={style.innerDetails}>
+              {props.grant.notes}
+            </Typography>
           </Grid>
         </Grid>
         <Divider color="primary" />
@@ -203,17 +186,17 @@ export const GrantShowcase = props => {
           direction="row"
           justify="space-evenly"
           alignItems="center"
-          className={showcase.topContent}
+          className={style.topContent}
         >
           <Grid item>
             <a href={props.grant.website} target="_blank">
               <Button
-                className={showcase.applyButton}
+                className={style.applyButton}
                 variant="contained"
                 color="primary"
               >
                 Apply to Grant
-            </Button>
+              </Button>
             </a>
           </Grid>
           {!props.inAdmin && (

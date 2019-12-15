@@ -23,10 +23,11 @@ export const showcaseStyles = makeStyles(theme => ({
   },
   topContent: {
     margin: " 0",
-    fontWeight: "700"
+    // fontWeight: "700"
     // fontSize: "1.8rem"
   },
   showcaseSpan: {
+    fontFamily: "Nunito Sans",
     fontWeight: "bold",
     fontSize: "1.1rem"
   },
@@ -39,17 +40,19 @@ export const showcaseStyles = makeStyles(theme => ({
     fontSize: "1.2rem",
     overflow: "none"
   },
+  showcaseContainer: {
 
+  },
   showcaseDetailsTop: {
     // height: 90,
     marginTop: 20,
+    // marginRight: 5,
     marginBottom: 10,
-    marginLeft: 5,
-    marginRight: 5,
+    // marginLeft: 5,
     paddingTop: 5,
     paddingBottom: 5,
-    paddingLeft: 5,
-    paddingRight: 5,
+    // paddingLeft: 5,
+    // paddingRight: 5,
     // border: "1px solid red",
     lineHeight: "1.2rem",
     fontFamily: "EB Garamond"
@@ -58,12 +61,12 @@ export const showcaseStyles = makeStyles(theme => ({
     height: 90,
     marginTop: 10,
     marginBottom: 10,
-    marginLeft: 5,
-    marginRight: 5,
+    // marginLeft: 5,
+    // marginRight: 5,
     paddingTop: 5,
     paddingBottom: 5,
-    paddingLeft: 5,
-    paddingRight: 5,
+    // paddingLeft: 5,
+    // paddingRight: 5,
     lineHeight: "1.2rem",
     fontFamily: "EB Garamond"
     // border: "1px solid red"
@@ -93,7 +96,7 @@ export const showcaseStyles = makeStyles(theme => ({
   innerDetails: {
     color: "#696969",
     fontSize: "0.9rem",
-    margin: 5,
+    marginTop: 5,
     height: "auto"
   },
   headersThree: {
