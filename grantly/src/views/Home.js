@@ -2,11 +2,13 @@ import React, { useState } from "react";
 import Media from "react-media";
 
 // Styling
-import { makeStyles } from "@material-ui/core/styles";
 import { homeStyles } from "../styles/homeStyles";
+
+// Material UI
 import Grid from "@material-ui/core/Grid";
-import TuneIcon from "@material-ui/icons/Tune";
+import Box from "@material-ui/core/Box";
 import SwipeableDrawer from "@material-ui/core/SwipeableDrawer";
+import TuneIcon from "@material-ui/icons/Tune";
 
 // components
 import Navbar from "../components/Navbar";
@@ -21,6 +23,7 @@ import MobileFilters from "../components/mobile/MobileFilters";
 
 const Home = props => {
   const [isOpen, setIsOpen] = useState(false);
+
   //Show filters
   const [filterOpen, setFilterOpen] = useState();
   const toggleDrawer = () => {
@@ -30,7 +33,9 @@ const Home = props => {
   const toggleFilters = () => {
     setFilterOpen(!filterOpen);
   };
+
   const classes = homeStyles();
+
   return (
     <>
       {/* <Navbar location={props.location.pathname} /> */}
@@ -51,53 +56,36 @@ const Home = props => {
               </SwipeableDrawer>
             </>
           ) : (
-            <div>
-              <Grid
-                container
-                direction="row"
-                justify="space-between"
-                alignItems="flex-start"
-                className={classes.gridContainer}
-              >
-                <Grid
-                  item
-                  md={4}
-                  xs={4}
-                  className={classes.grantList}
-                  // style={{ padding: "30px 0 0 30px" }}
-                >
-                  {/* <div className={classes.scrollBox}> */}
-                  <GrantList inAdmin={false} location={props.location} />
-                  {/* </div> */}
-                </Grid>
-                <Grid
-                  item
-                  xs={6}
-                  sm={9}
-                  md={7}
-                  className={classes.gridItem}
-                  // style={{ padding: "30px 30px 0 30px" }}
-                >
-                  <GrantShowcase />
-                </Grid>
-                <Grid item xs={4} sm={2} md={2}>
-                  <TuneIcon
-                    className={`${classes.filterIcon} ${filterOpen &&
-                      classes.filterIconSelected}`}
-                    onClick={toggleFilters}
-                  >
-                    Filters
-                  </TuneIcon>
-                  <div
-                    className={`${classes.filters} ${
-                      filterOpen ? classes.showFilters : classes.hideFilters
-                    }`}
-                  >
-                    <Filters location={props.location.pathname} />
-                  </div>
-                </Grid>
+            <Grid
+              container
+              direction="row"
+              justify="space-between"
+              alignItems="flex-start"
+              className={classes.homeGridContainer}
+            >
+              <Grid item md={4} xs={4} className={classes.grantList}>
+                <GrantList inAdmin={false} location={props.location} />
               </Grid>
-            </div>
+              <Grid item xs={6} sm={9} md={7} className={classes.gridItem}>
+                <GrantShowcase />
+              </Grid>
+              <Grid item xs={4} sm={2} md={2}>
+                <TuneIcon
+                  className={`${classes.filterIcon} ${filterOpen &&
+                    classes.filterIconSelected}`}
+                  onClick={toggleFilters}
+                >
+                  Filters
+                </TuneIcon>
+                <div
+                  className={`${classes.filters} ${
+                    filterOpen ? classes.showFilters : classes.hideFilters
+                  }`}
+                >
+                  <Filters location={props.location.pathname} />
+                </div>
+              </Grid>
+            </Grid>
           )
         }
       </Media>
