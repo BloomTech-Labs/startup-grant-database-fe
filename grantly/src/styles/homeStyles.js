@@ -18,6 +18,9 @@ export const homeStyles = makeStyles(theme => ({
     flexWrap: "nowrap",
     overflowX: "hidden",
     // marginBottom: "2%"
+    [theme.breakpoints.down("sm")]: {
+      background: "#f7f7f7"
+    }
   },
   gridItem: {
     padding: "2em 1em 2em 2rem",
@@ -27,6 +30,9 @@ export const homeStyles = makeStyles(theme => ({
     overflow: "auto",
     minHeight: "92vh",
     padding: ".5em .5em .5em 1em",
+    [theme.breakpoints.down("sm")]: {
+      padding: "0 2em 0 2em",
+    },
     // backgroundColor: "#f7f7f7",
   },
   grantList: {
@@ -36,7 +42,7 @@ export const homeStyles = makeStyles(theme => ({
     [theme.breakpoints.down("xs")]: {
       // backgroundColor: "#65D8CF",
       // color: "#fff",
-      backgroundColor: "#f7f7f7",
+      // backgroundColor: "#f7f7f7",
       height: "100%",
       justifyContent: "center",
       flexDirection: "column",

@@ -1,8 +1,10 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import { useTheme } from "@material-ui/core/styles";
-import { mobileTabStyles } from "../../styles/mobileTabStyles";
+import { changeTab } from "../../actions/index";
 
+// Style imports
+import { mobileTabStyles } from "../../styles/mobileTabStyles";
+import { useTheme } from "@material-ui/core/styles";
 import SwipeableViews from "react-swipeable-views";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
@@ -10,9 +12,9 @@ import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 import AppBar from "@material-ui/core/AppBar";
 
+// components
 import GrantList from "../grants/GrantList";
 import GrantShowcase from "../grants/GrantShowcase";
-import { changeTab } from "../../actions/index";
 import SubmitForm from "../SubmitForm";
 
 function TabPanel(props) {
@@ -31,6 +33,7 @@ function TabPanel(props) {
     </Typography>
   );
 }
+
 function a11yProps(index) {
   return {
     id: `full-width-tab-${index}`,
@@ -39,12 +42,14 @@ function a11yProps(index) {
 }
 
 const MobileTabs = ({ grant, currentTab, changeTab, inAdmin, history }) => {
-  const classes = mobileTabStyles();
+  const style = mobileTabStyles();
   const theme = useTheme();
   const [value, setValue] = React.useState(0);
+
   useEffect(() => {
     handleChangeIndex(currentTab);
   }, [currentTab]);
+
   function handleChange(event, newValue) {
     setValue(newValue);
     changeTab(newValue);
@@ -54,8 +59,9 @@ const MobileTabs = ({ grant, currentTab, changeTab, inAdmin, history }) => {
     setValue(index);
     changeTab(index);
   }
+
   return (
-    <div className={classes.root}>
+    <div className={style.root}>
       <AppBar position="static" color="default">
         <Tabs
           value={value}
@@ -65,9 +71,9 @@ const MobileTabs = ({ grant, currentTab, changeTab, inAdmin, history }) => {
           variant="fullWidth"
           aria-label="full width tabs example"
         >
-          <Tab className={classes.tab} label="Grants" {...a11yProps(0)} />
-          <Tab className={classes.tab} label="Showcase" {...a11yProps(1)} />
-          <Tab className={classes.tab} label="Submit" {...a11yProps(2)} />
+          <Tab className={style.tab} label="Grants" {...a11yProps(0)} />
+          <Tab className={style.tab} label="Showcase" {...a11yProps(1)} />
+          <Tab className={style.tab} label="Submit" {...a11yProps(2)} />
         </Tabs>
       </AppBar>
       <SwipeableViews
