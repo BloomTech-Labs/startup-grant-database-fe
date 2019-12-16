@@ -27,8 +27,8 @@ export const GrantShowcase = props => {
       {props.grant.most_recent_application_due_date}
     </Moment>
   ) : (
-      <div>See website for details</div>
-    );
+    <div>See website for details</div>
+  );
 
   const momentDeadline =
     props.grant.most_recent_application_due_date &&
@@ -97,7 +97,6 @@ export const GrantShowcase = props => {
             alignContent="flex-end"
           >
             <LanguageIcon className={style.website}></LanguageIcon>
-
             <a href={props.grant.website} target="_blank">
               {props.grant.website}
             </a>
@@ -128,52 +127,51 @@ export const GrantShowcase = props => {
           direction="row"
           className={style.showcaseContainer}
         >
-          <Grid item xs={4} sm={5} md={2} className={style.showcaseDetailsTop}>
-            <Typography className={style.showcaseSpan}>Amount</Typography>
+          <Grid item xs={4} sm={5} md={2} className={style.showcaseDetails}>
+            <Typography className={style.detailTitle}>Amount</Typography>
             <Typography className={style.innerDetails}>
               {props.grant.amount
                 ? "$" + formatNumbers(props.grant.amount)
                 : "See website for details"}
             </Typography>
           </Grid>
-          <Grid item xs={4} sm={5} md={4} className={style.showcaseDetailsTop}>
-            <Typography className={style.showcaseSpan}>Deadline</Typography>
+          <Grid item xs={4} sm={5} md={4} className={style.showcaseDetails}>
+            <Typography className={style.detailTitle}>Deadline</Typography>
             <Typography className={style.innerDetails}>
               {momentDeadline}
             </Typography>
           </Grid>
-          <Grid item xs={9} sm={10} md={5} className={style.showcaseDetailsTop}>
-            <Typography className={style.showcaseSpan}>
+          <Grid item xs={9} sm={10} md={5} className={style.showcaseDetails}>
+            <Typography className={style.detailTitle}>
               Grant Categories
             </Typography>
             <Typography className={style.innerDetails}>
               {props.grant.domain_areas}
             </Typography>
           </Grid>
-        </Grid>
-        <Grid container justify="space-between" className="headers-2">
-          <Grid item xs={5} md={2} className={style.showcaseDetailsBottom}>
-            <Typography className={style.showcaseSpan}>Region</Typography>
+          <Grid item xs={4} sm={5} md={2} className={style.showcaseDetails}>
+            <Typography className={style.detailTitle}>Region</Typography>
             <Typography className={style.innerDetails}>
               {props.grant.geographic_region}
             </Typography>
           </Grid>
-          <Grid item xs={5} md={4} className={style.showcaseDetailsBottom}>
-            <Typography className={style.showcaseSpan}>Focus Area</Typography>
+          <Grid item xs={4} sm={5} md={4} className={style.showcaseDetails}>
+            <Typography className={style.detailTitle}>Focus Area</Typography>
             <Typography className={style.innerDetails}>
               {props.grant.area_focus}
             </Typography>
           </Grid>
-          <Grid item xs={8} md={5} className={style.showcaseDetailsBottom}>
-            <Typography className={style.showcaseSpan}>Sponsor</Typography>
+          <Grid item xs={9} sm={10} md={5} className={style.showcaseDetails}>
+            <Typography className={style.detailTitle}>Sponsor</Typography>
             <Typography className={style.innerDetails}>
               {props.grant.sponsoring_entity}
             </Typography>
           </Grid>
         </Grid>
-        <Grid container className={style.headersThree}>
+
+        <Grid container className={style.showcaseNotes}>
           <Grid item xs={12}>
-            <Typography className={style.showcaseSpan}>Notes</Typography>
+            <Typography className={style.detailTitle}>Notes</Typography>
             <Typography className={style.innerDetails}>
               {props.grant.notes}
             </Typography>
@@ -186,7 +184,7 @@ export const GrantShowcase = props => {
           direction="row"
           justify="space-evenly"
           alignItems="center"
-          className={style.topContent}
+          className={style.showcaseButtonContainer}
         >
           <Grid item>
             <a href={props.grant.website} target="_blank">
