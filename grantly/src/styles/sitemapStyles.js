@@ -8,7 +8,7 @@ export const sitemapStyles = makeStyles(theme => ({
     color: "#696969",
     background: "#fff",
     width: "100%",
-    // position: "fixed",
+    display: "block",
     position: "absolute",
     bottom: 0,
     // padding: "0",
@@ -23,33 +23,30 @@ export const sitemapStyles = makeStyles(theme => ({
   },
   sitemap: {
     display: "flex",
-    justifyContent: "space-between",
+    justifyContent: "space-around",
     alignItems: "center",
     height: "100%",
-    color: "#696969",
-    background: "#fff",
     margin: "0",
+    padding: "0",
+    background: "#fff",
+    color: "#696969",
     letterSpacing: "1px",
-    // backgroundColor: "coral",
+    [theme.breakpoints.down("sm")]: {
+      background: "#65D8CF",
+      // color: "#fff",
+    },
     [theme.breakpoints.down("xs")]: {
-      // display: "block",
-      backgroundColor: "#65D8CF",
-      color: "#fff",
-      height: "100%",
       justifyContent: "center",
+      justifyContent: "space-between",
       flexDirection: "column",
     }
   },
   item: {
-    margin: "0 auto",
+    margin: "0",
     padding: "0",
-    // width: "100%",
-    // backgroundColor: "pink",
+    color: "#696969",
     [theme.breakpoints.down("xs")]: {
-      // backgroundColor: "pink",
-      margin: "0",
-      // padding: "0",
-      // width: "100%"
+      paddingTop: "1em",
     }
   },
   link: {
@@ -62,16 +59,16 @@ export const sitemapStyles = makeStyles(theme => ({
     [theme.breakpoints.down("md")]: {
       margin: ".5em 1em"
     },
-    [theme.breakpoints.down("xs")]: {
+    [theme.breakpoints.down("sm")]: {
       color: "#fff"
-    }
+    },
   },
   copy: {
-    margin: "0 5% 1em 5%",
-    // backgroundColor: "tan",
-    [theme.breakpoints.down("xs")]: {
-      fontSize: "1rem",
-      marginBottom: "4em"
+    margin: "0 1em 1em 1em",
+    [theme.breakpoints.down("sm")]: {
+      fontSize: ".8rem",
+      marginTop: "2em",
+      color: "#fff"
     }
   }
 }));

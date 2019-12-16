@@ -15,43 +15,43 @@ const Sitemap = () => {
   //   lock.show()
   // }
   return (
-    <Box component="div" className={styles.sitemapContainer}>
-      <Grid container className={styles.sitemap}>
-        <Grid item className={styles.item}>
+    // <Box component="div" className={styles.sitemapContainer}>
+    <Grid container className={styles.sitemap}>
+      <Grid item className={styles.item}>
+        <Typography variant="h5" component="h5">
           <Link to="/" className={styles.link}>
-            <Typography variant="h5" component="h5">
-              <FGLogo siteMap={true} />
-            </Typography>
+            <FGLogo siteMap={true} />
           </Link>
-        </Grid>
-        <Grid item className={styles.item}>
-          <Typography variant="subtitle2">
-            <Link to="/about" className={styles.link}>
-              ABOUT
-            </Link>
-          </Typography>
-        </Grid>
-        <Grid item className={styles.item}>
-          <Typography variant="subtitle2">
-            <Link href="mailto:labs16grantly@gmail.com" className={styles.link}>
-              CONTACT
-            </Link>
-          </Typography>
-        </Grid>
-        <Grid item className={styles.item}>
-          <Typography variant="subtitle2">
-            <Link href="https://www.1517fund.com/" className={styles.link}>
-              1517 FUND
-            </Link>
-          </Typography>
-        </Grid>
-        <Grid container justify="center" alignItems="flex-end">
-          <Typography variant="subtitle2" className={styles.copy}>
-            &copy; 2019 FOUNDER GRANTS. ALL RIGHTS RESERVED.
-          </Typography>
-        </Grid>
+        </Typography>
       </Grid>
-    </Box>
+      <Grid item className={styles.item}>
+        <Typography variant="subtitle2">
+          <Link to="/about" className={styles.link}>
+            ABOUT
+          </Link>
+        </Typography>
+      </Grid>
+      <Grid item className={styles.item}>
+        <Typography variant="subtitle2">
+          <Link href="mailto:labs16grantly@gmail.com" className={styles.link}>
+            CONTACT
+          </Link>
+        </Typography>
+      </Grid>
+      <Grid item className={styles.item}>
+        <Typography variant="subtitle2">
+          <Link href="https://www.1517fund.com/" className={styles.link}>
+            1517 FUND
+          </Link>
+        </Typography>
+      </Grid>
+      <Grid container justify="center" alignItems="flex-end">
+        <Typography variant="subtitle2" className={styles.copy}>
+          &copy; 2019 FOUNDER GRANTS. ALL RIGHTS RESERVED.
+        </Typography>
+      </Grid>
+    </Grid>
+    // </Box>
   );
 };
 
