@@ -19,7 +19,8 @@ import {
   DELETE_GRANT_FAILURE,
   CHECK_ADMIN,
   SET_USER,
-  SET_TOKEN_IN_STORE
+  SET_TOKEN_IN_STORE,
+  DELETE_SUGGESTION_SUCCESS
 } from "../actions/types";
 import moment from "moment";
 
@@ -27,6 +28,7 @@ import moment from "moment";
 
 const initialState = {
   data: [],
+  isDeleted: 0,
   isFetching: false,
   filteredGrants: [],
   grantShowcase: {},
@@ -296,6 +298,12 @@ export const rooterReducer = (state = initialState, { type, payload }) => {
         isFetching: false,
         error: payload
       };
+
+    case DELETE_SUGGESTION_SUCCESS:
+      return {
+        ...state,
+        isDeleted: Math.random()
+      }
 
     default:
       return state;

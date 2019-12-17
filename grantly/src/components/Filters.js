@@ -62,7 +62,10 @@ const Filters = ({
       "North America",
       "Europe",
       "South America",
-      "Africa"
+      "Africa",
+      "Asia",
+      "Australia",
+      "Other"
     ],
     amount: ["Under $1,000", "$1,000-$5,000", "$5,000-$10,000", "$10,000+"],
     domain_areas: ["Tech", "Agriculture", "Social", "Energy"],

@@ -9,9 +9,11 @@ import {
   DialogTitle,
   TextField,
   Grid,
-  Typography
+  Typography,
+  FormControl,
+  NativeSelect
 } from "@material-ui/core";
-import { dialogStyles } from "../../styles/dialogStyles"
+import { dialogStyles } from "../../styles/dialogStyles";
 import { submitSuggestion } from "../../actions/index";
 
 // When user clicks on
@@ -93,13 +95,26 @@ const SuggestionDialog = props => {
           </Grid>
         </Grid>
         <DialogContent style={{ paddingBottom: "0" }}>
-          <form>
+          <FormControl>
             <TextField
               margin="normal"
               label="subject"
               onChange={handleChanges("subject")}
               variant="outlined"
             />
+            {/* <NativeSelect
+              // value={suggestion.subject}
+              label="subject"
+              onChange={handleChanges("subject")}
+            >
+             <option value="" />
+             <option value="This grant contains a typo">This grant contains a typo<option />
+             <option value="This grant contains outdated information">This grant contains outdated information<option />
+             <option value="This grant contains incorrect information">This grant contains incorrect information<option />
+             <option value="Report this grant as fraudulent">Report this grant as fraudulent<option />
+             <option value="Request this grant be removed">Request this grant be removed<option />
+             <option value="Other">Other<option />
+            </NativeSelect> */}
             <br />
             <TextField
               margin="normal"
@@ -111,7 +126,7 @@ const SuggestionDialog = props => {
               className={classes.formField}
             />
             <br />
-          </form>
+          </FormControl>
         </DialogContent>
         <DialogActions>
           <Grid container justify="center">
@@ -143,7 +158,4 @@ const SuggestionDialog = props => {
   );
 };
 
-export default connect(
-  null,
-  { submitSuggestion }
-)(SuggestionDialog);
+export default connect(null, { submitSuggestion })(SuggestionDialog);

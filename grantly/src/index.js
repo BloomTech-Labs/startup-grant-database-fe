@@ -4,8 +4,9 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import { Auth0Provider } from "./react-auth0-wrapper";
-import config from "./auth_config.json";
+// import config from "./auth_config.json";
 import * as Sentry from '@sentry/browser';
+import dotenv from 'dotenv';
 
 // Objects
 import App from "./App";
@@ -29,10 +30,10 @@ Sentry.init({dsn: "https://3fff2a57bcec4d419f25f24c703f14b9@sentry.io/1811765"})
 
 const AppWithProvider = (
   <Auth0Provider
-    domain={config.domain}
-    client_id={config.clientId}
+    domain={process.env.CLIENT_DOMAIN}
+    client_id={process.env.CLIENT_ID}
     redirect_uri={`${window.location.origin}`}
-    audience={config.audience}
+    audience={process.env.CLIENT_AUDIENCE}
     onRedirectCallback={onRedirectCallback}
   >
     <Provider store={store}>

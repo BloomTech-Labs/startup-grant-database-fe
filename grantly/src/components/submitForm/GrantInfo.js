@@ -39,7 +39,7 @@ const GrantInfo = props => {
             onChange={props.handleChanges}
           />
         </Grid>
-        <Grid item xs={12}>
+        {/* <Grid item xs={12}>
           <TextField
             label="Type"
             type="text"
@@ -49,7 +49,7 @@ const GrantInfo = props => {
             value={props.grantInfo.type}
             onChange={props.handleChanges}
           />
-        </Grid>
+        </Grid> */}
         <Grid item xs={12}>
           <TextField
             label="Amount"
