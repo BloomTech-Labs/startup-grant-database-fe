@@ -8,7 +8,7 @@ const DEFAULT_REDIRECT_CALLBACK = () =>
 export const Auth0Context = React.createContext();
 export const useAuth0 = () => useContext(Auth0Context);
 
-const clientId = `${process.env.CLIENT_ID}`;
+const clientId = `${process.env.REACT_APP_CLIENT_ID}`;
 const domain = "founder-grants.auth0.com";
 const options = {
   languageDictionary: {
