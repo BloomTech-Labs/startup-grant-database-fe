@@ -200,6 +200,7 @@ const Filters = ({
           {grantFilters.geographic_region.map(name => {
             return (
               <FormControlLabel
+                className={classes.mobileSet}
                 control={
                   <Checkbox
                     checked={savedFilters.geographic_region.includes(
@@ -224,6 +225,7 @@ const Filters = ({
           {grantFilters.domain_areas.map(name => {
             return (
               <FormControlLabel
+                className={classes.mobileSet}
                 control={
                   <Checkbox
                     checked={savedFilters.domain_areas.includes(

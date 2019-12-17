@@ -9,11 +9,8 @@ export const homeStyles = makeStyles(theme => ({
     flexGrow: 1,
     padding: theme.spacing(3)
   },
-  // homeContainer: {
-  //   minHeight: "100vh",
-  // },
   homeGridContainer: {
-    minHeight: "92vh",
+    minHeight: "76vh",
     margin: "0",
     flexWrap: "nowrap",
     overflowX: "hidden",
@@ -28,12 +25,11 @@ export const homeStyles = makeStyles(theme => ({
   grantListResults: {
     position: "relative",
     overflow: "auto",
-    minHeight: "92vh",
+    maxHeight: "calc(92vh - 159px)",
     padding: ".5em .5em .5em 1em",
     [theme.breakpoints.down("sm")]: {
       padding: "0 2em 0 2em",
-    },
-    // backgroundColor: "#f7f7f7",
+    }
   },
   grantList: {
     maxHeight: "90vh",
@@ -62,14 +58,14 @@ export const homeStyles = makeStyles(theme => ({
   },
   filterIcon: {
     position: "absolute",
-    top: "11%",
+    top: "8%",
     fill: "#BBB",
     right: "1%",
     padding: "10px",
     background: "#fff",
-    width: "50px",
-    height: "50px",
-    borderRadius: "50%",
+    width: "2em",
+    height: "2em",
+    borderRadius: "100px",
     zIndex: "1000",
     boxShadow:
       "0px 1px 0px 0px rgba(0,0,0,0.2), 0px 1px 0px 0px rgba(0,0,0,0.14), 0px 2px 0px -1px rgba(0,0,0,0.12)",
