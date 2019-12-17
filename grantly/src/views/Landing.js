@@ -11,7 +11,6 @@ import { landingStyles } from "../styles/landingStyles";
 
 // Components
 import Filter from "../components/Filters";
-import { Container, Box } from "@material-ui/core";
 
 function Landing(props) {
 
