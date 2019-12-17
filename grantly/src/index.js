@@ -30,10 +30,10 @@ Sentry.init({dsn: "https://3fff2a57bcec4d419f25f24c703f14b9@sentry.io/1811765"})
 
 const AppWithProvider = (
   <Auth0Provider
-    domain={process.env.CLIENT_DOMAIN}
-    client_id={process.env.CLIENT_ID}
+    domain={process.env.REACT_APP_CLIENT_DOMAIN}
+    client_id={process.env.REACT_APP_CLIENT_ID}
     redirect_uri={`${window.location.origin}`}
-    audience={process.env.CLIENT_AUDIENCE}
+    audience={process.env.REACT_APP_CLIENT_AUDIENCE}
     onRedirectCallback={onRedirectCallback}
   >
     <Provider store={store}>
