@@ -82,44 +82,50 @@ export const NavBar = props => {
           </Link>
         </ListItem>
 
-        {props.role === "admin" || "moderator" ? (
-          <ListItem className={classes.drawerStlye}>
-            <ListItemAvatar>
-              <ListItemIcon className={classes.icon}>
-                <DashboardIcon />
-              </ListItemIcon>
-            </ListItemAvatar>
-            <Link to="/admin" className={classes.drawerLink}>
-              <Typography variant="h5">Edit Grants Old</Typography>
-            </Link>
-          </ListItem>
-        ) : null}
+        {/* {props.role === "admin" ? (<ListItem
+          className={classes.drawerStlye}
+        >
+          <ListItemAvatar>
+            <ListItemIcon
+              className={classes.icon}
+            >
+              <DashboardIcon />
+            </ListItemIcon>
+          </ListItemAvatar>
+          <Link to="/admin" className={classes.drawerLink}>
+            <Typography variant="h5">Edit Grants Old</Typography>
+          </Link>
+        </ListItem>): null} */}
 
-        {props.role === "admin" || "moderator" ? (
-          <ListItem className={classes.drawerStlye}>
-            <ListItemAvatar>
-              <ListItemIcon className={classes.icon}>
-                <ViewListIcon />
-              </ListItemIcon>
-            </ListItemAvatar>
-            <Link to="/table" className={classes.drawerLink}>
-              <Typography variant="h5">Edit Grants Table</Typography>
-            </Link>
-          </ListItem>
-        ) : null}
+        {props.role === "admin" ? (<ListItem
+          className={classes.drawerStlye}
+        >
+          <ListItemAvatar>
+            <ListItemIcon
+              className={classes.icon}
+            >
+              <ViewListIcon />
+            </ListItemIcon>
+          </ListItemAvatar>
+          <Link to="/table" className={classes.drawerLink}>
+            <Typography variant="h5">Edit Grants Table</Typography>
+          </Link>
+        </ListItem>): null}
 
-        {props.role === "admin" ? (
-          <ListItem className={classes.drawerStlye}>
-            <ListItemAvatar>
-              <ListItemIcon className={classes.icon}>
-                <SupervisorAccountIcon />
-              </ListItemIcon>
-            </ListItemAvatar>
-            <Link to="/grants" className={classes.drawerLink}>
-              <Typography variant="h5">Promote Users</Typography>
-            </Link>
-          </ListItem>
-        ) : null}
+        {props.role === "admin" ? (<ListItem
+        className={classes.drawerStlye}
+        >
+          <ListItemAvatar>
+            <ListItemIcon
+              className={classes.icon}
+            >
+              <SupervisorAccountIcon />
+            </ListItemIcon>
+          </ListItemAvatar>
+          <Link to="/grants" className={classes.drawerLink}>
+            <Typography variant="h5">Promote Users</Typography>
+          </Link>
+        </ListItem>): null}
 
         <ListItem>
           <Button
