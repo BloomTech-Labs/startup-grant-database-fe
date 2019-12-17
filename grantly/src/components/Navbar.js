@@ -28,7 +28,6 @@ import MailIcon from "@material-ui/icons/Mail";
 import { navStyles } from "../styles/navStyles";
 
 export const NavBar = props => {
-  
   const {
     isAuthenticated,
     loginWithRedirect,
@@ -61,13 +60,9 @@ export const NavBar = props => {
       className={classes.drawer}
     >
       <List className={classes.links}>
-        <ListItem
-        className={classes.drawerStlye}
-        >
+        <ListItem className={classes.drawerStlye}>
           <ListItemAvatar>
-            <ListItemIcon
-              className={classes.icon}
-            >
+            <ListItemIcon className={classes.icon}>
               <DashboardIcon />
             </ListItemIcon>
           </ListItemAvatar>
@@ -76,13 +71,9 @@ export const NavBar = props => {
           </Link>
         </ListItem>
 
-        <ListItem
-        className={classes.drawerStlye}
-        >
+        <ListItem className={classes.drawerStlye}>
           <ListItemAvatar>
-            <ListItemIcon
-              className={classes.icon}
-            >
+            <ListItemIcon className={classes.icon}>
               <MailIcon />
             </ListItemIcon>
           </ListItemAvatar>
@@ -155,22 +146,23 @@ export const NavBar = props => {
     return <h1 className={classes.navLoading}>App Loading...</h1>;
   } else {
     return (
-      <AppBar data-testid="main-nav" className={classes.navbar} color="primary" position="sticky">
-        <Toolbar
-          className={classes.toolBar}
-        >
+      <AppBar
+        className={classes.navbar}
+        data-testid="main-nav"
+        color="primary"
+        position="sticky"
+      >
+        <Toolbar className={classes.toolBar}>
           <Link to="/" className={classes.titleLink}>
             <Typography variant="h4" className={classes.title}>
               <FGLogo />
             </Typography>
           </Link>
-          
+
           {/* If there is a token, hamburger appears at right */}
           {isAuthenticated && (
             <>
-              <h1 className={classes.helloUser} >
-                Welcome, {user.nickname}
-              </h1>
+              <h1 className={classes.helloUser}>Welcome, {user.nickname}</h1>
               <IconButton
                 // className={classes.menu}
                 edge="start"
@@ -178,42 +170,40 @@ export const NavBar = props => {
                 aria-label="menu"
                 onClick={toggleDrawer()}
               >
-                <MenuIcon 
-                  className={classes.menu} 
-                />
+                <MenuIcon className={classes.menu} />
               </IconButton>
             </>
           )}
 
           {/* If there is not a token, login button appears */}
           <div>
-          {!isAuthenticated && (
-            <div>
-              <Link
-                to="/grants"
-                className={classes.navLink}
-                activeClassName={classes.active}
-                onClick={() => props.fetchApi()}
-              >
-                Grants
-              </Link>
-              <Link
-                to="/about"
-                className={classes.navLink}
-                activeClassName={classes.active}
-              >
-                About
-              </Link>
-              <Link
-                className={classes.navButton}
-                // color="inherit"
-                // variant="outlined"
-                onClick={() => loginWithRedirect()}
-              >
-                Log in
-              </Link>
-            </div>
-          )}
+            {!isAuthenticated && (
+              <div>
+                <Link
+                  to="/grants"
+                  className={classes.navLink}
+                  activeClassName={classes.active}
+                  onClick={() => props.fetchApi()}
+                >
+                  Grants
+                </Link>
+                <Link
+                  to="/about"
+                  className={classes.navLink}
+                  activeClassName={classes.active}
+                >
+                  About
+                </Link>
+                <Link
+                  className={classes.navButton}
+                  // color="inherit"
+                  // variant="outlined"
+                  onClick={() => loginWithRedirect()}
+                >
+                  Log in
+                </Link>
+              </div>
+            )}
           </div>
 
           <SwipeableDrawer

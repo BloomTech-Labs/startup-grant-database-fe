@@ -1,6 +1,27 @@
 import { makeStyles } from "@material-ui/core/styles";
 
 export const landingStyles = makeStyles(theme => ({
+  container: {
+    // verticalAlign: "middle",
+    // textAlign: "center",
+    // display: "flex",
+    // justifyContent: "center",
+    // alignItems: "center",
+    // minHeight: "calc(100vh - 64px)",
+    [theme.breakpoints.down("xs")]: {
+      marginTop: "100px"
+    }
+  },
+  grid: {
+    maxWidth: "100%",
+    minHeight: "calc(100vh - 192px)",
+    [theme.breakpoints.down("xs")]: {
+      marginTop: "3rem",
+      alignContent: "center",
+      display: "block",
+      height: "120vh"
+    }
+  },
   welcome: {
     "& h1": {
       fontSize: "3.5rem",
@@ -27,22 +48,6 @@ export const landingStyles = makeStyles(theme => ({
       flexGrow: 2
     }
   },
-  grid: {
-    maxWidth: "100%",
-    height: "80%",
-    [theme.breakpoints.down("xs")]: {
-      marginTop: "3rem",
-      alignContent: "center",
-      display: "block"
-    }
-  },
-  container: {
-    height: "calc(100vh - 64px)",
-    [theme.breakpoints.down("xs")]: {
-      height: "100vh",
-      marginTop: "100px"
-    }
-  },
   link: {
     textDecoration: "none",
     "& button": {
@@ -56,7 +61,6 @@ export const landingStyles = makeStyles(theme => ({
   },
   button: {
     width: "266px",
-    height: "58px",
-    // border: '1px solid red'
+    height: "58px"
   }
 }));

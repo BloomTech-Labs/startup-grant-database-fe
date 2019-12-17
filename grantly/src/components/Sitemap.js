@@ -3,7 +3,7 @@ import FGLogo from "../assets/FGLogo";
 import { Link } from "react-router-dom";
 import { useAuth0 } from "../react-auth0-wrapper";
 import { lock } from "../react-auth0-wrapper";
-import { Grid, Typography } from "@material-ui/core/";
+import { Grid, Typography, Container, Box } from "@material-ui/core/";
 
 import { sitemapStyles } from "../styles/sitemapStyles";
 
@@ -15,29 +15,35 @@ const Sitemap = () => {
   //   lock.show()
   // }
   return (
-    <div className={styles.container}>
-      <Grid container spacing={8} className={styles.sitemap}>
+    <Box component="div" className={styles.sitemapContainer}>
+      <Grid container className={styles.sitemap}>
         <Grid item className={styles.item}>
-          <Link to="/" className={styles.link}>
-            <Typography variant="h5" component="h5">
+          <Typography variant="h5" component="h5">
+            <Link to="/" className={styles.link}>
               <FGLogo siteMap={true} />
-            </Typography>
-          </Link>
+            </Link>
+          </Typography>
         </Grid>
         <Grid item className={styles.item}>
+          <Typography variant="subtitle2">
             <Link to="/about" className={styles.link}>
-              <Typography variant="subtitle2">ABOUT</Typography>
+              ABOUT
             </Link>
-            </Grid>
-            <Grid item className={styles.item}>
-            <a href="mailto:labs16grantly@gmail.com" className={styles.link}>
-              <Typography variant="subtitle2">CONTACT</Typography>
-            </a>
-            </Grid>
-            <Grid item className={styles.item}>
-            <a href="https://www.1517fund.com/" className={styles.link}>
-              <Typography variant="subtitle2">1517 FUND</Typography>
-            </a>
+          </Typography>
+        </Grid>
+        <Grid item className={styles.item}>
+          <Typography variant="subtitle2">
+            <Link href="mailto:labs16grantly@gmail.com" className={styles.link}>
+              CONTACT
+            </Link>
+          </Typography>
+        </Grid>
+        <Grid item className={styles.item}>
+          <Typography variant="subtitle2">
+            <Link href="https://www.1517fund.com/" className={styles.link}>
+              1517 FUND
+            </Link>
+          </Typography>
         </Grid>
         <Grid container justify="center" alignItems="flex-end">
           <Typography variant="subtitle2" className={styles.copy}>
@@ -45,7 +51,7 @@ const Sitemap = () => {
           </Typography>
         </Grid>
       </Grid>
-    </div>
+    </Box>
   );
 };
 

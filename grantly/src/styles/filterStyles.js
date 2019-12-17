@@ -3,11 +3,11 @@ import { makeStyles } from "@material-ui/core/styles";
 export const useStylesGrants = makeStyles(theme => ({
   card: {
     // position: "fixed",
-    marginTop: "2em",
+    margin: "5em 1em 0 0",
     borderRadius: "2px",
     // width: "15%",
-    width: "90%",
-    minHeight: "100vh",
+    // width: "90%",
+    // minHeight: "100vh",
     [theme.breakpoints.down("sm")]: {
       position: "initial",
       marginTop: "0",
@@ -27,23 +27,29 @@ export const useStylesGrants = makeStyles(theme => ({
   filterCard: {
     display: "block",
     alignSelf: "flex-end",
-    margin: "0 auto",
+    margin: ".5em 0",
     textAlign: "left",
-    padding: "0 10px"
+    padding: "0"
   },
   title: {
-    fontWeight: "bold",
-    marginTop: "1em",
+    fontFamily: "Nunito Sans",
+    fontWeight: 700,
+    fontSize: "1.2rem",
+    marginTop: ".8em",
     color: "#464646"
   },
   label: {
     alignSelf: "flex-start",
     textAlign: "left",
-    fontSize: "1.2rem",
+    fontSize: "1rem",
     fontFamily: "Nunito Sans",
+    fontWeight: 700,
     color: "#222222",
-    marginBottom: "10px"
-    // fontWeight: "bold"
+    margin: "0 0 .2em 0"
+  },
+  mobileSet: {
+    margin: 0,
+    padding: 0
   },
   landingButton: {
     display: "none"
@@ -53,15 +59,16 @@ export const useStylesGrants = makeStyles(theme => ({
     right: "16.5%",
     zIndex: "2000",
     boxShadow:
-      "0px 1px 0px 0px rgba(0,0,0,0.2), 0px 1px 0px 0px rgba(0,0,0,0.14), 0px 2px 0px -1px rgba(0,0,0,0.12)",
+    "0px 1px 0px 0px rgba(0,0,0,0.2), 0px 1px 0px 0px rgba(0,0,0,0.14), 0px 2px 0px -1px rgba(0,0,0,0.12)",
     top: "11%",
     padding: "10px"
   },
   set: {
-    width: "70%",
+    width: "100%",
     alignSelf: "center",
-    margin: ".8em"
-  }
+    margin: ".5em 0",
+    padding: "0 0 0 1em"
+  },
 }));
 
 export const useStylesLanding = makeStyles(theme => ({

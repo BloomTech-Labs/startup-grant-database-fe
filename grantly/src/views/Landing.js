@@ -10,14 +10,14 @@ import { flexbox } from "@material-ui/system";
 import { landingStyles } from "../styles/landingStyles";
 
 // Components
-import Navbar from "../components/Navbar";
 import Filter from "../components/Filters";
 
 function Landing(props) {
+
   const classes = landingStyles();
+
   return (
     <div className={classes.container}>
-      {/* <Navbar className={classes.nav} location={props.location.pathname} /> */}
       <Grid
         className={classes.grid}
         container
