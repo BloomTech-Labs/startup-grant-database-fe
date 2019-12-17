@@ -6,6 +6,7 @@ import { Provider } from "react-redux";
 import { Auth0Provider } from "./react-auth0-wrapper";
 import config from "./auth_config.json";
 import * as Sentry from '@sentry/browser';
+import dotenv from 'dotenv';
 
 // Objects
 import App from "./App";

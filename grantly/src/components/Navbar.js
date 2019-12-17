@@ -91,7 +91,7 @@ export const NavBar = props => {
           </Link>
         </ListItem>
 
-        {props.role === "admin" || "moderator" ? (<ListItem
+        {/* {props.role === "admin" ? (<ListItem
           className={classes.drawerStlye}
         >
           <ListItemAvatar>
@@ -104,9 +104,9 @@ export const NavBar = props => {
           <Link to="/admin" className={classes.drawerLink}>
             <Typography variant="h5">Edit Grants Old</Typography>
           </Link>
-        </ListItem>): null}
+        </ListItem>): null} */}
 
-        {props.role === "admin" || "moderator" ? (<ListItem
+        {props.role === "admin" ? (<ListItem
           className={classes.drawerStlye}
         >
           <ListItemAvatar>
