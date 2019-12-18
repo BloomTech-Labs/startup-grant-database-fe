@@ -26,6 +26,7 @@ import FaceIcon from "@material-ui/icons/Face";
 import ViewListIcon from "@material-ui/icons/ViewList";
 import DashboardIcon from "@material-ui/icons/Dashboard";
 import MailIcon from "@material-ui/icons/Mail";
+import InfoIcon from "@material-ui/icons/Info";
 import { navStyles } from "../styles/navStyles";
 
 export const NavBar = props => {
@@ -70,16 +71,31 @@ export const NavBar = props => {
           </Link>
         </ListItem>
 
-        <ListItem className={classes.drawerStlye}>
-          <ListItemAvatar>
-            <ListItemIcon className={classes.icon}>
-              <MailIcon />
-            </ListItemIcon>
-          </ListItemAvatar>
-          <Link to="/form" className={classes.drawerLink}>
-            <Typography variant="h5">Submit a Grant</Typography>
-          </Link>
-        </ListItem>
+        {props.role === "admin" ? (
+          <ListItem className={classes.drawerStlye}>
+            <ListItemAvatar>
+              <ListItemIcon className={classes.icon}>
+                <MailIcon />
+              </ListItemIcon>
+            </ListItemAvatar>
+            <Link to="/form" className={classes.drawerLink}>
+              <Typography variant="h5">Submit a Grant</Typography>
+            </Link>
+          </ListItem>
+        ) : null}
+
+        {props.role !== "admin" ? (
+          <ListItem className={classes.drawerStlye}>
+            <ListItemAvatar>
+              <ListItemIcon className={classes.icon}>
+                <InfoIcon />
+              </ListItemIcon>
+            </ListItemAvatar>
+            <Link to="/about" className={classes.drawerLink}>
+              <Typography variant="h5">About Founder Grants</Typography>
+            </Link>
+          </ListItem>
+        ) : null}
 
         {/* {props.role === "admin" ? (<ListItem
           className={classes.drawerStlye}
@@ -122,16 +138,29 @@ export const NavBar = props => {
           </ListItem>
         ) : null}
 
-        <ListItem>
-          <Button
-            className={classes.navButton}
-            color="inherit"
-            variant="outlined"
-            onClick={() => logout()}
-          >
-            Log out
-          </Button>
-        </ListItem>
+        {isAuthenticated ? (
+          <ListItem>
+            <Button
+              className={classes.navButton}
+              color="inherit"
+              variant="outlined"
+              onClick={() => logout()}
+            >
+              Log out
+            </Button>
+          </ListItem>
+        ) : (
+          <ListItem>
+            <Button
+              className={classes.navButton}
+              color="inherit"
+              variant="outlined"
+              onClick={() => loginWithRedirect()}
+            >
+              Log In
+            </Button>
+          </ListItem>
+        )}
       </List>
     </div>
   );
