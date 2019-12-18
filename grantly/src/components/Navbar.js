@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useAuth0 } from "../react-auth0-wrapper";
 import FGLogo from "../assets/FGLogo";
+import Media from "react-media";
 
 // Material core imports
 import {
@@ -35,8 +36,6 @@ export const NavBar = props => {
     user,
     loading
   } = useAuth0();
-
-  // console.log("hereweare", user);
 
   const [isOpen, setIsOpen] = useState(false);
   const toggleDrawer = open => event => {
@@ -97,35 +96,31 @@ export const NavBar = props => {
           </Link>
         </ListItem>): null} */}
 
-        {props.role === "admin" ? (<ListItem
-          className={classes.drawerStlye}
-        >
-          <ListItemAvatar>
-            <ListItemIcon
-              className={classes.icon}
-            >
-              <ViewListIcon />
-            </ListItemIcon>
-          </ListItemAvatar>
-          <Link to="/table" className={classes.drawerLink}>
-            <Typography variant="h5">Edit Grants Table</Typography>
-          </Link>
-        </ListItem>): null}
+        {props.role === "admin" ? (
+          <ListItem className={classes.drawerStlye}>
+            <ListItemAvatar>
+              <ListItemIcon className={classes.icon}>
+                <ViewListIcon />
+              </ListItemIcon>
+            </ListItemAvatar>
+            <Link to="/table" className={classes.drawerLink}>
+              <Typography variant="h5">Edit Grants Table</Typography>
+            </Link>
+          </ListItem>
+        ) : null}
 
-        {props.role === "admin" ? (<ListItem
-        className={classes.drawerStlye}
-        >
-          <ListItemAvatar>
-            <ListItemIcon
-              className={classes.icon}
-            >
-              <SupervisorAccountIcon />
-            </ListItemIcon>
-          </ListItemAvatar>
-          <Link to="/grants" className={classes.drawerLink}>
-            <Typography variant="h5">Promote Users</Typography>
-          </Link>
-        </ListItem>): null}
+        {props.role === "admin" ? (
+          <ListItem className={classes.drawerStlye}>
+            <ListItemAvatar>
+              <ListItemIcon className={classes.icon}>
+                <SupervisorAccountIcon />
+              </ListItemIcon>
+            </ListItemAvatar>
+            <Link to="/grants" className={classes.drawerLink}>
+              <Typography variant="h5">Promote Users</Typography>
+            </Link>
+          </ListItem>
+        ) : null}
 
         <ListItem>
           <Button
@@ -158,11 +153,12 @@ export const NavBar = props => {
               <FGLogo />
             </Typography>
           </Link>
-
           {/* If there is a token, hamburger appears at right */}
           {isAuthenticated && (
             <>
-              <h1 className={classes.helloUser}>Welcome, {user.nickname}</h1>
+              <h1 className={classes.helloUser}>
+                Welcome, {user.nickname}
+              </h1>
               <IconButton
                 // className={classes.menu}
                 edge="start"
@@ -174,38 +170,55 @@ export const NavBar = props => {
               </IconButton>
             </>
           )}
-
           {/* If there is not a token, login button appears */}
+          {/* media query for mobile view shows a menu icon */}
           <div>
             {!isAuthenticated && (
-              <div>
-                <Link
-                  to="/grants"
-                  className={classes.navLink}
-                  activeClassName={classes.active}
-                  onClick={() => props.fetchApi()}
-                >
-                  Grants
-                </Link>
-                <Link
-                  to="/about"
-                  className={classes.navLink}
-                  activeClassName={classes.active}
-                >
-                  About
-                </Link>
-                <Link
-                  className={classes.navButton}
-                  // color="inherit"
-                  // variant="outlined"
-                  onClick={() => loginWithRedirect()}
-                >
-                  Log in
-                </Link>
-              </div>
+              <Media query="(max-width:900px)">
+                {matches =>
+                  matches ? (
+                    <>
+                      <IconButton
+                        // className={classes.menu}
+                        edge="start"
+                        color="primary"
+                        aria-label="menu"
+                        onClick={toggleDrawer()}
+                      >
+                        <MenuIcon className={classes.menu} />
+                      </IconButton>
+                    </>
+                  ) : (
+                    <>
+                      <Link
+                        to="/grants"
+                        className={classes.navLink}
+                        activeClassName={classes.active}
+                        onClick={() => props.fetchApi()}
+                      >
+                        Grants
+                      </Link>
+                      <Link
+                        to="/about"
+                        className={classes.navLink}
+                        activeClassName={classes.active}
+                      >
+                        About
+                      </Link>
+                      <Link
+                        className={classes.navButton}
+                        // color="inherit"
+                        // variant="outlined"
+                        onClick={() => loginWithRedirect()}
+                      >
+                        Log in
+                      </Link>
+                    </>
+                  )
+                }
+              </Media>
             )}
           </div>
-
           <SwipeableDrawer
             anchor="right"
             open={isOpen}
