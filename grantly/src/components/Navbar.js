@@ -97,21 +97,6 @@ export const NavBar = props => {
           </ListItem>
         ) : null}
 
-        {/* {props.role === "admin" ? (<ListItem
-          className={classes.drawerStlye}
-        >
-          <ListItemAvatar>
-            <ListItemIcon
-              className={classes.icon}
-            >
-              <DashboardIcon />
-            </ListItemIcon>
-          </ListItemAvatar>
-          <Link to="/admin" className={classes.drawerLink}>
-            <Typography variant="h5">Edit Grants Old</Typography>
-          </Link>
-        </ListItem>): null} */}
-
         {props.role === "admin" ? (
           <ListItem className={classes.drawerStlye}>
             <ListItemAvatar>
@@ -185,9 +170,7 @@ export const NavBar = props => {
           {/* If there is a token, hamburger appears at right */}
           {isAuthenticated && (
             <>
-              <h1 className={classes.helloUser}>
-                Welcome, {user.nickname}
-              </h1>
+              <h1 className={classes.helloUser}>Welcome, {user.nickname}</h1>
               <IconButton
                 // className={classes.menu}
                 edge="start"
