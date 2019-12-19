@@ -71,7 +71,7 @@ export const NavBar = props => {
           </Link>
         </ListItem>
 
-        {props.role === "admin" ? (
+        {props.role === "admin" || "user" ? (
           <ListItem className={classes.drawerStlye}>
             <ListItemAvatar>
               <ListItemIcon className={classes.icon}>
@@ -96,7 +96,7 @@ export const NavBar = props => {
             </Link>
           </ListItem>
         ) : null}
-        {props.roll === "admin" ? (
+        {props.role === "admin" || "user" ? (
           <ListItem className={classes.drawerStlye}>
             <ListItemAvatar>
               <ListItemIcon className={classes.icon}>

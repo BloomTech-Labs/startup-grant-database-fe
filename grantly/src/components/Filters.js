@@ -26,7 +26,8 @@ const Filters = ({
   grants,
   fetchApi,
   ogGrants,
-  isFetching
+  isFetching,
+  inUser
 }) => {
   const [filters, setFilters] = useState({
     amount: [],

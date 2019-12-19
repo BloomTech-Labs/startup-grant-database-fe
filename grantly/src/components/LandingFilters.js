@@ -25,7 +25,8 @@ const LandingFilters = ({
   inAdmin,
   mobile,
   ogGrants,
-  fetchApi
+  fetchApi,
+  inUser
 }) => {
   const [filters, setFilters] = useState({
     amount: [],
@@ -244,7 +245,8 @@ const mapStateToProps = state => {
     ogGrants: state.data
   };
 };
-export default connect(
-  mapStateToProps,
-  { filterGrants, saveFilters, fetchApi }
-)(LandingFilters);
+export default connect(mapStateToProps, {
+  filterGrants,
+  saveFilters,
+  fetchApi
+})(LandingFilters);

@@ -67,7 +67,7 @@ const Home = props => {
                 <GrantList inAdmin={false} location={props.location} />
               </Grid>
               <Grid item xs={6} sm={9} md={7} className={classes.gridItem}>
-                <GrantShowcase />
+                <GrantShowcase inGrants={true} />
               </Grid>
               <Grid item xs={4} sm={2} md={2}>
                 <TuneIcon

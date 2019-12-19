@@ -322,7 +322,7 @@ export const submitFavorite = favorite => dispatch => {
   axios
     .post(
       // "https://labs16-grantly.herokuapp.com/api/grants/suggestion",
-      "https://grantly-staging.herokuapp.com/api/grants/suggestion",
+      "https://grantly-staging.herokuapp.com/api/favorites/",
       favorite
     )
 
@@ -342,7 +342,7 @@ export const favoriteFetchApi = user => dispatch => {
   axios
     // .get(`http://localhost:5000/api/favorites`, {
     // .get(`https://labs16-grantly.herokuapp.com/api/admin/myFavorites`, {
-    .get(`https://grantly-staging.herokuapp.com/api/admin/myFavorites/`, {
+    .get(`https://grantly-staging.herokuapp.com/api/favorites/myFavorites/`, {
       headers: { auth0id: user.auth_id, authorization: `Bearer ${user.token}` }
     })
 
@@ -360,7 +360,7 @@ export const deleteFavorite = (requestId, user) => dispatch => {
   axios
     .delete(
       // `https://labs16-grantly.herokuapp.com/api/admin/myFavorites/${requestId}`,
-      `https://grantly-staging.herokuapp.com/api/admin/myFavorites/${requestId}`,
+      `https://grantly-staging.herokuapp.com/api/favorites/myFavorites/${requestId}`,
       {
         headers: {
           auth0id: user.auth_id,

@@ -92,11 +92,11 @@ export const GrantShowcase = props => {
               </Grid>
             </Grid>
             <Grid item>
-              {props.inAdmin ? (
+              {props.inGrants ? (
                 <Tooltip
                   TransitionComponent={Fade}
                   TransitionProps={{ timeout: 600 }}
-                  title="Save"
+                  title="Add to Favorites"
                 >
                   <IconButton aria-label="save">
                     <BookmarkBorderOutlinedIcon
