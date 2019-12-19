@@ -44,11 +44,11 @@ export const fetchApi = () => dispatch => {
     });
 };
 // fetch grants for admin
-export const adminFetchApi = user => dispatch => {
+export const adminFetchApi = token => dispatch => {
   dispatch({ type: FETCH_START });
   axios
     .get(`${process.env.REACT_APP_CLIENT_LOCALURL}/admin`, {
-      headers: { authorization: `Bearer ${user.token}` }
+      headers: { authorization: `Bearer ${token}` }
     })
     .then(response => {
       dispatch({ type: FETCH_SUCCESS, payload: response.data });

@@ -9,6 +9,8 @@ import {
   deleteSuggestion
 } from "../../actions";
 import moment from "moment";
+import { useAuth0 } from "../../react-auth0-wrapper.js";
+import useGetToken from "../../auth/useGetToken.js";
 
 // Styling
 import MaterialTable from "material-table";
@@ -21,7 +23,8 @@ import TableSuggestions from "./TableSuggestions";
 
 export const GrantTable = props => {
   console.log("GrantTable props", props);
- 
+  const { isAuthenticated, user, loading } = useAuth0();
+  const [token] = useGetToken();
   // reformat deadline and last updated dates
   props.data.forEach(grant => {
     grant.most_recent_application_due_date =
@@ -41,10 +44,10 @@ export const GrantTable = props => {
   });
 
   useEffect(() => {
-    if (props.currentUser.id) {
-      props.adminFetchApi(props.currentUser);
+    if (user) {
+      props.adminFetchApi(token);
     }
-  }, [props.currentUser]);
+  }, [user]);
 
   const editComponentFunc = props => {
     console.log("edit props", props);

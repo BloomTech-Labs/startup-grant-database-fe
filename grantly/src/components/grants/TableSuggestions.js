@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { deleteSuggestion } from "../../actions";
 import axios from "axios";
-
+import { useAuth0 } from "../../react-auth0-wrapper.js";
+import useGetToken from "../../auth/useGetToken.js";
 // Styling
 import { tableSuggStyles } from "../../styles/tableSuggStyles";
 import DialogTitle from "@material-ui/core/DialogTitle";
@@ -18,18 +19,13 @@ import DialogContentText from "@material-ui/core/DialogContentText";
 import IconButton from "@material-ui/core/IconButton";
 import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
 import DeleteIcon from "@material-ui/icons/Delete";
-import { useAuth0 } from "../../react-auth0-wrapper.js";
-import useGetToken from "../../auth/useGetToken.js";
+
 
 const TableSuggestions = props => {
-  const {
-    isAuthenticated,
-    user,
-    loading
-  } = useAuth0();
-  
+  const { isAuthenticated, user, loading } = useAuth0();
+
   const [token] = useGetToken();
-  
+
   const [suggestions, setSuggestions] = useState([]);
   const [open, setOpen] = useState(false);
   console.log("made it to suggestion Table", token);
@@ -44,23 +40,27 @@ const TableSuggestions = props => {
 
   useEffect(() => {
     const grant_id = props.rowData.id;
-    console.log('madetoEffect', token);
-    axios
-      .get(
-        `https://grantly-staging.herokuapp.com/api/admin/suggestions/${grant_id}`,
-        {
-          headers: {
-            authorization: `Bearer ${token}`
-          }
-        }
-      )
-      .then(res => {
-        setSuggestions(res.data);
-        console.log("AXIOS WORKED", res.data);
-      })
-      .catch(err => {
-        console.log(err);
-      });
+    console.log("madetoEffect", token);
+    const fetchSuggestions = async () => {
+      if (token) {
+        const awaitSuggestions = await axios
+          .get(
+            `${process.env.REACT_APP_CLIENT_LOCALURL}/admin/suggestions/${grant_id}`,
+            {
+              headers: {
+                authorization: `Bearer ${token}`
+              }
+            }
+          )
+          .then(res => {
+            setSuggestions(res.data);
+            console.log("AXIOS WORKED", res.data);
+          })
+          .catch(err => {
+            console.log(err);
+          });
+      }
+    };
   }, [props.rowData]);
 
   const onClickDelete = (suggestion_id, currentUser) => {
@@ -108,9 +108,7 @@ const TableSuggestions = props => {
                     className={style.suggestionLi}
                   >
                     <IconButton
-                      onClick={() =>
-                        onClickDelete(suggestion.id, token)
-                      }
+                      onClick={() => onClickDelete(suggestion.id, token)}
                     >
                       <DeleteIcon />
                     </IconButton>
