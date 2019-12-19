@@ -158,7 +158,7 @@ export const GrantShowcase = props => {
           </Grid>
           <Grid item xs={9} sm={10} md={5} className={style.showcaseDetails}>
             <Typography className={style.detailTitle}>
-              Early Stage Funding Eligable?
+              Early Stage Funding Eligible?
             </Typography>
             <Typography className={style.innerDetails}>
               {props.grant.early_stage_funding ? "Yes" : "No"}
