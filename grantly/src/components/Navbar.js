@@ -1,9 +1,9 @@
-import React, { useState } from "react";
-
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useAuth0 } from "../react-auth0-wrapper";
 import FGLogo from "../assets/FGLogo";
 import Media from "react-media";
+import { connect } from "react-redux";
 
 // Material core imports
 import {
@@ -16,13 +16,10 @@ import {
   List,
   ListItem,
   ListItemAvatar,
-  Avatar,
   ListItemIcon
 } from "@material-ui/core";
 
 import MenuIcon from "@material-ui/icons/Menu";
-import SupervisorAccountIcon from "@material-ui/icons/SupervisorAccount";
-import FaceIcon from "@material-ui/icons/Face";
 import ViewListIcon from "@material-ui/icons/ViewList";
 import DashboardIcon from "@material-ui/icons/Dashboard";
 import MailIcon from "@material-ui/icons/Mail";
@@ -50,6 +47,15 @@ export const NavBar = props => {
     setIsOpen(!isOpen);
   };
 
+  //   const [currentNavUser, setCurrentNavUser] = useState([]);
+
+//   useEffect(() => {
+//     if (isAuthenticated) {
+//       setCurrentNavUser(user);
+//       console.log("navCurrent", currentNavUser);
+//     }
+//   }, [user]);
+
   const classes = navStyles();
 
   const sideList = side => (
@@ -70,8 +76,8 @@ export const NavBar = props => {
             <Typography variant="h5">View All Grants</Typography>
           </Link>
         </ListItem>
-
-        {props.role === "admin" ? (
+        
+        {isAuthenticated ? (
           <ListItem className={classes.drawerStlye}>
             <ListItemAvatar>
               <ListItemIcon className={classes.icon}>
@@ -79,23 +85,21 @@ export const NavBar = props => {
               </ListItemIcon>
             </ListItemAvatar>
             <Link to="/form" className={classes.drawerLink}>
-              <Typography variant="h5">Submit a Grant</Typography>
+              <Typography variant="h5">Suggest a Grant</Typography>
             </Link>
           </ListItem>
         ) : null}
 
-        {props.role !== "admin" ? (
-          <ListItem className={classes.drawerStlye}>
-            <ListItemAvatar>
-              <ListItemIcon className={classes.icon}>
-                <InfoIcon />
-              </ListItemIcon>
-            </ListItemAvatar>
-            <Link to="/about" className={classes.drawerLink}>
-              <Typography variant="h5">About Founder Grants</Typography>
-            </Link>
-          </ListItem>
-        ) : null}
+        <ListItem className={classes.drawerStlye}>
+          <ListItemAvatar>
+            <ListItemIcon className={classes.icon}>
+              <InfoIcon />
+            </ListItemIcon>
+          </ListItemAvatar>
+          <Link to="/about" className={classes.drawerLink}>
+            <Typography variant="h5">About Founder Grants</Typography>
+          </Link>
+        </ListItem>
 
         {/* {props.role === "admin" ? (<ListItem
           className={classes.drawerStlye}
@@ -112,20 +116,24 @@ export const NavBar = props => {
           </Link>
         </ListItem>): null} */}
 
-        {props.role === "admin" ? (
-          <ListItem className={classes.drawerStlye}>
-            <ListItemAvatar>
-              <ListItemIcon className={classes.icon}>
-                <ViewListIcon />
-              </ListItemIcon>
-            </ListItemAvatar>
-            <Link to="/table" className={classes.drawerLink}>
-              <Typography variant="h5">Edit Grants Table</Typography>
-            </Link>
-          </ListItem>
+        {isAuthenticated ? (
+          user["https://founder-grants.com/appdata"].authorization.roles.find(
+            () => "Moderator"
+          ) === "Moderator" ? (
+            <ListItem className={classes.drawerStlye}>
+              <ListItemAvatar>
+                <ListItemIcon className={classes.icon}>
+                  <ViewListIcon />
+                </ListItemIcon>
+              </ListItemAvatar>
+              <Link to="/table" className={classes.drawerLink}>
+                <Typography variant="h5">Edit Grants Table</Typography>
+              </Link>
+            </ListItem>
+          ) : null
         ) : null}
 
-        {props.role === "admin" ? (
+        {/* {props.role === "admin" ? (
           <ListItem className={classes.drawerStlye}>
             <ListItemAvatar>
               <ListItemIcon className={classes.icon}>
@@ -136,7 +144,7 @@ export const NavBar = props => {
               <Typography variant="h5">Promote Users</Typography>
             </Link>
           </ListItem>
-        ) : null}
+        ) : null} */}
 
         {isAuthenticated ? (
           <ListItem>
@@ -185,9 +193,7 @@ export const NavBar = props => {
           {/* If there is a token, hamburger appears at right */}
           {isAuthenticated && (
             <>
-              <h1 className={classes.helloUser}>
-                Welcome, {user.nickname}
-              </h1>
+              <h1 className={classes.helloUser}>Welcome, {user.nickname}</h1>
               <IconButton
                 // className={classes.menu}
                 edge="start"
@@ -261,5 +267,6 @@ export const NavBar = props => {
     );
   }
 };
+
 
 export default NavBar;
