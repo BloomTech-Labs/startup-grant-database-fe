@@ -1,9 +1,9 @@
-import React, { useState } from "react";
-
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useAuth0 } from "../react-auth0-wrapper";
 import FGLogo from "../assets/FGLogo";
 import Media from "react-media";
+import { connect } from "react-redux";
 
 // Material core imports
 import {
@@ -16,13 +16,10 @@ import {
   List,
   ListItem,
   ListItemAvatar,
-  Avatar,
   ListItemIcon
 } from "@material-ui/core";
 
 import MenuIcon from "@material-ui/icons/Menu";
-import SupervisorAccountIcon from "@material-ui/icons/SupervisorAccount";
-import FaceIcon from "@material-ui/icons/Face";
 import ViewListIcon from "@material-ui/icons/ViewList";
 import DashboardIcon from "@material-ui/icons/Dashboard";
 import MailIcon from "@material-ui/icons/Mail";
@@ -34,8 +31,18 @@ export const NavBar = props => {
     loginWithRedirect,
     logout,
     user,
-    loading
+    loading,
+    getTokenSilently
   } = useAuth0();
+
+  const [currentNavUser, setCurrentNavUser] = useState([]);
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      setCurrentNavUser(user);
+      console.log('navCurrent', currentNavUser);
+    }
+  }, [user]);
 
   const [isOpen, setIsOpen] = useState(false);
   const toggleDrawer = open => event => {
@@ -50,91 +57,6 @@ export const NavBar = props => {
   };
 
   const classes = navStyles();
-
-  const sideList = side => (
-    <div
-      role="presentation"
-      onClick={toggleDrawer(side, false)}
-      onKeyDown={toggleDrawer(side, false)}
-      className={classes.drawer}
-    >
-      <List className={classes.links}>
-        <ListItem className={classes.drawerStlye}>
-          <ListItemAvatar>
-            <ListItemIcon className={classes.icon}>
-              <DashboardIcon />
-            </ListItemIcon>
-          </ListItemAvatar>
-          <Link to="/grants" className={classes.drawerLink}>
-            <Typography variant="h5">View All Grants</Typography>
-          </Link>
-        </ListItem>
-
-        <ListItem className={classes.drawerStlye}>
-          <ListItemAvatar>
-            <ListItemIcon className={classes.icon}>
-              <MailIcon />
-            </ListItemIcon>
-          </ListItemAvatar>
-          <Link to="/form" className={classes.drawerLink}>
-            <Typography variant="h5">Submit a Grant</Typography>
-          </Link>
-        </ListItem>
-
-        {/* {props.role === "admin" ? (<ListItem
-          className={classes.drawerStlye}
-        >
-          <ListItemAvatar>
-            <ListItemIcon
-              className={classes.icon}
-            >
-              <DashboardIcon />
-            </ListItemIcon>
-          </ListItemAvatar>
-          <Link to="/admin" className={classes.drawerLink}>
-            <Typography variant="h5">Edit Grants Old</Typography>
-          </Link>
-        </ListItem>): null} */}
-
-        {props.role === "admin" ? (
-          <ListItem className={classes.drawerStlye}>
-            <ListItemAvatar>
-              <ListItemIcon className={classes.icon}>
-                <ViewListIcon />
-              </ListItemIcon>
-            </ListItemAvatar>
-            <Link to="/table" className={classes.drawerLink}>
-              <Typography variant="h5">Edit Grants Table</Typography>
-            </Link>
-          </ListItem>
-        ) : null}
-
-        {props.role === "admin" ? (
-          <ListItem className={classes.drawerStlye}>
-            <ListItemAvatar>
-              <ListItemIcon className={classes.icon}>
-                <SupervisorAccountIcon />
-              </ListItemIcon>
-            </ListItemAvatar>
-            <Link to="/grants" className={classes.drawerLink}>
-              <Typography variant="h5">Promote Users</Typography>
-            </Link>
-          </ListItem>
-        ) : null}
-
-        <ListItem>
-          <Button
-            className={classes.navButton}
-            color="inherit"
-            variant="outlined"
-            onClick={() => logout()}
-          >
-            Log out
-          </Button>
-        </ListItem>
-      </List>
-    </div>
-  );
 
   //delays for token
   if (loading) {
@@ -157,7 +79,7 @@ export const NavBar = props => {
           {isAuthenticated && (
             <>
               <h1 className={classes.helloUser}>
-                Welcome, {user.nickname}
+                Welcome, {currentNavUser.nickname}
               </h1>
               <IconButton
                 // className={classes.menu}
@@ -219,18 +141,95 @@ export const NavBar = props => {
               </Media>
             )}
           </div>
-          <SwipeableDrawer
-            anchor="right"
-            open={isOpen}
-            onClose={toggleDrawer(false)}
-            onOpen={toggleDrawer(true)}
-          >
-            {sideList("right")}
-          </SwipeableDrawer>
+          {isAuthenticated && (
+            <SwipeableDrawer
+              anchor="right"
+              open={isOpen}
+              onClose={toggleDrawer(false)}
+              onOpen={toggleDrawer(true)}
+            >
+              <div
+                role="presentation"
+                onClick={toggleDrawer(false)}
+                onKeyDown={toggleDrawer(false)}
+                className={classes.drawer}
+              >
+                <List className={classes.links}>
+                  <ListItem className={classes.drawerStlye}>
+                    <ListItemAvatar>
+                      <ListItemIcon className={classes.icon}>
+                        <DashboardIcon />
+                      </ListItemIcon>
+                    </ListItemAvatar>
+                    <Link to="/grants" className={classes.drawerLink}>
+                      <Typography variant="h5">View All Grants</Typography>
+                    </Link>
+                  </ListItem>
+
+                  <ListItem className={classes.drawerStlye}>
+                    <ListItemAvatar>
+                      <ListItemIcon className={classes.icon}>
+                        <MailIcon />
+                      </ListItemIcon>
+                    </ListItemAvatar>
+                    <Link to="/form" className={classes.drawerLink}>
+                      <Typography variant="h5">Submit a Grant</Typography>
+                    </Link>
+                  </ListItem>
+                  {currentNavUser[
+                    "https://founder-grants.com/appdata"
+                  ].authorization.roles.find(() => "Moderator") ===
+                  "Moderator" ? (
+                    <ListItem className={classes.drawerStlye}>
+                      <ListItemAvatar>
+                        <ListItemIcon className={classes.icon}>
+                          <ViewListIcon />
+                        </ListItemIcon>
+                      </ListItemAvatar>
+                      <Link to="/table" className={classes.drawerLink}>
+                        <Typography variant="h5">Edit Grants</Typography>
+                      </Link>
+                    </ListItem>
+                  ) : null}
+
+                  {/* {currentUser[
+                    "https://founder-grants.com/appdata"
+                  ].authorization.roles.find(() => "Moderator") ===
+                  "Moderator" ? (
+                    <ListItem className={classes.drawerStlye}>
+                      <ListItemAvatar>
+                        <ListItemIcon className={classes.icon}>
+                          <SupervisorAccountIcon />
+                        </ListItemIcon>
+                      </ListItemAvatar>
+                      <Link to="/grants" className={classes.drawerLink}>
+                        <Typography variant="h5">Promote Users</Typography>
+                      </Link>
+                    </ListItem>
+                  ) : null} */}
+
+                  <ListItem>
+                    <Button
+                      className={classes.navButton}
+                      color="inherit"
+                      variant="outlined"
+                      onClick={() => logout()}
+                    >
+                      Log out
+                    </Button>
+                  </ListItem>
+                </List>
+              </div>
+            </SwipeableDrawer>
+          )}
         </Toolbar>
       </AppBar>
     );
   }
 };
-
-export default NavBar;
+const mapStateToProps = state => {
+  return {
+    currentNavUser: state.currentNavUser
+  };
+};
+export default connect(mapStateToProps)(NavBar);

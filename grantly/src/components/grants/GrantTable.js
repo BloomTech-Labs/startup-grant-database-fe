@@ -21,7 +21,7 @@ import TableSuggestions from "./TableSuggestions";
 
 export const GrantTable = props => {
   console.log("GrantTable props", props);
-
+ 
   // reformat deadline and last updated dates
   props.data.forEach(grant => {
     grant.most_recent_application_due_date =
@@ -68,9 +68,6 @@ export const GrantTable = props => {
     <Paper className={style.paper}>
       <MaterialTable
         title="Edit and Approve Grants"
-        // title={() => (
-        //   <h2>Edit and Approve Grants</h2>
-        // )}
         columns={[
           {
             title: "User Suggestions",
@@ -121,29 +118,29 @@ export const GrantTable = props => {
             title: "Focus Area",
             field: "area_focus",
             lookup: {
-              "Agriculture": "Agriculture",
-              "Arts": "Arts",
+              Agriculture: "Agriculture",
+              Arts: "Arts",
               "Child Care": "Child Care",
               "Communication Services": "Communication Services",
               "Consumer Discretionary": "Consumer Discretionary",
               "Consumer Staples": "Consumer Staples",
               "Economic Opportunity": "Economic Opportunity",
               "Energy & Resources": "Energy & Resources",
-              "Environment": "Environment",
-              "Financial": "Financial",
-              "Food": "Food",
-              "Industrials": "Industrials",
+              Environment: "Environment",
+              Financial: "Financial",
+              Food: "Food",
+              Industrials: "Industrials",
               "Information Technology": "Information Technology",
-              "Health": "Health",
-              "Housing": "Housing",
+              Health: "Health",
+              Housing: "Housing",
               "Life Improvement": "Life Improvement",
-              "Materials": "Materials",
+              Materials: "Materials",
               "Real Estate": "Real Estate",
               "Social Change": "Social Change",
               "Social Entrepreneurship": "Social Entrepreneurship",
-              "Utilities": "Utilities",
+              Utilities: "Utilities",
               "Workforce Development": "Workforce Development",
-              "Other": "Other",
+              Other: "Other",
               "N/A": "N/A"
             }
           },
@@ -161,14 +158,14 @@ export const GrantTable = props => {
             title: "Geographic Region",
             field: "geographic_region",
             lookup: {
-              "Global": "Global",
+              Global: "Global",
               "North America": "North America",
-              "Europe": "Europe",
+              Europe: "Europe",
               "South America": "South America",
-              "Africa": "Africa",
-              "Asia": "Asia",
-              "Australia": "Australia",
-              "Other": "Other",
+              Africa: "Africa",
+              Asia: "Asia",
+              Australia: "Australia",
+              Other: "Other",
               "N/A": "N/A"
             }
           },
@@ -178,10 +175,11 @@ export const GrantTable = props => {
             lookup: {
               "Minority Business Enterprise": "Minority Business Enterprise",
               "Women Business Enterprise": "Women Business Enterprise",
-              "Disadvantaged Business Enterprise": "Disadvantaged Business Enterprise",
+              "Disadvantaged Business Enterprise":
+                "Disadvantaged Business Enterprise",
               "Veteran Business Enterprise": "Veteran Business Enterprise",
-              "Other": "Other",
-              "All": "All"
+              Other: "Other",
+              All: "All"
             }
           },
           {
@@ -212,7 +210,7 @@ export const GrantTable = props => {
                 resolve();
                 let filteredData = Object.assign({}, newData);
                 delete filteredData.requests;
-                props.postGrants(filteredData);
+                props.postGrants(filteredData, props.currentUser.token);
               }, 600);
             }),
           onRowUpdate: (newData, oldData) =>
@@ -227,7 +225,7 @@ export const GrantTable = props => {
                       ...filteredData,
                       details_last_updated: moment().format("YYYY-MM-DD")
                     },
-                    props.currentUser
+                    props.currentUser.token
                   );
                 }
               }, 600);
@@ -238,7 +236,7 @@ export const GrantTable = props => {
                 resolve();
                 if (oldData) {
                   delete oldData.requests;
-                  props.deleteGrants(oldData.id, props.currentUser);
+                  props.deleteGrants(oldData.id, props.currentUser.token);
                 }
               }, 600);
             })

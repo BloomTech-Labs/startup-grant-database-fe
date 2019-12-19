@@ -1,5 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
+import useGetToken from "../../auth/useGetToken.js";
+
 import {
   Button,
   Dialog,
@@ -11,7 +13,7 @@ import {
   Grid,
   Typography,
   FormControl,
-  NativeSelect
+  // NativeSelect
 } from "@material-ui/core";
 import { dialogStyles } from "../../styles/dialogStyles";
 import { submitSuggestion } from "../../actions/index";
@@ -20,7 +22,7 @@ import { submitSuggestion } from "../../actions/index";
 
 const SuggestionDialog = props => {
   // hold state locally before passing to API
-
+  // const token = useGetToken();
   const [suggestion, setSuggestion] = React.useState({
     subject: "",
     suggestion: ""
@@ -57,7 +59,7 @@ const SuggestionDialog = props => {
       grant_id: props.id
     };
     console.log("OBJECT BEING SENT TO ACTION", sendObject);
-    props.submitSuggestion(sendObject);
+    props.submitSuggestion(sendObject, props.currentUser.token);
     handleClose();
     setSuggestion("");
   };

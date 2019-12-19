@@ -20,10 +20,7 @@ import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
 import DeleteIcon from "@material-ui/icons/Delete";
 
 const TableSuggestions = props => {
-  // Force Update for our onClick action
-  // const forceUpdate = useForceUpdate();
 
-  // console.log('grantSuggestionList props: ', props)
   const [suggestions, setSuggestions] = useState([]);
   const [open, setOpen] = useState(false);
 

@@ -18,7 +18,9 @@ const PrivateRoute = ({ component: Component, path, currentUser, ...rest }) => {
       fn();
     }, [loading, isAuthenticated, loginWithRedirect, path]);
   
-    const render = props => isAuthenticated === true && currentUser.role === "admin" ? <Component {...props} /> : <Redirect to="/grants" />;
+    const render = props => isAuthenticated === true && props.currentUser[
+      "https://founder-grants.com/appdata"
+    ].authorization.roles.find(() => "Moderator") === "Moderator" ? <Component {...props} /> : <Redirect to="/grants" />;
   
     return <Route path={path} render={render} {...rest} />;
   };

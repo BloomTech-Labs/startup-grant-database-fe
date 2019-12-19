@@ -8,13 +8,13 @@ import { selectGrant } from "../../actions";
 import EditGrantDialog from "../dialogs/EditGrantDialog";
 
 // Material UI
-import Container from "@material-ui/core/Container";
+// import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
-import Button from "@material-ui/core/Button";
-import EditIcon from "@material-ui/icons/Edit";
-import BookmarkBorderOutlinedIcon from "@material-ui/icons/BookmarkBorderOutlined";
+// import Button from "@material-ui/core/Button";
+// import EditIcon from "@material-ui/icons/Edit";
+// import BookmarkBorderOutlinedIcon from "@material-ui/icons/BookmarkBorderOutlined";
 import Card from "@material-ui/core/Card";
-import CardContent from "@material-ui/core/CardContent";
+// import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 
 // Styles
