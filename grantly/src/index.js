@@ -37,9 +37,7 @@ const AppWithProvider = (
     redirect_uri={`${window.location.origin}`}
     // audience={process.env.REACT_APP_CLIENT_AUDIENCE}
     onRedirectCallback={onRedirectCallback}
-    domain='founder-grants.auth0.com' 
-    client_id='ThqNIwyCL9cm3yOhLjmeZjaf2StUc6Rp'  
-    audience='http://localhost:5000/api/admin'
+    
   >
     <Provider store={store}>
       <App />
