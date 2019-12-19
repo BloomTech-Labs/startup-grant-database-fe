@@ -23,6 +23,7 @@ import MenuIcon from "@material-ui/icons/Menu";
 import ViewListIcon from "@material-ui/icons/ViewList";
 import DashboardIcon from "@material-ui/icons/Dashboard";
 import MailIcon from "@material-ui/icons/Mail";
+import InfoIcon from "@material-ui/icons/Info";
 import { navStyles } from "../styles/navStyles";
 
 export const NavBar = props => {
@@ -31,8 +32,8 @@ export const NavBar = props => {
     loginWithRedirect,
     logout,
     user,
-    loading,
-    getTokenSilently
+    loading
+    // getTokenSilently
   } = useAuth0();
 
   const [currentNavUser, setCurrentNavUser] = useState([]);
@@ -40,7 +41,7 @@ export const NavBar = props => {
   useEffect(() => {
     if (isAuthenticated) {
       setCurrentNavUser(user);
-      console.log('navCurrent', currentNavUser);
+      console.log("navCurrent", currentNavUser);
     }
   }, [user]);
 
@@ -176,6 +177,16 @@ export const NavBar = props => {
                       <Typography variant="h5">Submit a Grant</Typography>
                     </Link>
                   </ListItem>
+                  <ListItem className={classes.drawerStlye}>
+                    <ListItemAvatar>
+                      <ListItemIcon className={classes.icon}>
+                        <InfoIcon />
+                      </ListItemIcon>
+                    </ListItemAvatar>
+                    <Link to="/about" className={classes.drawerLink}>
+                      <Typography variant="h5">About Founder Grants</Typography>
+                    </Link>
+                  </ListItem>
                   {currentNavUser[
                     "https://founder-grants.com/appdata"
                   ].authorization.roles.find(() => "Moderator") ===
@@ -191,22 +202,6 @@ export const NavBar = props => {
                       </Link>
                     </ListItem>
                   ) : null}
-
-                  {/* {currentUser[
-                    "https://founder-grants.com/appdata"
-                  ].authorization.roles.find(() => "Moderator") ===
-                  "Moderator" ? (
-                    <ListItem className={classes.drawerStlye}>
-                      <ListItemAvatar>
-                        <ListItemIcon className={classes.icon}>
-                          <SupervisorAccountIcon />
-                        </ListItemIcon>
-                      </ListItemAvatar>
-                      <Link to="/grants" className={classes.drawerLink}>
-                        <Typography variant="h5">Promote Users</Typography>
-                      </Link>
-                    </ListItem>
-                  ) : null} */}
 
                   <ListItem>
                     <Button

@@ -22,7 +22,7 @@ import { submitSuggestion } from "../../actions/index";
 
 const SuggestionDialog = props => {
   // hold state locally before passing to API
-  // const token = useGetToken();
+  const [token] = useGetToken();
   const [suggestion, setSuggestion] = React.useState({
     subject: "",
     suggestion: ""
@@ -59,7 +59,7 @@ const SuggestionDialog = props => {
       grant_id: props.id
     };
     console.log("OBJECT BEING SENT TO ACTION", sendObject);
-    props.submitSuggestion(sendObject, props.currentUser.token);
+    props.submitSuggestion(sendObject, token);
     handleClose();
     setSuggestion("");
   };

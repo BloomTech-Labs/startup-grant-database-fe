@@ -8,7 +8,6 @@ import { useAuth0 } from "./react-auth0-wrapper";
 // Objects
 import SubmitForm from "./components/SubmitForm";
 import Home from "./views/Home";
-import Admin from "./views/Admin";
 import Landing from "./views/Landing";
 import About from "./components/About";
 import GrantTable from "./components/grants/GrantTable";
