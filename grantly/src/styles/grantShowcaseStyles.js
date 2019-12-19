@@ -50,7 +50,7 @@ export const showcaseStyles = makeStyles(theme => ({
   },
   showcaseDetails: {
     // height: 90,
-    margin: "1em 0 0 0",
+    margin: ".5em 0",
     padding: ".5em 0 .5em 0",
     lineHeight: "1.2rem",
     fontFamily: "EB Garamond"
