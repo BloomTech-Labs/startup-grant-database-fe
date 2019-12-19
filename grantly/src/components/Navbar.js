@@ -268,9 +268,5 @@ export const NavBar = props => {
   }
 };
 
-const mapStateToProps = state => {
-  return {
-    currentNavUser: state.currentNavUser
-  };
-};
-export default connect(mapStateToProps)(NavBar);
+
+export default NavBar;

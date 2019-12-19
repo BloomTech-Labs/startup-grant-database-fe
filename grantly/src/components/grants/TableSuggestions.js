@@ -37,31 +37,25 @@ const TableSuggestions = props => {
   const handleClose = () => {
     setOpen(false);
   };
-
   useEffect(() => {
     const grant_id = props.rowData.id;
-    console.log("madetoEffect", token);
-    const fetchSuggestions = async () => {
-      if (token) {
-        const awaitSuggestions = await axios
-          .get(
-            `${process.env.REACT_APP_CLIENT_LOCALURL}/admin/suggestions/${grant_id}`,
-            {
-              headers: {
-                authorization: `Bearer ${token}`
-              }
-            }
-          )
-          .then(res => {
-            setSuggestions(res.data);
-            console.log("AXIOS WORKED", res.data);
-          })
-          .catch(err => {
-            console.log(err);
-          });
-      }
-    };
-  }, [user]);
+    axios
+      .get(
+        `${process.env.REACT_APP_CLIENT_LOCALURL}/admin/suggestions/${grant_id}`,
+        {
+          headers: {
+            authorization: `Bearer ${token}`
+          }
+        }
+      )
+      .then(res => {
+        setSuggestions(res.data);
+        console.log("AXIOS WORKED", res.data);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }, [token, props.rowData]);
 
   const onClickDelete = (suggestion_id, token) => {
     props.deleteSuggestion(suggestion_id, token);

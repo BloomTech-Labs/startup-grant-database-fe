@@ -21,6 +21,9 @@ import {
   DELETE_GRANT_START,
   DELETE_GRANT_SUCCESS,
   DELETE_GRANT_FAILURE,
+  CHECK_ADMIN,	
+  SET_USER,	
+  SET_TOKEN_IN_STORE,
   FILTER_SAVE,
   SUBMIT_SUGGESTION_START,
   SUBMIT_SUGGESTION_SUCCESS,
@@ -35,7 +38,7 @@ import {
 export const fetchApi = () => dispatch => {
   dispatch({ type: FETCH_START });
   axios
-    .get(`${process.env.REACT_APP_CLIENT_LOCALURL}/grants`)
+    .get(`${process.env.REACT_APP_CLIENT_STAGINGURL}/grants`)
     .then(response => {
       dispatch({ type: FETCH_SUCCESS, payload: response.data });
     })
@@ -47,7 +50,7 @@ export const fetchApi = () => dispatch => {
 export const adminFetchApi = token => dispatch => {
   dispatch({ type: FETCH_START });
   axios
-    .get(`${process.env.REACT_APP_CLIENT_LOCALURL}/admin`, {
+    .get(`${process.env.REACT_APP_CLIENT_STAGINGURL}/admin`, {
       headers: { authorization: `Bearer ${token}` }
     })
     .then(response => {
@@ -90,7 +93,7 @@ export const changeTab = tab => dispatch => {
 export const postGrants = (addGrant, token) => dispatch => {
   dispatch({ type: ADD_GRANT_START });
   axios
-    .post(`${process.env.REACT_APP_CLIENT_LOCALURL}/grants`, addGrant, {
+    .post(`${process.env.REACT_APP_CLIENT_STAGINGURL}/grants`, addGrant, {
       headers: {
         authorization: `Bearer ${token}`
       }
@@ -112,7 +115,7 @@ export const putGrants = (updateGrant, token) => dispatch => {
   });
   axios
     .put(
-      `${process.env.REACT_APP_CLIENT_LOCALURL}/admin/${updateGrant.id}`,
+      `${process.env.REACT_APP_CLIENT_STAGINGURL}/admin/${updateGrant.id}`,
       updateGrant,
       {
         headers: {
@@ -122,7 +125,7 @@ export const putGrants = (updateGrant, token) => dispatch => {
     )
     .then(success => {
       axios
-        .get(`${process.env.REACT_APP_CLIENT_LOCALURL}/admin`, {
+        .get(`${process.env.REACT_APP_CLIENT_STAGINGURL}/admin`, {
           headers: {
             authorization: `Bearer ${token}`
           }
@@ -150,14 +153,14 @@ export const deleteGrants = (id, token) => dispatch => {
     type: DELETE_GRANT_START
   });
   axios
-    .delete(`${process.env.REACT_APP_CLIENT_LOCALURL}/admin/${id}`, {
+    .delete(`${process.env.REACT_APP_CLIENT_STAGINGURL}/admin/${id}`, {
       headers: {
         authorization: `Bearer ${token}`
       }
     })
     .then(res => {
       axios
-        .get(`${process.env.REACT_APP_CLIENT_LOCALURL}/admin`, {
+        .get(`${process.env.REACT_APP_CLIENT_STAGINGURL}/admin`, {
           headers: {
             authorization: `Bearer ${token}`
           }
@@ -182,7 +185,7 @@ export const submitSuggestion = (suggestion, token) => dispatch => {
   dispatch({ type: SUBMIT_SUGGESTION_START });
   axios
     .post(
-      `${process.env.REACT_APP_CLIENT_LOCALURL}/grants/suggestion`,
+      `${process.env.REACT_APP_CLIENT_STAGINGURL}/grants/suggestion`,
       suggestion,
       {
         headers: {
@@ -199,29 +202,28 @@ export const submitSuggestion = (suggestion, token) => dispatch => {
     });
 };
 
-// Get Suggestions by Grant ID
-export const getSuggetions = (token, grant_id) => dispatch => {
-  dispatch({ type: GET_SUGGESTIONS_SUCCESS });
-  axios.get(
-    `${process.env.REACT_APP_CLIENT_LOCALURL}/admin/suggestions/${grant_id}`,
-    {
-      headers: {
-        authorization: `Bearer ${token}`
-      }
-    }
-  );
-};
+// // Get Suggestions by Grant ID
+// export const getSuggetions = (token, grant_id) => dispatch => {
+//   dispatch({ type: GET_SUGGESTIONS_SUCCESS });
+//   axios.get(
+//     `${process.env.REACT_APP_CLIENT_LOCALURL}/admin/suggestions/${grant_id}`,
+//     {
+//       headers: {
+//         authorization: `Bearer ${token}`
+//       }
+//     }
+//   );
+// };
 
 // Delete a grant suggestion, must be an admin
-export const deleteSuggestion = (requestId, user) => dispatch => {
+export const deleteSuggestion = (requestId, token) => dispatch => {
   dispatch({ type: DELETE_SUGGESTION_START });
   axios
     .delete(
-      `${process.env.REACT_APP_CLIENT_LOCALURL}/admin/suggestion/${requestId}`,
+      `${process.env.REACT_APP_CLIENT_STAGINGURL}/admin/suggestion/${requestId}`,
       {
         headers: {
-          auth0id: user.auth_id,
-          authorization: `Bearer ${user.token}`
+          authorization: `Bearer ${token}`
         }
       }
     )

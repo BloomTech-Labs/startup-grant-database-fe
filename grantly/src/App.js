@@ -23,29 +23,24 @@ import { theme } from "./styles/theme";
 
 function App({ fetchApi }) {
   const { user, isAuthenticated, getTokenSilently } = useAuth0();
+  console.log('USER', user)
 
-  // useEffect(() => {
-  //   if (isAuthenticated) {
-  //     // const authToken = getTokenSilently().then(res => res);
-  //     const auth = getTokenSilently().then(res => {
-  //       const authToken = res;
-  //       checkUser({ ...user, token: authToken });
-  //     });
-  //   }
-  // }, [user]);
-
-  const [currentUser, setCurrentUser] = useState([]);
+  const [currentUser, setCurrentUser] = useState({});
 
   useEffect(() => {
     if (isAuthenticated) {
       const authToken = getTokenSilently().then(res => {
         const token = res;
-        setCurrentUser({ ...user, token: token });
-        console.log('IranUser', currentUser);
+        console.log('TOKEN', token)
+        console.log('USEEFFECT USER', user)
+        // const strUser = JSON.stringify(user);
+        // console.log('userString', strUser)
+        setCurrentUser({...user, token: token});
       });
     }
   }, [user]);
 
+  console.log('IranUser', currentUser);
   return (
     <Router>
       <ThemeProvider theme={theme}>
@@ -65,7 +60,7 @@ function App({ fetchApi }) {
             <PrivateRoute
               exact
               path="/table"
-              render={props => <GrantTable {...props} />}
+              render={props => <GrantTable {...props} currentUser={currentUser}/>}
             />
             // <PrivateRoute exact path="/promote" component
           )}
@@ -75,9 +70,5 @@ function App({ fetchApi }) {
     </Router>
   );
 }
-const mapStateToProps = state => {
-  return {
-    currentUser: state.currentUser
-  };
-};
-export default connect(mapStateToProps, { fetchApi })(App);
+
+export default connect(null, { fetchApi })(App);
