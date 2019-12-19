@@ -1,5 +1,7 @@
 // Dependencies
 import axios from "axios";
+// import { axiosWithAuth } from "../auth/axiosWithAuth.js";
+// import useGetToken from "../auth/useGetToken.js";
 
 // Objects
 import {
@@ -19,10 +21,10 @@ import {
   DELETE_GRANT_START,
   DELETE_GRANT_SUCCESS,
   DELETE_GRANT_FAILURE,
-  FILTER_SAVE,
-  CHECK_ADMIN,
-  SET_USER,
+  CHECK_ADMIN,	
+  SET_USER,	
   SET_TOKEN_IN_STORE,
+  FILTER_SAVE,
   SUBMIT_SUGGESTION_START,
   SUBMIT_SUGGESTION_SUCCESS,
   SUBMIT_SUGGESTION_FAILURE,
@@ -33,15 +35,10 @@ import {
 } from "./types";
 
 // fetch grants for main view
-
 export const fetchApi = () => dispatch => {
   dispatch({ type: FETCH_START });
   axios
-
-    // .get(`http://localhost:5000/api/grants`)
-    // .get(`https://labs16-grantly.herokuapp.com/api/grants/`)
-    .get(`https://grantly-staging.herokuapp.com/api/grants`)
-
+    .get(`${process.env.REACT_APP_CLIENT_STAGINGURL}/grants`)
     .then(response => {
       dispatch({ type: FETCH_SUCCESS, payload: response.data });
     })
@@ -49,19 +46,13 @@ export const fetchApi = () => dispatch => {
       dispatch({ type: FETCH_ERROR });
     });
 };
-
 // fetch grants for admin
-
-export const adminFetchApi = user => dispatch => {
-
+export const adminFetchApi = token => dispatch => {
   dispatch({ type: FETCH_START });
   axios
-    // .get(`http://localhost:5000/api/admin`, {
-    // .get(`https://labs16-grantly.herokuapp.com/api/admin`, {
-      .get(`https://grantly-staging.herokuapp.com/api/admin`, {
-      headers: { auth0id: user.auth_id, authorization: `Bearer ${user.token}` }
+    .get(`${process.env.REACT_APP_CLIENT_STAGINGURL}/admin`, {
+      headers: { authorization: `Bearer ${token}` }
     })
-
     .then(response => {
       dispatch({ type: FETCH_SUCCESS, payload: response.data });
     })
@@ -75,12 +66,10 @@ export const saveFilters = filters => dispatch => {
 };
 export const filterGrants = filters => dispatch => {
   let numCheck = 0;
-
-  //See hoe many filters user selected
+  //See how many filters user selected
   Object.values(filters).map(filter => {
     filter.length !== 0 && numCheck++;
   });
-
   //Check if user has chosen any flters if there is one selected dispatches the filter grants action or it none is select it shows all grants from the filter grants reset action
   numCheck === 0
     ? dispatch({ type: FILTER_GRANTS_RESET })
@@ -91,27 +80,25 @@ export const filterGrants = filters => dispatch => {
 };
 
 // logic for main selecting grant card
-
 export const selectGrant = grant => dispatch => {
   dispatch({ type: SELECT_GRANT, payload: grant });
   dispatch({ type: CHANGE_TAB, payload: 1 });
 };
-
 // This action creator is for mobile, we use this in different components like the aubmit form to change the current tab a user is on after submitting
 export const changeTab = tab => dispatch => {
   dispatch({ type: CHANGE_TAB, payload: tab });
 };
 
-// Submit a Grant
-export const postGrants = addGrant => dispatch => {
+// Submit a New Grant
+export const postGrants = (addGrant, token) => dispatch => {
   dispatch({ type: ADD_GRANT_START });
   axios
-
-    // .post("http://localhost:5000/api/grants", addGrant)
-    // .post("https://labs16-grantly.herokuapp.com/api/grants/", addGrant)
-    .post("https://grantly-staging.herokuapp.com/api/grants", addGrant)
-
-
+    .post(`${process.env.REACT_APP_CLIENT_STAGINGURL}/grants`, addGrant, {
+      headers: {
+        authorization: `Bearer ${token}`
+      }
+    })
+    // axiosWithAuth(user.token).post('/grants', addGrant)
     .then(res => {
       dispatch({ type: ADD_GRANT_SUCCESS, payload: res.data });
     })
@@ -122,37 +109,27 @@ export const postGrants = addGrant => dispatch => {
 };
 
 // Update a Grant
-export const putGrants = (updateGrant, user) => dispatch => {
-  console.log('updatedGrant', updateGrant)
-  console.log('updatedGrant user', user)
+export const putGrants = (updateGrant, token) => dispatch => {
   dispatch({
     type: UPDATE_GRANT_START
   });
   axios
     .put(
-      // `http://localhost:5000/api/admin/${updateGrant.id}`,
-      // `https://labs16-grantly.herokuapp.com/api/admin/${updateGrant.id}`,
-      `https://grantly-staging.herokuapp.com/api/admin/${updateGrant.id}`,
+      `${process.env.REACT_APP_CLIENT_STAGINGURL}/admin/${updateGrant.id}`,
       updateGrant,
       {
         headers: {
-          auth0id: user.auth_id,
-          authorization: `Bearer ${user.token}`
+          authorization: `Bearer ${token}`
         }
       }
     )
-
     .then(success => {
       axios
-        // .get(`http://localhost:5000/api/grants/`, {
-        // .get(`https://labs16-grantly.herokuapp.com/api/grants/`, {
-          .get(`https://grantly-staging.herokuapp.com/api/admin`, {
+        .get(`${process.env.REACT_APP_CLIENT_STAGINGURL}/admin`, {
           headers: {
-            auth0id: user.auth_id,
-            authorization: `Bearer ${user.token}`
+            authorization: `Bearer ${token}`
           }
         })
-
         .then(response => {
           console.log("response", response);
           dispatch({
@@ -162,40 +139,32 @@ export const putGrants = (updateGrant, user) => dispatch => {
         })
         .catch(error => {
           dispatch({ type: UPDATE_GRANT_FAILURE, payload: error });
-        })
+        });
     })
     .catch(err => {
-      console.log('made this error');
+      console.log("made this error");
       dispatch({ type: UPDATE_GRANT_FAILURE, payload: err });
     });
 };
 
 // Delete A grant
-export const deleteGrants = (id, user) => dispatch => {
+export const deleteGrants = (id, token) => dispatch => {
   dispatch({
     type: DELETE_GRANT_START
   });
   axios
-  // .delete(`http://localhost:5000/api/admin/${id}`, {
-    // .delete(`https://labs16-grantly.herokuapp.com/api/admin/${id}`, {
-      .delete(`https://grantly-staging.herokuapp.com/api/admin/${id}`, {
+    .delete(`${process.env.REACT_APP_CLIENT_STAGINGURL}/admin/${id}`, {
       headers: {
-        auth0id: user.auth_id,
-        authorization: `Bearer ${user.token}`
+        authorization: `Bearer ${token}`
       }
     })
-
     .then(res => {
       axios
-      // .get(`http://localhost:5000/api/grants/`, {
-        // .get(`https://labs16-grantly.herokuapp.com/api/grants/`, {
-          .get(`https://grantly-staging.herokuapp.com/api/admin`, {
+        .get(`${process.env.REACT_APP_CLIENT_STAGINGURL}/admin`, {
           headers: {
-            auth0id: user.auth_id,
-            authorization: `Bearer ${user.token}`
+            authorization: `Bearer ${token}`
           }
         })
-
         .then(response => {
           dispatch({
             type: DELETE_GRANT_SUCCESS,
@@ -211,57 +180,19 @@ export const deleteGrants = (id, user) => dispatch => {
     });
 };
 
-//Check if user is admin this action is called after a successful login
-export const checkUser = user => dispatch => {
-  dispatch({ type: CHECK_ADMIN });
-  const auth = { ...user, auth_id: user.sub };
-
-  // First we call to our user database, we pass in the auth0 id provided by auth0 into our headers and our response will be an object detailing if
-  // the current signed in user is an admin or not
-  axios
-
-    // .get("https://labs16-grantly.herokuapp.com/user", {
-      .get("https://grantly-staging.herokuapp.com/user", {
-      headers: {
-        auth_id: auth.auth_id
-      }
-    })
-    .then(res => {
-      dispatch({ type: SET_USER, payload: res.data });
-      dispatch({ type: SET_TOKEN_IN_STORE, payload: user.token });
-    })
-    .catch(err => {
-
-      //Possibly for a future release will be to update our user database with the email and name provided by auth0
-      // const newUser = { role: "user", auth_id: auth.auth_id, email: user.email, last_name: user.family_name, first_name: user.given_name};
-
-      // After a user successfully logs in if we do not have their auth0 id in our database we will create that user in our catch block. So first time users will be added to our db as users
-
-      const newUser = { role: "user", auth_id: auth.auth_id };
-      if (err.response.status === 404) {
-        axios
-
-          // .post("https://labs16-grantly.herokuapp.com/user", newUser)
-          .post("https://grantly-staging.herokuapp.com/user", newUser)
-          .then(res => {
-            dispatch({ type: SET_USER, payload: res.data });
-          })
-          .catch(err => {});
-      }
-    });
-};
-
 // logic for suggestion modal
-
-export const submitSuggestion = suggestion => dispatch => {
+export const submitSuggestion = (suggestion, token) => dispatch => {
   dispatch({ type: SUBMIT_SUGGESTION_START });
   axios
     .post(
-      // "https://labs16-grantly.herokuapp.com/api/grants/suggestion",
-      "https://grantly-staging.herokuapp.com/api/grants/suggestion",
-      suggestion
+      `${process.env.REACT_APP_CLIENT_STAGINGURL}/grants/suggestion`,
+      suggestion,
+      {
+        headers: {
+          authorization: `Bearer ${token}`
+        }
+      }
     )
-
     .then(response => {
       dispatch({ type: SUBMIT_SUGGESTION_SUCCESS, payload: response.data });
     })
@@ -271,36 +202,31 @@ export const submitSuggestion = suggestion => dispatch => {
     });
 };
 
-// Get Suggestions by Grant ID
-
-export const getSuggetions = (currentUser, grant_id) => dispatch => {
-  dispatch({ type: GET_SUGGESTIONS_SUCCESS });
-  axios
-    .get(`https://grantly-staging.herokuapp.com/api/admin/suggestions/${grant_id}`,
-      {
-        headers: {
-          auth0id: currentUser.auth_id,
-          authorization: `Bearer ${currentUser.token}`
-        }
-      }
-    );
-}
+// // Get Suggestions by Grant ID
+// export const getSuggetions = (token, grant_id) => dispatch => {
+//   dispatch({ type: GET_SUGGESTIONS_SUCCESS });
+//   axios.get(
+//     `${process.env.REACT_APP_CLIENT_LOCALURL}/admin/suggestions/${grant_id}`,
+//     {
+//       headers: {
+//         authorization: `Bearer ${token}`
+//       }
+//     }
+//   );
+// };
 
 // Delete a grant suggestion, must be an admin
-export const deleteSuggestion = (requestId, user) => dispatch => {
+export const deleteSuggestion = (requestId, token) => dispatch => {
   dispatch({ type: DELETE_SUGGESTION_START });
   axios
     .delete(
-      // `https://labs16-grantly.herokuapp.com/api/admin/suggestion/${requestId}`,
-      `https://grantly-staging.herokuapp.com/api/admin/suggestion/${requestId}`,
+      `${process.env.REACT_APP_CLIENT_STAGINGURL}/admin/suggestion/${requestId}`,
       {
         headers: {
-          auth0id: user.auth_id,
-          authorization: `Bearer ${user.token}`
+          authorization: `Bearer ${token}`
         }
       }
     )
-
     .then(response => {
       dispatch({ type: DELETE_SUGGESTION_SUCCESS, payload: response.data });
     })
