@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
+
 import { Link } from "react-router-dom";
 import { useAuth0 } from "../react-auth0-wrapper";
 import FGLogo from "../assets/FGLogo";
 import Media from "react-media";
-import { connect } from "react-redux";
 
 // Material core imports
 import {
@@ -16,10 +16,13 @@ import {
   List,
   ListItem,
   ListItemAvatar,
+  Avatar,
   ListItemIcon
 } from "@material-ui/core";
 
 import MenuIcon from "@material-ui/icons/Menu";
+import SupervisorAccountIcon from "@material-ui/icons/SupervisorAccount";
+import FaceIcon from "@material-ui/icons/Face";
 import ViewListIcon from "@material-ui/icons/ViewList";
 import DashboardIcon from "@material-ui/icons/Dashboard";
 import MailIcon from "@material-ui/icons/Mail";
@@ -68,6 +71,7 @@ export const NavBar = props => {
           </Link>
         </ListItem>
 
+
         {isAuthenticated ? (
           <ListItem className={classes.drawerStlye}>
             <ListItemAvatar>
@@ -80,6 +84,7 @@ export const NavBar = props => {
             </Link>
           </ListItem>
         ) : null}
+
 
         <ListItem className={classes.drawerStlye}>
           <ListItemAvatar>
@@ -103,7 +108,7 @@ export const NavBar = props => {
                 </ListItemIcon>
               </ListItemAvatar>
               <Link to="/table" className={classes.drawerLink}>
-                <Typography variant="h5">Edit Grants Table</Typography>
+                <Typography variant="h5">Edit Grants</Typography>
               </Link>
             </ListItem>
           ) : null
