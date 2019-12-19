@@ -61,10 +61,10 @@ const TableSuggestions = props => {
           });
       }
     };
-  }, [props.rowData]);
+  }, [user]);
 
-  const onClickDelete = (suggestion_id, currentUser) => {
-    props.deleteSuggestion(suggestion_id, currentUser.token);
+  const onClickDelete = (suggestion_id, token) => {
+    props.deleteSuggestion(suggestion_id, token);
     const updatedSuggs = suggestions.filter(sugg => sugg.id !== suggestion_id);
     setSuggestions(updatedSuggs);
   };

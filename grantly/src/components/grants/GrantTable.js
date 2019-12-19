@@ -213,7 +213,7 @@ export const GrantTable = props => {
                 resolve();
                 let filteredData = Object.assign({}, newData);
                 delete filteredData.requests;
-                props.postGrants(filteredData, props.currentUser.token);
+                props.postGrants(filteredData, token);
               }, 600);
             }),
           onRowUpdate: (newData, oldData) =>
@@ -228,7 +228,7 @@ export const GrantTable = props => {
                       ...filteredData,
                       details_last_updated: moment().format("YYYY-MM-DD")
                     },
-                    props.currentUser.token
+                    token
                   );
                 }
               }, 600);
@@ -239,7 +239,7 @@ export const GrantTable = props => {
                 resolve();
                 if (oldData) {
                   delete oldData.requests;
-                  props.deleteGrants(oldData.id, props.currentUser.token);
+                  props.deleteGrants(oldData.id, token);
                 }
               }, 600);
             })
