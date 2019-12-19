@@ -4,10 +4,11 @@ import { connect } from "react-redux";
 import Loader from "react-loader-spinner";
 import Moment from "react-moment";
 import moment from "moment";
+import { useAuth0 } from "../../react-auth0-wrapper.js";
 
 // Objects
 import { Card, Grid, Button, Typography, Divider } from "@material-ui/core";
-import BookmarkBorderOutlinedIcon from "@material-ui/icons/BookmarkBorderOutlined";
+// import BookmarkBorderOutlinedIcon from "@material-ui/icons/BookmarkBorderOutlined";
 import LanguageIcon from "@material-ui/icons/Language";
 import SuggestionDialog from "../dialogs/SuggestionDialog";
 import EditGrantDialog from "../dialogs/EditGrantDialog";
@@ -18,7 +19,7 @@ import { showcaseStyles } from "../../styles/grantShowcaseStyles";
 export const GrantShowcase = props => {
   console.log("showcase props:", props);
   const style = showcaseStyles();
-
+  const { isAuthenticated } = useAuth0();
   function formatNumbers(num) {
     return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   }
@@ -214,7 +215,7 @@ export const GrantShowcase = props => {
               </Button>
             </a>
           </Grid>
-          {!props.inAdmin && (
+          {isAuthenticated && (
             <Grid item>
               <SuggestionDialog id={props.grant.id} />
             </Grid>

@@ -33,17 +33,7 @@ export const NavBar = props => {
     logout,
     user,
     loading
-    // getTokenSilently
   } = useAuth0();
-
-  const [currentNavUser, setCurrentNavUser] = useState([]);
-
-  useEffect(() => {
-    if (isAuthenticated) {
-      setCurrentNavUser(user);
-      console.log("navCurrent", currentNavUser);
-    }
-  }, [user]);
 
   const [isOpen, setIsOpen] = useState(false);
   const toggleDrawer = open => event => {
@@ -57,7 +47,131 @@ export const NavBar = props => {
     setIsOpen(!isOpen);
   };
 
+  //   const [currentNavUser, setCurrentNavUser] = useState([]);
+
+//   useEffect(() => {
+//     if (isAuthenticated) {
+//       setCurrentNavUser(user);
+//       console.log("navCurrent", currentNavUser);
+//     }
+//   }, [user]);
+
   const classes = navStyles();
+
+  const sideList = side => (
+    <div
+      role="presentation"
+      onClick={toggleDrawer(side, false)}
+      onKeyDown={toggleDrawer(side, false)}
+      className={classes.drawer}
+    >
+      <List className={classes.links}>
+        <ListItem className={classes.drawerStlye}>
+          <ListItemAvatar>
+            <ListItemIcon className={classes.icon}>
+              <DashboardIcon />
+            </ListItemIcon>
+          </ListItemAvatar>
+          <Link to="/grants" className={classes.drawerLink}>
+            <Typography variant="h5">View All Grants</Typography>
+          </Link>
+        </ListItem>
+        
+        {isAuthenticated ? (
+          <ListItem className={classes.drawerStlye}>
+            <ListItemAvatar>
+              <ListItemIcon className={classes.icon}>
+                <MailIcon />
+              </ListItemIcon>
+            </ListItemAvatar>
+            <Link to="/form" className={classes.drawerLink}>
+              <Typography variant="h5">Suggest a Grant</Typography>
+            </Link>
+          </ListItem>
+        ) : null}
+
+        <ListItem className={classes.drawerStlye}>
+          <ListItemAvatar>
+            <ListItemIcon className={classes.icon}>
+              <InfoIcon />
+            </ListItemIcon>
+          </ListItemAvatar>
+          <Link to="/about" className={classes.drawerLink}>
+            <Typography variant="h5">About Founder Grants</Typography>
+          </Link>
+        </ListItem>
+
+        {/* {props.role === "admin" ? (<ListItem
+          className={classes.drawerStlye}
+        >
+          <ListItemAvatar>
+            <ListItemIcon
+              className={classes.icon}
+            >
+              <DashboardIcon />
+            </ListItemIcon>
+          </ListItemAvatar>
+          <Link to="/admin" className={classes.drawerLink}>
+            <Typography variant="h5">Edit Grants Old</Typography>
+          </Link>
+        </ListItem>): null} */}
+
+        {isAuthenticated ? (
+          user["https://founder-grants.com/appdata"].authorization.roles.find(
+            () => "Moderator"
+          ) === "Moderator" ? (
+            <ListItem className={classes.drawerStlye}>
+              <ListItemAvatar>
+                <ListItemIcon className={classes.icon}>
+                  <ViewListIcon />
+                </ListItemIcon>
+              </ListItemAvatar>
+              <Link to="/table" className={classes.drawerLink}>
+                <Typography variant="h5">Edit Grants Table</Typography>
+              </Link>
+            </ListItem>
+          ) : null
+        ) : null}
+
+        {/* {props.role === "admin" ? (
+          <ListItem className={classes.drawerStlye}>
+            <ListItemAvatar>
+              <ListItemIcon className={classes.icon}>
+                <SupervisorAccountIcon />
+              </ListItemIcon>
+            </ListItemAvatar>
+            <Link to="/grants" className={classes.drawerLink}>
+              <Typography variant="h5">Promote Users</Typography>
+            </Link>
+          </ListItem>
+        ) : null} */}
+
+        {isAuthenticated ? (
+          <ListItem>
+            <Button
+              className={classes.navButton}
+              color="inherit"
+              variant="outlined"
+              onClick={() => logout()}
+            >
+              Log out
+            </Button>
+          </ListItem>
+        ) : (
+          <ListItem>
+            <Button
+              className={classes.navButton}
+              color="inherit"
+              variant="outlined"
+              onClick={() => loginWithRedirect()}
+            >
+              Log In
+            </Button>
+          </ListItem>
+        )}
+      </List>
+    </div>
+  );
 
   //delays for token
   if (loading) {
@@ -79,9 +193,7 @@ export const NavBar = props => {
           {/* If there is a token, hamburger appears at right */}
           {isAuthenticated && (
             <>
-              <h1 className={classes.helloUser}>
-                Welcome, {currentNavUser.nickname}
-              </h1>
+              <h1 className={classes.helloUser}>Welcome, {user.nickname}</h1>
               <IconButton
                 // className={classes.menu}
                 edge="start"
@@ -142,86 +254,20 @@ export const NavBar = props => {
               </Media>
             )}
           </div>
-          {isAuthenticated && (
-            <SwipeableDrawer
-              anchor="right"
-              open={isOpen}
-              onClose={toggleDrawer(false)}
-              onOpen={toggleDrawer(true)}
-            >
-              <div
-                role="presentation"
-                onClick={toggleDrawer(false)}
-                onKeyDown={toggleDrawer(false)}
-                className={classes.drawer}
-              >
-                <List className={classes.links}>
-                  <ListItem className={classes.drawerStlye}>
-                    <ListItemAvatar>
-                      <ListItemIcon className={classes.icon}>
-                        <DashboardIcon />
-                      </ListItemIcon>
-                    </ListItemAvatar>
-                    <Link to="/grants" className={classes.drawerLink}>
-                      <Typography variant="h5">View All Grants</Typography>
-                    </Link>
-                  </ListItem>
-
-                  <ListItem className={classes.drawerStlye}>
-                    <ListItemAvatar>
-                      <ListItemIcon className={classes.icon}>
-                        <MailIcon />
-                      </ListItemIcon>
-                    </ListItemAvatar>
-                    <Link to="/form" className={classes.drawerLink}>
-                      <Typography variant="h5">Submit a Grant</Typography>
-                    </Link>
-                  </ListItem>
-                  <ListItem className={classes.drawerStlye}>
-                    <ListItemAvatar>
-                      <ListItemIcon className={classes.icon}>
-                        <InfoIcon />
-                      </ListItemIcon>
-                    </ListItemAvatar>
-                    <Link to="/about" className={classes.drawerLink}>
-                      <Typography variant="h5">About Founder Grants</Typography>
-                    </Link>
-                  </ListItem>
-                  {currentNavUser[
-                    "https://founder-grants.com/appdata"
-                  ].authorization.roles.find(() => "Moderator") ===
-                  "Moderator" ? (
-                    <ListItem className={classes.drawerStlye}>
-                      <ListItemAvatar>
-                        <ListItemIcon className={classes.icon}>
-                          <ViewListIcon />
-                        </ListItemIcon>
-                      </ListItemAvatar>
-                      <Link to="/table" className={classes.drawerLink}>
-                        <Typography variant="h5">Edit Grants</Typography>
-                      </Link>
-                    </ListItem>
-                  ) : null}
-
-                  <ListItem>
-                    <Button
-                      className={classes.navButton}
-                      color="inherit"
-                      variant="outlined"
-                      onClick={() => logout()}
-                    >
-                      Log out
-                    </Button>
-                  </ListItem>
-                </List>
-              </div>
-            </SwipeableDrawer>
-          )}
+          <SwipeableDrawer
+            anchor="right"
+            open={isOpen}
+            onClose={toggleDrawer(false)}
+            onOpen={toggleDrawer(true)}
+          >
+            {sideList("right")}
+          </SwipeableDrawer>
         </Toolbar>
       </AppBar>
     );
   }
 };
+
 const mapStateToProps = state => {
   return {
     currentNavUser: state.currentNavUser

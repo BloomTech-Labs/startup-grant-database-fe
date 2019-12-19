@@ -18,11 +18,21 @@ import DialogContentText from "@material-ui/core/DialogContentText";
 import IconButton from "@material-ui/core/IconButton";
 import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
 import DeleteIcon from "@material-ui/icons/Delete";
+import { useAuth0 } from "../../react-auth0-wrapper.js";
+import useGetToken from "../../auth/useGetToken.js";
 
 const TableSuggestions = props => {
-
+  const {
+    isAuthenticated,
+    user,
+    loading
+  } = useAuth0();
+  
+  const [token] = useGetToken();
+  
   const [suggestions, setSuggestions] = useState([]);
   const [open, setOpen] = useState(false);
+  console.log("made it to suggestion Table", token);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -34,13 +44,13 @@ const TableSuggestions = props => {
 
   useEffect(() => {
     const grant_id = props.rowData.id;
+    console.log('madetoEffect', token);
     axios
       .get(
         `https://grantly-staging.herokuapp.com/api/admin/suggestions/${grant_id}`,
         {
           headers: {
-            auth0id: props.currentUser.auth_id,
-            authorization: `Bearer ${props.currentUser.token}`
+            authorization: `Bearer ${token}`
           }
         }
       )
@@ -54,7 +64,7 @@ const TableSuggestions = props => {
   }, [props.rowData]);
 
   const onClickDelete = (suggestion_id, currentUser) => {
-    props.deleteSuggestion(suggestion_id, currentUser);
+    props.deleteSuggestion(suggestion_id, currentUser.token);
     const updatedSuggs = suggestions.filter(sugg => sugg.id !== suggestion_id);
     setSuggestions(updatedSuggs);
   };
@@ -87,9 +97,7 @@ const TableSuggestions = props => {
         onClose={handleClose}
         aria-labelledby="form-dialog-title"
       >
-        <DialogTitle variant="h5">
-          User Suggestions
-        </DialogTitle>
+        <DialogTitle variant="h5">User Suggestions</DialogTitle>
         <DialogContent>
           <DialogContentText>
             {suggestions.length ? (
@@ -101,7 +109,7 @@ const TableSuggestions = props => {
                   >
                     <IconButton
                       onClick={() =>
-                        onClickDelete(suggestion.id, props.currentUser)
+                        onClickDelete(suggestion.id, token)
                       }
                     >
                       <DeleteIcon />
