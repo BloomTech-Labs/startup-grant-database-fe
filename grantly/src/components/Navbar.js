@@ -47,15 +47,6 @@ export const NavBar = props => {
     setIsOpen(!isOpen);
   };
 
-  //   const [currentNavUser, setCurrentNavUser] = useState([]);
-
-//   useEffect(() => {
-//     if (isAuthenticated) {
-//       setCurrentNavUser(user);
-//       console.log("navCurrent", currentNavUser);
-//     }
-//   }, [user]);
-
   const classes = navStyles();
 
   const sideList = side => (
@@ -76,7 +67,7 @@ export const NavBar = props => {
             <Typography variant="h5">View All Grants</Typography>
           </Link>
         </ListItem>
-        
+
         {isAuthenticated ? (
           <ListItem className={classes.drawerStlye}>
             <ListItemAvatar>
@@ -101,21 +92,6 @@ export const NavBar = props => {
           </Link>
         </ListItem>
 
-        {/* {props.role === "admin" ? (<ListItem
-          className={classes.drawerStlye}
-        >
-          <ListItemAvatar>
-            <ListItemIcon
-              className={classes.icon}
-            >
-              <DashboardIcon />
-            </ListItemIcon>
-          </ListItemAvatar>
-          <Link to="/admin" className={classes.drawerLink}>
-            <Typography variant="h5">Edit Grants Old</Typography>
-          </Link>
-        </ListItem>): null} */}
-
         {isAuthenticated ? (
           user["https://founder-grants.com/appdata"].authorization.roles.find(
             () => "Moderator"
@@ -132,19 +108,6 @@ export const NavBar = props => {
             </ListItem>
           ) : null
         ) : null}
-
-        {/* {props.role === "admin" ? (
-          <ListItem className={classes.drawerStlye}>
-            <ListItemAvatar>
-              <ListItemIcon className={classes.icon}>
-                <SupervisorAccountIcon />
-              </ListItemIcon>
-            </ListItemAvatar>
-            <Link to="/grants" className={classes.drawerLink}>
-              <Typography variant="h5">Promote Users</Typography>
-            </Link>
-          </ListItem>
-        ) : null} */}
 
         {isAuthenticated ? (
           <ListItem>
@@ -267,6 +230,5 @@ export const NavBar = props => {
     );
   }
 };
-
 
 export default NavBar;
