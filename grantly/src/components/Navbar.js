@@ -71,7 +71,7 @@ export const NavBar = props => {
           </Link>
         </ListItem>
 
-        {props.role === "admin" || "user" ? (
+        {isAuthenticated ? (
           <ListItem className={classes.drawerStlye}>
             <ListItemAvatar>
               <ListItemIcon className={classes.icon}>
@@ -79,24 +79,12 @@ export const NavBar = props => {
               </ListItemIcon>
             </ListItemAvatar>
             <Link to="/form" className={classes.drawerLink}>
-              <Typography variant="h5">Submit a Grant</Typography>
+              <Typography variant="h5">Suggest a Grant</Typography>
             </Link>
           </ListItem>
         ) : null}
 
-        {props.role !== "admin" ? (
-          <ListItem className={classes.drawerStlye}>
-            <ListItemAvatar>
-              <ListItemIcon className={classes.icon}>
-                <InfoIcon />
-              </ListItemIcon>
-            </ListItemAvatar>
-            <Link to="/about" className={classes.drawerLink}>
-              <Typography variant="h5">About Founder Grants</Typography>
-            </Link>
-          </ListItem>
-        ) : null}
-        {props.role === "admin" || "user" ? (
+        {isAuthenticated ? (
           <ListItem className={classes.drawerStlye}>
             <ListItemAvatar>
               <ListItemIcon className={classes.icon}>
@@ -109,45 +97,32 @@ export const NavBar = props => {
           </ListItem>
         ) : null}
 
-        {/* {props.role === "admin" ? (<ListItem
-          className={classes.drawerStlye}
-        >
+        <ListItem className={classes.drawerStlye}>
           <ListItemAvatar>
-            <ListItemIcon
-              className={classes.icon}
-            >
-              <DashboardIcon />
+            <ListItemIcon className={classes.icon}>
+              <InfoIcon />
             </ListItemIcon>
           </ListItemAvatar>
-          <Link to="/admin" className={classes.drawerLink}>
-            <Typography variant="h5">Edit Grants Old</Typography>
+          <Link to="/about" className={classes.drawerLink}>
+            <Typography variant="h5">About Founder Grants</Typography>
           </Link>
-        </ListItem>): null} */}
+        </ListItem>
 
-        {props.role === "admin" ? (
-          <ListItem className={classes.drawerStlye}>
-            <ListItemAvatar>
-              <ListItemIcon className={classes.icon}>
-                <ViewListIcon />
-              </ListItemIcon>
-            </ListItemAvatar>
-            <Link to="/table" className={classes.drawerLink}>
-              <Typography variant="h5">Edit Grants Table</Typography>
-            </Link>
-          </ListItem>
-        ) : null}
-
-        {props.role === "admin" ? (
-          <ListItem className={classes.drawerStlye}>
-            <ListItemAvatar>
-              <ListItemIcon className={classes.icon}>
-                <SupervisorAccountIcon />
-              </ListItemIcon>
-            </ListItemAvatar>
-            <Link to="/grants" className={classes.drawerLink}>
-              <Typography variant="h5">Promote Users</Typography>
-            </Link>
-          </ListItem>
+        {isAuthenticated ? (
+          user["https://founder-grants.com/appdata"].authorization.roles.find(
+            () => "Moderator"
+          ) === "Moderator" ? (
+            <ListItem className={classes.drawerStlye}>
+              <ListItemAvatar>
+                <ListItemIcon className={classes.icon}>
+                  <ViewListIcon />
+                </ListItemIcon>
+              </ListItemAvatar>
+              <Link to="/table" className={classes.drawerLink}>
+                <Typography variant="h5">Edit Grants</Typography>
+              </Link>
+            </ListItem>
+          ) : null
         ) : null}
 
         {isAuthenticated ? (

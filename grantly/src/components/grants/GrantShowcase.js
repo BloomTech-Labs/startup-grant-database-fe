@@ -4,10 +4,11 @@ import { connect } from "react-redux";
 import Loader from "react-loader-spinner";
 import Moment from "react-moment";
 import moment from "moment";
+import { useAuth0 } from "../../react-auth0-wrapper.js";
 
 // Objects
 import { Card, Grid, Button, Typography, Divider } from "@material-ui/core";
-import BookmarkBorderOutlinedIcon from "@material-ui/icons/BookmarkBorderOutlined";
+// import BookmarkBorderOutlinedIcon from "@material-ui/icons/BookmarkBorderOutlined";
 import LanguageIcon from "@material-ui/icons/Language";
 import SuggestionDialog from "../dialogs/SuggestionDialog";
 import EditGrantDialog from "../dialogs/EditGrantDialog";
@@ -19,8 +20,9 @@ import Fade from "@material-ui/core/Fade";
 import { showcaseStyles } from "../../styles/grantShowcaseStyles";
 
 export const GrantShowcase = props => {
+  console.log("showcase props:", props);
   const style = showcaseStyles();
-
+  const { isAuthenticated } = useAuth0();
   function formatNumbers(num) {
     return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   }
@@ -114,7 +116,7 @@ export const GrantShowcase = props => {
             alignItems="flex-end"
             alignContent="flex-end"
           >
-            <LanguageIcon className={style.website}></LanguageIcon>
+            <LanguageIcon className={style.website} />
             <a href={props.grant.website} target="_blank">
               {props.grant.website}
             </a>
@@ -153,18 +155,18 @@ export const GrantShowcase = props => {
                 : "See website for details"}
             </Typography>
           </Grid>
+          <Grid item xs={4} sm={5} md={5} className={style.showcaseDetails}>
+            <Typography className={style.detailTitle}>
+              Amount Details
+            </Typography>
+            <Typography className={style.innerDetails}>
+              {props.grant.amount_notes}
+            </Typography>
+          </Grid>
           <Grid item xs={4} sm={5} md={4} className={style.showcaseDetails}>
             <Typography className={style.detailTitle}>Deadline</Typography>
             <Typography className={style.innerDetails}>
               {momentDeadline}
-            </Typography>
-          </Grid>
-          <Grid item xs={9} sm={10} md={5} className={style.showcaseDetails}>
-            <Typography className={style.detailTitle}>
-              Grant Categories
-            </Typography>
-            <Typography className={style.innerDetails}>
-              {props.grant.domain_areas}
             </Typography>
           </Grid>
           <Grid item xs={4} sm={5} md={2} className={style.showcaseDetails}>
@@ -173,22 +175,38 @@ export const GrantShowcase = props => {
               {props.grant.geographic_region}
             </Typography>
           </Grid>
+          <Grid item xs={9} sm={10} md={5} className={style.showcaseDetails}>
+            <Typography className={style.detailTitle}>
+              Early Stage Funding Eligible?
+            </Typography>
+            <Typography className={style.innerDetails}>
+              {props.grant.early_stage_funding ? "Yes" : "No"}
+            </Typography>
+          </Grid>
+          <Grid item xs={4} sm={5} md={4} className={style.showcaseDetails}>
+            <Typography className={style.detailTitle}>
+              Target Demographic
+            </Typography>
+            <Typography className={style.innerDetails}>
+              {props.grant.target_entrepreneur_demographic}
+            </Typography>
+          </Grid>
           <Grid item xs={4} sm={5} md={4} className={style.showcaseDetails}>
             <Typography className={style.detailTitle}>Focus Area</Typography>
             <Typography className={style.innerDetails}>
               {props.grant.area_focus}
             </Typography>
           </Grid>
-          <Grid item xs={9} sm={10} md={5} className={style.showcaseDetails}>
+          <Grid item xs={9} sm={10} md={4} className={style.showcaseDetails}>
             <Typography className={style.detailTitle}>Sponsor</Typography>
             <Typography className={style.innerDetails}>
               {props.grant.sponsoring_entity}
             </Typography>
           </Grid>
-        </Grid>
+          {/* </Grid>
 
-        <Grid container className={style.showcaseNotes}>
-          <Grid item xs={12}>
+        <Grid container className={style.showcaseNotes}> */}
+          <Grid item xs={12} sm={12} md={12} className={style.showcaseDetails}>
             <Typography className={style.detailTitle}>Notes</Typography>
             <Typography className={style.innerDetails}>
               {props.grant.notes}
@@ -215,7 +233,7 @@ export const GrantShowcase = props => {
               </Button>
             </a>
           </Grid>
-          {!props.inAdmin && (
+          {isAuthenticated && (
             <Grid item>
               <SuggestionDialog id={props.grant.id} />
             </Grid>
