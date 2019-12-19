@@ -19,7 +19,7 @@ import {
   Avatar,
   ListItemIcon
 } from "@material-ui/core";
-
+import BookmarkIcon from "@material-ui/icons/Bookmark";
 import MenuIcon from "@material-ui/icons/Menu";
 import SupervisorAccountIcon from "@material-ui/icons/SupervisorAccount";
 import FaceIcon from "@material-ui/icons/Face";
@@ -93,6 +93,18 @@ export const NavBar = props => {
             </ListItemAvatar>
             <Link to="/about" className={classes.drawerLink}>
               <Typography variant="h5">About Founder Grants</Typography>
+            </Link>
+          </ListItem>
+        ) : null}
+        {props.roll === "admin" ? (
+          <ListItem className={classes.drawerStlye}>
+            <ListItemAvatar>
+              <ListItemIcon className={classes.icon}>
+                <BookmarkIcon />
+              </ListItemIcon>
+            </ListItemAvatar>
+            <Link to="/favorites" className={classes.drawerLink}>
+              <Typography variant="h5">Favorite Grants</Typography>
             </Link>
           </ListItem>
         ) : null}
@@ -185,9 +197,7 @@ export const NavBar = props => {
           {/* If there is a token, hamburger appears at right */}
           {isAuthenticated && (
             <>
-              <h1 className={classes.helloUser}>
-                Welcome, {user.nickname}
-              </h1>
+              <h1 className={classes.helloUser}>Welcome, {user.nickname}</h1>
               <IconButton
                 // className={classes.menu}
                 edge="start"

@@ -48,12 +48,16 @@ const Filters = ({
     if (ogGrants.length === 0) {
       fetchApi();
     }
-    if (location == "/grants" || location == "/admin") {
+    if (
+      location == "/grants" ||
+      location == "/admin" ||
+      location == "/favorites"
+    ) {
       filterGrants(savedFilters);
     }
   }, [savedFilters]);
 
-  console.log("fil", savedFilters)
+  console.log("fil", savedFilters);
 
   const grantFilters = {
     color: "primary",
@@ -100,7 +104,6 @@ const Filters = ({
   } else {
     classes = grantStyles;
   }
-
 
   return (
     <Card className={classes.card}>
@@ -259,7 +262,8 @@ const mapStateToProps = state => {
     isFetching: state.isFetching
   };
 };
-export default connect(
-  mapStateToProps,
-  { filterGrants, saveFilters, fetchApi }
-)(Filters);
+export default connect(mapStateToProps, {
+  filterGrants,
+  saveFilters,
+  fetchApi
+})(Filters);

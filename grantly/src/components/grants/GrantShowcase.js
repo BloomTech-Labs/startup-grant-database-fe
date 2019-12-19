@@ -11,6 +11,9 @@ import BookmarkBorderOutlinedIcon from "@material-ui/icons/BookmarkBorderOutline
 import LanguageIcon from "@material-ui/icons/Language";
 import SuggestionDialog from "../dialogs/SuggestionDialog";
 import EditGrantDialog from "../dialogs/EditGrantDialog";
+import IconButton from "@material-ui/core/IconButton";
+import Tooltip from "@material-ui/core/Tooltip";
+import Fade from "@material-ui/core/Fade";
 
 // Styles
 import { showcaseStyles } from "../../styles/grantShowcaseStyles";
@@ -33,7 +36,7 @@ export const GrantShowcase = props => {
   const momentDeadline =
     props.grant.most_recent_application_due_date &&
     " or in about " +
-    moment(props.grant.most_recent_application_due_date).fromNow();
+      moment(props.grant.most_recent_application_due_date).fromNow();
 
   if (props.isFetching) {
     return (
@@ -87,6 +90,21 @@ export const GrantShowcase = props => {
                 ) : //( <BookmarkBorderOutlinedIcon className={style.bookmark} />)
                 null}
               </Grid>
+            </Grid>
+            <Grid item>
+              {props.inAdmin ? (
+                <Tooltip
+                  TransitionComponent={Fade}
+                  TransitionProps={{ timeout: 600 }}
+                  title="Save"
+                >
+                  <IconButton aria-label="save">
+                    <BookmarkBorderOutlinedIcon
+                      className={showcaseStyles.bookmark}
+                    />
+                  </IconButton>
+                </Tooltip>
+              ) : null}
             </Grid>
           </Grid>
 
@@ -216,7 +234,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  {}
-)(GrantShowcase);
+export default connect(mapStateToProps, {})(GrantShowcase);

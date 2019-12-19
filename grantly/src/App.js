@@ -16,7 +16,7 @@ import LoginForm from "./components/LoginForm";
 import NavBar from "./components/Navbar";
 import Sitemap from "./components/Sitemap";
 import PrivateRoute from "./util/PrivateRoute";
-
+import favorites from "./views/Favorites";
 // Stylings
 import { ThemeProvider } from "@material-ui/styles";
 import { theme } from "./styles/theme";
@@ -25,7 +25,6 @@ import { theme } from "./styles/theme";
 
 function App({ checkUser, currentUser, fetchApi }) {
   const { user, isAuthenticated, getTokenSilently } = useAuth0();
-
 
   useEffect(() => {
     if (isAuthenticated) {
@@ -53,23 +52,21 @@ function App({ checkUser, currentUser, fetchApi }) {
           <Route path="/form" render={props => <SubmitForm {...props} />} />
           {/* <Route path="/login" component={LoginForm} /> */}
           <Route path="/about" component={About} />
-            <Route path="/table" component={GrantTable} />
+          <Route path="/table" component={GrantTable} />
           {isAuthenticated && (
             <PrivateRoute exact path="/admin" component={Admin} />
             // <PrivateRoute exact path="/promote" component
           )}
+          <Route exact path="/favorites" component={favorites} />
           <Sitemap />
         </div>
       </ThemeProvider>
     </Router>
-  )
+  );
 }
 const mapStateToProps = state => {
   return {
     currentUser: state.currentUser
   };
 };
-export default connect(
-  mapStateToProps,
-  { checkUser, fetchApi }
-)(App);
+export default connect(mapStateToProps, { checkUser, fetchApi })(App);

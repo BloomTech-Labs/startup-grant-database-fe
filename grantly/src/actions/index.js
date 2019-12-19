@@ -29,7 +29,16 @@ import {
   DELETE_SUGGESTION_START,
   DELETE_SUGGESTION_SUCCESS,
   DELETE_SUGGESTION_FAILURE,
-  GET_SUGGESTIONS_SUCCESS
+  GET_SUGGESTIONS_SUCCESS,
+  SUBMIT_FAVORITE_START,
+  SUBMIT_FAVORITE_SUCCESS,
+  SUBMIT_FAVORITE_FAILURE,
+  GET_FAVORITE_START,
+  GET_FAVORITE_SUCCESS,
+  GET_FAVORITE_FAILURE,
+  DELETE_FAVORITE_START,
+  DELETE_FAVORITE_SUCCESS,
+  DELETE_FAVORITE_FAILURE
 } from "./types";
 
 // fetch grants for main view
@@ -53,12 +62,11 @@ export const fetchApi = () => dispatch => {
 // fetch grants for admin
 
 export const adminFetchApi = user => dispatch => {
-
   dispatch({ type: FETCH_START });
   axios
     // .get(`http://localhost:5000/api/admin`, {
     // .get(`https://labs16-grantly.herokuapp.com/api/admin`, {
-      .get(`https://grantly-staging.herokuapp.com/api/admin`, {
+    .get(`https://grantly-staging.herokuapp.com/api/admin`, {
       headers: { auth0id: user.auth_id, authorization: `Bearer ${user.token}` }
     })
 
@@ -111,7 +119,6 @@ export const postGrants = addGrant => dispatch => {
     // .post("https://labs16-grantly.herokuapp.com/api/grants/", addGrant)
     .post("https://grantly-staging.herokuapp.com/api/grants", addGrant)
 
-
     .then(res => {
       dispatch({ type: ADD_GRANT_SUCCESS, payload: res.data });
     })
@@ -123,8 +130,8 @@ export const postGrants = addGrant => dispatch => {
 
 // Update a Grant
 export const putGrants = (updateGrant, user) => dispatch => {
-  console.log('updatedGrant', updateGrant)
-  console.log('updatedGrant user', user)
+  console.log("updatedGrant", updateGrant);
+  console.log("updatedGrant user", user);
   dispatch({
     type: UPDATE_GRANT_START
   });
@@ -146,7 +153,7 @@ export const putGrants = (updateGrant, user) => dispatch => {
       axios
         // .get(`http://localhost:5000/api/grants/`, {
         // .get(`https://labs16-grantly.herokuapp.com/api/grants/`, {
-          .get(`https://grantly-staging.herokuapp.com/api/admin`, {
+        .get(`https://grantly-staging.herokuapp.com/api/admin`, {
           headers: {
             auth0id: user.auth_id,
             authorization: `Bearer ${user.token}`
@@ -162,10 +169,10 @@ export const putGrants = (updateGrant, user) => dispatch => {
         })
         .catch(error => {
           dispatch({ type: UPDATE_GRANT_FAILURE, payload: error });
-        })
+        });
     })
     .catch(err => {
-      console.log('made this error');
+      console.log("made this error");
       dispatch({ type: UPDATE_GRANT_FAILURE, payload: err });
     });
 };
@@ -176,9 +183,9 @@ export const deleteGrants = (id, user) => dispatch => {
     type: DELETE_GRANT_START
   });
   axios
-  // .delete(`http://localhost:5000/api/admin/${id}`, {
+    // .delete(`http://localhost:5000/api/admin/${id}`, {
     // .delete(`https://labs16-grantly.herokuapp.com/api/admin/${id}`, {
-      .delete(`https://grantly-staging.herokuapp.com/api/admin/${id}`, {
+    .delete(`https://grantly-staging.herokuapp.com/api/admin/${id}`, {
       headers: {
         auth0id: user.auth_id,
         authorization: `Bearer ${user.token}`
@@ -187,9 +194,9 @@ export const deleteGrants = (id, user) => dispatch => {
 
     .then(res => {
       axios
-      // .get(`http://localhost:5000/api/grants/`, {
+        // .get(`http://localhost:5000/api/grants/`, {
         // .get(`https://labs16-grantly.herokuapp.com/api/grants/`, {
-          .get(`https://grantly-staging.herokuapp.com/api/admin`, {
+        .get(`https://grantly-staging.herokuapp.com/api/admin`, {
           headers: {
             auth0id: user.auth_id,
             authorization: `Bearer ${user.token}`
@@ -221,7 +228,7 @@ export const checkUser = user => dispatch => {
   axios
 
     // .get("https://labs16-grantly.herokuapp.com/user", {
-      .get("https://grantly-staging.herokuapp.com/user", {
+    .get("https://grantly-staging.herokuapp.com/user", {
       headers: {
         auth_id: auth.auth_id
       }
@@ -231,7 +238,6 @@ export const checkUser = user => dispatch => {
       dispatch({ type: SET_TOKEN_IN_STORE, payload: user.token });
     })
     .catch(err => {
-
       //Possibly for a future release will be to update our user database with the email and name provided by auth0
       // const newUser = { role: "user", auth_id: auth.auth_id, email: user.email, last_name: user.family_name, first_name: user.given_name};
 
@@ -275,16 +281,16 @@ export const submitSuggestion = suggestion => dispatch => {
 
 export const getSuggetions = (currentUser, grant_id) => dispatch => {
   dispatch({ type: GET_SUGGESTIONS_SUCCESS });
-  axios
-    .get(`https://grantly-staging.herokuapp.com/api/admin/suggestions/${grant_id}`,
-      {
-        headers: {
-          auth0id: currentUser.auth_id,
-          authorization: `Bearer ${currentUser.token}`
-        }
+  axios.get(
+    `https://grantly-staging.herokuapp.com/api/admin/suggestions/${grant_id}`,
+    {
+      headers: {
+        auth0id: currentUser.auth_id,
+        authorization: `Bearer ${currentUser.token}`
       }
-    );
-}
+    }
+  );
+};
 
 // Delete a grant suggestion, must be an admin
 export const deleteSuggestion = (requestId, user) => dispatch => {
@@ -306,5 +312,67 @@ export const deleteSuggestion = (requestId, user) => dispatch => {
     })
     .catch(error => {
       dispatch({ type: DELETE_SUGGESTION_FAILURE });
+    });
+};
+
+//Add a favorite grant
+
+export const submitFavorite = favorite => dispatch => {
+  dispatch({ type: SUBMIT_FAVORITE_START });
+  axios
+    .post(
+      // "https://labs16-grantly.herokuapp.com/api/grants/suggestion",
+      "https://grantly-staging.herokuapp.com/api/grants/suggestion",
+      favorite
+    )
+
+    .then(response => {
+      dispatch({ type: SUBMIT_FAVORITE_SUCCESS, payload: response.data });
+    })
+    .catch(error => {
+      console.log("submitFavorite error", error);
+      dispatch({ type: SUBMIT_FAVORITE_FAILURE });
+    });
+};
+
+// fetch Favorite grants for user
+
+export const favoriteFetchApi = user => dispatch => {
+  dispatch({ type: FETCH_START });
+  axios
+    // .get(`http://localhost:5000/api/favorites`, {
+    // .get(`https://labs16-grantly.herokuapp.com/api/admin/myFavorites`, {
+    .get(`https://grantly-staging.herokuapp.com/api/admin/myFavorites/`, {
+      headers: { auth0id: user.auth_id, authorization: `Bearer ${user.token}` }
+    })
+
+    .then(response => {
+      dispatch({ type: FETCH_SUCCESS, payload: response.data });
+    })
+    .catch(error => {
+      dispatch({ type: FETCH_ERROR });
+    });
+};
+
+// Delete a Favorite grant , must be a user
+export const deleteFavorite = (requestId, user) => dispatch => {
+  dispatch({ type: DELETE_FAVORITE_START });
+  axios
+    .delete(
+      // `https://labs16-grantly.herokuapp.com/api/admin/myFavorites/${requestId}`,
+      `https://grantly-staging.herokuapp.com/api/admin/myFavorites/${requestId}`,
+      {
+        headers: {
+          auth0id: user.auth_id,
+          authorization: `Bearer ${user.token}`
+        }
+      }
+    )
+
+    .then(response => {
+      dispatch({ type: DELETE_FAVORITE_SUCCESS, payload: response.data });
+    })
+    .catch(error => {
+      dispatch({ type: DELETE_FAVORITE_FAILURE });
     });
 };
