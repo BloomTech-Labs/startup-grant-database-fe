@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Media from "react-media";
 
 // Stlying
-import { adminStyles } from "../styles/adminStyles";
+import { homeStyles } from "../styles/homeStyles";
 import Grid from "@material-ui/core/Grid";
 import TuneIcon from "@material-ui/icons/Tune";
 import SwipeableDrawer from "@material-ui/core/SwipeableDrawer";
@@ -28,7 +28,7 @@ const Favorites = props => {
   const toggleFilters = () => {
     setOpen(!open);
   };
-  const classes = adminStyles();
+  const classes = homeStyles();
   return (
     <div>
       <Media query="(max-width:850px)">
@@ -51,7 +51,7 @@ const Favorites = props => {
                   location={props.location.pathname}
                   mobile={true}
                   inAdmin={false}
-                  inUser={true}
+                  inFavorite={true}
                 />
               </SwipeableDrawer>
             </>

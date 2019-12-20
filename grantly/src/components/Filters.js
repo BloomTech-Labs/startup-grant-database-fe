@@ -27,7 +27,7 @@ const Filters = ({
   fetchApi,
   ogGrants,
   isFetching,
-  inUser
+  inFavorite
 }) => {
   const [filters, setFilters] = useState({
     amount: [],

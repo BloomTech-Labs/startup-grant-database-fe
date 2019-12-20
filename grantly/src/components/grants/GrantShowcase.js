@@ -109,7 +109,7 @@ export const GrantShowcase = props => {
                 </Tooltip>
               ) : null}
             </Grid>
-            {/* <Grid item>
+            <Grid item>
               {props.inFavorite ? (
                 <Tooltip
                   TransitionComponent={Fade}
@@ -117,13 +117,11 @@ export const GrantShowcase = props => {
                   title="Delete Favorites"
                 >
                   <IconButton aria-label="DeleteIcon">
-                    <BookmarkBorderOutlinedIcon
-                      className={showcaseStyles.bookmark}
-                    />
+                    <DeleteIcon className={showcaseStyles.bookmark} />
                   </IconButton>
                 </Tooltip>
               ) : null}
-            </Grid> */}
+            </Grid>
           </Grid>
 
           <Grid

@@ -212,18 +212,18 @@ export const submitSuggestion = (suggestion, token) => dispatch => {
     });
 };
 
-// // Get Suggestions by Grant ID
-// export const getSuggetions = (token, grant_id) => dispatch => {
-//   dispatch({ type: GET_SUGGESTIONS_SUCCESS });
-//   axios.get(
-//     `${process.env.REACT_APP_CLIENT_LOCALURL}/admin/suggestions/${grant_id}`,
-//     {
-//       headers: {
-//         authorization: `Bearer ${token}`
-//       }
-//     }
-//   );
-// };
+// Get Suggestions by Grant ID
+export const getSuggetions = (token, grant_id) => dispatch => {
+  dispatch({ type: GET_SUGGESTIONS_SUCCESS });
+  axios.get(
+    `${process.env.REACT_APP_CLIENT_LOCALURL}/admin/suggestions/${grant_id}`,
+    {
+      headers: {
+        authorization: `Bearer ${token}`
+      }
+    }
+  );
+};
 
 // Delete a grant suggestion, must be an admin
 export const deleteSuggestion = (requestId, token) => dispatch => {
@@ -266,7 +266,7 @@ export const favoriteFetchApi = user => dispatch => {
   console.log("USER HERE===>", user);
   const auth0id = user.sub;
 
-  dispatch({ type: FETCH_START });
+  dispatch({ type: GET_FAVORITE_START });
   axios
     .get(
       `${process.env.REACT_APP_CLIENT_STAGINGURL}/favorites/myFavorites/`,
