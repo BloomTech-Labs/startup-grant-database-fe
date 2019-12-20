@@ -63,13 +63,17 @@ const Favorites = props => {
               className={classes.gridContainer}
             >
               <Grid item xs={6} md={3} className={classes.grantList}>
-                <GrantList inFavorite={true} history={props.history} />
+                <GrantList
+                  inFavorite={true}
+                  history={props.history}
+                  currentUser={props.currentUser}
+                />
               </Grid>
               <Grid item xs={6} className={classes.gridItem}>
                 <GrantShowcase
                   inAdmin={false}
                   history={props.history}
-                  inUser={true}
+                  inFavorite={true}
                 />
               </Grid>
               <Grid item xs={2}>
@@ -86,7 +90,7 @@ const Favorites = props => {
                   <Filters
                     inAdmin={false}
                     location={props.location.pathname}
-                    inUser={true}
+                    inFavorite={true}
                   />
                 </div>
               </Grid>

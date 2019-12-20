@@ -8,7 +8,8 @@ import { useAuth0 } from "../../react-auth0-wrapper.js";
 
 // Objects
 import { Card, Grid, Button, Typography, Divider } from "@material-ui/core";
-// import BookmarkBorderOutlinedIcon from "@material-ui/icons/BookmarkBorderOutlined";
+import BookmarkBorderOutlinedIcon from "@material-ui/icons/BookmarkBorderOutlined";
+import DeleteIcon from "@material-ui/icons/Delete";
 import LanguageIcon from "@material-ui/icons/Language";
 import SuggestionDialog from "../dialogs/SuggestionDialog";
 import EditGrantDialog from "../dialogs/EditGrantDialog";
@@ -108,6 +109,21 @@ export const GrantShowcase = props => {
                 </Tooltip>
               ) : null}
             </Grid>
+            {/* <Grid item>
+              {props.inFavorite ? (
+                <Tooltip
+                  TransitionComponent={Fade}
+                  TransitionProps={{ timeout: 600 }}
+                  title="Delete Favorites"
+                >
+                  <IconButton aria-label="DeleteIcon">
+                    <BookmarkBorderOutlinedIcon
+                      className={showcaseStyles.bookmark}
+                    />
+                  </IconButton>
+                </Tooltip>
+              ) : null}
+            </Grid> */}
           </Grid>
 
           <Grid

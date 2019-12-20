@@ -35,7 +35,7 @@ const AppWithProvider = (
     domain={process.env.REACT_APP_CLIENT_DOMAIN}
     client_id={process.env.REACT_APP_CLIENT_ID}
     redirect_uri={`${window.location.origin}`}
-    audience={process.env.REACT_APP_CLIENT_AUDIENCE}
+    audience={process.env.REACT_APP_CLIENT_AUDIENCESTAGING}
     onRedirectCallback={onRedirectCallback}
   >
     <Provider store={store}>

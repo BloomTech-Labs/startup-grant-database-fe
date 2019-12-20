@@ -2,7 +2,7 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { useAuth0 } from "../../react-auth0-wrapper";
-
+import useGetToken from "../../auth/useGetToken.js";
 // Objects
 import Grant from "./Grant";
 import Typography from "@material-ui/core/Typography";
@@ -19,6 +19,9 @@ import { homeStyles } from "../../styles/homeStyles";
 
 export const GrantList = props => {
   const styles = homeStyles();
+
+  const [token] = useGetToken();
+
   // useEffect(() => {
   //   if (props.inAdmin) {
   //     console.log("what?", props.inAdmin);
@@ -35,6 +38,7 @@ export const GrantList = props => {
     if (props.inFavorite) {
       console.log("what?", props.inFavorite);
       console.log("yes", props);
+      console.log("isthereatoken", token);
       props.favoriteFetchApi(props.currentUser);
       // } else if (props.data.length === 0) {
       //   props.fetchApi();
@@ -42,7 +46,7 @@ export const GrantList = props => {
       //create user fetech api action, check if user in token, then run the action to fetch saved grants.
       // props.fetchApi();
     }
-  }, []);
+  }, [token]);
   const needToBeReviewed = props.data.filter(
     grant => grant.is_reviewed === false
   ).length;
@@ -83,7 +87,6 @@ const mapStateToProps = state => {
     isFetching: state.isFetching,
     data: state.filteredGrants,
     grantStore: state.data,
-    currentUser: state.currentUser,
     savedFilters: state.filters
   };
 };

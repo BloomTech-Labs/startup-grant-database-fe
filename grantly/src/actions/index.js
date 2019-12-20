@@ -262,14 +262,19 @@ export const submitFavorite = favorite => dispatch => {
 };
 
 // fetch Favorite grants for user
-
 export const favoriteFetchApi = user => dispatch => {
+  console.log("USER HERE===>", user);
+  const auth0id = user.sub;
+
   dispatch({ type: FETCH_START });
   axios
-    .get(`${process.env.REACT_APP_CLIENT_STAGINGURL}/favorites/myFavorites/`, {
-      headers: { auth0id: user.auth_id, authorization: `Bearer ${user.token}` }
-    })
-
+    .get(
+      `${process.env.REACT_APP_CLIENT_STAGINGURL}/favorites/myFavorites/`,
+      auth0id,
+      {
+        headers: { authorization: `Bearer ${user.token}` }
+      }
+    )
     .then(response => {
       dispatch({ type: FETCH_SUCCESS, payload: response.data });
     })
