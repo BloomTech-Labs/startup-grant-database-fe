@@ -8,7 +8,7 @@ import TuneIcon from "@material-ui/icons/Tune";
 import SwipeableDrawer from "@material-ui/core/SwipeableDrawer";
 
 // Components
-import GrantList from "../components/grants/GrantList";
+import FavoritesList from "../components/grants/FavoritesList";
 import Filters from "../components/Filters";
 import GrantShowcase from "../components/grants/GrantShowcase";
 import MobileFilters from "../components/mobile/MobileFilters";
@@ -63,7 +63,7 @@ const Favorites = props => {
               className={classes.gridContainer}
             >
               <Grid item xs={6} md={3} className={classes.grantList}>
-                <GrantList
+                <FavoritesList
                   inFavorite={true}
                   history={props.history}
                   currentUser={props.currentUser}

@@ -1,6 +1,6 @@
 // Dependencies
 import axios from "axios";
-// import { axiosWithAuth } from "../auth/axiosWithAuth.js";
+import { axiosWithAuth } from "../auth/axiosWithAuth.js";
 // import useGetToken from "../auth/useGetToken.js";
 
 // Objects
@@ -263,23 +263,18 @@ export const submitFavorite = favorite => dispatch => {
 
 // fetch Favorite grants for user
 export const favoriteFetchApi = user => dispatch => {
-  console.log("USER HERE===>", user);
-  const auth0id = user.sub;
-
+  // console.log("USER HERE===>", user);
+  // console.log("TOKEN HERE ===>>", user.token);
+  //${user.sub}
   dispatch({ type: GET_FAVORITE_START });
-  axios
-    .get(
-      `${process.env.REACT_APP_CLIENT_STAGINGURL}/favorites/myFavorites/`,
-      auth0id,
-      {
-        headers: { authorization: `Bearer ${user.token}` }
-      }
-    )
+  axiosWithAuth(user.token).get(`/favorites/myFavorites/${user.sub}`)
+
     .then(response => {
-      dispatch({ type: FETCH_SUCCESS, payload: response.data });
+      console.log("RESPONSE????", response)
+      dispatch({ type: GET_FAVORITE_SUCCESS, payload: response.data });
     })
     .catch(error => {
-      dispatch({ type: FETCH_ERROR });
+      dispatch({ type: GET_FAVORITE_FAILURE, payload: error });
     });
 };
 
@@ -288,10 +283,9 @@ export const deleteFavorite = (requestId, user) => dispatch => {
   dispatch({ type: DELETE_FAVORITE_START });
   axios
     .delete(
-      `${process.env.REACT_APP_CLIENT_STAGINGURL}/favorites/myFavorites/${requestId}`,
+      `${process.env.REACT_APP_CLIENT_STAGINGURL} / favorites / myFavorites / ${requestId}`,
       {
         headers: {
-          auth0id: user.auth_id,
           authorization: `Bearer ${user.token}`
         }
       }

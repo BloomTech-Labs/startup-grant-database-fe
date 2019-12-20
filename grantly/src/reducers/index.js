@@ -20,7 +20,10 @@ import {
   CHECK_ADMIN,
   SET_USER,
   SET_TOKEN_IN_STORE,
-  DELETE_SUGGESTION_SUCCESS
+  DELETE_SUGGESTION_SUCCESS,
+  GET_FAVORITE_START,
+  GET_FAVORITE_SUCCESS,
+  GET_FAVORITE_FAILURE
 } from "../actions/types";
 import moment from "moment";
 
@@ -329,6 +332,18 @@ export const rooterReducer = (state = initialState, { type, payload }) => {
         ...state,
         isDeleted: Math.random()
       };
+
+    case GET_FAVORITE_START:
+      return {
+        ...state
+        // fetchingData: true
+      }
+
+    case GET_FAVORITE_SUCCESS:
+      return {
+        ...state,
+        favorites: payload
+      }
 
     default:
       return state;

@@ -33,13 +33,13 @@ export const GrantShowcase = props => {
       {props.grant.most_recent_application_due_date}
     </Moment>
   ) : (
-    <div>See website for details</div>
-  );
+      <div>See website for details</div>
+    );
 
   const momentDeadline =
     props.grant.most_recent_application_due_date &&
     " or in about " +
-      moment(props.grant.most_recent_application_due_date).fromNow();
+    moment(props.grant.most_recent_application_due_date).fromNow();
 
   if (props.isFetching) {
     return (
@@ -51,13 +51,7 @@ export const GrantShowcase = props => {
 
   return (
     <div>
-      <Card
-        className={
-          props.inAdmin
-            ? `${style.showcaseCard} ${style.inAdmin}`
-            : style.showcaseCard
-        }
-      >
+      <Card className={style.showcaseCard}>
         {/* ================= Top container ================= */}
         <div>
           <Grid
@@ -83,17 +77,6 @@ export const GrantShowcase = props => {
               </Grid>
             </Grid>
 
-            <Grid>
-              <Grid item>
-                {props.inAdmin ? (
-                  <EditGrantDialog
-                    className={style.editIcon}
-                    grant={props.grant}
-                  />
-                ) : //( <BookmarkBorderOutlinedIcon className={style.bookmark} />)
-                null}
-              </Grid>
-            </Grid>
             <Grid item>
               {props.inGrants ? (
                 <Tooltip
@@ -116,7 +99,7 @@ export const GrantShowcase = props => {
                   TransitionProps={{ timeout: 600 }}
                   title="Delete Favorites"
                 >
-                  <IconButton aria-label="DeleteIcon">
+                  <IconButton aria-label="DeleteIcon" >
                     <DeleteIcon className={showcaseStyles.bookmark} />
                   </IconButton>
                 </Tooltip>

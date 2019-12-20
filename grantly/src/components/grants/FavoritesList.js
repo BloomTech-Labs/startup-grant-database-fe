@@ -2,11 +2,12 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { useAuth0 } from "../../react-auth0-wrapper";
+// import useGetToken from "../../auth/useGetToken.js";
 // Objects
 import Grant from "./Grant";
 import Typography from "@material-ui/core/Typography";
 
-import { fetchApi, adminFetchApi, favoriteFetchApi } from "../../actions";
+import { favoriteFetchApi } from "../../actions";
 
 // Styles
 import { homeStyles } from "../../styles/homeStyles";
@@ -16,42 +17,33 @@ import { homeStyles } from "../../styles/homeStyles";
 //   return a + b;
 // };
 
-export const GrantList = props => {
+export const FavoritesList = props => {
   const styles = homeStyles();
 
   useEffect(() => {
-    props.fetchApi();
-  }, []);
-
-  const needToBeReviewed = props.data.filter(
-    grant => grant.is_reviewed === false
-  ).length;
-  // const numberOfSuggestions = props.data.filter(grant => grant.requests.length > 0).length;
-
-  // console.log(user);
-  // console.log("CurrentUser Data from Store", props.currentUser);
+    props.favoriteFetchApi(props.currentUser);
+  }, [props.currentUser.token]);
 
   return (
     <div>
-      {props.data.length && (
-        <p className={styles.results}>{props.data.length} Grants</p>
+      {props.favorites.length && (
+        <p className={styles.results}>{props.favorites.length} Grants</p>
       )}
-      {/* {props.inAdmin && <p>{needToBeReviewed} grant(s) need to be reviewed</p>} */}
 
-      {props.data.length > 0 ? (
-        props.data.map(grant => {
+      {props.favorites.length > 0 ? (
+        props.favorites.map(grant => {
           return (
             <Grant
               grant={grant}
               key={grant.id}
-              inAdmin={props.inAdmin}
+              inFavorite={props.inFavorite}
               history={props.history}
             />
           );
         })
       ) : (
-        <div> Grants incoming! </div>
-      )}
+          <div>Favorites incoming!</div>
+        )}
     </div>
   );
 };
@@ -61,13 +53,11 @@ const mapStateToProps = state => {
   return {
     error: state.error,
     isFetching: state.isFetching,
-    data: state.filteredGrants,
+    favorites: state.favorites,
     grantStore: state.data,
     savedFilters: state.filters
   };
 };
 export default connect(mapStateToProps, {
-  fetchApi,
-  adminFetchApi,
   favoriteFetchApi
-})(GrantList);
+})(FavoritesList);
