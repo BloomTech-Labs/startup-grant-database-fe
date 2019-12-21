@@ -50,7 +50,8 @@ const MobileTabs = ({
   history,
   favorites,
   inFavorite,
-  currentUser
+  currentUser,
+  inGrants
 }) => {
   const style = mobileTabStyles();
   const theme = useTheme();
@@ -94,7 +95,7 @@ const MobileTabs = ({
         <TabPanel value={value} index={0} dir={theme.direction}>
           {inFavorite ? (
             <FavoriteList
-              infavorite={true}
+              infavorite={inFavorite}
               favorites={favorites}
               currentUser={currentUser}
             />
@@ -103,7 +104,12 @@ const MobileTabs = ({
           )}
         </TabPanel>
         <TabPanel value={value} index={1} dir={theme.direction}>
-          <GrantShowcase favorites={grant} grant={grant} />
+          <GrantShowcase
+            inFavorite={inFavorite}
+            inGrants={inGrants}
+            favorites={grant}
+            grant={grant}
+          />
         </TabPanel>
 
         <TabPanel value={value} index={2} dir={theme.direction}>
