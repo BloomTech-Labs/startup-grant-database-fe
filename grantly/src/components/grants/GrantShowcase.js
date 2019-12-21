@@ -137,25 +137,7 @@ export const GrantShowcase = props => {
             <a href={props.grant.website} target="_blank">
               {props.grant.website}
             </a>
-
-            {/* <Grid item>
-              <a href={props.grant.website} target="_blank">
-                <Button
-                  className={style.applyButton}
-                  variant="contained"
-                  color="primary"
-                >
-                  Apply to Grant
-                </Button>
-              </a>
-              {!props.inAdmin && (
-                <Grid item>
-                  <SuggestionDialog id={props.grant.id} />
-                </Grid>
-              )}
-            </Grid> */}
           </Grid>
-          {/* <Divider color="primary" /> */}
         </div>
         {/* ================= Main content ================= */}
         <Grid
@@ -262,11 +244,8 @@ export const GrantShowcase = props => {
 };
 
 const mapStateToProps = state => {
-  // console.log("GrantShowcase mapStateToProps state", state);
   return {
-    // grant: state.grantShowcase,
     isFetching: state.isFetching
-    // favorites: state.favorites
   };
 };
 

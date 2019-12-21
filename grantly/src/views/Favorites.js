@@ -37,10 +37,10 @@ const Favorites = props => {
           matches ? (
             <>
               <MobileTabs
-                inAdmin={false}
-                inUser={true}
+                inFavorite={true}
                 history={props.history}
                 favorites={props.favorites}
+                currentUser={props.currentUser}
               />
               <MobileFilters toggleDrawer={toggleDrawer} />
               <SwipeableDrawer
@@ -73,7 +73,6 @@ const Favorites = props => {
               </Grid>
               <Grid item xs={6} className={classes.gridItem}>
                 <GrantShowcase
-                  // inAdmin={false}
                   history={props.history}
                   inFavorite={true}
                   grant={props.favorites}
@@ -91,7 +90,6 @@ const Favorites = props => {
                   }`}
                 >
                   <Filters
-                    // inAdmin={false}
                     location={props.location.pathname}
                     inFavorite={true}
                   />

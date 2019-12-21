@@ -17,6 +17,7 @@ import AppBar from "@material-ui/core/AppBar";
 import GrantList from "../grants/GrantList";
 import GrantShowcase from "../grants/GrantShowcase";
 import SubmitForm from "../SubmitForm";
+import FavoriteList from "../grants/FavoritesList";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -46,9 +47,10 @@ const MobileTabs = ({
   grant,
   currentTab,
   changeTab,
-  inAdmin,
   history,
-  favorites
+  favorites,
+  inFavorite,
+  currentUser
 }) => {
   const style = mobileTabStyles();
   const theme = useTheme();
@@ -90,10 +92,18 @@ const MobileTabs = ({
         onChangeIndex={handleChangeIndex}
       >
         <TabPanel value={value} index={0} dir={theme.direction}>
-          <GrantList favorites={favorites} grant={grant} />
+          {inFavorite ? (
+            <FavoriteList
+              infavorite={true}
+              favorites={favorites}
+              currentUser={currentUser}
+            />
+          ) : (
+            <GrantList grant={grant} />
+          )}
         </TabPanel>
         <TabPanel value={value} index={1} dir={theme.direction}>
-          <GrantShowcase favorites={favorites} grant={grant} />
+          <GrantShowcase favorites={grant} grant={grant} />
         </TabPanel>
 
         <TabPanel value={value} index={2} dir={theme.direction}>
