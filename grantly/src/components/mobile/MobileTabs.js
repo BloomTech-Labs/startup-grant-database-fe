@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { changeTab } from "../../actions/index";
+import { useAuth0 } from "../../react-auth0-wrapper.js";
 
 // Style imports
 import { mobileTabStyles } from "../../styles/mobileTabStyles";
@@ -19,7 +20,7 @@ import SubmitForm from "../SubmitForm";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
-
+  // const { isAuthenticated } = useAuth0();
   return (
     <Typography
       component="div"
@@ -41,7 +42,14 @@ function a11yProps(index) {
   };
 }
 
-const MobileTabs = ({ grant, currentTab, changeTab, inAdmin, history }) => {
+const MobileTabs = ({
+  grant,
+  currentTab,
+  changeTab,
+  inAdmin,
+  history,
+  favorites
+}) => {
   const style = mobileTabStyles();
   const theme = useTheme();
   const [value, setValue] = React.useState(0);
@@ -82,13 +90,14 @@ const MobileTabs = ({ grant, currentTab, changeTab, inAdmin, history }) => {
         onChangeIndex={handleChangeIndex}
       >
         <TabPanel value={value} index={0} dir={theme.direction}>
-          <GrantList inAdmin={inAdmin} />
+          <GrantList favorites={favorites} grant={grant} />
         </TabPanel>
         <TabPanel value={value} index={1} dir={theme.direction}>
-          <GrantShowcase inAdmin={inAdmin} />
+          <GrantShowcase favorites={favorites} grant={grant} />
         </TabPanel>
+
         <TabPanel value={value} index={2} dir={theme.direction}>
-          <SubmitForm history={history}/>
+          <SubmitForm history={history} />
         </TabPanel>
       </SwipeableViews>
     </div>
@@ -101,7 +110,4 @@ const mapStateToProps = state => {
     currentTab: state.currentTab
   };
 };
-export default connect(
-  mapStateToProps,
-  { changeTab }
-)(MobileTabs);
+export default connect(mapStateToProps, { changeTab })(MobileTabs);

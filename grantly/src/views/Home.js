@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Media from "react-media";
+import { connect } from "react-redux";
 
 // Styling
 import { homeStyles } from "../styles/homeStyles";
@@ -44,7 +45,7 @@ const Home = props => {
         {matches =>
           matches ? (
             <>
-              <MobileTabs history={props.history} />
+              <MobileTabs history={props.history} grant={props.grants} />
               <MobileFilters toggleDrawer={toggleDrawer} />
               <SwipeableDrawer
                 anchor="bottom"
@@ -67,7 +68,7 @@ const Home = props => {
                 <GrantList inAdmin={false} location={props.location} />
               </Grid>
               <Grid item xs={6} sm={9} md={7} className={classes.gridItem}>
-                <GrantShowcase inGrants={true} />
+                <GrantShowcase inGrants={true} grant={props.grant} />
               </Grid>
               <Grid item xs={4} sm={2} md={2}>
                 <TuneIcon
@@ -92,5 +93,12 @@ const Home = props => {
     </>
   );
 };
-
-export default Home;
+const mapStateToProps = state => {
+  // console.log("GrantShowcase mapStateToProps state", state);
+  return {
+    grant: state.grantShowcase,
+    isFetching: state.isFetching,
+    favorites: state.favorites
+  };
+};
+export default connect(mapStateToProps, {})(Home);

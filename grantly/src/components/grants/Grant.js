@@ -2,7 +2,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import Moment from "react-moment";
-import { selectGrant } from "../../actions";
+import { selectGrant, selectFavorite } from "../../actions";
 
 // Components
 import EditGrantDialog from "../dialogs/EditGrantDialog";
@@ -21,8 +21,14 @@ import Typography from "@material-ui/core/Typography";
 import { grantStyles } from "../../styles/grantStyles";
 
 export const Grant = props => {
+  console.log("propsGrant", props);
+
   const selectGrant = () => {
     props.selectGrant(props.grant);
+  };
+
+  const selectFavorite = () => {
+    props.selectFavorite(props.grant);
   };
 
   // formats number with commas for display
@@ -44,9 +50,11 @@ export const Grant = props => {
 
   return (
     // Checks if card is currently selected and if its been reviewed
+
     <Card
       className={`${
-        props.grantShowcase.id === props.grant.id
+        props.grantShowcase.id === props.grant.id ||
+        props.favoriteShowcase.id === props.grant.id
           ? styles.grantCardSelected
           : styles.grantCard
       } ${!props.grant.is_reviewed && styles.grant_new}`}
@@ -102,25 +110,18 @@ export const Grant = props => {
               </span>
             </Typography>
           </Grid>
-
         </Grid>
-        {props.inAdmin ? (
-          <EditGrantDialog className={styles.editIcon} grant={props.grant} />
-        ) : // <BookmarkBorderOutlinedIcon className={styles.bookmark} />
-        null}
       </div>
     </Card>
   );
 };
 
-const mapStateToProps = ({ grantShowcase, currentUser }) => {
+const mapStateToProps = ({ grantShowcase, favoriteShowcase, currentUser }) => {
   return {
     grantShowcase,
+    favoriteShowcase,
     currentUser
   };
 };
 
-export default connect(
-  mapStateToProps,
-  { selectGrant }
-)(Grant);
+export default connect(mapStateToProps, { selectGrant, selectFavorite })(Grant);

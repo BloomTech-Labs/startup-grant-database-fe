@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Media from "react-media";
+import { connect } from "react-redux";
 
 // Stlying
 import { homeStyles } from "../styles/homeStyles";
@@ -16,7 +17,7 @@ import MobileTabs from "../components/mobile/MobileTabs";
 // import MobileTabs from "../components/mobile/MobileTabs";
 // import SearchBar from "../components/SearchBar";
 // import Navbar from "../components/Navbar";
-
+import DeleteIcon from "@material-ui/icons/Delete";
 const Favorites = props => {
   const [isOpen, setIsOpen] = useState(false);
   //Show filters
@@ -39,6 +40,7 @@ const Favorites = props => {
                 inAdmin={false}
                 inUser={true}
                 history={props.history}
+                favorites={props.favorites}
               />
               <MobileFilters toggleDrawer={toggleDrawer} />
               <SwipeableDrawer
@@ -71,9 +73,10 @@ const Favorites = props => {
               </Grid>
               <Grid item xs={6} className={classes.gridItem}>
                 <GrantShowcase
-                  inAdmin={false}
+                  // inAdmin={false}
                   history={props.history}
                   inFavorite={true}
+                  grant={props.favorites}
                 />
               </Grid>
               <Grid item xs={2}>
@@ -88,7 +91,7 @@ const Favorites = props => {
                   }`}
                 >
                   <Filters
-                    inAdmin={false}
+                    // inAdmin={false}
                     location={props.location.pathname}
                     inFavorite={true}
                   />
@@ -101,5 +104,10 @@ const Favorites = props => {
     </div>
   );
 };
-
-export default Favorites;
+const mapStateToProps = state => {
+  // console.log("GrantShowcase mapStateToProps state", state);
+  return {
+    favorites: state.favoriteShowcase
+  };
+};
+export default connect(mapStateToProps, {})(Favorites);

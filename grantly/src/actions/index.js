@@ -38,6 +38,7 @@ import {
   GET_FAVORITE_START,
   GET_FAVORITE_SUCCESS,
   GET_FAVORITE_FAILURE,
+  SELECT_FAVORITE,
   DELETE_FAVORITE_START,
   DELETE_FAVORITE_SUCCESS,
   DELETE_FAVORITE_FAILURE
@@ -247,10 +248,11 @@ export const deleteSuggestion = (requestId, token) => dispatch => {
 
 //Add a favorite grant
 
-export const submitFavorite = favorite => dispatch => {
+export const submitFavorite = grantID => dispatch => {
   dispatch({ type: SUBMIT_FAVORITE_START });
-  axios
-    .post(`${process.env.REACT_APP_CLIENT_STAGINGURL}/favorites/`, favorite)
+  console.log("SAVE CLICK", grantID);
+  axiosWithAuth(grantID.token)
+    .post(`/favorites/`, grantID)
 
     .then(response => {
       dispatch({ type: SUBMIT_FAVORITE_SUCCESS, payload: response.data });
@@ -267,10 +269,11 @@ export const favoriteFetchApi = user => dispatch => {
   // console.log("TOKEN HERE ===>>", user.token);
   //${user.sub}
   dispatch({ type: GET_FAVORITE_START });
-  axiosWithAuth(user.token).get(`/favorites/myFavorites/${user.sub}`)
+  axiosWithAuth(user.token)
+    .get(`/favorites/myFavorites/${user.sub}`)
 
     .then(response => {
-      console.log("RESPONSE????", response)
+      console.log("RESPONSE????", response);
       dispatch({ type: GET_FAVORITE_SUCCESS, payload: response.data });
     })
     .catch(error => {
@@ -278,18 +281,20 @@ export const favoriteFetchApi = user => dispatch => {
     });
 };
 
+export const selectFavorite = favorite => dispatch => {
+  dispatch({ type: SELECT_FAVORITE, payload: favorite });
+  dispatch({ type: CHANGE_TAB, payload: 1 });
+};
+
 // Delete a Favorite grant , must be a user
 export const deleteFavorite = (requestId, user) => dispatch => {
   dispatch({ type: DELETE_FAVORITE_START });
-  axios
-    .delete(
-      `${process.env.REACT_APP_CLIENT_STAGINGURL} / favorites / myFavorites / ${requestId}`,
-      {
-        headers: {
-          authorization: `Bearer ${user.token}`
-        }
+  axiosWithAuth(user.token)
+    .delete(`/ favorites / myFavorites / ${requestId}`, {
+      headers: {
+        authorization: `Bearer ${user.token}`
       }
-    )
+    })
 
     .then(response => {
       dispatch({ type: DELETE_FAVORITE_SUCCESS, payload: response.data });

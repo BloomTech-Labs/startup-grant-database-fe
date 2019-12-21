@@ -23,7 +23,14 @@ import {
   DELETE_SUGGESTION_SUCCESS,
   GET_FAVORITE_START,
   GET_FAVORITE_SUCCESS,
-  GET_FAVORITE_FAILURE
+  GET_FAVORITE_FAILURE,
+  DELETE_FAVORITE_START,
+  DELETE_FAVORITE_SUCCESS,
+  DELETE_FAVORITE_FAILURE,
+  SUBMIT_FAVORITE_START,
+  SUBMIT_FAVORITE_SUCCESS,
+  SUBMIT_FAVORITE_FAILURE,
+  SELECT_FAVORITE
 } from "../actions/types";
 import moment from "moment";
 
@@ -36,6 +43,7 @@ const initialState = {
   isFetching: false,
   filteredGrants: [],
   grantShowcase: {},
+  favoriteShowcase: {},
   filters: {
     amount: [],
     geographic_region: [],
@@ -337,14 +345,41 @@ export const rooterReducer = (state = initialState, { type, payload }) => {
       return {
         ...state
         // fetchingData: true
-      }
+      };
 
     case GET_FAVORITE_SUCCESS:
       return {
         ...state,
-        favorites: payload
-      }
+        favorites: payload,
+        favoriteShowcase: payload[0]
+      };
 
+    case SELECT_FAVORITE:
+      return {
+        ...state,
+        favoriteShowcase: payload
+      };
+
+    case DELETE_FAVORITE_START:
+      return {
+        ...state,
+        favorites: payload
+      };
+
+    case DELETE_FAVORITE_SUCCESS:
+      return {
+        ...state,
+        favorites: payload
+      };
+    case SUBMIT_FAVORITE_START:
+      return {
+        ...state,
+        favorites: payload
+      };
+    case SUBMIT_FAVORITE_SUCCESS:
+      return {};
+    case SUBMIT_FAVORITE_FAILURE:
+      return {};
     default:
       return state;
   }

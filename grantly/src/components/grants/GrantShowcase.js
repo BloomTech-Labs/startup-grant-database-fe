@@ -9,16 +9,18 @@ import { useAuth0 } from "../../react-auth0-wrapper.js";
 // Objects
 import { Card, Grid, Button, Typography, Divider } from "@material-ui/core";
 import BookmarkBorderOutlinedIcon from "@material-ui/icons/BookmarkBorderOutlined";
-import DeleteIcon from "@material-ui/icons/Delete";
 import LanguageIcon from "@material-ui/icons/Language";
 import SuggestionDialog from "../dialogs/SuggestionDialog";
 import EditGrantDialog from "../dialogs/EditGrantDialog";
 import IconButton from "@material-ui/core/IconButton";
 import Tooltip from "@material-ui/core/Tooltip";
 import Fade from "@material-ui/core/Fade";
+import DeleteIcon from "@material-ui/icons/Delete";
 
 // Styles
 import { showcaseStyles } from "../../styles/grantShowcaseStyles";
+//Actions
+import { submitFavorite } from "../../actions/index";
 
 export const GrantShowcase = props => {
   console.log("showcase props:", props);
@@ -33,13 +35,13 @@ export const GrantShowcase = props => {
       {props.grant.most_recent_application_due_date}
     </Moment>
   ) : (
-      <div>See website for details</div>
-    );
+    <div>See website for details</div>
+  );
 
   const momentDeadline =
     props.grant.most_recent_application_due_date &&
     " or in about " +
-    moment(props.grant.most_recent_application_due_date).fromNow();
+      moment(props.grant.most_recent_application_due_date).fromNow();
 
   if (props.isFetching) {
     return (
@@ -49,6 +51,12 @@ export const GrantShowcase = props => {
     );
   }
 
+  // const onClickSave = (grants_id, token) => {
+  //   props.saveFavorite(grants_id, token);
+  //   submitFavorite(grants_id);
+  // };
+
+  console.log("GRANT SHOWCASE PROPS ====>", props);
   return (
     <div>
       <Card className={style.showcaseCard}>
@@ -84,7 +92,14 @@ export const GrantShowcase = props => {
                   TransitionProps={{ timeout: 600 }}
                   title="Add to Favorites"
                 >
-                  <IconButton aria-label="save">
+                  <IconButton
+                    aria-label="save"
+                    onClick={() => {
+                      console.log("Click grant ID", props.grant);
+                      submitFavorite(props.grant.id);
+                    }}
+                  >
+                    {/* onClick={() => onClickSave()}> */}
                     <BookmarkBorderOutlinedIcon
                       className={showcaseStyles.bookmark}
                     />
@@ -99,7 +114,12 @@ export const GrantShowcase = props => {
                   TransitionProps={{ timeout: 600 }}
                   title="Delete Favorites"
                 >
-                  <IconButton aria-label="DeleteIcon" >
+                  <IconButton
+                    aria-label="DeleteIcon"
+                    onClick={() => console.log("click delete", props.grant)}
+
+                    // onClick={() => onClickDelete()}
+                  >
                     <DeleteIcon className={showcaseStyles.bookmark} />
                   </IconButton>
                 </Tooltip>
@@ -244,8 +264,9 @@ export const GrantShowcase = props => {
 const mapStateToProps = state => {
   // console.log("GrantShowcase mapStateToProps state", state);
   return {
-    grant: state.grantShowcase,
+    // grant: state.grantShowcase,
     isFetching: state.isFetching
+    // favorites: state.favorites
   };
 };
 

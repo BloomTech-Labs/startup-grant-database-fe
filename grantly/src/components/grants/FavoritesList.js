@@ -18,6 +18,7 @@ import { homeStyles } from "../../styles/homeStyles";
 // };
 
 export const FavoritesList = props => {
+  console.log("favoriteList", props);
   const styles = homeStyles();
 
   useEffect(() => {
@@ -42,8 +43,8 @@ export const FavoritesList = props => {
           );
         })
       ) : (
-          <div>Favorites incoming!</div>
-        )}
+        <div>Favorites incoming!</div>
+      )}
     </div>
   );
 };
