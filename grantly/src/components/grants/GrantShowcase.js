@@ -103,7 +103,7 @@ export const GrantShowcase = props => {
                         props.currentUser.sub
                       );
 
-                      // submitFavorite(props.grant.id, user.sub);
+                      submitFavorite(props.grant.id, props.currentUser.sub);
                     }}
                   >
                     <BookmarkBorderOutlinedIcon
