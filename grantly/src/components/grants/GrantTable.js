@@ -81,7 +81,12 @@ export const GrantTable = props => {
                 minWidth: "75px"
               },
               customSort: (a, b) => a.requests.length - b.requests.length,
-              render: rowData => <TableSuggestions rowData={rowData} currentUser={props.currentUser}/>
+              render: rowData => (
+                <TableSuggestions
+                  rowData={rowData}
+                  currentUser={props.currentUser}
+                />
+              )
             },
             {
               title: "Grant Status",
