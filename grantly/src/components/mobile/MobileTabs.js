@@ -100,7 +100,7 @@ const MobileTabs = ({
               currentUser={currentUser}
             />
           ) : (
-            <GrantList grant={grant} />
+            <GrantList grant={grant} currentUser={currentUser} />
           )}
         </TabPanel>
         <TabPanel value={value} index={1} dir={theme.direction}>
@@ -109,6 +109,7 @@ const MobileTabs = ({
             inGrants={inGrants}
             favorites={grant}
             grant={grant}
+            currentUser={currentUser}
           />
         </TabPanel>
 

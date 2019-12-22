@@ -12,11 +12,6 @@ import { favoriteFetchApi } from "../../actions";
 // Styles
 import { homeStyles } from "../../styles/homeStyles";
 
-// test funcs
-// exports.sum = function(a, b) {
-//   return a + b;
-// };
-
 export const FavoritesList = props => {
   console.log("favoriteList", props);
   const styles = homeStyles();

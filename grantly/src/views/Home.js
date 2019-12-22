@@ -49,6 +49,7 @@ const Home = props => {
                 history={props.history}
                 inGrants={true}
                 grant={props.grants}
+                currentUser={props.currentUser}
               />
               <MobileFilters toggleDrawer={toggleDrawer} />
               <SwipeableDrawer
@@ -72,7 +73,11 @@ const Home = props => {
                 <GrantList inAdmin={false} location={props.location} />
               </Grid>
               <Grid item xs={6} sm={9} md={7} className={classes.gridItem}>
-                <GrantShowcase inGrants={true} grant={props.grant} />
+                <GrantShowcase
+                  inGrants={true}
+                  grant={props.grant}
+                  currentUser={props.currentUser}
+                />
               </Grid>
               <Grid item xs={4} sm={2} md={2}>
                 <TuneIcon

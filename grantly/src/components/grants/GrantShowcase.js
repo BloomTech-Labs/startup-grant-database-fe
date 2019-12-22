@@ -16,6 +16,7 @@ import IconButton from "@material-ui/core/IconButton";
 import Tooltip from "@material-ui/core/Tooltip";
 import Fade from "@material-ui/core/Fade";
 import DeleteIcon from "@material-ui/icons/Delete";
+import useGetToken from "../../auth/useGetToken.js";
 
 // Styles
 import { showcaseStyles } from "../../styles/grantShowcaseStyles";
@@ -29,6 +30,7 @@ export const GrantShowcase = props => {
   function formatNumbers(num) {
     return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   }
+  const [token] = useGetToken();
 
   const deadline = props.grant.most_recent_application_due_date ? (
     <Moment format={"MMMM Do YYYY"}>
@@ -51,10 +53,10 @@ export const GrantShowcase = props => {
     );
   }
 
-  // const onClickSave = (grants_id, token) => {
-  //   props.saveFavorite(grants_id, token);
-  //   submitFavorite(grants_id);
-  // };
+  const onClickSave = (id, token) => {
+    props.saveFavorite(id, token);
+    submitFavorite(id);
+  };
 
   console.log("GRANT SHOWCASE PROPS ====>", props);
   return (
@@ -95,11 +97,15 @@ export const GrantShowcase = props => {
                   <IconButton
                     aria-label="save"
                     onClick={() => {
-                      console.log("Click grant ID", props.grant);
-                      submitFavorite(props.grant.id);
+                      console.log(
+                        "Click grant ID",
+                        props.grant.id,
+                        props.currentUser.sub
+                      );
+
+                      // submitFavorite(props.grant.id, user.sub);
                     }}
                   >
-                    {/* onClick={() => onClickSave()}> */}
                     <BookmarkBorderOutlinedIcon
                       className={showcaseStyles.bookmark}
                     />
@@ -116,7 +122,14 @@ export const GrantShowcase = props => {
                 >
                   <IconButton
                     aria-label="DeleteIcon"
-                    onClick={() => console.log("click delete", props.grant)}
+                    onClick={() =>
+                      console.log(
+                        "click delete favoriteid",
+                        props.grant.favoriteID,
+                        "fav",
+                        props.grant
+                      )
+                    }
 
                     // onClick={() => onClickDelete()}
                   >

@@ -248,13 +248,14 @@ export const deleteSuggestion = (requestId, token) => dispatch => {
 
 //Add a favorite grant
 
-export const submitFavorite = grantID => dispatch => {
+export const submitFavorite = (grantID, token) => dispatch => {
   dispatch({ type: SUBMIT_FAVORITE_START });
-  console.log("SAVE CLICK", grantID);
-  axiosWithAuth(grantID.token)
-    .post(`/favorites/`, grantID)
+  console.log("SAVE CLICK", grantID, token);
+  axiosWithAuth(token)
+    .post(`/favorites/`, grantID, token)
 
     .then(response => {
+      console.log("saved grant success");
       dispatch({ type: SUBMIT_FAVORITE_SUCCESS, payload: response.data });
     })
     .catch(error => {
