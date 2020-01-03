@@ -76,6 +76,7 @@ const Favorites = props => {
                   history={props.history}
                   inFavorite={true}
                   grant={props.favorites}
+                  currentUser={props.currentUser}
                 />
               </Grid>
               <Grid item xs={2}>

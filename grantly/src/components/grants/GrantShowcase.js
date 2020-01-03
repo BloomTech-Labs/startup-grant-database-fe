@@ -16,12 +16,12 @@ import IconButton from "@material-ui/core/IconButton";
 import Tooltip from "@material-ui/core/Tooltip";
 import Fade from "@material-ui/core/Fade";
 import DeleteIcon from "@material-ui/icons/Delete";
-import useGetToken from "../../auth/useGetToken.js";
 
 // Styles
 import { showcaseStyles } from "../../styles/grantShowcaseStyles";
 //Actions
 import { submitFavorite } from "../../actions/index";
+import { deleteFavorite } from "../../actions/index";
 
 export const GrantShowcase = props => {
   console.log("showcase props:", props);
@@ -30,7 +30,6 @@ export const GrantShowcase = props => {
   function formatNumbers(num) {
     return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   }
-  const [token] = useGetToken();
 
   const deadline = props.grant.most_recent_application_due_date ? (
     <Moment format={"MMMM Do YYYY"}>
@@ -53,11 +52,14 @@ export const GrantShowcase = props => {
     );
   }
 
-  const onClickSave = (id, token) => {
-    props.saveFavorite(id, token);
-    submitFavorite(id);
+  const onClickSave = (id, currentUser) => {
+    console.log("imadeITTTT");
+    submitFavorite(id, currentUser);
   };
-
+  const onClickDelete = (id, currentUser) => {
+    console.log("DeleteMadeIT");
+    deleteFavorite(id, currentUser);
+  };
   console.log("GRANT SHOWCASE PROPS ====>", props);
   return (
     <div>
@@ -97,13 +99,7 @@ export const GrantShowcase = props => {
                   <IconButton
                     aria-label="save"
                     onClick={() => {
-                      console.log(
-                        "Click grant ID",
-                        props.grant.id,
-                        props.currentUser.sub
-                      );
-
-                      submitFavorite(props.grant.id, props.currentUser.sub);
+                      props.submitFavorite(props.grant.id, props.currentUser);
                     }}
                   >
                     <BookmarkBorderOutlinedIcon
@@ -122,16 +118,12 @@ export const GrantShowcase = props => {
                 >
                   <IconButton
                     aria-label="DeleteIcon"
-                    onClick={() =>
-                      console.log(
-                        "click delete favoriteid",
+                    onClick={() => {
+                      props.deleteFavorite(
                         props.grant.favoriteID,
-                        "fav",
-                        props.grant
-                      )
-                    }
-
-                    // onClick={() => onClickDelete()}
+                        props.currentUser
+                      );
+                    }}
                   >
                     <DeleteIcon className={showcaseStyles.bookmark} />
                   </IconButton>
@@ -262,4 +254,6 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, {})(GrantShowcase);
+export default connect(mapStateToProps, { submitFavorite, deleteFavorite })(
+  GrantShowcase
+);

@@ -1,7 +1,6 @@
 // Dependencies
 import axios from "axios";
 import { axiosWithAuth } from "../auth/axiosWithAuth.js";
-// import useGetToken from "../auth/useGetToken.js";
 
 // Objects
 import {
@@ -217,7 +216,7 @@ export const submitSuggestion = (suggestion, token) => dispatch => {
 export const getSuggetions = (token, grant_id) => dispatch => {
   dispatch({ type: GET_SUGGESTIONS_SUCCESS });
   axios.get(
-    `${process.env.REACT_APP_CLIENT_LOCALURL}/admin/suggestions/${grant_id}`,
+    `${process.env.REACT_APP_CLIENT_STAGINGURL}/admin/suggestions/${grant_id}`,
     {
       headers: {
         authorization: `Bearer ${token}`
@@ -248,33 +247,30 @@ export const deleteSuggestion = (requestId, token) => dispatch => {
 
 //Add a favorite grant
 
-export const submitFavorite = (grantID, autho, token) => dispatch => {
+export const submitFavorite = (grantID, user) => dispatch => {
   dispatch({ type: SUBMIT_FAVORITE_START });
-  console.log("SAVE CLICK", grantID, autho);
-  axiosWithAuth(token)
-    .post(`/favorites/`, grantID, autho)
-
+  console.log("SAVE CLICK ACTION", grantID, user.sub, user.token);
+  const grant_id = grantID;
+  const auth_id = user.sub;
+  axiosWithAuth(user.token)
+    .post(`/favorites`, grant_id, auth_id)
     .then(response => {
       console.log("saved grant success");
       dispatch({ type: SUBMIT_FAVORITE_SUCCESS, payload: response.data });
     })
     .catch(error => {
-      console.log("submitFavorite error", error);
+      console.log("submitFavorite error", error.message);
       dispatch({ type: SUBMIT_FAVORITE_FAILURE });
     });
 };
 
 // fetch Favorite grants for user
 export const favoriteFetchApi = user => dispatch => {
-  // console.log("USER HERE===>", user);
-  // console.log("TOKEN HERE ===>>", user.token);
-  //${user.sub}
   dispatch({ type: GET_FAVORITE_START });
   axiosWithAuth(user.token)
     .get(`/favorites/myFavorites/${user.sub}`)
 
     .then(response => {
-      console.log("RESPONSE????", response);
       dispatch({ type: GET_FAVORITE_SUCCESS, payload: response.data });
     })
     .catch(error => {
@@ -291,12 +287,7 @@ export const selectFavorite = favorite => dispatch => {
 export const deleteFavorite = (requestId, user) => dispatch => {
   dispatch({ type: DELETE_FAVORITE_START });
   axiosWithAuth(user.token)
-    .delete(`/ favorites / myFavorites / ${requestId}`, {
-      headers: {
-        authorization: `Bearer ${user.token}`
-      }
-    })
-
+    .delete(`/favorites/myFavorites/${requestId}`)
     .then(response => {
       dispatch({ type: DELETE_FAVORITE_SUCCESS, payload: response.data });
     })

@@ -10,7 +10,6 @@ import {
 } from "../../actions";
 import moment from "moment";
 import { useAuth0 } from "../../react-auth0-wrapper.js";
-import useGetToken from "../../auth/useGetToken.js";
 
 // Styling
 import MaterialTable from "material-table";
@@ -24,7 +23,7 @@ import TableSuggestions from "./TableSuggestions";
 export const GrantTable = props => {
   console.log("GrantTable props", props);
   const { isAuthenticated, user, loading } = useAuth0();
-  const [token] = useGetToken();
+
   // reformat deadline and last updated dates
   props.data.forEach(grant => {
     grant.most_recent_application_due_date =
@@ -221,7 +220,7 @@ export const GrantTable = props => {
                   resolve();
                   let filteredData = Object.assign({}, newData);
                   delete filteredData.requests;
-                  props.postGrants(filteredData, token);
+                  props.postGrants(filteredData, props.currentUser.token);
                 }, 600);
               }),
             onRowUpdate: (newData, oldData) =>
@@ -236,7 +235,7 @@ export const GrantTable = props => {
                         ...filteredData,
                         details_last_updated: moment().format("YYYY-MM-DD")
                       },
-                      token
+                      props.currentUser.token
                     );
                   }
                 }, 600);
@@ -247,7 +246,7 @@ export const GrantTable = props => {
                   resolve();
                   if (oldData) {
                     delete oldData.requests;
-                    props.deleteGrants(oldData.id, token);
+                    props.deleteGrants(oldData.id, props.currentUser.token);
                   }
                 }, 600);
               })

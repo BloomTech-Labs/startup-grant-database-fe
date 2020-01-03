@@ -108,7 +108,7 @@ const MobileTabs = ({
             <GrantShowcase
               inFavorite={inFavorite}
               currentUser={currentUser}
-              favorites={grant}
+              grant={favorites}
               history={history}
             />
           ) : (
