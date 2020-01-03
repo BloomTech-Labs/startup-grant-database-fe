@@ -31,23 +31,24 @@ function App({ fetchApi }) {
     if (isAuthenticated) {
       const authToken = getTokenSilently().then(res => {
         const token = res;
-        console.log("TOKEN", token);
-        console.log("USEEFFECT USER", user);
-        // const strUser = JSON.stringify(user);
-        // console.log('userString', strUser)
-        setCurrentUser({ ...user, token: token });
+        const role =
+        user["https://founder-grants.com/appdata"].authorization.roles.find(
+          () => "Moderator"
+        ) === "Moderator"
+          ? "Moderator"
+          : "User";
+        setCurrentUser({ ...user, token: token, role: role });
       });
     }
   }, [user]);
 
-  console.log("IranUser", currentUser);
   return (
     <Router>
       <ThemeProvider theme={theme}>
         <div className="App">
           <Route
             path="/"
-            render={props => <NavBar {...props} fetchApi={fetchApi} />}
+            render={props => <NavBar {...props} fetchApi={fetchApi} currentUser={currentUser} />}
           />
           {/* <EmailDialog /> */}
           <Route exact path="/" component={Landing} />

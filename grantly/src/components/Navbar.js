@@ -30,6 +30,7 @@ import InfoIcon from "@material-ui/icons/Info";
 import { navStyles } from "../styles/navStyles";
 
 export const NavBar = props => {
+  console.log("navprops", props);
   const {
     isAuthenticated,
     loginWithRedirect,
@@ -109,9 +110,7 @@ export const NavBar = props => {
         </ListItem>
 
         {isAuthenticated ? (
-          user["https://founder-grants.com/appdata"].authorization.roles.find(
-            () => "Moderator"
-          ) === "Moderator" ? (
+          props.currentUser.role === "Moderator" ? (
             <ListItem className={classes.drawerStlye}>
               <ListItemAvatar>
                 <ListItemIcon className={classes.icon}>
