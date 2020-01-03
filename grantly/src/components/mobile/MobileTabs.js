@@ -104,6 +104,21 @@ const MobileTabs = ({
           )}
         </TabPanel>
         <TabPanel value={value} index={1} dir={theme.direction}>
+          {/* {inFavorite ? (
+            <GrantShowcase
+              inFavorite={inFavorite}
+              currentUser={currentUser}
+              favorites={grant}
+              history={history}
+            />
+          ) : (
+            <GrantShowcase
+              inGrants={inGrants}
+              currentUser={currentUser}
+              grant={grant}
+            />
+          )}
+          )} */}
           <GrantShowcase
             inFavorite={inFavorite}
             inGrants={inGrants}

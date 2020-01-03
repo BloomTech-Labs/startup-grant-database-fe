@@ -2,6 +2,7 @@ import React from "react";
 import * as rtl from "@testing-library/react";
 // import "@testing-library/jest-dom/extend-expect";
 import { FavoritesList } from "./FavoritesList";
+import useGetToken from "../../auth/useGetToken.js";
 
 // unit testing
 
@@ -30,10 +31,12 @@ const mockData = {
 };
 
 test("it renders without crashing", () => {
+  // const [token] = useGetToken();
   const container = rtl.render(<FavoritesList data={mockData} />);
 });
 
 test("contains grants", () => {
+  // const [token] = useGetToken();
   const container = rtl.render(<FavoritesList data={mockData} />);
 
   container.queryAllByText(/grants/i);
