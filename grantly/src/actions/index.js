@@ -253,13 +253,13 @@ export const submitFavorite = (grantID, user) => dispatch => {
   const grant_id = grantID;
   const auth_id = user.sub;
   axiosWithAuth(user.token)
-    .post(`/favorites`, grant_id, auth_id)
+    .post(`/favorites`, { grant_id, auth_id })
     .then(response => {
       console.log("saved grant success");
       dispatch({ type: SUBMIT_FAVORITE_SUCCESS, payload: response.data });
     })
     .catch(error => {
-      console.log("submitFavorite error", error.message);
+      // console.log("submitFavorite error", error.response.data.message);
       dispatch({ type: SUBMIT_FAVORITE_FAILURE });
     });
 };

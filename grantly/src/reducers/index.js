@@ -44,6 +44,7 @@ const initialState = {
   filteredGrants: [],
   grantShowcase: {},
   favoriteShowcase: {},
+  addedFavorite: false,
   filters: {
     amount: [],
     geographic_region: [],
@@ -291,15 +292,24 @@ export const rooterReducer = (state = initialState, { type, payload }) => {
     case SUBMIT_FAVORITE_START:
       return {
         ...state,
-        favorites: payload
+        favorites: payload,
+        addedFavorite: false
       };
     case SUBMIT_FAVORITE_SUCCESS:
+      let [faveShowCase] = payload[0].filter(grant => {
+        return grant.id === payload[1];
+      });
       return {
         ...state,
-        grantShowcase: payload
+        grantShowcase: faveShowCase,
+        addedFavorite: true
       };
     case SUBMIT_FAVORITE_FAILURE:
-      return { ...state, error: payload };
+      return {
+        ...state,
+        error: payload,
+        addedFavorite: false
+      };
     default:
       return state;
   }

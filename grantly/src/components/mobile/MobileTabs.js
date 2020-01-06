@@ -104,11 +104,11 @@ const MobileTabs = ({
           )}
         </TabPanel>
         <TabPanel value={value} index={1} dir={theme.direction}>
-          {/* {inFavorite ? (
+          {inFavorite ? (
             <GrantShowcase
               inFavorite={inFavorite}
               currentUser={currentUser}
-              grant={favorites}
+              grant={grant}
               history={history}
             />
           ) : (
@@ -118,14 +118,14 @@ const MobileTabs = ({
               grant={grant}
             />
           )}
-          )} */}
-          <GrantShowcase
+          )}
+          {/* <GrantShowcase
             inFavorite={inFavorite}
             inGrants={inGrants}
             favorites={grant}
             grant={grant}
             currentUser={currentUser}
-          />
+          /> */}
         </TabPanel>
 
         <TabPanel value={value} index={2} dir={theme.direction}>

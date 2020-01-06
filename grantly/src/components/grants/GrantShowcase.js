@@ -1,5 +1,5 @@
 // Dependencies
-import React from "react";
+import React, { useEffect, setState } from "react";
 import { connect } from "react-redux";
 import Loader from "react-loader-spinner";
 import Moment from "react-moment";
@@ -16,12 +16,18 @@ import IconButton from "@material-ui/core/IconButton";
 import Tooltip from "@material-ui/core/Tooltip";
 import Fade from "@material-ui/core/Fade";
 import DeleteIcon from "@material-ui/icons/Delete";
+import BookmarkIcon from "@material-ui/icons/Bookmark";
 
 // Styles
 import { showcaseStyles } from "../../styles/grantShowcaseStyles";
 //Actions
-import { submitFavorite } from "../../actions/index";
-import { deleteFavorite } from "../../actions/index";
+import {
+  submitFavorite,
+  deleteFavorite,
+  favoriteFetchApi
+} from "../../actions/index";
+
+let counter = 0;
 
 export const GrantShowcase = props => {
   console.log("showcase props:", props);
@@ -39,6 +45,14 @@ export const GrantShowcase = props => {
     <div>See website for details</div>
   );
 
+  console.log("FETCHING SUCCESS", props.favoriteFetchSuccess);
+
+  // const [favorites, setFavorites] = setState([]);
+
+  // useEffect(() => {
+  //   setFavorites(favoriteFetchApi());
+  // }, []);
+
   const momentDeadline =
     props.grant.most_recent_application_due_date &&
     " or in about " +
@@ -52,14 +66,14 @@ export const GrantShowcase = props => {
     );
   }
 
-  const onClickSave = (id, currentUser) => {
-    console.log("imadeITTTT");
-    submitFavorite(id, currentUser);
-  };
-  const onClickDelete = (id, currentUser) => {
-    console.log("DeleteMadeIT");
-    deleteFavorite(id, currentUser);
-  };
+  // const onClickSave = (id, currentUser) => {
+  //   console.log("imadeITTTT");
+  //   submitFavorite(id, currentUser);
+  // };
+  // const onClickDelete = (id, currentUser) => {
+  //   console.log("DeleteMadeIT");
+  //   deleteFavorite(id, currentUser);
+  // };
   console.log("GRANT SHOWCASE PROPS ====>", props);
   return (
     <div>
@@ -91,22 +105,42 @@ export const GrantShowcase = props => {
 
             <Grid item>
               {props.inGrants ? (
-                <Tooltip
-                  TransitionComponent={Fade}
-                  TransitionProps={{ timeout: 600 }}
-                  title="Add to Favorites"
-                >
-                  <IconButton
-                    aria-label="save"
-                    onClick={() => {
-                      props.submitFavorite(props.grant.id, props.currentUser);
-                    }}
-                  >
-                    <BookmarkBorderOutlinedIcon
-                      className={showcaseStyles.bookmark}
-                    />
-                  </IconButton>
-                </Tooltip>
+                <>
+                  {console.log("HEREEE", props.favorites)}
+                  {props.favorites.filter(fav => {
+                    console.log("fav", fav);
+                    console.log("props.grant", props.grant);
+                    return fav.id === props.grant.id;
+                  }) ? (
+                    <Tooltip
+                      TransitionComponent={Fade}
+                      TransitionProps={{ timeout: 600 }}
+                      title="In Favorites"
+                    >
+                      <BookmarkIcon aria-label="added to favorites" />
+                    </Tooltip>
+                  ) : (
+                    <Tooltip
+                      TransitionComponent={Fade}
+                      TransitionProps={{ timeout: 600 }}
+                      title="Add to Favorites"
+                    >
+                      <IconButton
+                        aria-label="save"
+                        onClick={() => {
+                          props.submitFavorite(
+                            props.grant.id,
+                            props.currentUser
+                          );
+                        }}
+                      >
+                        <BookmarkBorderOutlinedIcon
+                          className={showcaseStyles.bookmark}
+                        />
+                      </IconButton>
+                    </Tooltip>
+                  )}
+                </>
               ) : null}
             </Grid>
             <Grid item>
@@ -250,10 +284,15 @@ export const GrantShowcase = props => {
 
 const mapStateToProps = state => {
   return {
-    isFetching: state.isFetching
+    isFetching: state.isFetching,
+    favoriteFetchSuccess: state.favoriteFetchSuccess,
+    addedFavorite: state.addedFavorite,
+    favorites: state.favorites
   };
 };
 
-export default connect(mapStateToProps, { submitFavorite, deleteFavorite })(
-  GrantShowcase
-);
+export default connect(mapStateToProps, {
+  submitFavorite,
+  deleteFavorite,
+  favoriteFetchApi
+})(GrantShowcase);
