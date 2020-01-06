@@ -302,7 +302,8 @@ export const rooterReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         grantShowcase: faveShowCase,
-        addedFavorite: true
+        addedFavorite: true,
+        favorites: payload
       };
     case SUBMIT_FAVORITE_FAILURE:
       return {

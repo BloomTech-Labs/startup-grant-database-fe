@@ -14,18 +14,18 @@ export const showcaseStyles = makeStyles(theme => ({
       position: "initial",
       padding: "2em",
       height: "auto",
-      margin: "2em 3em",
+      margin: "2em 3em"
     },
     [theme.breakpoints.down("xs")]: {
       padding: "1em",
-      margin: "1em 1em",
+      margin: "1em 1em"
     }
   },
   inAdmin: {
     // minHeight: "70vh"
   },
   topContent: {
-    margin: " 0",
+    margin: " 0"
   },
   showcase_header: {
     width: "initial"
@@ -45,9 +45,7 @@ export const showcaseStyles = makeStyles(theme => ({
     fontSize: "1.2rem",
     overflow: "none"
   },
-  showcaseContainer: {
-
-  },
+  showcaseContainer: {},
   showcaseDetails: {
     // height: 90,
     margin: ".5em 0",

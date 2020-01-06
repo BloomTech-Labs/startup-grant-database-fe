@@ -1,5 +1,5 @@
 // Dependencies
-import React, { useEffect, setState } from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import Loader from "react-loader-spinner";
 import Moment from "react-moment";
@@ -27,8 +27,6 @@ import {
   favoriteFetchApi
 } from "../../actions/index";
 
-let counter = 0;
-
 export const GrantShowcase = props => {
   console.log("showcase props:", props);
   const style = showcaseStyles();
@@ -46,12 +44,13 @@ export const GrantShowcase = props => {
   );
 
   console.log("FETCHING SUCCESS", props.favoriteFetchSuccess);
+  console.log("CURRENT USeR ====>", props.currentUser);
 
-  // const [favorites, setFavorites] = setState([]);
+  // const [favorites, setFavorites] = useState([]);
 
-  // useEffect(() => {
-  //   setFavorites(favoriteFetchApi());
-  // }, []);
+  useEffect(() => {
+    props.favoriteFetchApi(props.currentUser);
+  }, [props.currentUser]);
 
   const momentDeadline =
     props.grant.most_recent_application_due_date &&
@@ -106,12 +105,12 @@ export const GrantShowcase = props => {
             <Grid item>
               {props.inGrants ? (
                 <>
-                  {console.log("HEREEE", props.favorites)}
+                  {console.log("FAVORITES show", props.favorites)}
                   {props.favorites.filter(fav => {
                     console.log("fav", fav);
                     console.log("props.grant", props.grant);
                     return fav.id === props.grant.id;
-                  }) ? (
+                  }).length ? (
                     <Tooltip
                       TransitionComponent={Fade}
                       TransitionProps={{ timeout: 600 }}

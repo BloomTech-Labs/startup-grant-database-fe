@@ -67,6 +67,7 @@ const Home = props => {
               direction="row"
               justify="space-between"
               alignItems="flex-start"
+              spacing={2}
               className={classes.homeGridContainer}
             >
               <Grid item md={4} xs={4} className={classes.grantList}>
