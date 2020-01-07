@@ -37,14 +37,9 @@ const Favorites = props => {
       return false;
     }
   };
-  // const favCheck = props.favorites.legnth > 0 ? true : false;
-  // const favCheck = props.favoriteShowcase.legnth === null ? false : true;
+
   useEffect(() => {
     props.favoriteFetchApi(props.currentUser);
-
-    // if (props.favorites.length > 0) {
-    //   setIsFavorites = true;
-    // }
   }, [props.currentUser]);
   console.log("propsje", props.favorites.legnth);
   return (
