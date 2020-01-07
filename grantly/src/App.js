@@ -39,7 +39,6 @@ function App({ fetchApi }) {
             : "User";
         setCurrentUser({ ...user, token: token, role: role });
       });
-      favoriteFetchApi(currentUser);
     }
   }, [user]);
 

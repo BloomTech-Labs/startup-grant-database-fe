@@ -1,15 +1,11 @@
-// Dependencies
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { useAuth0 } from "../../react-auth0-wrapper";
-// Objects
-import Grant from "./Grant";
-import Typography from "@material-ui/core/Typography";
-
 import { fetchApi, adminFetchApi, favoriteFetchApi } from "../../actions";
 
-// Styles
 import { homeStyles } from "../../styles/homeStyles";
+import Typography from "@material-ui/core/Typography";
+import Grant from "./Grant";
 
 // test funcs
 // exports.sum = function(a, b) {
@@ -34,7 +30,9 @@ export const GrantList = props => {
   return (
     <div>
       {props.data.length && (
-        <p className={styles.results}>{props.data.length} Grants</p>
+        <Typography variant="h5" className={styles.results}>
+          {props.data.length} Grants
+        </Typography>
       )}
       {/* {props.inAdmin && <p>{needToBeReviewed} grant(s) need to be reviewed</p>} */}
 
@@ -50,7 +48,10 @@ export const GrantList = props => {
           );
         })
       ) : (
-        <div> Grants incoming! </div>
+        <Typography variant="h5" className={styles.results}>
+          {" "}
+          Grants incoming!{" "}
+        </Typography>
       )}
     </div>
   );

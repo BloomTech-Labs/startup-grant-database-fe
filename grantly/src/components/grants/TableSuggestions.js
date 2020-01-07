@@ -24,7 +24,7 @@ const TableSuggestions = props => {
   const { isAuthenticated, user, loading } = useAuth0();
   const [suggestions, setSuggestions] = useState([]);
   const [open, setOpen] = useState(false);
-  console.log("made it to suggestion Table", props);
+
   const [token] = useGetToken();
   const handleClickOpen = () => {
     setOpen(true);

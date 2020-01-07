@@ -1,16 +1,11 @@
-// Dependencies
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { useAuth0 } from "../../react-auth0-wrapper";
-
-// Objects
-import Grant from "./Grant";
-import Typography from "@material-ui/core/Typography";
-
 import { favoriteFetchApi } from "../../actions";
 
-// Styles
+import Typography from "@material-ui/core/Typography";
 import { homeStyles } from "../../styles/homeStyles";
+import Grant from "./Grant";
 
 export const FavoritesList = props => {
   console.log("favoriteList", props);
@@ -50,6 +45,4 @@ const mapStateToProps = state => {
     savedFilters: state.filters
   };
 };
-export default connect(mapStateToProps, {
-  favoriteFetchApi
-})(FavoritesList);
+export default connect(mapStateToProps, {})(FavoritesList);

@@ -46,14 +46,27 @@ export const Grant = props => {
 
   // Use to declare classes/styles
   const styles = grantStyles();
-
+  const selectGrantID = function() {
+    if (props.favoriteShowcase.id === null) {
+      return props.grantShowcase.id;
+    }
+  };
   return (
     // Checks if card is currently selected and if its been reviewed
 
+    // <Card
+    //   className={`${
+    //     props.grantShowcase.id === props.grant.id ||
+    //     props.favoriteShowcase.id === props.grant.id
+    //       ? styles.grantCardSelected
+    //       : styles.grantCard
+    //   } ${!props.grant.is_reviewed && styles.grant_new}`}
+    //   onClick={selectData}
+    // >
+
     <Card
       className={`${
-        props.grantShowcase.id === props.grant.id ||
-        props.favoriteShowcase.id === props.grant.id
+        selectGrantID === props.grant.id
           ? styles.grantCardSelected
           : styles.grantCard
       } ${!props.grant.is_reviewed && styles.grant_new}`}

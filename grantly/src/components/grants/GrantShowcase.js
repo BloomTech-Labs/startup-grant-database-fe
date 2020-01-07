@@ -35,6 +35,8 @@ export const GrantShowcase = props => {
     return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   }
 
+  // useEffect(() => {}, [props.favorites]);
+
   const deadline = props.grant.most_recent_application_due_date ? (
     <Moment format={"MMMM Do YYYY"}>
       {props.grant.most_recent_application_due_date}
@@ -99,7 +101,8 @@ export const GrantShowcase = props => {
               {props.inGrants ? (
                 <>
                   {console.log("FAVORITES show", props.favorites)}
-                  {props.favorites.filter(fav => {
+                  {props.favorites.length > 0 &&
+                  props.favorites.filter(fav => {
                     console.log("fav", fav);
                     console.log("props.grant", props.grant);
                     return fav.id === props.grant.id;

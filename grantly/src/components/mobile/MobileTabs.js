@@ -84,7 +84,6 @@ const MobileTabs = ({
         >
           <Tab className={style.tab} label="Grants" {...a11yProps(0)} />
           <Tab className={style.tab} label="Showcase" {...a11yProps(1)} />
-          <Tab className={style.tab} label="Submit" {...a11yProps(2)} />
         </Tabs>
       </AppBar>
       <SwipeableViews
