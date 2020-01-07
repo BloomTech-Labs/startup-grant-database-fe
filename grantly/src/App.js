@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import { connect } from "react-redux";
-import { fetchApi } from "./actions/index";
+import { fetchApi, favoriteFetchApi } from "./actions/index";
 import { useAuth0 } from "./react-auth0-wrapper";
 
 // Objects
@@ -32,13 +32,14 @@ function App({ fetchApi }) {
       const authToken = getTokenSilently().then(res => {
         const token = res;
         const role =
-        user["https://founder-grants.com/appdata"].authorization.roles.find(
-          () => "Moderator"
-        ) === "Moderator"
-          ? "Moderator"
-          : "User";
+          user["https://founder-grants.com/appdata"].authorization.roles.find(
+            () => "Moderator"
+          ) === "Moderator"
+            ? "Moderator"
+            : "User";
         setCurrentUser({ ...user, token: token, role: role });
       });
+      favoriteFetchApi(currentUser);
     }
   }, [user]);
 
@@ -48,7 +49,13 @@ function App({ fetchApi }) {
         <div className="App">
           <Route
             path="/"
-            render={props => <NavBar {...props} fetchApi={fetchApi} currentUser={currentUser} />}
+            render={props => (
+              <NavBar
+                {...props}
+                fetchApi={fetchApi}
+                currentUser={currentUser}
+              />
+            )}
           />
           {/* <EmailDialog /> */}
           <Route exact path="/" component={Landing} />
@@ -83,4 +90,10 @@ function App({ fetchApi }) {
   );
 }
 
-export default connect(null, { fetchApi })(App);
+const mapStateToProps = state => {
+  return {
+    favorites: state.favorites
+  };
+};
+
+export default connect(mapStateToProps, { fetchApi, favoriteFetchApi })(App);

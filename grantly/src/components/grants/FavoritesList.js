@@ -16,10 +16,6 @@ export const FavoritesList = props => {
   console.log("favoriteList", props);
   const styles = homeStyles();
 
-  useEffect(() => {
-    props.favoriteFetchApi(props.currentUser);
-  }, [props.currentUser.token]);
-
   return (
     <div>
       {props.favorites.length && (

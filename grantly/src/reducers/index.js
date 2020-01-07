@@ -280,22 +280,20 @@ export const rooterReducer = (state = initialState, { type, payload }) => {
 
     case DELETE_FAVORITE_START:
       return {
-        ...state,
-        favorites: payload
+        ...state
       };
 
     case DELETE_FAVORITE_SUCCESS:
       return {
-        ...state,
-        favorites: payload
+        ...state
       };
     case SUBMIT_FAVORITE_START:
       return {
         ...state,
-        favorites: payload,
         addedFavorite: false
       };
     case SUBMIT_FAVORITE_SUCCESS:
+      console.log("SUBMIT FAVORITE PAYLOAD", payload);
       let [faveShowCase] = payload[0].filter(grant => {
         return grant.id === payload[1];
       });
@@ -303,7 +301,7 @@ export const rooterReducer = (state = initialState, { type, payload }) => {
         ...state,
         grantShowcase: faveShowCase,
         addedFavorite: true,
-        favorites: payload
+        favorites: state.favorites.concat(payload)
       };
     case SUBMIT_FAVORITE_FAILURE:
       return {

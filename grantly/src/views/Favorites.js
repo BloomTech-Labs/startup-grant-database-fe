@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Media from "react-media";
 import { connect } from "react-redux";
 
@@ -18,6 +18,7 @@ import MobileTabs from "../components/mobile/MobileTabs";
 // import SearchBar from "../components/SearchBar";
 // import Navbar from "../components/Navbar";
 import DeleteIcon from "@material-ui/icons/Delete";
+import { favoriteFetchApi } from "../actions";
 const Favorites = props => {
   const [isOpen, setIsOpen] = useState(false);
   //Show filters
@@ -30,6 +31,11 @@ const Favorites = props => {
     setOpen(!open);
   };
   const classes = homeStyles();
+
+  useEffect(() => {
+    props.favoriteFetchApi(props.currentUser);
+  }, [props.currentUser]);
+
   return (
     <div>
       <Media query="(max-width:850px)">
@@ -75,7 +81,7 @@ const Favorites = props => {
                 <GrantShowcase
                   history={props.history}
                   inFavorite={true}
-                  grant={props.favorites}
+                  grant={props.favoriteShowcase}
                   currentUser={props.currentUser}
                 />
               </Grid>
@@ -106,7 +112,8 @@ const Favorites = props => {
 const mapStateToProps = state => {
   // console.log("GrantShowcase mapStateToProps state", state);
   return {
-    favorites: state.favoriteShowcase
+    favoriteShowcase: state.favoriteShowcase,
+    favorites: state.favorites
   };
 };
-export default connect(mapStateToProps, {})(Favorites);
+export default connect(mapStateToProps, { favoriteFetchApi })(Favorites);

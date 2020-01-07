@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Media from "react-media";
 import { connect } from "react-redux";
 
@@ -20,6 +20,7 @@ import MobileTabs from "../components/mobile/MobileTabs";
 import SearchBar from "../components/SearchBar";
 import MobileFilters from "../components/mobile/MobileFilters";
 
+import { favoriteFetchApi } from "../actions";
 // delete this sometime
 
 const Home = props => {
@@ -36,6 +37,10 @@ const Home = props => {
   };
 
   const classes = homeStyles();
+
+  useEffect(() => {
+    props.favoriteFetchApi(props.currentUser);
+  }, [props.currentUser]);
 
   return (
     <>
@@ -111,4 +116,4 @@ const mapStateToProps = state => {
     favorites: state.favorites
   };
 };
-export default connect(mapStateToProps, {})(Home);
+export default connect(mapStateToProps, { favoriteFetchApi })(Home);

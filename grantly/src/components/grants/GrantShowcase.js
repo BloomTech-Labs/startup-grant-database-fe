@@ -43,15 +43,6 @@ export const GrantShowcase = props => {
     <div>See website for details</div>
   );
 
-  console.log("FETCHING SUCCESS", props.favoriteFetchSuccess);
-  console.log("CURRENT USeR ====>", props.currentUser);
-
-  // const [favorites, setFavorites] = useState([]);
-
-  useEffect(() => {
-    props.favoriteFetchApi(props.currentUser);
-  }, [props.currentUser]);
-
   const momentDeadline =
     props.grant.most_recent_application_due_date &&
     " or in about " +
@@ -65,14 +56,16 @@ export const GrantShowcase = props => {
     );
   }
 
-  // const onClickSave = (id, currentUser) => {
-  //   console.log("imadeITTTT");
-  //   submitFavorite(id, currentUser);
-  // };
-  // const onClickDelete = (id, currentUser) => {
-  //   console.log("DeleteMadeIT");
-  //   deleteFavorite(id, currentUser);
-  // };
+  const onClickSave = (id, currentUser) => {
+    console.log("imadeITTTT");
+    props.submitFavorite(id, currentUser);
+  };
+
+  const onClickDelete = (id, currentUser) => {
+    console.log("DeleteMadeIT");
+    props.deleteFavorite(id, currentUser);
+  };
+
   console.log("GRANT SHOWCASE PROPS ====>", props);
   return (
     <div>
@@ -126,12 +119,9 @@ export const GrantShowcase = props => {
                     >
                       <IconButton
                         aria-label="save"
-                        onClick={() => {
-                          props.submitFavorite(
-                            props.grant.id,
-                            props.currentUser
-                          );
-                        }}
+                        onClick={() =>
+                          onClickSave(props.grant.id, props.currentUser)
+                        }
                       >
                         <BookmarkBorderOutlinedIcon
                           className={showcaseStyles.bookmark}
@@ -151,12 +141,9 @@ export const GrantShowcase = props => {
                 >
                   <IconButton
                     aria-label="DeleteIcon"
-                    onClick={() => {
-                      props.deleteFavorite(
-                        props.grant.favoriteID,
-                        props.currentUser
-                      );
-                    }}
+                    onClick={() =>
+                      onClickDelete(props.grant.favoriteID, props.currentUser)
+                    }
                   >
                     <DeleteIcon className={showcaseStyles.bookmark} />
                   </IconButton>

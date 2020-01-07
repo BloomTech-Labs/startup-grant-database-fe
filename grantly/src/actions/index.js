@@ -256,10 +256,11 @@ export const submitFavorite = (grantID, user) => dispatch => {
     .post(`/favorites`, { grant_id, auth_id })
     .then(response => {
       console.log("saved grant success");
+      console.log("FAVORITES FROM RES HERE ======>", response);
       dispatch({ type: SUBMIT_FAVORITE_SUCCESS, payload: response.data });
     })
     .catch(error => {
-      // console.log("submitFavorite error", error.response.data.message);
+      console.log("submitFavorite error", error);
       dispatch({ type: SUBMIT_FAVORITE_FAILURE });
     });
 };
