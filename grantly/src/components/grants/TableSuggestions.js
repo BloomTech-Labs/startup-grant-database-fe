@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { deleteSuggestion } from "../../actions";
 import axios from "axios";
-
+import { useAuth0 } from "../../react-auth0-wrapper.js";
+import useGetToken from "../../auth/useGetToken.js";
 // Styling
 import { tableSuggStyles } from "../../styles/tableSuggStyles";
 import DialogTitle from "@material-ui/core/DialogTitle";
@@ -20,13 +21,11 @@ import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
 import DeleteIcon from "@material-ui/icons/Delete";
 
 const TableSuggestions = props => {
-  // Force Update for our onClick action
-  // const forceUpdate = useForceUpdate();
-
-  // console.log('grantSuggestionList props: ', props)
+  const { isAuthenticated, user, loading } = useAuth0();
   const [suggestions, setSuggestions] = useState([]);
   const [open, setOpen] = useState(false);
 
+  const [token] = useGetToken();
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -34,16 +33,14 @@ const TableSuggestions = props => {
   const handleClose = () => {
     setOpen(false);
   };
-
   useEffect(() => {
     const grant_id = props.rowData.id;
     axios
       .get(
-        `https://grantly-staging.herokuapp.com/api/admin/suggestions/${grant_id}`,
+        `${process.env.REACT_APP_CLIENT_STAGINGURL}/admin/suggestions/${grant_id}`,
         {
           headers: {
-            auth0id: props.currentUser.auth_id,
-            authorization: `Bearer ${props.currentUser.token}`
+            authorization: `Bearer ${token}`
           }
         }
       )
@@ -54,10 +51,10 @@ const TableSuggestions = props => {
       .catch(err => {
         console.log(err);
       });
-  }, [props.rowData]);
+  }, [token, props.rowData]);
 
-  const onClickDelete = (suggestion_id, currentUser) => {
-    props.deleteSuggestion(suggestion_id, currentUser);
+  const onClickDelete = (suggestion_id, token) => {
+    props.deleteSuggestion(suggestion_id, token);
     const updatedSuggs = suggestions.filter(sugg => sugg.id !== suggestion_id);
     setSuggestions(updatedSuggs);
   };
@@ -90,9 +87,7 @@ const TableSuggestions = props => {
         onClose={handleClose}
         aria-labelledby="form-dialog-title"
       >
-        <DialogTitle variant="h5">
-          User Suggestions
-        </DialogTitle>
+        <DialogTitle variant="h5">User Suggestions</DialogTitle>
         <DialogContent>
           <DialogContentText>
             {suggestions.length ? (
@@ -103,9 +98,7 @@ const TableSuggestions = props => {
                     className={style.suggestionLi}
                   >
                     <IconButton
-                      onClick={() =>
-                        onClickDelete(suggestion.id, props.currentUser)
-                      }
+                      onClick={() => onClickDelete(suggestion.id, token)}
                     >
                       <DeleteIcon />
                     </IconButton>

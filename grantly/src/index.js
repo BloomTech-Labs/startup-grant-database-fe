@@ -5,8 +5,7 @@ import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import { Auth0Provider } from "./react-auth0-wrapper";
 // import config from "./auth_config.json";
-import * as Sentry from '@sentry/browser';
-import dotenv from 'dotenv';
+import * as Sentry from "@sentry/browser";
 
 // Objects
 import App from "./App";
@@ -26,14 +25,17 @@ const onRedirectCallback = appState => {
   );
 };
 
-Sentry.init({dsn: "https://3fff2a57bcec4d419f25f24c703f14b9@sentry.io/1811765"});
+//this connects app to slack sentry
+Sentry.init({
+  dsn: "https://3fff2a57bcec4d419f25f24c703f14b9@sentry.io/1811765"
+});
 
 const AppWithProvider = (
   <Auth0Provider
     domain={process.env.REACT_APP_CLIENT_DOMAIN}
     client_id={process.env.REACT_APP_CLIENT_ID}
     redirect_uri={`${window.location.origin}`}
-    audience={process.env.REACT_APP_CLIENT_AUDIENCE}
+    audience={process.env.REACT_APP_CLIENT_AUDIENCESTAGING}
     onRedirectCallback={onRedirectCallback}
   >
     <Provider store={store}>

@@ -12,23 +12,29 @@ export const showcaseStyles = makeStyles(theme => ({
     // marginBottom: "1rem",
     [theme.breakpoints.down("sm")]: {
       position: "initial",
-      width: "100%",
-      padding: "20px",
+      padding: "2em",
       height: "auto",
-      margin: 0
+      margin: "2em 3em"
+    },
+    [theme.breakpoints.down("xs")]: {
+      padding: "1em",
+      margin: "1em 1em"
     }
   },
   inAdmin: {
     // minHeight: "70vh"
   },
   topContent: {
-    margin: " 0",
-    fontWeight: "700"
-    // fontSize: "1.8rem"
+    margin: " 0"
   },
-  showcaseSpan: {
-    fontWeight: "bold",
-    fontSize: "1.1rem"
+  showcase_header: {
+    width: "initial"
+  },
+  grant_name: {
+    fontWeight: "700",
+    fontFamily: "Nunito Sans",
+    color: "#222222",
+    marginBottom: "15px"
   },
   bookmark: {
     fill: "#696969"
@@ -39,34 +45,28 @@ export const showcaseStyles = makeStyles(theme => ({
     fontSize: "1.2rem",
     overflow: "none"
   },
-
-  showcaseDetailsTop: {
+  showcaseContainer: {},
+  showcaseDetails: {
     // height: 90,
-    marginTop: 20,
-    marginBottom: 10,
-    marginLeft: 5,
-    marginRight: 5,
-    paddingTop: 5,
-    paddingBottom: 5,
-    paddingLeft: 5,
-    paddingRight: 5,
-    // border: "1px solid red",
+    margin: ".5em 0",
+    padding: ".5em 0 .5em 0",
     lineHeight: "1.2rem",
     fontFamily: "EB Garamond"
   },
-  showcaseDetailsBottom: {
-    height: 90,
+  detailTitle: {
+    fontFamily: "Nunito Sans",
+    fontWeight: "bold",
+    fontSize: "1.1rem"
+  },
+  innerDetails: {
+    color: "#696969",
+    fontSize: "0.9rem",
+    marginTop: 5,
+    height: "auto"
+  },
+  showcaseNotes: {
     marginTop: 10,
-    marginBottom: 10,
-    marginLeft: 5,
-    marginRight: 5,
-    paddingTop: 5,
-    paddingBottom: 5,
-    paddingLeft: 5,
-    paddingRight: 5,
-    lineHeight: "1.2rem",
-    fontFamily: "EB Garamond"
-    // border: "1px solid red"
+    marginBottom: 20
   },
   applyButton: {
     color: "#fff",
@@ -74,32 +74,16 @@ export const showcaseStyles = makeStyles(theme => ({
     fontFamily: "Nunito Sans",
     fontWeight: "600"
   },
-  showcase_header: {
-    width: "initial"
-  },
-  grant_logo: {
-    display: "inline-block",
-    marginRight: "5px",
-    background: "#ddd",
-    width: "60px",
-    height: "50px"
-  },
-  grant_name: {
-    fontWeight: "700",
-    fontFamily: "Nunito Sans",
-    color: "#222222",
-    marginBottom: "15px"
-  },
-  innerDetails: {
-    color: "#696969",
-    fontSize: "0.9rem",
-    margin: 5,
-    height: "auto"
-  },
-  headersThree: {
-    // border: "1px solid red"
-    marginTop: 10,
-    marginBottom: 20
+  // not used in grant showcase anywhere
+  // grant_logo: {
+  //   display: "inline-block",
+  //   marginRight: "5px",
+  //   background: "#ddd",
+  //   width: "60px",
+  //   height: "50px"
+  // },
+  showcaseButtonContainer: {
+    margin: "0"
   },
   loaderDiv: {
     marginTop: "150px"

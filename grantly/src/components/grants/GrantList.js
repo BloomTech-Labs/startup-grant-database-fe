@@ -1,16 +1,11 @@
-// Dependencies
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { useAuth0 } from "../../react-auth0-wrapper";
+import { fetchApi, adminFetchApi, favoriteFetchApi } from "../../actions";
 
-// Objects
-import Grant from "./Grant";
-import Typography from "@material-ui/core/Typography";
-
-import { fetchApi, adminFetchApi } from "../../actions";
-
-// Styles
 import { homeStyles } from "../../styles/homeStyles";
+import Typography from "@material-ui/core/Typography";
+import Grant from "./Grant";
 
 // test funcs
 // exports.sum = function(a, b) {
@@ -19,17 +14,11 @@ import { homeStyles } from "../../styles/homeStyles";
 
 export const GrantList = props => {
   const styles = homeStyles();
+
   useEffect(() => {
-    if (props.inAdmin) {
-      console.log("what?", props.inAdmin);
-      console.log("yes");
-      props.adminFetchApi(props.currentUser);
-    } else if (props.data.length === 0) {
-      props.fetchApi();
-    } else  {
-      // props.fetchApi();
-    }
+    props.fetchApi();
   }, []);
+
   const needToBeReviewed = props.data.filter(
     grant => grant.is_reviewed === false
   ).length;
@@ -41,7 +30,9 @@ export const GrantList = props => {
   return (
     <div>
       {props.data.length && (
-        <p className={styles.results}>{props.data.length} Grants</p>
+        <Typography className={styles.results}>
+          {props.data.length} Grants
+        </Typography>
       )}
       {/* {props.inAdmin && <p>{needToBeReviewed} grant(s) need to be reviewed</p>} */}
 
@@ -57,7 +48,10 @@ export const GrantList = props => {
           );
         })
       ) : (
-        <div> Grants incoming! </div>
+        <Typography className={styles.results}>
+          {" "}
+          Grants incoming!{" "}
+        </Typography>
       )}
     </div>
   );
@@ -70,11 +64,11 @@ const mapStateToProps = state => {
     isFetching: state.isFetching,
     data: state.filteredGrants,
     grantStore: state.data,
-    currentUser: state.currentUser,
     savedFilters: state.filters
   };
 };
-export default connect(
-  mapStateToProps,
-  { fetchApi, adminFetchApi }
-)(GrantList);
+export default connect(mapStateToProps, {
+  fetchApi,
+  adminFetchApi,
+  favoriteFetchApi
+})(GrantList);

@@ -82,7 +82,7 @@ const AddGrant = props => {
   //Submit for grant from
   const submitGrant = event => {
     event.preventDefault();
-    props.postGrants({ ...grantInfo });
+    props.postGrants({ ...grantInfo }, props.currentUser.token);
     setGrantInfo({
       competition_name: "",
       // type: "",
@@ -206,7 +206,6 @@ const mapStateToProps = ({ grantData, isFetching, error }) => ({
   error
 });
 
-export default connect(
-  mapStateToProps,
-  { postGrants, fetchApi, changeTab }
-)(AddGrant);
+export default connect(mapStateToProps, { postGrants, fetchApi, changeTab })(
+  AddGrant
+);
