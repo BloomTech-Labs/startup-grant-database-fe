@@ -37,7 +37,7 @@ const TableSuggestions = props => {
     const grant_id = props.rowData.id;
     axios
       .get(
-        `${process.env.REACT_APP_CLIENT_STAGINGURL}/admin/suggestions/${grant_id}`,
+        `${process.env.REACT_APP_CLIENT_BASEURL}/admin/suggestions/${grant_id}`,
         {
           headers: {
             authorization: `Bearer ${token}`

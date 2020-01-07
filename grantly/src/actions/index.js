@@ -47,7 +47,7 @@ import {
 export const fetchApi = () => dispatch => {
   dispatch({ type: FETCH_START });
   axios
-    .get(`${process.env.REACT_APP_CLIENT_STAGINGURL}/grants`)
+    .get(`${process.env.REACT_APP_CLIENT_BASEURL}/grants`)
     .then(response => {
       dispatch({ type: FETCH_SUCCESS, payload: response.data });
     })
@@ -59,7 +59,7 @@ export const fetchApi = () => dispatch => {
 export const adminFetchApi = token => dispatch => {
   dispatch({ type: FETCH_START });
   axios
-    .get(`${process.env.REACT_APP_CLIENT_STAGINGURL}/admin`, {
+    .get(`${process.env.REACT_APP_CLIENT_BASEURL}/admin`, {
       headers: { authorization: `Bearer ${token}` }
     })
     .then(response => {
@@ -102,7 +102,7 @@ export const changeTab = tab => dispatch => {
 export const postGrants = (addGrant, token) => dispatch => {
   dispatch({ type: ADD_GRANT_START });
   axios
-    .post(`${process.env.REACT_APP_CLIENT_STAGINGURL}/grants`, addGrant, {
+    .post(`${process.env.REACT_APP_CLIENT_BASEURL}/grants`, addGrant, {
       headers: {
         authorization: `Bearer ${token}`
       }
@@ -125,7 +125,7 @@ export const putGrants = (updateGrant, token) => dispatch => {
   });
   axios
     .put(
-      `${process.env.REACT_APP_CLIENT_STAGINGURL}/admin/${updateGrant.id}`,
+      `${process.env.REACT_APP_CLIENT_BASEURL}/admin/${updateGrant.id}`,
       updateGrant,
       {
         headers: {
@@ -135,7 +135,7 @@ export const putGrants = (updateGrant, token) => dispatch => {
     )
     .then(success => {
       axios
-        .get(`${process.env.REACT_APP_CLIENT_STAGINGURL}/admin`, {
+        .get(`${process.env.REACT_APP_CLIENT_BASEURL}/admin`, {
           headers: {
             authorization: `Bearer ${token}`
           }
@@ -163,14 +163,14 @@ export const deleteGrants = (id, token) => dispatch => {
     type: DELETE_GRANT_START
   });
   axios
-    .delete(`${process.env.REACT_APP_CLIENT_STAGINGURL}/admin/${id}`, {
+    .delete(`${process.env.REACT_APP_CLIENT_BASEURL}/admin/${id}`, {
       headers: {
         authorization: `Bearer ${token}`
       }
     })
     .then(res => {
       axios
-        .get(`${process.env.REACT_APP_CLIENT_STAGINGURL}/admin`, {
+        .get(`${process.env.REACT_APP_CLIENT_BASEURL}/admin`, {
           headers: {
             authorization: `Bearer ${token}`
           }
@@ -195,7 +195,7 @@ export const submitSuggestion = (suggestion, token) => dispatch => {
   dispatch({ type: SUBMIT_SUGGESTION_START });
   axios
     .post(
-      `${process.env.REACT_APP_CLIENT_STAGINGURL}/grants/suggestion`,
+      `${process.env.REACT_APP_CLIENT_BASEURL}/grants/suggestion`,
       suggestion,
       {
         headers: {
@@ -216,7 +216,7 @@ export const submitSuggestion = (suggestion, token) => dispatch => {
 export const getSuggetions = (token, grant_id) => dispatch => {
   dispatch({ type: GET_SUGGESTIONS_SUCCESS });
   axios.get(
-    `${process.env.REACT_APP_CLIENT_STAGINGURL}/admin/suggestions/${grant_id}`,
+    `${process.env.REACT_APP_CLIENT_BASEURL}/admin/suggestions/${grant_id}`,
     {
       headers: {
         authorization: `Bearer ${token}`
@@ -230,7 +230,7 @@ export const deleteSuggestion = (requestId, token) => dispatch => {
   dispatch({ type: DELETE_SUGGESTION_START });
   axios
     .delete(
-      `${process.env.REACT_APP_CLIENT_STAGINGURL}/admin/suggestion/${requestId}`,
+      `${process.env.REACT_APP_CLIENT_BASEURL}/admin/suggestion/${requestId}`,
       {
         headers: {
           authorization: `Bearer ${token}`
