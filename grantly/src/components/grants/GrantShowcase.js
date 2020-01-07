@@ -35,7 +35,7 @@ export const GrantShowcase = props => {
     return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   }
 
-  // useEffect(() => {}, [props.favorites]);
+  useEffect(() => {}, [props.favorites]);
 
   const deadline = props.grant.most_recent_application_due_date ? (
     <Moment format={"MMMM Do YYYY"}>
