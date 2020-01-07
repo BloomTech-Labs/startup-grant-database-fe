@@ -2,7 +2,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import Moment from "react-moment";
-import { selectGrant } from "../../actions";
+import { selectGrant, selectFavorite } from "../../actions";
 
 // Components
 import EditGrantDialog from "../dialogs/EditGrantDialog";
@@ -21,8 +21,13 @@ import Typography from "@material-ui/core/Typography";
 import { grantStyles } from "../../styles/grantStyles";
 
 export const Grant = props => {
-  const selectGrant = () => {
-    props.selectGrant(props.grant);
+  console.log("propsGrant", props);
+  const selectData = function() {
+    if (props.inFavorite === true) {
+      return props.selectFavorite(props.grant);
+    } else {
+      return props.selectGrant(props.grant);
+    }
   };
 
   // formats number with commas for display
@@ -41,16 +46,31 @@ export const Grant = props => {
 
   // Use to declare classes/styles
   const styles = grantStyles();
-
+  const selectGrantID = function() {
+    if (props.favoriteShowcase.id === null) {
+      return props.grantShowcase.id;
+    }
+  };
   return (
     // Checks if card is currently selected and if its been reviewed
+
+    // <Card
+    //   className={`${
+    //     props.grantShowcase.id === props.grant.id ||
+    //     props.favoriteShowcase.id === props.grant.id
+    //       ? styles.grantCardSelected
+    //       : styles.grantCard
+    //   } ${!props.grant.is_reviewed && styles.grant_new}`}
+    //   onClick={selectData}
+    // >
+
     <Card
       className={`${
-        props.grantShowcase.id === props.grant.id
+        selectGrantID === props.grant.id
           ? styles.grantCardSelected
           : styles.grantCard
       } ${!props.grant.is_reviewed && styles.grant_new}`}
-      onClick={selectGrant}
+      onClick={selectData}
     >
       <div className={styles.grant_layout}>
         {/* <Grid item className={styles.grant_logo}></Grid> */}
@@ -102,25 +122,18 @@ export const Grant = props => {
               </span>
             </Typography>
           </Grid>
-
         </Grid>
-        {props.inAdmin ? (
-          <EditGrantDialog className={styles.editIcon} grant={props.grant} />
-        ) : // <BookmarkBorderOutlinedIcon className={styles.bookmark} />
-        null}
       </div>
     </Card>
   );
 };
 
-const mapStateToProps = ({ grantShowcase, currentUser }) => {
+const mapStateToProps = ({ grantShowcase, favoriteShowcase, currentUser }) => {
   return {
     grantShowcase,
+    favoriteShowcase,
     currentUser
   };
 };
 
-export default connect(
-  mapStateToProps,
-  { selectGrant }
-)(Grant);
+export default connect(mapStateToProps, { selectGrant, selectFavorite })(Grant);

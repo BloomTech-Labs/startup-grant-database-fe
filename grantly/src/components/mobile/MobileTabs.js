@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { changeTab } from "../../actions/index";
+import { useAuth0 } from "../../react-auth0-wrapper.js";
 
 // Style imports
 import { mobileTabStyles } from "../../styles/mobileTabStyles";
@@ -16,10 +17,11 @@ import AppBar from "@material-ui/core/AppBar";
 import GrantList from "../grants/GrantList";
 import GrantShowcase from "../grants/GrantShowcase";
 import SubmitForm from "../SubmitForm";
+import FavoriteList from "../grants/FavoritesList";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
-
+  // const { isAuthenticated } = useAuth0();
   return (
     <Typography
       component="div"
@@ -41,7 +43,16 @@ function a11yProps(index) {
   };
 }
 
-const MobileTabs = ({ grant, currentTab, changeTab, inAdmin, history }) => {
+const MobileTabs = ({
+  grant,
+  currentTab,
+  changeTab,
+  history,
+  favorites,
+  inFavorite,
+  currentUser,
+  inGrants
+}) => {
   const style = mobileTabStyles();
   const theme = useTheme();
   const [value, setValue] = React.useState(0);
@@ -73,7 +84,6 @@ const MobileTabs = ({ grant, currentTab, changeTab, inAdmin, history }) => {
         >
           <Tab className={style.tab} label="Grants" {...a11yProps(0)} />
           <Tab className={style.tab} label="Showcase" {...a11yProps(1)} />
-          <Tab className={style.tab} label="Submit" {...a11yProps(2)} />
         </Tabs>
       </AppBar>
       <SwipeableViews
@@ -82,13 +92,43 @@ const MobileTabs = ({ grant, currentTab, changeTab, inAdmin, history }) => {
         onChangeIndex={handleChangeIndex}
       >
         <TabPanel value={value} index={0} dir={theme.direction}>
-          <GrantList inAdmin={inAdmin} />
+          {inFavorite ? (
+            <FavoriteList
+              infavorite={inFavorite}
+              favorites={favorites}
+              currentUser={currentUser}
+            />
+          ) : (
+            <GrantList grant={grant} currentUser={currentUser} />
+          )}
         </TabPanel>
         <TabPanel value={value} index={1} dir={theme.direction}>
-          <GrantShowcase inAdmin={inAdmin} />
+          {inFavorite ? (
+            <GrantShowcase
+              inFavorite={inFavorite}
+              currentUser={currentUser}
+              grant={grant}
+              history={history}
+            />
+          ) : (
+            <GrantShowcase
+              inGrants={inGrants}
+              currentUser={currentUser}
+              grant={grant}
+            />
+          )}
+          )}
+          {/* <GrantShowcase
+            inFavorite={inFavorite}
+            inGrants={inGrants}
+            favorites={grant}
+            grant={grant}
+            currentUser={currentUser}
+          /> */}
         </TabPanel>
+
         <TabPanel value={value} index={2} dir={theme.direction}>
-          <SubmitForm history={history}/>
+          <SubmitForm history={history} />
         </TabPanel>
       </SwipeableViews>
     </div>
@@ -101,7 +141,4 @@ const mapStateToProps = state => {
     currentTab: state.currentTab
   };
 };
-export default connect(
-  mapStateToProps,
-  { changeTab }
-)(MobileTabs);
+export default connect(mapStateToProps, { changeTab })(MobileTabs);

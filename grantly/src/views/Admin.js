@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Media from "react-media";
 
-// Stlying 
+// Stlying
 import { adminStyles } from "../styles/adminStyles";
 import Grid from "@material-ui/core/Grid";
 import TuneIcon from "@material-ui/icons/Tune";

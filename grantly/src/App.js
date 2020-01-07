@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import { connect } from "react-redux";
-import { fetchApi } from "./actions/index";
+import { fetchApi, favoriteFetchApi } from "./actions/index";
 import { useAuth0 } from "./react-auth0-wrapper";
 
 // Objects
@@ -14,7 +14,7 @@ import GrantTable from "./components/grants/GrantTable";
 import NavBar from "./components/Navbar";
 import Sitemap from "./components/Sitemap";
 import PrivateRoute from "./util/PrivateRoute";
-
+import Favorites from "./views/Favorites";
 // Stylings
 import { ThemeProvider } from "@material-ui/styles";
 import { theme } from "./styles/theme";
@@ -23,7 +23,7 @@ import { theme } from "./styles/theme";
 
 function App({ fetchApi }) {
   const { user, isAuthenticated, getTokenSilently } = useAuth0();
-  console.log('USER', user)
+  console.log("USER", user);
 
   const [currentUser, setCurrentUser] = useState({});
 
@@ -31,39 +31,57 @@ function App({ fetchApi }) {
     if (isAuthenticated) {
       const authToken = getTokenSilently().then(res => {
         const token = res;
-        console.log('TOKEN', token)
-        console.log('USEEFFECT USER', user)
-        // const strUser = JSON.stringify(user);
-        // console.log('userString', strUser)
-        setCurrentUser({...user, token: token});
+        const role =
+          user["https://founder-grants.com/appdata"].authorization.roles.find(
+            () => "Moderator"
+          ) === "Moderator"
+            ? "Moderator"
+            : "User";
+        setCurrentUser({ ...user, token: token, role: role });
       });
     }
   }, [user]);
 
-  console.log('IranUser', currentUser);
   return (
     <Router>
       <ThemeProvider theme={theme}>
         <div className="App">
           <Route
             path="/"
-            render={props => <NavBar {...props} fetchApi={fetchApi} />}
+            render={props => (
+              <NavBar
+                {...props}
+                fetchApi={fetchApi}
+                currentUser={currentUser}
+              />
+            )}
           />
           {/* <EmailDialog /> */}
           <Route exact path="/" component={Landing} />
-          <Route exact path="/grants" render={props => <Home {...props} />} />
+          <Route
+            exact
+            path="/grants"
+            render={props => <Home {...props} currentUser={currentUser} />}
+          />
           <Route path="/form" render={props => <SubmitForm {...props} />} />
           {/* <Route path="/login" component={LoginForm} /> */}
           <Route path="/about" component={About} />
-          {/* <Route path="/table" component={GrantTable} /> */}
+
           {isAuthenticated && (
             <PrivateRoute
               exact
               path="/table"
-              render={props => <GrantTable {...props} currentUser={currentUser}/>}
+              render={props => (
+                <GrantTable {...props} currentUser={currentUser} />
+              )}
             />
             // <PrivateRoute exact path="/promote" component
           )}
+          <Route
+            exact
+            path="/favorites"
+            render={props => <Favorites {...props} currentUser={currentUser} />}
+          />
           <Sitemap />
         </div>
       </ThemeProvider>
@@ -71,4 +89,10 @@ function App({ fetchApi }) {
   );
 }
 
-export default connect(null, { fetchApi })(App);
+const mapStateToProps = state => {
+  return {
+    favorites: state.favorites
+  };
+};
+
+export default connect(mapStateToProps, { fetchApi, favoriteFetchApi })(App);
