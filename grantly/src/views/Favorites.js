@@ -17,11 +17,11 @@ import MobileTabs from "../components/mobile/MobileTabs";
 // import MobileTabs from "../components/mobile/MobileTabs";
 // import SearchBar from "../components/SearchBar";
 // import Navbar from "../components/Navbar";
-import DeleteIcon from "@material-ui/icons/Delete";
 import { favoriteFetchApi } from "../actions";
+
 const Favorites = props => {
   const [isOpen, setIsOpen] = useState(false);
-  const [isFavorites, setIsFavorites] = useState(false);
+
   //Show filters
   const [open, setOpen] = useState();
   const toggleDrawer = () => {
@@ -32,28 +32,36 @@ const Favorites = props => {
     setOpen(!open);
   };
   const classes = homeStyles();
-  const ifFavorite = function() {
-    if (props.favorites === null) {
-      return false;
-    }
-  };
 
   useEffect(() => {
     props.favoriteFetchApi(props.currentUser);
   }, [props.currentUser]);
-  console.log("propsje", props.favorites.legnth);
+
   return (
     <div>
       <Media query="(max-width:850px)">
         {matches =>
           matches ? (
             <>
-              <MobileTabs
+              {props.favorites.length > 0 ? (
+                <MobileTabs
+                  inFavorite={true}
+                  favorites={props.favorites}
+                  currentUser={props.currentUser}
+                />
+              ) : (
+                <MobileTabs
+                  inFavorite={true}
+                  favorites={""}
+                  currentUser={props.currentUser}
+                />
+              )}
+              {/* <MobileTabs
                 inFavorite={true}
                 history={props.history}
                 favorites={props.favorites}
                 currentUser={props.currentUser}
-              />
+              /> */}
               <MobileFilters toggleDrawer={toggleDrawer} />
               <SwipeableDrawer
                 anchor="bottom"
