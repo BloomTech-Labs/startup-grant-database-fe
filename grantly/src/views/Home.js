@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Media from "react-media";
+import { connect } from "react-redux";
 
 // Styling
 import { homeStyles } from "../styles/homeStyles";
@@ -19,6 +20,7 @@ import MobileTabs from "../components/mobile/MobileTabs";
 import SearchBar from "../components/SearchBar";
 import MobileFilters from "../components/mobile/MobileFilters";
 
+import { favoriteFetchApi } from "../actions";
 // delete this sometime
 
 const Home = props => {
@@ -36,6 +38,10 @@ const Home = props => {
 
   const classes = homeStyles();
 
+  useEffect(() => {
+    props.favoriteFetchApi(props.currentUser);
+  }, [props.currentUser]);
+
   return (
     <>
       {/* <Navbar location={props.location.pathname} /> */}
@@ -44,7 +50,12 @@ const Home = props => {
         {matches =>
           matches ? (
             <>
-              <MobileTabs history={props.history} />
+              <MobileTabs
+                history={props.history}
+                inGrants={true}
+                grant={props.grants}
+                currentUser={props.currentUser}
+              />
               <MobileFilters toggleDrawer={toggleDrawer} />
               <SwipeableDrawer
                 anchor="bottom"
@@ -61,13 +72,18 @@ const Home = props => {
               direction="row"
               justify="space-between"
               alignItems="flex-start"
+              spacing={2}
               className={classes.homeGridContainer}
             >
               <Grid item md={4} xs={4} className={classes.grantList}>
                 <GrantList inAdmin={false} location={props.location} />
               </Grid>
               <Grid item xs={6} sm={9} md={7} className={classes.gridItem}>
-                <GrantShowcase />
+                <GrantShowcase
+                  inGrants={true}
+                  grant={props.grant}
+                  currentUser={props.currentUser}
+                />
               </Grid>
               <Grid item xs={4} sm={2} md={2}>
                 <TuneIcon
@@ -92,5 +108,12 @@ const Home = props => {
     </>
   );
 };
-
-export default Home;
+const mapStateToProps = state => {
+  // console.log("GrantShowcase mapStateToProps state", state);
+  return {
+    grant: state.grantShowcase,
+    isFetching: state.isFetching,
+    favorites: state.favorites
+  };
+};
+export default connect(mapStateToProps, { favoriteFetchApi })(Home);

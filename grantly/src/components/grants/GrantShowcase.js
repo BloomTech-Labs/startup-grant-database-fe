@@ -1,5 +1,5 @@
 // Dependencies
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import Loader from "react-loader-spinner";
 import Moment from "react-moment";
@@ -8,13 +8,24 @@ import { useAuth0 } from "../../react-auth0-wrapper.js";
 
 // Objects
 import { Card, Grid, Button, Typography, Divider } from "@material-ui/core";
-// import BookmarkBorderOutlinedIcon from "@material-ui/icons/BookmarkBorderOutlined";
+import BookmarkBorderOutlinedIcon from "@material-ui/icons/BookmarkBorderOutlined";
 import LanguageIcon from "@material-ui/icons/Language";
 import SuggestionDialog from "../dialogs/SuggestionDialog";
 import EditGrantDialog from "../dialogs/EditGrantDialog";
+import IconButton from "@material-ui/core/IconButton";
+import Tooltip from "@material-ui/core/Tooltip";
+import Fade from "@material-ui/core/Fade";
+import DeleteIcon from "@material-ui/icons/Delete";
+import BookmarkIcon from "@material-ui/icons/Bookmark";
 
 // Styles
 import { showcaseStyles } from "../../styles/grantShowcaseStyles";
+//Actions
+import {
+  submitFavorite,
+  deleteFavorite,
+  favoriteFetchApi
+} from "../../actions/index";
 
 export const GrantShowcase = props => {
   console.log("showcase props:", props);
@@ -23,6 +34,8 @@ export const GrantShowcase = props => {
   function formatNumbers(num) {
     return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   }
+
+  useEffect(() => {}, [props.favorites]);
 
   const deadline = props.grant.most_recent_application_due_date ? (
     <Moment format={"MMMM Do YYYY"}>
@@ -45,15 +58,20 @@ export const GrantShowcase = props => {
     );
   }
 
+  const onClickSave = (id, currentUser) => {
+    console.log("imadeITTTT");
+    props.submitFavorite(id, currentUser);
+  };
+
+  const onClickDelete = (id, currentUser) => {
+    console.log("DeleteMadeIT");
+    props.deleteFavorite(id, currentUser);
+  };
+
+  console.log("GRANT SHOWCASE PROPS ====>", props);
   return (
     <div>
-      <Card
-        className={
-          props.inAdmin
-            ? `${style.showcaseCard} ${style.inAdmin}`
-            : style.showcaseCard
-        }
-      >
+      <Card className={style.showcaseCard}>
         {/* ================= Top container ================= */}
         <div>
           <Grid
@@ -79,16 +97,61 @@ export const GrantShowcase = props => {
               </Grid>
             </Grid>
 
-            <Grid>
-              <Grid item>
-                {props.inAdmin ? (
-                  <EditGrantDialog
-                    className={style.editIcon}
-                    grant={props.grant}
-                  />
-                ) : //( <BookmarkBorderOutlinedIcon className={style.bookmark} />)
-                null}
-              </Grid>
+            <Grid item>
+              {props.inGrants ? (
+                <>
+                  {console.log("FAVORITES show", props.favorites)}
+                  {props.favorites.length > 0 &&
+                  props.favorites.filter(fav => {
+                    console.log("fav", fav);
+                    console.log("props.grant", props.grant);
+                    return fav.id === props.grant.id;
+                  }).length ? (
+                    <Tooltip
+                      TransitionComponent={Fade}
+                      TransitionProps={{ timeout: 600 }}
+                      title="In Favorites"
+                    >
+                      <BookmarkIcon aria-label="added to favorites" />
+                    </Tooltip>
+                  ) : (
+                    <Tooltip
+                      TransitionComponent={Fade}
+                      TransitionProps={{ timeout: 600 }}
+                      title="Add to Favorites"
+                    >
+                      <IconButton
+                        aria-label="save"
+                        onClick={() =>
+                          onClickSave(props.grant.id, props.currentUser)
+                        }
+                      >
+                        <BookmarkBorderOutlinedIcon
+                          className={showcaseStyles.bookmark}
+                        />
+                      </IconButton>
+                    </Tooltip>
+                  )}
+                </>
+              ) : null}
+            </Grid>
+            <Grid item>
+              {props.inFavorite ? (
+                <Tooltip
+                  TransitionComponent={Fade}
+                  TransitionProps={{ timeout: 600 }}
+                  title="Delete Favorites"
+                >
+                  <IconButton
+                    aria-label="DeleteIcon"
+                    onClick={() =>
+                      onClickDelete(props.grant.favoriteID, props.currentUser)
+                    }
+                  >
+                    <DeleteIcon className={showcaseStyles.bookmark} />
+                  </IconButton>
+                </Tooltip>
+              ) : null}
             </Grid>
           </Grid>
 
@@ -102,25 +165,7 @@ export const GrantShowcase = props => {
             <a href={props.grant.website} target="_blank">
               {props.grant.website}
             </a>
-
-            {/* <Grid item>
-              <a href={props.grant.website} target="_blank">
-                <Button
-                  className={style.applyButton}
-                  variant="contained"
-                  color="primary"
-                >
-                  Apply to Grant
-                </Button>
-              </a>
-              {!props.inAdmin && (
-                <Grid item>
-                  <SuggestionDialog id={props.grant.id} />
-                </Grid>
-              )}
-            </Grid> */}
           </Grid>
-          {/* <Divider color="primary" /> */}
         </div>
         {/* ================= Main content ================= */}
         <Grid
@@ -227,14 +272,16 @@ export const GrantShowcase = props => {
 };
 
 const mapStateToProps = state => {
-  // console.log("GrantShowcase mapStateToProps state", state);
   return {
-    grant: state.grantShowcase,
-    isFetching: state.isFetching
+    isFetching: state.isFetching,
+    favoriteFetchSuccess: state.favoriteFetchSuccess,
+    addedFavorite: state.addedFavorite,
+    favorites: state.favorites
   };
 };
 
-export default connect(
-  mapStateToProps,
-  {}
-)(GrantShowcase);
+export default connect(mapStateToProps, {
+  submitFavorite,
+  deleteFavorite,
+  favoriteFetchApi
+})(GrantShowcase);

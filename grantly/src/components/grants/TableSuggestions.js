@@ -20,16 +20,12 @@ import IconButton from "@material-ui/core/IconButton";
 import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
 import DeleteIcon from "@material-ui/icons/Delete";
 
-
 const TableSuggestions = props => {
   const { isAuthenticated, user, loading } = useAuth0();
-
-  const [token] = useGetToken();
-
   const [suggestions, setSuggestions] = useState([]);
   const [open, setOpen] = useState(false);
-  console.log("made it to suggestion Table", token);
 
+  const [token] = useGetToken();
   const handleClickOpen = () => {
     setOpen(true);
   };

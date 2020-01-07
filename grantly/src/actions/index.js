@@ -1,7 +1,6 @@
 // Dependencies
 import axios from "axios";
-// import { axiosWithAuth } from "../auth/axiosWithAuth.js";
-// import useGetToken from "../auth/useGetToken.js";
+import { axiosWithAuth } from "../auth/axiosWithAuth.js";
 
 // Objects
 import {
@@ -21,8 +20,8 @@ import {
   DELETE_GRANT_START,
   DELETE_GRANT_SUCCESS,
   DELETE_GRANT_FAILURE,
-  CHECK_ADMIN,	
-  SET_USER,	
+  CHECK_ADMIN,
+  SET_USER,
   SET_TOKEN_IN_STORE,
   FILTER_SAVE,
   SUBMIT_SUGGESTION_START,
@@ -31,7 +30,17 @@ import {
   DELETE_SUGGESTION_START,
   DELETE_SUGGESTION_SUCCESS,
   DELETE_SUGGESTION_FAILURE,
-  GET_SUGGESTIONS_SUCCESS
+  GET_SUGGESTIONS_SUCCESS,
+  SUBMIT_FAVORITE_START,
+  SUBMIT_FAVORITE_SUCCESS,
+  SUBMIT_FAVORITE_FAILURE,
+  GET_FAVORITE_START,
+  GET_FAVORITE_SUCCESS,
+  GET_FAVORITE_FAILURE,
+  SELECT_FAVORITE,
+  DELETE_FAVORITE_START,
+  DELETE_FAVORITE_SUCCESS,
+  DELETE_FAVORITE_FAILURE
 } from "./types";
 
 // fetch grants for main view
@@ -109,6 +118,7 @@ export const postGrants = (addGrant, token) => dispatch => {
 };
 
 // Update a Grant
+
 export const putGrants = (updateGrant, token) => dispatch => {
   dispatch({
     type: UPDATE_GRANT_START
@@ -202,18 +212,18 @@ export const submitSuggestion = (suggestion, token) => dispatch => {
     });
 };
 
-// // Get Suggestions by Grant ID
-// export const getSuggetions = (token, grant_id) => dispatch => {
-//   dispatch({ type: GET_SUGGESTIONS_SUCCESS });
-//   axios.get(
-//     `${process.env.REACT_APP_CLIENT_LOCALURL}/admin/suggestions/${grant_id}`,
-//     {
-//       headers: {
-//         authorization: `Bearer ${token}`
-//       }
-//     }
-//   );
-// };
+// Get Suggestions by Grant ID
+export const getSuggetions = (token, grant_id) => dispatch => {
+  dispatch({ type: GET_SUGGESTIONS_SUCCESS });
+  axios.get(
+    `${process.env.REACT_APP_CLIENT_STAGINGURL}/admin/suggestions/${grant_id}`,
+    {
+      headers: {
+        authorization: `Bearer ${token}`
+      }
+    }
+  );
+};
 
 // Delete a grant suggestion, must be an admin
 export const deleteSuggestion = (requestId, token) => dispatch => {
@@ -232,5 +242,57 @@ export const deleteSuggestion = (requestId, token) => dispatch => {
     })
     .catch(error => {
       dispatch({ type: DELETE_SUGGESTION_FAILURE });
+    });
+};
+
+//Add a favorite grant
+
+export const submitFavorite = (grantID, user) => dispatch => {
+  dispatch({ type: SUBMIT_FAVORITE_START });
+  console.log("SAVE CLICK ACTION", grantID, user.sub, user.token);
+  const grant_id = grantID;
+  const auth_id = user.sub;
+  axiosWithAuth(user.token)
+    .post(`/favorites`, { grant_id, auth_id })
+    .then(response => {
+      console.log("saved grant success");
+      console.log("FAVORITES FROM RES HERE ======>", response);
+      dispatch({ type: SUBMIT_FAVORITE_SUCCESS, payload: response.data });
+    })
+    .catch(error => {
+      console.log("submitFavorite error", error);
+      dispatch({ type: SUBMIT_FAVORITE_FAILURE });
+    });
+};
+
+// fetch Favorite grants for user
+export const favoriteFetchApi = user => dispatch => {
+  dispatch({ type: GET_FAVORITE_START });
+  axiosWithAuth(user.token)
+    .get(`/favorites/myFavorites/${user.sub}`)
+
+    .then(response => {
+      dispatch({ type: GET_FAVORITE_SUCCESS, payload: response.data });
+    })
+    .catch(error => {
+      dispatch({ type: GET_FAVORITE_FAILURE, payload: error });
+    });
+};
+
+export const selectFavorite = favorite => dispatch => {
+  dispatch({ type: SELECT_FAVORITE, payload: favorite });
+  dispatch({ type: CHANGE_TAB, payload: 1 });
+};
+
+// Delete a Favorite grant , must be a user
+export const deleteFavorite = (requestId, user) => dispatch => {
+  dispatch({ type: DELETE_FAVORITE_START });
+  axiosWithAuth(user.token)
+    .delete(`/favorites/myFavorites/${requestId}`)
+    .then(response => {
+      dispatch({ type: DELETE_FAVORITE_SUCCESS, payload: response.data });
+    })
+    .catch(error => {
+      dispatch({ type: DELETE_FAVORITE_FAILURE });
     });
 };

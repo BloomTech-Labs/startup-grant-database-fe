@@ -20,7 +20,7 @@ export const homeStyles = makeStyles(theme => ({
     }
   },
   gridItem: {
-    padding: "2em 1em 2em 2rem",
+    padding: "1em"
   },
   grantListResults: {
     position: "relative",
@@ -28,8 +28,12 @@ export const homeStyles = makeStyles(theme => ({
     maxHeight: "calc(92vh - 159px)",
     padding: ".5em .5em .5em 1em",
     [theme.breakpoints.down("sm")]: {
-      padding: "0 2em 0 2em",
+      padding: "0 2em 0 2em"
     }
+  },
+  results: {
+    fontFamily: "Nunito Sans",
+    margin: ".5rem 0"
   },
   grantList: {
     maxHeight: "90vh",
@@ -42,7 +46,7 @@ export const homeStyles = makeStyles(theme => ({
       height: "100%",
       justifyContent: "center",
       flexDirection: "column",
-      marginBottom: "600px",
+      marginBottom: "600px"
     }
   },
   grantListTitle: {
@@ -51,7 +55,7 @@ export const homeStyles = makeStyles(theme => ({
     padding: ".8em 1em .2em 1em",
     color: "#464646",
     fontFamily: "Nunito Sans",
-    fontWeight: 700,
+    fontWeight: 700
     // [theme.breakpoints.down("sm")]: {
     //   display: "none"
     // }

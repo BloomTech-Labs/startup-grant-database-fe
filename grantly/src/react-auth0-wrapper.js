@@ -9,7 +9,7 @@ export const Auth0Context = React.createContext();
 export const useAuth0 = () => useContext(Auth0Context);
 
 const clientId = `${process.env.REACT_APP_CLIENT_ID}`;
-const domain = `${process.env.REACT_APP_CLIENT_AUDIENCE}`;
+const domain = `${process.env.REACT_APP_CLIENT_DOMAIN}`;
 const options = {
   languageDictionary: {
     emailInputPlaceholder: "Enter your email",
