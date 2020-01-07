@@ -30,7 +30,7 @@ export const GrantList = props => {
   return (
     <div>
       {props.data.length && (
-        <Typography variant="h5" className={styles.results}>
+        <Typography className={styles.results}>
           {props.data.length} Grants
         </Typography>
       )}
@@ -48,7 +48,7 @@ export const GrantList = props => {
           );
         })
       ) : (
-        <Typography variant="h5" className={styles.results}>
+        <Typography className={styles.results}>
           {" "}
           Grants incoming!{" "}
         </Typography>
