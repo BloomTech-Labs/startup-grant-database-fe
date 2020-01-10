@@ -11,7 +11,7 @@ import { Card, Grid, Button, Typography, Divider } from "@material-ui/core";
 import BookmarkBorderOutlinedIcon from "@material-ui/icons/BookmarkBorderOutlined";
 import LanguageIcon from "@material-ui/icons/Language";
 import SuggestionDialog from "../dialogs/SuggestionDialog";
-import EditGrantDialog from "../dialogs/EditGrantDialog";
+// import EditGrantDialog from "../dialogs/EditGrantDialog";
 import IconButton from "@material-ui/core/IconButton";
 import Tooltip from "@material-ui/core/Tooltip";
 import Fade from "@material-ui/core/Fade";
@@ -28,7 +28,7 @@ import {
 } from "../../actions/index";
 
 export const GrantShowcase = props => {
-  console.log("showcase props:", props);
+  // console.log("showcase props:", props);
   const style = showcaseStyles();
   const { isAuthenticated } = useAuth0();
   function formatNumbers(num) {
@@ -59,16 +59,16 @@ export const GrantShowcase = props => {
   }
 
   const onClickSave = (id, currentUser) => {
-    console.log("imadeITTTT");
+    // console.log("imadeITTTT");
     props.submitFavorite(id, currentUser);
   };
 
   const onClickDelete = (id, currentUser) => {
-    console.log("DeleteMadeIT");
+    // console.log("DeleteMadeIT");
     props.deleteFavorite(id, currentUser);
   };
 
-  console.log("GRANT SHOWCASE PROPS ====>", props);
+  // console.log("GRANT SHOWCASE PROPS ====>", props);
   return (
     <div>
       <Card className={style.showcaseCard}>
@@ -100,11 +100,11 @@ export const GrantShowcase = props => {
             <Grid item>
               {props.inGrants ? (
                 <>
-                  {console.log("FAVORITES show", props.favorites)}
+                  {/* {console.log("FAVORITES show", props.favorites)} */}
                   {props.favorites.length > 0 &&
                   props.favorites.filter(fav => {
-                    console.log("fav", fav);
-                    console.log("props.grant", props.grant);
+                    // console.log("fav", fav);
+                    // console.log("props.grant", props.grant);
                     return fav.id === props.grant.id;
                   }).length ? (
                     <Tooltip

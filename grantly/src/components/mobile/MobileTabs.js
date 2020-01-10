@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { changeTab } from "../../actions/index";
-import { useAuth0 } from "../../react-auth0-wrapper.js";
+// import { useAuth0 } from "../../react-auth0-wrapper.js";
 
 // Style imports
 import { mobileTabStyles } from "../../styles/mobileTabStyles";

@@ -46,7 +46,7 @@ const TableSuggestions = props => {
       )
       .then(res => {
         setSuggestions(res.data);
-        console.log("AXIOS WORKED", res.data);
+        // console.log("AXIOS WORKED", res.data);
       })
       .catch(err => {
         console.log(err);

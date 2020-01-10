@@ -1,14 +1,14 @@
 import React from "react";
 import FGLogo from "../assets/FGLogo";
 import { Link } from "react-router-dom";
-import { useAuth0 } from "../react-auth0-wrapper";
-import { lock } from "../react-auth0-wrapper";
-import { Grid, Typography, Container, Box } from "@material-ui/core/";
+// import { useAuth0 } from "../react-auth0-wrapper";
+// import { lock } from "../react-auth0-wrapper";
+import { Grid, Typography, Box } from "@material-ui/core/";
 
 import { sitemapStyles } from "../styles/sitemapStyles";
 
 const Sitemap = () => {
-  const { loginWithRedirect, loginWithPopup } = useAuth0();
+  // const { loginWithRedirect, loginWithPopup } = useAuth0();
   const styles = sitemapStyles();
 
   // const login = () => {

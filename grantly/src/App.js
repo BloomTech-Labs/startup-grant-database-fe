@@ -23,7 +23,7 @@ import { theme } from "./styles/theme";
 
 function App({ fetchApi }) {
   const { user, isAuthenticated, getTokenSilently } = useAuth0();
-  console.log("USER", user);
+  // console.log("USER", user);
 
   const [currentUser, setCurrentUser] = useState({});
 

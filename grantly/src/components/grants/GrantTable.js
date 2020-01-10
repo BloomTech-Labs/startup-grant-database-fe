@@ -21,7 +21,7 @@ import grantTableStyles from "../../styles/grantTableStyles";
 import TableSuggestions from "./TableSuggestions";
 
 export const GrantTable = props => {
-  console.log("GrantTable props", props);
+  // console.log("GrantTable props", props);
   const { isAuthenticated, user, loading } = useAuth0();
 
   // reformat deadline and last updated dates
@@ -49,7 +49,7 @@ export const GrantTable = props => {
   }, [props.currentUser]);
 
   const editComponentFunc = props => {
-    console.log("edit props", props);
+    // console.log("edit props", props);
     return (
       <TextField
         id="standard basic"

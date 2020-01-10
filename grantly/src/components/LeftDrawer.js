@@ -9,7 +9,7 @@ import ListItemText from "@material-ui/core/ListItemText";
 import MenuIcon from "@material-ui/icons/Menu";
 import VerticalSplitIcon from "@material-ui/icons/VerticalSplit";
 import ListIcon from "@material-ui/icons/List";
-import Typography from "@material-ui/core/Typography";
+// import Typography from "@material-ui/core/Typography";
 
 export default function LeftDrawer() {
   const toggleDrawer = (side, open) => event => {
