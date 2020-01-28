@@ -10,7 +10,7 @@ import * as Sentry from "@sentry/browser";
 // Objects
 import App from "./App";
 import { store } from "./store";
-
+// import store from './store/index';
 // Stylings
 import "./index.css";
 import "./index.scss";

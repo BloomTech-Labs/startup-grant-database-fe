@@ -18,5 +18,11 @@ export const useFilterActions = () => {
         dispatch({type: FilterTypes.FILTER_GRANT, payload: grants})
     }, [dispatch]);
 
-    return {changeFilter, resetFilter};
+    return {changeFilter, resetFilter, grantFilter};
 };
+
+export interface UseFilterActions {
+    changeFilter: (newFilters: Filters) => void;
+    resetFilter: () => void;
+    grantFilter: (grants: Grant[]) => void;
+}

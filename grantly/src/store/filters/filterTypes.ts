@@ -6,8 +6,14 @@ export enum FilterTypes {
     FILTER_GRANT = 'FILTER_GRANT'
 }
 
+interface Amount {
+    min: number;
+    max: number;
+    name: string;
+}
+
 export interface Filters {
-    amount: string[];
+    amount: Amount[];
     geographic_region: string[];
     domain_areas: string[],
     admin_filters: string[]
