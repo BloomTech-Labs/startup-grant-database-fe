@@ -18,3 +18,7 @@ export const useGrantActions = () => {
 
     return {fetchGrants};
 }
+
+export interface UseGrantActions {
+    fetchGrants: () => void;
+}
