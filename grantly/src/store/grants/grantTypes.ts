@@ -1,9 +1,12 @@
 import {Error} from "../reduxTypes";
 
 export enum GrantTypes {
-   FETCH_GRANTS_START= 'FETCH_GRANTS_START',
-   FETCH_GRANTS_SUCCESS= 'FETCH_GRANTS_SUCCESS',
-   FETCH_GRANTS_FAILURE = 'FETCH_GRANTS_FAILURE ',
+    FETCH_GRANTS_START = 'FETCH_GRANTS_START',
+    FETCH_GRANTS_SUCCESS = 'FETCH_GRANTS_SUCCESS',
+    FETCH_GRANTS_FAILURE = 'FETCH_GRANTS_FAILURE ',
+    FETCH_ADMIN_GRANTS_START = 'FETCH_ADMIN_GRANTS_START',
+    FETCH_ADMIN_GRANTS_SUCCESS = 'FETCH_ADMIN_GRANTS_SUCCESS',
+    FETCH_ADMIN_GRANTS_FAILURE = 'FETCH_ADMIN_GRANTS_FAILURE ',
 }
 
 export interface Grant {
@@ -44,4 +47,24 @@ interface FetchGrantFailure {
     payload: Error
 }
 
-export type GrantActions = FetchGrantStart | FetchGrantSuccess | FetchGrantFailure
+interface FetchAdminGrantStart {
+    type: typeof GrantTypes.FETCH_ADMIN_GRANTS_START
+}
+
+interface FetchAdminGrantSuccess {
+    type: typeof GrantTypes.FETCH_ADMIN_GRANTS_SUCCESS;
+    payload: Grant[];
+}
+
+interface FetchAdminGrantFailure {
+    type: typeof GrantTypes.FETCH_ADMIN_GRANTS_FAILURE;
+    payload: Error
+}
+
+export type GrantActions =
+    FetchGrantStart
+    | FetchGrantSuccess
+    | FetchGrantFailure
+    | FetchAdminGrantStart
+    | FetchAdminGrantSuccess
+    | FetchAdminGrantFailure
