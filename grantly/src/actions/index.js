@@ -267,6 +267,7 @@ export const submitFavorite = (grantID, user) => dispatch => {
 
 // fetch Favorite grants for user
 export const favoriteFetchApi = user => dispatch => {
+  console.log(user);
   dispatch({ type: GET_FAVORITE_START });
   axiosWithAuth(user.token)
     .get(`/favorites/myFavorites/${user.sub}`)
@@ -275,6 +276,7 @@ export const favoriteFetchApi = user => dispatch => {
       dispatch({ type: GET_FAVORITE_SUCCESS, payload: response.data });
     })
     .catch(error => {
+      console.log(error.response);
       dispatch({ type: GET_FAVORITE_FAILURE, payload: error });
     });
 };

@@ -6,7 +6,7 @@ import { changeTab } from "../../actions/index";
 // Style imports
 import { mobileTabStyles } from "../../styles/mobileTabStyles";
 import { useTheme } from "@material-ui/core/styles";
-import SwipeableViews from "react-swipeable-views";
+// import SwipeableViews from "react-swipeable-views";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import Typography from "@material-ui/core/Typography";
@@ -86,11 +86,11 @@ const MobileTabs = ({
           <Tab className={style.tab} label="Showcase" {...a11yProps(1)} />
         </Tabs>
       </AppBar>
-      <SwipeableViews
-        axis={theme.direction === "rtl" ? "x-reverse" : "x"}
-        index={value}
-        onChangeIndex={handleChangeIndex}
-      >
+      {/*<SwipeableViews*/}
+      {/*  axis={theme.direction === "rtl" ? "x-reverse" : "x"}*/}
+      {/*  index={value}*/}
+      {/*  onChangeIndex={handleChangeIndex}*/}
+      {/*>*/}
         <TabPanel value={value} index={0} dir={theme.direction}>
           {inFavorite ? (
             <FavoriteList
@@ -130,7 +130,7 @@ const MobileTabs = ({
         <TabPanel value={value} index={2} dir={theme.direction}>
           <SubmitForm history={history} />
         </TabPanel>
-      </SwipeableViews>
+      {/*</SwipeableViews>*/}
     </div>
   );
 };
