@@ -86,51 +86,51 @@ const MobileTabs = ({
           <Tab className={style.tab} label="Showcase" {...a11yProps(1)} />
         </Tabs>
       </AppBar>
-      {/*<SwipeableViews*/}
-      {/*  axis={theme.direction === "rtl" ? "x-reverse" : "x"}*/}
-      {/*  index={value}*/}
-      {/*  onChangeIndex={handleChangeIndex}*/}
-      {/*>*/}
-        <TabPanel value={value} index={0} dir={theme.direction}>
-          {inFavorite ? (
-            <FavoriteList
-              infavorite={inFavorite}
-              favorites={favorites}
-              currentUser={currentUser}
-            />
-          ) : (
-            <GrantList grant={grant} currentUser={currentUser} />
-          )}
-        </TabPanel>
-        <TabPanel value={value} index={1} dir={theme.direction}>
-          {inFavorite ? (
-            <GrantShowcase
-              inFavorite={inFavorite}
-              currentUser={currentUser}
-              grant={grant}
-              history={history}
-            />
-          ) : (
-            <GrantShowcase
-              inGrants={inGrants}
-              currentUser={currentUser}
-              grant={grant}
-            />
-          )}
-          )}
-          {/* <GrantShowcase
+      {/* <SwipeableViews
+        axis={theme.direction === "rtl" ? "x-reverse" : "x"}
+        index={value}
+        onChangeIndex={handleChangeIndex}
+      > */}
+      <TabPanel value={value} index={0} dir={theme.direction}>
+        {inFavorite ? (
+          <FavoriteList
+            infavorite={inFavorite}
+            favorites={favorites}
+            currentUser={currentUser}
+          />
+        ) : (
+          <GrantList grant={grant} currentUser={currentUser} />
+        )}
+      </TabPanel>
+      <TabPanel value={value} index={1} dir={theme.direction}>
+        {inFavorite ? (
+          <GrantShowcase
+            inFavorite={inFavorite}
+            currentUser={currentUser}
+            grant={grant}
+            history={history}
+          />
+        ) : (
+          <GrantShowcase
+            inGrants={inGrants}
+            currentUser={currentUser}
+            grant={grant}
+          />
+          // )}
+        )}
+        {/* <GrantShowcase
             inFavorite={inFavorite}
             inGrants={inGrants}
             favorites={grant}
             grant={grant}
             currentUser={currentUser}
           /> */}
-        </TabPanel>
+      </TabPanel>
 
-        <TabPanel value={value} index={2} dir={theme.direction}>
-          <SubmitForm history={history} />
-        </TabPanel>
-      {/*</SwipeableViews>*/}
+      <TabPanel value={value} index={2} dir={theme.direction}>
+        <SubmitForm history={history} />
+      </TabPanel>
+      {/* </SwipeableViews> */}
     </div>
   );
 };
