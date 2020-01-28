@@ -33,21 +33,21 @@ const Sitemap = () => {
         </Grid>
         <Grid item className={styles.item}>
           <Typography variant="subtitle2">
-            <Link href="mailto:labs16grantly@gmail.com" className={styles.link}>
+            <a href="mailto:labs16grantly@gmail.com" className={styles.link}>
               CONTACT
-            </Link>
+            </a>
           </Typography>
         </Grid>
         <Grid item className={styles.item}>
           <Typography variant="subtitle2">
-            <Link href="https://www.1517fund.com/" className={styles.link}>
+            <a href="https://www.1517fund.com/" className={styles.link}>
               1517 FUND
-            </Link>
+            </a>
           </Typography>
         </Grid>
         <Grid container justify="center" alignItems="flex-end">
           <Typography variant="subtitle2" className={styles.copy}>
-            &copy; 2019 FOUNDER GRANTS. ALL RIGHTS RESERVED.
+            &copy; 2020 FOUNDER GRANTS. ALL RIGHTS RESERVED.
           </Typography>
         </Grid>
       </Grid>

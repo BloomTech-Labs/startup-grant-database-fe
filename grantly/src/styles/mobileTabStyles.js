@@ -4,7 +4,7 @@ export const mobileTabStyles = makeStyles(theme => ({
   root: {
     // backgroundColor: theme.palette.background.paper,
     [theme.breakpoints.down("xs")]: {
-      marginTop: "56px"
+      marginTop: "72px"
     }
   },
   tab: {
