@@ -13,7 +13,7 @@ import {
   TextField,
   Grid,
   Typography,
-  FormControl,
+  FormControl
   // NativeSelect
 } from "@material-ui/core";
 import { dialogStyles } from "../../styles/dialogStyles";
@@ -98,7 +98,7 @@ const SuggestionDialog = props => {
           </Grid>
         </Grid>
         <DialogContent style={{ paddingBottom: "0" }}>
-          <FormControl>
+          <FormControl style={{ width: "100%" }}>
             <TextField
               margin="normal"
               label="subject"
