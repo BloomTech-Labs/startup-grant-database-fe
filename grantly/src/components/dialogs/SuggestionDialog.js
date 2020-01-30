@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import useGetToken from "../../auth/useGetToken.js";
+// import { useAuth0 } from "../../react-auth0-wrapper.js";
 
 import {
   Button,
@@ -12,7 +13,7 @@ import {
   TextField,
   Grid,
   Typography,
-  FormControl,
+  FormControl
   // NativeSelect
 } from "@material-ui/core";
 import { dialogStyles } from "../../styles/dialogStyles";
@@ -21,8 +22,8 @@ import { submitSuggestion } from "../../actions/index";
 // When user clicks on
 
 const SuggestionDialog = props => {
-  // hold state locally before passing to API
   const [token] = useGetToken();
+
   const [suggestion, setSuggestion] = React.useState({
     subject: "",
     suggestion: ""
@@ -58,7 +59,7 @@ const SuggestionDialog = props => {
       suggestion: suggestion.suggestion,
       grant_id: props.id
     };
-    console.log("OBJECT BEING SENT TO ACTION", sendObject);
+    // console.log("OBJECT BEING SENT TO ACTION", sendObject);
     props.submitSuggestion(sendObject, token);
     handleClose();
     setSuggestion("");
@@ -97,7 +98,7 @@ const SuggestionDialog = props => {
           </Grid>
         </Grid>
         <DialogContent style={{ paddingBottom: "0" }}>
-          <FormControl>
+          <FormControl style={{ width: "100%" }}>
             <TextField
               margin="normal"
               label="subject"

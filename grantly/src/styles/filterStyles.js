@@ -132,17 +132,15 @@ export const useStylesLanding = makeStyles(theme => ({
   },
   landingButton: {
     textDecoration: "none",
-    "& button": {
-      marginTop: "45px",
-      color: "white",
-      fontFamily: "Roboto",
-      borderRadius: "2px",
-      height: "58px",
-      width: "266px",
-      [theme.breakpoints.down("xs")]: {
-        marginTop: "10px",
-        marginBottom: "20px"
-      }
+    marginTop: "45px",
+    color: "white",
+    fontFamily: "Roboto",
+    borderRadius: "2px",
+    height: "58px",
+    width: "266px",
+    [theme.breakpoints.down("xs")]: {
+      marginTop: "10px",
+      marginBottom: "20px"
     }
   }
 }));

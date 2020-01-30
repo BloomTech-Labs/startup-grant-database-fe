@@ -6,11 +6,12 @@ import { fetchApi } from "../actions/index";
 // Styling
 import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
-import { flexbox } from "@material-ui/system";
+// import { flexbox } from "@material-ui/system";
 import { landingStyles } from "../styles/landingStyles";
 
 // Components
 import Filter from "../components/Filters";
+import NewFilters from "../components/filter/NewFilters";
 
 function Landing(props) {
 
@@ -44,7 +45,7 @@ function Landing(props) {
           </div>
         </Grid>
         <Grid item md={6} xs={12}>
-          <Filter location={props.location.pathname} />
+          <NewFilters location={props.location.pathname} />
         </Grid>
       </Grid>
     </div>

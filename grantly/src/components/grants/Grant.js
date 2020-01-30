@@ -5,7 +5,7 @@ import Moment from "react-moment";
 import { selectGrant, selectFavorite } from "../../actions";
 
 // Components
-import EditGrantDialog from "../dialogs/EditGrantDialog";
+// import EditGrantDialog from "../dialogs/EditGrantDialog";
 
 // Material UI
 // import Container from "@material-ui/core/Container";
@@ -21,7 +21,7 @@ import Typography from "@material-ui/core/Typography";
 import { grantStyles } from "../../styles/grantStyles";
 
 export const Grant = props => {
-  console.log("propsGrant", props);
+  // console.log("propsGrant", props);
   const selectData = function() {
     if (props.inFavorite === true) {
       return props.selectFavorite(props.grant);

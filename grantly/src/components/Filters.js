@@ -58,7 +58,7 @@ const Filters = ({
     }
   }, [savedFilters]);
 
-  console.log("fil", savedFilters);
+  // console.log("fil", savedFilters);
 
   const grantFilters = {
     color: "primary",

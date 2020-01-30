@@ -1,14 +1,14 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { connect } from "react-redux";
-import { useAuth0 } from "../../react-auth0-wrapper";
-import { favoriteFetchApi } from "../../actions";
+// import { useAuth0 } from "../../react-auth0-wrapper";
+// import { favoriteFetchApi } from "../../actions";
 
-import Typography from "@material-ui/core/Typography";
+// import Typography from "@material-ui/core/Typography";
 import { homeStyles } from "../../styles/homeStyles";
 import Grant from "./Grant";
 
 export const FavoritesList = props => {
-  console.log("favoriteList", props);
+  // console.log("favoriteList", props);
   const styles = homeStyles();
 
   return (

@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import { useAuth0 } from "../../react-auth0-wrapper";
+// import { useAuth0 } from "../../react-auth0-wrapper";
 import { fetchApi, adminFetchApi, favoriteFetchApi } from "../../actions";
 
 import { homeStyles } from "../../styles/homeStyles";

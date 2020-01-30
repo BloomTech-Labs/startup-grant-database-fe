@@ -4,7 +4,8 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import { connect } from "react-redux";
 import { fetchApi, favoriteFetchApi } from "./actions/index";
 import { useAuth0 } from "./react-auth0-wrapper";
-
+import {ActionsProvider} from "./context/ActionsContext";
+import {useActions} from "./store/useActions";
 // Objects
 import SubmitForm from "./components/SubmitForm";
 import Home from "./views/Home";
@@ -23,8 +24,8 @@ import { theme } from "./styles/theme";
 
 function App({ fetchApi }) {
   const { user, isAuthenticated, getTokenSilently } = useAuth0();
-  console.log("USER", user);
-
+  // console.log("USER", user);
+  const actions = useActions();
   const [currentUser, setCurrentUser] = useState({});
 
   useEffect(() => {
@@ -43,6 +44,7 @@ function App({ fetchApi }) {
   }, [user]);
 
   return (
+      <ActionsProvider value={actions}>
     <Router>
       <ThemeProvider theme={theme}>
         <div className="App">
@@ -86,6 +88,7 @@ function App({ fetchApi }) {
         </div>
       </ThemeProvider>
     </Router>
+      </ActionsProvider>
   );
 }
 

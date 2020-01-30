@@ -7,20 +7,21 @@ import { homeStyles } from "../styles/homeStyles";
 
 // Material UI
 import Grid from "@material-ui/core/Grid";
-import Box from "@material-ui/core/Box";
+// import Box from "@material-ui/core/Box";
 import SwipeableDrawer from "@material-ui/core/SwipeableDrawer";
 import TuneIcon from "@material-ui/icons/Tune";
 
 // components
-import Navbar from "../components/Navbar";
+// import Navbar from "../components/Navbar";
 import Filters from "../components/Filters";
 import GrantList from "../components/grants/GrantList";
 import GrantShowcase from "../components/grants/GrantShowcase";
 import MobileTabs from "../components/mobile/MobileTabs";
-import SearchBar from "../components/SearchBar";
+// import SearchBar from "../components/SearchBar";
 import MobileFilters from "../components/mobile/MobileFilters";
 
 import { favoriteFetchApi } from "../actions";
+import NewFilters from "../components/filter/NewFilters";
 // delete this sometime
 
 const Home = props => {
@@ -63,7 +64,7 @@ const Home = props => {
                 onClose={() => toggleDrawer()}
                 onOpen={() => toggleDrawer()}
               >
-                <Filters location={props.location.pathname} mobile={true} />
+                <NewFilters location={props.location.pathname} mobile={true} />
               </SwipeableDrawer>
             </>
           ) : (
@@ -98,7 +99,7 @@ const Home = props => {
                     filterOpen ? classes.showFilters : classes.hideFilters
                   }`}
                 >
-                  <Filters location={props.location.pathname} />
+                  <NewFilters location={props.location.pathname} />
                 </div>
               </Grid>
             </Grid>

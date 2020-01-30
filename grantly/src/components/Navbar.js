@@ -16,13 +16,13 @@ import {
   List,
   ListItem,
   ListItemAvatar,
-  Avatar,
+  // Avatar,
   ListItemIcon
 } from "@material-ui/core";
 import BookmarkIcon from "@material-ui/icons/Bookmark";
 import MenuIcon from "@material-ui/icons/Menu";
-import SupervisorAccountIcon from "@material-ui/icons/SupervisorAccount";
-import FaceIcon from "@material-ui/icons/Face";
+// import SupervisorAccountIcon from "@material-ui/icons/SupervisorAccount";
+// import FaceIcon from "@material-ui/icons/Face";
 import ViewListIcon from "@material-ui/icons/ViewList";
 import DashboardIcon from "@material-ui/icons/Dashboard";
 import MailIcon from "@material-ui/icons/Mail";
@@ -30,7 +30,7 @@ import InfoIcon from "@material-ui/icons/Info";
 import { navStyles } from "../styles/navStyles";
 
 export const NavBar = props => {
-  console.log("navprops", props);
+  // console.log("navprops", props);
   const {
     isAuthenticated,
     loginWithRedirect,

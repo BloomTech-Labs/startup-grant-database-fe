@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import useGetToken from "../auth/useGetToken";
 
 import { postGrants, fetchApi, changeTab } from "../actions/index.js";
-
+import useGetToken from "../auth/useGetToken.js";
 //Objects
 import formStyles from "../styles/formStyles";
 import {
@@ -86,7 +86,7 @@ const AddGrant = props => {
   //Submit for grant from
   const submitGrant = event => {
     event.preventDefault();
-    
+
     props.postGrants({ ...grantInfo }, token);
 
     setGrantInfo({
