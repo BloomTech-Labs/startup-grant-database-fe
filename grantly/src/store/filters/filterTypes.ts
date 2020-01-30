@@ -29,8 +29,8 @@ export interface Filters {
 }
 
 export interface FilterState {
-    criteria: Filters,
-    grants: Grant[] | Set<Grant>
+    criteria: Filters;
+    grants: Grant[];
 }
 
 interface FilterChangeAction {

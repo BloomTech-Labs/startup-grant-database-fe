@@ -18,6 +18,7 @@ interface IProps {
 const NewFilters = (props: IProps) => {
     const actions: Actions = useContext(ActionsContext);
     const {grants} = useSelector((state: AppState) => state.grants);
+    const filteredGrants = useSelector((state:AppState)=> state.filters.grants);
     const [filters, setFilters] = useState<Filters>(filterFormState);
 
     useEffect(() => {
@@ -80,6 +81,9 @@ const NewFilters = (props: IProps) => {
                                                                           data={returnKeyValuePair(group)} title={title[id]}
                                                                           labelText={group}/>)}
             </FormGroup>
+            <Typography variant="h6">
+                {`There are ${filteredGrants.length} results`}
+            </Typography>
             <Button variant="contained" color="primary" size="large" component={RouterLink} to="/grants"
                     className={classes.landingButton}>
                 Find Grants

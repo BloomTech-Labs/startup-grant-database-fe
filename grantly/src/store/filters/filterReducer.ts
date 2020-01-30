@@ -11,7 +11,7 @@ function typedKeys<T>(o: T): (keyof T)[] {
     return Object.keys(o) as (keyof T)[];
 }
 
-function filterGrants(grants: Grant[], state: FilterState): Set<Grant> | Grant[] {
+function filterGrants(grants: Grant[], state: FilterState): Grant[] {
     const objectKeys = typedKeys<Filters>(state.criteria);
     const checkFilters = objectKeys.map((eachKey: string): Filters => {
         return <Filters>{[eachKey]: state.criteria[eachKey].filter((item: KeyValuePair) => item.checked)}
@@ -27,15 +27,13 @@ function filterGrants(grants: Grant[], state: FilterState): Set<Grant> | Grant[]
         }
         return true;
     };
-
-
     /* checkFilters is an array where the keys are indexed
         0 = amount
         1 = geographic
         2 = domain areas
         3 = admin filters
      */
-    const filteredArray: Grant[] | Set<Grant> = [];
+    const filteredArray: Grant[] = [];
     const amountArray: Grant[] = [];
     for (let i = 0; i < 4; i++) {
         const currentFilterArray = Object.values(checkFilters[i])[0];
@@ -64,16 +62,6 @@ function filterGrants(grants: Grant[], state: FilterState): Set<Grant> | Grant[]
             }
         }
     }
-
-    // Going to pass through all 4 filters and return it at the end
-    // Amount
-
-    // Geographic
-
-    // Domain Areas
-
-    // Admin Filters
-    // @ts-ignore
     if (filteredArray.length === 0 && amountArray.length !== 0) {
         amountArray.forEach(eachGrant => filteredArray.push(eachGrant));
     }
