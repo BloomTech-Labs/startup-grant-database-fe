@@ -7,6 +7,7 @@ export enum GrantTypes {
     FETCH_ADMIN_GRANTS_START = 'FETCH_ADMIN_GRANTS_START',
     FETCH_ADMIN_GRANTS_SUCCESS = 'FETCH_ADMIN_GRANTS_SUCCESS',
     FETCH_ADMIN_GRANTS_FAILURE = 'FETCH_ADMIN_GRANTS_FAILURE ',
+    SELECT_GRANT = 'SELECT_GRANT',
 }
 
 export interface Grant {
@@ -28,9 +29,10 @@ export interface Grant {
 }
 
 export interface GrantState {
-    grants: Grant[],
-    isLoading: boolean,
-    errors: Error | null
+    grants: Grant[];
+    showcase: Grant | null;
+    isLoading: boolean;
+    errors: Error | null;
 }
 
 interface FetchGrantStart {
@@ -61,6 +63,11 @@ interface FetchAdminGrantFailure {
     payload: Error
 }
 
+interface SelectGrantAction {
+    type: typeof GrantTypes.SELECT_GRANT;
+    payload: Grant
+}
+
 export type GrantActions =
     FetchGrantStart
     | FetchGrantSuccess
@@ -68,3 +75,4 @@ export type GrantActions =
     | FetchAdminGrantStart
     | FetchAdminGrantSuccess
     | FetchAdminGrantFailure
+    | SelectGrantAction
