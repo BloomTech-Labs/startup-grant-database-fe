@@ -30,7 +30,7 @@ export interface Filters {
 
 export interface FilterState {
     criteria: Filters,
-    grants: Grant[]
+    grants: Grant[] | Set<Grant>
 }
 
 interface FilterChangeAction {
