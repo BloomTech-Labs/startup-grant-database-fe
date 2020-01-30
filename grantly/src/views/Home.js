@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Media from "react-media";
-import { connect } from "react-redux";
+import {connect, useSelector} from "react-redux";
 
 // Styling
 import { homeStyles } from "../styles/homeStyles";
@@ -26,7 +26,8 @@ import NewFilters from "../components/filter/NewFilters";
 
 const Home = props => {
   const [isOpen, setIsOpen] = useState(false);
-  console.log(props);
+  const {grants} = useSelector(state => state.grants);
+  console.log("Home", grants);
   //Show filters
   const [filterOpen, setFilterOpen] = useState();
   const toggleDrawer = () => {
@@ -38,6 +39,7 @@ const Home = props => {
   };
 
   const classes = homeStyles();
+
 
   // useEffect(() => {
   //   props.favoriteFetchApi(props.currentUser);

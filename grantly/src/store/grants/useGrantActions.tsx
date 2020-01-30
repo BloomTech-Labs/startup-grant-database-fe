@@ -1,7 +1,7 @@
 import {useCallback} from 'react';
 import {useDispatch} from 'react-redux';
 import axios, {AxiosError, AxiosResponse} from 'axios';
-import {GrantTypes} from "./grantTypes";
+import {Grant, GrantTypes} from "./grantTypes";
 import {FilterTypes} from "../filters/filterTypes";
 
 export const useGrantActions = () => {
@@ -18,9 +18,14 @@ export const useGrantActions = () => {
         });
     }, [dispatch]);
 
-    return {fetchGrants};
+    const selectGrant = useCallback((grant: Grant) => {
+        dispatch({type: GrantTypes.SELECT_GRANT, payload: grant})
+    }, [dispatch]);
+
+    return {fetchGrants, selectGrant};
 }
 
 export interface UseGrantActions {
     fetchGrants: () => void;
+    selectGrant: (grant: Grant) => void;
 }

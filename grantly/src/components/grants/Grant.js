@@ -1,5 +1,5 @@
 // Dependencies
-import React from "react";
+import React, {useContext} from "react";
 import { connect } from "react-redux";
 import Moment from "react-moment";
 import { selectGrant, selectFavorite } from "../../actions";
@@ -19,15 +19,18 @@ import Typography from "@material-ui/core/Typography";
 
 // Styles
 import { grantStyles } from "../../styles/grantStyles";
+import {ActionsContext} from "../../context/ActionsContext";
 
 export const Grant = props => {
+  const actions = useContext(ActionsContext);
   // console.log("propsGrant", props);
   const selectData = function() {
-    if (props.inFavorite === true) {
-      return props.selectFavorite(props.grant);
-    } else {
-      return props.selectGrant(props.grant);
-    }
+    // if (props.inFavorite === true) {
+    //   return props.selectFavorite(props.grant);
+    // } else {
+    //   return props.selectGrant(props.grant);
+    // }
+    actions.grants.selectGrant(props.grant)
   };
 
   // formats number with commas for display

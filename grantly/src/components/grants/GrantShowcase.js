@@ -29,7 +29,7 @@ import {
 
 export const GrantShowcase = props => {
   console.log("showcase props:", props);
-  const grant = useSelector(state => state.grants.showcase);
+  const {grants, showcase} = useSelector(state => state.grants);
   const style = showcaseStyles();
   const { isAuthenticated } = useAuth0();
   function formatNumbers(num) {
@@ -37,19 +37,25 @@ export const GrantShowcase = props => {
   }
 
   useEffect(() => {}, [props.favorites]);
+  useEffect(()=> {
+    console.log(`I was called with`, grants);
+    if (grants.length === 0) {
+      props.history.push('/');
+    }
+  }, []);
 
-  const deadline = grant.most_recent_application_due_date ? (
+  const deadline = showcase.most_recent_application_due_date ? (
     <Moment format={"MMMM Do YYYY"}>
-      {grant.most_recent_application_due_date}
+      {showcase.most_recent_application_due_date}
     </Moment>
   ) : (
     <div>See website for details</div>
   );
 
   const momentDeadline =
-    grant.most_recent_application_due_date &&
+    showcase.most_recent_application_due_date &&
     " or in about " +
-      moment(grant.most_recent_application_due_date).fromNow();
+      moment(showcase.most_recent_application_due_date).fromNow();
 
   if (props.isFetching) {
     return (
@@ -93,7 +99,7 @@ export const GrantShowcase = props => {
                   variant="h5"
                   component="h5"
                 >
-                  {grant.competition_name}
+                  {showcase.competition_name}
                 </Typography>
               </Grid>
             </Grid>
@@ -105,8 +111,8 @@ export const GrantShowcase = props => {
                   {props.favorites.length > 0 &&
                   props.favorites.filter(fav => {
                     // console.log("fav", fav);
-                    // console.log("grant", grant);
-                    return fav.id === grant.id;
+                    // console.log("showcase", showcase);
+                    return fav.id === showcase.id;
                   }).length ? (
                     <Tooltip
                       TransitionComponent={Fade}
@@ -124,7 +130,7 @@ export const GrantShowcase = props => {
                       <IconButton
                         aria-label="save"
                         onClick={() =>
-                          onClickSave(grant.id, props.currentUser)
+                          onClickSave(showcase.id, props.currentUser)
                         }
                       >
                         <BookmarkBorderOutlinedIcon
@@ -146,7 +152,7 @@ export const GrantShowcase = props => {
                   <IconButton
                     aria-label="DeleteIcon"
                     onClick={() =>
-                      onClickDelete(grant.favoriteID, props.currentUser)
+                      onClickDelete(showcase.favoriteID, props.currentUser)
                     }
                   >
                     <DeleteIcon className={showcaseStyles.bookmark} />
@@ -163,8 +169,8 @@ export const GrantShowcase = props => {
             alignContent="flex-end"
           >
             <LanguageIcon className={style.website} />
-            <a href={grant.website} target="_blank">
-              {grant.website}
+            <a href={showcase.website} target="_blank">
+              {showcase.website}
             </a>
           </Grid>
         </div>
@@ -178,8 +184,8 @@ export const GrantShowcase = props => {
           <Grid item xs={4} sm={5} md={2} className={style.showcaseDetails}>
             <Typography className={style.detailTitle}>Amount</Typography>
             <Typography className={style.innerDetails}>
-              {grant.amount
-                ? "$" + formatNumbers(grant.amount)
+              {showcase.amount
+                ? "$" + formatNumbers(showcase.amount)
                 : "See website for details"}
             </Typography>
           </Grid>
@@ -188,7 +194,7 @@ export const GrantShowcase = props => {
               Amount Details
             </Typography>
             <Typography className={style.innerDetails}>
-              {grant.amount_notes}
+              {showcase.amount_notes}
             </Typography>
           </Grid>
           <Grid item xs={4} sm={5} md={4} className={style.showcaseDetails}>
@@ -200,7 +206,7 @@ export const GrantShowcase = props => {
           <Grid item xs={4} sm={5} md={2} className={style.showcaseDetails}>
             <Typography className={style.detailTitle}>Region</Typography>
             <Typography className={style.innerDetails}>
-              {grant.geographic_region}
+              {showcase.geographic_region}
             </Typography>
           </Grid>
           <Grid item xs={9} sm={10} md={5} className={style.showcaseDetails}>
@@ -208,7 +214,7 @@ export const GrantShowcase = props => {
               Early Stage Funding Eligible?
             </Typography>
             <Typography className={style.innerDetails}>
-              {grant.early_stage_funding ? "Yes" : "No"}
+              {showcase.early_stage_funding ? "Yes" : "No"}
             </Typography>
           </Grid>
           <Grid item xs={4} sm={5} md={4} className={style.showcaseDetails}>
@@ -216,19 +222,19 @@ export const GrantShowcase = props => {
               Target Demographic
             </Typography>
             <Typography className={style.innerDetails}>
-              {grant.target_entrepreneur_demographic}
+              {showcase.target_entrepreneur_demographic}
             </Typography>
           </Grid>
           <Grid item xs={4} sm={5} md={4} className={style.showcaseDetails}>
             <Typography className={style.detailTitle}>Focus Area</Typography>
             <Typography className={style.innerDetails}>
-              {grant.area_focus}
+              {showcase.area_focus}
             </Typography>
           </Grid>
           <Grid item xs={9} sm={10} md={4} className={style.showcaseDetails}>
             <Typography className={style.detailTitle}>Sponsor</Typography>
             <Typography className={style.innerDetails}>
-              {grant.sponsoring_entity}
+              {showcase.sponsoring_entity}
             </Typography>
           </Grid>
           {/* </Grid>
@@ -237,7 +243,7 @@ export const GrantShowcase = props => {
           <Grid item xs={12} sm={12} md={12} className={style.showcaseDetails}>
             <Typography className={style.detailTitle}>Notes</Typography>
             <Typography className={style.innerDetails}>
-              {grant.notes}
+              {showcase.notes}
             </Typography>
           </Grid>
         </Grid>
@@ -251,7 +257,7 @@ export const GrantShowcase = props => {
           className={style.showcaseButtonContainer}
         >
           <Grid item>
-            <a href={grant.website} target="_blank">
+            <a href={showcase.website} target="_blank">
               <Button
                 className={style.applyButton}
                 variant="contained"
@@ -263,7 +269,7 @@ export const GrantShowcase = props => {
           </Grid>
           {isAuthenticated && (
             <Grid item>
-              <SuggestionDialog id={grant.id} />
+              <SuggestionDialog id={showcase.id} />
             </Grid>
           )}
         </Grid>

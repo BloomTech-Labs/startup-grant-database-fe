@@ -15,6 +15,8 @@ export const grantReducer = (state = initialState, action: GrantActions): GrantS
             return {...state, grants: action.payload, isLoading: false, errors: null, showcase: action.payload[0]};
         case GrantTypes.FETCH_GRANTS_FAILURE || GrantTypes.FETCH_ADMIN_GRANTS_FAILURE:
             return {...state, grants: [], isLoading: false, errors: action.payload};
+        case GrantTypes.SELECT_GRANT:
+            return {...state, showcase: action.payload};
         default:
             return state;
     }
