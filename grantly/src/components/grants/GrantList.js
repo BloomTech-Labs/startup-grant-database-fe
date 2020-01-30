@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { connect } from "react-redux";
+import {connect, useSelector} from "react-redux";
 // import { useAuth0 } from "../../react-auth0-wrapper";
 import { fetchApi, adminFetchApi, favoriteFetchApi } from "../../actions";
 
@@ -14,30 +14,30 @@ import Grant from "./Grant";
 
 export const GrantList = props => {
   const styles = homeStyles();
+  const {grants} = useSelector(state => state.filters);
+  // useEffect(() => {
+  //   props.fetchApi();
+  // }, []);
 
-  useEffect(() => {
-    props.fetchApi();
-  }, []);
-
-  const needToBeReviewed = props.data.filter(
+  const needToBeReviewed = grants.filter(
     grant => grant.is_reviewed === false
   ).length;
-  // const numberOfSuggestions = props.data.filter(grant => grant.requests.length > 0).length;
+  // const numberOfSuggestions = grants.filter(grant => grant.requests.length > 0).length;
 
   // console.log(user);
   // console.log("CurrentUser Data from Store", props.currentUser);
 
   return (
     <div>
-      {props.data.length && (
+      {grants.length && (
         <Typography className={styles.results}>
-          {props.data.length} Grants
+          {grants.length} Grants
         </Typography>
       )}
       {/* {props.inAdmin && <p>{needToBeReviewed} grant(s) need to be reviewed</p>} */}
 
-      {props.data.length > 0 ? (
-        props.data.map(grant => {
+      {grants.length > 0 ? (
+        grants.map(grant => {
           return (
             <Grant
               grant={grant}

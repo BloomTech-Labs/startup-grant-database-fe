@@ -28,9 +28,10 @@ export interface Grant {
 }
 
 export interface GrantState {
-    grants: Grant[],
-    isLoading: boolean,
-    errors: Error | null
+    grants: Grant[];
+    showcase: Grant | null;
+    isLoading: boolean;
+    errors: Error | null;
 }
 
 interface FetchGrantStart {

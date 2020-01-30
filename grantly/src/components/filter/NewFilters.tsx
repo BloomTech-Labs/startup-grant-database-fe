@@ -22,13 +22,6 @@ const NewFilters = (props: IProps) => {
     const [filters, setFilters] = useState<Filters>(filterFormState);
 
     useEffect(() => {
-        // TODO - Move to App to be called Once
-        if (grants.length === 0) {
-            actions && actions.grants.fetchGrants();
-        }
-    }, []);
-
-    useEffect(() => {
         if (actions) {
             actions.filters.changeFilter(filters);
             actions.filters.grantFilter(grants);
