@@ -7,15 +7,16 @@ interface IProps {
     handleChange: (data: KeyValuePair, key: string) => void;
     data: any; // Todo Figure out how to type this Prop
     labelText: string;
+    title: string;
     classes: any;
 }
 
 function FilterGroup(props: IProps) {
-    const {labelText, data, handleChange, classes} = props;
+    const {labelText, data, handleChange, classes, title} = props;
     return (
         <FormControl className={classes.set} component="fieldset">
             <FormLabel className={classes.label} component="legend">
-                {labelText}
+                {title}
             </FormLabel>
             {data.map((item: KeyValuePair) => <FilterItem key={item.key} classes={classes} data={item} labelText={labelText}
                                                           handleChange={handleChange} />)}
