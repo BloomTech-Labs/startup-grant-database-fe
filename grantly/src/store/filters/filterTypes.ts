@@ -7,16 +7,25 @@ export enum FilterTypes {
 }
 
 interface Amount {
-    min: number;
-    max: number;
-    name: string;
+    min: number | null;
+    max: number | null;
+}
+
+export interface KeyValuePair {
+    key: string;
+    checked: boolean;
+    values?: Amount;
+}
+
+export type KeyValuePairArray = {
+    [index: number]: KeyValuePair
 }
 
 export interface Filters {
-    amount: Amount[];
-    geographic_region: string[];
-    domain_areas: string[],
-    admin_filters: string[]
+    amount: KeyValuePairArray;
+    geographic_region: KeyValuePairArray;
+    domain_areas: KeyValuePairArray,
+    admin_filters: KeyValuePairArray
 }
 
 export interface FilterState {

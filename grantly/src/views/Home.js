@@ -21,6 +21,7 @@ import MobileTabs from "../components/mobile/MobileTabs";
 import MobileFilters from "../components/mobile/MobileFilters";
 
 import { favoriteFetchApi } from "../actions";
+import NewFilters from "../components/filter/NewFilters";
 // delete this sometime
 
 const Home = props => {
@@ -63,7 +64,7 @@ const Home = props => {
                 onClose={() => toggleDrawer()}
                 onOpen={() => toggleDrawer()}
               >
-                <Filters location={props.location.pathname} mobile={true} />
+                <NewFilters location={props.location.pathname} mobile={true} />
               </SwipeableDrawer>
             </>
           ) : (
@@ -98,7 +99,7 @@ const Home = props => {
                     filterOpen ? classes.showFilters : classes.hideFilters
                   }`}
                 >
-                  <Filters location={props.location.pathname} />
+                  <NewFilters location={props.location.pathname} />
                 </div>
               </Grid>
             </Grid>

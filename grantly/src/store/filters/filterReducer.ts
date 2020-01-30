@@ -1,14 +1,16 @@
 import {FilterActions, FilterState, FilterTypes} from "./filterTypes";
+import {filterFormState} from "../../components/filter/formState";
+import {Grant} from "../grants/grantTypes";
 
 const initialState: FilterState = {
-    criteria: {
-        amount: [],
-        geographic_region: [],
-        domain_areas: [],
-        admin_filters: [],
-    },
+    criteria: filterFormState,
     grants: []
 };
+
+function filterGrants(grants: Grant[]): Grant[] {
+
+    return []
+}
 
 export const filterReducer = (state = initialState, action: FilterActions): FilterState => {
     switch (action.type) {
@@ -17,7 +19,7 @@ export const filterReducer = (state = initialState, action: FilterActions): Filt
         case FilterTypes.FILTER_RESET:
             return initialState;
         case FilterTypes.FILTER_GRANT:
-            return state;
+            return {...state};
         default:
             return state;
     }
