@@ -1,7 +1,9 @@
 //Dependencies
 import React, { useState, Fragment } from "react";
 import { connect } from "react-redux";
-// import { useAuth0 } from "../react-auth0-wrapper";
+
+import useGetToken from "../auth/useGetToken";
+
 import { postGrants, fetchApi, changeTab } from "../actions/index.js";
 import useGetToken from "../auth/useGetToken.js";
 //Objects
@@ -27,7 +29,9 @@ import moment from "moment";
 const AddGrant = props => {
   //Steps are the different parts of the form.  They are broken down into components in the submitForm directory
   const steps = ["Grant Info", "Grant Focus", "Grant Demo"];
-const [token] = useGetToken();
+
+ const [token] = useGetToken();
+
   //Switch case that uses the "step" to determine what component to render
   function getStepContent(step) {
     switch (step) {
@@ -82,7 +86,9 @@ const [token] = useGetToken();
   //Submit for grant from
   const submitGrant = event => {
     event.preventDefault();
+
     props.postGrants({ ...grantInfo }, token);
+
     setGrantInfo({
       competition_name: "",
       // type: "",
