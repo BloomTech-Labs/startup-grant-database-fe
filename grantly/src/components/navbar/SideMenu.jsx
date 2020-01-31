@@ -1,0 +1,110 @@
+import React, {useState} from 'react';
+import {useAuth0} from "../auth0/Auth0Wrapper";
+import MenuItem from "./MenuItem";
+import {Button, List, ListItem} from "@material-ui/core";
+import {makeStyles} from '@material-ui/core/styles';
+import ViewListIcon from "@material-ui/icons/ViewList";
+import DashboardIcon from "@material-ui/icons/Dashboard";
+import MailIcon from "@material-ui/icons/Mail";
+import BookmarkIcon from "@material-ui/icons/Bookmark";
+
+const menuItems = [
+    {
+        url: '/grants',
+        title: 'View All Grants',
+        icon: DashboardIcon
+    },
+    {
+        url: '/suggestion',
+        title: 'Suggest a Grant',
+        icon: MailIcon
+    },
+    {
+        url: '/grants/favorites',
+        title: 'Favorite Grants',
+        icon: BookmarkIcon
+    },
+    {
+        url: '/about',
+        title: 'About Founder Grants',
+        icon: BookmarkIcon
+    },
+];
+
+const useStyles = makeStyles(theme => ({
+    drawer: {
+        display: 'flex',
+        marginTop: '1em',
+        fontSize: '2rem',
+        height: '100%',
+        width: '20rem'
+    },
+    links: {
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        alignContent: 'center',
+        width: '100%'
+    },
+    navButton: {
+        marginRight: theme.spacing(3),
+        alignSelf: 'baseline',
+        border: "1px solid #3CBBB1",
+        borderRadius: "2px",
+        backgroundColor: "#3CBBB1",
+        color: "white",
+        textTransform: "uppercase",
+        padding: ".5em 2.5em",
+        fontSize: "0.875rem",
+        fontFamily: "Roboto",
+        transition: "all .3s ease-in-out",
+        width: '15em',
+        height: '3.5em',
+        marginLeft: '2.5em',
+        '&:hover': {
+            backgroundColor: "#83D7D1",
+            color: 'white'
+        },
+    }
+}));
+
+const SideMenu = ({currentUser}) => {
+    const {isAuthenticated, loginWithRedirect, logout} = useAuth0();
+    const [isOpen, setIsOpen] = useState(false);
+    const toggleDrawer = open => event => {
+        if (event && event.type === 'keydown' && (event.key === "Tab" || event.key === "Shift")) {
+            return;
+        }
+        setIsOpen(!isOpen);
+    };
+    const classes = useStyles();
+
+    const handleAuthActions = () => isAuthenticated ? logout() : loginWithRedirect();
+
+    return (
+        <div
+            role="presentation"
+            onClick={toggleDrawer("right", false)}
+            onKeyDown={toggleDrawer("right", false)}
+            className={classes.drawer}
+        >
+            <List className={classes.links}>
+                {menuItems.map((item, id) => <MenuItem key={id} {...item} />)}
+                {isAuthenticated && currentUser.role === "Moderator" &&
+                <MenuItem url='/admin' title='Edit Grants' icon={ViewListIcon}/>}
+                <ListItem>
+                    <Button
+                        className={classes.navButton}
+                        color="inherit"
+                        variant="outlined"
+                        onClick={handleAuthActions}
+                    >
+                        {isAuthenticated ? 'Logout' : 'Log In'}
+                    </Button>
+                </ListItem>
+            </List>
+        </div>
+    )
+};
+
+export default SideMenu;
