@@ -17,7 +17,9 @@ const onRedirectCallback = appState => {
 //     dsn: "https://3fff2a57bcec4d419f25f24c703f14b9@sentry.io/1811765"
 // });
 
-const AppWithProvider = (
+const AppWithProvider = () => {
+
+    return (
     <Auth0Provider
         domain={process.env.REACT_APP_CLIENT_DOMAIN}
         client_id={process.env.REACT_APP_CLIENT_ID}
@@ -31,6 +33,8 @@ const AppWithProvider = (
             </Router>
         </Provider>
     </Auth0Provider>
-);
+    )
+};
 
 ReactDOM.render(<AppWithProvider/>, document.getElementById('root'));
+
