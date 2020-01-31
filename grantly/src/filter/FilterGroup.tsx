@@ -1,6 +1,6 @@
 import React from 'react';
 import {FormControl, FormLabel} from "@material-ui/core";
-import {KeyValuePair} from "../../store/filters/filterTypes";
+import {KeyValuePair} from "../store/filters/filterTypes";
 import FilterItem from "./FilterItem";
 
 interface IProps {

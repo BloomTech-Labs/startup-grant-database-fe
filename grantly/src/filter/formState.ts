@@ -1,4 +1,4 @@
-import {Filters} from "../../store/filters/filterTypes";
+import {Filters} from "../store/filters/filterTypes";
 
 export const filterFormState:Filters = {
     amount: [

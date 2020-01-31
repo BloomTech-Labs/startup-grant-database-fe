@@ -1,14 +1,14 @@
 import React, {useContext, useEffect, useState} from 'react';
-import {Filters, KeyValuePair} from "../../store/filters/filterTypes";
-import {ActionsContext} from "../../context/ActionsContext";
-import {Actions} from "../../store/useActions";
+import {Filters, KeyValuePair} from "../store/filters/filterTypes";
+import {ActionsContext} from "../context/ActionsContext";
+import {Actions} from "../store/useActions";
 import {useSelector} from "react-redux";
-import {AppState} from "../../store/rooterReducer";
+import {AppState} from "../store/rooterReducer";
 import {Button, Card, FormGroup, Typography} from "@material-ui/core";
 import {Link as RouterLink} from 'react-router-dom';
 import {filterFormState} from "./formState";
 import FilterGroup from "./FilterGroup";
-import {useStylesGrants, useStylesLanding, useStylesMobile} from "../../styles/filterStyles";
+import {useStylesGrants, useStylesLanding, useStylesMobile} from "../styles/filterStyles";
 
 interface IProps {
     location?: string;

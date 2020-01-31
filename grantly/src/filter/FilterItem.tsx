@@ -1,5 +1,5 @@
 import React from 'react';
-import {KeyValuePair} from "../../store/filters/filterTypes";
+import {KeyValuePair} from "../store/filters/filterTypes";
 import {Checkbox, FormControlLabel} from "@material-ui/core";
 
 interface IProps {

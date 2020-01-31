@@ -1,5 +1,5 @@
 import {FilterActions, Filters, FilterState, FilterTypes, KeyValuePair} from "./filterTypes";
-import {filterFormState} from "../../components/filter/formState";
+import {filterFormState} from "../../filter/formState";
 import {Grant} from "../grants/grantTypes";
 
 const initialState: FilterState = {
