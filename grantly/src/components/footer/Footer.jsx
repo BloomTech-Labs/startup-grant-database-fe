@@ -1,13 +1,10 @@
 import React from "react";
 import FGLogo from "../../assets/FGLogo";
 import { Link } from "react-router-dom";
-// import { useAuth0 } from "../react-auth0-wrapper";
-// import { lock } from "../react-auth0-wrapper";
 import { Grid, Typography, Box } from "@material-ui/core/";
-
 import { sitemapStyles } from "./sitemapStyles";
 
-const Footer = () => {
+export const Footer = () => {
   const styles = sitemapStyles();
 
   return (
@@ -50,5 +47,3 @@ const Footer = () => {
     </Box>
   );
 };
-
-export default Footer;
