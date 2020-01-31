@@ -27,6 +27,7 @@ export default () => {
             <Grid item md={3} xs={12}>
               <a href="https://www.1517fund.com/">
                 <Card className={classes.aboutCard}>
+                  <img src="./assets/1517Fund.png" alt="1517 logo" />
                   <Typography variant="subtitle1">
                     You can find out more about 1517 Fund here.
                   </Typography>
@@ -37,6 +38,8 @@ export default () => {
             <Grid item md={3} xs={12}>
               <a href="https://lambdaschool.com/">
                 <Card className={classes.aboutCard}>
+                  <img src="./assets/lambda.png" alt="1517 logo" />
+
                   <Typography variant="subtitle1">
                     You can find out more about Lambda School here.
                   </Typography>
@@ -47,6 +50,8 @@ export default () => {
             <Grid item md={3} xs={12}>
               <a href="https://github.com/Lambda-School-Labs/startup-grant-database-fe">
                 <Card className={classes.aboutCard}>
+                <img src="./assets/teamGithub.png" alt="1517 logo" />
+
                   <Typography variant="subtitle1">
                     You can find out more about the student team and the
                     project, including the open source code here.
