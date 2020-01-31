@@ -4,16 +4,18 @@ import {Provider} from 'react-redux';
 import {BrowserRouter as Router} from 'react-router-dom';
 import {Auth0Provider} from "./components/auth0/Auth0Wrapper";
 import * as Sentry from '@sentry/browser';
+import store from './store/index';
+import App from './components/App';
+import dotenv from 'dotenv';
 
+dotenv.config();
 const onRedirectCallback = appState => {
     window.history.replaceState({}, document.title, appState && appState.targetUrl ? appState.targetUrl : window.location.pathname);
-}
+};
 
-import App from './components/App';
-
-Sentry.init({
-    dsn: "https://3fff2a57bcec4d419f25f24c703f14b9@sentry.io/1811765"
-});
+// Sentry.init({
+//     dsn: "https://3fff2a57bcec4d419f25f24c703f14b9@sentry.io/1811765"
+// });
 
 const AppWithProvider = (
     <Auth0Provider
@@ -23,10 +25,12 @@ const AppWithProvider = (
         audience={process.env.REACT_APP_CLIENT_AUDIENCE}
         onRedirectCallback={onRedirectCallback}
     >
-        <Router>
-            <App />
-        </Router>
+        <Provider store={store}>
+            <Router>
+                <App/>
+            </Router>
+        </Provider>
     </Auth0Provider>
-)
+);
 
-ReactDOM.render(<AppWithProvider />, document.getElementById('root'));
+ReactDOM.render(<AppWithProvider/>, document.getElementById('root'));

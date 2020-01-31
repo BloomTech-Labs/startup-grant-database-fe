@@ -65,18 +65,13 @@ const useStyles = makeStyles(theme => ({
             backgroundColor: "#83D7D1",
             color: 'white'
         },
-    }
+    },
+
 }));
 
-const SideMenu = ({currentUser}) => {
+const SideMenu = ({currentUser, side, toggleDrawer}) => {
     const {isAuthenticated, loginWithRedirect, logout} = useAuth0();
-    const [isOpen, setIsOpen] = useState(false);
-    const toggleDrawer = open => event => {
-        if (event && event.type === 'keydown' && (event.key === "Tab" || event.key === "Shift")) {
-            return;
-        }
-        setIsOpen(!isOpen);
-    };
+
     const classes = useStyles();
 
     const handleAuthActions = () => isAuthenticated ? logout() : loginWithRedirect();
@@ -84,8 +79,8 @@ const SideMenu = ({currentUser}) => {
     return (
         <div
             role="presentation"
-            onClick={toggleDrawer("right", false)}
-            onKeyDown={toggleDrawer("right", false)}
+            onClick={toggleDrawer(side, false)}
+            onKeyDown={toggleDrawer(side, false)}
             className={classes.drawer}
         >
             <List className={classes.links}>

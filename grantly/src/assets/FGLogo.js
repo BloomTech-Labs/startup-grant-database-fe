@@ -1,5 +1,5 @@
 import React from "react";
-import {navStyles} from "../styles/navStyles"
+import {navStyles} from '../components/styles/navStyles';
 
 const FGLogo = ({inAdmin, siteMap}) => {
     const styles = navStyles();
