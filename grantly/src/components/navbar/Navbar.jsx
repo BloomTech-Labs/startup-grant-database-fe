@@ -1,6 +1,6 @@
 import React, {useState, useEffect, useContext} from 'react';
 import {makeStyles} from '@material-ui/core/styles';
-import {AppBar, Toolbar, Typography, Link, IconButton, SwipeableDrawer} from "@material-ui/core";
+import {AppBar, Toolbar, Typography, Link, IconButton, SwipeableDrawer, Button} from "@material-ui/core";
 import {NavLink as RouterLink} from 'react-router-dom';
 import {useAuth0} from "../auth0/Auth0Wrapper";
 import FGLogo from "../../assets/FGLogo";
@@ -20,8 +20,8 @@ const useStyles = makeStyles(theme => ({
        }
     },
     title: {
+        fontSize: '2.125rem',
         textAlign: 'left',
-        marginLeft: '20px',
         color: '#000',
         [theme.breakpoints.down('xs')]: {
             fontSize: "1.5rem",
@@ -38,15 +38,15 @@ const useStyles = makeStyles(theme => ({
         padding: '0'
     },
     navLink: {
-        marginRight: theme.spacing(3),
+        // marginRight: theme.spacing(3),
         color: "#3CBBB1",
         textTransform: "uppercase",
-        padding: ".5em 2.5em",
+        // padding: ".5em 2.5em",
         fontSize: "0.875rem",
         fontFamily: "Roboto",
-        width: '15em',
-        height: '3.5em',
-        marginLeft: '2.5em',
+        // width: '15em',
+        // height: '3.5em',
+        // marginLeft: '2.5em',
         '&:hover': {
             textDecoration: "underline"
         },
@@ -59,13 +59,13 @@ const useStyles = makeStyles(theme => ({
         backgroundColor: "#3CBBB1",
         color: "white",
         textTransform: "uppercase",
-        padding: ".5em 2.5em",
+        padding: ".5em 2.2em",
         fontSize: "0.875rem",
         fontFamily: "Roboto",
         transition: "all .3s ease-in-out",
-        width: '15em',
-        height: '3.5em',
-        marginLeft: '2.5em',
+        // width: '15em',
+        // height: '3.5em',
+        // marginLeft: '2.5em',
         '&:hover': {
             backgroundColor: "#83D7D1",
             color: 'white'
@@ -77,6 +77,13 @@ const useStyles = makeStyles(theme => ({
     titleLink: {
         flexGrow: 1,
         textDecoration: 'none'
+    },
+    linkContainer: {
+        maxWidth: '600px',
+        width: '100%',
+        display: 'flex',
+        justifyContent: "space-between",
+        alignItems: "center"
     }
 }));
 
@@ -138,7 +145,7 @@ const Navbar = () => {
                          </IconButton>
                      </>
                  ): (
-                    <>
+                    <div className={classes.linkContainer}>
                         {menuItems.map(({title, url}) => (
                             <Link
                                 key={title}
@@ -149,14 +156,14 @@ const Navbar = () => {
                                 {title}
                             </Link>
                         ))}
-                        <RouterLink
+                        <Button
                             className={classes.navButton}
-                            to="#"
+                            color='primary'
                             onClick={() => loginWithRedirect()}
                         >
                             Log In
-                        </RouterLink>
-                    </>
+                        </Button>
+                    </div>
                  )}
                  <SwipeableDrawer
                      anchor="right"
