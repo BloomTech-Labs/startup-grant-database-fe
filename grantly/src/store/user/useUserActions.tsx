@@ -25,4 +25,5 @@ export const useUserActions = () => {
 
 export interface UseUserActions {
     getUserFromPG: (email: string) => void;
+    setUserFromAuth0: (user: User) => void;
 }
