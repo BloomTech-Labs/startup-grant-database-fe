@@ -20,10 +20,20 @@ export const useUserActions = () => {
         dispatch({type: UserTypes.SET_USER_FROM_AUTH0, payload: user})
     }, [dispatch]);
 
-    return {getUserFromPG, setUserFromAuth0}
+    const resetUser = useCallback(()=> {
+        dispatch({type: UserTypes.RESET_USER})
+    }, [dispatch])
+
+    const isModerator = useCallback(()=> {
+        dispatch({type: UserTypes.IS_MODERATOR})
+    }, [dispatch]);
+
+    return {getUserFromPG, setUserFromAuth0, resetUser, isModerator}
 };
 
 export interface UseUserActions {
     getUserFromPG: (email: string) => void;
     setUserFromAuth0: (user: User) => void;
+    resetUser: () => void;
+    isModerator: () => void;
 }
