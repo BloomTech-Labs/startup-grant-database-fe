@@ -69,7 +69,6 @@ const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
     const {currentUser} = useSelector(state => state.user)
     const toggleDrawer = open => event => {
-        console.log("I was clicked");
         if (event && event.type === 'keydown' && (event.key === "Tab" || event.key === "Shift")) {
             return;
         }
