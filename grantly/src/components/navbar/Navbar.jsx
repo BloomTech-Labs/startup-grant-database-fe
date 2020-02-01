@@ -106,7 +106,7 @@ const Navbar = () => {
                             edge="start"
                             color="primary"
                             aria-label="menu"
-                            onClick={toggleDrawer}
+                            onClick={toggleDrawer()}
                          >
                             <MenuIcon className={classes.menu}/>
                          </IconButton>
