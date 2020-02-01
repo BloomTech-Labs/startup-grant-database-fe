@@ -1,18 +1,27 @@
 import {Error} from "../reduxTypes";
 
 export enum UserTypes {
-   FETCH_USER_START = 'FETCH_USER_START',
-   FETCH_USER_SUCCESS = 'FETCH_USER_SUCCESS',
-   FETCH_USER_FAILURE = 'FETCH_USER_FAILURE',
+    FETCH_USER_START = 'FETCH_USER_START',
+    FETCH_USER_SUCCESS = 'FETCH_USER_SUCCESS',
+    FETCH_USER_FAILURE = 'FETCH_USER_FAILURE',
+    SET_USER_FROM_AUTH0 = 'SET_USER_FROM_AUTH0',
+    RESET_USER = 'RESET_USER',
+    IS_MODERATOR = 'IS_MODERATOR'
 }
 
-interface User {
+export interface User {
+    nickname: string;
+    name: string;
+    picture: string;
+    updated_at: string;
     email: string;
-    role: string;
+    email_verified: boolean;
+    sub: string;
 }
 
 export interface UserState {
     currentUser: User;
+    isModerator: boolean;
     isLoading: boolean;
     errors: Error | null;
 }
@@ -31,4 +40,22 @@ interface FetchUserFailureAction {
     payload: Error;
 }
 
-export type UserActions = FetchUserStartAction | FetchUserSuccessAction | FetchUserFailureAction
+interface SetUserFromAuth0Action {
+    type: typeof UserTypes.SET_USER_FROM_AUTH0;
+    payload: User
+}
+
+interface IsModeratorAction {
+    type: typeof UserTypes.IS_MODERATOR
+}
+
+interface ResetUserAction {
+    type: typeof UserTypes.RESET_USER
+}
+
+export type UserActions =
+    FetchUserStartAction
+    | FetchUserSuccessAction
+    | FetchUserFailureAction
+    | SetUserFromAuth0Action
+    | ResetUserAction | IsModeratorAction

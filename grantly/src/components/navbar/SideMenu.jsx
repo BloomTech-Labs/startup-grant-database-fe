@@ -7,6 +7,8 @@ import ViewListIcon from "@material-ui/icons/ViewList";
 import DashboardIcon from "@material-ui/icons/Dashboard";
 import MailIcon from "@material-ui/icons/Mail";
 import BookmarkIcon from "@material-ui/icons/Bookmark";
+import InfoIcon from "@material-ui/icons/Info";
+import {useSelector} from "react-redux";
 
 const menuItems = [
     {
@@ -27,7 +29,7 @@ const menuItems = [
     {
         url: '/about',
         title: 'About Founder Grants',
-        icon: BookmarkIcon
+        icon: InfoIcon
     },
 ];
 
@@ -69,9 +71,9 @@ const useStyles = makeStyles(theme => ({
 
 }));
 
-const SideMenu = ({currentUser, side, toggleDrawer}) => {
+const SideMenu = ({side, toggleDrawer}) => {
     const {isAuthenticated, loginWithRedirect, logout} = useAuth0();
-
+    const {isModerator} = useSelector(state => state.user);
     const classes = useStyles();
 
     const handleAuthActions = () => isAuthenticated ? logout() : loginWithRedirect();
@@ -85,7 +87,7 @@ const SideMenu = ({currentUser, side, toggleDrawer}) => {
         >
             <List className={classes.links}>
                 {menuItems.map((item, id) => <MenuItem key={id} {...item} />)}
-                {isAuthenticated && currentUser.role === "Moderator" &&
+                {isAuthenticated && isModerator &&
                 <MenuItem url='/admin' title='Edit Grants' icon={ViewListIcon}/>}
                 <ListItem>
                     <Button
