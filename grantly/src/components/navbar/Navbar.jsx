@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import {makeStyles} from '@material-ui/core/styles';
 import {AppBar, Toolbar, Typography, Link, IconButton, SwipeableDrawer} from "@material-ui/core";
 import {NavLink as RouterLink} from 'react-router-dom';
@@ -6,6 +6,8 @@ import {useAuth0} from "../auth0/Auth0Wrapper";
 import FGLogo from "../../assets/FGLogo";
 import MenuIcon from "@material-ui/icons/Menu";
 import SideMenu from "./SideMenu";
+import {useSelector} from "react-redux";
+import {ActionsContext} from "../../context/ActionsContext";
 
 const useStyles = makeStyles(theme => ({
     navBar: {
@@ -62,16 +64,27 @@ const menuItems = [
     }
 ];
 
-const Navbar = ({currentUser}) => {
+const Navbar = () => {
+    const actions = useContext(ActionsContext);
     const [isOpen, setIsOpen] = useState(false);
+    const {currentUser} = useSelector(state => state.user)
     const toggleDrawer = open => event => {
+        console.log("I was clicked");
         if (event && event.type === 'keydown' && (event.key === "Tab" || event.key === "Shift")) {
             return;
         }
         setIsOpen(!isOpen);
     };
     const {isAuthenticated, user, loginWithRedirect} = useAuth0();
+
     const classes = useStyles();
+
+    useEffect(()=> {
+        if (isAuthenticated && user) {
+            actions.user.setUserFromAuth0(user);
+        }
+    }, [isAuthenticated, user]);
+
     return (
         <AppBar
             className={classes.navBar}
@@ -87,13 +100,13 @@ const Navbar = ({currentUser}) => {
                  {isAuthenticated ? (
                      <>
                         <Typography variant="h4" component="h1" className={classes.helloUser}>
-                            {`Welcome, ${user.nickname}`}
+                            {`Welcome, Test User`}
                         </Typography>
                          <IconButton
                             edge="start"
                             color="primary"
                             aria-label="menu"
-                            onClick={toggleDrawer()}
+                            onClick={toggleDrawer}
                          >
                             <MenuIcon className={classes.menu}/>
                          </IconButton>
@@ -113,7 +126,7 @@ const Navbar = ({currentUser}) => {
                         <Link
                             className={classes.navButton}
                             to="#"
-                            onClick={loginWithRedirect}
+                            onClick={() => loginWithRedirect()}
                         >
                             Log In
                         </Link>
