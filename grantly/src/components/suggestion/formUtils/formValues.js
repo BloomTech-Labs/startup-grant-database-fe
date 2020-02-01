@@ -2,7 +2,7 @@
  
  //Array of values for the "Early Stage Funding" dropdown
   
- const funding = [
+ export const funding = [
     {
       value: true,
       label: "yes"
@@ -15,7 +15,7 @@
 
   //Array of values for the "Geographic Region" dropdown
 
-  const geographicRegion = [
+  export const geographicRegion = [
     {
       value: "North America",
       label: "North America"
@@ -56,7 +56,7 @@
 
   //Array of values for the "Target Demographic" dropdown
 
-  const targeDemographic = [
+  export const targeDemographic = [
     {
       value: "Minority Business Enterprise",
       label: "Minority Business Enterprise"
@@ -84,7 +84,7 @@
   ];
 
   // Grant specs
-  const areaFocus = [
+  export const areaFocus = [
     {
       value: "Agriculture",
       label: "Agriculture"

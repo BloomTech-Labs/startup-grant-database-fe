@@ -1,5 +1,4 @@
 import React from 'react';
-import {Route} from 'react-router-dom'
 import {CssBaseline} from "@material-ui/core";
 import {makeStyles, MuiThemeProvider} from "@material-ui/core/styles";
 import Navbar from "./navbar/Navbar";
@@ -8,8 +7,9 @@ import {Footer} from './footer/Footer';
 import {useActions} from "../store/useActions";
 import {ActionsProvider} from "../context/ActionsContext";
 import {theme} from "./theme";
-import LandingPage from "./landingpage/LandingPage";
 
+import LandingPage from "./landingpage/LandingPage";
+import SuggestionForm from './suggestion/Suggestion'
 const useStyles = makeStyles(() => ({
     app: {
         textAlign: 'center',
@@ -21,7 +21,7 @@ const useStyles = makeStyles(() => ({
     }
 }));
 
-import Suggestion from './suggestion/Suggestion'
+
 
 function App() {
     const classes = useStyles();
@@ -34,6 +34,7 @@ function App() {
                     <Navbar/>
                     <Switch>
                         <Route exact path="/" component={LandingPage}/>
+                        <Route path='/' component={SuggestionForm}/>
                     </Switch>
                     <Footer/>
                 </div>
