@@ -50,6 +50,33 @@ const useStyles = makeStyles(theme => ({
         '&:hover': {
             textDecoration: "underline"
         },
+    },
+    navButton: {
+        marginRight: theme.spacing(3),
+        alignSelf: 'baseline',
+        border: "1px solid #3CBBB1",
+        borderRadius: "2px",
+        backgroundColor: "#3CBBB1",
+        color: "white",
+        textTransform: "uppercase",
+        padding: ".5em 2.5em",
+        fontSize: "0.875rem",
+        fontFamily: "Roboto",
+        transition: "all .3s ease-in-out",
+        width: '15em',
+        height: '3.5em',
+        marginLeft: '2.5em',
+        '&:hover': {
+            backgroundColor: "#83D7D1",
+            color: 'white'
+        },
+    },
+    toolBar: {
+        backgroundColor: 'white'
+    },
+    titleLink: {
+        flexGrow: 1,
+        textDecoration: 'none'
     }
 }));
 
@@ -90,16 +117,16 @@ const Navbar = () => {
             color="primary"
             position="sticky"
         >
-             <Toolbar>
-                 <Typography variant='h4' className={classes.title}>
-                     <Link component={RouterLink} to='/'>
+             <Toolbar className={classes.toolBar}>
+                 <Typography variant='h4' className={classes.titleLink}>
+                     <Link component={RouterLink} to='/' className={classes.title}>
                          <FGLogo />
                      </Link>
                  </Typography>
                  {isAuthenticated ? (
                      <>
                         <Typography variant="h4" component="h1" className={classes.helloUser}>
-                            {`Welcome, Test User`}
+                            {`Welcome, ${currentUser.nickname}`}
                         </Typography>
                          <IconButton
                             edge="start"
@@ -122,13 +149,13 @@ const Navbar = () => {
                                 {title}
                             </Link>
                         ))}
-                        <Link
+                        <RouterLink
                             className={classes.navButton}
                             to="#"
                             onClick={() => loginWithRedirect()}
                         >
                             Log In
-                        </Link>
+                        </RouterLink>
                     </>
                  )}
                  <SwipeableDrawer
