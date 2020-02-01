@@ -134,7 +134,7 @@ const Navbar = () => {
                 </Typography>
                 {isAuthenticated ? (
                     <>
-                        <Typography variant="h4" component="h1" className={classes.helloUser}>
+                        <Typography variant="h6" component="h1" className={classes.helloUser}>
                             {`Welcome, ${currentUser.nickname}`}
                         </Typography>
                         <IconButton

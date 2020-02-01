@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {ListItem, ListItemAvatar, ListItemIcon, Link} from "@material-ui/core";
+import {ListItem, ListItemAvatar, ListItemIcon, Link, Typography} from "@material-ui/core";
 import {makeStyles} from '@material-ui/core/styles';
 import {Link as RouterLink} from 'react-router-dom';
 
@@ -31,7 +31,7 @@ const MenuItem = ({url, icon: Icon, title}) => {
                 </ListItemIcon>
             </ListItemAvatar>
             <Link component={RouterLink} to={url} className={classes.drawerLink}>
-                {title}
+                <Typography variant="h5">{title}</Typography>
             </Link>
         </ListItem>
     )
