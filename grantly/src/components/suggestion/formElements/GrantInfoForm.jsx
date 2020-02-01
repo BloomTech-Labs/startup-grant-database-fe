@@ -7,11 +7,11 @@ const InfoForm = props => {
 
     return (
         <Fragment>
-            <Typography variant="h5" className={aClass}>
+            <Typography variant="h5" >
                 Grant Info
             </Typography>
             <Divider variant="middle" />
-            <Grid container spacing={3} className={aClass}>
+            <Grid container spacing={3} >
                 <Grid item xs={12}>
                 <TextField
                     fullWidth

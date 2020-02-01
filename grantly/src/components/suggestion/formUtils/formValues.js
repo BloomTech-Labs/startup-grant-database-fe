@@ -82,3 +82,99 @@
       label: "N/A"
     }
   ];
+
+  // Grant specs
+  const areaFocus = [
+    {
+      value: "Agriculture",
+      label: "Agriculture"
+    },
+    {
+      value: "Arts",
+      label: "Arts"
+    },
+    {
+      value: "Child Care",
+      label: "Child Care"
+    },
+    {
+      value: "Communication Services",
+      label: "Communication Services"
+    },
+    {
+      value: "Consumer Discretionary",
+      label: "Consumer Discretionary"
+    },
+    {
+      value: "Consumer Staples",
+      label: "Consumer Staples"
+    },
+    {
+      value: "Economic Opportunity",
+      label: "Economic Opportunity"
+    },
+    {
+      value: "Energy & Resources",
+      label: "Energy & Resources"
+    },
+    {
+      value: "Financial",
+      label: "Financial"
+    },
+    {
+      value: "Food",
+      label: "Food"
+    },
+    {
+      value: "Industrials",
+      label: "Industrials"
+    },
+    {
+      value: "Information Technology",
+      label: "Information Technology"
+    },
+    {
+      value: "Health",
+      label: "Health"
+    },
+    {
+      value: "Housing",
+      label: "Housing"
+    },
+    {
+      value: "Life Improvement",
+      label: "Life Improvement"
+    },
+    {
+      value: "Materials",
+      label: "Materials"
+    },
+    {
+      value: "Real Estate",
+      label: "Real Estate"
+    },
+    {
+      value: "Social Change",
+      label: "Social Change"
+    },
+    {
+      value: "Social Entrepreneurship",
+      label: "Social Entrepreneurship"
+    },
+    {
+      value: "Utilities",
+      label: "Utilities"
+    },
+    {
+      value: "Workforce Development",
+      label: "Workforce Development"
+    },
+    {
+      value: "Other",
+      label: "Other"
+    },
+    {
+      value: "N/A",
+      label: "N/A"
+    }
+  ];

@@ -23,14 +23,14 @@ const FoucusForm = (props) => {
               name="sponsoring_entity"
               fullWidth
               placeholder="Sponsoring Entity"
-            
+              value={null}
             />
           </Grid>
           <Grid item xs={12}>
             <TextField
               label="Grant Categories"
               select
-            
+              value={null}
               name="area_focus"
               placeholder="Area Focus"
               fullWidth
@@ -49,3 +49,5 @@ const FoucusForm = (props) => {
       </Fragment>
     )
 }
+
+export default FoucusForm
