@@ -3,7 +3,12 @@ import {UserActions, UserState, UserTypes} from "./userTypes";
 const initialState: UserState = {
     currentUser: {
         email: '',
-        role: ''
+        email_verified: false,
+        nickname: '',
+        name: '',
+        picture: '',
+        sub: '',
+        updated_at: ''
     },
     isLoading: false,
     errors: null,
@@ -17,6 +22,8 @@ export const userReducer = (state = initialState, action: UserActions): UserStat
             return {...state, isLoading: false, errors: null, currentUser: action.payload};
         case UserTypes.FETCH_USER_FAILURE:
             return {...state, isLoading: false, errors: action.payload};
+        case UserTypes.SET_USER_FROM_AUTH0:
+            return {...state, isLoading: false, errors: null, currentUser: {...action.payload}};
         default:
             return state;
     }

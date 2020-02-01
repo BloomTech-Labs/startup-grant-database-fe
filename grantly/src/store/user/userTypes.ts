@@ -1,14 +1,20 @@
 import {Error} from "../reduxTypes";
 
 export enum UserTypes {
-   FETCH_USER_START = 'FETCH_USER_START',
-   FETCH_USER_SUCCESS = 'FETCH_USER_SUCCESS',
-   FETCH_USER_FAILURE = 'FETCH_USER_FAILURE',
+    FETCH_USER_START = 'FETCH_USER_START',
+    FETCH_USER_SUCCESS = 'FETCH_USER_SUCCESS',
+    FETCH_USER_FAILURE = 'FETCH_USER_FAILURE',
+    SET_USER_FROM_AUTH0 = 'SET_USER_FROM_AUTH0'
 }
 
-interface User {
+export interface User {
+    nickname: string;
+    name: string;
+    picture: string;
+    updated_at: string;
     email: string;
-    role: string;
+    email_verified: boolean;
+    sub: string;
 }
 
 export interface UserState {
@@ -31,4 +37,13 @@ interface FetchUserFailureAction {
     payload: Error;
 }
 
-export type UserActions = FetchUserStartAction | FetchUserSuccessAction | FetchUserFailureAction
+interface SetUserFromAuth0Action {
+    type: typeof UserTypes.SET_USER_FROM_AUTH0;
+    payload: User
+}
+
+export type UserActions =
+    FetchUserStartAction
+    | FetchUserSuccessAction
+    | FetchUserFailureAction
+    | SetUserFromAuth0Action

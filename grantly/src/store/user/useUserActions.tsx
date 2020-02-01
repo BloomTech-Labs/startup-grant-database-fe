@@ -1,6 +1,6 @@
 import {useCallback} from 'react';
 import {useDispatch} from 'react-redux';
-import {UserTypes} from "./userTypes";
+import {User, UserTypes} from "./userTypes";
 import axios, {AxiosError, AxiosResponse} from 'axios';
 
 export const useUserActions = () => {
@@ -16,7 +16,11 @@ export const useUserActions = () => {
         })
     }, [dispatch]);
 
-    return {getUserFromPG}
+    const setUserFromAuth0 = useCallback((user: User) => {
+        dispatch({type: UserTypes.SET_USER_FROM_AUTH0, payload: user})
+    }, [dispatch]);
+
+    return {getUserFromPG, setUserFromAuth0}
 };
 
 export interface UseUserActions {
