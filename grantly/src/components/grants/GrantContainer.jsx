@@ -40,8 +40,6 @@ function GrantContainer(props) {
 
     return (
         <>
-            <h1>Grant Container</h1>
-            <p>{`There are ${grants.length} in the list`}</p>
             <GrantShowcase />
         </>
     )

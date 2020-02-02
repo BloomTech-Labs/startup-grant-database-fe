@@ -1,9 +1,10 @@
 import React from 'react';
 
 import {makeStyles} from "@material-ui/core/styles";
-import {Card} from "@material-ui/core";
+import {Card, Divider} from "@material-ui/core";
 import ShowcaseTopContent from "./showcase/ShowcaseTopContent";
 import ShowcaseMainContent from "./showcase/ShowcaseMainContent";
+import ShowcaseBottomContent from "./showcase/ShowcaseBottomContent";
 
 const useStyles = makeStyles(theme => ({
     showcaseCard: {
@@ -22,7 +23,7 @@ const useStyles = makeStyles(theme => ({
             margin: '1em 1em'
         }
     }
-}))
+}));
 
 function GrantShowcase() {
     const classes = useStyles();
@@ -30,6 +31,8 @@ function GrantShowcase() {
         <Card className={classes.showcaseCard}>
             <ShowcaseTopContent/>
             <ShowcaseMainContent/>
+            <Divider color="primary"/>
+            <ShowcaseBottomContent/>
         </Card>
     )
 }
