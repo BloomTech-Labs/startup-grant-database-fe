@@ -1,10 +1,8 @@
 import React from 'react';
 import Grant from "./Grant";
 import {Typography} from "@material-ui/core";
-import {useSelector} from "react-redux";
 
-function GrantList() {
-    const {grants} = useSelector(state => state.filters);
+function GrantList({grants, showcase}) {
 
     return (
         <>
@@ -15,7 +13,7 @@ function GrantList() {
             )}
             {grants.length > 0 ? (
                 grants.map(grant => (
-                    <Grant grant={grant} key={grant.id}/>
+                    <Grant grant={grant} key={grant.id} showcase={showcase} />
                 ))
             ) : (
                 <Typography>
