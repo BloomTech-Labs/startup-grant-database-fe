@@ -12,5 +12,9 @@ export const useForm = (initialState, cbFunc) => {
         setValues({...values, [name]: value})
     }
 
-    return [values, handleChange, handleSubmit];
+    function resetForm() {
+        setValues(initialState);
+    }
+
+    return [values, handleChange, handleSubmit, resetForm];
 };

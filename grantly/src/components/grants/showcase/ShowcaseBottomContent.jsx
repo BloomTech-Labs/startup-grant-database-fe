@@ -2,6 +2,7 @@ import React from 'react';
 import {Button, Grid, Link} from '@material-ui/core';
 import {makeStyles} from "@material-ui/core/styles";
 import {useSelector} from "react-redux";
+import BaseDialog from "../../dialog/BaseDialog";
 
 const useStyles = makeStyles(theme => ({
     showcaseButtonContainer: {
@@ -50,13 +51,14 @@ function ShowcaseBottomContent({showcase}) {
             </Grid>
             {currentUser.email !== '' && (
                 <Grid item>
-                    <Button
-                        variant='contained'
-                        color='secondary'
-                        className={classes.applyButton}
-                    >
-                        Suggestion
-                    </Button>
+                    <BaseDialog
+                        actionButtonText='Suggest Changes'
+                        headerText='Submit your suggestion to Founder Grants'
+                        message='Our admins will review your suggestions and make the appropriate changes'
+                        subject='Subject'
+                        suggestion='Suggestion'
+                        id={showcase.id}
+                    />
                 </Grid>
             )}
         </Grid>
