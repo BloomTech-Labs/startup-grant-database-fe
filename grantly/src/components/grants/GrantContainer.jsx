@@ -2,6 +2,7 @@ import React, {useContext, useEffect, useState} from 'react';
 import {useSelector} from "react-redux";
 import {ActionsContext} from "../../context/ActionsContext";
 import GrantShowcase from "./GrantShowcase";
+import GrantList from "./list/GrantList";
 
 
 function GrantContainer(props) {
@@ -40,6 +41,7 @@ function GrantContainer(props) {
 
     return (
         <>
+            <GrantList/>
             <GrantShowcase />
         </>
     )

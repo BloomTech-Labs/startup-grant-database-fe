@@ -4,6 +4,7 @@ import {Grid, Typography} from "@material-ui/core";
 import {useSelector} from "react-redux";
 import {Redirect} from 'react-router-dom';
 import moment from 'moment';
+import {formatNumber} from "../../../utils/helpers";
 
 const useStyles = makeStyles(theme => ({
     showcaseDetails: {
@@ -30,7 +31,7 @@ function ShowcaseFields({xs, sm, md, title, subtitle}) {
     const classes = useStyles();
 
     function textDisplay(str) {
-        const formatNumber = num => num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+
         switch(str) {
             case 'amount':
                 return showcase[str] ? `\$${formatNumber(showcase[str])}` : `See website for details`;
