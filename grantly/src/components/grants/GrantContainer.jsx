@@ -68,7 +68,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 function GrantContainer(props) {
-    const allGrants = useSelector(state => state.grants.grants);
+    const allGrants = useSelector(state => state.filters.grants);
     const {favoriteGrants} = useSelector(state => state.user);
     const {showcase} = useSelector(state => state.grants);
     const actions = useContext(ActionsContext);
@@ -84,11 +84,6 @@ function GrantContainer(props) {
         }
     });
     const classes=useStyles();
-    useEffect(() => {
-        if (allGrants.length === 0) {
-            actions.grants.fetchGrants();
-        }
-    }, []);
 
     useEffect(() => {
         if (allGrantMode) {
@@ -148,7 +143,7 @@ function GrantContainer(props) {
                 <div
                     className={clsx(classes.filters, filtersOpen ? classes.showFilters : classes.hideFilters)}
                 >
-                    <Filters />
+                    <Filters grants={grants}/>
                 </div>
             </Grid>
         </Grid>

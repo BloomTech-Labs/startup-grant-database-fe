@@ -8,6 +8,7 @@ export const useFilterActions = () => {
 
     const changeFilter = useCallback((newFilter: Filters) => {
         dispatch({type: FilterTypes.FILTER_CHANGE, payload: newFilter});
+        dispatch({type: FilterTypes.PRISTINE_CHECK})
     }, [dispatch]);
 
     const resetFilter = useCallback(() => {

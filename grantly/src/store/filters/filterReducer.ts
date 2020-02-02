@@ -3,6 +3,7 @@ import {filterFormState} from '../../components/filter/formState';
 import {Grant} from "../grants/grantTypes";
 
 const initialState: FilterState = {
+    pristine: true,
     criteria: filterFormState,
     grants: []
 };
@@ -11,23 +12,27 @@ function typedKeys<T>(o: T): (keyof T)[] {
     return Object.keys(o) as (keyof T)[];
 }
 
-function filterGrants(grants: Grant[], state: FilterState): Grant[] {
+function criteriaObject(state: FilterState): Filters[] {
     const objectKeys = typedKeys<Filters>(state.criteria);
-    const checkFilters = objectKeys.map((eachKey: string): Filters => {
+    return objectKeys.map((eachKey: string): Filters => {
         // @ts-ignore
-        return <Filters>{[eachKey]: state.criteria[eachKey].filter((item: KeyValuePair) => item.checked)}
+        return {[eachKey]: state.criteria[eachKey].filter((item: KeyValuePair) => item.checked)};
     });
+}
 
-    // Pristine Form Check
-    const pristine = (): boolean => {
-        for (let i = 0; i < 4; i++) {
-            const checkArray = Object.values(checkFilters[i])[0];
-            if (checkArray.length > 0) {
-                return false;
-            }
+function pristine(filters: Filters[]): boolean {
+    for (let i=0; i < 4; i++) {
+        const checkArray = Object.values(filters[i])[0];
+        if (checkArray.length > 0) {
+            return false;
         }
-        return true;
-    };
+    }
+    return true;
+}
+
+function filterGrants(grants: Grant[], state: FilterState): Grant[] {
+    const checkFilters = criteriaObject(state);
+
     /* checkFilters is an array where the keys are indexed
         0 = amount
         1 = geographic
@@ -68,7 +73,7 @@ function filterGrants(grants: Grant[], state: FilterState): Grant[] {
     if (filteredArray.length === 0 && amountArray.length !== 0) {
         amountArray.forEach(eachGrant => filteredArray.push(eachGrant));
     }
-    return pristine() ? grants : filteredArray;
+    return pristine(checkFilters) ? grants : filteredArray;
 }
 
 export const filterReducer = (state = initialState, action: FilterActions): FilterState => {
@@ -79,6 +84,8 @@ export const filterReducer = (state = initialState, action: FilterActions): Filt
             return initialState;
         case FilterTypes.FILTER_GRANT:
             return {...state, grants: filterGrants(action.payload, state)};
+        case FilterTypes.PRISTINE_CHECK:
+            return {...state, pristine: pristine(criteriaObject(state))};
         default:
             return state;
     }
