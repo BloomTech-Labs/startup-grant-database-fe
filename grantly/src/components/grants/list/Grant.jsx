@@ -4,41 +4,87 @@ import {Card, Grid, Link, Typography} from "@material-ui/core";
 import {ActionsContext} from "../../../context/ActionsContext";
 import moment from 'moment';
 import {formatNumber} from "../../../utils/helpers";
+import clsx from 'clsx';
 
-const useStyles = makeStyles(theme => ({}));
+const useStyles = makeStyles(theme => ({
+    grantCard: {
+        textAlign: 'center',
+        marginBottom: '0.5rem',
+        padding: '15px 15px',
+        transition: 'all .3s ease-in-out',
+        fontFamily: 'Nunito Sans',
+        '&:hover': {
+            boxShadow: '0 3px 6px #BBB',
+            transform: 'translateX(5px)'
+        },
+    },
+    grantCardSelected: {
+        padding: '15px 5px',
+        borderLeft: '5px solid #3DB8B3',
+        transform: 'translateX(5px)'
+    },
+    grantNew: {
+        background: "#EF7B5C",
+        color: "#F7F7F7"
+    },
+    grantLayout: {
+        minHeight: '125px'
+    },
+    grantInfo: {
+        alignSelf: 'stretch',
+        margin: '0 20px',
+        color: '#696969'
+    },
+    grantName: {
+        fontWeight: 500,
+        fontFamily: 'Roboto',
+        color: '#222222',
+        textAlign: 'left'
+    },
+    grantSubInfo: {
+        fontStyle: 'italic'
+    }
+}));
 
-function Grant(props) {
+function Grant({grant, showcase}) {
+    const classes = useStyles();
     const actions = useContext(ActionsContext);
 
     function selectGrant() {
-        actions.grants.selectGrant(props.grant);
+        actions.grants.selectGrant(grant);
     }
+
+    const isSelected = () => grant.id === showcase.id;
+    const isNotReviewed = () => !grant.is_reviewed;
 
     return (
         <Card
+            className={clsx(classes.grantCard, isSelected() && classes.grantCardSelected, isNotReviewed() && classes.grantNew )}
             onClick={selectGrant}
         >
             <Grid
+                container
                 justify='space-between'
                 alignItems='flex-start'
-                style={{minHeight: '125px'}}
+                className={classes.grantLayout}
             >
                 <Grid
                     container
                     direction='column'
                     alignItems='flex-start'
                     justify='space-between'
+                    className={clsx(classes.grantInfo, isNotReviewed() && classes.grantNew)}
                 >
                     <Typography
                         variant='subtitle1'
-                        style={{textAlign: 'left'}}
+                        className={clsx(classes.grantName, isNotReviewed() && classes.grantNew)}
                     >
-                        {props.grant.competition_name}
+                        {grant.competition_name}
                     </Typography>
                     <Grid item>
                         <Typography>
-                            <Link href={props.grant.website}>
-                                {props.grant.website.substring(0, 30)}
+                            <Link href={grant.website}>
+                                {grant.website.substring(0, 30)}
                             </Link>
                         </Typography>
                     </Grid>
@@ -46,17 +92,17 @@ function Grant(props) {
                         variant='subtitle1'
                     >
                         {`Deadline - `}
-                        <span>
-                            {props.grant.most_recent_application_due_date
-                                ? `${moment(props.grant.most_recent_application_due_date).format('MMMM Do YYYY')}`
+                        <span className={classes.grantSubInfo}>
+                            {grant.most_recent_application_due_date
+                                ? `${moment(grant.most_recent_application_due_date).format('MMMM Do YYYY')}`
                                 : 'See website for details'}
                         </span>
                     </Typography>
                     <Grid item>
                         <Typography>
                             {`Amount - `}
-                            <span>
-                                {props.grant.amount ? `\$${formatNumber(props.grant.amount)}` : "See website for details."}
+                            <span className={classes.grantSubInfo}>
+                                {grant.amount ? `\$${formatNumber(grant.amount)}` : "See website for details."}
                             </span>
                         </Typography>
                     </Grid>
