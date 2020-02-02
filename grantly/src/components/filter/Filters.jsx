@@ -1,6 +1,9 @@
-import React from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import {makeStyles} from "@material-ui/core/styles";
 import NewFilters from "./NewFilters";
+import {filterFormState} from "./formState";
+import {ActionsContext} from "../../context/ActionsContext";
+import {useSelector} from "react-redux";
 
 const useStylesGrants = makeStyles(theme => ({
     card: {
@@ -169,20 +172,53 @@ const useStylesMobile = makeStyles(theme => ({
     }
 }));
 
-function Filters({landing, mobile}) {
+function Filters({landing, mobile, grants}) {
+    const {pristine, criteria} = useSelector(state => state.filters);
+    const actions = useContext(ActionsContext);
+    const [filters, setFilters] = useState(()=> {
+        if (pristine) {
+            return filterFormState;
+        } else {
+            return criteria;
+        }
+    });
+    const [grantList, setGrantList] = useState([]);
+    const allGrants = useSelector(state => state.grants.grants);
+
+    useEffect(() => {
+        if (actions) {
+            actions.filters.changeFilter(filters);
+            actions.filters.grantFilter(grantList);
+        }
+    }, [filters]);
+
+    useEffect(()=> {
+        if (grants) {
+            setGrantList(grants);
+            actions.filters.grantFilter(grants);
+        } else {
+            setGrantList(allGrants);
+        }
+    }, [allGrants]);
+
     const landingStyles = useStylesLanding();
     const mobileStyles = useStylesMobile();
     const grantStyles = useStylesGrants();
 
+    const rest = {
+        filters,
+        setFilters
+    }
+
     if (landing) {
-        return <NewFilters classes={landingStyles} landing />
+        return <NewFilters classes={landingStyles} landing grants={grantList} {...rest} />
     }
 
     if (mobile) {
-        return <NewFilters classes={mobileStyles} />
+        return <NewFilters classes={mobileStyles} grants={grantList} mobile {...rest} />
     }
 
-    return <NewFilters classes={grantStyles} />
+    return <NewFilters classes={grantStyles} grants={grantList} {...rest}/>
 }
 
 export default Filters;
