@@ -26,8 +26,7 @@ const useStyles = makeStyles(theme => ({
     }
 }))
 
-function ShowcaseFields({xs, sm, md, title, subtitle}) {
-    const {showcase} = useSelector(state => state.grants)
+function ShowcaseFields({xs, sm, md, title, subtitle, showcase}) {
     const classes = useStyles();
 
     function textDisplay(str) {
@@ -41,7 +40,10 @@ function ShowcaseFields({xs, sm, md, title, subtitle}) {
                 return showcase[str] ? `Yes` : `No`;
             case '':
             default:
-                return `${showcase[subtitle]}`
+                if (showcase[str]) {
+                    return `${showcase[subtitle]}`
+                }
+                return;
         }
     }
 
@@ -61,7 +63,7 @@ function ShowcaseFields({xs, sm, md, title, subtitle}) {
                 {title}
             </Typography>
             <Typography className={classes.innerDetails}>
-                {showcase[subtitle] && textDisplay(subtitle)}
+                {textDisplay(subtitle)}
             </Typography>
         </Grid>
     )

@@ -1,8 +1,7 @@
 import React from 'react';
-import {Grid, Button, Link} from '@material-ui/core';
+import {Button, Grid, Link} from '@material-ui/core';
 import {makeStyles} from "@material-ui/core/styles";
 import {useSelector} from "react-redux";
-import {Redirect} from 'react-router-dom';
 
 const useStyles = makeStyles(theme => ({
     showcaseButtonContainer: {
@@ -20,16 +19,12 @@ const useStyles = makeStyles(theme => ({
             textDecoration: 'none'
         }
     }
-}))
+}));
 
-function ShowcaseBottomContent() {
-    const {showcase} = useSelector(state => state.grants);
+function ShowcaseBottomContent({showcase}) {
     const {currentUser} = useSelector(state => state.user);
     const classes = useStyles();
-    
-    if (!showcase) {
-        return <Redirect to='/' />
-    }
+
     return (
         <Grid
             container

@@ -1,7 +1,6 @@
 import React from 'react';
-import {Redirect} from 'react-router-dom';
 import {makeStyles} from "@material-ui/core/styles";
-import {Grid, Typography, Link} from '@material-ui/core';
+import {Grid, Link, Typography} from '@material-ui/core';
 import {useSelector} from "react-redux";
 import FavoritesIconButton from "./FavoritesIconButton";
 import BookmarkIcon from "@material-ui/icons/Bookmark";
@@ -30,15 +29,10 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-function ShowcaseTopContent() {
-    const {showcase} = useSelector(state => state.grants);
+function ShowcaseTopContent({showcase}) {
     const {favoriteGrants} = useSelector(state => state.user);
     const existingFavorite = favoriteGrants.filter(fav => fav.id === showcase.id);
     const classes = useStyles();
-
-    if (!showcase) {
-        return <Redirect to='/'/>
-    }
 
     return (
         <>

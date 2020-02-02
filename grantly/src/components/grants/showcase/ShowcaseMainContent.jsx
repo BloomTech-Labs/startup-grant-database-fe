@@ -68,14 +68,14 @@ const mainDataContent = [
     },
 ]
 
-function ShowcaseMainContent() {
+function ShowcaseMainContent(props) {
     return (
         <Grid
             container
             justify='space-between'
             direction='row'
         >
-            {mainDataContent.map(field => (<ShowcaseFields {...field} key={field.title} />))}
+            {mainDataContent.map(field => (<ShowcaseFields {...field} key={field.title} {...props} />))}
         </Grid>
     )
 }

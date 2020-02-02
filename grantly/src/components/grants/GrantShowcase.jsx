@@ -25,14 +25,14 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-function GrantShowcase() {
+function GrantShowcase(props) {
     const classes = useStyles();
     return (
         <Card className={classes.showcaseCard}>
-            <ShowcaseTopContent/>
-            <ShowcaseMainContent/>
+            <ShowcaseTopContent {...props} />
+            <ShowcaseMainContent {...props} />
             <Divider color="primary"/>
-            <ShowcaseBottomContent/>
+            <ShowcaseBottomContent {...props} />
         </Card>
     )
 }
