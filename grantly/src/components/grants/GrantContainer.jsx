@@ -46,7 +46,7 @@ function GrantContainer(props) {
     
     return (
         <>
-            <GrantList grants={grants}/>
+            <GrantList grants={grants} showcase={showcase}/>
             <GrantShowcase showcase={showcase} />
         </>
     )
