@@ -10,7 +10,7 @@ import {theme} from "./theme";
 
 import LandingPage from "./landingpage/LandingPage";
 import SuggestionForm from './suggestion/Suggestion'
-import GrantTable from '../components/admin/GrantTable'
+import {GrantTable} from '../components/admin/GrantTable'
 const useStyles = makeStyles(() => ({
     app: {
         textAlign: 'center',
@@ -35,7 +35,8 @@ function App() {
                     <Navbar/>
                     <Switch>
                         <Route exact path="/" component={LandingPage}/>
-                        <Route path='/sugggest' component={SuggestionForm}/>
+                        <Route path="/help" component={GrantTable} />
+                        <Route path='/suggest' component={SuggestionForm}/>
                     </Switch>
                     <Footer/>
                 </div>

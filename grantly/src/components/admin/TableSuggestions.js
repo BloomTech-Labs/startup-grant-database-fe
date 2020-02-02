@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
-import { deleteSuggestion } from "../../actions";
+// import { deleteSuggestion } from "../../actions";
 import axios from "axios";
-import { useAuth0 } from "../../react-auth0-wrapper.js";
-import useGetToken from "../../auth/useGetToken.js";
+import {useAuth0} from "../auth0/Auth0Wrapper";
+import useGetToken from "../auth/useGetToken";
 // Styling
 import { tableSuggStyles } from "./styles/tableSuggStyles";
 import DialogTitle from "@material-ui/core/DialogTitle";
@@ -21,11 +21,11 @@ import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
 import DeleteIcon from "@material-ui/icons/Delete";
 
 const TableSuggestions = props => {
-  const { isAuthenticated, user, loading } = useAuth0();
+  // const { isAuthenticated, user, loading } = useAuth0();
   const [suggestions, setSuggestions] = useState([]);
   const [open, setOpen] = useState(false);
 
-  const [token] = useGetToken();
+  // const [token] = useGetToken();
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -40,7 +40,7 @@ const TableSuggestions = props => {
         `${process.env.REACT_APP_CLIENT_BASEURL}/admin/suggestions/${grant_id}`,
         {
           headers: {
-            authorization: `Bearer ${token}`
+            // authorization: `Bearer ${token}`
           }
         }
       )
@@ -51,10 +51,14 @@ const TableSuggestions = props => {
       .catch(err => {
         console.log(err);
       });
-  }, [token, props.rowData]);
+  }, [
+    
+    // token,
+    
+    props.rowData]);
 
   const onClickDelete = (suggestion_id, token) => {
-    props.deleteSuggestion(suggestion_id, token);
+    // props.deleteSuggestion(suggestion_id, token);
     const updatedSuggs = suggestions.filter(sugg => sugg.id !== suggestion_id);
     setSuggestions(updatedSuggs);
   };
@@ -98,7 +102,7 @@ const TableSuggestions = props => {
                     className={style.suggestionLi}
                   >
                     <IconButton
-                      onClick={() => onClickDelete(suggestion.id, token)}
+                      // onClick={() => onClickDelete(suggestion.id, token)}
                     >
                       <DeleteIcon />
                     </IconButton>
@@ -145,4 +149,8 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, { deleteSuggestion })(TableSuggestions);
+export default connect(mapStateToProps, { 
+
+// deleteSuggestion
+
+})(TableSuggestions);
