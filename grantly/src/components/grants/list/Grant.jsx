@@ -6,7 +6,7 @@ import moment from 'moment';
 import {formatNumber} from "../../../utils/helpers";
 import clsx from 'clsx';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles(() => ({
     grantCard: {
         textAlign: 'center',
         marginBottom: '0.5rem',
@@ -59,7 +59,7 @@ function Grant({grant, showcase}) {
 
     return (
         <Card
-            className={clsx(classes.grantCard, isSelected() && classes.grantCardSelected, isNotReviewed() && classes.grantNew )}
+            className={clsx(classes.grantCard, isSelected() && classes.grantCardSelected, isNotReviewed() && classes.grantNew)}
             onClick={selectGrant}
         >
             <Grid
