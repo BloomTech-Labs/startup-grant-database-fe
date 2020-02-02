@@ -11,8 +11,8 @@ import FilterGroup from "./FilterGroup";
 import {useStylesGrants, useStylesLanding, useStylesMobile} from "../styles/filterStyles";
 
 interface IProps {
-    location?: string;
-    mobile?: any;
+    classes: any
+    landing?: boolean
 }
 
 const NewFilters = (props: IProps) => {
@@ -20,7 +20,6 @@ const NewFilters = (props: IProps) => {
     const {grants} = useSelector((state: AppState) => state.grants);
     const filteredGrants = useSelector((state:AppState)=> state.filters.grants);
     const [filters, setFilters] = useState<Filters>(filterFormState);
-
     useEffect(() => {
         if (actions) {
             actions.filters.changeFilter(filters);
@@ -57,28 +56,20 @@ const NewFilters = (props: IProps) => {
         }
     }
 
-    const mobileStyle = useStylesMobile();
-    const landingStyle = useStylesLanding();
-    const grantStyle = useStylesGrants();
-
-    const classes = props.mobile ? mobileStyle : props.location === "/" ? landingStyle : grantStyle;
     const title = ['Grant Amount', 'Region', 'Focus Areas', 'View Grant By'];
     // Todo Add Admin Check for Rending Admin Views
     return (
-        <Card className={classes.card}>
-            <Typography className={classes.title} variant="h5" component="h2">
-                {props.location === '/' ? "Which grants would you like to find?" : "Filter grants by:"}
+        <Card className={props.classes.card}>
+            <Typography className={props.classes.title} variant="h5" component="h2">
+                {props.landing ? "Which grants would you like to find?" : "Filter grants by:"}
             </Typography>
-            <FormGroup className={classes.filterCard}>
-                {Object.keys(filters).map((group: string, id:number) => <FilterGroup classes={classes} handleChange={handleChange}
+            <FormGroup className={props.classes.filterCard}>
+                {Object.keys(filters).map((group: string, id:number) => <FilterGroup classes={props.classes} handleChange={handleChange}
                                                                           data={returnKeyValuePair(group)} title={title[id]}
                                                                           labelText={group}/>)}
             </FormGroup>
-            <Typography variant="h6">
-                {`There are ${filteredGrants.length} results`}
-            </Typography>
             <Button variant="contained" color="primary" size="large" component={RouterLink} to="/grants"
-                    className={classes.landingButton}>
+                    className={props.classes.landingButton}>
                 Find Grants
             </Button>
         </Card>
