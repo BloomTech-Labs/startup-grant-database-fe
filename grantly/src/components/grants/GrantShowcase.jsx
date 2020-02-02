@@ -3,6 +3,7 @@ import React from 'react';
 import {makeStyles} from "@material-ui/core/styles";
 import {Card} from "@material-ui/core";
 import ShowcaseTopContent from "./showcase/ShowcaseTopContent";
+import ShowcaseMainContent from "./showcase/ShowcaseMainContent";
 
 const useStyles = makeStyles(theme => ({
     showcaseCard: {
@@ -28,6 +29,7 @@ function GrantShowcase() {
     return (
         <Card className={classes.showcaseCard}>
             <ShowcaseTopContent/>
+            <ShowcaseMainContent/>
         </Card>
     )
 }
