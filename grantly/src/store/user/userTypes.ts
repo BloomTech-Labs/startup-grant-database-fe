@@ -1,4 +1,5 @@
 import {Error} from "../reduxTypes";
+import {Grant} from "../grants/grantTypes";
 
 export enum UserTypes {
     FETCH_USER_START = 'FETCH_USER_START',
@@ -21,6 +22,7 @@ export interface User {
 
 export interface UserState {
     currentUser: User;
+    favoriteGrants: Grant[];
     isModerator: boolean;
     isLoading: boolean;
     errors: Error | null;

@@ -1,6 +1,6 @@
 import React, {useEffect, useContext} from 'react';
 import Welcome from './Welcome';
-import NewFilters from "../filter/NewFilters";
+import Filters from "../filter/Filters";
 import {makeStyles} from "@material-ui/core/styles";
 import {Grid} from '@material-ui/core';
 import {useSelector} from "react-redux";
@@ -13,10 +13,10 @@ const components = [
         props: {}
     },
     {
-        key: 'NewFilters',
-        component: NewFilters,
+        key: 'Filters',
+        component: Filters,
         props: {
-            location: '/'
+            landing: true
         }
     }
 ];
