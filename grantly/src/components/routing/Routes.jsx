@@ -2,6 +2,7 @@ import React from 'react';
 import LandingPage from "../landingpage/LandingPage";
 import GrantContainer from "../grants/GrantContainer";
 import RenderRoutes from "./RenderRoutes";
+import About from '../about/About';
 
 const routes = [
     {
@@ -9,6 +10,12 @@ const routes = [
         path: '/',
         exact: true,
         component: LandingPage
+    },
+    {
+        key: 'ABOUT',
+        path: '/about',
+        exact: true,
+        component: About
     },
     {
         key: 'GRANTS',
