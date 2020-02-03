@@ -22,9 +22,8 @@ import {
 import { GrantInfoForm } from "./formElements/GrantInfoForm";
 import { GrantFocusForm } from "./formElements/GrantFocusForm";
 import { GrantDemoForm } from "./formElements/GrantDemoForm";
-
+import { SuggestionFormTopContent } from "./SuggestionFormTopContent.jsx";
 import moment from "moment";
-
 export const AddGrant = props => {
   //Steps are the different parts of the form.  They are broken down into components in the submitForm directory
   const steps = ["Grant Info", "Grant Focus", "Grant Demo"];
@@ -135,16 +134,7 @@ export const AddGrant = props => {
 
       <main className={styles.layout}>
         <Paper className={styles.paper}>
-          <Grid className={styles.topBox}>
-            <div>
-              <h1>Submit a New Grant to Founder Grants</h1>
-              <p>
-                Please fill out all of the form fields on this page regarding
-                the grant you are submitting. If you are unsure of anything
-                please write “N/A” Thank you!
-              </p>
-            </div>
-          </Grid>
+          <SuggestionFormTopContent />
           {/* Material UI for the stepper at the top of the page. */}
           <Stepper activeStep={activeStep} className={styles.stepper}>
             {steps.map(label => (
