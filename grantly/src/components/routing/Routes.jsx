@@ -3,6 +3,7 @@ import LandingPage from "../landingpage/LandingPage";
 import GrantContainer from "../grants/GrantContainer";
 import RenderRoutes from "./RenderRoutes";
 import GrantTable from '../admin/GrantTable'
+import About from '../about/About';
 
 const routes = [
     {
@@ -16,6 +17,12 @@ const routes = [
         path: '/admin',
         exact: true,
         component: GrantTable,
+    },
+    {
+        key: 'ABOUT',
+        path: '/about',
+        exact: true,
+        component: About
     },
     {
         key: 'GRANTS',

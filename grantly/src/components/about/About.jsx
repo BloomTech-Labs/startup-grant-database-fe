@@ -1,5 +1,5 @@
 import React from "react";
-import { Grid, Typography, Card } from "@material-ui/core";
+import { Grid, Typography, Card, Link} from "@material-ui/core";
 import { aboutStyles } from "./aboutStyles";
 
 export default () => {
@@ -25,14 +25,14 @@ export default () => {
             className={classes.aboutContainer}
           >
             <Grid item md={3} xs={12}>
-              <a href="https://www.1517fund.com/">
+              <Link href="https://www.1517fund.com/">
                 <Card className={classes.aboutCard}>
                   <img src="./assets/1517Fund.png" alt="1517 logo" />
                   <Typography variant="subtitle1">
                     You can find out more about 1517 Fund here.
                   </Typography>
                 </Card>
-              </a>
+              </Link>
             </Grid>
 
             <Grid item md={3} xs={12}>
