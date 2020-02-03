@@ -10,6 +10,7 @@ const initialState: UserState = {
         sub: '',
         updated_at: ''
     },
+    favoriteGrants: [],
     isModerator: false,
     isLoading: false,
     errors: null,

@@ -1,15 +1,17 @@
 import {useCallback} from 'react';
 import {useDispatch} from 'react-redux';
-import axios, {AxiosError, AxiosResponse} from 'axios';
+import {AxiosError, AxiosResponse} from 'axios';
 import {Grant, GrantTypes} from "./grantTypes";
 import {FilterTypes} from "../filters/filterTypes";
+import {axiosWithOutAuth as axios} from "../utils/axiosConfig";
 
 export const useGrantActions = () => {
     const dispatch = useDispatch();
 
     const fetchGrants = useCallback(() => {
         dispatch({type: GrantTypes.FETCH_GRANTS_START});
-        axios.get(`${process.env.REACT_APP_CLIENT_BASEURL}/grants`).then((res:AxiosResponse) => {
+        // @ts-ignore
+        axios().get(`/grants`).then((res:AxiosResponse) => {
             dispatch({type: GrantTypes.FETCH_GRANTS_SUCCESS, payload: res.data});
             dispatch({type: FilterTypes.FILTER_GRANT, payload: res.data});
         }).catch((err: AxiosError)=>{

@@ -23,6 +23,7 @@ import grantTableStyles from "./styles/grantTableStyles";
 
 // Components
 import TableSuggestions from "./TableSuggestions";
+
 const data = [
   {
     id: 21,

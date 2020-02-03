@@ -2,11 +2,12 @@ import React from 'react';
 import {CssBaseline} from "@material-ui/core";
 import {makeStyles, MuiThemeProvider} from "@material-ui/core/styles";
 import Navbar from "./navbar/Navbar";
-import {Route, Switch} from 'react-router-dom';
 import {Footer} from './footer/Footer';
 import {useActions} from "../store/useActions";
 import {ActionsProvider} from "../context/ActionsContext";
 import {theme} from "./theme";
+import routes from './routing/Routes';
+import RenderRoutes from "./routing/RenderRoutes";
 
 import LandingPage from "./landingpage/LandingPage";
 import SuggestionForm from './suggestion/Suggestion'
@@ -33,11 +34,7 @@ function App() {
                 <CssBaseline/>
                 <div className={classes.app}>
                     <Navbar/>
-                    <Switch>
-                        <Route exact path="/" component={LandingPage}/>
-                        <Route path="/help" component={GrantTable} />
-                        <Route path='/suggest' component={SuggestionForm}/>
-                    </Switch>
+                    <RenderRoutes routes={routes}/>
                     <Footer/>
                 </div>
             </ActionsProvider>

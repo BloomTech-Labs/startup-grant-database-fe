@@ -3,7 +3,8 @@ import {Grant} from "../grants/grantTypes";
 export enum FilterTypes {
     FILTER_CHANGE = 'FILTER_CHANGE',
     FILTER_RESET = 'FILTER_RESET',
-    FILTER_GRANT = 'FILTER_GRANT'
+    FILTER_GRANT = 'FILTER_GRANT',
+    PRISTINE_CHECK = 'PRISTINE_CHECK'
 }
 
 interface Amount {
@@ -29,6 +30,7 @@ export interface Filters {
 }
 
 export interface FilterState {
+    pristine: boolean;
     criteria: Filters;
     grants: Grant[];
 }
@@ -47,4 +49,8 @@ interface FilterGrantAction {
     payload: Grant[]
 }
 
-export type FilterActions = FilterChangeAction | FilterResetAction | FilterGrantAction
+interface FilterPristineAction {
+    type: typeof FilterTypes.PRISTINE_CHECK
+}
+
+export type FilterActions = FilterChangeAction | FilterResetAction | FilterGrantAction | FilterPristineAction
