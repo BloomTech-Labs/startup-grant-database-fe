@@ -123,6 +123,9 @@ export const Auth0Provider = ({
             // Update DOM
         });
     });
+    console.group('Auth0Client');
+    console.table(auth0Client);
+    console.groupEnd();
     return (
         <Auth0Context.Provider
             value={{
