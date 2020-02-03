@@ -22,7 +22,7 @@ import Paper from "@material-ui/core/Paper";
 import grantTableStyles from "./styles/grantTableStyles";
 
 // Components
-import TableSuggestions from "./TableSuggestions";
+import TableSuggestions from "./GrantRow";
 
 const data = [
   {
@@ -43,27 +43,6 @@ const data = [
     details_last_updated: "string",
   }
 ]
-
-const rowData = [
-  {
-    id: 21,
-    competition_name: "string",
-    area_focus: "string",
-    sponsoring_entity: "string",
-    website: "string",
-    most_recent_application_due_date: "string",
-    amount: 1000,
-    amount_notes: "string",
-    geographic_region: "string",
-    target_entrepreneur_demographic: "string",
-    notes: "string",
-    early_stage_funding: 1,
-    is_reviewed: 1,
-    has_requests: 1,
-    details_last_updated: "string",
-  }
-]
-
 
 export const GrantTable = props => {
   // console.log("GrantTable props", props);
@@ -317,12 +296,12 @@ const mapStateToProps = state => {
   };
 };
 
-// export default connect(mapStateToProps, {
-//   // fetchApi,
-//   // adminFetchApi,
-//   // postGrants,
-//   // putGrants,
-//   // deleteGrants,
-//   // deleteSuggestion
-//   fetchGrants
-// })(GrantTable);
+export default connect(mapStateToProps, {
+  // fetchApi,
+  // adminFetchApi,
+  // postGrants,
+  // putGrants,
+  // deleteGrants,
+  // deleteSuggestion
+  // fetchGrants
+})(GrantTable);

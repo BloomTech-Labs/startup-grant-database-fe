@@ -2,6 +2,7 @@ import React from 'react';
 import LandingPage from "../landingpage/LandingPage";
 import GrantContainer from "../grants/GrantContainer";
 import RenderRoutes from "./RenderRoutes";
+import GrantTable from '../admin/GrantTable'
 
 const routes = [
     {
@@ -9,6 +10,12 @@ const routes = [
         path: '/',
         exact: true,
         component: LandingPage
+    },
+    {
+        key: 'ADMIN_TABLE',
+        path: '/admin',
+        exact: true,
+        component: GrantTable,
     },
     {
         key: 'GRANTS',
