@@ -13,9 +13,9 @@ const onRedirectCallback = appState => {
     window.history.replaceState({}, document.title, appState && appState.targetUrl ? appState.targetUrl : window.location.pathname);
 };
 
-Sentry.init({
-    dsn: "https://3fff2a57bcec4d419f25f24c703f14b9@sentry.io/1811765"
-});
+// Sentry.init({
+//     dsn: "https://3fff2a57bcec4d419f25f24c703f14b9@sentry.io/1811765"
+// });
 
 const AppWithProvider = () => {
 
