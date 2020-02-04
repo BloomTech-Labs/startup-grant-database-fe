@@ -32,7 +32,7 @@ export const useUserActions = () => {
         dispatch({type: UserTypes.POST_FAVORITES_START});
         axiosWithAuth(token).post('/favorites', {grant_id, auth_id})
             .then(res => dispatch({type: UserTypes.FETCH_FAVORITES_SUCCESS, payload: res.data}))
-            .catch(error => dispatch({type: UserTypes.FETCH_FAVORITES_FAILURE, payload: error.response.message}));
+            .catch(error => dispatch({type: UserTypes.FETCH_FAVORITES_FAILURE, payload: error.response}));
     }, [dispatch]);
 
     const setUserFromAuth0 = useCallback((user: User) => {
@@ -54,8 +54,8 @@ export const useUserActions = () => {
     const removeFavorite = useCallback((token: string, favoriteId: number) => {
         dispatch({type: UserTypes.REMOVE_FAVORITES_START});
         axiosWithAuth(token).delete(`/favorites/myFavorites/${favoriteId}`)
-            .then(res => console.log(res.data))
-            .catch(err => console.log(err.response));
+            .then(() => dispatch({type: UserTypes.REMOVE_FAVORITES_SUCCESS, payload: favoriteId}))
+            .catch(err => dispatch({type: UserTypes.REMOVE_FAVORITES_FAILURE, payload: err.response.data}));
     }, [dispatch]);
 
     return {

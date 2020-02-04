@@ -27,6 +27,10 @@ const userFetchFavoritesSuccess: FunctionReducer = (state, payload) => ({...stat
 const userIsModeratorReducer: FunctionReducer = state => ({...state, isModerator: true});
 const userSetTokenReducer: FunctionReducer = (state, payload) => ({...state, token: payload});
 const userResetUserReducer: FunctionReducer = () => initialState;
+const userRemoveFavoriteSuccessReducer: FunctionReducer = (state, payload) => {
+    const newFavorites = state.favoriteGrants.filter(grant => grant.favoriteID !== payload);
+    return {...state, favoriteGrants: newFavorites}
+}
 
 
 export const userReducer = createReducer(initialState, {
@@ -39,6 +43,8 @@ export const userReducer = createReducer(initialState, {
     [UserTypes.RESET_USER]: userResetUserReducer,
     [UserTypes.POST_FAVORITES_START]: userStartReducer,
     [UserTypes.POST_FAVORITES_SUCCESS]: userFetchFavoritesSuccess,
-    [UserTypes.POST_FAVORITES_FAILURE]: userFailureReducer
+    [UserTypes.POST_FAVORITES_FAILURE]: userFailureReducer,
+    [UserTypes.REMOVE_FAVORITES_FAILURE]: userFailureReducer,
+    [UserTypes.REMOVE_FAVORITES_SUCCESS]: userRemoveFavoriteSuccessReducer
 });
 

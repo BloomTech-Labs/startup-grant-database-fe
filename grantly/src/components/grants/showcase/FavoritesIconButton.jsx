@@ -10,18 +10,15 @@ const useStyles = makeStyles(() => ({
     }
 }));
 
-function FavoritesIconButton({title, label, icon: Icon, button, id, removeFavorite, favoriteId}) {
+function FavoritesIconButton({title, label, icon: Icon, button, id, removeFavorite}) {
     const classes = useStyles();
     const actions = useContext(ActionsContext);
     const {token, currentUser: {sub}} = useSelector(state => state.user);
     function handleClick(id) {
         if (removeFavorite) {
-            console.log('Remove Favorite', id)
-            actions.user.removeFavorite(token, id, sub);
+            actions.user.removeFavorite(token, id);
         } else {
-            console.log('Add to Favorite', id, sub);
             actions.user.addFavorite(token, id, sub);
-            actions.user.getFavorites(token, sub);
         }
     }
 

@@ -33,7 +33,7 @@ function ShowcaseTopContent({showcase}) {
     const {favoriteGrants} = useSelector(state => state.user);
     const existingFavorite = favoriteGrants.filter(fav => fav.id === showcase.id);
     const classes = useStyles();
-
+    console.log(existingFavorite);
     return (
         <>
             <Grid
@@ -71,7 +71,6 @@ function ShowcaseTopContent({showcase}) {
                             icon={BookmarkBorderOutlinedIcon}
                             button
                             id={showcase.id}
-                            favoriteId={showcase.favoriteId}
                         />
                     )}
                 </Grid>
@@ -82,7 +81,7 @@ function ShowcaseTopContent({showcase}) {
                         label="DeleteIcon"
                         button
                         icon={DeleteIcon}
-                        id={existingFavorite[0].id}
+                        id={existingFavorite[0].favoriteID}
                         removeFavorite
                     />}
                 </Grid>

@@ -26,6 +26,7 @@ export interface Grant {
     is_reviewed: number | boolean;
     has_requests: number | boolean;
     details_last_updated: string;
+    favoriteID?: number
 }
 
 export interface GrantState {
