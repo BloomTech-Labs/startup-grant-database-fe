@@ -9,12 +9,11 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export const GrantSteps = props => {
-  const [activeStep, setActiveStep] = useState(0);
   const styles = useStyles();
 
   return (
-    <Stepper activeStep={activeStep} className={styles.stepper}>
-      {steps.map(label => (
+    <Stepper activeStep={props.activeStep} className={styles.stepper}>
+      {props.steps.map(label => (
         <Step key={label}>
           <StepLabel>{label}</StepLabel>
         </Step>
