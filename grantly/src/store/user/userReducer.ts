@@ -30,7 +30,13 @@ export const userReducer = (state = initialState, action: UserActions): UserStat
         case UserTypes.IS_MODERATOR:
             return {...state, isModerator: true};
         case UserTypes.SET_TOKEN:
-            return {...state, token: action.payload}
+            return {...state, token: action.payload};
+        case UserTypes.FETCH_FAVORITES_START:
+            return {...state, isLoading: true};
+        case UserTypes.FETCH_FAVORITES_SUCCESS:
+            return {...state, favoriteGrants: action.payload, isLoading: false};
+        case UserTypes.FETCH_FAVORITES_FAILURE:
+            return {...state, isLoading: false, errors: action.payload};
         case UserTypes.RESET_USER:
             return initialState;
         default:

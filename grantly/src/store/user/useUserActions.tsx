@@ -2,7 +2,7 @@ import {useCallback} from 'react';
 import {useDispatch} from 'react-redux';
 import {User, UserTypes} from "./userTypes";
 import {AxiosError, AxiosResponse} from 'axios';
-import {axiosWithOutAuth as axios} from "../utils/axiosConfig";
+import {axiosWithAuth, axiosWithOutAuth as axios} from "../utils/axiosConfig";
 
 export const useUserActions = () => {
     const dispatch = useDispatch();
@@ -16,6 +16,24 @@ export const useUserActions = () => {
             const data = err && err.response && err.response.data ? err.response.data : err;
             dispatch({type: UserTypes.FETCH_USER_FAILURE, payload: data})
         })
+    }, [dispatch]);
+
+    const getFavorites = useCallback((token: string, authId: string) => {
+        dispatch({type: UserTypes.FETCH_FAVORITES_START});
+        axiosWithAuth(token).get(`/favorites/myfavorites/${authId}`)
+            .then(res => dispatch({
+                type: UserTypes.FETCH_FAVORITES_SUCCESS,
+                payload: res.data
+            }))
+            .catch(error => dispatch({type: UserTypes.FETCH_FAVORITES_FAILURE, payload: error.response.data}))
+    }, [dispatch]);
+
+    const addFavorite = useCallback((token: string, grant_id: number, auth_id: string) => {
+        dispatch({type: UserTypes.POST_FAVORITES_START});
+        axiosWithAuth(token).post('/favorites', {
+            grant_id,
+            auth_id
+        }).then(res => console.log(res.data)).catch(error => console.log(error.response));
     }, [dispatch]);
 
     const setUserFromAuth0 = useCallback((user: User) => {
@@ -34,7 +52,7 @@ export const useUserActions = () => {
         dispatch({type: UserTypes.SET_TOKEN, payload: token});
     }, [dispatch]);
 
-    return {getUserFromPG, setUserFromAuth0, resetUser, isModerator, setToken}
+    return {getUserFromPG, setUserFromAuth0, resetUser, isModerator, setToken, getFavorites, addFavorite}
 };
 
 export interface UseUserActions {
@@ -43,4 +61,6 @@ export interface UseUserActions {
     resetUser: () => void;
     isModerator: () => void;
     setToken: (token: string) => void;
+    getFavorites: (token: string, authId: string) => void;
+    addFavorite: (token: string, grant_id: number, authId: string) => void;
 }
