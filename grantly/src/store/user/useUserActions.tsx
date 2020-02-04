@@ -20,7 +20,7 @@ export const useUserActions = () => {
 
     const getFavorites = useCallback((token: string, authId: string) => {
         dispatch({type: UserTypes.FETCH_FAVORITES_START});
-        axiosWithAuth(token).get(`/favorites/myfavorites/${authId}`)
+        axiosWithAuth(token).get(`/favorites/myFavorites/${authId}`)
             .then(res => dispatch({
                 type: UserTypes.FETCH_FAVORITES_SUCCESS,
                 payload: res.data
@@ -30,10 +30,9 @@ export const useUserActions = () => {
 
     const addFavorite = useCallback((token: string, grant_id: number, auth_id: string) => {
         dispatch({type: UserTypes.POST_FAVORITES_START});
-        axiosWithAuth(token).post('/favorites', {
-            grant_id,
-            auth_id
-        }).then(res => console.log(res.data)).catch(error => console.log(error.response));
+        axiosWithAuth(token).post('/favorites', {grant_id, auth_id})
+            .then(res => dispatch({type: UserTypes.FETCH_FAVORITES_SUCCESS, payload: res.data}))
+            .catch(error => dispatch({type: UserTypes.FETCH_FAVORITES_FAILURE, payload: error.response.message}));
     }, [dispatch]);
 
     const setUserFromAuth0 = useCallback((user: User) => {
@@ -52,7 +51,27 @@ export const useUserActions = () => {
         dispatch({type: UserTypes.SET_TOKEN, payload: token});
     }, [dispatch]);
 
-    return {getUserFromPG, setUserFromAuth0, resetUser, isModerator, setToken, getFavorites, addFavorite}
+    const removeFavorite = useCallback((token: string, grant_id: number, authId: string) => {
+        dispatch({type: UserTypes.REMOVE_FAVORITES_START});
+        axiosWithAuth(token).delete(`/favorites/`, {
+            headers: {
+                grant_id,
+                authId,
+                Authorization: `Bearer ${token}`
+            }
+        }).then(res => console.log(res.data)).catch(err => console.log(err));
+    }, [dispatch]);
+
+    return {
+        getUserFromPG,
+        setUserFromAuth0,
+        resetUser,
+        isModerator,
+        setToken,
+        getFavorites,
+        addFavorite,
+        removeFavorite
+    }
 };
 
 export interface UseUserActions {
@@ -63,4 +82,5 @@ export interface UseUserActions {
     setToken: (token: string) => void;
     getFavorites: (token: string, authId: string) => void;
     addFavorite: (token: string, grant_id: number, authId: string) => void;
+    removeFavorite: (token: string, grant_id: number, authId: string) => void;
 }
