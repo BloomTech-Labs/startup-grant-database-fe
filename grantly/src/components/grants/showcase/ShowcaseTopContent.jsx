@@ -71,6 +71,7 @@ function ShowcaseTopContent({showcase}) {
                             icon={BookmarkBorderOutlinedIcon}
                             button
                             id={showcase.id}
+                            favoriteId={showcase.favoriteId}
                         />
                     )}
                 </Grid>

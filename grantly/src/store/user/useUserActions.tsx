@@ -51,15 +51,11 @@ export const useUserActions = () => {
         dispatch({type: UserTypes.SET_TOKEN, payload: token});
     }, [dispatch]);
 
-    const removeFavorite = useCallback((token: string, grant_id: number, authId: string) => {
+    const removeFavorite = useCallback((token: string, favoriteId: number) => {
         dispatch({type: UserTypes.REMOVE_FAVORITES_START});
-        axiosWithAuth(token).delete(`/favorites/`, {
-            headers: {
-                grant_id,
-                authId,
-                Authorization: `Bearer ${token}`
-            }
-        }).then(res => console.log(res.data)).catch(err => console.log(err));
+        axiosWithAuth(token).delete(`/favorites/myFavorites/${favoriteId}`)
+            .then(res => console.log(res.data))
+            .catch(err => console.log(err.response));
     }, [dispatch]);
 
     return {
@@ -82,5 +78,5 @@ export interface UseUserActions {
     setToken: (token: string) => void;
     getFavorites: (token: string, authId: string) => void;
     addFavorite: (token: string, grant_id: number, authId: string) => void;
-    removeFavorite: (token: string, grant_id: number, authId: string) => void;
+    removeFavorite: (token: string, favoriteId: number) => void;
 }

@@ -10,7 +10,7 @@ const useStyles = makeStyles(() => ({
     }
 }));
 
-function FavoritesIconButton({title, label, icon: Icon, button, id, removeFavorite}) {
+function FavoritesIconButton({title, label, icon: Icon, button, id, removeFavorite, favoriteId}) {
     const classes = useStyles();
     const actions = useContext(ActionsContext);
     const {token, currentUser: {sub}} = useSelector(state => state.user);
