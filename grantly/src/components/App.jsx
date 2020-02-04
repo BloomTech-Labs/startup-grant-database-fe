@@ -9,6 +9,9 @@ import {theme} from "./theme";
 import routes from './routing/Routes';
 import RenderRoutes from "./routing/RenderRoutes";
 
+import LandingPage from "./landingpage/LandingPage";
+import SuggestionForm from './suggestion/Suggestion'
+import {GrantTable} from '../components/admin/GrantTable'
 const useStyles = makeStyles(() => ({
     app: {
         textAlign: 'center',
@@ -19,6 +22,8 @@ const useStyles = makeStyles(() => ({
         minHeight: '100vh'
     }
 }));
+
+
 
 function App() {
     const classes = useStyles();
