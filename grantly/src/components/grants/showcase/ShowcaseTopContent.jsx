@@ -33,7 +33,7 @@ function ShowcaseTopContent({showcase}) {
     const {favoriteGrants} = useSelector(state => state.user);
     const existingFavorite = favoriteGrants.filter(fav => fav.id === showcase.id);
     const classes = useStyles();
-    console.log(existingFavorite);
+
     return (
         <>
             <Grid

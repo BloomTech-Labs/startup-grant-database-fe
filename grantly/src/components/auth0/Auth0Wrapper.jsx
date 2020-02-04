@@ -59,7 +59,6 @@ export const Auth0Provider = ({
     const [loading, setLoading] = useState(true);
     const [popupOpen, setPopupOpen] = useState(false);
 
-    console.log(clientId, domain);
 
     useEffect(() => {
         const initAuth0 = async () => {
@@ -123,9 +122,6 @@ export const Auth0Provider = ({
             // Update DOM
         });
     });
-    console.group('Auth0Client');
-    console.table(auth0Client);
-    console.groupEnd();
     return (
         <Auth0Context.Provider
             value={{
