@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, {useContext, useEffect} from 'react';
 
 import { connect } from "react-redux";
 import moment from "moment";
@@ -36,12 +36,15 @@ const data = [
   }
 ]
 
-export const GrantTable = props => {
+ const GrantTable = props => {
 
   const { isAuthenticated, user, loading } = useAuth0();
   const actions = useContext(ActionsContext);
-  const {grants} = useSelector(state => state.grants);
+
  
+  useEffect(() => {
+    actions.grants.fetchGrants();
+  })
   // setTableValues(useValues())
   console.log(tableValues)
     return (
@@ -67,24 +70,4 @@ export const GrantTable = props => {
      );
   }
 
-
-const mapStateToProps = state => {
-  return {
-    error: state.error,
-    isFetching: state.isFetching,
-    data: state.filteredGrants,
-    grantStore: state.data,
-    savedFilters: state.filters,
-    columns: state.columns
-  };
-};
-
-export default connect(mapStateToProps, {
-  // fetchApi,
-  // adminFetchApi,
-  // postGrants,
-  // putGrants,
-  // deleteGrants,
-  // deleteSuggestion
-  // fetchGrants
-})(GrantTable);
+  export default GrantTable
