@@ -41,10 +41,6 @@ export const GrantTable = props => {
   const { isAuthenticated, user, loading } = useAuth0();
   const actions = useContext(ActionsContext);
   const {grants} = useSelector(state => state.grants);
-
-  useEffect(() => {
-
-  })
  
   // setTableValues(useValues())
   console.log(tableValues)
