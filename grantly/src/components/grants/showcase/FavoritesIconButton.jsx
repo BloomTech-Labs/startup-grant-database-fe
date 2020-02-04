@@ -17,6 +17,7 @@ function FavoritesIconButton({title, label, icon: Icon, button, id, removeFavori
     function handleClick(id) {
         if (removeFavorite) {
             console.log('Remove Favorite', id)
+            actions.user.removeFavorite(token, id, sub);
         } else {
             console.log('Add to Favorite', id, sub);
             actions.user.addFavorite(token, id, sub);
