@@ -1,18 +1,14 @@
-import React, { Component, useState } from 'react'
-import GrantFoucus from './formElements/GrantFoucusForm'
-import GrantDemo from './formElements/GrandDemoForm'
-import GrantInfo from './formElements/GrantInfoForm'
+import React, { Component, useState } from "react";
+import GrantDemoForm from "./formElements/GrantDemoForm";
+import GrantFocusForm from "./formElements/GrantDemoForm";
+import GrantInfoForm from "./formElements/GrantDemoForm";
+import { AddGrant } from "./SuggestionForm";
 
-const SuggestionForm = props => {
-    const [step, setStep] = useState(1)
-     
-    return (
-        <>
-        <GrantFoucus />
-        <GrantInfo />
-        <GrantDemo />
-        </>
-    )
-}
-
-export default SuggestionForm
+export const SuggestionForm = props => {
+  //   const [step, setStep] = useState(1);
+  return (
+    <>
+      <AddGrant />
+    </>
+  );
+};

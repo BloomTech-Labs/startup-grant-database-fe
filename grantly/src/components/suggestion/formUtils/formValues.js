@@ -1,3 +1,4 @@
+<<<<<<< HEAD
  
  
  //Array of values for the "Early Stage Funding" dropdown
@@ -12,9 +13,22 @@
       label: "no"
     }
   ];
+=======
+//Array of values for the "Early Stage Funding" dropdown
+>>>>>>> 1a74247dad9ddd570443fb44fe1ffbf624bedcdc
 
-  //Array of values for the "Geographic Region" dropdown
+export const funding = [
+  {
+    value: true,
+    label: "yes"
+  },
+  {
+    value: false,
+    label: "no"
+  }
+];
 
+<<<<<<< HEAD
   export const geographicRegion = [
     {
       value: "North America",
@@ -53,9 +67,50 @@
       label: "N/A"
     }
   ];
+=======
+//Array of values for the "Geographic Region" dropdown
+>>>>>>> 1a74247dad9ddd570443fb44fe1ffbf624bedcdc
 
-  //Array of values for the "Target Demographic" dropdown
+export const geographicRegion = [
+  {
+    value: "North America",
+    label: "North America"
+  },
+  {
+    value: "Europe",
+    label: "Europe"
+  },
+  {
+    value: "South America",
+    label: "South America"
+  },
+  {
+    value: "Africa",
+    label: "Africa"
+  },
+  {
+    value: "Asia",
+    label: "Asia"
+  },
+  {
+    value: "Australia",
+    label: "Australia"
+  },
+  {
+    value: "Global",
+    label: "Global"
+  },
+  {
+    value: "Other",
+    label: "Other"
+  },
+  {
+    value: "N/A",
+    label: "N/A"
+  }
+];
 
+<<<<<<< HEAD
   export const targeDemographic = [
     {
       value: "Minority Business Enterprise",
@@ -178,3 +233,33 @@
       label: "N/A"
     }
   ];
+=======
+//Array of values for the "Target Demographic" dropdown
+
+export const targetDemographic = [
+  {
+    value: "Minority Business Enterprise",
+    label: "Minority Business Enterprise"
+  },
+  {
+    value: "Women Business Enterprise",
+    label: "Women Business Enterprise"
+  },
+  {
+    value: "Disadvantaged Business Enterprise",
+    label: "Disadvantaged Business Enterprise"
+  },
+  {
+    value: "Veteran Business Enterprise",
+    label: "Veteran Business Enterprise"
+  },
+  {
+    value: "Other",
+    label: "Other"
+  },
+  {
+    value: "N/A",
+    label: "N/A"
+  }
+];
+>>>>>>> 1a74247dad9ddd570443fb44fe1ffbf624bedcdc
