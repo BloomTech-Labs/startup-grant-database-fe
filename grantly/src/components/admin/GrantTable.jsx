@@ -19,10 +19,11 @@ import {useAuth0} from "../auth0/Auth0Wrapper";
 import MaterialTable from "material-table";
 import TextField from "@material-ui/core/TextField";
 import Paper from "@material-ui/core/Paper";
-import grantTableStyles from "./styles/grantTableStyles";
+import tableValues from "./styles/grantTableStyles";
 
 // Components
-import TableSuggestions from "./GrantRow";
+import TableSuggestions from "./TableSuggestions";
+import {GrantTableContent} from './values/GrantTableValues'
 
 const data = [
   {
@@ -45,33 +46,34 @@ const data = [
 ]
 
 export const GrantTable = props => {
-  // console.log("GrantTable props", props);
-  const { isAuthenticated, user, loading } = useAuth0();
 
+  const { isAuthenticated, user, loading } = useAuth0();
   const actions = useContext(ActionsContext);
   const {grants} = useSelector(state => state.grants);
-
+ 
+  // setTableValues(useValues())
+  console.log(tableValues)
     return (
-      <TextField
-        id="standard basic"
-        style={{
-          minWidth: "400px",
-          fontFamily: "EB Garamond"
-        }}
-        multiline
-        value={props.value}
-        onChange={e => props.onChange(e.target.value)}
-      />
-    );
+      <React.Fragment>
+        <TextField
+          id="standard basic"
+          style={{
+            minWidth: "400px",
+            fontFamily: "EB Garamond"
+          }}
+           multiline
+          //  value={props.value}
+          //  onChange={e => props.onChange(e.target.value)} 
+        />
 
 
 
-    return (
-      <Paper className={null}>
-        <MaterialTable />
+        <Paper>
          
-      </Paper>
-    );
+            <GrantTableContent />     
+        </Paper>
+      </React.Fragment>
+     );
   }
 
 
