@@ -69,10 +69,12 @@ const useStyles = makeStyles(theme => ({
 
 function GrantContainer(props) {
     const allGrants = useSelector(state => state.filters.grants);
+    const {pristine} = useSelector(state => state.filters);
+    const allTheGrants = useSelector(state => state.grants.grants);
     const {favoriteGrants} = useSelector(state => state.user);
     const {showcase} = useSelector(state => state.grants);
     const actions = useContext(ActionsContext);
-    const [allGrantMode] = useState(() => {
+    const [allGrantMode, setAllGrantMode] = useState(() => {
         return props.match.path === '/grants';
     });
     const [filtersOpen, setFiltersOpen] = useState(false);
@@ -83,19 +85,28 @@ function GrantContainer(props) {
             return favoriteGrants;
         }
     });
+
     const classes=useStyles();
 
     useEffect(() => {
         if (allGrantMode) {
-            if (allGrants.length !== grants.length) {
-                setGrants(allGrants);
+            if (pristine && allGrants.length !== allTheGrants.length) {
+                setGrants(allTheGrants);
+            } else {
+                if (allGrants.length !== grants.length) {
+                    setGrants(allGrants);
+                }
             }
         } else {
             if (favoriteGrants.length !== grants.length) {
                 setGrants(favoriteGrants);
             }
         }
-    }, [allGrants, favoriteGrants]);
+    }, [allGrants, favoriteGrants, allGrantMode]);
+
+    useEffect(() => {
+        setAllGrantMode(props.match.path === '/grants');
+    }, [props.match.path]);
 
     const toggleFilters = () => setFiltersOpen(!filtersOpen);
 
