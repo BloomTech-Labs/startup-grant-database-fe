@@ -131,7 +131,7 @@ const tableValues = {
         lookup: {
         true: "Yes",
         false: "No"
-        }
+    }
     }],
 }
 
@@ -141,6 +141,7 @@ const tableValues = {
                     <MaterialTable
                         title={tableValues.title}
                         columns={tableValues.columns}
+                        rows={null}
                     />
                         {/* {
                             tableValues.columns.map(field => (

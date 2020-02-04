@@ -1,15 +1,6 @@
 import React, {useContext, useEffect, useState} from 'react';
 
 import { connect } from "react-redux";
-// import {
-  // fetchApi,
-  // adminFetchApi,
-  // postGrants,
-  // putGrants,
-  // deleteGrants,
-  // deleteSuggestion
-  // grants
-// } from "../../store/useActions";
 import moment from "moment";
 import {ActionsContext} from "../../context/ActionsContext";
 import {useSelector} from "react-redux";
@@ -50,10 +41,15 @@ export const GrantTable = props => {
   const { isAuthenticated, user, loading } = useAuth0();
   const actions = useContext(ActionsContext);
   const {grants} = useSelector(state => state.grants);
+
+  useEffect(() => {
+      axios
+  })
  
   // setTableValues(useValues())
   console.log(tableValues)
     return (
+      // edit
       <React.Fragment>
         <TextField
           id="standard basic"
@@ -68,10 +64,9 @@ export const GrantTable = props => {
 
 
 
-        <Paper>
-         
-            <GrantTableContent />     
-        </Paper>
+          <Paper>
+              <GrantTableContent />     
+          </Paper>
       </React.Fragment>
      );
   }
