@@ -31,8 +31,8 @@ export const useUserActions = () => {
     const addFavorite = useCallback((token: string, grant_id: number, auth_id: string) => {
         dispatch({type: UserTypes.POST_FAVORITES_START});
         axiosWithAuth(token).post('/favorites', {grant_id, auth_id})
-            .then(res => dispatch({type: UserTypes.FETCH_FAVORITES_SUCCESS, payload: res.data}))
-            .catch(error => dispatch({type: UserTypes.FETCH_FAVORITES_FAILURE, payload: error.response}));
+            .then(res => dispatch({type: UserTypes.POST_FAVORITES_SUCCESS, payload: res.data}))
+            .catch(error => dispatch({type: UserTypes.POST_FAVORITES_FAILURE, payload: error.response}));
     }, [dispatch]);
 
     const setUserFromAuth0 = useCallback((user: User) => {
