@@ -22,11 +22,12 @@ import {
 import { GrantInfoForm } from "./formElements/GrantInfoForm";
 import { GrantFocusForm } from "./formElements/GrantFocusForm";
 import { GrantDemoForm } from "./formElements/GrantDemoForm";
-import { SuggestionFormTopContent } from "./SuggestionFormTopContent.jsx";
+import { SuggestionFormTopContent } from "./formElements/SuggestionFormTopContent.jsx";
 import moment from "moment";
 export const AddGrant = props => {
   //Steps are the different parts of the form.  They are broken down into components in the submitForm directory
   const steps = ["Grant Info", "Grant Focus", "Grant Demo"];
+  const [activeStep, setActiveStep] = useState(0);
 
   const [token] = useGetToken();
 
@@ -116,7 +117,6 @@ export const AddGrant = props => {
   const styles = formStyles();
 
   //State that keeps track of what component the user is on
-  const [activeStep, setActiveStep] = useState(0);
 
   //Used to move the "step" to the next value
   const handleNext = () => {

@@ -27,30 +27,6 @@ const formStyles = makeStyles(theme => ({
       // position: "relative"
     }
   },
-
-  topBox: {
-    padding: theme.spacing(3),
-
-    "& h1": {
-      fontSize: "2.8rem",
-      fontFamily: "adobe-garamond-pro",
-      fontWeight: 400,
-
-      color: "white"
-    },
-    "& p": {
-      fontFamily: "Roboto",
-      fontSize: "1.3rem",
-      fontWeight: 200,
-      lineHeight: 1.5,
-      color: "white"
-    },
-
-    background: "#3DB8B3"
-  },
-  stepper: {
-    padding: theme.spacing(3, 0, 5)
-  },
   bottomBox: {
     padding: theme.spacing(2, 6, 1, 6)
   },
