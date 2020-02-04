@@ -3,7 +3,8 @@ import LandingPage from "../landingpage/LandingPage";
 import GrantContainer from "../grants/GrantContainer";
 import RenderRoutes from "./RenderRoutes";
 import { SuggestionForm } from "../suggestion/Suggestion";
-
+import GrantTable from "../admin/GrantTable"
+import About from "../about/About"
 const routes = [
   {
     key: "APP_ROOT",

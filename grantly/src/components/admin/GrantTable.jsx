@@ -43,7 +43,7 @@ export const GrantTable = props => {
   const {grants} = useSelector(state => state.grants);
 
   useEffect(() => {
-      axios
+
   })
  
   // setTableValues(useValues())
