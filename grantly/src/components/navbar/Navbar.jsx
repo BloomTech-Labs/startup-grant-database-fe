@@ -8,6 +8,7 @@ import MenuIcon from "@material-ui/icons/Menu";
 import SideMenu from "./SideMenu";
 import {useSelector} from "react-redux";
 import {ActionsContext} from "../../context/ActionsContext";
+import {useGetToken} from "../auth0/useGetToken";
 
 const useStyles = makeStyles(theme => ({
     navBar: {
@@ -93,7 +94,8 @@ const menuItems = [
 const Navbar = () => {
     const actions = useContext(ActionsContext);
     const [isOpen, setIsOpen] = useState(false);
-    const {currentUser, token} = useSelector(state => state.user);
+    const {currentUser} = useSelector(state => state.user);
+    const [token] = useGetToken();
     const toggleDrawer = open => event => {
         if (event && event.type === 'keydown' && (event.key === "Tab" || event.key === "Shift")) {
             return;
