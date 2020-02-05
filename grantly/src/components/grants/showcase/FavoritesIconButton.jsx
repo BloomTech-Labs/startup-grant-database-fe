@@ -22,7 +22,6 @@ function FavoritesIconButton({title, label, icon: Icon, button, id, removeFavori
             actions.user.addFavorite(token, id, sub);
         }
     }
-  }
 
   return (
     <Tooltip
