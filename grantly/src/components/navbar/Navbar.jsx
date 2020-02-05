@@ -93,7 +93,7 @@ const menuItems = [
 const Navbar = () => {
     const actions = useContext(ActionsContext);
     const [isOpen, setIsOpen] = useState(false);
-    const {currentUser} = useSelector(state => state.user);
+    const {currentUser, token} = useSelector(state => state.user);
     const toggleDrawer = open => event => {
         if (event && event.type === 'keydown' && (event.key === "Tab" || event.key === "Shift")) {
             return;
