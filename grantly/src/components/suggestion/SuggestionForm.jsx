@@ -5,6 +5,7 @@ import { ActionsContext } from "../../context/ActionsContext";
 import { useGetToken } from "../auth0/useGetToken.jsx";
 import { makeStyles } from "@material-ui/core/styles";
 import { useAuth0 } from "../auth0/Auth0Wrapper";
+
 //Objects
 // import formStyles from "../styles/formStyles";
 import {
@@ -224,11 +225,11 @@ export const AddGrant = props => {
     }
   }, [isAuthenticated, user]);
 
-  useEffect(() => {
-    if (token && isAuthenticated && user) {
-      actions.user.setToken(token);
-    }
-  }, [token]);
+  // useEffect(() => {
+  //   if (token && isAuthenticated && user) {
+  //     actions.user.setToken(token);
+  //   }
+  // }, [token]);
 
   return (
     <Fragment>
