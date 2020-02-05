@@ -2,36 +2,19 @@ import React from "react";
 import LandingPage from "../landingpage/LandingPage";
 import GrantContainer from "../grants/GrantContainer";
 import RenderRoutes from "./RenderRoutes";
-import { SuggestionForm } from "../suggestion/Suggestion";
-import About from '../about/About'
+import {SuggestionForm} from "../suggestion/Suggestion";
 import GrantTable from '../admin/GrantTable'
 
 const routes = [
-  {
-    key: "APP_ROOT",
-    path: "/",
-    exact: true,
-    component: LandingPage
-  },
-  {
-    key: "GRANTS",
-    path: "/grants",
-    component: RenderRoutes,
-    routes: [
-      {
-        path: "/grants",
+    {
+        key: "APP_ROOT",
+        path: "/",
         exact: true,
         component: LandingPage
     },
     {
-        key: 'ABOUT',
-        path: '/about',
-        exact: true,
-        component: About
-    },
-    {
-        key: 'GRANTS',
-        path: '/grants',
+        key: "GRANTS",
+        path: "/grants",
         component: RenderRoutes,
         routes: [
             {
@@ -48,30 +31,19 @@ const routes = [
             },
         ]
     },
-      {
-        key: "GRANTS_ROOT",
-        component: GrantContainer
-      },
-      {
-        path: "/grants/favorites",
+
+    {
+        key: "SUGGESTION",
+        path: "/suggestion",
         exact: true,
-        key: "GRANTS_FAVORITES",
-        component: GrantContainer
-      }
-    ]
-  },
-  {
-    key: "SUGGESTION",
-    path: "/suggestion",
-    exact: true,
-    component: SuggestionForm
-  },
-  {
-    key: 'ADMIN_TABLE',
-    path: '/admin',
-    exact: true,
-    component: GrantTable,
-},
+        component: SuggestionForm
+    },
+    {
+        key: 'ADMIN_TABLE',
+        path: '/admin',
+        exact: true,
+        component: GrantTable,
+    },
 ];
 
 export default routes;
