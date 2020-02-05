@@ -17,6 +17,7 @@ export const grantReducer = (state = initialState, action: GrantActions): GrantS
             return {...state, grants: [], isLoading: false, errors: action.payload};
         case GrantTypes.SELECT_GRANT:
             return {...state, showcase: action.payload};
+        // case GrantTypes.FetchAdminGrantStart ||
         default:
             return state;
     }

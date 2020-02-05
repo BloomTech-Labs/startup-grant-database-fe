@@ -3,6 +3,8 @@ import LandingPage from "../landingpage/LandingPage";
 import GrantContainer from "../grants/GrantContainer";
 import RenderRoutes from "./RenderRoutes";
 import { SuggestionForm } from "../suggestion/Suggestion";
+import About from '../about/About'
+import GrantTable from '../admin/GrantTable'
 
 const routes = [
   {

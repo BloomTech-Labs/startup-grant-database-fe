@@ -1,4 +1,4 @@
-import TableSuggestions from '../TableSuggestions'
+// import TableSuggestions from './TableSuggestions'
 
 import React, { useEffect } from 'react'
 import MaterialTable, {FilterRow} from "material-table";
@@ -14,12 +14,12 @@ const tableValues = {
             minWidth: "75px"
         },
             customSort: (a, b) => a.requests.length - b.requests.length,
-            render: rowData => (
-                <TableSuggestions
-                    rowData={rowData}
-                    // currentUser={props.currentUser}
-                />
-            )
+            // render: rowData => (
+            //     <TableSuggestions
+            //         rowData={rowData}
+            //         // currentUser={props.currentUser}
+            //     />
+            // )
     },
     {
         title: "Grant Status",

@@ -10,10 +10,8 @@ import {useAuth0} from "../auth0/Auth0Wrapper";
 import MaterialTable from "material-table";
 import TextField from "@material-ui/core/TextField";
 import Paper from "@material-ui/core/Paper";
-import tableValues from "./styles/grantTableStyles";
-
 // Components
-import TableSuggestions from "./TableSuggestions";
+import TableRow from "./TableRow";
 import {GrantTableContent} from './values/GrantTableValues'
 
 const data = [
@@ -38,7 +36,6 @@ const data = [
 
  const GrantTable = props => {
 
-  const { isAuthenticated, user, loading } = useAuth0();
   const actions = useContext(ActionsContext);
 
  
