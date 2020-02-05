@@ -44,9 +44,9 @@ const data = [
  
   useEffect(() => {
     actions.grants.fetchGrants();
-  })
+  },[])
+
   // setTableValues(useValues())
-  console.log(tableValues)
     return (
       // edit
       <React.Fragment>
