@@ -1,6 +1,9 @@
-import React from "react";
-import { Fade, IconButton, Tooltip } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
+import React, {useContext} from 'react';
+import {Fade, IconButton, Tooltip} from "@material-ui/core";
+import {makeStyles} from "@material-ui/core/styles";
+import {useSelector} from "react-redux";
+import {ActionsContext} from "../../../context/ActionsContext";
+
 
 const useStyles = makeStyles(() => ({
   bookmark: {
@@ -8,21 +11,16 @@ const useStyles = makeStyles(() => ({
   }
 }));
 
-function FavoritesIconButton({
-  title,
-  label,
-  icon: Icon,
-  button,
-  id,
-  removeFavorite
-}) {
-  const classes = useStyles();
-
-  function handleClick(id) {
-    if (removeFavorite) {
-      console.log("Remove Favorite", id);
-    } else {
-      console.log("Add to Favorite", id);
+function FavoritesIconButton({title, label, icon: Icon, button, id, removeFavorite}) {
+    const classes = useStyles();
+    const actions = useContext(ActionsContext);
+    const {token, currentUser: {sub}} = useSelector(state => state.user);
+    function handleClick(id) {
+        if (removeFavorite) {
+            actions.user.removeFavorite(token, id);
+        } else {
+            actions.user.addFavorite(token, id, sub);
+        }
     }
   }
 

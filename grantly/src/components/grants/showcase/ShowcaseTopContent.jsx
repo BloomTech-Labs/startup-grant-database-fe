@@ -81,7 +81,7 @@ function ShowcaseTopContent({showcase}) {
                         label="DeleteIcon"
                         button
                         icon={DeleteIcon}
-                        id={existingFavorite[0].id}
+                        id={existingFavorite[0].favoriteID}
                         removeFavorite
                     />}
                 </Grid>

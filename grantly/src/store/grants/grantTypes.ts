@@ -23,21 +23,22 @@ export enum GrantTypes {
 }
 
 export interface Grant {
-  id?: number;
-  competition_name: string;
-  area_focus: string;
-  sponsoring_entity: string;
-  website: string;
-  most_recent_application_due_date: string;
-  amount: number;
-  amount_notes: string | null;
-  geographic_region: string | null;
-  target_entrepreneur_demographic: string | null;
-  notes: string;
-  early_stage_funding: number | boolean;
-  is_reviewed: number | boolean;
-  has_requests: number | boolean;
-  details_last_updated: string;
+    id?: number;
+    competition_name: string;
+    area_focus: string;
+    sponsoring_entity: string;
+    website: string;
+    most_recent_application_due_date: string;
+    amount: number;
+    amount_notes: string | null;
+    geographic_region: string | null;
+    target_entrepreneur_demographic: string | null;
+    notes: string;
+    early_stage_funding: number | boolean;
+    is_reviewed: number | boolean;
+    has_requests: number | boolean;
+    details_last_updated: string;
+    favoriteID?: number
 }
 
 export interface GrantState {

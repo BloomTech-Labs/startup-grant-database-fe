@@ -120,6 +120,13 @@ const Navbar = () => {
         }
     }, [currentUser]);
 
+    useEffect(()=> {
+        if (token && isAuthenticated && user) {
+            actions.user.setToken(token);
+            actions.user.getFavorites(token, user.sub);
+        }
+    }, [token]);
+
     return (
         <AppBar
             className={classes.navBar}
