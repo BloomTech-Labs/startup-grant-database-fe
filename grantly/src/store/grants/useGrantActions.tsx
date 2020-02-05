@@ -48,11 +48,29 @@ export const useGrantActions = () => {
     [dispatch]
   );
 
-  return { fetchGrants, selectGrant, postGrant };
+  const fetchAdminGrants = useCallback((token) => {
+    dispatch({ type: GrantTypes.FETCH_ADMIN_GRANTS_START });
+    // @ts-ignore
+    axiosWithAuth(token)
+      .get(`/admin`)
+      .then((res: AxiosResponse) => {
+        dispatch({ type: GrantTypes.FETCH_ADMIN_GRANTS_SUCCESS, payload: res.data });
+      })
+      .catch((err: AxiosError) => {
+        const data =
+          err && err.response && err.response.data ? err.response.data : err;
+        dispatch({ type: GrantTypes.FETCH_ADMIN_GRANTS_FAILURE, payload: data });
+      });
+  }, [dispatch]);
+
+
+
+  return { fetchGrants, selectGrant, postGrant, fetchAdminGrants };
 };
 
 export interface UseGrantActions {
   fetchGrants: () => void;
   selectGrant: (grant: Grant) => void;
   postGrant: (data: Grant, token: string) => void;
+  fetchAdminGrants: (token: string) => void
 }
