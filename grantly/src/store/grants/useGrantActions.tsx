@@ -108,7 +108,7 @@ export const useGrantActions = () => {
   // }, [dispatch])
 
   return { fetchGrants, selectGrant, postGrant, fetchAdminGrants,
-    //  deleteAdminGrant, updateAdminGrant, selectAdminGrant
+    //  deleteAdminGrant,  updateAdminGrant, selectAdminGrant
     };
 };
 
@@ -119,5 +119,5 @@ export interface UseGrantActions {
   fetchAdminGrants: (token: string) => void
   // selectAdminGrant: (token: string) => void;
   // deleteAdminGrant: (token: string) => void;
-  // updateAdminGrant: (token: string, data: Grant,) => void;
+  // updateAdminGrant: (data: Grant, token: string) => void;
 }

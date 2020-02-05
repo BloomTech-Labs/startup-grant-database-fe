@@ -102,6 +102,7 @@ interface UpdateAdminGrantsStart {
 
 interface UpdateAdminGrantsSuccess {
   type: typeof GrantTypes.UPDATE_ADMIN_GRANTS_SUCCESS
+  // payload: Grant;
 }
 
 interface UpdateAdminGrantsFailure {
