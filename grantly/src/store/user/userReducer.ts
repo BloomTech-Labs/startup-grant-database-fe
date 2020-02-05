@@ -10,7 +10,6 @@ const initialState: UserState = {
         sub: '',
         updated_at: ''
     },
-    token: null,
     favoriteGrants: [],
     isModerator: false,
     isLoading: false,
@@ -28,9 +27,7 @@ export const userReducer = (state = initialState, action: UserActions): UserStat
         case UserTypes.SET_USER_FROM_AUTH0:
             return {...state, isLoading: false, errors: null, currentUser: {...action.payload}};
         case UserTypes.IS_MODERATOR:
-            return {...state, isModerator: true};
-        case UserTypes.SET_TOKEN:
-            return {...state, token: action.payload}
+            return {...state, isModerator: true}
         case UserTypes.RESET_USER:
             return initialState;
         default:

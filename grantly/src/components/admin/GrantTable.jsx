@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, {useContext, useEffect} from 'react';
 
 import { connect } from "react-redux";
 import moment from "moment";
@@ -10,10 +10,8 @@ import {useAuth0} from "../auth0/Auth0Wrapper";
 import MaterialTable from "material-table";
 import TextField from "@material-ui/core/TextField";
 import Paper from "@material-ui/core/Paper";
-import tableValues from "./styles/grantTableStyles";
-
 // Components
-import TableSuggestions from "./TableSuggestions";
+import TableRow from "./TableRow";
 import {GrantTableContent} from './values/GrantTableValues'
 
 const data = [
@@ -36,14 +34,16 @@ const data = [
   }
 ]
 
-export const GrantTable = props => {
+ const GrantTable = props => {
 
-  const { isAuthenticated, user, loading } = useAuth0();
   const actions = useContext(ActionsContext);
-  const {grants} = useSelector(state => state.grants);
+
  
+  useEffect(() => {
+    actions.grants.fetchGrants();
+  },[])
+
   // setTableValues(useValues())
-  console.log(tableValues)
     return (
       // edit
       <React.Fragment>
@@ -67,24 +67,4 @@ export const GrantTable = props => {
      );
   }
 
-
-const mapStateToProps = state => {
-  return {
-    error: state.error,
-    isFetching: state.isFetching,
-    data: state.filteredGrants,
-    grantStore: state.data,
-    savedFilters: state.filters,
-    columns: state.columns
-  };
-};
-
-export default connect(mapStateToProps, {
-  // fetchApi,
-  // adminFetchApi,
-  // postGrants,
-  // putGrants,
-  // deleteGrants,
-  // deleteSuggestion
-  // fetchGrants
-})(GrantTable);
+  export default GrantTable
