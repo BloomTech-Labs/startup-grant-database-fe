@@ -1,6 +1,6 @@
 //Dependencies
 import React, { useState, useEffect, useContext, Fragment } from "react";
-import { connect } from "react-redux";
+import { useSelector } from "react-redux";
 import { ActionsContext } from "../../context/ActionsContext";
 import { useGetToken } from "../auth0/useGetToken.jsx";
 import { makeStyles } from "@material-ui/core/styles";
@@ -112,15 +112,14 @@ const useStyles = makeStyles(theme => ({
 
 export const AddGrant = props => {
   const actions = useContext(ActionsContext);
-  const { isAuthenticated, user, loginWithRedirect } = useAuth0();
-
+  const { token } = useSelector(state => state.user);
   const styles = useStyles();
 
   //Steps are the different parts of the form.  They are broken down into components in the submitForm directory
   const steps = ["Grant Info", "Grant Focus", "Grant Demo"];
   const [activeStep, setActiveStep] = useState(0);
 
-  const [token] = useGetToken();
+  // const [token] = useGetToken();
 
   //Switch case that uses the "step" to determine what component to render
   function getStepContent(step) {
@@ -216,20 +215,6 @@ export const AddGrant = props => {
   const handleBack = () => {
     setActiveStep(activeStep - 1);
   };
-
-  useEffect(() => {
-    if (isAuthenticated && user) {
-      actions.user.setUserFromAuth0(user);
-    } else {
-      actions.user.resetUser();
-    }
-  }, [isAuthenticated, user]);
-
-  // useEffect(() => {
-  //   if (token && isAuthenticated && user) {
-  //     actions.user.setToken(token);
-  //   }
-  // }, [token]);
 
   return (
     <Fragment>

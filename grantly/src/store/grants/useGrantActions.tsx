@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { AxiosError, AxiosResponse } from "axios";
 import { Grant, GrantTypes } from "./grantTypes";
 import { FilterTypes } from "../filters/filterTypes";
-import { axiosWithOutAuth as axios } from "../utils/axiosConfig";
+import { axiosWithOutAuth as axios, axiosWithAuth } from "../utils/axiosConfig";
 
 export const useGrantActions = () => {
   const dispatch = useDispatch();
@@ -32,9 +32,9 @@ export const useGrantActions = () => {
   );
 
   const postGrant = useCallback(
-    data => {
+    (data, token) => {
       dispatch({ type: GrantTypes.POST_GRANTS_START, payload: data });
-      axios()
+      axiosWithAuth(token)
         .post("/grants", data)
         .then((res: AxiosResponse) => {
           dispatch({ type: GrantTypes.POST_GRANTS_SUCCESS, payload: res.data });
@@ -54,5 +54,5 @@ export const useGrantActions = () => {
 export interface UseGrantActions {
   fetchGrants: () => void;
   selectGrant: (grant: Grant) => void;
-  postGrant: (data: Grant) => void;
+  postGrant: (data: Grant, token: string) => void;
 }
