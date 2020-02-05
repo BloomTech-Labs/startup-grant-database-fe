@@ -11,7 +11,6 @@ const initialState: UserState = {
         sub: '',
         updated_at: ''
     },
-    token: null,
     favoriteGrants: [],
     isModerator: false,
     isLoading: false,

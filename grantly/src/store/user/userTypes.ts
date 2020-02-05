@@ -16,8 +16,7 @@ export enum UserTypes {
     REMOVE_FAVORITES_FAILURE = 'REMOVE_FAVORITES_FAILURE',
     SET_USER_FROM_AUTH0 = 'SET_USER_FROM_AUTH0',
     RESET_USER = 'RESET_USER',
-    IS_MODERATOR = 'IS_MODERATOR',
-    SET_TOKEN = 'SET_TOKEN'
+    IS_MODERATOR = 'IS_MODERATOR'
 }
 
 export interface User {
@@ -32,7 +31,6 @@ export interface User {
 
 export interface UserState {
     currentUser: User;
-    token: string | null
     favoriteGrants: Grant[];
     isModerator: boolean;
     isLoading: boolean;

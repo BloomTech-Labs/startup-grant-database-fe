@@ -4,10 +4,11 @@ import {makeStyles} from "@material-ui/core/styles";
 import {useSelector} from "react-redux";
 import {ActionsContext} from "../../../context/ActionsContext";
 
+
 const useStyles = makeStyles(() => ({
-    bookmark: {
-        fill: '#696969'
-    }
+  bookmark: {
+    fill: "#696969"
+  }
 }));
 
 function FavoritesIconButton({title, label, icon: Icon, button, id, removeFavorite}) {
@@ -21,25 +22,23 @@ function FavoritesIconButton({title, label, icon: Icon, button, id, removeFavori
             actions.user.addFavorite(token, id, sub);
         }
     }
+  }
 
-    return (
-        <Tooltip
-            TransitionComponent={Fade}
-            TransitionProps={{timeout: 600}}
-            title={title}
-        >
-            {button ? (
-                <IconButton aria-label={label}>
-                    <Icon
-                        className={classes.bookmark}
-                        onClick={()=>handleClick(id)}
-                    />
-                </IconButton>
-            ) : (
-                <Icon aria-label={label}/>
-            )}
-        </Tooltip>
-    )
+  return (
+    <Tooltip
+      TransitionComponent={Fade}
+      TransitionProps={{ timeout: 600 }}
+      title={title}
+    >
+      {button ? (
+        <IconButton aria-label={label}>
+          <Icon className={classes.bookmark} onClick={() => handleClick(id)} />
+        </IconButton>
+      ) : (
+        <Icon aria-label={label} />
+      )}
+    </Tooltip>
+  );
 }
 
-export default FavoritesIconButton
+export default FavoritesIconButton;

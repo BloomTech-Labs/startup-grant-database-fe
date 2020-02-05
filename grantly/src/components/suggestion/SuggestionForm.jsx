@@ -1,12 +1,13 @@
 //Dependencies
-import React, { useState, Fragment } from "react";
-import { connect } from "react-redux";
+import React, { useState, useEffect, useContext, Fragment } from "react";
+import { useSelector } from "react-redux";
+import { ActionsContext } from "../../context/ActionsContext";
+import { useGetToken } from "../auth0/useGetToken.jsx";
+import { makeStyles } from "@material-ui/core/styles";
+import { useAuth0 } from "../auth0/Auth0Wrapper";
 
-import { useGetToken } from "../auth0/useGetToken.js";
-
-// import { postGrants, fetchApi, changeTab } from "../actions/index.js";
 //Objects
-import formStyles from "../styles/formStyles";
+// import formStyles from "../styles/formStyles";
 import {
   Button,
   Paper,
@@ -23,13 +24,102 @@ import { GrantInfoForm } from "./formElements/GrantInfoForm";
 import { GrantFocusForm } from "./formElements/GrantFocusForm";
 import { GrantDemoForm } from "./formElements/GrantDemoForm";
 import { SuggestionFormTopContent } from "./formElements/SuggestionFormTopContent.jsx";
+import { GrantSteps } from "./formElements/GrantSteps.jsx";
 import moment from "moment";
+
+const useStyles = makeStyles(theme => ({
+  layout: {
+    width: "auto",
+    marginLeft: theme.spacing(2),
+    marginRight: theme.spacing(2),
+    [theme.breakpoints.up(600 + theme.spacing(2) * 2)]: {
+      width: 700,
+      marginLeft: "auto",
+      marginRight: "auto",
+      // height: "auto"
+      height: 1000
+    }
+  },
+  paper: {
+    marginTop: theme.spacing(3),
+    marginBottom: theme.spacing(3),
+
+    [theme.breakpoints.up(600 + theme.spacing(3) * 2)]: {
+      marginTop: theme.spacing(3),
+      marginBottom: theme.spacing(6),
+      paddingBottom: theme.spacing(6)
+
+      // height: 1000,
+      // position: "relative"
+    }
+  },
+  bottomBox: {
+    padding: theme.spacing(2, 6, 1, 6)
+  },
+  button: {
+    display: "flex",
+    // alignItems: "flex-end",
+    // justifyContent: "flex-end"
+    // justifyContent: "flex-end",
+    // alignSelf: "flex-end",
+    // position: "absolute",
+    // width: 800,
+    bottom: theme.spacing(5),
+    paddingLeft: theme.spacing(6),
+    marginTop: theme.spacing(3),
+    marginRight: theme.spacing(3)
+  },
+  submit: {
+    width: "30%",
+    height: "4em"
+  },
+  submitContainer: {
+    marginLeft: theme.spacing(3)
+  },
+  back: {
+    width: "30%",
+    height: "4em",
+    border: "1px solid black",
+    color: "black",
+    marginRight: "50px"
+  },
+  dropDown: {
+    width: 200,
+    color: "#fff",
+    [theme.breakpoints.down("sm")]: {
+      width: "90%"
+    }
+  },
+  subjectHeader: {
+    textAlign: "left",
+    paddingLeft: theme.spacing(6)
+  },
+  hr: {
+    width: 600,
+    color: "#808080"
+  },
+  label: {
+    color: "#fff"
+  },
+  adminButtons: {
+    margin: "30px"
+  },
+  buttonsContainer: {
+    display: "flex",
+    justifyContent: "center"
+  }
+}));
+
 export const AddGrant = props => {
+  const actions = useContext(ActionsContext);
+  const { token } = useSelector(state => state.user);
+  const styles = useStyles();
+
   //Steps are the different parts of the form.  They are broken down into components in the submitForm directory
   const steps = ["Grant Info", "Grant Focus", "Grant Demo"];
   const [activeStep, setActiveStep] = useState(0);
 
-  const [token] = useGetToken();
+  // const [token] = useGetToken();
 
   //Switch case that uses the "step" to determine what component to render
   function getStepContent(step) {
@@ -81,12 +171,12 @@ export const AddGrant = props => {
       [event.target.name]: event.target.value
     });
   };
-
   //Submit for grant from
   const submitGrant = event => {
     event.preventDefault();
+    console.log("THE TOKEN", token);
 
-    props.postGrants({ ...grantInfo }, token);
+    actions.grants.postGrant({ ...grantInfo }, token);
 
     setGrantInfo({
       competition_name: "",
@@ -106,19 +196,17 @@ export const AddGrant = props => {
     });
 
     //Once a user submits it will delay for 2 seconds before "pushing" the user to the grants page
-    setTimeout(() => {
-      props.fetchApi();
-      props.changeTab(0);
+    // setTimeout(() => {
+    //   // props.fetchApi();
+    //   // props.changeTab(0);
 
-      props.history.push("/grants");
-    }, 2000);
+    //   props.history.push("/grants");
+    // }, 2000);
   };
-
-  const styles = formStyles();
 
   //State that keeps track of what component the user is on
 
-  //Used to move the "step" to the next value
+  // Used to move the "step" to the next value
   const handleNext = () => {
     setActiveStep(activeStep + 1);
   };
@@ -136,13 +224,9 @@ export const AddGrant = props => {
         <Paper className={styles.paper}>
           <SuggestionFormTopContent />
           {/* Material UI for the stepper at the top of the page. */}
-          <Stepper activeStep={activeStep} className={styles.stepper}>
-            {steps.map(label => (
-              <Step key={label}>
-                <StepLabel>{label}</StepLabel>
-              </Step>
-            ))}
-          </Stepper>
+
+          <GrantSteps steps={steps} activeStep={activeStep} />
+
           <Fragment>
             {/* Ternary statement to determine if the grant has been submitted.  This is not being used now, but will be once an email input option has been implemented in future releases  */}
             {activeStep === steps.length ? (

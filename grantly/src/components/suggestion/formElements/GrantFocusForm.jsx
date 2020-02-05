@@ -1,4 +1,6 @@
 import React, { Fragment } from "react";
+import { makeStyles } from "@material-ui/core/styles";
+
 import {
   Grid,
   Typography,
@@ -7,15 +9,22 @@ import {
   MenuItem
 } from "@material-ui/core";
 import formStyles from "../formElements/formStyles";
+import { areaFocus } from "../formUtils/formValues.js";
+
+const useStyles = makeStyles(theme => ({
+  bottomBox: {
+    padding: theme.spacing(2, 6, 1, 6)
+  }
+}));
 
 export const GrantFocusForm = props => {
-  // const formStyles = formStyles();
+  const styles = useStyles();
 
   return (
     <Fragment>
       <Typography variant="h5">Grant Focus</Typography>
       <Divider variant="middle" />
-      <Grid container spacing={3}>
+      <Grid container spacing={3} className={styles.bottomBox}>
         <Grid item xs={12}>
           <TextField
             label="Sponsoring Entity"
@@ -35,11 +44,11 @@ export const GrantFocusForm = props => {
           >
             {/* Maps through the array to return values for dropdown */}
 
-            {/* {.map(option => ( 
-                //     <MenuItem 
-
-                //     </MenuItem>
-                //   ))}*/}
+            {areaFocus.map(option => (
+              <MenuItem key={option.value} value={option.value}>
+                {option.label}
+              </MenuItem>
+            ))}
           </TextField>
         </Grid>
       </Grid>

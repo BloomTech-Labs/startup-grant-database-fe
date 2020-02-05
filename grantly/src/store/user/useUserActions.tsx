@@ -10,9 +10,9 @@ export const useUserActions = () => {
     const getUserFromPG = useCallback(email => {
         dispatch({type: UserTypes.FETCH_USER_START});
         // @ts-ignore
-        axios().post(`/users`, email).then((res: AxiosResponse) => {
+        axios().post(`/users`, email).then((res:AxiosResponse) => {
             dispatch({type: UserTypes.FETCH_USER_SUCCESS, payload: res.data})
-        }).catch((err: AxiosError) => {
+        }).catch((err:AxiosError) => {
             const data = err && err.response && err.response.data ? err.response.data : err;
             dispatch({type: UserTypes.FETCH_USER_FAILURE, payload: data})
         })
@@ -39,13 +39,14 @@ export const useUserActions = () => {
         dispatch({type: UserTypes.SET_USER_FROM_AUTH0, payload: user})
     }, [dispatch]);
 
-    const resetUser = useCallback(() => {
+    const resetUser = useCallback(()=> {
         dispatch({type: UserTypes.RESET_USER})
-    }, [dispatch]);
+    }, [dispatch])
 
-    const isModerator = useCallback(() => {
+    const isModerator = useCallback(()=> {
         dispatch({type: UserTypes.IS_MODERATOR})
     }, [dispatch]);
+
 
     const setToken = useCallback((token: string) => {
         dispatch({type: UserTypes.SET_TOKEN, payload: token});

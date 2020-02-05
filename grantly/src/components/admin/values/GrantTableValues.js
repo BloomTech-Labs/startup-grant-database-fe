@@ -1,7 +1,8 @@
-import TableSuggestions from '../TableSuggestions'
+// import TableSuggestions from './TableSuggestions'
 
-import React from 'react'
+import React, { useEffect } from 'react'
 import MaterialTable, {FilterRow} from "material-table";
+import moment from 'moment'
 
 const tableValues = {
 
@@ -12,11 +13,11 @@ const tableValues = {
             cellStyle: {
             minWidth: "75px"
         },
-            // customSort: (a, b) => a.requests.length - b.requests.length,
+            customSort: (a, b) => a.requests.length - b.requests.length,
             // render: rowData => (
             //     <TableSuggestions
-            //     rowData={rowData}
-            //         currentUser={props.currentUser}
+            //         rowData={rowData}
+            //         // currentUser={props.currentUser}
             //     />
             // )
     },
@@ -133,75 +134,77 @@ const tableValues = {
         false: "No"
     }
     }],
+    
 }
 
+const tableStyles = {
+        headerStyle: {
+            fontFamily: "Nunito Sans",
+            fontSize: "1em",
+            color: "#3A3A3A",
+            // letterSpacing: "0.025em",
+            padding: "1em",
+            fontWeight: 700,
+            backgroundColor: "#83D7D1"
+          }
+}
+
+// const tableFunctions = {
+//     onRowAdd: newData =>
+//       new Promise(resolve => {
+//         setTimeout(() => {
+//           resolve();
+//           let filteredData = Object.assign({}, newData);
+//           delete filteredData.requests;
+//           props.postGrants(filteredData, props.currentUser.token);
+//         }, 600);
+//       }),
+//     onRowUpdate: (newData, oldData) =>
+//       new Promise(resolve => {
+//         setTimeout(() => {
+//           resolve();
+//           if (oldData) {
+//             let filteredData = Object.assign({}, newData);
+//             delete filteredData.requests;
+//             props.putGrants(
+//               {
+//                 ...filteredData,
+//                 details_last_updated: moment().format("YYYY-MM-DD")
+//               },
+//               props.currentUser.token
+//             );
+//           }
+//         }, 600);
+//       }),
+//     onRowDelete: oldData =>
+//       new Promise(resolve => {
+//         setTimeout(() => {
+//           resolve();
+//           if (oldData) {
+//             delete oldData.requests;
+//             props.deleteGrants(oldData.id, props.currentUser.token);
+//           }
+//         }, 600);
+//       })
+//   }
+
     export function GrantTableContent(props) {
+        useEffect(() => {   
+            
+        }, [])
+        useEffect(() => {   
+            
+        }, [])
         return (
             <React.Fragment>              
                     <MaterialTable
                         title={tableValues.title}
                         columns={tableValues.columns}
-                        rows={null}
+                        data={props.data}
+                        options={tableStyles}
+                        // editable={tableFunctions}
+                        zeroMinWidth
                     />
-                        {/* {
-                            tableValues.columns.map(field => (
-                                <FilterRow
-                                        {...field}
-                                        key={field.title}
-                                        {...props}
-                                    />
-                                 ))}
-                    </MaterialTable> */}
             </React.Fragment>
         )
     }
-
-    // data={props.data},
-    // options={{
-    // headerStyle: {
-    //     fontFamily: "Nunito Sans",
-    //     fontSize: "1em",
-    //     color: "#3A3A3A",
-    //     // letterSpacing: "0.025em",
-    //     padding: "1em",
-    //     fontWeight: 700,
-    //     backgroundColor: "#83D7D1"
-    // }
-    // }}
-    // editable={{
-    // onRowAdd: newData =>
-    //     new Promise(resolve => {
-    //     setTimeout(() => {
-    //         resolve();
-    //         let filteredData = Object.assign({}, newData);
-    //         delete filteredData.requests;
-    //         props.postGrants(filteredData, props.currentUser.token);
-    //     }, 600);
-    //     }),
-    // onRowUpdate: (newData, oldData) =>
-    //     new Promise(resolve => {
-    //     setTimeout(() => {
-    //         resolve();
-    //         if (oldData) {
-    //         let filteredData = Object.assign({}, newData);
-    //         delete filteredData.requests;
-    //         props.putGrants(
-    //             {
-    //             ...filteredData,
-    //             details_last_updated: moment().format("YYYY-MM-DD")
-    //             },
-    //             props.currentUser.token
-    //         );
-    //         }
-    //     }, 600);
-    //     }),
-    // onRowDelete: oldData =>
-    //     new Promise(resolve => {
-    //     setTimeout(() => {
-    //         resolve();
-    //         if (oldData) {
-    //         delete oldData.requests;
-    //         props.deleteGrants(oldData.id, props.currentUser.token);
-    //         }
-    //     }, 600);
-    //     })

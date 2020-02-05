@@ -1,5 +1,7 @@
 import React, { Fragment } from "react";
+import { makeStyles } from "@material-ui/core/styles";
 import { connect } from "react-redux";
+// import { useGetToken } from "../../auth0/useGetToken.jsx";
 import {
   Grid,
   Typography,
@@ -7,16 +9,28 @@ import {
   MenuItem,
   Divider
 } from "@material-ui/core";
+import {
+  geographicRegion,
+  targetDemographic,
+  funding
+} from "../formUtils/formValues.js";
 import formStyles from "../formElements/formStyles";
 
+const useStyles = makeStyles(theme => ({
+  bottomBox: {
+    padding: theme.spacing(2, 6, 1, 6)
+  }
+}));
+
 export const GrantDemoForm = props => {
-  // const styles = formStyles();
+  const styles = useStyles();
+  // const [token] = useGetToken();
 
   return (
     <Fragment>
       <Typography variant="h5">Grant Demographics</Typography>
       <Divider variant="middle" />
-      <Grid container spacing={3}>
+      <Grid container spacing={3} className={styles.bottomBox}>
         <Grid item xs={12}>
           <TextField
             label="Geographic Region"
@@ -26,10 +40,11 @@ export const GrantDemoForm = props => {
             placeholder="Geographic Region"
           >
             {/* Maps through the array to return values for dropdown */}
-            {/* {geographicRegion.map(option => (
-                <MenuItem key={option.value} value={option.value}>
-                  {option.label}
-                </MenuItem> */}
+            {geographicRegion.map(option => (
+              <MenuItem key={option.value} value={option.value}>
+                {option.label}
+              </MenuItem>
+            ))}
           </TextField>
         </Grid>
         <Grid item xs={12}>
@@ -41,17 +56,18 @@ export const GrantDemoForm = props => {
             placeholder="Target Entrepreneur Demographic"
           >
             {/* Maps through the array to return values for dropdown */}
-            {/*   
-              {targeDemographic.map(option => (
-                <MenuItem key={option.value} value={option.value}>
-                  {option.label}
-                </MenuItem>
-              ))} */}
+
+            {targetDemographic.map(option => (
+              <MenuItem key={option.value} value={option.value}>
+                {option.label}
+              </MenuItem>
+            ))}
           </TextField>
         </Grid>
         <Grid item xs={12} sm={6}>
           <TextField
             label="Application Due Date"
+            InputLabelProps={{ shrink: true }}
             fullWidth
             type="date"
             name="most_recent_application_due_date"
@@ -66,11 +82,11 @@ export const GrantDemoForm = props => {
             placeholder="Early Stage Funding"
           >
             {/* Maps through the array to return values for dropdown */}
-            {/* {.map(option => (
-                <MenuItem key={option.value} value={option.value}>
-                  {option.label}
-                </MenuItem>
-              ))} */}
+            {funding.map(option => (
+              <MenuItem key={option.value} value={option.value}>
+                {option.label}
+              </MenuItem>
+            ))}
           </TextField>
         </Grid>
         <Grid item xs={12}>
