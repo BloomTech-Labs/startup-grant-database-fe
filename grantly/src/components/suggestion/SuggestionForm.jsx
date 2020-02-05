@@ -2,7 +2,7 @@
 import React, { useState, useEffect, useContext, Fragment } from "react";
 import { connect } from "react-redux";
 import { ActionsContext } from "../../context/ActionsContext";
-import { useGetToken } from "../../store";
+import { useGetToken } from "../auth0/useGetToken.jsx";
 import { makeStyles } from "@material-ui/core/styles";
 import { useAuth0 } from "../auth0/Auth0Wrapper";
 //Objects
