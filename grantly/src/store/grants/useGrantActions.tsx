@@ -69,7 +69,7 @@ export const useGrantActions = () => {
   //   axiosWithAuth(token)
   //     .put(`/admin/${id}`)
   //     .then((res: AxiosResponse) => {
-  //       dispatch({type: GrantTypes.FETCH_ADMIN_GRANTS_SUCCESS, payload: res.data})
+  //       dispatch({type: GrantTypes.UPDATE_ADMIN_GRANTS_SUCCESS, payload: res.data})
   //     })
   //     .catch((err: AxiosError) => {
   //       const data =
