@@ -4,6 +4,7 @@ const initialState: GrantState = {
   grants: [],
   showcase: null,
   isLoading: false,
+  isUpdating: false,
   errors: null
 };
 
@@ -40,6 +41,24 @@ export const grantReducer = (
       return { ...state, grants: [], isLoading: false, errors: action.payload };
     case GrantTypes.SELECT_GRANT:
       return { ...state, showcase: action.payload };
+    case GrantTypes.UPDATE_ADMIN_GRANTS_START:
+      return {...state}
+    case GrantTypes.UPDATE_ADMIN_GRANTS_SUCCESS:
+      return {...state, isUpdating: true}
+    case GrantTypes.UPDATE_ADMIN_GRANTS_FAILURE:
+      return {...state, errors: action.payload}
+      case GrantTypes.DELETE_ADMIN_GRANTS_START:
+      return {...state}
+    case GrantTypes.DELETE_ADMIN_GRANTS_SUCCESS:
+      return {...state}
+    case GrantTypes.DELETE_ADMIN_GRANTS_FAILURE:
+      return {...state, errors: action.payload}
+      case GrantTypes.SELECT_ADMIN_GRANTS_START:
+        return {...state}
+      case GrantTypes.SELECT_ADMIN_GRANTS_SUCCESS:
+        return {...state}
+      case GrantTypes.SELECT_ADMIN_GRANTS_FAILURE:
+        return {...state, errors: action.payload}
     default:
       return state;
   }
