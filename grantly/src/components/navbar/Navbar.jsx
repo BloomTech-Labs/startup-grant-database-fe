@@ -104,10 +104,7 @@ const Navbar = () => {
     };
     const {isAuthenticated, user, loginWithRedirect} = useAuth0();
     const classes = useStyles();
-    console.group('Token and Error');
-    console.table('Token', token);
-    console.table('Error', error);
-    console.groupEnd();
+
     useEffect(() => {
         if (isAuthenticated && user) {
             actions.user.setUserFromAuth0(user);
@@ -127,6 +124,7 @@ const Navbar = () => {
     useEffect(()=> {
         if (token && isAuthenticated && user) {
             actions.user.setToken(token);
+            actions.user.getFavorites(token, user.sub);
         }
     }, [token]);
 
