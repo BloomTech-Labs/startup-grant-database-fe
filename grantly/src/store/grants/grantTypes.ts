@@ -13,6 +13,9 @@ export enum GrantTypes {
   DELETE_ADMIN_GRANTS_START = "DELETE_ADMIN_GRANTS_START",
   DELETE_ADMIN_GRANTS_SUCCESS = "DELETE_ADMIN_GRANTS_SUCCESS",
   DELETE_ADMIN_GRANTS_FAILURE = "DELETE_ADMIN_GRANTS_FAILURE ",
+  SELECT_ADMIN_GRANTS_START = "SELECT_ADMIN_GRANTS_START",
+  SELECT_ADMIN_GRANTS_SUCCESS = "SELECT_ADMIN_GRANTS_SUCCESS",
+  SELECT_ADMIN_GRANTS_FAILURE = "SELECT_ADMIN_GRANTS_FAILURE ",
   POST_GRANTS_START = "POST_GRANTS_START",
   POST_GRANTS_SUCCESS = "POST_GRANTS_SUCCESS",
   POST_GRANTS_FAILURE = "POST_GRANTS_FAILURE ",
@@ -42,6 +45,7 @@ export interface GrantState {
   showcase: Grant | null;
   isLoading: boolean;
   errors: Error | null;
+  isUpdating: boolean;
 }
 
 interface FetchGrantStart {
@@ -91,6 +95,48 @@ interface SelectGrantAction {
   payload: Grant;
 }
 
+interface UpdateAdminGrantsStart {
+  type: typeof GrantTypes.UPDATE_ADMIN_GRANTS_START
+  isUpdating: boolean
+}
+
+interface UpdateAdminGrantsSuccess {
+  type: typeof GrantTypes.UPDATE_ADMIN_GRANTS_SUCCESS
+}
+
+interface UpdateAdminGrantsFailure {
+  type: typeof GrantTypes.UPDATE_ADMIN_GRANTS_FAILURE
+  payload: Error;
+}
+
+interface DeleteAdminGrantsStart {
+  type: typeof GrantTypes.DELETE_ADMIN_GRANTS_START
+
+}
+
+interface DeleteAdminGrantsSuccess {
+  type: typeof GrantTypes.DELETE_ADMIN_GRANTS_SUCCESS
+}
+
+interface DeleteAdminGrantsFailure {
+  type: typeof GrantTypes.DELETE_ADMIN_GRANTS_FAILURE
+  payload: Error;
+}
+
+interface SelectAdminGrantsStart {
+  type: typeof GrantTypes.SELECT_ADMIN_GRANTS_START
+
+}
+
+interface SelectAdminGrantsSuccess {
+  type: typeof GrantTypes.SELECT_ADMIN_GRANTS_SUCCESS
+}
+
+interface SelectAdminGrantsFailure {
+  type: typeof GrantTypes.SELECT_ADMIN_GRANTS_FAILURE
+  payload: Error;
+}
+
 export type GrantActions =
   | FetchGrantStart
   | FetchGrantSuccess
@@ -101,4 +147,13 @@ export type GrantActions =
   | PostGrantStart
   | PostGrantSuccess
   | PostGrantFailure
+  | UpdateAdminGrantsStart
+  | UpdateAdminGrantsSuccess
+  | UpdateAdminGrantsFailure
+  | DeleteAdminGrantsStart
+  | DeleteAdminGrantsSuccess
+  | DeleteAdminGrantsFailure
+  | SelectAdminGrantsStart
+  | SelectAdminGrantsSuccess
+  | SelectAdminGrantsFailure
   | SelectGrantAction;
