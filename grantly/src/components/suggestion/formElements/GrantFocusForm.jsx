@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 
 import {
@@ -9,7 +9,8 @@ import {
   MenuItem
 } from "@material-ui/core";
 import formStyles from "../formElements/formStyles";
-import { areaFocus } from "../formUtils/formValues.js";
+import { FocusFormData } from "../formUtils/formValues.js";
+import { TextFormField } from "./TextFormField";
 
 const useStyles = makeStyles(theme => ({
   bottomBox: {
@@ -25,32 +26,19 @@ export const GrantFocusForm = props => {
       <Typography variant="h5">Grant Focus</Typography>
       <Divider variant="middle" />
       <Grid container spacing={3} className={styles.bottomBox}>
-        <Grid item xs={12}>
-          <TextField
-            label="Sponsoring Entity"
-            type="text"
-            name="sponsoring_entity"
-            fullWidth
-            placeholder="Sponsoring Entity"
-          />
-        </Grid>
-        <Grid item xs={12}>
-          <TextField
-            label="Grant Categories"
-            select
-            name="area_focus"
-            placeholder="Area Focus"
-            fullWidth
-          >
-            {/* Maps through the array to return values for dropdown */}
-
-            {areaFocus.map(option => (
-              <MenuItem key={option.value} value={option.value}>
-                {option.label}
-              </MenuItem>
-            ))}
-          </TextField>
-        </Grid>
+        {FocusFormData.map(data => {
+          console.log("data", data);
+          return (
+            <TextFormField
+              label={data.label}
+              type={data.type}
+              name={data.name}
+              select={data.select}
+              data={data.data}
+            />
+          );
+        })}
+        <Grid item xs={12}></Grid>
       </Grid>
     </Fragment>
   );
