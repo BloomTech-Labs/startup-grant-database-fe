@@ -5,7 +5,9 @@ export enum SuggestionTypes {
     DELETE_SUGGESTION_START = "DELETE_SUGGESTION_START",
     DELETE_SUGGESTION_SUCCESS = "DELETE_SUGGESTION_SUCCESS",
     DELETE_SUGGESTION_FAILURE = "DELETE_SUGGESTION_FAILURE",
-
+    FETCH_SUGGESTION_START = "FETCH_SUGGESTION_START",
+    FETCH_SUGGESTION_SUCCESS = "FETCH_SUGGESTION_SUCCESS",
+    FETCH_SUGGESTION_FAILURE = "FETCH_SUGGESTION_FAILURE",
 
 }
 
@@ -14,13 +16,29 @@ export interface Suggestion {
     subject: string | null;
     suggestion: string | null;
     isSelecting: number | boolean;
+    isFetching: number | boolean 
+
 }
 
 export interface SuggestionState {
     grant_suggestions: Suggestion[];
     errors: Error | null;
-    isSelecting: boolean 
+    isSelecting: boolean ;
 }
+  interface FetchSuggestionStart {
+    type: typeof SuggestionTypes.FETCH_SUGGESTION_START;
+    isFetching: boolean
+  }
+
+  interface FetchSuggestionSuccess {
+    type: typeof SuggestionTypes.FETCH_SUGGESTION_SUCCESS;
+    payload: Suggestion[];
+  }
+
+  interface FetchSuggestionFailure {
+    type: typeof SuggestionTypes.FETCH_SUGGESTION_FAILURE;
+    payload: Error;
+  }
 
   interface SelectSuggestionStart {
     type: typeof SuggestionTypes.SELECT_SUGGESTION_START;
@@ -54,6 +72,9 @@ export interface SuggestionState {
   | SelectSuggestionStart
   | SelectSuggestionSuccess
   | SelectSuggestionFailure
+  | FetchSuggestionStart
+  | FetchSuggestionSuccess
+  | FetchSuggestionFailure
   | DeleteSuggestionStart
   | DeleteSuggestionSuccess
   | DeleteSuggestionFailure;
