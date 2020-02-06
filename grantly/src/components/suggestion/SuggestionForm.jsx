@@ -25,7 +25,6 @@ import { GrantDemoForm } from "./formElements/GrantDemoForm";
 import { SuggestionFormTopContent } from "./formElements/SuggestionFormTopContent.jsx";
 import { GrantSteps } from "./formElements/GrantSteps.jsx";
 import moment from "moment";
-import { SubmitConfirmation } from "./formElements/SubmitConfirmation";
 
 const useStyles = makeStyles(theme => ({
   layout: {
@@ -114,26 +113,6 @@ export const AddGrant = props => {
   const [activeStep, setActiveStep] = useState(0);
 
   // const [token] = useGetToken();
-  //Switch case that uses the "step" to determine what component to render
-  function getStepContent(step) {
-    switch (step) {
-      case 0:
-        return (
-          <GrantInfoForm handleChanges={handleChanges} grantInfo={grantInfo} />
-        );
-      case 1:
-        return (
-          <GrantFocusForm handleChanges={handleChanges} grantInfo={grantInfo} />
-        );
-      case 2:
-        return (
-          <GrantDemoForm handleChanges={handleChanges} grantInfo={grantInfo} />
-        );
-      default:
-        throw new Error("Unknown Step");
-    }
-  }
-
   //Default values for grants state.  Note is_reviewed is set to false so it will only show up on Admin.  Also null values are set to avoid 500 error if inputs are left blank
   const [grantInfo, setGrantInfo] = useState({
     competition_name: "",
@@ -156,7 +135,6 @@ export const AddGrant = props => {
     details_last_updated: moment().format("YYYY-MM-DD")
   });
 
-  //HandleChanges for form
   const handleChanges = event => {
     event.preventDefault();
     setGrantInfo({
@@ -164,6 +142,26 @@ export const AddGrant = props => {
       [event.target.name]: event.target.value
     });
   };
+
+  function getStepContent(step) {
+    switch (step) {
+      case 0:
+        return (
+          <GrantInfoForm handleChanges={handleChanges} grantInfo={grantInfo} />
+        );
+      case 1:
+        return (
+          <GrantFocusForm handleChanges={handleChanges} grantInfo={grantInfo} />
+        );
+      case 2:
+        return (
+          <GrantDemoForm handleChanges={handleChanges} grantInfo={grantInfo} />
+        );
+      default:
+        throw new Error("Unknown Step");
+    }
+  }
+
   //Submit for grant from
   const submitGrant = event => {
     event.preventDefault();

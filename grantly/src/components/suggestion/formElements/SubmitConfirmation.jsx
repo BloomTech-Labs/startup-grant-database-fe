@@ -1,6 +1,6 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { Typography } from "@material-ui/core";
-import { Link } from "react-redux";
+import { Link } from "react-router-dom";
 
 export const SubmitConfirmation = () => {
   return (

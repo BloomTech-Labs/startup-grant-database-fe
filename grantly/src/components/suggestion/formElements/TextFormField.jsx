@@ -17,8 +17,8 @@ export const TextFormField = props => {
         name={props.name}
         placeholder={props.label}
         InputLabelProps={props.inputLabel}
-        value={null}
-        onChange={null}
+        value={props.value}
+        onChange={props.handleChanges}
       >
         {props.data.map(option => (
           <MenuItem key={option.value} value={option.value}>
