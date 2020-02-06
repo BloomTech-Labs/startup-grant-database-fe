@@ -4,6 +4,7 @@ import GrantContainer from "../grants/GrantContainer";
 import RenderRoutes from "./RenderRoutes";
 import {SuggestionForm} from "../suggestion/Suggestion";
 import GrantTable from '../admin/GrantTable'
+import About from "../about/About";
 
 const routes = [
     {
@@ -11,6 +12,12 @@ const routes = [
         path: "/",
         exact: true,
         component: LandingPage
+    },
+    {
+        key: "ABOUT",
+        path: '/about',
+        exact: true,
+        component: About
     },
     {
         key: "GRANTS",
@@ -31,7 +38,6 @@ const routes = [
             },
         ]
     },
-
     {
         key: "SUGGESTION",
         path: "/suggestion",
