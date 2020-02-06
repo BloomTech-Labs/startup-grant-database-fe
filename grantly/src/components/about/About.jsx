@@ -1,6 +1,30 @@
 import React from "react";
-import { Grid, Typography, Card } from "@material-ui/core";
+import { Grid, Typography, Card, Link } from "@material-ui/core";
 import { aboutStyles } from "./aboutStyles";
+import Lambda from '../../assets/lambda.png';
+import Fund1517 from '../../assets/1517Fund.png';
+import Github from '../../assets/teamGithub.png';
+
+const aboutCards = [
+  {
+    url: "https://www.1517fund.com/",
+    image: Fund1517,
+    alt: '1517 Fund',
+    description: 'You can find out more about 1517 Fund here.'
+  },
+  {
+    url: "https://lambdaschool.com/",
+    image: Lambda,
+    alt: 'Lambda School',
+    description: 'You can find out more about Lambda School here.'
+  },
+  {
+    url: "https://github.com/Lambda-School-Labs/startup-grant-database-fe",
+    image: Github,
+    alt: 'GitHub is a Git repository hosting service, but it adds many of its own features.',
+    description: 'You can find out more about the student team and the project, including the open source code here.'
+  },
+]
 
 export default () => {
   const classes = aboutStyles();
@@ -24,41 +48,18 @@ export default () => {
             justify="space-around"
             className={classes.aboutContainer}
           >
-            <Grid item md={3} xs={12}>
-              <a href="https://www.1517fund.com/">
-                <Card className={classes.aboutCard}>
-                  <img src="./assets/1517Fund.png" alt="1517 logo" />
-                  <Typography variant="subtitle1">
-                    You can find out more about 1517 Fund here.
-                  </Typography>
-                </Card>
-              </a>
-            </Grid>
-
-            <Grid item md={3} xs={12}>
-              <a href="https://lambdaschool.com/">
-                <Card className={classes.aboutCard}>
-                  <img src="./assets/lambda.png" alt="1517 logo" />
-
-                  <Typography variant="subtitle1">
-                    You can find out more about Lambda School here.
-                  </Typography>
-                </Card>
-              </a>
-            </Grid>
-
-            <Grid item md={3} xs={12}>
-              <a href="https://github.com/Lambda-School-Labs/startup-grant-database-fe">
-                <Card className={classes.aboutCard}>
-                <img src="./assets/teamGithub.png" alt="1517 logo" />
-
-                  <Typography variant="subtitle1">
-                    You can find out more about the student team and the
-                    project, including the open source code here.
-                  </Typography>
-                </Card>
-              </a>
-            </Grid>
+            {aboutCards.map(({url, image, alt, description}, id) => (
+                <Grid item md={3} xs={12} key={id}>
+                  <Link href={url}>
+                    <Card className={classes.aboutCard}>
+                      <img src={image} alt={alt} />
+                      <Typography variant='subtitle1'>
+                        {description}
+                      </Typography>
+                    </Card>
+                  </Link>
+                </Grid>
+            ))}
           </Grid>
         </Card>
       </Card>
