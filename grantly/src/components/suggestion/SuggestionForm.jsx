@@ -3,7 +3,7 @@ import React, { useState, useEffect, useContext, Fragment } from "react";
 import { useSelector } from "react-redux";
 import { ActionsContext } from "../../context/ActionsContext";
 import { makeStyles } from "@material-ui/core/styles";
-
+import { SubmitConfirmation } from "./formElements/SubmitConfirmation.jsx";
 //Objects
 // import formStyles from "../styles/formStyles";
 import {
@@ -25,6 +25,7 @@ import { GrantDemoForm } from "./formElements/GrantDemoForm";
 import { SuggestionFormTopContent } from "./formElements/SuggestionFormTopContent.jsx";
 import { GrantSteps } from "./formElements/GrantSteps.jsx";
 import moment from "moment";
+import { SubmitConfirmation } from "./formElements/SubmitConfirmation";
 
 const useStyles = makeStyles(theme => ({
   layout: {
@@ -206,18 +207,7 @@ export const AddGrant = props => {
           <Fragment>
             {/* Ternary statement to determine if the grant has been submitted.  This is not being used now, but will be once an email input option has been implemented in future releases  */}
             {activeStep === steps.length ? (
-              <Fragment>
-                <Typography variant="h3">
-                  Thank you for your grant submission!
-                </Typography>
-                <Typography>
-                  Our site admins will look over your grant information to be
-                  approved before it’s posted on Founders Grant. Enter your
-                  email address to get updates and to know when your grant has
-                  been approved.
-                </Typography>
-                <Link to="/">Okay!</Link>
-              </Fragment>
+              <SubmitConfirmation />
             ) : (
               //else portion of ternary
               <Fragment>
