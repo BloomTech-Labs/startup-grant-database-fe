@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import {ActionsContext} from "../../context/ActionsContext";
 import {useSelector} from "react-redux";
+
 // Styling
-// import { tableSuggStyles } from "../../styles/tableSuggStyles";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import Dialog from "@material-ui/core/Dialog";
 import List from "@material-ui/core/List";

@@ -53,12 +53,12 @@ export const grantReducer = (
       return {...state}
     case GrantTypes.DELETE_ADMIN_GRANTS_FAILURE:
       return {...state, errors: action.payload}
-      case GrantTypes.SELECT_ADMIN_GRANTS_START:
-        return {...state}
-      case GrantTypes.SELECT_ADMIN_GRANTS_SUCCESS:
-        return {...state}
-      case GrantTypes.SELECT_ADMIN_GRANTS_FAILURE:
-        return {...state, errors: action.payload}
+    case GrantTypes.SELECT_ADMIN_GRANTS_START:
+      return {...state}
+    case GrantTypes.SELECT_ADMIN_GRANTS_SUCCESS:
+      return {...state}
+    case GrantTypes.SELECT_ADMIN_GRANTS_FAILURE:
+      return {...state, errors: action.payload}
     default:
       return state;
   }
