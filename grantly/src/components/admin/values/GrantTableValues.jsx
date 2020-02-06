@@ -1,10 +1,8 @@
-// import TableSuggestions from './TableSuggestions'
-
 import React, { useEffect } from 'react'
-import MaterialTable, {FilterRow} from "material-table";
-import moment from 'moment'
+import GrantTable from '../GrantTable'
+import {SuggestionModal} from '../SuggestionModal'
 
-const tableValues = {
+export const tableValues = {
 
     title: "Edit and Approve Grants",
     columns: [
@@ -14,13 +12,8 @@ const tableValues = {
             minWidth: "75px"
         },
             customSort: (a, b) => a.requests.length - b.requests.length,
-            // render: rowData => (
-            //     <TableSuggestions
-            //         rowData={rowData}
-            //         // currentUser={props.currentUser}
-            //     />
-            // )
-    },
+            render: e => (<SuggestionModal  />)
+        },
     {
         title: "Grant Status",
         cellStyle: cellData => ({
@@ -137,18 +130,6 @@ const tableValues = {
     
 }
 
-const tableStyles = {
-        headerStyle: {
-            fontFamily: "Nunito Sans",
-            fontSize: "1em",
-            color: "#3A3A3A",
-            // letterSpacing: "0.025em",
-            padding: "1em",
-            fontWeight: 700,
-            backgroundColor: "#83D7D1"
-          }
-}
-
 // const tableFunctions = {
 //     onRowAdd: newData =>
 //       new Promise(resolve => {
@@ -187,24 +168,3 @@ const tableStyles = {
 //         }, 600);
 //       })
 //   }
-
-    export function GrantTableContent(props) {
-        useEffect(() => {   
-            
-        }, [])
-        useEffect(() => {   
-            
-        }, [])
-        return (
-            <React.Fragment>              
-                    <MaterialTable
-                        title={tableValues.title}
-                        columns={tableValues.columns}
-                        data={props.data}
-                        options={tableStyles}
-                        // editable={tableFunctions}
-                        zeroMinWidth
-                    />
-            </React.Fragment>
-        )
-    }

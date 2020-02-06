@@ -2,9 +2,7 @@
 import React, { useState, useEffect, useContext, Fragment } from "react";
 import { useSelector } from "react-redux";
 import { ActionsContext } from "../../context/ActionsContext";
-import { useGetToken } from "../auth0/useGetToken.jsx";
 import { makeStyles } from "@material-ui/core/styles";
-import { useAuth0 } from "../auth0/Auth0Wrapper";
 
 //Objects
 // import formStyles from "../styles/formStyles";
@@ -16,7 +14,8 @@ import {
   Step,
   Typography,
   CssBaseline,
-  StepLabel
+  StepLabel,
+  Link
 } from "@material-ui/core";
 
 //Grant form components for each step
@@ -58,12 +57,6 @@ const useStyles = makeStyles(theme => ({
   },
   button: {
     display: "flex",
-    // alignItems: "flex-end",
-    // justifyContent: "flex-end"
-    // justifyContent: "flex-end",
-    // alignSelf: "flex-end",
-    // position: "absolute",
-    // width: 800,
     bottom: theme.spacing(5),
     paddingLeft: theme.spacing(6),
     marginTop: theme.spacing(3),
@@ -120,7 +113,6 @@ export const AddGrant = props => {
   const [activeStep, setActiveStep] = useState(0);
 
   // const [token] = useGetToken();
-
   //Switch case that uses the "step" to determine what component to render
   function getStepContent(step) {
     switch (step) {
@@ -180,7 +172,6 @@ export const AddGrant = props => {
 
     setGrantInfo({
       competition_name: "",
-      // type: "",
       area_focus: "",
       sponsoring_entity: "",
       website: "",
@@ -188,30 +179,17 @@ export const AddGrant = props => {
       amount: "",
       amount_notes: "",
       geographic_region: "",
-      // domain_areas: "",
       target_entrepreneur_demographic: "",
       notes: "",
       early_stage_funding: "",
       details_last_updated: ""
     });
-
-    //Once a user submits it will delay for 2 seconds before "pushing" the user to the grants page
-    // setTimeout(() => {
-    //   // props.fetchApi();
-    //   // props.changeTab(0);
-
-    //   props.history.push("/grants");
-    // }, 2000);
   };
 
-  //State that keeps track of what component the user is on
-
-  // Used to move the "step" to the next value
   const handleNext = () => {
     setActiveStep(activeStep + 1);
   };
 
-  //Used to move the "step" to the previous value
   const handleBack = () => {
     setActiveStep(activeStep - 1);
   };
@@ -223,8 +201,6 @@ export const AddGrant = props => {
       <main className={styles.layout}>
         <Paper className={styles.paper}>
           <SuggestionFormTopContent />
-          {/* Material UI for the stepper at the top of the page. */}
-
           <GrantSteps steps={steps} activeStep={activeStep} />
 
           <Fragment>
@@ -232,7 +208,7 @@ export const AddGrant = props => {
             {activeStep === steps.length ? (
               <Fragment>
                 <Typography variant="h3">
-                  Thank you for your grant submission!{" "}
+                  Thank you for your grant submission!
                 </Typography>
                 <Typography>
                   Our site admins will look over your grant information to be
@@ -240,6 +216,7 @@ export const AddGrant = props => {
                   email address to get updates and to know when your grant has
                   been approved.
                 </Typography>
+                <Link to="/">Okay!</Link>
               </Fragment>
             ) : (
               //else portion of ternary
@@ -262,7 +239,9 @@ export const AddGrant = props => {
                     color="primary"
                     // Ternary that determines what button to display based on what component the user is on
                     onClick={
-                      activeStep === steps.length - 1 ? submitGrant : handleNext
+                      activeStep === steps.length - 1
+                        ? submitGrant && handleNext
+                        : handleNext
                     }
                     className={styles.submit}
                     style={{ color: "#fff" }}

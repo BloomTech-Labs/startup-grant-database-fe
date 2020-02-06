@@ -1,6 +1,6 @@
 //Array of values for the "Early Stage Funding" dropdown
 
-export const funding = [
+const funding = [
   {
     value: true,
     label: "yes"
@@ -13,7 +13,7 @@ export const funding = [
 
 //Array of values for the "Geographic Region" dropdown
 
-export const geographicRegion = [
+const geographicRegion = [
   {
     value: "North America",
     label: "North America"
@@ -54,7 +54,7 @@ export const geographicRegion = [
 
 //Array of values for the "Target Demographic" dropdown
 
-export const targetDemographic = [
+const targetDemographic = [
   {
     value: "Minority Business Enterprise",
     label: "Minority Business Enterprise"
@@ -81,7 +81,7 @@ export const targetDemographic = [
   }
 ];
 
-export const areaFocus = [
+const areaFocus = [
   {
     value: "Agriculture",
     label: "Agriculture"
@@ -173,5 +173,94 @@ export const areaFocus = [
   {
     value: "N/A",
     label: "N/A"
+  }
+];
+
+export const FocusFormData = [
+  {
+    label: "Sponsoring Entity",
+    type: "text",
+    name: "sponsoring_entity",
+    data: []
+  },
+  {
+    label: "Grant Categories",
+    name: "area_focus",
+    select: true,
+    data: areaFocus
+  }
+];
+
+//Data for the grant info form
+
+export const InfoFieldData = [
+  {
+    label: "Grant Name",
+    type: "text",
+    name: "competition_name",
+    multiline: false,
+    data: []
+  },
+  {
+    label: "Website",
+    type: "url",
+    name: "website",
+    multiline: false,
+    data: []
+  },
+  {
+    label: "Amount",
+    type: "number",
+    name: "amount",
+    multiline: false,
+    data: []
+  },
+  {
+    label: "Amount Notes",
+    type: "text",
+    name: "amount_notes",
+    rows: "3",
+    variant: "outlined",
+    multiline: true,
+    data: []
+  }
+];
+
+export const DemoFormData = [
+  {
+    label: "Geographic Region",
+    name: "geographic_region",
+    select: true,
+    data: geographicRegion
+  },
+  {
+    label: "Target Demographic",
+    name: "target_entrepreneur_demographic",
+    select: true,
+    data: targetDemographic
+  },
+  {
+    label: "Application Due Date",
+    name: "most_recent_application_due_date",
+    type: "date",
+    inputLabel: { shrink: true },
+    sm: 6,
+    data: []
+  },
+  {
+    label: "Early Stage Funding",
+    name: "early_stage_funding",
+    select: true,
+    sm: 6,
+    data: funding
+  },
+  {
+    label: "Description",
+    type: "text",
+    name: "notes",
+    multiline: true,
+    variant: "outlined",
+    rows: "3",
+    data: []
   }
 ];
