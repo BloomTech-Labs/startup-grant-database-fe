@@ -227,7 +227,7 @@ export const AddGrant = props => {
             {activeStep === steps.length ? (
               <Fragment>
                 <Typography variant="h3">
-                  Thank you for your grant submission!{" "}
+                  Thank you for your grant submission!
                 </Typography>
                 <Typography>
                   Our site admins will look over your grant information to be
@@ -257,7 +257,9 @@ export const AddGrant = props => {
                     color="primary"
                     // Ternary that determines what button to display based on what component the user is on
                     onClick={
-                      activeStep === steps.length - 1 ? submitGrant : handleNext
+                      activeStep === steps.length - 1
+                        ? submitGrant && handleNext
+                        : handleNext
                     }
                     className={styles.submit}
                     style={{ color: "#fff" }}

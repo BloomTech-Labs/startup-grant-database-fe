@@ -37,8 +37,8 @@ const tableStyles = {
       backgroundColor: "#83D7D1"
     }
 }
- const GrantTable = props => {
 
+const GrantTable = props => {
   const actions = useContext(ActionsContext);
   const { token, isModerator } = useSelector(state => state.user);
   const { adminGrants } = useSelector(state => state.grants)
