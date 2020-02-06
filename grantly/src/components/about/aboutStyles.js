@@ -23,7 +23,7 @@ export const aboutStyles = makeStyles(theme => ({
   },
   aboutCard: {
     width: "100%",
-    height: 150,
+    height: 256,
     margin: 10,
     padding: 10,
     opacity: 0.7,
