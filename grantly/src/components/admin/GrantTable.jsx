@@ -1,67 +1,68 @@
-import React, {useContext, useEffect} from 'react';
-
-import { connect } from "react-redux";
-import moment from "moment";
+import React, {useContext, useEffect, useState} from 'react';
 import {ActionsContext} from "../../context/ActionsContext";
 import {useSelector} from "react-redux";
-import {useAuth0} from "../auth0/Auth0Wrapper";
+import MaterialTable, {FilterRow} from "material-table";
+import { makeStyles } from "@material-ui/core/styles";
 
 // Styling
-import MaterialTable from "material-table";
 import TextField from "@material-ui/core/TextField";
 import Paper from "@material-ui/core/Paper";
 // Components
-import TableRow from "./TableRow";
-import {GrantTableContent} from './values/GrantTableValues'
+import {tableValues} from './values/GrantTableValues'
+import {EditGrantFunctions} from './values/EditGrantFunctions'
+import EditForm from './EditGrantForm'
+import SuggestionForm from './SuggestionModal'
 
-const data = [
-  {
-    id: 21,
-    competition_name: "string",
-    area_focus: "string",
-    sponsoring_entity: "string",
-    website: "string",
-    most_recent_application_due_date: "string",
-    amount: 1000,
-    amount_notes: "string",
-    geographic_region: "string",
-    target_entrepreneur_demographic: "string",
-    notes: "string",
-    early_stage_funding: 1,
-    is_reviewed: 1,
-    has_requests: 1,
-    details_last_updated: "string",
-  }
-]
+const grantTableStyles = makeStyles(theme => ({
+  displayNone: {
+    color: "#EF7B5C",
+    fontSize: 40
+  },
+  paper: {
+    margin: ".5em"
+  },
+  headerStyle: {
+    fontFamily: "Nunito Sans",
+    fontSize: "1em",
+  },
+}));
 
+const tableStyles = {
+  headerStyle: {
+      fontFamily: "Nunito Sans",
+      fontSize: "1em",
+      color: "#3A3A3A",
+      padding: "1em",
+      fontWeight: 700,
+      backgroundColor: "#83D7D1"
+    }
+}
  const GrantTable = props => {
 
   const actions = useContext(ActionsContext);
+  const { token, isModerator } = useSelector(state => state.user);
+  const { adminGrants } = useSelector(state => state.grants)
 
- 
-  useEffect(() => {
-    actions.grants.fetchGrants();
-  },[])
+  const style = grantTableStyles();
 
-  // setTableValues(useValues())
+    useEffect(() => {
+      isModerator && actions.grants.fetchAdminGrants(token)
+
+        } ,[isModerator])
+
+    console.log("admin grants",adminGrants)
+
     return (
-      // edit
       <React.Fragment>
-        <TextField
-          id="standard basic"
-          style={{
-            minWidth: "400px",
-            fontFamily: "EB Garamond"
-          }}
-           multiline
-          //  value={props.value}
-          //  onChange={e => props.onChange(e.target.value)} 
-        />
-
-
-
-          <Paper>
-              <GrantTableContent />     
+          <Paper className={style.paper}>
+          <MaterialTable
+                        title={tableValues.title}
+                        columns={tableValues.columns}
+                        options={tableStyles}
+                        data={adminGrants}
+                        editable={EditGrantFunctions}
+                        zeroMinWidth
+                    />
           </Paper>
       </React.Fragment>
      );

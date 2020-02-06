@@ -2,9 +2,7 @@
 import React, { useState, useEffect, useContext, Fragment } from "react";
 import { useSelector } from "react-redux";
 import { ActionsContext } from "../../context/ActionsContext";
-import { useGetToken } from "../auth0/useGetToken.jsx";
 import { makeStyles } from "@material-ui/core/styles";
-import { useAuth0 } from "../auth0/Auth0Wrapper";
 
 //Objects
 // import formStyles from "../styles/formStyles";
@@ -120,7 +118,6 @@ export const AddGrant = props => {
   const [activeStep, setActiveStep] = useState(0);
 
   // const [token] = useGetToken();
-
   //Switch case that uses the "step" to determine what component to render
   function getStepContent(step) {
     switch (step) {
@@ -180,7 +177,6 @@ export const AddGrant = props => {
 
     setGrantInfo({
       competition_name: "",
-      // type: "",
       area_focus: "",
       sponsoring_entity: "",
       website: "",
@@ -188,7 +184,6 @@ export const AddGrant = props => {
       amount: "",
       amount_notes: "",
       geographic_region: "",
-      // domain_areas: "",
       target_entrepreneur_demographic: "",
       notes: "",
       early_stage_funding: "",

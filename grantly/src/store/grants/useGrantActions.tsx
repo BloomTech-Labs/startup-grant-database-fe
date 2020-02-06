@@ -57,6 +57,7 @@ export const useGrantActions = () => {
                 dispatch({type: GrantTypes.FETCH_ADMIN_GRANTS_SUCCESS, payload: res.data});
             })
             .catch((err: AxiosError) => {
+                console.log(err.response)
                 const data =
                     err && err.response && err.response.data ? err.response.data : err;
                 dispatch({type: GrantTypes.FETCH_ADMIN_GRANTS_FAILURE, payload: data});
