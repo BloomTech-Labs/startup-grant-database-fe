@@ -10,6 +10,7 @@ const initialState: UserState = {
         picture: '',
         sub: '',
         updated_at: ''
+        // will need more object fields here
     },
     favoriteGrants: [],
     isModerator: false,
@@ -29,7 +30,17 @@ const userResetUserReducer: FunctionReducer = () => initialState;
 const userRemoveFavoriteSuccessReducer: FunctionReducer = (state, payload) => {
     const newFavorites = state.favoriteGrants.filter(grant => grant.favoriteID !== payload);
     return {...state, favoriteGrants: newFavorites}
-}
+
+};
+const userRemoveReducerStart: FunctionReducer = (state) => ({...state});
+const userRemoveReducerSuccess: FunctionReducer = (state) => ({...state});
+const userRemoveReducerFailure: FunctionReducer = (state) => ({...state});
+
+const userUpdateReducerStart: FunctionReducer = (state) => ({...state});
+const userUpdateReducerSuccess: FunctionReducer = (state, payload) => ({...state, currentUser: {...payload}});
+const userUpdateReducerFailure: FunctionReducer = (state) => ({...state});
+
+
 
 
 export const userReducer = createReducer(initialState, {
@@ -44,6 +55,12 @@ export const userReducer = createReducer(initialState, {
     [UserTypes.POST_FAVORITES_SUCCESS]: userFetchFavoritesSuccess,
     [UserTypes.POST_FAVORITES_FAILURE]: userFailureReducer,
     [UserTypes.REMOVE_FAVORITES_FAILURE]: userFailureReducer,
-    [UserTypes.REMOVE_FAVORITES_SUCCESS]: userRemoveFavoriteSuccessReducer
+    [UserTypes.REMOVE_FAVORITES_SUCCESS]: userRemoveFavoriteSuccessReducer,
+    [UserTypes.REMOVE_USER_START]: userRemoveReducerStart,
+    [UserTypes.REMOVE_USER_SUCCESS]: userRemoveReducerSuccess,
+    [UserTypes.REMOVE_USER_FAILURE]: userRemoveReducerFailure,
+    [UserTypes.UPDATE_USER_START]: userUpdateReducerStart,
+    [UserTypes.UPDATE_USER_SUCCESS]: userUpdateReducerSuccess,
+    [UserTypes.UPDATE_USER_FAILURE]: userUpdateReducerFailure,
 });
 

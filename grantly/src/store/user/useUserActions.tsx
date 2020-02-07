@@ -3,6 +3,7 @@ import {useDispatch} from 'react-redux';
 import {User, UserTypes} from "./userTypes";
 import {AxiosError, AxiosResponse} from 'axios';
 import {axiosWithAuth, axiosWithOutAuth as axios} from "../utils/axiosConfig";
+import { type } from 'os';
 
 export const useUserActions = () => {
     const dispatch = useDispatch();
@@ -59,6 +60,34 @@ export const useUserActions = () => {
             .catch(err => dispatch({type: UserTypes.REMOVE_FAVORITES_FAILURE, payload: err.response.data}));
     }, [dispatch]);
 
+    // const updateUser = useCallback((token: string) => {
+    //     dispatch(type. UserTypes)
+    // })
+
+    const removeUser = useCallback((token, id) => {
+        dispatch({type: UserTypes.REMOVE_USER_START})
+        axiosWithAuth(token)
+            .delete(`/users/${id}`)
+            .then(() => {
+                dispatch({type: UserTypes.REMOVE_USER_SUCCESS})
+            })
+            .catch(() => {
+                dispatch({type: UserTypes.REMOVE_USER_FAILURE})
+            })
+    }, [dispatch])
+
+    const updateUser = useCallback((token, id, data) => {
+        dispatch({type: UserTypes.UPDATE_USER_START})
+        axiosWithAuth(token)
+            .put(`/users/${id}`, data)
+            .then(() => {
+                dispatch({type: UserTypes.UPDATE_USER_SUCCESS})
+            })
+            .catch(() => {
+                dispatch({type: UserTypes.UPDATE_USER_FAILURE})
+            })
+    }, [dispatch])
+
     return {
         getUserFromPG,
         setUserFromAuth0,
@@ -67,6 +96,8 @@ export const useUserActions = () => {
         setToken,
         getFavorites,
         addFavorite,
+        removeUser,
+        updateUser,
         removeFavorite
     }
 };
@@ -80,4 +111,6 @@ export interface UseUserActions {
     getFavorites: (token: string, authId: string) => void;
     addFavorite: (token: string, grant_id: number, authId: string) => void;
     removeFavorite: (token: string, favoriteId: number) => void;
+    removeUser: (token: string) => void;
+    updateUser: (token: string, user: User) => void;
 }

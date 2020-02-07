@@ -14,13 +14,13 @@ export const suggestionReducer = (
             case SuggestionTypes.SELECT_SUGGESTION_START:
                 return {...state, isSelecting: true}
             case SuggestionTypes.SELECT_SUGGESTION_SUCCESS:
-                return {...state}       
+                return {...state, grant_suggestions: action.payload}       
             case SuggestionTypes.SELECT_SUGGESTION_FAILURE:
                 return {...state, errors: action.payload}
             case SuggestionTypes.FETCH_SUGGESTION_START:
                 return {...state}
             case SuggestionTypes.FETCH_SUGGESTION_SUCCESS:
-                return {...state}       
+                return {...state, grant_suggestions: action.payload}       
             case SuggestionTypes.FETCH_SUGGESTION_FAILURE:
                 return {...state, errors: action.payload}
             case SuggestionTypes.DELETE_SUGGESTION_START:
