@@ -60,11 +60,7 @@ export const useUserActions = () => {
             .catch(err => dispatch({type: UserTypes.REMOVE_FAVORITES_FAILURE, payload: err.response.data}));
     }, [dispatch]);
 
-    // const updateUser = useCallback((token: string) => {
-    //     dispatch(type. UserTypes)
-    // })
-
-    const removeUser = useCallback((token, id) => {
+    const removeUser = useCallback((token: string, id: number) => {
         dispatch({type: UserTypes.REMOVE_USER_START})
         axiosWithAuth(token)
             .delete(`/users/${id}`)
@@ -76,7 +72,7 @@ export const useUserActions = () => {
             })
     }, [dispatch])
 
-    const updateUser = useCallback((token, id, data) => {
+    const updateUser = useCallback((token: string, id: number, data: User) => {
         dispatch({type: UserTypes.UPDATE_USER_START})
         axiosWithAuth(token)
             .put(`/users/${id}`, data)
@@ -111,6 +107,6 @@ export interface UseUserActions {
     getFavorites: (token: string, authId: string) => void;
     addFavorite: (token: string, grant_id: number, authId: string) => void;
     removeFavorite: (token: string, favoriteId: number) => void;
-    removeUser: (token: string) => void;
-    updateUser: (token: string, user: User) => void;
+    removeUser: (token: string, id: number, ) => void;
+    updateUser: (token: string, id: number, data: User) => void;
 }

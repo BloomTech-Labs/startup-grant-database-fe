@@ -34,11 +34,11 @@ const userRemoveFavoriteSuccessReducer: FunctionReducer = (state, payload) => {
 };
 const userRemoveReducerStart: FunctionReducer = (state) => ({...state});
 const userRemoveReducerSuccess: FunctionReducer = (state) => ({...state});
-const userRemoveReducerFailure: FunctionReducer = (state) => ({...state});
+const userRemoveReducerFailure: FunctionReducer = (state, payload) => ({...state, errors: payload});
 
 const userUpdateReducerStart: FunctionReducer = (state) => ({...state});
 const userUpdateReducerSuccess: FunctionReducer = (state, payload) => ({...state, currentUser: {...payload}});
-const userUpdateReducerFailure: FunctionReducer = (state) => ({...state});
+const userUpdateReducerFailure: FunctionReducer = (state, payload) => ({...state, errors: payload});
 
 
 
