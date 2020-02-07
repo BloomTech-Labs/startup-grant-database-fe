@@ -111,6 +111,6 @@ export const SuggestionModal = props => {
           </Button>
         </DialogActions>
       </Dialog>*/}
-    </> 
+    </>
   );
 };
