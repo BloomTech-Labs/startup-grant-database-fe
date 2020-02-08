@@ -3,7 +3,7 @@ import React, { useState, useEffect, useContext, Fragment } from "react";
 import { useSelector } from "react-redux";
 import { ActionsContext } from "../../context/ActionsContext";
 import { makeStyles } from "@material-ui/core/styles";
-
+import { SubmitConfirmation } from "./formElements/SubmitConfirmation.jsx";
 //Objects
 // import formStyles from "../styles/formStyles";
 import {
@@ -113,26 +113,6 @@ export const AddGrant = props => {
   const [activeStep, setActiveStep] = useState(0);
 
   // const [token] = useGetToken();
-  //Switch case that uses the "step" to determine what component to render
-  function getStepContent(step) {
-    switch (step) {
-      case 0:
-        return (
-          <GrantInfoForm handleChanges={handleChanges} grantInfo={grantInfo} />
-        );
-      case 1:
-        return (
-          <GrantFocusForm handleChanges={handleChanges} grantInfo={grantInfo} />
-        );
-      case 2:
-        return (
-          <GrantDemoForm handleChanges={handleChanges} grantInfo={grantInfo} />
-        );
-      default:
-        throw new Error("Unknown Step");
-    }
-  }
-
   //Default values for grants state.  Note is_reviewed is set to false so it will only show up on Admin.  Also null values are set to avoid 500 error if inputs are left blank
   const [grantInfo, setGrantInfo] = useState({
     competition_name: "",
@@ -155,7 +135,6 @@ export const AddGrant = props => {
     details_last_updated: moment().format("YYYY-MM-DD")
   });
 
-  //HandleChanges for form
   const handleChanges = event => {
     event.preventDefault();
     setGrantInfo({
@@ -163,6 +142,26 @@ export const AddGrant = props => {
       [event.target.name]: event.target.value
     });
   };
+
+  function getStepContent(step) {
+    switch (step) {
+      case 0:
+        return (
+          <GrantInfoForm handleChanges={handleChanges} grantInfo={grantInfo} />
+        );
+      case 1:
+        return (
+          <GrantFocusForm handleChanges={handleChanges} grantInfo={grantInfo} />
+        );
+      case 2:
+        return (
+          <GrantDemoForm handleChanges={handleChanges} grantInfo={grantInfo} />
+        );
+      default:
+        throw new Error("Unknown Step");
+    }
+  }
+
   //Submit for grant from
   const submitGrant = event => {
     event.preventDefault();
@@ -206,18 +205,7 @@ export const AddGrant = props => {
           <Fragment>
             {/* Ternary statement to determine if the grant has been submitted.  This is not being used now, but will be once an email input option has been implemented in future releases  */}
             {activeStep === steps.length ? (
-              <Fragment>
-                <Typography variant="h3">
-                  Thank you for your grant submission!
-                </Typography>
-                <Typography>
-                  Our site admins will look over your grant information to be
-                  approved before it’s posted on Founders Grant. Enter your
-                  email address to get updates and to know when your grant has
-                  been approved.
-                </Typography>
-                <Link to="/">Okay!</Link>
-              </Fragment>
+              <SubmitConfirmation />
             ) : (
               //else portion of ternary
               <Fragment>
