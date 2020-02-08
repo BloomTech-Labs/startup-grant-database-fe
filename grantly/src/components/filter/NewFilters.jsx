@@ -2,8 +2,10 @@ import React from 'react';
 import {Button, Card, FormGroup, Typography} from "@material-ui/core";
 import {Link as RouterLink} from 'react-router-dom';
 import FilterGroup from "./FilterGroup";
+import {useSelector} from "react-redux";
 
 const NewFilters = ({landing, mobile, grants, classes, setFilters, filters}) => {
+    const {isModerator} = useSelector(state => state.user);
 
     function handleChange(data, key) {
         const tempArray = returnKeyValuePair(key);
@@ -44,7 +46,7 @@ const NewFilters = ({landing, mobile, grants, classes, setFilters, filters}) => 
                 {Object.keys(filters).map((group, id) => <FilterGroup classes={classes} key={id}
                                                                       handleChange={handleChange}
                                                                       data={returnKeyValuePair(group)} title={title[id]}
-                                                                      labelText={group}/>)}
+                                                                      labelText={group} isModerator={isModerator} />)}
             </FormGroup>
             <Button variant="contained" color="primary" size="large" component={RouterLink} to="/grants"
                     className={classes.landingButton}>

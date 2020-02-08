@@ -3,14 +3,22 @@ import LandingPage from "../landingpage/LandingPage";
 import GrantContainer from "../grants/GrantContainer";
 import RenderRoutes from "./RenderRoutes";
 import { SuggestionForm } from "../suggestion/Suggestion";
+import PrivateRoute from "./PrivateRoute";
 import GrantTable from "../admin/GrantTable";
-import { UserData } from "../userProfile/userData";
+import About from "../about/About";
+
 const routes = [
   {
     key: "APP_ROOT",
     path: "/",
     exact: true,
     component: LandingPage
+  },
+  {
+    key: "ABOUT",
+    path: "/about",
+    exact: true,
+    component: About
   },
   {
     key: "GRANTS",
@@ -31,18 +39,22 @@ const routes = [
       }
     ]
   },
-
   {
     key: "SUGGESTION",
     path: "/suggestion",
     exact: true,
-    component: SuggestionForm
+    key: "GRANTS_ROOT",
+    component: GrantContainer
   },
   {
-    key: "ADMIN_TABLE",
-    path: "/admin",
+    path: "/grants/favorites",
     exact: true,
-    component: GrantTable
+    component: PrivateRoute,
+    renderComponent: {
+      path: "/admin",
+      exact: true,
+      component: GrantTable
+    }
   }
 ];
 
