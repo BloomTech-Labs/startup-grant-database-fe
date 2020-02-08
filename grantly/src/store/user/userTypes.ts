@@ -14,6 +14,12 @@ export enum UserTypes {
     REMOVE_FAVORITES_START = 'REMOVE_FAVORITES_START',
     REMOVE_FAVORITES_SUCCESS = 'REMOVE_FAVORITES_SUCCESS',
     REMOVE_FAVORITES_FAILURE = 'REMOVE_FAVORITES_FAILURE',
+    UPDATE_USER_START = 'UPDATE_USER_START',
+    UPDATE_USER_SUCCESS = 'UPDATE_USER_SUCCESS',
+    UPDATE_USER_FAILURE = 'UPDATE_USER_FAILURE',
+    REMOVE_USER_START = 'REMOVE_USER_START',
+    REMOVE_USER_SUCCESS = 'REMOVE_USER_SUCCESS',
+    REMOVE_USER_FAILURE = 'REMOVE_USER_FAILURE',
     SET_USER_FROM_AUTH0 = 'SET_USER_FROM_AUTH0',
     RESET_USER = 'RESET_USER',
     IS_MODERATOR = 'IS_MODERATOR',
@@ -98,6 +104,34 @@ interface AddFavoriteFailureAction {
     payload: Error
 }
 
+interface UpdateUserStartAction {
+    type: typeof UserTypes.UPDATE_USER_START
+}
+
+interface UpdateUserSuccessAction {
+    type: typeof UserTypes.UPDATE_USER_SUCCESS
+    payload: User;
+}
+
+interface UpdateUserFailureAction {
+    type: typeof UserTypes.UPDATE_USER_FAILURE
+    payload: Error;
+}
+
+interface RemoveUserStartAction {
+    type: typeof UserTypes.REMOVE_USER_START
+}
+
+interface RemoveUserSuccessAction {
+    type: typeof UserTypes.REMOVE_USER_SUCCESS
+    payload: User;
+}
+
+interface RemoveUserFailureAction {
+    type: typeof UserTypes.REMOVE_USER_FAILURE
+    payload: Error;
+}
+
 export type UserActions =
     FetchUserStartAction
     | FetchUserSuccessAction
@@ -107,6 +141,12 @@ export type UserActions =
     | IsModeratorAction
     | SetTokenAction
     | FetchFavoritesStartAction
+    | UpdateUserStartAction
+    | UpdateUserSuccessAction
+    | UpdateUserFailureAction
+    | RemoveUserStartAction
+    | RemoveUserSuccessAction
+    | RemoveUserFailureAction
     | FetchFavoritesSuccessAction
     | FetchFavoritesFailureAction
     | AddFavoriteFailureAction
