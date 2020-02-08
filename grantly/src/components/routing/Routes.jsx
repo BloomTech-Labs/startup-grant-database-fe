@@ -6,7 +6,7 @@ import { SuggestionForm } from "../suggestion/Suggestion";
 import PrivateRoute from "./PrivateRoute";
 import GrantTable from "../admin/GrantTable";
 import About from "../about/About";
-
+import UserSettings from "../../components/userProfile/userSettings";
 const routes = [
   {
     key: "APP_ROOT",
@@ -19,6 +19,12 @@ const routes = [
     path: "/about",
     exact: true,
     component: About
+  },
+  {
+    key: "USER_SETTINGS",
+    path: "/settings",
+    exact: true,
+    component: UserSettings
   },
   {
     key: "GRANTS",
