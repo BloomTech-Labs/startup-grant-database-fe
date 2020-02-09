@@ -20,10 +20,10 @@ const userSettingsFormData = [
   { label: "Last Name", type: "text", name: "last_name", data: [] },
   { label: "Role", type: "text", name: "role", data: [] },
   { label: "Phone", type: "tel", name: "phone_number", data: [] },
-  { label: "Company", type: "text", name: "company", data: [] },
-  { label: "Company Website", type: "text", name: "company_url", data: [] },
+  { label: "Project", type: "text", name: "company", data: [] },
+  { label: "Project Website", type: "text", name: "company_url", data: [] },
   {
-    label: "About Company",
+    label: "About Project",
     type: "text",
     name: "about",
     multiline: true,
