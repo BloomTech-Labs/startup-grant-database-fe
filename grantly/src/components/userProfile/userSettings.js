@@ -4,6 +4,7 @@ import { UserSettingsForm } from "./UserSettingsForm.js";
 import { UserData } from "./userData.js";
 import { Container, Button } from "@material-ui/core";
 import { ActionsContext } from "../../context/ActionsContext";
+import { AuthForm } from "./AuthForm.js";
 
 const UserSettings = () => {
   const actions = useContext(ActionsContext);
@@ -12,17 +13,14 @@ const UserSettings = () => {
 
   useEffect(() => {
     console.log(currentUser.email);
-    actions.user.getUserFromPG(currentUser.name);
+    actions.user.getUserFromPG(currentUser.email);
   });
 
   return (
     <React.Fragment>
       <Container maxWidth="lg">
-        if (state.isEditing === "false") {<UserData />} else{" "}
-        {<UserSettingsForm />}
-        <Button variant="contained" color="secondary">
-          Edit
-        </Button>
+        <AuthForm />
+        <UserSettingsForm />
       </Container>
     </React.Fragment>
   );

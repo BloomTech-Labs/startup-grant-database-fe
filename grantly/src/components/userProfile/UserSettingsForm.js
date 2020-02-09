@@ -1,18 +1,23 @@
 import React from "react";
 import { TextFormField } from "../suggestion/formElements/TextFormField";
-import { Grid, Typography, Divider, Paper } from "@material-ui/core";
+import { Grid, Typography, Divider, Paper, Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles(theme => ({
   formContainer: {
-    padding: "1em 10em 2em 10em"
+    padding: "1em 8em 2em 8em",
+    [theme.breakpoints.down("sm")]: {
+      padding: "2em"
+    }
   },
   layout: {
     [theme.breakpoints.down("sm")]: {
-      paddingTop: "8em"
+      padding: "4em 0"
     }
   },
-  about: {}
+  title: {
+    paddingTop: "1.5em"
+  }
 }));
 
 const userSettingsFormData = [
@@ -20,10 +25,10 @@ const userSettingsFormData = [
   { label: "Last Name", type: "text", name: "last_name", data: [] },
   { label: "Role", type: "text", name: "role", data: [] },
   { label: "Phone", type: "tel", name: "phone_number", data: [] },
-  { label: "Company", type: "text", name: "company", data: [] },
-  { label: "Company Website", type: "text", name: "company_url", data: [] },
+  { label: "Project", type: "text", name: "company", data: [] },
+  { label: "Project Website", type: "text", name: "company_url", data: [] },
   {
-    label: "About Company",
+    label: "About Project",
     type: "text",
     name: "about",
     multiline: true,
@@ -38,7 +43,9 @@ export const UserSettingsForm = props => {
   const styles = useStyles();
   return (
     <Paper className={styles.layout}>
-      <Typography variant="h5">User Settings</Typography>
+      <Typography variant="h6" className={styles.title}>
+        Personal Details
+      </Typography>
       <Divider variant="middle" />
       <Grid container spacing={3} className={styles.formContainer}>
         {userSettingsFormData.map(data => {
@@ -56,6 +63,9 @@ export const UserSettingsForm = props => {
           );
         })}
       </Grid>
+      <Button variant="contained" color="primary">
+        Save Changes
+      </Button>
     </Paper>
   );
 };
