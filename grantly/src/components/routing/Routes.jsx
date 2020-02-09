@@ -4,7 +4,7 @@ import GrantContainer from "../grants/GrantContainer";
 import RenderRoutes from "./RenderRoutes";
 import { SuggestionForm } from "../suggestion/Suggestion";
 import GrantTable from "../admin/GrantTable";
-import UserSettings from "../userProfile/UserSettings";
+import UserSettings from "../../components/userProfile/userSettings";
 
 const routes = [
   {
@@ -32,7 +32,6 @@ const routes = [
       }
     ]
   },
-
   {
     key: "SUGGESTION",
     path: "/suggestion",

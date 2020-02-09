@@ -9,18 +9,23 @@ interface IProps {
     labelText: string;
     title: string;
     classes: any;
+    isModerator: boolean
 }
 
 function FilterGroup(props: IProps) {
-    const {labelText, data, handleChange, classes, title} = props;
+    const {labelText, data, handleChange, classes, title, isModerator} = props;
+    const display = labelText !== 'admin_filters' || labelText === 'admin_filters' && isModerator;
     return (
-        <FormControl className={classes.set} component="fieldset">
-            <FormLabel className={classes.label} component="legend">
-                {title}
-            </FormLabel>
-            {data.map((item: KeyValuePair) => <FilterItem key={item.key} classes={classes} data={item} labelText={labelText}
-                                                          handleChange={handleChange} />)}
-        </FormControl>
+        <>
+            {display && (<FormControl className={classes.set} component="fieldset">
+                <FormLabel className={classes.label} component="legend">
+                    {title}
+                </FormLabel>
+                {data.map((item: KeyValuePair) => <FilterItem key={item.key} classes={classes} data={item}
+                                                              labelText={labelText}
+                                                              handleChange={handleChange}/>)}
+            </FormControl>)}
+        </>
     )
 }
 

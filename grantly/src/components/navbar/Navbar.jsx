@@ -114,7 +114,7 @@ const Navbar = () => {
     }
     setIsOpen(!isOpen);
   };
-  const { isAuthenticated, user, loginWithRedirect } = useAuth0();
+  const { isAuthenticated, user, loginWithRedirect, loading } = useAuth0();
 
   const classes = useStyles();
 
@@ -187,8 +187,9 @@ const Navbar = () => {
               className={classes.navButton}
               color="primary"
               onClick={() => loginWithRedirect()}
+              disabled={loading}
             >
-              Log In
+              {loading ? `Please Wait` : `Log in`}
             </Button>
           </div>
         )}

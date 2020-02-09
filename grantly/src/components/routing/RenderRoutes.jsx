@@ -1,5 +1,5 @@
 import React from 'react';
-import {Switch, Route} from 'react-router-dom';
+import {Route, Switch} from 'react-router-dom';
 import RouteWithSubRoutes from "./RouteWithSubRoutes";
 
 function RenderRoutes({routes}) {
@@ -8,7 +8,7 @@ function RenderRoutes({routes}) {
             {routes.map((route) => {
                 return <RouteWithSubRoutes key={route.key} {...route}/>
             })}
-            <Route component={()=><h1>Page Not Found</h1>} />
+            <Route component={() => <h1>Page Not Found</h1>}/>
         </Switch>
     )
 }
