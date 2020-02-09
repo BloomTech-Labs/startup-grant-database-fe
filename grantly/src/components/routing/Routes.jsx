@@ -39,11 +39,16 @@ const routes = [
     component: SuggestionForm
   },
   {
-    key: "ADMIN_TABLE",
-    path: "/admin",
-    exact: true,
-    component: GrantTable
-  },
+        key: 'ADMIN_TABLE',
+        path: '/admin',
+        exact: true,
+        component: PrivateRoute,
+        renderComponent: {
+            path: '/admin',
+            exact: true,
+            component: GrantTable
+        }
+    },
   {
     key: "USER_SETTINGS",
     path: "/settings",
