@@ -9,12 +9,6 @@ export const UserData = props => {
   const { token, currentUser } = useSelector(state => state.user);
   const { isAuthenticated } = useAuth0();
 
-  useEffect(() => {
-    if (isAuthenticated && currentUser["https://founder-grants.com/appdata"]) {
-      actions.grants.getUserFromPG(token);
-    }
-  }, [isAuthenticated]);
-
   console.log(currentUser);
 
   return (
