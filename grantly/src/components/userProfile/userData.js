@@ -1,6 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
 import { ActionsContext } from "../../context/ActionsContext";
+import { useAuth0 } from "../auth0/Auth0Wrapper";
 import { useSelector } from "react-redux";
+import { Paper, Typography, Divider } from "@material-ui/core";
 
 export const UserData = props => {
   const actions = useContext(ActionsContext);
@@ -17,7 +19,14 @@ export const UserData = props => {
 
   return (
     <React.Fragment>
-      <h1>Dad?</h1>
+      <Paper>
+        <Typography>Personal Details:</Typography>
+        <Divider variant="middle" />
+        <p>{currentUser.nickname}</p>
+
+        <Typography>Your Project:</Typography>
+        <Divider variant="middle" />
+      </Paper>
     </React.Fragment>
   );
 };
