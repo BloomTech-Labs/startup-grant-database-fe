@@ -1,18 +1,23 @@
 import React from "react";
 import { TextFormField } from "../suggestion/formElements/TextFormField";
-import { Grid, Typography, Divider, Paper } from "@material-ui/core";
+import { Grid, Typography, Divider, Paper, Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles(theme => ({
   formContainer: {
-    padding: "1em 10em 2em 10em"
+    padding: "1em 8em 2em 8em",
+    [theme.breakpoints.down("sm")]: {
+      padding: "2em"
+    }
   },
   layout: {
     [theme.breakpoints.down("sm")]: {
-      paddingTop: "8em"
+      padding: "4em 0"
     }
   },
-  about: {}
+  title: {
+    paddingTop: "1.5em"
+  }
 }));
 
 const userSettingsFormData = [
@@ -38,7 +43,9 @@ export const UserSettingsForm = props => {
   const styles = useStyles();
   return (
     <Paper className={styles.layout}>
-      <Typography variant="h5">User Settings</Typography>
+      <Typography variant="h6" className={styles.title}>
+        Personal Details
+      </Typography>
       <Divider variant="middle" />
       <Grid container spacing={3} className={styles.formContainer}>
         {userSettingsFormData.map(data => {
@@ -56,6 +63,9 @@ export const UserSettingsForm = props => {
           );
         })}
       </Grid>
+      <Button variant="contained" color="primary">
+        Save Changes
+      </Button>
     </Paper>
   );
 };
