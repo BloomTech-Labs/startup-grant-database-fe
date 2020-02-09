@@ -2,6 +2,7 @@ import React from "react";
 import { Grid, Typography, Divider, Paper, Button } from "@material-ui/core";
 import { TextFormField } from "../suggestion/formElements/TextFormField";
 import { makeStyles } from "@material-ui/core/styles";
+import SimpleModal from "./DeleteModel";
 
 const useStyles = makeStyles(theme => ({
   formContainer: {
@@ -60,9 +61,7 @@ export const AuthForm = () => {
       <Button variant="contained" color="primary" className={styles.button}>
         Submit Changes
       </Button>
-      <Button variant="contained" color="secondary" className={styles.button}>
-        Delete Account
-      </Button>
+      <SimpleModal />
     </Paper>
   );
 };
