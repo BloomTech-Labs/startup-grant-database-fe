@@ -26,7 +26,7 @@ export enum UserTypes {
     SET_TOKEN = 'SET_TOKEN'
 }
 
-export interface User {
+export interface Auth0User {
     nickname: string;
     name: string;
     picture: string;
@@ -36,8 +36,22 @@ export interface User {
     sub: string;
 }
 
+export interface PGUser {
+    id: number | null
+    email: string
+    first_name: string| null
+    last_name: string| null
+    role: string| null
+    phone: string| null
+    company: string| null
+    company_url: string| null
+    about: string| null
+
+}
+
 export interface UserState {
-    currentUser: User;
+    currentUser: Auth0User;
+    pgUser: PGUser;
     favoriteGrants: Grant[];
     isModerator: boolean;
     isLoading: boolean;
@@ -50,7 +64,7 @@ interface FetchUserStartAction {
 
 interface FetchUserSuccessAction {
     type: typeof UserTypes.FETCH_USER_SUCCESS
-    payload: User;
+    payload: PGUser;
 }
 
 interface FetchUserFailureAction {
@@ -60,7 +74,7 @@ interface FetchUserFailureAction {
 
 interface SetUserFromAuth0Action {
     type: typeof UserTypes.SET_USER_FROM_AUTH0;
-    payload: User
+    payload: Auth0User
 }
 
 interface IsModeratorAction {
@@ -110,7 +124,7 @@ interface UpdateUserStartAction {
 
 interface UpdateUserSuccessAction {
     type: typeof UserTypes.UPDATE_USER_SUCCESS
-    payload: User;
+    payload: PGUser;
 }
 
 interface UpdateUserFailureAction {
@@ -124,7 +138,7 @@ interface RemoveUserStartAction {
 
 interface RemoveUserSuccessAction {
     type: typeof UserTypes.REMOVE_USER_SUCCESS
-    payload: User;
+    payload: PGUser;
 }
 
 interface RemoveUserFailureAction {

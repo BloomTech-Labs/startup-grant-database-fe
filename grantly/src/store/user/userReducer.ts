@@ -12,6 +12,17 @@ const initialState: UserState = {
         updated_at: ''
         // will need more object fields here
     },
+    pgUser: {
+        id: null,
+        email: '',
+        first_name: null,
+        last_name: null,
+        role: null,
+        phone: null,
+        company: null,
+        company_url: null,
+        about: null
+    },
     favoriteGrants: [],
     isModerator: false,
     isLoading: false,
@@ -20,6 +31,7 @@ const initialState: UserState = {
 
 type FunctionReducer<S extends UserState = UserState, P = any> = (state:UserState, payload?: any) => UserState;
 
+const userFromPGSuccessAction: FunctionReducer = (state: UserState, payload) => ({...state, isLoading: false, pgUser: payload})
 const userStartReducer: FunctionReducer = (state) => ({...state, isLoading: true});
 const userSetAuth0Reducer: FunctionReducer = (state, payload) => ({...state, isLoading: false, errors: null, currentUser: {...payload}});
 const userFailureReducer: FunctionReducer = (state, payload) => ({...state, isLoading: false, errors: payload});
@@ -37,7 +49,7 @@ const userRemoveReducerSuccess: FunctionReducer = (state) => ({...state});
 const userRemoveReducerFailure: FunctionReducer = (state, payload) => ({...state, errors: payload});
 
 const userUpdateReducerStart: FunctionReducer = (state) => ({...state});
-const userUpdateReducerSuccess: FunctionReducer = (state, payload) => ({...state, currentUser: {...payload}});
+const userUpdateReducerSuccess: FunctionReducer = (state, payload) => ({...state, pgUser: payload});
 const userUpdateReducerFailure: FunctionReducer = (state, payload) => ({...state, errors: payload});
 
 
@@ -62,5 +74,8 @@ export const userReducer = createReducer(initialState, {
     [UserTypes.UPDATE_USER_START]: userUpdateReducerStart,
     [UserTypes.UPDATE_USER_SUCCESS]: userUpdateReducerSuccess,
     [UserTypes.UPDATE_USER_FAILURE]: userUpdateReducerFailure,
+    [UserTypes.FETCH_USER_START]: userStartReducer,
+    [UserTypes.FETCH_USER_SUCCESS]: userFromPGSuccessAction,
+    [UserTypes.FETCH_USER_FAILURE]: userFailureReducer
 });
 

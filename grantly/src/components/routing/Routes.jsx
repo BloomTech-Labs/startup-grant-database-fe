@@ -54,7 +54,12 @@ const routes = [
     key: "USER_SETTINGS",
     path: "/settings",
     exact: true,
-    component: UserSettings
+    component: PrivateRoute,
+    renderComponent: {
+      path: "/settings",
+      exact: true,
+      component: UserSettings
+    }
   }
 ];
 

@@ -5,6 +5,8 @@ import { useSelector } from "react-redux";
 
 import { Grid, Typography, Divider, Paper, Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
+import {logger} from "../../store/utils/logger";
+
 
 const useStyles = makeStyles(theme => ({
   formContainer: {
@@ -42,26 +44,18 @@ const data = [
 
 export const UserData = props => {
   const actions = useContext(ActionsContext);
-  const { token, currentUser } = useSelector(state => state.user);
+  const { token, currentUser, pgUser } = useSelector(state => state.user);
   const { isAuthenticated } = useAuth0();
   const styles = useStyles();
-  console.log(currentUser);
-
-  useEffect(() => {
-    console.log(currentUser.email);
-    actions.user.getUserByEmail(currentUser.email);
-  });
-
+  const data = pgUser;
+  logger('PG User', data);
   return (
     <React.Fragment>
       <Paper>
         <Typography variant="h5">Change Account Settings</Typography>
-
         <Typography variant="h6">Personal Details:</Typography>
         <Divider variant="middle" />
         <Grid container spacing={6} className={styles.formContainer}>
-          {data.map(data => {
-            return (
               <Fragment key={data.first_name}>
                 <Grid xs={6}>
                   <Typography className={styles.subtitle}>
@@ -104,8 +98,6 @@ export const UserData = props => {
                   <Typography>{data.about}</Typography>
                 </Grid>
               </Fragment>
-            );
-          })}
         </Grid>
       </Paper>
     </React.Fragment>
