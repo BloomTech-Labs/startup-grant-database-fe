@@ -30,6 +30,8 @@ export const GrantInfoForm = props => {
             variant={data.variant}
             multiline={data.multiline}
             data={data.data}
+            value={props.grantInfo.name}
+            handleChanges={props.handleChanges}
           />
         ))}
       </Grid>
