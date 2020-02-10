@@ -2,6 +2,8 @@ import React from "react";
 import { TextFormField } from "../suggestion/formElements/TextFormField";
 import { Grid, Typography, Divider, Paper, Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
+import { ActionsContext } from "../../context/ActionsContext";
+import { useAuth0 } from "../auth0/Auth0Wrapper";
 
 const useStyles = makeStyles(theme => ({
   formContainer: {
@@ -41,6 +43,11 @@ const userSettingsFormData = [
 
 export const UserSettingsForm = props => {
   const styles = useStyles();
+  const { token, currentUser } = useSelector(state => state.user);
+  const { isAuthenticated } = useAuth0();
+  const onSubmit = () => {
+    actions.user.updateUser();
+  };
   return (
     <Paper className={styles.layout}>
       <Typography variant="h6" className={styles.title}>
