@@ -17,6 +17,7 @@ import SideMenu from "./SideMenu";
 import { useSelector } from "react-redux";
 import { ActionsContext } from "../../context/ActionsContext";
 import { useGetToken } from "../auth0/useGetToken";
+import {logger} from "../../store/utils/logger";
 
 const useStyles = makeStyles(theme => ({
   navBar: {
@@ -141,7 +142,9 @@ const Navbar = () => {
   useEffect(() => {
     if (token && isAuthenticated && user) {
       actions.user.setToken(token);
-      actions.user.getFavorites(token, user.sub);
+      // actions.user.getFavorites(token, user.sub);
+      logger("user", user.email);
+      actions.user.getUserFromPG(token, user.email);
     }
   }, [token]);
   //   console.log("user action logged", actions.user.setUserFromAuth0(user));
