@@ -7,37 +7,38 @@ export enum FilterTypes {
     PRISTINE_CHECK = 'PRISTINE_CHECK'
 }
 
+export interface FormState {
+    key: string
+    checked: boolean
+    [index: string]: any
+}
+
 interface Amount {
-    min: number | null;
-    max: number | null;
+    values: {
+        min: number | null
+        max: number | null
+    }
+    [index: string]: any
 }
 
-export interface KeyValuePair {
-    key: string;
-    checked: boolean;
-    values?: Amount;
-}
+export type AmountState = FormState & Amount
 
-export type KeyValuePairArray = {
-    [index: number]: KeyValuePair
-}
-
-export interface Filters {
-    amount: KeyValuePairArray;
-    geographic_region: KeyValuePairArray;
-    domain_areas: KeyValuePairArray,
-    admin_filters: KeyValuePairArray
+export interface FilterFormState {
+    amount: AmountState[]
+    geographic_region: FormState[]
+    domain_areas: FormState[]
+    [key: string]: FormState[] | AmountState[]
 }
 
 export interface FilterState {
-    pristine: boolean;
-    criteria: Filters;
-    grants: Grant[];
+    pristine: boolean
+    criteria: FilterFormState
+    grants: Grant[]
 }
 
 interface FilterChangeAction {
     type: typeof FilterTypes.FILTER_CHANGE
-    payload: Filters
+    payload: FilterFormState
 }
 
 interface FilterResetAction {

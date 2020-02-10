@@ -23,22 +23,23 @@ export enum GrantTypes {
 }
 
 export interface Grant {
-  id?: number;
-  competition_name: string;
-  area_focus: string;
-  sponsoring_entity: string;
-  website: string;
-  most_recent_application_due_date: string;
-  amount: number;
-  amount_notes: string | null;
-  geographic_region: string | null;
-  target_entrepreneur_demographic: string | null;
-  notes: string;
-  early_stage_funding: number | boolean;
-  is_reviewed: number | boolean;
-  has_requests: number | boolean;
-  details_last_updated: string;
-  favoriteID?: number;
+    id?: number;
+    competition_name: string;
+    area_focus: string;
+    sponsoring_entity: string;
+    website: string;
+    most_recent_application_due_date: string;
+    amount: number;
+    amount_notes: string | null;
+    geographic_region: string | null;
+    target_entrepreneur_demographic: string | null;
+    notes: string;
+    early_stage_funding: number | boolean;
+    is_reviewed: number | boolean;
+    has_requests: number | boolean;
+    details_last_updated: string;
+    favoriteID?: number
+    [index: string]: any
 }
 
 export interface GrantState {
@@ -97,43 +98,45 @@ interface SelectGrantAction {
 }
 
 interface UpdateAdminGrantsStart {
-  type: typeof GrantTypes.UPDATE_ADMIN_GRANTS_START;
-  isUpdating: boolean;
+  type: typeof GrantTypes.UPDATE_ADMIN_GRANTS_START
+  isUpdating: boolean
 }
 
 interface UpdateAdminGrantsSuccess {
-  type: typeof GrantTypes.UPDATE_ADMIN_GRANTS_SUCCESS;
+  type: typeof GrantTypes.UPDATE_ADMIN_GRANTS_SUCCESS
   // payload: Grant;
 }
 
 interface UpdateAdminGrantsFailure {
-  type: typeof GrantTypes.UPDATE_ADMIN_GRANTS_FAILURE;
+  type: typeof GrantTypes.UPDATE_ADMIN_GRANTS_FAILURE
   payload: Error;
 }
 
 interface DeleteAdminGrantsStart {
-  type: typeof GrantTypes.DELETE_ADMIN_GRANTS_START;
+  type: typeof GrantTypes.DELETE_ADMIN_GRANTS_START
+
 }
 
 interface DeleteAdminGrantsSuccess {
-  type: typeof GrantTypes.DELETE_ADMIN_GRANTS_SUCCESS;
+  type: typeof GrantTypes.DELETE_ADMIN_GRANTS_SUCCESS
 }
 
 interface DeleteAdminGrantsFailure {
-  type: typeof GrantTypes.DELETE_ADMIN_GRANTS_FAILURE;
+  type: typeof GrantTypes.DELETE_ADMIN_GRANTS_FAILURE
   payload: Error;
 }
 
 interface SelectAdminGrantsStart {
-  type: typeof GrantTypes.SELECT_ADMIN_GRANTS_START;
+  type: typeof GrantTypes.SELECT_ADMIN_GRANTS_START
+
 }
 
 interface SelectAdminGrantsSuccess {
-  type: typeof GrantTypes.SELECT_ADMIN_GRANTS_SUCCESS;
+  type: typeof GrantTypes.SELECT_ADMIN_GRANTS_SUCCESS
 }
 
 interface SelectAdminGrantsFailure {
-  type: typeof GrantTypes.SELECT_ADMIN_GRANTS_FAILURE;
+  type: typeof GrantTypes.SELECT_ADMIN_GRANTS_FAILURE
   payload: Error;
 }
 
