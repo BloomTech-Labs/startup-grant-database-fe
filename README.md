@@ -1,5 +1,8 @@
 # Founder Grants
 
+[![Maintainability](https://api.codeclimate.com/v1/badges/043f48c91ebd9548fd1d/maintainability)](https://codeclimate.com/github/Lambda-School-Labs/startup-grant-database-fe/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/043f48c91ebd9548fd1d/test_coverage)](https://codeclimate.com/github/Lambda-School-Labs/startup-grant-database-fe/test_coverage)
+
 You can find the deployed project at [Founder Grants](https://grantly-b5b58.firebaseapp.com/).
 
 ## Contributors

@@ -1,4 +1,5 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
 # dependencies
 /node_modules
 /.pnp
@@ -9,7 +10,7 @@
 
 # production
 /build
-.env # This contains secrets, don't store in source control
+
 # misc
 .DS_Store
 .env.local
@@ -20,4 +21,3 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-src/auth_config.json
