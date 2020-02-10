@@ -73,9 +73,6 @@ export const UserSettingsForm = props => {
           );
         })}
       </Grid>
-      <Button variant="contained" color="primary">
-        Save Changes
-      </Button>
     </Paper>
   );
 };

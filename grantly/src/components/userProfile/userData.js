@@ -55,9 +55,9 @@ export const UserData = props => {
   return (
     <React.Fragment>
       <Paper>
-        <Typography>Change Account Settings</Typography>
+        <Typography variant="h5">Change Account Settings</Typography>
 
-        <Typography>Personal Details:</Typography>
+        <Typography variant="h6">Personal Details:</Typography>
         <Divider variant="middle" />
         <Grid container spacing={6} className={styles.formContainer}>
           {data.map(data => {
