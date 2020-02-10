@@ -11,13 +11,9 @@ const UserSettings = () => {
   const [isEditing, setIsEditing] = useState(false);
   const { token, currentUser } = useSelector(state => state.user);
 
-  useEffect(() => {
-    console.log(currentUser.email);
-    actions.user.getUserFromPG(currentUser.email);
-  });
-
   return (
     <React.Fragment>
+      <UserData />
       <Container maxWidth="lg">
         <AuthForm />
         <UserSettingsForm />
