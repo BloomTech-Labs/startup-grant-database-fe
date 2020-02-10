@@ -5,6 +5,7 @@ import RenderRoutes from "./RenderRoutes";
 import { SuggestionForm } from "../suggestion/Suggestion";
 import GrantTable from "../admin/GrantTable";
 import UserSettings from "../../components/userProfile/userSettings";
+import PrivateRoute from "./PrivateRoute";
 
 const routes = [
   {
@@ -39,16 +40,16 @@ const routes = [
     component: SuggestionForm
   },
   {
-        key: 'ADMIN_TABLE',
-        path: '/admin',
-        exact: true,
-        component: PrivateRoute,
-        renderComponent: {
-            path: '/admin',
-            exact: true,
-            component: GrantTable
-        }
-    },
+    key: "ADMIN_TABLE",
+    path: "/admin",
+    exact: true,
+    component: PrivateRoute,
+    renderComponent: {
+      path: "/admin",
+      exact: true,
+      component: GrantTable
+    }
+  },
   {
     key: "USER_SETTINGS",
     path: "/settings",
