@@ -39,6 +39,7 @@ export interface Grant {
     has_requests: number | boolean;
     details_last_updated: string;
     favoriteID?: number
+    [index: string]: any
 }
 
 export interface GrantState {

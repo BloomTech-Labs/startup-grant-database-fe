@@ -1,10 +1,10 @@
 import React from 'react';
-import {KeyValuePair} from "../../store/filters/filterTypes";
+import {AmountState, FormState} from "../../store/filters/filterTypes";
 import {Checkbox, FormControlLabel} from "@material-ui/core";
 
 interface IProps {
-    handleChange: (data: KeyValuePair, key: string) => void;
-    data: KeyValuePair;
+    handleChange: (data: FormState | AmountState, key: string) => void;
+    data: FormState | AmountState;
     classes: any;
     labelText: string;
 }

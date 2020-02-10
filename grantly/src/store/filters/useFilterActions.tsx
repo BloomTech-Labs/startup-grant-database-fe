@@ -1,12 +1,12 @@
 import {useCallback} from 'react';
 import {useDispatch} from 'react-redux';
-import {Filters, FilterTypes} from "./filterTypes";
+import {FilterFormState, FilterTypes} from "./filterTypes";
 import {Grant} from "../grants/grantTypes";
 
 export const useFilterActions = () => {
     const dispatch = useDispatch();
 
-    const changeFilter = useCallback((newFilter: Filters) => {
+    const changeFilter = useCallback((newFilter: FilterFormState) => {
         dispatch({type: FilterTypes.FILTER_CHANGE, payload: newFilter});
         dispatch({type: FilterTypes.PRISTINE_CHECK})
     }, [dispatch]);
@@ -23,7 +23,7 @@ export const useFilterActions = () => {
 };
 
 export interface UseFilterActions {
-    changeFilter: (newFilters: Filters) => void;
+    changeFilter: (newFilters: FilterFormState) => void;
     resetFilter: () => void;
     grantFilter: (grants: Grant[]) => void;
 }

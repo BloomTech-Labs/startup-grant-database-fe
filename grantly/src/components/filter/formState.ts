@@ -1,6 +1,6 @@
-import {Filters} from "../../store/filters/filterTypes";
+import {FilterFormState} from "../../store/filters/filterTypes";
 
-export const filterFormState:Filters = {
+export const filterFormState: FilterFormState = {
     amount: [
         {
             key: 'Under $1,000',
@@ -84,20 +84,6 @@ export const filterFormState:Filters = {
         },
         {
             key: 'Energy',
-            checked: false
-        },
-    ],
-    admin_filters: [
-        {
-            key: 'New',
-            checked: false
-        },
-        {
-            key: 'Expired',
-            checked: false
-        },
-        {
-            key: 'Suggestions',
             checked: false
         },
     ]
