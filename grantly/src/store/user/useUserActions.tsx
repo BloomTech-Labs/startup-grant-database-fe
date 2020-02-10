@@ -183,5 +183,5 @@ export interface UseUserActions {
   addFavorite: (token: string, grant_id: number, authId: string) => void;
   removeFavorite: (token: string, favoriteId: number) => void;
   removeUser: (token: string, id: number) => void;
-  updateUser: (token: string, id: number, data: User) => void;
+  updateUser: (token: string, email: string, data: User) => void;
 }

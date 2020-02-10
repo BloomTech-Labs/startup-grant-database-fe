@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import { TextFormField } from "../suggestion/formElements/TextFormField";
 import { Grid, Typography, Divider, Paper, Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { ActionsContext } from "../../context/ActionsContext";
 import { useAuth0 } from "../auth0/Auth0Wrapper";
+import { useSelector } from "react-redux";
 
 const useStyles = makeStyles(theme => ({
   formContainer: {
@@ -43,6 +44,8 @@ const userSettingsFormData = [
 
 export const UserSettingsForm = props => {
   const styles = useStyles();
+  const actions = useContext(ActionsContext);
+
   const { token, currentUser } = useSelector(state => state.user);
   const { isAuthenticated } = useAuth0();
   const onSubmit = () => {
