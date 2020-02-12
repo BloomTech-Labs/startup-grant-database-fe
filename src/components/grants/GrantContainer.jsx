@@ -9,6 +9,7 @@ import {makeStyles} from "@material-ui/core/styles";
 import TuneIcon from "@material-ui/icons/Tune";
 import Filters from "../filter/Filters";
 import clsx from "clsx";
+import {Helmet} from "react-helmet";
 
 const useStyles = makeStyles(theme => ({
     homeGridContainer: {
@@ -117,6 +118,7 @@ function GrantContainer(props) {
     return (
 
         <Grid
+  
             container
             direction='row'
             justify='space-between'
@@ -124,6 +126,12 @@ function GrantContainer(props) {
             spacing={2}
             className={classes.homeGridContainer}
         >
+            <Helmet>
+                <title>Founder Grants</title>
+                <meta name="description" content="Detail view of an available grant" />
+                <meta name="keywords" content="grant,startup,funding,invest,financing" />
+
+            </Helmet>
             <Grid
                 item
                 xs={4}

@@ -5,6 +5,8 @@ import {makeStyles} from "@material-ui/core/styles";
 import {Grid} from '@material-ui/core';
 import {useSelector} from "react-redux";
 import {ActionsContext} from "../../context/ActionsContext";
+import {Helmet} from "react-helmet";
+
 
 const components = [
     {
@@ -52,6 +54,12 @@ function LandingPage() {
 
     return (
         <div className={classes.container}>
+            <Helmet>
+                <title>Founder Grants</title>
+                <meta name="description" content="Find your startup grant, browse by type, region, amount!" />
+                <meta name="keywords" content="grant,startup,funding,invest,financing" />
+
+            </Helmet>
             <Grid
                 className={classes.grid}
                 container

@@ -1,11 +1,18 @@
 import React from 'react';
 import Grant from "./Grant";
 import {Typography} from "@material-ui/core";
+import {Helmet} from "react-helmet";
 
 function GrantList({grants, showcase}) {
 
     return (
         <>
+            <Helmet>
+                <title>Founder Grants</title>
+                <meta name="description" content="List of available grants" />
+                <meta name="keywords" content="grant,startup,funding,invest,financing" />
+
+            </Helmet>
             {grants.length && (
                 <Typography>
                     {`${grants.length} Grants`}
