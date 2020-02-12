@@ -15,6 +15,7 @@ import NavBar from "./components/Navbar";
 import Sitemap from "./components/Sitemap";
 import PrivateRoute from "./util/PrivateRoute";
 import Favorites from "./views/Favorites";
+
 // Stylings
 import { ThemeProvider } from "@material-ui/styles";
 import { theme } from "./styles/theme";

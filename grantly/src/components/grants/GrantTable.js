@@ -71,7 +71,7 @@ export const GrantTable = props => {
   } else {
     return (
       <Paper className={style.paper}>
-        <MaterialTable
+        <MaterialTable 
           title="Edit and Approve Grants"
           columns={[
             {
