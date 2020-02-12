@@ -74,7 +74,7 @@ export const useUserActions = () => {
         .then(res =>
           dispatch({
             type: UserTypes.POST_FAVORITES_SUCCESS,
-            payload: res.data
+              payload: res.data
           })
         )
         .catch(error =>
