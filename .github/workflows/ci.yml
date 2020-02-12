@@ -1,0 +1,38 @@
+name: build
+
+on: [push, pull_request]
+
+jobs:
+  test:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+        node: [12,10]
+    name: Test ${{ matrix.os}}/${{ matrix.node }}
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@master
+      - uses: actions/setup-node@master
+        with:
+          node-version: ${{ matrix.node }}
+      - run: npm install
+      - run: npm run build --if-present
+      - run: npm run action:test
+        env:
+          CI: true
+  coverage:
+    name: Test and publish test coverage
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - uses: actions/setup-node@master
+        with:
+          node-version: "12"
+      - run: npm install
+      - uses: paambaati/codeclimate-action@v2.4.0
+        env:
+          CC_TEST_REPORTER_ID: ${{ secrets.CodeClimateReporterId }}
+          CI: true
+        with:
+          coverageCommand: npm run action:coverage
+          debug: true
