@@ -142,7 +142,7 @@ const Navbar = () => {
   useEffect(() => {
     if (token && isAuthenticated && user) {
       actions.user.setToken(token);
-      // actions.user.getFavorites(token, user.sub);
+      actions.user.getFavorites(token, user.sub);
       logger("user", user.email);
       actions.user.getUserFromPG(token, user.email);
     }
