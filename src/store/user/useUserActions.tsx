@@ -49,7 +49,7 @@ export const useUserActions = () => {
     (token: string, authId: string) => {
       dispatch({ type: UserTypes.FETCH_FAVORITES_START });
       axiosWithAuth(token)
-        .get(`/favorites/myFavorites/${authId}`)
+        .get(`/users/${authId}/favorites`)
         .then(res =>
           dispatch({
             type: UserTypes.FETCH_FAVORITES_SUCCESS,
@@ -70,11 +70,11 @@ export const useUserActions = () => {
     (token: string, grant_id: number, auth_id: string) => {
       dispatch({ type: UserTypes.POST_FAVORITES_START });
       axiosWithAuth(token)
-        .post("/favorites", { grant_id, auth_id })
+        .post("/users/favorites", { grant_id, auth_id })
         .then(res =>
           dispatch({
             type: UserTypes.POST_FAVORITES_SUCCESS,
-            payload: res.data
+              payload: res.data
           })
         )
         .catch(error =>
@@ -113,7 +113,7 @@ export const useUserActions = () => {
     (token: string, favoriteId: number) => {
       dispatch({ type: UserTypes.REMOVE_FAVORITES_START });
       axiosWithAuth(token)
-        .delete(`/favorites/myFavorites/${favoriteId}`)
+        .delete(`/users/favorites/${favoriteId}`)
         .then(() =>
           dispatch({
             type: UserTypes.REMOVE_FAVORITES_SUCCESS,
