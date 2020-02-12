@@ -5,8 +5,7 @@ import { useSelector } from "react-redux";
 
 import { Grid, Typography, Divider, Paper, Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import {logger} from "../../store/utils/logger";
-
+import { logger } from "../../store/utils/logger";
 
 const useStyles = makeStyles(theme => ({
   formContainer: {
@@ -35,7 +34,7 @@ const data = [
     first_name: "Lorem",
     last_name: "Ipsum",
     role: "Pontifex",
-    phone_number: "Ceasar",
+    phone: "Ceasar",
     company: "SPQR",
     company_url: "https://SPQR.com",
     about: "Senate of Rome"
@@ -48,7 +47,7 @@ export const UserData = props => {
   const { isAuthenticated } = useAuth0();
   const styles = useStyles();
   const data = pgUser;
-  logger('PG User', data);
+  logger("PG User", data);
   return (
     <React.Fragment>
       <Paper>
@@ -56,48 +55,40 @@ export const UserData = props => {
         <Typography variant="h6">Personal Details:</Typography>
         <Divider variant="middle" />
         <Grid container spacing={6} className={styles.formContainer}>
-              <Fragment key={data.first_name}>
-                <Grid xs={6}>
-                  <Typography className={styles.subtitle}>
-                    First Name:
-                  </Typography>
-                  <Typography>{data.first_name}</Typography>
-                </Grid>
-                <Grid xs={6}>
-                  <Typography className={styles.subtitle}>
-                    Last Name:
-                  </Typography>
-                  <Typography>{data.last_name}</Typography>
-                </Grid>
-                <Grid xs={6}>
-                  <Typography className={styles.subtitle}>Role:</Typography>
-                  <Typography>{data.role}</Typography>
-                </Grid>
-                <Grid xs={6}>
-                  <Typography className={styles.subtitle}>
-                    Phone Number:
-                  </Typography>
-                  <Typography>{data.phone_number}</Typography>
-                </Grid>
-                <Grid xs={6}>
-                  <Typography className={styles.subtitle}>
-                    Name of Project:
-                  </Typography>
-                  <Typography>{data.company}</Typography>
-                </Grid>
-                <Grid xs={6}>
-                  <Typography className={styles.subtitle}>
-                    Project Link:
-                  </Typography>
-                  <Typography>{data.company_url}</Typography>{" "}
-                </Grid>
-                <Grid xs={6}>
-                  <Typography className={styles.subtitle}>
-                    About Project:
-                  </Typography>
-                  <Typography>{data.about}</Typography>
-                </Grid>
-              </Fragment>
+          <Fragment key={data.first_name}>
+            <Grid xs={6}>
+              <Typography className={styles.subtitle}>First Name:</Typography>
+              <Typography>{data.first_name}</Typography>
+            </Grid>
+            <Grid xs={6}>
+              <Typography className={styles.subtitle}>Last Name:</Typography>
+              <Typography>{data.last_name}</Typography>
+            </Grid>
+            <Grid xs={6}>
+              <Typography className={styles.subtitle}>Role:</Typography>
+              <Typography>{data.role}</Typography>
+            </Grid>
+            <Grid xs={6}>
+              <Typography className={styles.subtitle}>Phone Number:</Typography>
+              <Typography>{data.phone}</Typography>
+            </Grid>
+            <Grid xs={6}>
+              <Typography className={styles.subtitle}>
+                Name of Project:
+              </Typography>
+              <Typography>{data.company}</Typography>
+            </Grid>
+            <Grid xs={6}>
+              <Typography className={styles.subtitle}>Project Link:</Typography>
+              <Typography>{data.company_url}</Typography>{" "}
+            </Grid>
+            <Grid xs={6}>
+              <Typography className={styles.subtitle}>
+                About Project:
+              </Typography>
+              <Typography>{data.about}</Typography>
+            </Grid>
+          </Fragment>
         </Grid>
       </Paper>
     </React.Fragment>
