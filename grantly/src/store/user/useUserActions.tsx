@@ -1,21 +1,21 @@
 import { useCallback } from "react";
 import { useDispatch } from "react-redux";
-import {Auth0User, PGUser, UserTypes} from "./userTypes";
+import { Auth0User, PGUser, UserTypes } from "./userTypes";
 import { AxiosError, AxiosResponse } from "axios";
 import { axiosWithAuth, axiosWithOutAuth as axios } from "../utils/axiosConfig";
 import { type } from "os";
-import {logger} from "../utils/logger";
+import { logger } from "../utils/logger";
 
 export const useUserActions = () => {
   const dispatch = useDispatch();
 
   const getUserFromPG = useCallback(
     (token: string, email: string) => {
-        logger('Email inside of Action', {email});
+      logger("Email inside of Action", { email });
       dispatch({ type: UserTypes.FETCH_USER_START });
       // @ts-ignore
       axiosWithAuth(token)
-        .post(`/users`, {email})
+        .post(`/users`, { email })
         .then((res: AxiosResponse) => {
           dispatch({ type: UserTypes.FETCH_USER_SUCCESS, payload: res.data });
         })
@@ -49,7 +49,7 @@ export const useUserActions = () => {
     (token: string, authId: string) => {
       dispatch({ type: UserTypes.FETCH_FAVORITES_START });
       axiosWithAuth(token)
-        .get(`/favorites/myFavorites/${authId}`)
+        .get(`/users/${authId}/favorites`)
         .then(res =>
           dispatch({
             type: UserTypes.FETCH_FAVORITES_SUCCESS,
@@ -70,7 +70,7 @@ export const useUserActions = () => {
     (token: string, grant_id: number, auth_id: string) => {
       dispatch({ type: UserTypes.POST_FAVORITES_START });
       axiosWithAuth(token)
-        .post("/favorites", { grant_id, auth_id })
+        .post("/users/favorites", { grant_id, auth_id })
         .then(res =>
           dispatch({
             type: UserTypes.POST_FAVORITES_SUCCESS,
@@ -113,7 +113,7 @@ export const useUserActions = () => {
     (token: string, favoriteId: number) => {
       dispatch({ type: UserTypes.REMOVE_FAVORITES_START });
       axiosWithAuth(token)
-        .delete(`/favorites/myFavorites/${favoriteId}`)
+        .delete(`/users/favorites/${favoriteId}`)
         .then(() =>
           dispatch({
             type: UserTypes.REMOVE_FAVORITES_SUCCESS,
@@ -154,7 +154,10 @@ export const useUserActions = () => {
           dispatch({ type: UserTypes.UPDATE_USER_SUCCESS, payload: res.data });
         })
         .catch(err => {
-          dispatch({ type: UserTypes.UPDATE_USER_FAILURE, payload: err.response });
+          dispatch({
+            type: UserTypes.UPDATE_USER_FAILURE,
+            payload: err.response
+          });
         });
     },
     [dispatch]
@@ -170,7 +173,7 @@ export const useUserActions = () => {
     addFavorite,
     removeUser,
     updateUser,
-    removeFavorite,
+    removeFavorite
   };
 };
 
