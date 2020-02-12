@@ -6,7 +6,7 @@ import { Container, Button } from "@material-ui/core";
 import { ActionsContext } from "../../context/ActionsContext";
 import { makeStyles } from "@material-ui/core/styles";
 import { AuthForm } from "./AuthForm.js";
-import {useForm} from "../../hooks/useForm";
+import { useForm } from "../../hooks/useForm";
 
 const useStyles = makeStyles(theme => ({
   button: {
@@ -19,16 +19,18 @@ const UserSettings = () => {
   const [isEditing, setIsEditing] = useState(false);
   const { token, currentUser, pgUser } = useSelector(state => state.user);
   const styles = useStyles();
-  const [values, handleChange, handleSubmit] = useForm({
-        first_name: '',
-        last_name: '',
-        role: '',
-        phone_number: '',
-        company: '',
-        company_url: '',
-        about: ''
-      }
-      , doSubmit);
+  const [values, handleChange, handleSubmit] = useForm(
+    {
+      first_name: "",
+      last_name: "",
+      role: "",
+      phone: "",
+      company: "",
+      company_url: "",
+      about: ""
+    },
+    doSubmit
+  );
 
   function doSubmit() {
     actions.user.updateUser(token, pgUser.id, values);
@@ -39,13 +41,20 @@ const UserSettings = () => {
       <Container maxWidth="lg">
         {/* <AuthForm /> */}
         {/* <UserSettingsForm /> */}
-        {!isEditing ? <UserData /> : <UserSettingsForm values={values} handleChange={handleChange} handleSubmit={handleSubmit}/>}
+        {!isEditing ? (
+          <UserData />
+        ) : (
+          <UserSettingsForm
+            values={values}
+            handleChange={handleChange}
+            handleSubmit={handleSubmit}
+          />
+        )}
         {!isEditing && (
           <Button
             variant="contained"
             color="primary"
             className={styles.button}
-            disabled
             onClick={() => !isEditing && setIsEditing(true)}
           >
             Edit Details
@@ -57,7 +66,10 @@ const UserSettings = () => {
               variant="contained"
               color="primary"
               className={styles.button}
-              onClick={handleSubmit}
+              onClick={e => {
+                handleSubmit(e);
+                setIsEditing(false);
+              }}
             >
               Save Changes
             </Button>

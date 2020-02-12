@@ -17,7 +17,7 @@ export const TextFormField = props => {
         name={props.name}
         placeholder={props.label}
         InputLabelProps={props.inputLabel}
-        value={props.value}
+        value={props.values[props.name]}
         onChange={props.handleChanges}
       >
         {props.data.map(option => (
