@@ -7,7 +7,7 @@ import GrantTable from "../admin/GrantTable";
 import UserSettings from "../../components/userProfile/userSettings";
 import PrivateRoute from "./PrivateRoute";
 import About from "../about/About";
-
+import UserTable from "../admin/AdminUserTable/UserTable";
 const routes = [
   {
     key: "APP_ROOT",
@@ -16,8 +16,8 @@ const routes = [
     component: LandingPage
   },
   {
-    key: 'ABOUT',
-    path: '/about',
+    key: "ABOUT",
+    path: "/about",
     exact: true,
     component: About
   },
@@ -66,6 +66,17 @@ const routes = [
       path: "/settings",
       exact: true,
       component: UserSettings
+    }
+  },
+  {
+    key: "ADMIN_USER_TABLE",
+    path: "/manage",
+    exact: true,
+    component: PrivateRoute,
+    renderComponent: {
+      path: "/manage",
+      exact: true,
+      component: UserTable
     }
   }
 ];

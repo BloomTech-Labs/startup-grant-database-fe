@@ -1,21 +1,21 @@
 import { useCallback } from "react";
 import { useDispatch } from "react-redux";
-import {Auth0User, PGUser, UserTypes} from "./userTypes";
+import { Auth0User, PGUser, UserTypes } from "./userTypes";
 import { AxiosError, AxiosResponse } from "axios";
 import { axiosWithAuth, axiosWithOutAuth as axios } from "../utils/axiosConfig";
 import { type } from "os";
-import {logger} from "../utils/logger";
+import { logger } from "../utils/logger";
 
 export const useUserActions = () => {
   const dispatch = useDispatch();
 
   const getUserFromPG = useCallback(
     (token: string, email: string) => {
-        logger('Email inside of Action', {email});
+      logger("Email inside of Action", { email });
       dispatch({ type: UserTypes.FETCH_USER_START });
       // @ts-ignore
       axiosWithAuth(token)
-        .post(`/users`, {email})
+        .post(`/users`, { email })
         .then((res: AxiosResponse) => {
           dispatch({ type: UserTypes.FETCH_USER_SUCCESS, payload: res.data });
         })
@@ -74,7 +74,7 @@ export const useUserActions = () => {
         .then(res =>
           dispatch({
             type: UserTypes.POST_FAVORITES_SUCCESS,
-              payload: res.data
+            payload: res.data
           })
         )
         .catch(error =>
@@ -154,12 +154,32 @@ export const useUserActions = () => {
           dispatch({ type: UserTypes.UPDATE_USER_SUCCESS, payload: res.data });
         })
         .catch(err => {
-          dispatch({ type: UserTypes.UPDATE_USER_FAILURE, payload: err.response });
+          dispatch({
+            type: UserTypes.UPDATE_USER_FAILURE,
+            payload: err.response
+          });
         });
     },
     [dispatch]
   );
 
+  const fetchAllUsers = useCallback(
+    (token: string) => {
+      dispatch({ type: UserTypes.FETCH_USERS_START });
+      axiosWithAuth(token)
+        .get("/users")
+        .then(res => {
+          dispatch({ type: UserTypes.FETCH_USERS_SUCCESS, payload: res.data });
+        })
+        .catch(err => {
+          dispatch({
+            type: UserTypes.FETCH_USERS_FAILURE,
+            payload: err.response
+          });
+        });
+    },
+    [dispatch]
+  );
   return {
     getUserFromPG,
     setUserFromAuth0,
@@ -171,6 +191,7 @@ export const useUserActions = () => {
     removeUser,
     updateUser,
     removeFavorite,
+    fetchAllUsers
   };
 };
 
@@ -185,4 +206,5 @@ export interface UseUserActions {
   removeFavorite: (token: string, favoriteId: number) => void;
   removeUser: (token: string, id: number) => void;
   updateUser: (token: string, id: number, data: PGUser) => void;
+  fetchAllUsers: (token: string) => void;
 }
