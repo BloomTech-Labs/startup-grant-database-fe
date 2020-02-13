@@ -4,6 +4,7 @@ import { aboutStyles } from "./aboutStyles";
 import Lambda from '../../assets/lambda.png';
 import Fund1517 from '../../assets/1517Fund.png';
 import Github from '../../assets/teamGithub.png';
+import {Helmet} from 'react-helmet';
 
 const aboutCards = [
   {
@@ -30,6 +31,12 @@ export default () => {
   const classes = aboutStyles();
   return (
     <main className={classes.layout}>
+      <Helmet>
+        <title>Founder Grants | About</title>
+        <meta name="description" content="List of available grants" />
+        <meta name="keywords" content="grant,startup,funding,invest,financing" />
+
+      </Helmet>
       <Card className={classes.aboutCardContainer}>
         <Card className={classes.aboutIntroCardContainer}>
           <Grid container justify="center" className={classes.aboutIntro}>

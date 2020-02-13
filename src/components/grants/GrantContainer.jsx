@@ -127,7 +127,7 @@ function GrantContainer(props) {
             className={classes.homeGridContainer}
         >
             <Helmet>
-                <title>Founder Grants</title>
+                <title>Founder Grants | Grants</title>
                 <meta name="description" content="Detail view of an available grant" />
                 <meta name="keywords" content="grant,startup,funding,invest,financing" />
 
