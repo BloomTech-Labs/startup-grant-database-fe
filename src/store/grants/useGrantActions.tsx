@@ -100,7 +100,7 @@ export const useGrantActions = () => {
     (token: string, id: number) => {
       dispatch({ type: GrantTypes.DELETE_ADMIN_GRANTS_START });
       axiosWithAuth(token)
-        .put(`/admin/${id}`)
+        .delete(`/admin/${id}`)
         .then((res: AxiosResponse) => {
           dispatch({ type: GrantTypes.DELETE_ADMIN_GRANTS_SUCCESS });
         })
