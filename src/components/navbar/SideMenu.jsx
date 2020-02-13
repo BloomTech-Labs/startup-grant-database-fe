@@ -9,6 +9,7 @@ import DashboardIcon from "@material-ui/icons/Dashboard";
 import MailIcon from "@material-ui/icons/Mail";
 import BookmarkIcon from "@material-ui/icons/Bookmark";
 import InfoIcon from "@material-ui/icons/Info";
+import PeopleAltIcon from "@material-ui/icons/PeopleAlt";
 import { useSelector } from "react-redux";
 
 const menuItems = [
@@ -96,7 +97,10 @@ const SideMenu = ({ side, toggleDrawer }) => {
           <MenuItem key={id} {...item} />
         ))}
         {isAuthenticated && isModerator && (
-          <MenuItem url="/admin" title="Edit Grants" icon={ViewListIcon} />
+          <>
+            <MenuItem url="/admin" title="Edit Grants" icon={ViewListIcon} />
+            <MenuItem url="/manage" title="Manage Users" icon={PeopleAltIcon} />
+          </>
         )}
         <ListItem>
           <Button
