@@ -1,14 +1,14 @@
 import React, { useContext, useEffect, useState } from "react";
-import { ActionsContext } from "../../context/ActionsContext";
+import { ActionsContext } from "../../../context/ActionsContext";
 import { useSelector } from "react-redux";
 import MaterialTable, { FilterRow } from "material-table";
 import { makeStyles } from "@material-ui/core/styles";
 import moment from "moment";
-import { useAuth0 } from "../auth0/Auth0Wrapper";
-
+import { useAuth0 } from "../../auth0/Auth0Wrapper";
+import { Paper } from "@material-ui/core";
 import { tableValues } from "./values/UserTableValues";
 
-const tableStyles = makeStyles(theme => ({
+const userTableStyles = makeStyles(theme => ({
   displayNone: {
     color: "#EF7B5C",
     fontSize: 40
@@ -33,7 +33,7 @@ const tableStyles = {
   }
 };
 
-const GrantTable = props => {
+const UserTable = props => {
   const actions = useContext(ActionsContext);
   const { token, isModerator, currentUser } = useSelector(state => state.user);
   const { isAuthenticated } = useAuth0();
@@ -51,7 +51,7 @@ const GrantTable = props => {
     }
   }, [currentUser]);
 
-  const style = tableStyles();
+  const style = userTableStyles();
 
   useEffect(() => {
     isModerator && actions.users.FetchAllUsers(token);
@@ -71,4 +71,4 @@ const GrantTable = props => {
   );
 };
 
-export default GrantTable;
+export default UserTable;
