@@ -1,7 +1,8 @@
 import React from "react";
 import * as rtl from "@testing-library/react";
 import GrantShowcase from "./GrantShowcase.jsx";
-
+import { Provider } from "react-redux";
+import store from "../../store/index.ts";
 const grant = {
   amount: 15000,
   amount_notes:
@@ -23,6 +24,15 @@ const grant = {
   website: "http://www.gistnetwork.org/content/gist-tech-i"
 };
 
-test("it renders without crashing", () => {
-  const container = rtl.render(<GrantShowcase showcase={grant} />);
+const renderComponent = () =>
+  rtl.render(
+    <Provider store={store}>
+      <GrantShowcase showcase={grant} />
+    </Provider>
+  );
+
+describe("Grant showcase", () => {
+  it("renders without crashing", () => {
+    const container = renderComponent();
+  });
 });
