@@ -37,7 +37,7 @@ const UserTable = props => {
   const actions = useContext(ActionsContext);
   const { token, isModerator, currentUser } = useSelector(state => state.user);
   const { isAuthenticated } = useAuth0();
-  const { users } = useSelector(state => state.users);
+  const { users } = useSelector(state => state.user);
 
   useEffect(() => {
     if (isAuthenticated && currentUser["https://founder-grants.com/appdata"]) {
@@ -54,8 +54,8 @@ const UserTable = props => {
   const style = userTableStyles();
 
   useEffect(() => {
-    isModerator && actions.users.FetchAllUsers(token);
-  });
+    isModerator && actions.user.fetchAllUsers(token);
+  }, [isModerator]);
   return (
     <React.Fragment>
       <Paper className={style.paper}>

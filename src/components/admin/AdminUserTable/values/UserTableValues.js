@@ -2,7 +2,8 @@ export const tableValues = {
   title: "Manage and observe users",
   columns: [
     {
-      title: "User Suggestions",
+      title: "Email",
+      field: "email",
       cellStyle: {
         minWidth: "75px"
       }
@@ -15,6 +16,7 @@ export const tableValues = {
     //     false: "False"
     //   }
     // },
+
     {
       title: "First Name",
       field: "first_name"
