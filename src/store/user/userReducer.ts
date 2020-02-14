@@ -3,25 +3,25 @@ import { createReducer } from "../utils/createReducer";
 
 const initialState: UserState = {
   currentUser: {
-    email: "",
-    email_verified: false,
-    nickname: "",
-    name: "",
-    picture: "",
-    sub: "",
-    updated_at: ""
-    // will need more object fields here
-  },
-  pgUser: {
-    id: null,
-    email: "",
-    first_name: null,
-    last_name: null,
-    role: null,
-    phone: null,
-    company: null,
-    company_url: null,
-    about: null
+    created_at: '',
+    email: '',
+    user_id: '',
+    picture: '',
+    app_metadata: {
+      authorization: {
+        roles: [],
+        permissions: []
+      }
+    },
+    user_metadata: {
+      first_name: '',
+      last_name: '',
+      role: '',
+      phone: '',
+      company: '',
+      company_url: '',
+      about: ''
+    }
   },
   favoriteGrants: [],
   isModerator: false,
@@ -38,7 +38,7 @@ type FunctionReducer<S extends UserState = UserState, P = any> = (
 const userFromPGSuccessAction: FunctionReducer = (
   state: UserState,
   payload
-) => ({ ...state, isLoading: false, pgUser: payload });
+) => ({ ...state, isLoading: false, currentUser: payload });
 const userStartReducer: FunctionReducer = state => ({
   ...state,
   isLoading: true
