@@ -8,6 +8,7 @@ import UserSettings from "../../components/userProfile/userSettings";
 import PrivateRoute from "./PrivateRoute";
 import About from "../about/About";
 import UserTable from "../admin/AdminUserTable/UserTable";
+import AdminRoute from "./AdminRoute";
 const routes = [
   {
     key: "APP_ROOT",
@@ -50,7 +51,7 @@ const routes = [
     key: "ADMIN_TABLE",
     path: "/admin",
     exact: true,
-    component: PrivateRoute,
+    component: AdminRoute,
     renderComponent: {
       path: "/admin",
       exact: true,
@@ -72,7 +73,7 @@ const routes = [
     key: "ADMIN_USER_TABLE",
     path: "/manage",
     exact: true,
-    component: PrivateRoute,
+    component: AdminRoute,
     renderComponent: {
       path: "/manage",
       exact: true,

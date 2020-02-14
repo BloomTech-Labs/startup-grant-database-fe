@@ -29,33 +29,57 @@ export enum UserTypes {
   SET_TOKEN = "SET_TOKEN"
 }
 
-export interface Auth0User {
-  nickname: string;
-  name: string;
-  picture: string;
-  updated_at: string;
-  email: string;
-  email_verified: boolean;
-  sub: string;
+export interface UserMetaData {
+  first_name?: string
+  last_name?: string
+  role?: string
+  phone?: string
+  company?: string
+  company_url?: string
+  about?: string
 }
 
-export interface PGUser {
-  id: number | null;
-  email: string;
-  first_name: string | null;
-  last_name: string | null;
-  role: string | null;
-  phone: string | null;
-  company: string | null;
-  company_url: string | null;
-  about: string | null;
+export interface User {
+  created_at: string
+  email: string
+  user_id: string
+  picture: string
+  app_metadata: {
+    get?: string
+    authorization: {
+      roles: string[],
+      permissions: string[]
+    }
+  },
+  user_metadata?: UserMetaData
 }
+
+// export interface Auth0User {
+//   nickname: string;
+//   name: string;
+//   picture: string;
+//   updated_at: string;
+//   email: string;
+//   email_verified: boolean;
+//   sub: string;
+// }
+
+// export interface PGUser {
+//   id: number | null;
+//   email: string;
+//   first_name: string | null;
+//   last_name: string | null;
+//   role: string | null;
+//   phone: string | null;
+//   company: string | null;
+//   company_url: string | null;
+//   about: string | null;
+// }
 
 export interface UserState {
-  currentUser: Auth0User;
-  pgUser: PGUser;
+  currentUser: User;
   favoriteGrants: Grant[];
-  users: PGUser[];
+  users: User[];
   isModerator: boolean;
   isLoading: boolean;
   errors: Error | null;
@@ -67,17 +91,12 @@ interface FetchUserStartAction {
 
 interface FetchUserSuccessAction {
   type: typeof UserTypes.FETCH_USER_SUCCESS;
-  payload: PGUser;
+  payload: User;
 }
 
 interface FetchUserFailureAction {
   type: typeof UserTypes.FETCH_USER_FAILURE;
   payload: Error;
-}
-
-interface SetUserFromAuth0Action {
-  type: typeof UserTypes.SET_USER_FROM_AUTH0;
-  payload: Auth0User;
 }
 
 interface IsModeratorAction {
@@ -127,25 +146,11 @@ interface UpdateUserStartAction {
 
 interface UpdateUserSuccessAction {
   type: typeof UserTypes.UPDATE_USER_SUCCESS;
-  payload: PGUser;
+  payload: User;
 }
 
 interface UpdateUserFailureAction {
   type: typeof UserTypes.UPDATE_USER_FAILURE;
-  payload: Error;
-}
-
-interface RemoveUserStartAction {
-  type: typeof UserTypes.REMOVE_USER_START;
-}
-
-interface RemoveUserSuccessAction {
-  type: typeof UserTypes.REMOVE_USER_SUCCESS;
-  payload: PGUser;
-}
-
-interface RemoveUserFailureAction {
-  type: typeof UserTypes.REMOVE_USER_FAILURE;
   payload: Error;
 }
 
@@ -155,7 +160,7 @@ interface FetchUsersStartAction {
 
 interface FetchUsersSuccessAction {
   type: typeof UserTypes.FETCH_USERS_SUCCESS;
-  payload: PGUser[];
+  payload: User[];
 }
 
 interface FetchUsersFailureAction {
@@ -170,7 +175,6 @@ export type UserActions =
   | FetchUsersStartAction
   | FetchUsersSuccessAction
   | FetchUsersFailureAction
-  | SetUserFromAuth0Action
   | ResetUserAction
   | IsModeratorAction
   | SetTokenAction
@@ -178,9 +182,6 @@ export type UserActions =
   | UpdateUserStartAction
   | UpdateUserSuccessAction
   | UpdateUserFailureAction
-  | RemoveUserStartAction
-  | RemoveUserSuccessAction
-  | RemoveUserFailureAction
   | FetchFavoritesSuccessAction
   | FetchFavoritesFailureAction
   | AddFavoriteFailureAction
