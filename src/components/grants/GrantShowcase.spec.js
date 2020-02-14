@@ -33,6 +33,21 @@ const renderComponent = () =>
 
 describe("Grant showcase", () => {
   it("renders without crashing", () => {
+    renderComponent();
+  });
+  it("renders 'Amount' header", () => {
     const container = renderComponent();
+
+    container.queryAllByText(/Amount/i);
+  });
+  it("renders 'Deadline' header", () => {
+    const container = renderComponent();
+
+    container.queryAllByText(/Deadline/i);
+  });
+  it("renders Select Button", () => {
+    const container = renderComponent();
+
+    container.queryAllByText(/Select/i);
   });
 });
