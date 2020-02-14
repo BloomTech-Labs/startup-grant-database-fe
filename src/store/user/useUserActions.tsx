@@ -120,12 +120,12 @@ export const useUserActions = () => {
   );
 
   const updateUser = useCallback(
-    (token: string, id: number, data: UserMetaData) => {
+    (token: string, data: UserMetaData) => {
       dispatch({ type: UserTypes.UPDATE_USER_START });
       axiosWithAuth(token)
-        .patch(`/users/user`, data)
+        .patch(`/users/user`, {user_metadata: {...data}})
         .then(res => {
-          dispatch({ type: UserTypes.UPDATE_USER_SUCCESS, payload: res.data });
+          dispatch({ type: UserTypes.UPDATE_USER_SUCCESS, payload: data });
         })
         .catch(err => {
           dispatch({
@@ -177,6 +177,6 @@ export interface UseUserActions {
   addFavorite: (token: string, grant_id: number, authId: string) => void;
   removeFavorite: (token: string, favoriteId: number) => void;
   removeUser: (token: string, id: number) => void;
-  updateUser: (token: string, id: number, data: UserMetaData) => void;
+  updateUser: (token: string, data: UserMetaData) => void;
   fetchAllUsers: (token: string) => void;
 }

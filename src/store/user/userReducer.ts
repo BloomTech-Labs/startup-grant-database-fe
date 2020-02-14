@@ -84,7 +84,7 @@ const userRemoveReducerFailure: FunctionReducer = (state, payload) => ({
 const userUpdateReducerStart: FunctionReducer = state => ({ ...state });
 const userUpdateReducerSuccess: FunctionReducer = (state, payload) => ({
   ...state,
-  pgUser: payload
+  currentUser: {...state.currentUser, user_metadata: {...payload}}
 });
 const userUpdateReducerFailure: FunctionReducer = (state, payload) => ({
   ...state,

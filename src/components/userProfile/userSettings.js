@@ -33,7 +33,7 @@ const UserSettings = () => {
   );
 
   function doSubmit() {
-    actions.user.updateUser(token, pgUser.id, values);
+    actions.user.updateUser(token, values);
   }
 
   return (
