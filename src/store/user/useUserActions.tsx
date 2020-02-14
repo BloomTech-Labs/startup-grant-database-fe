@@ -1,21 +1,19 @@
 import { useCallback } from "react";
 import { useDispatch } from "react-redux";
-import {Auth0User, PGUser, UserTypes} from "./userTypes";
+import {User, UserMetaData, UserTypes} from "./userTypes";
 import { AxiosError, AxiosResponse } from "axios";
 import { axiosWithAuth, axiosWithOutAuth as axios } from "../utils/axiosConfig";
-import { type } from "os";
-import {logger} from "../utils/logger";
+import { logger } from "../utils/logger";
 
 export const useUserActions = () => {
   const dispatch = useDispatch();
 
-  const getUserFromPG = useCallback(
-    (token: string, email: string) => {
-        logger('Email inside of Action', {email});
+  const getUserFromAuth0 = useCallback(
+    (token: string) => {
       dispatch({ type: UserTypes.FETCH_USER_START });
       // @ts-ignore
       axiosWithAuth(token)
-        .post(`/users`, {email})
+        .get(`/users/user`)
         .then((res: AxiosResponse) => {
           dispatch({ type: UserTypes.FETCH_USER_SUCCESS, payload: res.data });
         })
@@ -27,23 +25,6 @@ export const useUserActions = () => {
     },
     [dispatch]
   );
-  // const getUserByEmail = useCallback(
-  //   (email: string, token: string) => {
-  //     dispatch({ type: UserTypes.FETCH_USER_START });
-  //     // @ts-ignore
-  //     axiosWithAuth(token)
-  //       .get(`/users/${email}`)
-  //       .then((res: AxiosResponse) => {
-  //         dispatch({ type: UserTypes.FETCH_USER_SUCCESS });
-  //       })
-  //       .catch((err: AxiosError) => {
-  //         const data =
-  //           err && err.response && err.response.data ? err.response.data : err;
-  //         dispatch({ type: UserTypes.FETCH_USER_FAILURE, payload: data });
-  //       });
-  //   },
-  //   [dispatch]
-  // );
 
   const getFavorites = useCallback(
     (token: string, authId: string) => {
@@ -74,7 +55,7 @@ export const useUserActions = () => {
         .then(res =>
           dispatch({
             type: UserTypes.POST_FAVORITES_SUCCESS,
-              payload: res.data
+            payload: res.data
           })
         )
         .catch(error =>
@@ -83,13 +64,6 @@ export const useUserActions = () => {
             payload: error.response
           })
         );
-    },
-    [dispatch]
-  );
-
-  const setUserFromAuth0 = useCallback(
-    (user: Auth0User) => {
-      dispatch({ type: UserTypes.SET_USER_FROM_AUTH0, payload: user });
     },
     [dispatch]
   );
@@ -146,23 +120,42 @@ export const useUserActions = () => {
   );
 
   const updateUser = useCallback(
-    (token: string, id: number, data: PGUser) => {
+    (token: string, data: UserMetaData) => {
       dispatch({ type: UserTypes.UPDATE_USER_START });
       axiosWithAuth(token)
-        .put(`/users/${id}`, data)
+        .patch(`/users/user`, {user_metadata: {...data}})
         .then(res => {
-          dispatch({ type: UserTypes.UPDATE_USER_SUCCESS, payload: res.data });
+          dispatch({ type: UserTypes.UPDATE_USER_SUCCESS, payload: data });
         })
         .catch(err => {
-          dispatch({ type: UserTypes.UPDATE_USER_FAILURE, payload: err.response });
+          dispatch({
+            type: UserTypes.UPDATE_USER_FAILURE,
+            payload: err.response
+          });
         });
     },
     [dispatch]
   );
 
+  const fetchAllUsers = useCallback(
+    (token: string) => {
+      dispatch({ type: UserTypes.FETCH_USERS_START });
+      axiosWithAuth(token)
+        .get("/users")
+        .then(res => {
+          dispatch({ type: UserTypes.FETCH_USERS_SUCCESS, payload: res.data });
+        })
+        .catch(err => {
+          dispatch({
+            type: UserTypes.FETCH_USERS_FAILURE,
+            payload: err.response
+          });
+        });
+    },
+    [dispatch]
+  );
   return {
-    getUserFromPG,
-    setUserFromAuth0,
+    getUserFromAuth0,
     resetUser,
     isModerator,
     setToken,
@@ -171,12 +164,12 @@ export const useUserActions = () => {
     removeUser,
     updateUser,
     removeFavorite,
+    fetchAllUsers
   };
 };
 
 export interface UseUserActions {
-  getUserFromPG: (token: string, email: string) => void;
-  setUserFromAuth0: (user: Auth0User) => void;
+  getUserFromAuth0: (token: string) => void;
   resetUser: () => void;
   isModerator: () => void;
   setToken: (token: string) => void;
@@ -184,5 +177,6 @@ export interface UseUserActions {
   addFavorite: (token: string, grant_id: number, authId: string) => void;
   removeFavorite: (token: string, favoriteId: number) => void;
   removeUser: (token: string, id: number) => void;
-  updateUser: (token: string, id: number, data: PGUser) => void;
+  updateUser: (token: string, data: UserMetaData) => void;
+  fetchAllUsers: (token: string) => void;
 }

@@ -1,27 +1,23 @@
-import React from 'react';
+import React from "react";
 import Grant from "./Grant";
-import {Typography} from "@material-ui/core";
+import { Typography } from "@material-ui/core";
 
-function GrantList({grants, showcase}) {
-
-    return (
-        <>
-            {grants.length && (
-                <Typography>
-                    {`${grants.length} Grants`}
-                </Typography>
-            )}
-            {grants.length > 0 ? (
-                grants.map(grant => (
-                    <Grant grant={grant} key={grant.id} showcase={showcase} />
-                ))
-            ) : (
-                <Typography>
-                    Grants Incoming
-                </Typography>
-            )}
-        </>
-    )
+function GrantList(props) {
+  console.log("THE GRANTS =>", props.grants);
+  return (
+    <>
+      {props.grants.length && (
+        <Typography>{`${props.grants.length} Grants`}</Typography>
+      )}
+      {props.grants.length > 0 ? (
+        props.grants.map(grant => (
+          <Grant grant={grant} key={grant.id} showcase={props.showcase} />
+        ))
+      ) : (
+        <Typography>Grants Incoming</Typography>
+      )}
+    </>
+  );
 }
 
 export default GrantList;

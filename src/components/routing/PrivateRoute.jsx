@@ -1,10 +1,10 @@
 import React from 'react';
 import {Redirect, Route} from 'react-router-dom';
-import {useSelector} from "react-redux";
+import {useAuth0} from "../auth0/Auth0Wrapper";
 
 function PrivateRoute({renderComponent: {component: Component, ...rest}}) {
-    const {isModerator} = useSelector(state => state.user);
-    if (isModerator) {
+    const {isAuthenticated} = useAuth0();
+    if (isAuthenticated) {
         return <Route {...rest} render={props => <Component {...props} />}/>
     }
     return <Redirect to='/'/>
