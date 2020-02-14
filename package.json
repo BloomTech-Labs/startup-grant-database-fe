@@ -40,7 +40,7 @@
     "test": "react-scripts test --coverage",
     "eject": "react-scripts eject",
     "action:test": "react-scripts test --detectOpenHandles --forceExit",
-    "action:coverage": "react-scripts test --coverage --detectOpenHandles --forceExit"
+    "action:coverage": "CI=true npm run test --coverage || true"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -65,5 +65,13 @@
     "node-sass": "^4.13.1",
     "redux-devtools-extension": "^2.13.8",
     "redux-logger": "^3.0.6"
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "**.*/{js,jsx,ts,tsx}",
+      "!**/node_modules/**",
+      "!**/vendor/**",
+      "!**/__tests__/**"
+    ]
   }
 }
