@@ -103,7 +103,7 @@ const menuItems = [
 const Navbar = () => {
   const actions = useContext(ActionsContext);
   const [isOpen, setIsOpen] = useState(false);
-  const { currentUser } = useSelector(state => state.user);
+  const { currentUser, isLoading } = useSelector(state => state.user);
   const [token] = useGetToken();
   const toggleDrawer = open => event => {
     if (
@@ -155,7 +155,7 @@ const Navbar = () => {
             <FGLogo />
           </Link>
         </Typography>
-        {isAuthenticated ? (
+        {isAuthenticated && currentUser.nickname !== undefined ? (
           <>
             <Typography
               variant="h6"
@@ -189,9 +189,9 @@ const Navbar = () => {
               className={classes.navButton}
               color="primary"
               onClick={() => loginWithRedirect()}
-              disabled={loading}
+              disabled={loading || isLoading}
             >
-              {loading ? `Please Wait` : `Log in`}
+              {loading || isLoading ? `Please Wait` : `Log in`}
             </Button>
           </div>
         )}

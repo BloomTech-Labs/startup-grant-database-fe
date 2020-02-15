@@ -56,7 +56,6 @@ const userFailureReducer: FunctionReducer = (state, payload) => ({
 });
 const userFetchFavoritesSuccess: FunctionReducer = (state, payload) => ({
   ...state,
-  isLoading: false,
   favoriteGrants: payload
 });
 const userIsModeratorReducer: FunctionReducer = state => ({
