@@ -56,7 +56,7 @@ const GrantTable = props => {
           "https://founder-grants.com/appdata"
         ].authorization.roles.find(() => "Moderator") === "Moderator"
       ) {
-        actions.user.isModerator();
+        actions.admin.isModerator();
       }
     }
   }, [currentUser]);

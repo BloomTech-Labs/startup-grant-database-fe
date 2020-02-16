@@ -59,10 +59,7 @@ const userFetchFavoritesSuccess: FunctionReducer = (state, payload) => ({
   ...state,
   favoriteGrants: payload
 });
-const userIsModeratorReducer: FunctionReducer = state => ({
-  ...state,
-  isModerator: true
-});
+
 const userSetTokenReducer: FunctionReducer = (state, payload) => ({
   ...state,
   token: payload
@@ -94,7 +91,6 @@ export const userReducer = createReducer(initialState, {
   [UserTypes.FETCH_FAVORITES_SUCCESS]: userFetchFavoritesSuccess,
   [UserTypes.FETCH_FAVORITES_FAILURE]: userFailureReducer,
   [UserTypes.SET_USER_FROM_AUTH0]: userSetAuth0Reducer,
-  [UserTypes.IS_MODERATOR]: userIsModeratorReducer,
   [UserTypes.SET_TOKEN]: userSetTokenReducer,
   [UserTypes.RESET_USER]: userResetUserReducer,
   [UserTypes.POST_FAVORITES_START]: userStartReducer,

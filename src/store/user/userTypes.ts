@@ -25,7 +25,6 @@ export enum UserTypes {
   REMOVE_USER_FAILURE = "REMOVE_USER_FAILURE",
   SET_USER_FROM_AUTH0 = "SET_USER_FROM_AUTH0",
   RESET_USER = "RESET_USER",
-  IS_MODERATOR = "IS_MODERATOR",
   SET_TOKEN = "SET_TOKEN"
 }
 
@@ -97,10 +96,6 @@ interface FetchUserSuccessAction {
 interface FetchUserFailureAction {
   type: typeof UserTypes.FETCH_USER_FAILURE;
   payload: Error;
-}
-
-interface IsModeratorAction {
-  type: typeof UserTypes.IS_MODERATOR;
 }
 
 interface ResetUserAction {
@@ -176,7 +171,6 @@ export type UserActions =
   | FetchUsersSuccessAction
   | FetchUsersFailureAction
   | ResetUserAction
-  | IsModeratorAction
   | SetTokenAction
   | FetchFavoritesStartAction
   | UpdateUserStartAction
