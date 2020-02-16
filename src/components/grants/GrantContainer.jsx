@@ -9,7 +9,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import TuneIcon from "@material-ui/icons/Tune";
 import Filters from "../filter/Filters";
 import clsx from "clsx";
-import {useAuth0} from "../auth0/Auth0Wrapper";
+import { useAuth0 } from "../auth0/Auth0Wrapper";
 
 const useStyles = makeStyles(theme => ({
   homeGridContainer: {
@@ -69,51 +69,51 @@ const useStyles = makeStyles(theme => ({
 }));
 
 function GrantContainer(props) {
-    const {isAuthenticated} = useAuth0();
-    const allGrants = useSelector(state => state.filters.grants);
-    const {pristine} = useSelector(state => state.filters);
-    const allTheGrants = useSelector(state => state.grants.grants);
-    const {favoriteGrants} = useSelector(state => state.user);
-    const {showcase, publicGrants} = useSelector(state => state.grants);
-    const actions = useContext(ActionsContext);
-    const [allGrantMode, setAllGrantMode] = useState(() => {
-        return props.match.path === '/grants';
-    });
-    const [filtersOpen, setFiltersOpen] = useState(false);
-    const [grants, setGrants] = useState(() => {
-        if (allGrantMode) {
-            if (isAuthenticated) {
-                return allGrants;
-            } else {
-                return publicGrants;
-            }
-        } else {
-            return favoriteGrants;
-        }
-    });
+  const { isAuthenticated } = useAuth0();
+  const allGrants = useSelector(state => state.filters.grants);
+  const { pristine } = useSelector(state => state.filters);
+  const allTheGrants = useSelector(state => state.grants.grants);
+  const { favoriteGrants } = useSelector(state => state.user);
+  const { showcase, publicGrants } = useSelector(state => state.grants);
+  const actions = useContext(ActionsContext);
+  const [allGrantMode, setAllGrantMode] = useState(() => {
+    return props.match.path === "/grants";
+  });
+  const [filtersOpen, setFiltersOpen] = useState(false);
+  const [grants, setGrants] = useState(() => {
+    if (allGrantMode) {
+      if (isAuthenticated) {
+        return allGrants;
+      } else {
+        return publicGrants;
+      }
+    } else {
+      return favoriteGrants;
+    }
+  });
 
-    const classes = useStyles();
+  const classes = useStyles();
 
-    useEffect(() => {
-        if (isAuthenticated) {
-            if (allGrantMode) {
-                if (pristine && allGrants.length !== allTheGrants.length) {
-                    setGrants(allTheGrants);
-                } else {
-                    if (allGrants.length !== grants.length) {
-                        setGrants(allGrants);
-                    }
-                }
-            } else {
-                if (favoriteGrants.length !== grants.length) {
-                    setGrants(favoriteGrants);
-                }
-            }
+  useEffect(() => {
+    if (isAuthenticated) {
+      if (allGrantMode) {
+        if (pristine && allGrants.length !== allTheGrants.length) {
+          setGrants(allTheGrants);
         } else {
-            setGrants(publicGrants);
-            actions.grants.selectGrant(grants[0]);
+          if (allGrants.length !== grants.length) {
+            setGrants(allGrants);
+          }
         }
-    }, [allGrants, favoriteGrants, allGrantMode, isAuthenticated, publicGrants]);
+      } else {
+        if (favoriteGrants.length !== grants.length) {
+          setGrants(favoriteGrants);
+        }
+      }
+    } else {
+      setGrants(publicGrants);
+      actions.grants.selectGrant(grants[0]);
+    }
+  }, [allGrants, favoriteGrants, allGrantMode, isAuthenticated, publicGrants]);
 
   useEffect(() => {
     setAllGrantMode(props.match.path === "/grants");
@@ -157,41 +157,35 @@ function GrantContainer(props) {
             filtersOpen ? classes.showFilters : classes.hideFilters
           )}
         >
-            <Grid
-                item
-                xs={4}
-                className={classes.grantList}
+          <Grid item xs={4} className={classes.grantList}>
+            <GrantList grants={grants} showcase={showcase} />
+          </Grid>
+          <Grid item xs={6} sm={9} md={7} className={classes.gridItem}>
+            <GrantShowcase showcase={showcase} />
+          </Grid>
+          <Grid item xs={4} sm={2}>
+            <TuneIcon
+              className={clsx(
+                classes.filterIcon,
+                filtersOpen && classes.filterIconSelected
+              )}
+              onClick={toggleFilters}
             >
-                <GrantList grants={grants} showcase={showcase}/>
-            </Grid>
-            <Grid
-                item
-                xs={6}
-                sm={9}
-                md={7}
-                className={classes.gridItem}
+              Filters
+            </TuneIcon>
+            <div
+              className={clsx(
+                classes.filters,
+                filtersOpen ? classes.showFilters : classes.hideFilters
+              )}
             >
-                <GrantShowcase showcase={showcase}/>
-            </Grid>
-            <Grid
-                item
-                xs={4}
-                sm={2}
-            >
-                <TuneIcon
-                    className={clsx(classes.filterIcon, filtersOpen && classes.filterIconSelected)}
-                    onClick={toggleFilters}
-                >
-                    Filters
-                </TuneIcon>
-                <div
-                    className={clsx(classes.filters, filtersOpen ? classes.showFilters : classes.hideFilters)}
-                >
-                    <Filters grants={grants}/>
-                </div>
-            </Grid>
-        </Grid>
-    )
+              <Filters grants={grants} />
+            </div>
+          </Grid>
+        </div>
+      </Grid>
+    </Grid>
+  );
 }
 
 export default GrantContainer;
