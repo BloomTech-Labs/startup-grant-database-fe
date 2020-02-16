@@ -3,9 +3,9 @@ import {Button, Card, FormGroup, Typography} from "@material-ui/core";
 import {Link as RouterLink} from 'react-router-dom';
 import FilterGroup from "./FilterGroup";
 import {useSelector} from "react-redux";
-import {AmountState, FilterFormState, FormState} from "../../store/filters/filterTypes";
+import {FilterFormState, FormState} from "../../store/filters/filterTypes";
 import {AppState} from "../../store/rooterReducer";
-import {logger} from "../../store/utils/logger";
+
 
 interface IProps {
     landing: boolean

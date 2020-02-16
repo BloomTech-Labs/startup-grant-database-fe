@@ -37,10 +37,6 @@ export const filterFormState: FilterFormState = {
     ],
     geographic_region: [
         {
-            key: 'Global',
-            checked: false
-        },
-        {
             key: 'North America',
             checked: false
         },
@@ -62,10 +58,6 @@ export const filterFormState: FilterFormState = {
         },
         {
             key: 'Australia',
-            checked: false
-        },
-        {
-            key: 'Other',
             checked: false
         },
     ],
