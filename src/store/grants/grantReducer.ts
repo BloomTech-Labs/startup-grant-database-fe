@@ -1,65 +1,49 @@
-import { GrantActions, GrantState, GrantTypes } from "./grantTypes";
+import {Grant, GrantActions, GrantState, GrantTypes} from "./grantTypes";
+import {createReducer} from "../utils/createReducer";
 
 const initialState: GrantState = {
   grants: [],
+  publicGrants: [],
   showcase: null,
   isLoading: false,
-  isUpdating: false,
   errors: null
 };
 
-export const grantReducer = (
-  state = initialState,
-  action: GrantActions
-): GrantState => {
-  switch (action.type) {
-    case GrantTypes.FETCH_GRANTS_START || GrantTypes.FETCH_ADMIN_GRANTS_START:
-      return { ...state, grants: [], isLoading: true, errors: null };
-    case GrantTypes.FETCH_GRANTS_SUCCESS ||
-      GrantTypes.FETCH_ADMIN_GRANTS_SUCCESS:
-      return {
-        ...state,
-        grants: action.payload,
-        isLoading: false,
-        errors: null,
-        showcase: action.payload[0]
-      };
-    case GrantTypes.FETCH_GRANTS_FAILURE ||
-      GrantTypes.FETCH_ADMIN_GRANTS_FAILURE:
-      return { ...state, grants: [], isLoading: false, errors: action.payload };
-    case GrantTypes.POST_GRANTS_START:
-      return { ...state, grants: [], isLoading: true, errors: null };
-    case GrantTypes.POST_GRANTS_SUCCESS:
-      return {
-        ...state,
-        grants: action.payload,
-        isLoading: false,
-        errors: null,
-        showcase: action.payload[0]
-      };
-    case GrantTypes.POST_GRANTS_FAILURE:
-      return { ...state, grants: [], isLoading: false, errors: action.payload };
-    case GrantTypes.SELECT_GRANT:
-      return { ...state, showcase: action.payload };
-    case GrantTypes.UPDATE_ADMIN_GRANTS_START:
-      return { ...state };
-    case GrantTypes.UPDATE_ADMIN_GRANTS_SUCCESS:
-      return { ...state, isUpdating: true };
-    case GrantTypes.UPDATE_ADMIN_GRANTS_FAILURE:
-      return { ...state, errors: action.payload };
-    case GrantTypes.DELETE_ADMIN_GRANTS_START:
-      return { ...state };
-    case GrantTypes.DELETE_ADMIN_GRANTS_SUCCESS:
-      return { ...state };
-    case GrantTypes.DELETE_ADMIN_GRANTS_FAILURE:
-      return { ...state, errors: action.payload };
-    case GrantTypes.SELECT_ADMIN_GRANTS_START:
-      return { ...state };
-    case GrantTypes.SELECT_ADMIN_GRANTS_SUCCESS:
-      return { ...state };
-    case GrantTypes.SELECT_ADMIN_GRANTS_FAILURE:
-      return { ...state, errors: action.payload };
-    default:
-      return state;
-  }
+type FunctionReducer<S extends GrantState = GrantState, P extends GrantActions = GrantActions> = (
+    state: GrantState,
+    payload?: any
+) => GrantState;
+
+const randomShowCase = (grants: Grant[]): number => {
+  return Math.ceil(Math.random() * grants.length+1);
 };
+
+const randomThreeGrants = (grants: Grant[]): Grant[] => {
+  const selectGrants = grants.sort(() => Math.random() - 0.5);
+  return [selectGrants[0], selectGrants[1], selectGrants[2]];
+}
+
+const grantStartReducer: FunctionReducer = (state: GrantState) => ({...state, isLoading: true, errors: null});
+
+const grantFailureReducer: FunctionReducer = (state: GrantState, payload: any) => ({...state, isLoading: false, errors: payload});
+
+const grantsSuccessReducer: FunctionReducer = (state, payload) =>  ({
+  ...state,
+  grants: payload,
+  publicGrants: randomThreeGrants(payload),
+  showcase: payload[randomShowCase(payload)],
+  isLoading: false
+});
+
+const selectGrantReducer: FunctionReducer = (state, payload) => ({...state, showcase: payload});
+
+
+export const grantReducer = createReducer(initialState, {
+  [GrantTypes.SELECT_GRANT]: selectGrantReducer,
+  [GrantTypes.FETCH_GRANTS_START]: grantStartReducer,
+  [GrantTypes.FETCH_GRANTS_SUCCESS]: grantsSuccessReducer,
+  [GrantTypes.FETCH_GRANTS_FAILURE]: grantFailureReducer,
+  [GrantTypes.POST_GRANTS_START]: grantStartReducer,
+  [GrantTypes.POST_GRANTS_SUCCESS]: grantsSuccessReducer,
+  [GrantTypes.POST_GRANTS_FAILURE]: grantFailureReducer
+});
