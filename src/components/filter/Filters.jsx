@@ -195,7 +195,7 @@ function Filters({landing, mobile, grants}) {
     useEffect(()=> {
         if (grants) {
             setGrantList(grants);
-            actions.filters.grantFilter(grants);
+            // actions.filters.grantFilter(grants);
         } else {
             setGrantList(allGrants);
         }
