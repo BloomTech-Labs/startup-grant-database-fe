@@ -127,10 +127,10 @@ const Navbar = () => {
     }, [token]);
 
     useEffect(() => {
-        logger('Is Moderator inside of UseEffect, Navbar.jsx', isModerator)
         if (isModerator) {
             actions.admin.fetchAdminGrants(token);
             actions.admin.fetchAllUsers(token);
+            actions.admin.fetchAllRoles(token);
         }
     }, [isModerator]);
 

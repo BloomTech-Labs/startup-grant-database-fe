@@ -26,11 +26,20 @@ export const useAdminActions = () => {
         dispatch({type: AdminTypes.IS_MODERATOR});
     }, [dispatch]);
 
-    return {fetchAdminGrants, isModerator, fetchAllUsers}
+    const fetchAllRoles = useCallback((token: string) => {
+        dispatch({type: AdminTypes.FETCH_ADMIN_ROLES_START});
+        axios(token).get('/admin/users/roles').then(res => dispatch({
+            type: AdminTypes.FETCH_ADMIN_ROLES_SUCCESS,
+            payload: res.data
+        })).catch(error => dispatch({type: AdminTypes.FETCH_ADMIN_ROLES_FAILURE, payload: error.response}))
+    }, [dispatch]);
+
+    return {fetchAdminGrants, isModerator, fetchAllUsers, fetchAllRoles}
 };
 
 export interface UseAdminActions {
     fetchAdminGrants: (token: string) => void
     isModerator: () => void
     fetchAllUsers: (token: string) => void
+    fetchAllRoles: (token: string) => void
 }
