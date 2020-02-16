@@ -2,6 +2,7 @@ import {FilterActions, FilterFormState, FilterState, FilterTypes} from "./filter
 import {filterFormState} from '../../components/filter/formState';
 import {Grant} from "../grants/grantTypes";
 import {Filters} from "./Filters";
+import {logger} from "../utils/logger";
 
 const initialState: FilterState = {
     pristine: true,
@@ -18,23 +19,15 @@ const filterGrants = (grants: Grant[], state: FilterState): Grant[] => {
     const filterMethods = new Filters(state.criteria);
     const newFilters = filterMethods.getFilters();
     const keys = filterMethods.getKeys();
-    const filteredArray: Grant[] = [];
-    const amountArray: Grant[] = [];
+    let filteredArray: Grant[] = [];
+    let amountArray: Grant[] = [];
     for (let i = 0; i < keys.length; i++) {
         if (keys[i] === 'amount') {
-            if (newFilters[keys[i]].length > 0) {
-                for (let values of newFilters[keys[i]]) {
-                    const {min, max} = values.values;
-                    filterMethods.filter(grants, min, max).forEach(eachGrant => amountArray.push(eachGrant));
-                }
-            }
+            amountArray = filterMethods.amount(grants, newFilters[keys[i]]);
         } else {
-            const selectArray = amountArray.length > 0;
-            for (let values of newFilters[keys[i]]) {
-                filterMethods.filter(selectArray ? amountArray : grants, keys[i], values.key).forEach(eachGrant => filteredArray.push(eachGrant));
-            }
+            const otherArray = filterMethods.other(amountArray.length > 0 ? amountArray : grants, newFilters[keys[i]], keys[i]);
+            filteredArray = [...filteredArray, ...otherArray];
         }
-
     }
     if (filteredArray.length === 0 && amountArray.length !== 0) {
         amountArray.forEach(eachGrant => filteredArray.push(eachGrant));
