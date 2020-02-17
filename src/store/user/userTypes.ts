@@ -53,35 +53,12 @@ export interface User {
   user_metadata?: UserMetaData
 }
 
-// export interface Auth0User {
-//   nickname: string;
-//   name: string;
-//   picture: string;
-//   updated_at: string;
-//   email: string;
-//   email_verified: boolean;
-//   sub: string;
-// }
-
-// export interface PGUser {
-//   id: number | null;
-//   email: string;
-//   first_name: string | null;
-//   last_name: string | null;
-//   role: string | null;
-//   phone: string | null;
-//   company: string | null;
-//   company_url: string | null;
-//   about: string | null;
-// }
-
 export interface UserState {
   currentUser: User;
   favoriteGrants: Grant[];
-  users: User[];
-  isModerator: boolean;
   isLoading: boolean;
   errors: Error | null;
+  token: string | null;
 }
 
 interface FetchUserStartAction {
