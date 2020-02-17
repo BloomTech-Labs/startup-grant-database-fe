@@ -37,7 +37,7 @@ const UserTable = props => {
   const actions = useContext(ActionsContext);
   const { token, isModerator, currentUser } = useSelector(state => state.user);
   const { isAuthenticated } = useAuth0();
-  const { users } = useSelector(state => state.user);
+  const { users } = useSelector(state => state.admin);
 
   useEffect(() => {
     if (isAuthenticated && currentUser["https://founder-grants.com/appdata"]) {
