@@ -56,7 +56,7 @@ const GrantTable = props => {
           "https://founder-grants.com/appdata"
         ].authorization.roles.find(() => "Moderator") === "Moderator"
       ) {
-        actions.user.isModerator();
+        actions.admin.isModerator();
       }
     }
   }, [currentUser]);
@@ -87,7 +87,7 @@ const GrantTable = props => {
                   resolve();
                   let filteredData = Object.assign({}, newData);
                   delete filteredData.requests;
-                  props.postGrants(filteredData, props.currentUser.token);
+                  actions.postAdminGrant(filteredData, token);
                 }, 600);
               }),
             onRowUpdate: (newData, oldData) =>
@@ -97,12 +97,14 @@ const GrantTable = props => {
                   if (oldData) {
                     let filteredData = Object.assign({}, newData);
                     delete filteredData.requests;
-                    props.putGrants(
-                      {
-                        ...filteredData,
-                        details_last_updated: moment().format("YYYY-MM-DD")
-                      },
-                      props.currentUser.token
+                    console.log("Filter'd datar", token, filteredData.id, {
+                      ...filteredData
+                    });
+                    actions.grants.updateAdminGrant(
+                      token,
+                      filteredData.id,
+                      { ...filteredData }
+                      // details_last_updated: moment().format("YYYY-MM-DD")
                     );
                   }
                 }, 600);
@@ -113,7 +115,7 @@ const GrantTable = props => {
                   resolve();
                   if (oldData) {
                     delete oldData.requests;
-                    props.deleteGrants(oldData.id, props.currentUser.token);
+                    actions.deleteAdminGrant(oldData.id, token);
                   }
                 }, 600);
               })

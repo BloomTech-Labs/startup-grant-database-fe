@@ -1,7 +1,7 @@
 import {useCallback} from 'react';
 import {useDispatch} from 'react-redux';
 import {FilterFormState, FilterTypes} from "./filterTypes";
-import {Grant} from "../grants/grantTypes";
+import {Grant, GrantTypes} from "../grants/grantTypes";
 
 export const useFilterActions = () => {
     const dispatch = useDispatch();

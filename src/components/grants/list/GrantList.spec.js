@@ -1,8 +1,10 @@
 import React from "react";
 import * as rtl from "@testing-library/react";
-import GrantShowcase from "./GrantShowcase.jsx";
+import GrantList from "./GrantList.jsx";
 import { Provider } from "react-redux";
-import store from "../../store/index.ts";
+import store from "../../../store/index.ts";
+import { testGrants } from "./testGrantValues.js";
+
 const grant = {
   amount: 15000,
   amount_notes:
@@ -27,11 +29,11 @@ const grant = {
 const renderComponent = () =>
   rtl.render(
     <Provider store={store}>
-      <GrantShowcase showcase={grant} />
+      <GrantList grants={testGrants} showcase={grant} />
     </Provider>
   );
 
-describe("Grant showcase", () => {
+describe("Grant List", () => {
   it("renders without crashing", () => {
     renderComponent();
   });
@@ -50,4 +52,9 @@ describe("Grant showcase", () => {
 
     container.queryAllByText(/Select/i);
   });
+  //   it("has length of 6 (showcase)", () => {
+  //     const container = renderComponent();
+
+  //     expect(container.querySelector("div").length.toBe(6));
+  //   });
 });
