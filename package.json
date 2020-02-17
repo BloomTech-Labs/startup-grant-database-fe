@@ -33,7 +33,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "coverage": "react-scripts test --coverage --watchAll",
-    "action:coverage": "CI=true npm run test --coverage --watchAll || true"
+    "action:coverage": "CI=true npm run coverage"
   },
   "eslintConfig": {
     "extends": "react-app"
