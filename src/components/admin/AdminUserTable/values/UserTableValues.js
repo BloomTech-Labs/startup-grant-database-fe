@@ -8,14 +8,17 @@ export const tableValues = {
         minWidth: "75px"
       }
     },
-    // {
-    //   title: "Moderator",
-    //   field: "moderator",
-    //   lookup: {
-    //     true: "True",
-    //     false: "False"
-    //   }
-    // },
+    {
+      title: "Moderator",
+      cellStyle: cellData => ({
+        backgroundColor: cellData === "Pending" ? "#3DB8B3" : "none"
+      }),
+      field: "moderator",
+      lookup: {
+        true: "True",
+        false: "False"
+      }
+    },
 
     {
       title: "First Name",

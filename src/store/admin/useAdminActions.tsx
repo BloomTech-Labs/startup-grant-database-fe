@@ -52,6 +52,27 @@ export const useAdminActions = () => {
     dispatch({ type: AdminTypes.IS_MODERATOR });
   }, [dispatch]);
 
+  const updateModerator = useCallback(
+    (token: string, userId: string, roleId: string) => {
+      dispatch({ type: AdminTypes.UPDATE_MODERATOR_START });
+      axios(token)
+        .post(`/admin/users/moderator/${userId}`, { roleId })
+        .then(res => {
+          dispatch({
+            type: AdminTypes.UPDATE_MODERATOR_SUCCESS,
+            payload: res.data
+          });
+        })
+        .catch(error => {
+          dispatch({
+            type: AdminTypes.UPDATE_MODERATOR_FAILURE,
+            payload: error.response
+          });
+        });
+    },
+    [dispatch]
+  );
+
   const fetchAllRoles = useCallback(
     (token: string) => {
       dispatch({ type: AdminTypes.FETCH_ADMIN_ROLES_START });
@@ -82,7 +103,8 @@ export const useAdminActions = () => {
     isModerator,
     fetchAllUsers,
     fetchAllRoles,
-    isAdmin
+    isAdmin,
+    updateModerator
   };
 };
 
@@ -92,4 +114,5 @@ export interface UseAdminActions {
   isAdmin: () => void;
   fetchAllUsers: (token: string) => void;
   fetchAllRoles: (token: string) => void;
+  updateModerator: (token: string, userId: string, roleId: string) => void;
 }
