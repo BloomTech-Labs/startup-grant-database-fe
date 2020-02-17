@@ -37,7 +37,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --coverage",
+    "test": "react-scripts test --coverage --watchAll",
     "eject": "react-scripts eject",
     "action:test": "react-scripts test --detectOpenHandles --forceExit",
     "action:coverage": "CI=true npm run test --coverage || true"
