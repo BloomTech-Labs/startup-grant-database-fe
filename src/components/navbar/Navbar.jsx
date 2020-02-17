@@ -113,8 +113,11 @@ const Navbar = () => {
     const classes = useStyles();
 
     useEffect(() => {
-        if (isAuthenticated && currentUser.app_metadata.authorization.roles.includes('Moderator')) {
+        if (isAuthenticated && currentUser.roles.filter(role => role.name === 'Moderator').length > 0) {
             actions.admin.isModerator();
+        }
+        if (isAuthenticated && currentUser.app_metadata.authorization.permissions.length > 0) {
+            actions.admin.isAdmin();
         }
     }, [currentUser]);
 

@@ -24,10 +24,9 @@ const initialState: UserState = {
     }
   },
   favoriteGrants: [],
-  isModerator: false,
   isLoading: false,
   errors: null,
-  users: []
+  token: null
 };
 
 type FunctionReducer<S extends UserState = UserState, P extends UserActions = UserActions> = (
@@ -79,13 +78,6 @@ const userUpdateReducerSuccess: FunctionReducer = (state, payload) => ({
   currentUser: {...state.currentUser, user_metadata: {...payload}}
 });
 
-
-const userFetchReducerSuccess: FunctionReducer = (state, payload) => ({
-  ...state,
-  users: payload
-});
-
-
 export const userReducer = createReducer(initialState, {
   [UserTypes.FETCH_FAVORITES_START]: userStartReducer,
   [UserTypes.FETCH_FAVORITES_SUCCESS]: userFetchFavoritesSuccess,
@@ -107,7 +99,4 @@ export const userReducer = createReducer(initialState, {
   [UserTypes.FETCH_USER_START]: userStartReducer,
   [UserTypes.FETCH_USER_SUCCESS]: userFromPGSuccessAction,
   [UserTypes.FETCH_USER_FAILURE]: userFailureReducer,
-  [UserTypes.FETCH_USERS_START]: userStartReducer,
-  [UserTypes.FETCH_USERS_SUCCESS]: userFetchReducerSuccess,
-  [UserTypes.FETCH_USERS_FAILURE]: userFailureReducer
 });

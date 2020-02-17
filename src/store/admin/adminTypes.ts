@@ -13,6 +13,7 @@ export enum AdminTypes {
     FETCH_ADMIN_ROLES_SUCCESS = 'FETCH_ADMIN_ROLES_SUCCESS',
     FETCH_ADMIN_ROLES_FAILURE = 'FETCH_ADMIN_ROLES_FAILURE',
     IS_MODERATOR = "IS_MODERATOR",
+    IS_ADMIN = 'IS_ADMIN'
 }
 
 interface Role {
@@ -27,6 +28,7 @@ export interface AdminState {
     roles: Role[]
     isLoading: boolean
     isModerator: boolean
+    isAdmin: boolean
     errors: Error | null
 }
 
@@ -76,6 +78,10 @@ interface IsModeratorAction {
     type: typeof AdminTypes.IS_MODERATOR;
 }
 
+interface IsAdminAction {
+    type: typeof AdminTypes.IS_ADMIN
+}
+
 export type AdminActions =
     FetchAdminGrantsFailureAction
     | FetchAdminGrantsStartAction
@@ -87,3 +93,4 @@ export type AdminActions =
     | FetchAdminRolesFailureAction
     | FetchAdminRolesStartAction
     | FetchAdminRolesSuccessAction
+    | IsAdminAction

@@ -7,6 +7,7 @@ const initialState: AdminState = {
     roles: [],
     isLoading: false,
     isModerator: false,
+    isAdmin: false,
     errors: null
 }
 type FunctionReducer<S extends AdminState = AdminState, P extends AdminActions = AdminActions> = (state: AdminState, payload?: any) => AdminState;
@@ -14,6 +15,12 @@ type FunctionReducer<S extends AdminState = AdminState, P extends AdminActions =
 const adminIsModeratorReducer: FunctionReducer = state => ({
     ...state,
     isModerator: true
+});
+
+const adminIsAdminReducer: FunctionReducer = state => ({
+    ...state,
+    isModerator: true,
+    isAdmin: true
 });
 
 const adminStartReducer: FunctionReducer = state => ({...state, isLoading: true});
@@ -32,5 +39,6 @@ export const adminReducer = createReducer(initialState, {
     [AdminTypes.FETCH_ADMIN_ROLES_START]: adminStartReducer,
     [AdminTypes.FETCH_ADMIN_ROLES_SUCCESS]: adminFetchRolesSuccessReducer,
     [AdminTypes.FETCH_ADMIN_ROLES_FAILURE]: adminFailReducer,
-    [AdminTypes.IS_MODERATOR]: adminIsModeratorReducer
+    [AdminTypes.IS_MODERATOR]: adminIsModeratorReducer,
+    [AdminTypes.IS_ADMIN]: adminIsAdminReducer
 });

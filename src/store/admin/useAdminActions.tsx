@@ -34,12 +34,17 @@ export const useAdminActions = () => {
         })).catch(error => dispatch({type: AdminTypes.FETCH_ADMIN_ROLES_FAILURE, payload: error.response}))
     }, [dispatch]);
 
-    return {fetchAdminGrants, isModerator, fetchAllUsers, fetchAllRoles}
+    const isAdmin = useCallback(()=> {
+        dispatch({type: AdminTypes.IS_ADMIN})
+    }, [dispatch])
+
+    return {fetchAdminGrants, isModerator, fetchAllUsers, fetchAllRoles, isAdmin}
 };
 
 export interface UseAdminActions {
     fetchAdminGrants: (token: string) => void
     isModerator: () => void
+    isAdmin: () => void
     fetchAllUsers: (token: string) => void
     fetchAllRoles: (token: string) => void
 }
