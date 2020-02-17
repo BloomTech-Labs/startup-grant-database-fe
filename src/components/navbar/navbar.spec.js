@@ -31,15 +31,15 @@ describe("<NavBar />", () => {
         <NavBar />
       </Router>
     );
+    //   });
+
+    //     it('should contain text "Grants"', () => {
+    //       const { getByTestId } = rtl.render(
+    //         <Router>
+    //           <NavBar />
+    //         </Router>
+    //       );
+
+    //   expect(getByTestId("main-nav")).toHaveTextContent(/grants/i);
   });
-
-  //   it('should contain text "Grants"', () => {
-  //     const { getByTestId } = rtl.render(
-  //       <Router>
-  //         <NavBar />
-  //       </Router>
-  //     );
-
-  //     expect(getByTestId("main-nav")).toHaveTextContent(/grants/i);
-  //   });
 });
