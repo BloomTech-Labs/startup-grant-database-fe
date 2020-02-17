@@ -37,10 +37,10 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --coverage --watchAll",
+    "test": "react-scripts test",
     "eject": "react-scripts eject",
     "action:test": "react-scripts test --detectOpenHandles --forceExit",
-    "action:coverage": "CI=true npm run test --coverage || true"
+    "action:coverage": "CI=true npm run test -- --coverage --watchAll || true"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -68,7 +68,7 @@
   },
   "jest": {
     "collectCoverageFrom": [
-      "**.*/{js,jsx,ts,tsx}",
+      "**/*.{js,jsx}",
       "!**/node_modules/**",
       "!**/vendor/**",
       "!**/__tests__/**"
