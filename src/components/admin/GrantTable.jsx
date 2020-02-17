@@ -67,10 +67,10 @@ const GrantTable = props => {
 
   console.log("admin grants", grants);
   console.log("props", props);
-  console.log(
-    "whats going on with fetch grants?",
-    actions.grants.fetchAdminGrants(token)
-  );
+  // console.log(
+  //   "whats going on with fetch grants?",
+  //   actions.grants.fetchAdminGrants(token)
+  // );
 
   return (
     <React.Fragment>
