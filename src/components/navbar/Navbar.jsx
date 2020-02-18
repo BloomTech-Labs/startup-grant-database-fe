@@ -121,9 +121,10 @@ const Navbar = () => {
   const classes = useStyles();
 
   useEffect(() => {
+    logger("Current User", currentUser);
     if (
       isAuthenticated &&
-      currentUser.app_metadata.authorization.roles.filter(
+      currentUser.roles.filter(
         role => role.name === "Moderator"
       ).length > 0
     ) {
