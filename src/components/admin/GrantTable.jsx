@@ -87,7 +87,7 @@ const GrantTable = props => {
                   resolve();
                   let filteredData = Object.assign({}, newData);
                   delete filteredData.requests;
-                  actions.postAdminGrant(filteredData, token);
+                  actions.grants.postAdminGrant(filteredData, token);
                 }, 600);
               }),
             onRowUpdate: (newData, oldData) =>
@@ -115,7 +115,7 @@ const GrantTable = props => {
                   resolve();
                   if (oldData) {
                     delete oldData.requests;
-                    actions.deleteAdminGrant(oldData.id, token);
+                    actions.actions.deleteAdminGrant(oldData.id, token);
                   }
                 }, 600);
               })
