@@ -18,7 +18,7 @@ const NewFilters = ({landing, classes, setFilters, filters}: IProps) => {
     const {isModerator} = useSelector((state: AppState) => state.user);
 
 
-    function handleChange(data: FormState, key:string): void {
+    function handleChange(data: FormState, key: string): void {
         Object.keys(filters).forEach(eachKey => {
             if (eachKey === key) {
                 // @ts-ignore
@@ -28,7 +28,7 @@ const NewFilters = ({landing, classes, setFilters, filters}: IProps) => {
                     } else {
                         return filter;
                     }
-                })
+                });
                 setFilters({...filters, [key]: updatedFilters});
             }
         });
@@ -44,7 +44,7 @@ const NewFilters = ({landing, classes, setFilters, filters}: IProps) => {
                 {Object.keys(filters).map((group, id) => <FilterGroup classes={classes} key={id}
                                                                       handleChange={handleChange}
                                                                       data={filters[group]} title={title[id]}
-                                                                      labelText={group} />)}
+                                                                      labelText={group}/>)}
             </FormGroup>
             <Button variant="contained" color="primary" size="large" component={RouterLink} to="/grants"
                     className={classes.landingButton}>
