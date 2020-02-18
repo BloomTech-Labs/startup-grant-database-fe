@@ -9,11 +9,8 @@ import { makeStyles } from "@material-ui/core/styles";
 import TuneIcon from "@material-ui/icons/Tune";
 import Filters from "../filter/Filters";
 import clsx from "clsx";
-<<<<<<< HEAD
 import {Helmet} from "react-helmet";
-=======
 import { useAuth0 } from "../auth0/Auth0Wrapper";
->>>>>>> de51aa1a4ff776125a5c7ee7f8cd4b8238c17757
 
 const useStyles = makeStyles(theme => ({
   homeGridContainer: {
@@ -128,36 +125,59 @@ function GrantContainer(props) {
   if (!showcase) {
     return <Redirect to="/" />;
   }
+  return (
+    <Grid
+      container
+      direction="row"
+      justify="space-between"
+      alignItems="flex-start"
+      spacing={2}
+      className={classes.homeGridContainer}
+    >
+      <Helmet>
+        <title>Founder Grants | Grants</title>
+        <meta name="description" content="Detail view of an available grant" />
+        <meta name="keywords" content="grant,startup,funding,invest,financing" />
+        <meta property="og:locale" content="en_US" />
+        <meta property="og:site_name" content="Startup Grant Database" />
+      </Helmet>
 
-        <Grid
-  
-            container
-            direction='row'
-            justify='space-between'
-            alignItems='flex-start'
-            spacing={2}
-            className={classes.homeGridContainer}
+      <Grid item xs={4} className={classes.grantList}>
+        {console.log("Grants => ", grants)}
+        <GrantList grants={grants} showcase={showcase} />
+      </Grid>
+      <Grid item xs={6} sm={9} md={7} className={classes.gridItem}>
+        <GrantShowcase showcase={showcase} />
+      </Grid>
+      <Grid item xs={4} sm={2}>
+        <TuneIcon
+          className={clsx(
+            classes.filterIcon,
+            filtersOpen && classes.filterIconSelected
+          )}
+          onClick={toggleFilters}
         >
-            <Helmet>
-                <title>Founder Grants | Grants</title>
-                <meta name="description" content="Detail view of an available grant" />
-                <meta name="keywords" content="grant,startup,funding,invest,financing" />
-                <meta property="og:locale" content="en_US" />
-                <meta property="og:site_name" content="Startup Grant Database" />
-            </Helmet>
-            <Grid
-                item
-                xs={4}
-                className={classes.grantList}
-            >
-                <GrantList grants={grants} showcase={showcase}/>
-            </Grid>
-            <Grid
-                item
-                xs={6}
-                sm={9}
-                md={7}
-                className={classes.gridItem}
+          Filters
+        </TuneIcon>
+        <div
+          className={clsx(
+            classes.filters,
+            filtersOpen ? classes.showFilters : classes.hideFilters
+          )}
+        >
+          <Grid item xs={4} className={classes.grantList}>
+            <GrantList grants={grants} showcase={showcase} />
+          </Grid>
+          <Grid item xs={6} sm={9} md={7} className={classes.gridItem}>
+            <GrantShowcase showcase={showcase} />
+          </Grid>
+          <Grid item xs={4} sm={2}>
+            <TuneIcon
+              className={clsx(
+                classes.filterIcon,
+                filtersOpen && classes.filterIconSelected
+              )}
+              onClick={toggleFilters}
             >
               Filters
             </TuneIcon>

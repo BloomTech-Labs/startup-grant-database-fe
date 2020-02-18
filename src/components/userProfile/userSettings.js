@@ -24,6 +24,7 @@ const UserSettings = () => {
   );
 
   function doSubmit() {
+    console.log(values);
     actions.user.updateUser(token, values);
   }
 
