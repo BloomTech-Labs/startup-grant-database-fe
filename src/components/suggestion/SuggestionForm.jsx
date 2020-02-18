@@ -142,8 +142,10 @@ export const AddGrant = props => {
       [event.target.name]: event.target.value
     });
   };
+        console.log('grant info', grantInfo);
 
   function getStepContent(step) {
+    
     switch (step) {
       case 0:
         return (
@@ -164,8 +166,9 @@ export const AddGrant = props => {
 
   //Submit for grant from
   const submitGrant = event => {
-    event.preventDefault();
+    event.preventDefault();    
     console.log("THE TOKEN", token);
+    console.log('grantInfo in submit', grantInfo)
 
     actions.grants.postGrant({ ...grantInfo }, token);
 
@@ -246,12 +249,4 @@ export const AddGrant = props => {
     </Fragment>
   );
 };
-// const mapStateToProps = ({ grantData, isFetching, error }) => ({
-//   grantData,
-//   isFetching,
-//   error
-// });
 
-// export default connect(mapStateToProps, { postGrants, fetchApi, changeTab })(
-//   AddGrant
-// );
