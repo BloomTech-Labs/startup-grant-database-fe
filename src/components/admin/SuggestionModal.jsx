@@ -1,7 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { ActionsContext } from "../../context/ActionsContext";
-import { useSelector } from "react-redux";
+import { useSelector, connect } from "react-redux";
+// import { deleteSuggestion } from "../../actions";
+import axios from "axios";
+import { useAuth0 } from "../auth0/Auth0Wrapper.jsx";
+
 // Styling
+import { makeStyles } from "@material-ui/core/styles";
+
 import DialogTitle from "@material-ui/core/DialogTitle";
 import Dialog from "@material-ui/core/Dialog";
 import List from "@material-ui/core/List";
@@ -16,18 +21,61 @@ import IconButton from "@material-ui/core/IconButton";
 import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
 import DeleteIcon from "@material-ui/icons/Delete";
 
-export const SuggestionModal = props => {
-  const { token, isModerator } = useSelector(state => state.user);
-  const { adminGrants } = useSelector(state => state.grants);
+const suggestionModalStyles = makeStyles(theme => ({
+  suggestionUl: {
+    padding: "0",
+    minWidth: "200px"
+  },
+  suggestionLi: {
+    display: "flex",
+    padding: "13px",
+    borderTop: "3px solid #77D4D0"
+  },
+  suggestionLabel: {
+    fontFamily: "Nunito Sans"
+  },
+  suggestionNone: {
+    width: "20%",
+    borderBottom: "3px solid #77D4D0",
+    padding: "10px",
+    marginTop: "5px",
+    fontSize: "1.25rem"
+  },
+  // delSuggestBtn: {
+  //   borderRadius: '50px',
+  //   alignSelf: 'center',
+  //   backgroundColor: '#EF7B5C',
+  //   boxShadow: 'none',
+  //   borderWidth: '0px',
+  //   margin: '2px 5px 2px 0',
+  //   padding: '6px',
+  //   height: '40px',
+  //   width: '40px',
+  //   "&:hover": {
+  //     backgroundColor: '#f0a692'
+  //   }
+  // },
+  iconBtnWithSuggestions: {
+    backgroundColor: "#3DB8B3",
+    paddingRight: "5px",
+    border: "none"
+  },
+  iconBtnWithOutSuggestions: {
+    backgroundColor: "none",
+    color: "000",
+    cursor: "unset",
+    "&:hover": {
+      backgroundColor: "white"
+    }
+  }
+}));
+
+const SuggestionModal = props => {
+  const { isAuthenticated, user, loading } = useAuth0();
+  const [suggestions, setSuggestions] = useState([]);
   const [open, setOpen] = useState(false);
-
-  useEffect(() => {
-    // isModerator &&
-  }, [token]);
-
-  const onClickDelete = (suggestion_id, token) => {
-    // actions.deleteSuggestion(suggestion_id, token)
-  };
+  const { token, isModerator, currentUser } = useSelector(state => state.user);
+  const style = suggestionModalStyles();
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -36,10 +84,35 @@ export const SuggestionModal = props => {
   const handleClose = () => {
     setOpen(false);
   };
+  useEffect(() => {
+    const grant_id = props.rowData.id;
+    axios
+      .get(
+        `${process.env.REACT_APP_CLIENT_BASEURL}/admin/suggestions/${grant_id}`,
+        {
+          headers: {
+            authorization: `Bearer ${token}`
+          }
+        }
+      )
+      .then(res => {
+        setSuggestions(res.data);
+        // console.log("AXIOS WORKED", res.data);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }, [token, props.rowData]);
+
+  // const onClickDelete = (suggestion_id, token) => {
+  //   props.deleteSuggestion(suggestion_id, token);
+  //   const updatedSuggs = suggestions.filter(sugg => sugg.id !== suggestion_id);
+  //   setSuggestions(updatedSuggs);
+  // };
 
   return (
     <>
-      {/* {suggestions.length ? (
+      {!suggestions.length ? (
         <Button
           variant="outlined"
           onClick={handleClickOpen}
@@ -66,7 +139,7 @@ export const SuggestionModal = props => {
         <DialogTitle variant="h5">User Suggestions</DialogTitle>
         <DialogContent>
           <DialogContentText>
-            {suggestions.length ? (
+            {!suggestions.length ? (
               <List className={style.suggestionUl}>
                 {suggestions.map(suggestion => (
                   <ListItem
@@ -74,7 +147,7 @@ export const SuggestionModal = props => {
                     className={style.suggestionLi}
                   >
                     <IconButton
-                      onClick={() => onClickDelete(suggestion.id, token)}
+                    // onClick={() => onClickDelete(suggestion.id, token)}
                     >
                       <DeleteIcon />
                     </IconButton>
@@ -110,7 +183,9 @@ export const SuggestionModal = props => {
             Cancel
           </Button>
         </DialogActions>
-      </Dialog>*/}
+      </Dialog>
     </>
   );
 };
+
+export default SuggestionModal;

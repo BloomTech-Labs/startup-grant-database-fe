@@ -42,23 +42,8 @@ const UserTable = props => {
     state => state.admin.roles.filter(role => role.name === "Moderator")[0].id
   );
 
-  // useEffect(() => {
-  //   if (isAuthenticated && currentUser["https://founder-grants.com/appdata"]) {
-  //     if (
-  //       currentUser[
-  //         "https://founder-grants.com/appdata"
-  //       ].authorization.roles.find(() => "Moderator") === "Moderator"
-  //     ) {
-  //       actions.admin.isModerator();
-  //     }
-  //   }
-  // }, [currentUser]);
-
   const style = userTableStyles();
 
-  // useEffect(() => {
-  //   isModerator && actions.user.fetchAllUsers(token);
-  // }, [isModerator]);
   console.log("roleId", roleId);
   return (
     <React.Fragment>
