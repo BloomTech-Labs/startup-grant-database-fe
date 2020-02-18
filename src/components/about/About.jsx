@@ -35,6 +35,8 @@ export default () => {
         <title>Founder Grants | About</title>
         <meta name="description" content="List of available grants" />
         <meta name="keywords" content="grant,startup,funding,invest,financing" />
+        <meta property="og:locale" content="en_US" />
+        <meta property="og:site_name" content="Startup Grant Database" />
 
       </Helmet>
       <Card className={classes.aboutCardContainer}>

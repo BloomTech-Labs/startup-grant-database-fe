@@ -129,7 +129,6 @@ function GrantContainer(props) {
     return <Redirect to="/" />;
   }
 
-<<<<<<< HEAD
         <Grid
   
             container
@@ -143,7 +142,8 @@ function GrantContainer(props) {
                 <title>Founder Grants | Grants</title>
                 <meta name="description" content="Detail view of an available grant" />
                 <meta name="keywords" content="grant,startup,funding,invest,financing" />
-
+                <meta property="og:locale" content="en_US" />
+                <meta property="og:site_name" content="Startup Grant Database" />
             </Helmet>
             <Grid
                 item
@@ -158,53 +158,6 @@ function GrantContainer(props) {
                 sm={9}
                 md={7}
                 className={classes.gridItem}
-=======
-  return (
-    <Grid
-      container
-      direction="row"
-      justify="space-between"
-      alignItems="flex-start"
-      spacing={2}
-      className={classes.homeGridContainer}
-    >
-      <Grid item xs={4} className={classes.grantList}>
-        {console.log("Grants => ", grants)}
-        <GrantList grants={grants} showcase={showcase} />
-      </Grid>
-      <Grid item xs={6} sm={9} md={7} className={classes.gridItem}>
-        <GrantShowcase showcase={showcase} />
-      </Grid>
-      <Grid item xs={4} sm={2}>
-        <TuneIcon
-          className={clsx(
-            classes.filterIcon,
-            filtersOpen && classes.filterIconSelected
-          )}
-          onClick={toggleFilters}
-        >
-          Filters
-        </TuneIcon>
-        <div
-          className={clsx(
-            classes.filters,
-            filtersOpen ? classes.showFilters : classes.hideFilters
-          )}
-        >
-          <Grid item xs={4} className={classes.grantList}>
-            <GrantList grants={grants} showcase={showcase} />
-          </Grid>
-          <Grid item xs={6} sm={9} md={7} className={classes.gridItem}>
-            <GrantShowcase showcase={showcase} />
-          </Grid>
-          <Grid item xs={4} sm={2}>
-            <TuneIcon
-              className={clsx(
-                classes.filterIcon,
-                filtersOpen && classes.filterIconSelected
-              )}
-              onClick={toggleFilters}
->>>>>>> de51aa1a4ff776125a5c7ee7f8cd4b8238c17757
             >
               Filters
             </TuneIcon>

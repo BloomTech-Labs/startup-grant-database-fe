@@ -58,6 +58,9 @@ function LandingPage() {
                 <title>Founder Grants</title>
                 <meta name="description" content="Find your startup grant, browse by type, region, amount!" />
                 <meta name="keywords" content="grant,startup,funding,invest,financing" />
+                <meta property="og:locale" content="en_US" />
+                <meta property="og:site_name" content="Startup Grant Database" />
+                
 
             </Helmet>
             <Grid
