@@ -10,7 +10,7 @@ export const useAdminActions = () => {
     (token: string) => {
       dispatch({ type: AdminTypes.FETCH_ADMIN_GRANTS_START });
       axios(token)
-        .get("/admin/grants")
+        .get("/moderator/grants")
         .then(res =>
           dispatch({
             type: AdminTypes.FETCH_ADMIN_GRANTS_SUCCESS,
@@ -31,7 +31,7 @@ export const useAdminActions = () => {
     (token: string) => {
       dispatch({ type: AdminTypes.FETCH_ADMIN_USERS_START });
       axios(token)
-        .get("/admin/users")
+        .get("/moderator/users")
         .then(res =>
           dispatch({
             type: AdminTypes.FETCH_ADMIN_USERS_SUCCESS,
@@ -77,7 +77,7 @@ export const useAdminActions = () => {
     (token: string) => {
       dispatch({ type: AdminTypes.FETCH_ADMIN_ROLES_START });
       axios(token)
-        .get("/admin/users/roles")
+        .get("/moderator/roles")
         .then(res =>
           dispatch({
             type: AdminTypes.FETCH_ADMIN_ROLES_SUCCESS,
