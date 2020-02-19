@@ -10,6 +10,7 @@ import TuneIcon from "@material-ui/icons/Tune";
 import Filters from "../filter/Filters";
 import clsx from "clsx";
 import { useAuth0 } from "../auth0/Auth0Wrapper";
+import {Helmet} from "react-helmet";
 
 const useStyles = makeStyles(theme => ({
   homeGridContainer: {
@@ -137,6 +138,14 @@ function GrantContainer(props) {
   }
 
   return (
+      <>
+        <Helmet>
+          <title>Founder Grants | Grants</title>
+          <meta name="description" content="Detail view of an available grant" />
+          <meta name="keywords" content="grant,startup,funding,invest,financing" />
+          <meta property="og:locale" content="en_US" />
+          <meta property="og:site_name" content="Startup Grant Database" />
+        </Helmet>
       <Grid
           container
           direction="row"
@@ -171,6 +180,7 @@ function GrantContainer(props) {
           </div>
         </Grid>
       </Grid>
+        </>
   );
 }
 
