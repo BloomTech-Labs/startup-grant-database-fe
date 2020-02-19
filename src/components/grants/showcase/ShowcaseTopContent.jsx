@@ -7,6 +7,7 @@ import BookmarkIcon from "@material-ui/icons/Bookmark";
 import BookmarkBorderOutlinedIcon from "@material-ui/icons/BookmarkBorderOutlined";
 import DeleteIcon from "@material-ui/icons/Delete";
 import LanguageIcon from "@material-ui/icons/Language";
+import IconDisplay from "./IconDisplay";
 
 const useStyles = makeStyles(theme => ({
     title: {
@@ -47,32 +48,7 @@ function ShowcaseTopContent({showcase}) {
                 </Typography>
                 </Grid>
                 <Grid item>
-                    {favoriteGrants.length > 0 && existingFavorite.length ? (
-                        <>
-                            <FavoritesIconButton
-                                title='In Favorites'
-                                label='added to favorites'
-                                icon={BookmarkIcon}
-                                button
-                            />
-                            <FavoritesIconButton
-                                title="Delete Favorites"
-                                label="DeleteIcon"
-                                button
-                                icon={DeleteIcon}
-                                id={existingFavorite[0].favoriteID}
-                                removeFavorite
-                            />
-                        </>
-                    ) : (
-                        <FavoritesIconButton
-                            title='Add to Favorites'
-                            label='save'
-                            icon={BookmarkBorderOutlinedIcon}
-                            button
-                            id={showcase.id}
-                        />
-                    )}
+                   <IconDisplay favoriteGrants={favoriteGrants} id={showcase.id} existingFavorite={existingFavorite} />
                 </Grid>
             </Grid>
             <Grid
