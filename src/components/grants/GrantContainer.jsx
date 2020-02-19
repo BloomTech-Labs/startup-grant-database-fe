@@ -128,65 +128,41 @@ function GrantContainer(props) {
   }
 
   return (
-    <Grid
-      container
-      direction="row"
-      justify="space-between"
-      alignItems="flex-start"
-      spacing={2}
-      className={classes.homeGridContainer}
-    >
-      <Grid item xs={4} className={classes.grantList}>
-        {console.log("Grants => ", grants)}
-        <GrantList grants={grants} showcase={showcase} />
-      </Grid>
-      <Grid item xs={6} sm={9} md={7} className={classes.gridItem}>
-        <GrantShowcase showcase={showcase} />
-      </Grid>
-      <Grid item xs={4} sm={2}>
-        <TuneIcon
-          className={clsx(
-            classes.filterIcon,
-            filtersOpen && classes.filterIconSelected
-          )}
-          onClick={toggleFilters}
-        >
-          Filters
-        </TuneIcon>
-        <div
-          className={clsx(
-            classes.filters,
-            filtersOpen ? classes.showFilters : classes.hideFilters
-          )}
-        >
-          <Grid item xs={4} className={classes.grantList}>
-            <GrantList grants={grants} showcase={showcase} />
-          </Grid>
-          <Grid item xs={6} sm={9} md={7} className={classes.gridItem}>
-            <GrantShowcase showcase={showcase} />
-          </Grid>
-          <Grid item xs={4} sm={2}>
-            <TuneIcon
+      <Grid
+          container
+          direction="row"
+          justify="space-between"
+          alignItems="flex-start"
+          spacing={2}
+          className={classes.homeGridContainer}
+      >
+        <Grid item xs={4} className={classes.grantList}>
+          {console.log("Grants => ", grants)}
+          <GrantList grants={grants} showcase={showcase} />
+        </Grid>
+        <Grid item xs={6} sm={9} md={7} className={classes.gridItem}>
+          <GrantShowcase showcase={showcase} />
+        </Grid>
+        <Grid item xs={4} sm={2}>
+          <TuneIcon
               className={clsx(
-                classes.filterIcon,
-                filtersOpen && classes.filterIconSelected
+                  classes.filterIcon,
+                  filtersOpen && classes.filterIconSelected
               )}
               onClick={toggleFilters}
-            >
-              Filters
-            </TuneIcon>
-            <div
+          >
+            Filters
+          </TuneIcon>
+          <div
               className={clsx(
-                classes.filters,
-                filtersOpen ? classes.showFilters : classes.hideFilters
+                  classes.filters,
+                  filtersOpen ? classes.showFilters : classes.hideFilters
               )}
-            >
-              <Filters grants={grants} />
-            </div>
-          </Grid>
-        </div>
+          >
+            <Filters grants={grants} />
+          </div>
+        </Grid>
       </Grid>
-    </Grid>
   );
 }
 
