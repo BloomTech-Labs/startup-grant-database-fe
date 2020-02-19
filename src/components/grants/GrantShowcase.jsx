@@ -13,6 +13,7 @@ const useStyles = makeStyles(theme => ({
         borderTop: '#3DB8B3 5px solid',
         fontFamily: 'adobe-garamond-pro',
         [theme.breakpoints.down('sm')]: {
+            display: 'none',
             position: 'initial',
             padding: '2em',
             height: 'auto',
