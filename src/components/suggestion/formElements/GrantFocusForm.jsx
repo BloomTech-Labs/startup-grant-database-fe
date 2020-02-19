@@ -35,7 +35,7 @@ export const GrantFocusForm = props => {
               name={data.name}
               select={data.select}
               data={data.data}
-              value={props.grantInfo.name}
+              value={props.grantInfo}
               handleChanges={props.handleChanges}
             />
           );

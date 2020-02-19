@@ -14,6 +14,7 @@ const useStyles = makeStyles(theme => ({
 
 export const GrantInfoForm = props => {
   const styles = useStyles();
+  console.log('props in grantInfo', props);
   return (
     <Fragment>
       <Typography variant="h5" className={null}>
@@ -30,7 +31,7 @@ export const GrantInfoForm = props => {
             variant={data.variant}
             multiline={data.multiline}
             data={data.data}
-            value={props.grantInfo.name}
+            value={props.grantInfo}
             handleChanges={props.handleChanges}
           />
         ))}

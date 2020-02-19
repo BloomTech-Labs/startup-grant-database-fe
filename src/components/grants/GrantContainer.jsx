@@ -9,6 +9,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import TuneIcon from "@material-ui/icons/Tune";
 import Filters from "../filter/Filters";
 import clsx from "clsx";
+import {Helmet} from "react-helmet";
 import { useAuth0 } from "../auth0/Auth0Wrapper";
 
 const useStyles = makeStyles(theme => ({
@@ -124,7 +125,6 @@ function GrantContainer(props) {
   if (!showcase) {
     return <Redirect to="/" />;
   }
-
   return (
     <Grid
       container
@@ -134,6 +134,14 @@ function GrantContainer(props) {
       spacing={2}
       className={classes.homeGridContainer}
     >
+      <Helmet>
+        <title>Founder Grants | Grants</title>
+        <meta name="description" content="Detail view of an available grant" />
+        <meta name="keywords" content="grant,startup,funding,invest,financing" />
+        <meta property="og:locale" content="en_US" />
+        <meta property="og:site_name" content="Startup Grant Database" />
+      </Helmet>
+
       <Grid item xs={4} className={classes.grantList}>
         {console.log("Grants => ", grants)}
         <GrantList grants={grants} showcase={showcase} />
