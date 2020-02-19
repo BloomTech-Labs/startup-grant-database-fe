@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, connect } from "react-redux";
-// import { deleteSuggestion } from "../../actions";
+import { ActionsContext } from "../../context/ActionsContext";
 import axios from "axios";
 import { useAuth0 } from "../auth0/Auth0Wrapper.jsx";
 
@@ -72,6 +72,7 @@ const suggestionModalStyles = makeStyles(theme => ({
 
 const SuggestionModal = props => {
   const { isAuthenticated, user, loading } = useAuth0();
+  const actions = useSelector(ActionsContext);
   const [suggestions, setSuggestions] = useState([]);
   const [open, setOpen] = useState(false);
   const { token, isModerator, currentUser } = useSelector(state => state.user);
@@ -104,11 +105,15 @@ const SuggestionModal = props => {
       });
   }, [token, props.rowData]);
 
-  // const onClickDelete = (suggestion_id, token) => {
-  //   props.deleteSuggestion(suggestion_id, token);
-  //   const updatedSuggs = suggestions.filter(sugg => sugg.id !== suggestion_id);
-  //   setSuggestions(updatedSuggs);
-  // };
+  const onClickDelete = (suggestion_id, token) => {
+    actions.suggestion.deleteSuggestion(
+      //we need the grant ID here also!!!!!!!!!!!!!!!!!!!!!!!!!!!
+      suggestion_id,
+      token
+    );
+    const updatedSuggs = suggestions.filter(sugg => sugg.id !== suggestion_id);
+    setSuggestions(updatedSuggs);
+  };
 
   return (
     <>
@@ -147,7 +152,7 @@ const SuggestionModal = props => {
                     className={style.suggestionLi}
                   >
                     <IconButton
-                    // onClick={() => onClickDelete(suggestion.id, token)}
+                      onClick={() => onClickDelete(suggestion.id, token)}
                     >
                       <DeleteIcon />
                     </IconButton>

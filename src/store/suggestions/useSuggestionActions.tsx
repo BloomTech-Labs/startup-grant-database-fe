@@ -74,6 +74,12 @@ export const useSuggestionActions = () => {
     },
     [dispatch]
   );
+
+  return {
+    fetchSuggestions,
+    deleteSuggestion,
+    selectSuggestion
+  };
 };
 
 export interface UseSuggestionActions {
