@@ -5,6 +5,7 @@ import {Card, Divider} from "@material-ui/core";
 import ShowcaseTopContent from "./showcase/ShowcaseTopContent";
 import ShowcaseMainContent from "./showcase/ShowcaseMainContent";
 import ShowcaseBottomContent from "./showcase/ShowcaseBottomContent";
+import {logger} from "../../store/utils/logger";
 
 const useStyles = makeStyles(theme => ({
     showcaseCard: {
@@ -27,6 +28,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 function GrantShowcase(props) {
+    logger("GrantShowcase Props", props);
     const classes = useStyles();
     return (
         <Card className={classes.showcaseCard}>
