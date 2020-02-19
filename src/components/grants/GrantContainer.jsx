@@ -14,15 +14,17 @@ import { useAuth0 } from "../auth0/Auth0Wrapper";
 const useStyles = makeStyles(theme => ({
   homeGridContainer: {
     minHeight: "76vh",
+    maxHeight: "84vh",
     margin: "0",
     flexWrap: "nowrap",
     overflowX: "hidden",
+    overflowY: "hidden",
     [theme.breakpoints.down("sm")]: {
       background: "#f7f7f7"
     }
   },
   grantList: {
-    maxHeight: "90vh",
+    maxHeight: "86vh",
     overflow: "auto",
     position: "relative",
     [theme.breakpoints.down("xs")]: {
