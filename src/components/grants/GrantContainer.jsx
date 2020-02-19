@@ -9,24 +9,30 @@ import { makeStyles } from "@material-ui/core/styles";
 import TuneIcon from "@material-ui/icons/Tune";
 import Filters from "../filter/Filters";
 import clsx from "clsx";
-import {Helmet} from "react-helmet";
 import { useAuth0 } from "../auth0/Auth0Wrapper";
+import {Helmet} from "react-helmet";
 
 const useStyles = makeStyles(theme => ({
   homeGridContainer: {
     minHeight: "76vh",
+    maxHeight: "84vh",
     margin: "0",
     flexWrap: "nowrap",
     overflowX: "hidden",
+    overflowY: "hidden",
     [theme.breakpoints.down("sm")]: {
       background: "#f7f7f7"
     }
   },
   grantList: {
-    maxHeight: "90vh",
+    maxHeight: "86vh",
     overflow: "auto",
     position: "relative",
+    [theme.breakpoints.down('sm')]: {
+      width: '100%'
+    },
     [theme.breakpoints.down("xs")]: {
+      marginTop: theme.spacing(14),
       height: "100%",
       justifyContent: "center",
       flexDirection: "column",
@@ -51,7 +57,7 @@ const useStyles = makeStyles(theme => ({
       "0px 1px 0px 0px rgba(0,0,0,0.2), 0px 1px 0px 0px rgba(0,0,0,0.14), 0px 2px 0px -1px rgba(0,0,0,0.12)",
     "&:hover": {
       cursor: "pointer"
-    }
+    },
   },
   filterIconSelected: {
     fill: "#3DB8B3",
@@ -60,6 +66,11 @@ const useStyles = makeStyles(theme => ({
   },
   filters: {
     transition: "all .3s ease-in-out"
+  },
+  filterList: {
+    [theme.breakpoints.down('sm')]: {
+      display: 'none'
+    }
   },
   hideFilters: {
     transform: "translateX(110%)"
@@ -125,74 +136,51 @@ function GrantContainer(props) {
   if (!showcase) {
     return <Redirect to="/" />;
   }
-  return (
-    <Grid
-      container
-      direction="row"
-      justify="space-between"
-      alignItems="flex-start"
-      spacing={2}
-      className={classes.homeGridContainer}
-    >
-      <Helmet>
-        <title>Founder Grants | Grants</title>
-        <meta name="description" content="Detail view of an available grant" />
-        <meta name="keywords" content="grant,startup,funding,invest,financing" />
-        <meta property="og:locale" content="en_US" />
-        <meta property="og:site_name" content="Startup Grant Database"  />
-      </Helmet>
 
-      <Grid item xs={4} className={classes.grantList}>
-        {console.log("Grants => ", grants)}
-        <GrantList grants={grants} showcase={showcase} />
-      </Grid>
-      <Grid item xs={6} sm={9} md={7} className={classes.gridItem}>
-        <GrantShowcase showcase={showcase} />
-      </Grid>
-      <Grid item xs={4} sm={2}>
-        <TuneIcon
-          className={clsx(
-            classes.filterIcon,
-            filtersOpen && classes.filterIconSelected
-          )}
-          onClick={toggleFilters}
-        >
-          Filters
-        </TuneIcon>
-        <div
-          className={clsx(
-            classes.filters,
-            filtersOpen ? classes.showFilters : classes.hideFilters
-          )}
-        >
-          <Grid item xs={4} className={classes.grantList}>
-            <GrantList grants={grants} showcase={showcase} />
-          </Grid>
-          <Grid item xs={6} sm={9} md={7} className={classes.gridItem}>
-            <GrantShowcase showcase={showcase} />
-          </Grid>
-          <Grid item xs={4} sm={2}>
-            <TuneIcon
+  return (
+      <>
+        <Helmet>
+          <title>Founder Grants | Grants</title>
+          <meta name="description" content="Detail view of an available grant" />
+          <meta name="keywords" content="grant,startup,funding,invest,financing" />
+          <meta property="og:locale" content="en_US" />
+          <meta property="og:site_name" content="Startup Grant Database" />
+        </Helmet>
+      <Grid
+          container
+          direction="row"
+          justify="space-between"
+          alignItems="flex-start"
+          spacing={2}
+          className={classes.homeGridContainer}
+      >
+        <Grid item xs={12} md={4} className={classes.grantList}>
+          <GrantList grants={grants} showcase={showcase} />
+        </Grid>
+        <Grid item md={7} className={classes.gridItem}>
+          <GrantShowcase showcase={showcase} />
+        </Grid>
+        <Grid item md={2} className={classes.filterList}>
+          <TuneIcon
               className={clsx(
-                classes.filterIcon,
-                filtersOpen && classes.filterIconSelected
+                  classes.filterIcon,
+                  filtersOpen && classes.filterIconSelected
               )}
               onClick={toggleFilters}
-            >
-              Filters
-            </TuneIcon>
-            <div
+          >
+            Filters
+          </TuneIcon>
+          <div
               className={clsx(
-                classes.filters,
-                filtersOpen ? classes.showFilters : classes.hideFilters
+                  classes.filters,
+                  filtersOpen ? classes.showFilters : classes.hideFilters
               )}
-            >
-              <Filters grants={grants} />
-            </div>
-          </Grid>
-        </div>
+          >
+            <Filters grants={grants} />
+          </div>
+        </Grid>
       </Grid>
-    </Grid>
+        </>
   );
 }
 
