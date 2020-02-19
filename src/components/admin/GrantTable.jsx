@@ -115,7 +115,7 @@ const GrantTable = props => {
                   resolve();
                   if (oldData) {
                     delete oldData.requests;
-                    actions.actions.deleteAdminGrant(oldData.id, token);
+                    actions.grants.deleteAdminGrant(oldData.id, token);
                   }
                 }, 600);
               })
