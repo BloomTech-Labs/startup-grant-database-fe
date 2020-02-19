@@ -1,3 +1,6 @@
+import React from 'react';
+import Grant from './Grant';
+import NewGrant from './NewGrant';
 import {Typography} from "@material-ui/core";
 
 function GrantList(props) {
@@ -8,7 +11,7 @@ function GrantList(props) {
             )}
             {props.grants.length > 0 ? (
                 props.grants.map(grant => (
-                    <Grant grant={grant} key={grant.id} showcase={props.showcase}/>
+                    <NewGrant grant={grant} key={grant.id} showcase={props.showcase}/>
                 ))
             ) : (
                 <Typography>Grants Incoming</Typography>
