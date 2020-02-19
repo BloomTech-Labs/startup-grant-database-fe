@@ -1,5 +1,3 @@
-import React from "react";
-import Grant from "./Grant";
 import {Typography} from "@material-ui/core";
 
 function GrantList(props) {
