@@ -27,7 +27,11 @@ const useStyles = makeStyles(theme => ({
     maxHeight: "86vh",
     overflow: "auto",
     position: "relative",
+    [theme.breakpoints.down('sm')]: {
+      width: '100%'
+    },
     [theme.breakpoints.down("xs")]: {
+      marginTop: theme.spacing(14),
       height: "100%",
       justifyContent: "center",
       flexDirection: "column",
@@ -52,7 +56,7 @@ const useStyles = makeStyles(theme => ({
       "0px 1px 0px 0px rgba(0,0,0,0.2), 0px 1px 0px 0px rgba(0,0,0,0.14), 0px 2px 0px -1px rgba(0,0,0,0.12)",
     "&:hover": {
       cursor: "pointer"
-    }
+    },
   },
   filterIconSelected: {
     fill: "#3DB8B3",
@@ -61,6 +65,11 @@ const useStyles = makeStyles(theme => ({
   },
   filters: {
     transition: "all .3s ease-in-out"
+  },
+  filterList: {
+    [theme.breakpoints.down('sm')]: {
+      display: 'none'
+    }
   },
   hideFilters: {
     transform: "translateX(110%)"
@@ -136,14 +145,13 @@ function GrantContainer(props) {
           spacing={2}
           className={classes.homeGridContainer}
       >
-        <Grid item xs={4} className={classes.grantList}>
-          {console.log("Grants => ", grants)}
+        <Grid item xs={12} md={4} className={classes.grantList}>
           <GrantList grants={grants} showcase={showcase} />
         </Grid>
-        <Grid item xs={6} sm={9} md={7} className={classes.gridItem}>
+        <Grid item md={7} className={classes.gridItem}>
           <GrantShowcase showcase={showcase} />
         </Grid>
-        <Grid item xs={4} sm={2}>
+        <Grid item md={2} className={classes.filterList}>
           <TuneIcon
               className={clsx(
                   classes.filterIcon,
