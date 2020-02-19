@@ -139,7 +139,7 @@ function GrantContainer(props) {
         <meta name="description" content="Detail view of an available grant" />
         <meta name="keywords" content="grant,startup,funding,invest,financing" />
         <meta property="og:locale" content="en_US" />
-        <meta property="og:site_name" content="Startup Grant Database" />
+        <meta property="og:site_name" content="Startup Grant Database"  />
       </Helmet>
 
       <Grid item xs={4} className={classes.grantList}>
