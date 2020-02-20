@@ -14,11 +14,14 @@ import {
 import { makeStyles } from "@material-ui/core/styles";
 import { ActionsContext } from "../../../context/ActionsContext";
 import { Grant } from "../../../store/grants/grantTypes";
+import { Logo } from "../Logo/Logo.jsx";
 import moment from "moment";
 import IconDisplay from "../showcase/IconDisplay";
 import { useSelector } from "react-redux";
 import { AppState } from "../../../store/rooterReducer";
+import { logger } from "../../../store/utils/logger";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import GrantShowcase from "../GrantShowcase";
 import clsx from "clsx";
 import { formatNumber } from "../../../utils/helpers";
 
@@ -59,12 +62,16 @@ function NewGrant({ grant, showcase }: IProps) {
     (fav: Grant) => fav.id === showcase.id
   );
 
+  function selectGrant() {
+    actions && actions.grants.selectGrant(grant);
+  }
+
   const handleExpandClick = () => setExpanded(!expanded);
   const classes = useStyles();
   return (
     <Card className={classes.root} raised>
       <CardHeader
-        avatar={<Avatar aria-label="recipe">FG</Avatar>}
+        avatar={<Logo url={grant.website} />}
         title={<Typography variant="h5">{grant.competition_name}</Typography>}
         subheader={<Link href={grant.website}>{grant.sponsoring_entity}</Link>}
       />
