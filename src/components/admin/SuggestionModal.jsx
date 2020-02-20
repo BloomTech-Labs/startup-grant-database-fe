@@ -83,15 +83,15 @@ const SuggestionModal = props => {
     setOpen(false);
   };
 
-  const onClickDelete = (suggestion_id, token) => {
-    actions.suggestion.deleteSuggestion(
-      //we need the grant ID here also!!!!!!!!!!!!!!!!!!!!!!!!!!!
-      suggestion_id,
-      token
-    );
-    const updatedSuggs = suggestions.filter(sugg => sugg.id !== suggestion_id);
-    setSuggestions(updatedSuggs);
+  // do I call from state or rowData?
+  // - need to do fetch
+  const onClickDelete = token => {
+    //   actions.suggestion.deleteSuggestion(token, grant_id, suggestion_id);
+    //   const updatedSuggs = suggestions.filter(sugg => sugg.id !== suggestion_id);
+    //   setSuggestions(updatedSuggs);
   };
+
+  console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!", props);
 
   return (
     <>

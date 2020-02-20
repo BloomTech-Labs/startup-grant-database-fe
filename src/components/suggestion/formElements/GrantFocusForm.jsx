@@ -1,14 +1,7 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 
-import {
-  Grid,
-  Typography,
-  TextField,
-  Divider,
-  MenuItem
-} from "@material-ui/core";
-import formStyles from "../formElements/formStyles";
+import { Grid, Typography, Divider } from "@material-ui/core";
 import { FocusFormData } from "../formUtils/formValues.js";
 import { TextFormField } from "./TextFormField";
 

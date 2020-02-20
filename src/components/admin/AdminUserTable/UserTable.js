@@ -1,9 +1,8 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext } from "react";
 import { ActionsContext } from "../../../context/ActionsContext";
 import { useSelector } from "react-redux";
-import MaterialTable, { FilterRow } from "material-table";
+import MaterialTable from "material-table";
 import { makeStyles } from "@material-ui/core/styles";
-import moment from "moment";
 import { useAuth0 } from "../../auth0/Auth0Wrapper";
 import { Paper } from "@material-ui/core";
 import { tableValues } from "./values/UserTableValues";
@@ -32,14 +31,13 @@ const tableStyles = {
 };
 const UserTable = props => {
   const actions = useContext(ActionsContext);
-  const { token, isModerator, currentUser } = useSelector(state => state.user);
-  const { isAuthenticated } = useAuth0();
+  const { token } = useSelector(state => state.user);
   const { users } = useSelector(state => state.admin);
   const roleId = useSelector(
     state => state.admin.roles.filter(role => role.name === "Moderator")[0].id
   );
   const style = userTableStyles();
-  console.log("roleId", roleId);
+
   return (
     <React.Fragment>
       <Paper className={style.paper}>

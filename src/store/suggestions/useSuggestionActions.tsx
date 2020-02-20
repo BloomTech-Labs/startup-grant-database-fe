@@ -13,7 +13,7 @@ export const useSuggestionActions = () => {
     (token: string, grant_id: number) => {
       dispatch({ type: SuggestionTypes.FETCH_SUGGESTION_START });
       axiosWithAuth(token)
-        .get(`/grants/${grant_id}`)
+        .get(`/admin/${grant_id}`)
         .then((res: AxiosResponse) => {
           dispatch({
             type: SuggestionTypes.FETCH_SUGGESTION_SUCCESS,
@@ -36,7 +36,7 @@ export const useSuggestionActions = () => {
     (token: string, grant_id: number, id: number) => {
       dispatch({ type: SuggestionTypes.SELECT_SUGGESTION_START });
       axiosWithAuth(token)
-        .get(`/grants/${grant_id}/suggestion/${id}`)
+        .get(`/admin/${grant_id}/suggestion/${id}`)
         .then((res: AxiosResponse) => {
           dispatch({
             type: SuggestionTypes.SELECT_SUGGESTION_SUCCESS,
@@ -59,7 +59,7 @@ export const useSuggestionActions = () => {
     (token: string, grant_id: number, id: number) => {
       dispatch({ type: SuggestionTypes.DELETE_SUGGESTION_START });
       axiosWithAuth(token)
-        .delete(`/grants/${grant_id}/suggestion/${id}`)
+        .delete(`/admin/${grant_id}/suggestion/${id}`)
         .then((res: AxiosResponse) => {
           dispatch({ type: SuggestionTypes.DELETE_SUGGESTION_SUCCESS });
         })

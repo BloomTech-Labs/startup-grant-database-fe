@@ -121,7 +121,7 @@ function Grant({ grant, showcase }) {
                 {`Amount - `}
                 <span className={classes.grantSubInfo}>
                   {grant.amount
-                    ? `\$${formatNumber(grant.amount)}`
+                    ? `${formatNumber(grant.amount)}`
                     : "See website for details."}
                 </span>
               </Typography>

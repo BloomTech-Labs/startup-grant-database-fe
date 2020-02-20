@@ -1,5 +1,5 @@
 //Dependencies
-import React, { useState, useEffect, useContext, Fragment } from "react";
+import React, { useState, useContext, Fragment } from "react";
 import { useSelector } from "react-redux";
 import { ActionsContext } from "../../context/ActionsContext";
 import { makeStyles } from "@material-ui/core/styles";
@@ -7,17 +7,7 @@ import { SubmitConfirmation } from "./formElements/SubmitConfirmation.jsx";
 import { logger } from "../../store/utils/logger";
 //Objects
 // import formStyles from "../styles/formStyles";
-import {
-  Button,
-  Paper,
-  Grid,
-  Stepper,
-  Step,
-  Typography,
-  CssBaseline,
-  StepLabel,
-  Link
-} from "@material-ui/core";
+import { Button, Paper, CssBaseline } from "@material-ui/core";
 
 //Grant form components for each step
 import { GrantInfoForm } from "./formElements/GrantInfoForm";

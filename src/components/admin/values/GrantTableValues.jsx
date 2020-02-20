@@ -1,5 +1,4 @@
-import React, { useEffect } from "react";
-import GrantTable from "../GrantTable";
+import React from "react";
 import SuggestionModal from "../SuggestionModal.jsx";
 
 export const tableValues = {

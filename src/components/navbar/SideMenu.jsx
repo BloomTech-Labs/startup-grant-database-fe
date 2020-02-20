@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useAuth0 } from "../auth0/Auth0Wrapper";
 import MenuItem from "./MenuItem";
 import { Button, List, ListItem } from "@material-ui/core";

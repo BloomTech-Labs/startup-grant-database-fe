@@ -1,9 +1,8 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import { ActionsContext } from "../../context/ActionsContext";
 import { useSelector } from "react-redux";
 import MaterialTable from "material-table";
 import { makeStyles } from "@material-ui/core/styles";
-import { useAuth0 } from "../auth0/Auth0Wrapper";
 
 // Styling
 import Paper from "@material-ui/core/Paper";
