@@ -21,7 +21,7 @@ export const Logo = props => {
         console.log("logo not returned", err);
         setImageUrl("");
       });
-  }, []);
+  }, [props]);
 
   return imageUrl === "" ? <DefaultLogo /> : <img src={imageUrl} alt="logo" />;
 };
