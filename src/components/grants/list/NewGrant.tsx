@@ -31,7 +31,7 @@ interface IProps {
 
 const useStyles = makeStyles(theme => ({
     root: {
-        paddingBottom: theme.spacing(2)
+        margin: theme.spacing(1, 0)
     },
     expand: {
         transform: 'rotate(0deg)',
