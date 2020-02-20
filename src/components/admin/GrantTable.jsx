@@ -43,7 +43,7 @@ const tableStyles = {
 const GrantTable = props => {
   const actions = useContext(ActionsContext);
   const { token, isModerator, currentUser } = useSelector(state => state.user);
-  const { grants } = useSelector(state => state.grants);
+  const { grants } = useSelector(state => state.admin);
   const { isAuthenticated } = useAuth0();
 
   const style = grantTableStyles();
