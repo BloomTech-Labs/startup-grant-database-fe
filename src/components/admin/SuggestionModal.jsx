@@ -1,8 +1,6 @@
-import React, { useEffect, useState } from "react";
-import { useSelector, connect } from "react-redux";
+import React, { useContext, useState } from "react";
+import { useSelector } from "react-redux";
 import { ActionsContext } from "../../context/ActionsContext";
-import axios from "axios";
-import { useAuth0 } from "../auth0/Auth0Wrapper.jsx";
 
 // Styling
 import { makeStyles } from "@material-ui/core/styles";
@@ -41,20 +39,20 @@ const suggestionModalStyles = makeStyles(theme => ({
     marginTop: "5px",
     fontSize: "1.25rem"
   },
-  // delSuggestBtn: {
-  //   borderRadius: '50px',
-  //   alignSelf: 'center',
-  //   backgroundColor: '#EF7B5C',
-  //   boxShadow: 'none',
-  //   borderWidth: '0px',
-  //   margin: '2px 5px 2px 0',
-  //   padding: '6px',
-  //   height: '40px',
-  //   width: '40px',
-  //   "&:hover": {
-  //     backgroundColor: '#f0a692'
-  //   }
-  // },
+  delSuggestBtn: {
+    borderRadius: "50px",
+    alignSelf: "center",
+    backgroundColor: "#EF7B5C",
+    boxShadow: "none",
+    borderWidth: "0px",
+    margin: "2px 5px 2px 0",
+    padding: "6px",
+    height: "40px",
+    width: "40px",
+    "&:hover": {
+      backgroundColor: "#f0a692"
+    }
+  },
   iconBtnWithSuggestions: {
     backgroundColor: "#3DB8B3",
     paddingRight: "5px",
@@ -71,11 +69,10 @@ const suggestionModalStyles = makeStyles(theme => ({
 }));
 
 const SuggestionModal = props => {
-  const { isAuthenticated, user, loading } = useAuth0();
-  const actions = useSelector(ActionsContext);
+  const actions = useContext(ActionsContext);
   const [suggestions, setSuggestions] = useState([]);
   const [open, setOpen] = useState(false);
-  const { token, isModerator, currentUser } = useSelector(state => state.user);
+  const { token } = useSelector(state => state.user);
   const style = suggestionModalStyles();
 
   const handleClickOpen = () => {
@@ -85,25 +82,6 @@ const SuggestionModal = props => {
   const handleClose = () => {
     setOpen(false);
   };
-  useEffect(() => {
-    const grant_id = props.rowData.id;
-    axios
-      .get(
-        `${process.env.REACT_APP_CLIENT_BASEURL}/admin/suggestions/${grant_id}`,
-        {
-          headers: {
-            authorization: `Bearer ${token}`
-          }
-        }
-      )
-      .then(res => {
-        setSuggestions(res.data);
-        // console.log("AXIOS WORKED", res.data);
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  }, [token, props.rowData]);
 
   const onClickDelete = (suggestion_id, token) => {
     actions.suggestion.deleteSuggestion(

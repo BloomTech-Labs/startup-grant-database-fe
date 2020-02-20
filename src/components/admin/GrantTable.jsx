@@ -50,23 +50,9 @@ const GrantTable = props => {
   console.log("moderator?", isModerator);
 
   useEffect(() => {
-    if (isAuthenticated && currentUser["https://founder-grants.com/appdata"]) {
-      if (
-        currentUser[
-          "https://founder-grants.com/appdata"
-        ].authorization.roles.find(() => "Moderator") === "Moderator"
-      ) {
-        actions.admin.isModerator();
-      }
-    }
-  }, [currentUser]);
-
-  useEffect(() => {
     isModerator && actions.grants.fetchAdminGrants(token);
   }, [isModerator]);
 
-  console.log("admin grants", grants);
-  console.log("props", props);
   // console.log(
   //   "whats going on with fetch grants?",
   //   actions.grants.fetchAdminGrants(token)
