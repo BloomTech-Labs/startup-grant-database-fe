@@ -1,60 +1,59 @@
-import React, { useEffect } from 'react'
-import GrantTable from '../GrantTable'
-import {SuggestionModal} from '../SuggestionModal'
+import React, { useEffect } from "react";
+import GrantTable from "../GrantTable";
+import SuggestionModal from "../SuggestionModal.jsx";
 
 export const tableValues = {
-
-    title: "Edit and Approve Grants",
-    columns: [
-        {
-            title: "User Suggestions",
-            cellStyle: {
-            minWidth: "75px"
-        },
-            customSort: (a, b) => a.requests.length - b.requests.length,
-            render: e => (<SuggestionModal  />)
-        },
+  title: "Edit and Approve Grants",
+  columns: [
     {
-        title: "Grant Status",
-        cellStyle: cellData => ({
-        backgroundColor: cellData === "Pending" ? "#3DB8B3" : "none"
-        }),
-        field: "is_reviewed",
-        lookup: {
-        true: "Approved",
-        false: "Pending"
-        }
+      title: "User Suggestions",
+      cellStyle: {
+        minWidth: "75px"
+      },
+      customSort: (a, b) => a.requests.length - b.requests.length,
+      render: rowData => <SuggestionModal rowData={rowData} />
     },
     {
-        title: "Last Updated",
-        field: "details_last_updated",
-        type: "date",
-        editable: "never"
+      title: "Grant Status",
+      cellStyle: cellData => ({
+        backgroundColor: cellData === "Pending" ? "#3DB8B3" : "none"
+      }),
+      field: "is_reviewed",
+      lookup: {
+        true: "Approved",
+        false: "Pending"
+      }
+    },
+    {
+      title: "Last Updated",
+      field: "details_last_updated",
+      type: "date",
+      editable: "never"
     }, //sent to server in action. not editable by user
     {
-        title: "Name",
-        field: "competition_name",
-        cellStyle: {
+      title: "Name",
+      field: "competition_name",
+      cellStyle: {
         minWidth: "200px"
-        }
+      }
     },
     { title: "Amount", field: "amount", type: "integer" },
     {
-        title: "Amount Notes",
-        field: "amount_notes",
-        cellStyle: {
+      title: "Amount Notes",
+      field: "amount_notes",
+      cellStyle: {
         minWidth: "300px"
-        }
+      }
     },
     {
-        title: "Deadline",
-        field: "most_recent_application_due_date",
-        type: "date"
+      title: "Deadline",
+      field: "most_recent_application_due_date",
+      type: "date"
     },
     {
-        title: "Focus Area",
-        field: "area_focus",
-        lookup: {
+      title: "Focus Area",
+      field: "area_focus",
+      lookup: {
         Agriculture: "Agriculture",
         Arts: "Arts",
         "Child Care": "Child Care",
@@ -79,22 +78,22 @@ export const tableValues = {
         "Workforce Development": "Workforce Development",
         Other: "Other",
         "N/A": "N/A"
-        }
+      }
     },
     { title: "Sponsor", field: "sponsoring_entity" },
     {
-        title: "Notes",
-        field: "notes",
-        cellStyle: {
+      title: "Notes",
+      field: "notes",
+      cellStyle: {
         minWidth: "400px"
-        },
-        // editComponent: editComponentFunc
+      }
+      // editComponent: editComponentFunc
     },
     { title: "Website", field: "website" },
     {
-        title: "Geographic Region",
-        field: "geographic_region",
-        lookup: {
+      title: "Geographic Region",
+      field: "geographic_region",
+      lookup: {
         Global: "Global",
         "North America": "North America",
         Europe: "Europe",
@@ -104,31 +103,31 @@ export const tableValues = {
         Australia: "Australia",
         Other: "Other",
         "N/A": "N/A"
-        }
+      }
     },
     {
-        title: "Target Demographic",
-        field: "target_entrepreneur_demographic",
-        lookup: {
+      title: "Target Demographic",
+      field: "target_entrepreneur_demographic",
+      lookup: {
         "Minority Business Enterprise": "Minority Business Enterprise",
         "Women Business Enterprise": "Women Business Enterprise",
         "Disadvantaged Business Enterprise":
-            "Disadvantaged Business Enterprise",
+          "Disadvantaged Business Enterprise",
         "Veteran Business Enterprise": "Veteran Business Enterprise",
         Other: "Other",
         All: "All"
-        }
+      }
     },
     {
-        title: "Early Stage Funding",
-        field: "early_stage_funding",
-        lookup: {
+      title: "Early Stage Funding",
+      field: "early_stage_funding",
+      lookup: {
         true: "Yes",
         false: "No"
+      }
     }
-    }],
-    
-}
+  ]
+};
 
 // const tableFunctions = {
 //     onRowAdd: newData =>

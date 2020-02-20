@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import { ActionsContext } from "../../context/ActionsContext";
 import { makeStyles } from "@material-ui/core/styles";
 import { SubmitConfirmation } from "./formElements/SubmitConfirmation.jsx";
+import { logger } from "../../store/utils/logger";
 //Objects
 // import formStyles from "../styles/formStyles";
 import {
@@ -142,6 +143,7 @@ export const AddGrant = props => {
       [event.target.name]: event.target.value
     });
   };
+  console.log("grant info", grantInfo);
 
   function getStepContent(step) {
     switch (step) {
@@ -162,12 +164,21 @@ export const AddGrant = props => {
     }
   }
 
+  const handleNext = () => {
+    setActiveStep(activeStep + 1);
+  };
+
+  const handleBack = () => {
+    setActiveStep(activeStep - 1);
+  };
+
   //Submit for grant from
   const submitGrant = event => {
     event.preventDefault();
-    console.log("THE TOKEN", token);
+    logger("THE TOKEN", token);
+    console.log("grantInfo in submit", grantInfo);
 
-    actions.grants.postGrant({ ...grantInfo }, token);
+    actions.grants.postGrant(grantInfo, token);
 
     setGrantInfo({
       competition_name: "",
@@ -183,14 +194,7 @@ export const AddGrant = props => {
       early_stage_funding: "",
       details_last_updated: ""
     });
-  };
-
-  const handleNext = () => {
-    setActiveStep(activeStep + 1);
-  };
-
-  const handleBack = () => {
-    setActiveStep(activeStep - 1);
+    handleNext();
   };
 
   return (
@@ -227,9 +231,7 @@ export const AddGrant = props => {
                     color="primary"
                     // Ternary that determines what button to display based on what component the user is on
                     onClick={
-                      activeStep === steps.length - 1
-                        ? submitGrant && handleNext
-                        : handleNext
+                      activeStep === steps.length - 1 ? submitGrant : handleNext
                     }
                     className={styles.submit}
                     style={{ color: "#fff" }}
@@ -246,12 +248,3 @@ export const AddGrant = props => {
     </Fragment>
   );
 };
-// const mapStateToProps = ({ grantData, isFetching, error }) => ({
-//   grantData,
-//   isFetching,
-//   error
-// });
-
-// export default connect(mapStateToProps, { postGrants, fetchApi, changeTab })(
-//   AddGrant
-// );

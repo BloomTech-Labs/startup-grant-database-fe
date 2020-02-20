@@ -37,25 +37,14 @@ const UserTable = props => {
   const actions = useContext(ActionsContext);
   const { token, isModerator, currentUser } = useSelector(state => state.user);
   const { isAuthenticated } = useAuth0();
-  const { users } = useSelector(state => state.user);
-
-  useEffect(() => {
-    if (isAuthenticated && currentUser["https://founder-grants.com/appdata"]) {
-      if (
-        currentUser[
-          "https://founder-grants.com/appdata"
-        ].authorization.roles.find(() => "Moderator") === "Moderator"
-      ) {
-        actions.user.isModerator();
-      }
-    }
-  }, [currentUser]);
+  const { users } = useSelector(state => state.admin);
+  const roleId = useSelector(
+    state => state.admin.roles.filter(role => role.name === "Moderator")[0].id
+  );
 
   const style = userTableStyles();
 
-  useEffect(() => {
-    isModerator && actions.user.fetchAllUsers(token);
-  }, [isModerator]);
+  console.log("roleId", roleId);
   return (
     <React.Fragment>
       <Paper className={style.paper}>
@@ -64,6 +53,32 @@ const UserTable = props => {
           columns={tableValues.columns}
           options={tableStyles}
           data={users}
+          editable={{
+            onRowAdd: newData =>
+              new Promise(resolve => {
+                setTimeout(() => {
+                  resolve();
+                  let filteredData = Object.assign({}, newData);
+                  delete filteredData.requests;
+                  actions.postAdminGrant(filteredData, token);
+                }, 600);
+              }),
+            onRowUpdate: (newData, oldData) =>
+              new Promise(resolve => {
+                console.log("oldData", oldData);
+
+                setTimeout(() => {
+                  resolve();
+                  if (oldData) {
+                    actions.admin.updateModerator(
+                      token,
+                      newData.user_id,
+                      roleId
+                    );
+                  }
+                }, 600);
+              })
+          }}
           zeroMinWidth
         />
       </Paper>

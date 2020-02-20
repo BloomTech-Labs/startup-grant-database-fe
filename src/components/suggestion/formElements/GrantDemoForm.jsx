@@ -40,7 +40,7 @@ export const GrantDemoForm = props => {
               multiline={data.multiline}
               variant={data.variant}
               rows={data.rows}
-              value={props.grantInfo.name}
+              value={props.grantInfo}
               handleChanges={props.handleChanges}
             />
           );

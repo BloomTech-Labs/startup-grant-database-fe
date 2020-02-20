@@ -1,4 +1,4 @@
-import React, {Fragment, useContext, useEffect, useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import {ActionsContext} from "../../context/ActionsContext";
 import {useAuth0} from "../auth0/Auth0Wrapper";
 import {useSelector} from "react-redux";
@@ -28,17 +28,17 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-const data = [
-    {
-        first_name: "Lorem",
-        last_name: "Ipsum",
-        role: "Pontifex",
-        phone: "Ceasar",
-        company: "SPQR",
-        company_url: "https://SPQR.com",
-        about: "Senate of Rome"
-    }
-];
+const initialData = {
+    first_name: "",
+    last_name: "",
+    role: "",
+    phone: "",
+    company: "",
+    company_url: "",
+    about: ""
+};
+
+const titles = ['First Name', 'Last Name', 'Role', 'Phone Number', 'Name of Project', 'Project Link', 'About Project'];
 
 export const UserData = props => {
     const actions = useContext(ActionsContext);
@@ -50,24 +50,8 @@ export const UserData = props => {
     useEffect(() => {
         const checkCurrentUser = async () => {
             if (!currentUser.user_metadata) {
-                await actions.user.updateUser(token, {
-                    first_name: "",
-                    last_name: "",
-                    role: "",
-                    phone: "",
-                    company: "",
-                    company_url: "",
-                    about: ""
-                });
-                setData({
-                    first_name: "",
-                    last_name: "",
-                    role: "",
-                    phone: "",
-                    company: "",
-                    company_url: "",
-                    about: ""
-                })
+                await actions.user.updateUser(token, initialData);
+                setData(initialData)
             } else {
                 setData(currentUser.user_metadata);
             }
@@ -75,48 +59,24 @@ export const UserData = props => {
         checkCurrentUser();
     }, []);
 
-
     return (
+
         <React.Fragment>
             <Paper>
                 <Typography variant="h5">Change Account Settings</Typography>
                 <Typography variant="h6">Personal Details:</Typography>
                 <Divider variant="middle"/>
                 <Grid container spacing={6} className={styles.formContainer}>
-                    <Fragment key={data.first_name}>
-                        <Grid xs={6}>
-                            <Typography className={styles.subtitle}>First Name:</Typography>
-                            <Typography>{data.first_name}</Typography>
-                        </Grid>
-                        <Grid xs={6}>
-                            <Typography className={styles.subtitle}>Last Name:</Typography>
-                            <Typography>{data.last_name}</Typography>
-                        </Grid>
-                        <Grid xs={6}>
-                            <Typography className={styles.subtitle}>Role:</Typography>
-                            <Typography>{data.role}</Typography>
-                        </Grid>
-                        <Grid xs={6}>
-                            <Typography className={styles.subtitle}>Phone Number:</Typography>
-                            <Typography>{data.phone}</Typography>
-                        </Grid>
-                        <Grid xs={6}>
+                    {Object.keys(initialData).map((key, i) => (
+                        <Grid item xs={6} key={key}>
                             <Typography className={styles.subtitle}>
-                                Name of Project:
+                                {`${titles[i]}:`}
                             </Typography>
-                            <Typography>{data.company}</Typography>
-                        </Grid>
-                        <Grid xs={6}>
-                            <Typography className={styles.subtitle}>Project Link:</Typography>
-                            <Typography>{data.company_url}</Typography>{" "}
-                        </Grid>
-                        <Grid xs={6}>
-                            <Typography className={styles.subtitle}>
-                                About Project:
+                            <Typography>
+                                {data[key]}
                             </Typography>
-                            <Typography>{data.about}</Typography>
                         </Grid>
-                    </Fragment>
+                    ))}
                 </Grid>
             </Paper>
         </React.Fragment>

@@ -9,22 +9,30 @@ import { makeStyles } from "@material-ui/core/styles";
 import TuneIcon from "@material-ui/icons/Tune";
 import Filters from "../filter/Filters";
 import clsx from "clsx";
+import { useAuth0 } from "../auth0/Auth0Wrapper";
+import {Helmet} from "react-helmet";
 
 const useStyles = makeStyles(theme => ({
   homeGridContainer: {
     minHeight: "76vh",
+    maxHeight: "84vh",
     margin: "0",
     flexWrap: "nowrap",
     overflowX: "hidden",
+    overflowY: "hidden",
     [theme.breakpoints.down("sm")]: {
       background: "#f7f7f7"
     }
   },
   grantList: {
-    maxHeight: "90vh",
+    maxHeight: "86vh",
     overflow: "auto",
     position: "relative",
+    [theme.breakpoints.down('sm')]: {
+      width: '100%'
+    },
     [theme.breakpoints.down("xs")]: {
+      marginTop: theme.spacing(14),
       height: "100%",
       justifyContent: "center",
       flexDirection: "column",
@@ -49,7 +57,7 @@ const useStyles = makeStyles(theme => ({
       "0px 1px 0px 0px rgba(0,0,0,0.2), 0px 1px 0px 0px rgba(0,0,0,0.14), 0px 2px 0px -1px rgba(0,0,0,0.12)",
     "&:hover": {
       cursor: "pointer"
-    }
+    },
   },
   filterIconSelected: {
     fill: "#3DB8B3",
@@ -58,6 +66,11 @@ const useStyles = makeStyles(theme => ({
   },
   filters: {
     transition: "all .3s ease-in-out"
+  },
+  filterList: {
+    [theme.breakpoints.down('sm')]: {
+      display: 'none'
+    }
   },
   hideFilters: {
     transform: "translateX(110%)"
@@ -68,11 +81,12 @@ const useStyles = makeStyles(theme => ({
 }));
 
 function GrantContainer(props) {
+  const { isAuthenticated } = useAuth0();
   const allGrants = useSelector(state => state.filters.grants);
   const { pristine } = useSelector(state => state.filters);
   const allTheGrants = useSelector(state => state.grants.grants);
   const { favoriteGrants } = useSelector(state => state.user);
-  const { showcase } = useSelector(state => state.grants);
+  const { showcase, publicGrants } = useSelector(state => state.grants);
   const actions = useContext(ActionsContext);
   const [allGrantMode, setAllGrantMode] = useState(() => {
     return props.match.path === "/grants";
@@ -80,7 +94,11 @@ function GrantContainer(props) {
   const [filtersOpen, setFiltersOpen] = useState(false);
   const [grants, setGrants] = useState(() => {
     if (allGrantMode) {
-      return allGrants;
+      if (isAuthenticated) {
+        return allGrants;
+      } else {
+        return publicGrants;
+      }
     } else {
       return favoriteGrants;
     }
@@ -89,20 +107,25 @@ function GrantContainer(props) {
   const classes = useStyles();
 
   useEffect(() => {
-    if (allGrantMode) {
-      if (pristine && allGrants.length !== allTheGrants.length) {
-        setGrants(allTheGrants);
+    if (isAuthenticated) {
+      if (allGrantMode) {
+        if (pristine && allGrants.length !== allTheGrants.length) {
+          setGrants(allTheGrants);
+        } else {
+          if (allGrants.length !== grants.length) {
+            setGrants(allGrants);
+          }
+        }
       } else {
-        if (allGrants.length !== grants.length) {
-          setGrants(allGrants);
+        if (favoriteGrants.length !== grants.length) {
+          setGrants(favoriteGrants);
         }
       }
     } else {
-      if (favoriteGrants.length !== grants.length) {
-        setGrants(favoriteGrants);
-      }
+      setGrants(publicGrants);
+      actions.grants.selectGrant(grants[0]);
     }
-  }, [allGrants, favoriteGrants, allGrantMode]);
+  }, [allGrants, favoriteGrants, allGrantMode, isAuthenticated, publicGrants]);
 
   useEffect(() => {
     setAllGrantMode(props.match.path === "/grants");
@@ -115,41 +138,49 @@ function GrantContainer(props) {
   }
 
   return (
-    <Grid
-      container
-      direction="row"
-      justify="space-between"
-      alignItems="flex-start"
-      spacing={2}
-      className={classes.homeGridContainer}
-    >
-      <Grid item xs={4} className={classes.grantList}>
-        {console.log("Grants => ", grants)}
-        <GrantList grants={grants} showcase={showcase} />
+      <>
+        <Helmet>
+          <title>Founder Grants | Grants</title>
+          <meta name="description" content="Detail view of an available grant" />
+          <meta name="keywords" content="grant,startup,funding,invest,financing" />
+          <meta property="og:locale" content="en_US" />
+          <meta property="og:site_name" content="Startup Grant Database" />
+        </Helmet>
+      <Grid
+          container
+          direction="row"
+          justify="space-between"
+          alignItems="flex-start"
+          spacing={2}
+          className={classes.homeGridContainer}
+      >
+        <Grid item xs={12} md={4} className={classes.grantList}>
+          <GrantList grants={grants} showcase={showcase} />
+        </Grid>
+        <Grid item md={7} className={classes.gridItem}>
+          <GrantShowcase showcase={showcase} />
+        </Grid>
+        <Grid item md={2} className={classes.filterList}>
+          <TuneIcon
+              className={clsx(
+                  classes.filterIcon,
+                  filtersOpen && classes.filterIconSelected
+              )}
+              onClick={toggleFilters}
+          >
+            Filters
+          </TuneIcon>
+          <div
+              className={clsx(
+                  classes.filters,
+                  filtersOpen ? classes.showFilters : classes.hideFilters
+              )}
+          >
+            <Filters grants={grants} />
+          </div>
+        </Grid>
       </Grid>
-      <Grid item xs={6} sm={9} md={7} className={classes.gridItem}>
-        <GrantShowcase showcase={showcase} />
-      </Grid>
-      <Grid item xs={4} sm={2}>
-        <TuneIcon
-          className={clsx(
-            classes.filterIcon,
-            filtersOpen && classes.filterIconSelected
-          )}
-          onClick={toggleFilters}
-        >
-          Filters
-        </TuneIcon>
-        <div
-          className={clsx(
-            classes.filters,
-            filtersOpen ? classes.showFilters : classes.hideFilters
-          )}
-        >
-          <Filters grants={grants} />
-        </div>
-      </Grid>
-    </Grid>
+        </>
   );
 }
 

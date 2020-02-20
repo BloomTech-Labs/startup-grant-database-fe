@@ -17,7 +17,7 @@ import SideMenu from "./SideMenu";
 import { useSelector } from "react-redux";
 import { ActionsContext } from "../../context/ActionsContext";
 import { useGetToken } from "../auth0/useGetToken";
-import {logger} from "../../store/utils/logger";
+import { logger } from "../../store/utils/logger";
 
 const useStyles = makeStyles(theme => ({
   navBar: {
@@ -103,7 +103,8 @@ const menuItems = [
 const Navbar = () => {
   const actions = useContext(ActionsContext);
   const [isOpen, setIsOpen] = useState(false);
-  const { currentUser } = useSelector(state => state.user);
+  const { currentUser, isLoading } = useSelector(state => state.user);
+  const { isModerator } = useSelector(state => state.admin);
   const [token] = useGetToken();
   const toggleDrawer = open => event => {
     if (
@@ -119,23 +120,21 @@ const Navbar = () => {
 
   const classes = useStyles();
 
-  // useEffect(() => {
-  //   if (isAuthenticated && user) {
-  //     actions.user.getUserFromAuth0(token)
-  //   } else {
-  //     actions.user.resetUser();
-  //   }
-  // }, [isAuthenticated, user]);
-
   useEffect(() => {
-    if (isAuthenticated && currentUser["https://founder-grants.com/appdata"]) {
-      if (
-        currentUser[
-          "https://founder-grants.com/appdata"
-        ].authorization.roles.find(() => "Moderator") === "Moderator"
-      ) {
-        actions.user.isModerator();
-      }
+    logger("Current User", currentUser);
+    if (
+      isAuthenticated &&
+      currentUser.roles.filter(
+        role => role.name === "Moderator"
+      ).length > 0
+    ) {
+      actions.admin.isModerator();
+    }
+    if (
+      isAuthenticated &&
+      currentUser.app_metadata.authorization.permissions.length > 0
+    ) {
+      actions.admin.isAdmin();
     }
   }, [currentUser]);
 
@@ -147,6 +146,14 @@ const Navbar = () => {
     }
   }, [token]);
 
+  useEffect(() => {
+    if (isModerator) {
+      actions.admin.fetchAdminGrants(token);
+      actions.admin.fetchAllUsers(token);
+      actions.admin.fetchAllRoles(token);
+    }
+  }, [isModerator]);
+
   return (
     <AppBar className={classes.navBar} color="primary" position="sticky">
       <Toolbar className={classes.toolBar}>
@@ -155,7 +162,7 @@ const Navbar = () => {
             <FGLogo />
           </Link>
         </Typography>
-        {isAuthenticated ? (
+        {isAuthenticated && currentUser.nickname !== undefined ? (
           <>
             <Typography
               variant="h6"
@@ -189,9 +196,9 @@ const Navbar = () => {
               className={classes.navButton}
               color="primary"
               onClick={() => loginWithRedirect()}
-              disabled={loading}
+              disabled={loading || isLoading}
             >
-              {loading ? `Please Wait` : `Log in`}
+              {loading || isLoading ? `Please Wait` : `Log in`}
             </Button>
           </div>
         )}

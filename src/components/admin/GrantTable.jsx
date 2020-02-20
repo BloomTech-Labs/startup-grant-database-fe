@@ -14,7 +14,7 @@ import { tableValues } from "./values/GrantTableValues";
 import { EditGrantFunctions } from "./values/EditGrantFunctions";
 import EditForm from "./EditGrantForm";
 import SuggestionForm from "./SuggestionModal";
-
+import SuggestionModal from "./SuggestionModal";
 const grantTableStyles = makeStyles(theme => ({
   displayNone: {
     color: "#EF7B5C",
@@ -43,9 +43,10 @@ const tableStyles = {
 const GrantTable = props => {
   const actions = useContext(ActionsContext);
   const { token, isModerator, currentUser } = useSelector(state => state.user);
-  const { grants } = useSelector(state => state.grants);
+  const { grants } = useSelector(state => state.admin);
   const { isAuthenticated } = useAuth0();
-
+  console.log(props);
+  console.log(props);
   const style = grantTableStyles();
   console.log("moderator?", isModerator);
 
@@ -56,21 +57,21 @@ const GrantTable = props => {
           "https://founder-grants.com/appdata"
         ].authorization.roles.find(() => "Moderator") === "Moderator"
       ) {
-        actions.user.isModerator();
+        actions.admin.isModerator();
       }
     }
   }, [currentUser]);
 
   useEffect(() => {
-    isModerator && actions.grants.fetchAdminGrants(token);
+    isModerator && actions.admin.fetchAdminGrants(token);
   }, [isModerator]);
 
   console.log("admin grants", grants);
   console.log("props", props);
-  console.log(
-    "whats going on with fetch grants?",
-    actions.grants.fetchAdminGrants(token)
-  );
+  // console.log(
+  //   "whats going on with fetch grants?",
+  //   actions.grants.fetchAdminGrants(token)
+  // );
 
   return (
     <React.Fragment>
@@ -80,6 +81,11 @@ const GrantTable = props => {
           columns={tableValues.columns}
           options={tableStyles}
           data={grants}
+          actions={[
+            {icon: 'save',tooltip: 'Save User',
+              onClick: (event, rowData) => <SuggestionModal grant={rowData} />
+            }
+          ]}
           editable={{
             onRowAdd: newData =>
               new Promise(resolve => {

@@ -25,7 +25,6 @@ export enum UserTypes {
   REMOVE_USER_FAILURE = "REMOVE_USER_FAILURE",
   SET_USER_FROM_AUTH0 = "SET_USER_FROM_AUTH0",
   RESET_USER = "RESET_USER",
-  IS_MODERATOR = "IS_MODERATOR",
   SET_TOKEN = "SET_TOKEN"
 }
 
@@ -54,35 +53,12 @@ export interface User {
   user_metadata?: UserMetaData
 }
 
-// export interface Auth0User {
-//   nickname: string;
-//   name: string;
-//   picture: string;
-//   updated_at: string;
-//   email: string;
-//   email_verified: boolean;
-//   sub: string;
-// }
-
-// export interface PGUser {
-//   id: number | null;
-//   email: string;
-//   first_name: string | null;
-//   last_name: string | null;
-//   role: string | null;
-//   phone: string | null;
-//   company: string | null;
-//   company_url: string | null;
-//   about: string | null;
-// }
-
 export interface UserState {
   currentUser: User;
   favoriteGrants: Grant[];
-  users: User[];
-  isModerator: boolean;
   isLoading: boolean;
   errors: Error | null;
+  token: string | null;
 }
 
 interface FetchUserStartAction {
@@ -97,10 +73,6 @@ interface FetchUserSuccessAction {
 interface FetchUserFailureAction {
   type: typeof UserTypes.FETCH_USER_FAILURE;
   payload: Error;
-}
-
-interface IsModeratorAction {
-  type: typeof UserTypes.IS_MODERATOR;
 }
 
 interface ResetUserAction {
@@ -176,7 +148,6 @@ export type UserActions =
   | FetchUsersSuccessAction
   | FetchUsersFailureAction
   | ResetUserAction
-  | IsModeratorAction
   | SetTokenAction
   | FetchFavoritesStartAction
   | UpdateUserStartAction
