@@ -56,6 +56,14 @@ const updateAdminSuccessReducer: FunctionReducer = (state, payload) => ({
   roles: payload
 });
 
+const removeSuggestionSuccess: FunctionReducer = (state, payload) => ({
+  ...state,
+  grants: state.grants.map(grant => ({
+    ...grant,
+    requests: grant.requests.filter((request: any) => request.id !== payload)
+  }))
+})
+
 export const adminReducer = createReducer(initialState, {
   [AdminTypes.FETCH_ADMIN_GRANTS_START]: adminStartReducer,
   [AdminTypes.FETCH_ADMIN_GRANTS_SUCCESS]: adminFetchGrantsSuccessReducer,
@@ -70,5 +78,8 @@ export const adminReducer = createReducer(initialState, {
   [AdminTypes.FETCH_ADMIN_GRANTS_FAILURE]: adminFailReducer,
   [AdminTypes.FETCH_ADMIN_GRANTS_START]: adminStartReducer,
   [AdminTypes.IS_MODERATOR]: adminIsModeratorReducer,
-  [AdminTypes.IS_ADMIN]: adminIsAdminReducer
+  [AdminTypes.IS_ADMIN]: adminIsAdminReducer,
+  [AdminTypes.REMOVE_SUGGESTION_START]: adminStartReducer,
+  [AdminTypes.REMOVE_SUGGESTION_SUCCESS]: removeSuggestionSuccess,
+  [AdminTypes.REMOVE_SUGGESTION_FAILURE]: adminFailReducer
 });

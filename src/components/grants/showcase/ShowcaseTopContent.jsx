@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Grid, Link, Typography } from "@material-ui/core";
 import { useSelector } from "react-redux";
@@ -36,14 +36,19 @@ const useStyles = makeStyles(theme => ({
 }));
 
 function ShowcaseTopContent({ showcase }) {
+  const [website, setWebsite] = useState(()=> showcase.website);
   const { favoriteGrants } = useSelector(state => state.user);
   const existingFavorite = favoriteGrants.filter(fav => fav.id === showcase.id);
   const classes = useStyles();
-
+  useEffect(()=> {
+    if (website !== showcase.website) {
+      setWebsite(showcase.website);
+    }
+  }, [showcase])
   return (
     <>
       <Grid container justify="space-between" alignItems="center">
-        <Logo url={showcase.website} />
+        <Logo url={website} />
         <Grid item className={classes.title}>
           <Typography variant="h5" className={classes.grantName}>
             {showcase.competition_name}

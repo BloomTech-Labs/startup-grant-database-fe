@@ -14,7 +14,7 @@ import { tableValues } from "./values/GrantTableValues";
 import { EditGrantFunctions } from "./values/EditGrantFunctions";
 import EditForm from "./EditGrantForm";
 import SuggestionForm from "./SuggestionModal";
-
+import SuggestionModal from "./SuggestionModal";
 const grantTableStyles = makeStyles(theme => ({
   displayNone: {
     color: "#EF7B5C",
@@ -45,7 +45,8 @@ const GrantTable = props => {
   const { token, isModerator, currentUser } = useSelector(state => state.user);
   const { grants } = useSelector(state => state.admin);
   const { isAuthenticated } = useAuth0();
-
+  console.log(props);
+  console.log(props);
   const style = grantTableStyles();
   console.log("moderator?", isModerator);
 
@@ -80,6 +81,11 @@ const GrantTable = props => {
           columns={tableValues.columns}
           options={tableStyles}
           data={grants}
+          actions={[
+            {icon: 'save',tooltip: 'Save User',
+              onClick: (event, rowData) => <SuggestionModal grant={rowData} />
+            }
+          ]}
           editable={{
             onRowAdd: newData =>
               new Promise(resolve => {

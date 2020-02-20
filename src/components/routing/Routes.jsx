@@ -3,7 +3,7 @@ import LandingPage from "../landingpage/LandingPage";
 import GrantContainer from "../grants/GrantContainer";
 import RenderRoutes from "./RenderRoutes";
 import { SuggestionForm } from "../suggestion/Suggestion";
-import GrantTable from "../admin/GrantTable";
+import NewGrantTable from "../admin/NewGrantTable";
 import UserSettings from "../../components/userProfile/userSettings";
 import PrivateRoute from "./PrivateRoute";
 import About from "../about/About";
@@ -55,7 +55,7 @@ const routes = [
     renderComponent: {
       path: "/admin",
       exact: true,
-      component: GrantTable
+      component: NewGrantTable
     }
   },
   {

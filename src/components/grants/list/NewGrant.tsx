@@ -34,6 +34,10 @@ const useStyles = makeStyles(theme => ({
   root: {
     margin: theme.spacing(1, 0)
   },
+  grantCardSelected: {
+    padding: theme.spacing(2,1),
+    borderLeft: "5px solid #3DB8B3"
+  },
   expand: {
     transform: "rotate(0deg)",
     marginLeft: "auto",
@@ -65,11 +69,11 @@ function NewGrant({ grant, showcase }: IProps) {
   function selectGrant() {
     actions && actions.grants.selectGrant(grant);
   }
-
+  const isSelected = () => grant.id === showcase.id;
   const handleExpandClick = () => setExpanded(!expanded);
   const classes = useStyles();
   return (
-    <Card className={classes.root} raised>
+    <Card className={clsx(classes.root, isSelected() && classes.grantCardSelected)} raised onClick={selectGrant}>
       <CardHeader
         avatar={<Logo url={grant.website} />}
         title={<Typography variant="h5">{grant.competition_name}</Typography>}
