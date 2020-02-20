@@ -1,10 +1,8 @@
 import { useCallback } from "react";
 import { useDispatch } from "react-redux";
 import { AxiosError, AxiosResponse } from "axios";
-import { Suggestion, SuggestionTypes } from "./suggestionTypes";
-import { FilterTypes } from "../filters/filterTypes";
+import { SuggestionTypes } from "./suggestionTypes";
 import { axiosWithAuth, axiosWithOutAuth as axios } from "../utils/axiosConfig";
-import { UserTypes } from "../user/userTypes";
 
 export const useSuggestionActions = () => {
   const dispatch = useDispatch();

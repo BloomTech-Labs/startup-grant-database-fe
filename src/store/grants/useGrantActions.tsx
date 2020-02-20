@@ -78,7 +78,7 @@ export const useGrantActions = () => {
     (token: string, id: number, data: Grant) => {
       dispatch({ type: GrantTypes.UPDATE_ADMIN_GRANTS_START, payload: true });
       axiosWithAuth(token)
-        .put(`/admin/${id}`, data)
+        .put(`/moderator/${id}`, data)
         .then((res: AxiosResponse) => {
           dispatch({
             type: GrantTypes.UPDATE_ADMIN_GRANTS_SUCCESS,
@@ -101,7 +101,7 @@ export const useGrantActions = () => {
     (token: string, id: number) => {
       dispatch({ type: GrantTypes.DELETE_ADMIN_GRANTS_START });
       axiosWithAuth(token)
-        .delete(`/admin/${id}`)
+        .delete(`/moderator/${id}`)
         .then((res: AxiosResponse) => {
           dispatch({ type: GrantTypes.DELETE_ADMIN_GRANTS_SUCCESS });
         })
@@ -121,7 +121,7 @@ export const useGrantActions = () => {
     (token: string, id: number) => {
       dispatch({ type: GrantTypes.SELECT_ADMIN_GRANTS_START });
       axiosWithAuth(token)
-        .get(`/admin/${id}`)
+        .get(`/moderator/${id}`)
         .then((res: AxiosResponse) => {
           dispatch({ type: GrantTypes.SELECT_ADMIN_GRANTS_SUCCESS });
         })
