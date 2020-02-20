@@ -8,7 +8,14 @@ import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 // Components
 import { tableValues } from "./values/GrantTableValues";
+<<<<<<< HEAD
 
+=======
+import { EditGrantFunctions } from "./values/EditGrantFunctions";
+import EditForm from "./EditGrantForm";
+import SuggestionForm from "./SuggestionModal";
+import SuggestionModal from "./SuggestionModal";
+>>>>>>> e79006fa1140b85211f325092984ec205d907285
 const grantTableStyles = makeStyles(theme => ({
   displayNone: {
     color: "#EF7B5C",
@@ -38,7 +45,13 @@ const GrantTable = props => {
   const actions = useContext(ActionsContext);
   const { token } = useSelector(state => state.user);
   const { grants } = useSelector(state => state.admin);
+<<<<<<< HEAD
 
+=======
+  const { isAuthenticated } = useAuth0();
+  console.log(props);
+  console.log(props);
+>>>>>>> e79006fa1140b85211f325092984ec205d907285
   const style = grantTableStyles();
 
   return (
@@ -49,6 +62,11 @@ const GrantTable = props => {
           columns={tableValues.columns}
           options={tableStyles}
           data={grants}
+          actions={[
+            {icon: 'save',tooltip: 'Save User',
+              onClick: (event, rowData) => <SuggestionModal grant={rowData} />
+            }
+          ]}
           editable={{
             onRowAdd: newData =>
               new Promise(resolve => {
