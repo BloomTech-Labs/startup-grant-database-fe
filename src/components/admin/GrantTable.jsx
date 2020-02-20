@@ -55,7 +55,6 @@ const GrantTable = props => {
                 setTimeout(() => {
                   resolve();
                   let filteredData = Object.assign({}, newData);
-                  delete filteredData.requests;
                   actions.grants.postAdminGrant(filteredData, token);
                 }, 600);
               }),
@@ -65,7 +64,6 @@ const GrantTable = props => {
                   resolve();
                   if (oldData) {
                     let filteredData = Object.assign({}, newData);
-                    delete filteredData.requests;
                     console.log("Filter'd datar", token, filteredData.id, {
                       ...filteredData
                     });
@@ -83,7 +81,6 @@ const GrantTable = props => {
                 setTimeout(() => {
                   resolve();
                   if (oldData) {
-                    delete oldData.requests;
                     actions.grants.deleteAdminGrant(token, oldData.id);
                   }
                 }, 600);

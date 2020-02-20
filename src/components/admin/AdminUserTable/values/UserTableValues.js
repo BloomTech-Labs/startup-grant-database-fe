@@ -6,7 +6,8 @@ export const tableValues = {
       field: "email",
       cellStyle: {
         minWidth: "75px"
-      }
+      },
+      editable: "never"
     },
     {
       title: "Moderator",
@@ -22,16 +23,19 @@ export const tableValues = {
 
     {
       title: "First Name",
-      field: "first_name"
+      field: "first_name",
+      editable: "never"
     },
     {
       title: "Last Name",
       field: "last_name",
+      editable: "never",
       cellStyle: {
         minWidth: "200px"
       }
     },
     {
+      editable: "never",
       title: "Job Title",
       field: "amount_notes",
       cellStyle: {
@@ -39,14 +43,17 @@ export const tableValues = {
       }
     },
     {
+      editable: "never",
       title: "Project Name",
       field: "company"
     },
     {
+      editable: "never",
       title: "Project Website",
       field: "company_url"
     },
     {
+      editable: "never",
       title: "What are they working on?",
       field: "about",
       cellStyle: {
@@ -54,6 +61,6 @@ export const tableValues = {
       }
       // editComponent: editComponentFunc
     },
-    { title: "Website", field: "website" }
+    { title: "Website", field: "website", editable: "never" }
   ]
 };

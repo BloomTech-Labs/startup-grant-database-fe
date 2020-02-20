@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { ActionsContext } from "../../context/ActionsContext";
 
@@ -83,15 +83,21 @@ const SuggestionModal = props => {
     setOpen(false);
   };
 
+  console.log(props);
+  // console.log("GRANTs", grants[1].requests);
+
+  useEffect(() => {
+    setSuggestions([props]);
+  }, [props]);
+
   // do I call from state or rowData?
   // - need to do fetch
   const onClickDelete = token => {
-    //   actions.suggestion.deleteSuggestion(token, grant_id, suggestion_id);
-    //   const updatedSuggs = suggestions.filter(sugg => sugg.id !== suggestion_id);
-    //   setSuggestions(updatedSuggs);
+    console.log("Delete Request @ suggestion");
+    // actions.suggestion.deleteSuggestion(token, grant_id, suggestion_id);
+    // const updatedSuggs = suggestions.filter(sugg => sugg.id !== suggestion_id);
+    // setSuggestions(updatedSuggs);
   };
-
-  console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!", props);
 
   return (
     <>
