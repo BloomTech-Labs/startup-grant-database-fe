@@ -1,8 +1,6 @@
 import React, { Fragment } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { connect } from "react-redux";
-import formStyles from "../formElements/formStyles";
-import { Grid, Typography, TextField, Divider } from "@material-ui/core";
+import { Grid, Typography, Divider } from "@material-ui/core";
 import { TextFormField } from "../formElements/TextFormField.jsx";
 import { InfoFieldData } from "../formUtils/formValues.js";
 
@@ -14,7 +12,7 @@ const useStyles = makeStyles(theme => ({
 
 export const GrantInfoForm = props => {
   const styles = useStyles();
-  console.log('props in grantInfo', props);
+  console.log("props in grantInfo", props);
   return (
     <Fragment>
       <Typography variant="h5" className={null}>
