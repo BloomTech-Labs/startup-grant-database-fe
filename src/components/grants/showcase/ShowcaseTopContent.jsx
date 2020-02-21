@@ -9,7 +9,7 @@ import DeleteIcon from "@material-ui/icons/Delete";
 import LanguageIcon from "@material-ui/icons/Language";
 import IconDisplay from "./IconDisplay";
 import { Logo } from "../Logo/Logo.jsx";
-
+import {ReactComponent as DefaultLogo} from "../Logo/defaultGrantLogo.svg";
 const useStyles = makeStyles(theme => ({
   title: {
     maxWidth: "300px"
@@ -48,7 +48,7 @@ function ShowcaseTopContent({ showcase }) {
   return (
     <>
       <Grid container justify="space-between" alignItems="center">
-        <Logo url={website} />
+        {showcase.use_logo ? <img src={showcase.logo} alt='Logo' /> : <DefaultLogo />}
         <Grid item className={classes.title}>
           <Typography variant="h5" className={classes.grantName}>
             {showcase.competition_name}

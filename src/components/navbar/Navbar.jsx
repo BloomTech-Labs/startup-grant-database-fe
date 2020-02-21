@@ -17,7 +17,6 @@ import SideMenu from "./SideMenu";
 import { useSelector } from "react-redux";
 import { ActionsContext } from "../../context/ActionsContext";
 import { useGetToken } from "../auth0/useGetToken";
-import { logger } from "../../store/utils/logger";
 
 const useStyles = makeStyles(theme => ({
   navBar: {
