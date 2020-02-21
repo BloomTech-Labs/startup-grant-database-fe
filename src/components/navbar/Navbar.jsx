@@ -121,7 +121,6 @@ const Navbar = () => {
   const classes = useStyles();
 
   useEffect(() => {
-    logger("Current User", currentUser);
     if (
       isAuthenticated &&
       currentUser.roles.filter(
