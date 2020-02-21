@@ -1,148 +1,131 @@
-import React, { useContext, useState } from "react";
+import React, {useContext, useState} from "react";
 import {
-  Avatar,
-  Card,
-  CardActions,
-  CardContent,
-  CardHeader,
-  Link,
-  Typography,
-  IconButton,
-  Collapse,
-  Button
+    Button,
+    Card,
+    CardActions,
+    CardContent,
+    CardHeader,
+    Collapse,
+    Grid,
+    IconButton,
+    Link,
+    Typography, Divider
 } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
-import { ActionsContext } from "../../../context/ActionsContext";
-import { Grant } from "../../../store/grants/grantTypes";
-import { Logo } from "../Logo/Logo.jsx";
+import {makeStyles} from "@material-ui/core/styles";
+import {ActionsContext} from "../../../context/ActionsContext";
+import {Grant} from "../../../store/grants/grantTypes";
 import moment from "moment";
 import IconDisplay from "../showcase/IconDisplay";
-import { useSelector } from "react-redux";
-import { AppState } from "../../../store/rooterReducer";
+import {useSelector} from "react-redux";
+import {AppState} from "../../../store/rooterReducer";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import clsx from "clsx";
-import { formatNumber } from "../../../utils/helpers";
+import {formatNumber} from "../../../utils/helpers";
 import {ReactComponent as DefaultLogo} from "../Logo/defaultGrantLogo.svg";
+import {fieldData, fieldHeaderData }from './mobileGrantFields';
+import ShowcaseFields from "../showcase/ShowcaseFields";
 
 interface IProps {
-  grant: Grant;
-  showcase: Grant;
+    grant: Grant;
+    showcase: Grant;
 }
 
 const useStyles = makeStyles(theme => ({
-  root: {
-    margin: theme.spacing(1, 0)
-  },
-  grantCardSelected: {
-    padding: theme.spacing(2,1),
-    borderLeft: "5px solid #3DB8B3"
-  },
-  expand: {
-    transform: "rotate(0deg)",
-    marginLeft: "auto",
-    transition: theme.transitions.create("transform", {
-      duration: theme.transitions.duration.shortest
-    })
-  },
-  expandOpen: {
-    transform: "rotate(180deg)"
-  },
-  firstActions: {
-    [theme.breakpoints.up("md")]: {
-      display: "none"
+    root: {
+        margin: theme.spacing(1, 0)
+    },
+    grantCardSelected: {
+        padding: theme.spacing(2, 1),
+        borderLeft: "5px solid #3DB8B3"
+    },
+    expand: {
+        transform: "rotate(0deg)",
+        marginLeft: "auto",
+        transition: theme.transitions.create("transform", {
+            duration: theme.transitions.duration.shortest
+        })
+    },
+    expandOpen: {
+        transform: "rotate(180deg)"
+    },
+    firstActions: {
+        [theme.breakpoints.up("md")]: {
+            display: "none"
+        }
+    },
+    secondActions: {
+        justifyContent: "center"
+    },
+    standout: {
+        fontWeight: 700
     }
-  },
-  secondActions: {
-    justifyContent: "center"
-  }
 }));
 
-function NewGrant({ grant, showcase }: IProps) {
-  const actions = useContext(ActionsContext);
-  const [expanded, setExpanded] = useState<boolean>(false);
-  const { favoriteGrants } = useSelector((state: AppState) => state.user);
-  const existingFavorite = favoriteGrants.filter(
-    (fav: Grant) => fav.id === showcase.id
-  );
+function NewGrant({grant, showcase}: IProps) {
+    const actions = useContext(ActionsContext);
+    const [expanded, setExpanded] = useState<boolean>(false);
+    const {favoriteGrants} = useSelector((state: AppState) => state.user);
+    const existingFavorite = favoriteGrants.filter(
+        (fav: Grant) => fav.id === showcase.id
+    );
 
-  function selectGrant() {
-    actions && actions.grants.selectGrant(grant);
-  }
-  const isSelected = () => grant.id === showcase.id;
-  const handleExpandClick = () => setExpanded(!expanded);
-  const classes = useStyles();
-  return (
-    <Card className={clsx(classes.root, isSelected() && classes.grantCardSelected)} raised onClick={selectGrant}>
-      <CardHeader
-        avatar={!grant.use_logo ? <DefaultLogo /> : <img src={grant.logo} alt="logo" />}
-        title={<Typography variant="h5">{grant.competition_name}</Typography>}
-        subheader={<Link href={grant.website}>{grant.sponsoring_entity}</Link>}
-      />
-      <CardContent>
-        <Typography variant="subtitle1">
-          {`Deadline - `}
-          <span>
-            {grant.most_recent_application_due_date
-              ? `${moment(grant.most_recent_application_due_date).format(
-                  "MMMM Do YYYY"
-                )}`
-              : "See website for details"}
-          </span>
-        </Typography>
-        <Typography>
-          {`Amount - `}
-          <span>
-            {grant.amount
-              ? `\$${formatNumber(grant.amount)}`
-              : "See website for details."}
-          </span>
-        </Typography>
-      </CardContent>
-      <CardActions disableSpacing className={classes.firstActions}>
-        <IconDisplay
-          favoriteGrants={favoriteGrants}
-          existingFavorite={favoriteGrants.filter(
-            (favGrant: Grant) => favGrant.id === grant.id
-          )}
-          id={grant.id}
-        />
-        <IconButton
-          onClick={handleExpandClick}
-          aria-expanded={expanded}
-          aria-label="show more"
-          className={clsx(classes.expand, { [classes.expandOpen]: expanded })}
-        >
-          <ExpandMoreIcon />
-        </IconButton>
-      </CardActions>
-      <Collapse in={expanded} timeout="auto" unmountOnExit>
-        <CardContent>
-          <Typography
-            paragraph
-          >{`Region: ${grant.geographic_region}`}</Typography>
-          <Typography
-            paragraph
-          >{`Early Stage Funding: ${grant.early_stage_funding}`}</Typography>
-          <Typography
-            paragraph
-          >{`Target Demography: ${grant.target_entrepreneur_demographic}`}</Typography>
-          <Typography
-            paragraph
-          >{`Focus Areas: ${grant.area_focus}`}</Typography>
-          <Typography
-            paragraph
-          >{`Sponsor: ${grant.sponsoring_entity}`}</Typography>
-          <Typography paragraph>{`Notes: ${grant.notes}`}</Typography>
-        </CardContent>
-        <CardActions className={classes.secondActions}>
-          <Link href={grant.website} target="_blank">
-            <Button color="primary">Apply to Grant</Button>
-          </Link>
-          <Button color="primary">Suggestions</Button>
-        </CardActions>
-      </Collapse>
-    </Card>
-  );
+    function selectGrant() {
+        actions && actions.grants.selectGrant(grant);
+    }
+
+    const isSelected = () => grant.id === showcase.id;
+    const handleExpandClick = () => setExpanded(!expanded);
+    const classes = useStyles();
+    return (
+        <Card className={clsx(classes.root, isSelected() && classes.grantCardSelected)} raised onClick={selectGrant}>
+            <CardHeader
+                avatar={!grant.use_logo ? <DefaultLogo/> : <img src={grant.logo} alt="logo"/>}
+                title={<Typography variant="h5">{grant.competition_name}</Typography>}
+                subheader={<Link href={grant.website}>{grant.sponsoring_entity}</Link>}
+            />
+            <CardContent>
+                <Grid container>
+                    {fieldHeaderData.map(fields => (
+                        <ShowcaseFields {...fields} showcase={grant} />
+                    ))}
+                </Grid>
+            </CardContent>
+            <CardActions disableSpacing className={classes.firstActions}>
+                <Divider color="primary" />
+                <IconDisplay
+                    favoriteGrants={favoriteGrants}
+                    existingFavorite={favoriteGrants.filter(
+                        (favGrant: Grant) => favGrant.id === grant.id
+                    )}
+                    id={grant.id}
+                />
+                <IconButton
+                    onClick={handleExpandClick}
+                    aria-expanded={expanded}
+                    aria-label="show more"
+                    className={clsx(classes.expand, {[classes.expandOpen]: expanded})}
+                >
+                    <ExpandMoreIcon/>
+                </IconButton>
+            </CardActions>
+            <Collapse in={expanded} timeout="auto" unmountOnExit>
+                <Divider color="primary" />
+                <CardContent>
+                    <Grid container spacing={1}>
+                        {fieldData.map(fields => {
+                            return <ShowcaseFields {...fields} showcase={grant}/>
+                        })}
+                    </Grid>
+                </CardContent>
+                <CardActions className={classes.secondActions}>
+                    <Link href={grant.website} target="_blank">
+                        <Button color="primary">Apply to Grant</Button>
+                    </Link>
+                    <Button color="primary">Suggestions</Button>
+                </CardActions>
+            </Collapse>
+        </Card>
+    );
 }
 
 export default NewGrant;

@@ -1,10 +1,8 @@
 import React from 'react';
 import {makeStyles} from "@material-ui/core/styles";
 import {Grid, Typography} from "@material-ui/core";
-import {useSelector} from "react-redux";
 import {Redirect} from 'react-router-dom';
-import moment from 'moment';
-import {formatNumber} from "../../../utils/helpers";
+import {textDisplay} from "../../../utils/helpers";
 
 const useStyles = makeStyles(theme => ({
     showcaseDetails: {
@@ -24,31 +22,14 @@ const useStyles = makeStyles(theme => ({
         marginTop: 5,
         height: 'auto'
     }
-}))
+}));
 
 function ShowcaseFields({xs, sm, md, title, subtitle, showcase}) {
     const classes = useStyles();
 
-    function textDisplay(str) {
-
-        switch(str) {
-            case 'amount':
-                return showcase[str] ? `\$${formatNumber(showcase[str])}` : `See website for details`;
-            case 'most_recent_application_due_date':
-                return showcase[str] ? `${moment(showcase[str]).fromNow()}` : `See website for details`;
-            case 'early_stage_funding':
-                return showcase[str] ? `Yes` : `No`;
-            case '':
-            default:
-                if (showcase[str]) {
-                    return `${showcase[subtitle]}`
-                }
-                return;
-        }
-    }
 
     if (!showcase) {
-        return <Redirect to='/' />
+        return <Redirect to='/'/>
     }
 
     return (
@@ -63,7 +44,7 @@ function ShowcaseFields({xs, sm, md, title, subtitle, showcase}) {
                 {title}
             </Typography>
             <Typography className={classes.innerDetails}>
-                {textDisplay(subtitle)}
+                {textDisplay(subtitle, showcase)}
             </Typography>
         </Grid>
     )
