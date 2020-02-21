@@ -4,7 +4,6 @@ import { useSelector } from "react-redux";
 import { ActionsContext } from "../../context/ActionsContext";
 import { makeStyles } from "@material-ui/core/styles";
 import { SubmitConfirmation } from "./formElements/SubmitConfirmation.jsx";
-import { logger } from "../../store/utils/logger";
 //Objects
 // import formStyles from "../styles/formStyles";
 import {
@@ -175,8 +174,6 @@ export const AddGrant = props => {
   //Submit for grant from
   const submitGrant = event => {
     event.preventDefault();
-    logger("THE TOKEN", token);
-    console.log("grantInfo in submit", grantInfo);
 
     actions.grants.postGrant(grantInfo, token);
 

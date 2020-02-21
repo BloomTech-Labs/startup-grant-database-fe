@@ -1,6 +1,5 @@
 import {Grant} from "../grants/grantTypes";
 import {FilterFormState} from "./filterTypes";
-import {logger} from "../utils/logger";
 
 export class Filters {
     private readonly keys: string[];
@@ -12,7 +11,6 @@ export class Filters {
 
     public filter(param1: Grant[], param2: string | number | null, param3?: string | number | null) {
         if (typeof param2 === 'string') {
-            logger('Called With', param2);
             return param1.filter(grant => grant[param2] === param3);
         }
          else {

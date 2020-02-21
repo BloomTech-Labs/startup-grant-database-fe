@@ -19,11 +19,10 @@ import moment from "moment";
 import IconDisplay from "../showcase/IconDisplay";
 import { useSelector } from "react-redux";
 import { AppState } from "../../../store/rooterReducer";
-import { logger } from "../../../store/utils/logger";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import GrantShowcase from "../GrantShowcase";
 import clsx from "clsx";
 import { formatNumber } from "../../../utils/helpers";
+import {ReactComponent as DefaultLogo} from "../Logo/defaultGrantLogo.svg";
 
 interface IProps {
   grant: Grant;
@@ -75,7 +74,7 @@ function NewGrant({ grant, showcase }: IProps) {
   return (
     <Card className={clsx(classes.root, isSelected() && classes.grantCardSelected)} raised onClick={selectGrant}>
       <CardHeader
-        avatar={<Logo url={grant.website} />}
+        avatar={!grant.use_logo ? <DefaultLogo /> : <img src={grant.logo} alt="logo" />}
         title={<Typography variant="h5">{grant.competition_name}</Typography>}
         subheader={<Link href={grant.website}>{grant.sponsoring_entity}</Link>}
       />
