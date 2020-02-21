@@ -6,7 +6,6 @@ import {axiosWithAuth} from "../utils/axiosConfig";
 
 export const useUserActions = () => {
     const dispatch = useDispatch();
-
     const getUserFromAuth0 = useCallback(
         (token: string) => {
             dispatch({type: UserTypes.FETCH_USER_START});
