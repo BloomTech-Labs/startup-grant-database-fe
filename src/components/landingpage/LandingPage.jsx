@@ -36,7 +36,6 @@ const useStyles = makeStyles(theme => ({
             marginTop: '3rem',
             alignContent: 'center',
             display: 'block',
-            height: '120vh'
         }
     }
 }));

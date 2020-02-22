@@ -31,10 +31,10 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "react-scripts test --coverage --watchAll=false",
     "eject": "react-scripts eject",
-    "coverage": "react-scripts test --coverage --watchAll",
-    "action:coverage": "CI=true npm run test --coverage || true"
+    "local-coverage": "npm run test || true",
+    "coverage": "CI=true npm run test || true"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -67,6 +67,11 @@
     "redux-logger": "^3.0.6"
   },
   "jest": {
+    "coverageReporters": [
+      "json-summary",
+      "text",
+      "lcov"
+    ],
     "collectCoverageFrom": [
       "**/*.{js,jsx}",
       "!**/node_modules/**",
