@@ -33,8 +33,10 @@ interface IProps {
 const useStyles = makeStyles(theme => ({
     root: {
         margin: theme.spacing(1, 0),
-        "&:last-child": {
-            paddingBottom: theme.spacing(15)
+        [theme.breakpoints.down('xs')]: {
+            "&:last-child": {
+                paddingBottom: theme.spacing(15)
+            }
         }
     },
     grantCardSelected: {
