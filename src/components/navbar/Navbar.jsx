@@ -80,7 +80,7 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: "white"
   },
   titleLink: {
-    display: 'flex',
+    display: "flex",
     flexGrow: 1,
     textDecoration: "none"
   },
@@ -127,10 +127,9 @@ const Navbar = () => {
   useEffect(() => {
     if (
       isAuthenticated &&
-      currentUser.roles.filter(
-        role => role.name === "Moderator"
-      ).length > 0
+      currentUser.roles.filter(role => role.name === "Moderator").length > 0
     ) {
+      console.log("currentUser", currentUser);
       actions.admin.isModerator();
     }
     if (
@@ -160,17 +159,14 @@ const Navbar = () => {
   return (
     <AppBar className={classes.navBar} color="primary" position="sticky">
       <Toolbar className={classes.toolBar}>
-        <Typography variant="h4" component='h1' className={classes.titleLink}>
+        <Typography variant="h4" component="h1" className={classes.titleLink}>
           <Link component={RouterLink} to="/" className={classes.title}>
             <FGLogo />
           </Link>
         </Typography>
         {isAuthenticated && currentUser.nickname !== undefined ? (
           <>
-            <Typography
-              variant="body1"
-              className={classes.helloUser}
-            >
+            <Typography variant="body1" className={classes.helloUser}>
               {`Welcome, ${currentUser.nickname}`}
             </Typography>
             <IconButton
