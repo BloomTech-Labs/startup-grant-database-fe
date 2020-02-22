@@ -1,6 +1,6 @@
-import {createMuiTheme} from "@material-ui/core";
+import {createMuiTheme, responsiveFontSizes} from "@material-ui/core";
 
-export const theme = createMuiTheme({
+const theme = createMuiTheme({
     overrides: {
         MuiCheckbox: {
             root: {
@@ -30,3 +30,5 @@ export const theme = createMuiTheme({
         fontFamily: ["adobe-garamond-pro", "Nunito Sans", "serif"].join(",")
     }
 });
+
+export default responsiveFontSizes(theme);
