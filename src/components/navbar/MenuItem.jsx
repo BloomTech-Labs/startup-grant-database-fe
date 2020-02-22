@@ -17,7 +17,10 @@ const useStyles = makeStyles(theme => ({
     },
     drawerLink: {
         margin: '.25em',
-        color: '#696969'
+        color: '#696969',
+        "&:hover" : {
+            textDecoration: 'none'
+        }
     }
 }));
 

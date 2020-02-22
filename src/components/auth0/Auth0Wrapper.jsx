@@ -14,7 +14,6 @@ const options = {
   languageDictionary: {
     emailInputPlaceholder: "Enter your email",
     passwordInputPlaceholder: "Enter your password",
-
     title: "Welcome"
   },
   popupOptions: { width: 300, height: 400, left: 200, top: 300 },
