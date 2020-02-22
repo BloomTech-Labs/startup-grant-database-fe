@@ -77,8 +77,8 @@ function Footer() {
     return (
         <Box component="footer" className={classes.root}>
             <Grid container alignItems='center'>
-                {footerLinksData.map(link => (
-                    <Grid item xs={link.xs} sm={link.sm}>
+                {footerLinksData.map((link, i) => (
+                    <Grid item xs={link.xs} sm={link.sm} key={i}>
                         <Typography variant={link.variant} className={classes.title}>
                             {link.to || link.href ? (
                                 <Link component={link.component && RouterLink} to={link.to && link.to}
