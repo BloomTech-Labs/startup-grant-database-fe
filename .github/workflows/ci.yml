@@ -3,14 +3,30 @@ name: build
 on: [push, pull_request]
 
 jobs:
+  test:
+    strategy:
+      matrix:
+        platform: [ubuntu-latest, macOS-latest]
+        node: ['12', '10']
+    name: test/node ${{ matrix.node }}/${{ matrix.platform }}
+    runs-on: ${{ matrix.platform }}
+    steps:
+      - uses: actions/checkout@master
+      - uses: actions/setup-node@master
+        with:
+          node-version: ${{ matrix.node }}
+      - run: npm install
+      - run: npm run test
   coverage:
+    needs: [ test ]
     name: Test and publish test coverage to Code Climate
+    strategy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
       - uses: actions/setup-node@master
         with:
-          node-version: "12"
+          node-version: ${{ matrix.node }}
       - run: npm install
       - uses: paambaati/codeclimate-action@v2.4.0
         env:
