@@ -32,6 +32,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --coverage --watchAll=false",
+    "test:local": "react-scripts test --coverage",
     "eject": "react-scripts eject",
     "local-coverage": "npm run test || true",
     "coverage": "CI=true npm run test || true"
