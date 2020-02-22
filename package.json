@@ -31,10 +31,10 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --watchAll=false",
+    "test": "react-scripts test --coverage --watchAll=false",
     "eject": "react-scripts eject",
-    "local-coverage": "react-scripts test --coverage --watchAll",
-    "coverage": "CI=true npm run test --coverage || true"
+    "local-coverage": "npm run test || true",
+    "coverage": "CI=true npm run test || true"
   },
   "eslintConfig": {
     "extends": "react-app"
