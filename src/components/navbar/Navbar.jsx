@@ -76,6 +76,7 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: "white"
   },
   titleLink: {
+    display: 'flex',
     flexGrow: 1,
     textDecoration: "none"
   },
@@ -155,7 +156,7 @@ const Navbar = () => {
   return (
     <AppBar className={classes.navBar} color="primary" position="sticky">
       <Toolbar className={classes.toolBar}>
-        <Typography variant="h4" className={classes.titleLink}>
+        <Typography variant="h4" component='h1' className={classes.titleLink}>
           <Link component={RouterLink} to="/" className={classes.title}>
             <FGLogo />
           </Link>
@@ -163,8 +164,7 @@ const Navbar = () => {
         {isAuthenticated && currentUser.nickname !== undefined ? (
           <>
             <Typography
-              variant="h6"
-              component="h1"
+              variant="body1"
               className={classes.helloUser}
             >
               {`Welcome, ${currentUser.nickname}`}

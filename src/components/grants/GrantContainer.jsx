@@ -32,11 +32,10 @@ const useStyles = makeStyles(theme => ({
       width: '100%'
     },
     [theme.breakpoints.down("xs")]: {
-      marginTop: theme.spacing(14),
+      marginTop: theme.spacing(11),
       height: "100%",
       justifyContent: "center",
       flexDirection: "column",
-      marginBottom: "600px"
     }
   },
   gridItem: {
