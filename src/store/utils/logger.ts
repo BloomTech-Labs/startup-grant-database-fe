@@ -1,5 +1,5 @@
-export const logger = (label: string, display: any) => {
+export const logger = (label: string, ...args: any[]) => {
     console.group(label);
-    console.log(display);
+    args.forEach(arg => console.log(arg));
     console.groupEnd();
-}
+};
