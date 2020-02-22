@@ -32,6 +32,10 @@ const useStyles = makeStyles(theme => ({
     fontSize: "2.125rem",
     textAlign: "left",
     color: "#000",
+    textDecoration: 'none',
+    "&:hover" : {
+      textDecoration: 'none'
+    },
     [theme.breakpoints.down("xs")]: {
       fontSize: "1.5rem",
       marginLeft: "5px"
