@@ -5,29 +5,6 @@ import {makeStyles} from "@material-ui/core/styles";
 import {Helmet} from "react-helmet";
 
 const useStyles = makeStyles(theme => ({
-    welcome: {
-        "& h1": {
-            fontSize: '3.5rem',
-            fontFamily: 'adobe-garamond-pro',
-            fontWeight: 400,
-            margin: '1rem',
-            padding: '30px',
-            [theme.breakpoints.down('xs')]: {
-                fontSize: '2rem',
-                padding: 0,
-                margin: 0
-            }
-        },
-        "& p": {
-            fontFamily: "adobe-garamond-pro",
-            fontSize: "32px",
-            margin: "5%",
-            [theme.breakpoints.down('xs')]: {
-                margin: '1rem',
-                flexGrow: 2
-            }
-        }
-    },
     button: {
         width: "266px",
         height: "58px"
@@ -51,11 +28,12 @@ function Welcome() {
                 are eligible for.
             </Typography>
             <Button
+                size='large'
                 variant="outlined"
                 color="primary"
                 component={RouterLink}
                 to="/grants"
-                className={classes.button}
+                // className={classes.button}
             >
                 View All Grants
             </Button>

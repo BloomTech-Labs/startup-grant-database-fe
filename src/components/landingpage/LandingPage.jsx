@@ -6,6 +6,7 @@ import {Grid} from '@material-ui/core';
 import {useSelector} from "react-redux";
 import {ActionsContext} from "../../context/ActionsContext";
 import {Helmet} from "react-helmet";
+import {logger} from "../../store/utils/logger";
 
 
 const components = [
@@ -19,25 +20,28 @@ const components = [
         component: Filters,
         props: {
             landing: true,
-        }
+        },
+        banana: 'filters'
     }
 ];
 
 const useStyles = makeStyles(theme => ({
     container: {
         [theme.breakpoints.down('xs')]: {
-            marginTop: '100px'
+            marginTop: theme.spacing(12)
         }
     },
     grid: {
         maxWidth: '100%',
-        minHeight: 'calc(100vh - 192px)',
+        minHeight: 'calc(100vh - 160px)',
+        [theme.breakpoints.down('sm')]: {
+            flexDirection: 'column',
+            padding: theme.spacing(2),
+        },
         [theme.breakpoints.down('xs')]: {
-            marginTop: '3rem',
-            alignContent: 'center',
-            display: 'block',
+            minHeight: 'calc(100vh - 308px)',
         }
-    }
+    },
 }));
 
 function LandingPage() {
@@ -50,7 +54,7 @@ function LandingPage() {
             actions.grants.fetchGrants();
         }
     }, [numberOfGrants]);
-
+    logger('Classes', classes, classes.filters, classes['filters'])
     return (
         <div className={classes.container}>
             <Helmet>
@@ -69,7 +73,7 @@ function LandingPage() {
                 justify="center"
                 alignItems="center"
             >
-                {components.map(({component: Component, props, key})=> (
+                {components.map(({component: Component, props, key, banana })=> (
                     <Grid
                         key={key}
                         item

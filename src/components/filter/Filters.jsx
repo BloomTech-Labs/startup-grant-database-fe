@@ -85,13 +85,7 @@ const filterStyles = {
             padding: "48px",
             borderRadius: "2px",
             [theme.breakpoints.down("sm")]: {
-                width: "100%",
-                borderRadius: 0
-            },
-            [theme.breakpoints.down("xs")]: {
-                padding: 0,
-                paddingTop: "20px",
-                flexGrow: 2
+                display: 'none'
             }
         },
         set: {
