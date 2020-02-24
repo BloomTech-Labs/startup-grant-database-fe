@@ -2,8 +2,10 @@ import React from 'react';
 import Grant from './Grant';
 import NewGrant from './NewGrant';
 import {Typography} from "@material-ui/core";
+import {logger} from "../../../store/utils/logger";
 
 function GrantList(props) {
+    logger("Grant List Props", props)
     return (
         <>
             {props.grants.length && (

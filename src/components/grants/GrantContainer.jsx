@@ -11,6 +11,7 @@ import Filters from "../filter/Filters";
 import clsx from "clsx";
 import { useAuth0 } from "../auth0/Auth0Wrapper";
 import {Helmet} from "react-helmet";
+import {logger} from "../../store/utils/logger";
 
 const useStyles = makeStyles(theme => ({
   homeGridContainer: {
@@ -81,6 +82,7 @@ const useStyles = makeStyles(theme => ({
 
 function GrantContainer(props) {
   const { isAuthenticated } = useAuth0();
+  const [isInitialLoad, setIsInitialLoad] = useState(true);
   const allGrants = useSelector(state => state.filters.grants);
   const { pristine } = useSelector(state => state.filters);
   const allTheGrants = useSelector(state => state.grants.grants);
@@ -112,7 +114,10 @@ function GrantContainer(props) {
           setGrants(allTheGrants);
         } else {
           if (allGrants.length !== grants.length) {
-            setGrants(allGrants);
+            if (!isInitialLoad) {
+              setGrants(allGrants)
+            }
+            setIsInitialLoad(false)
           }
         }
       } else {
@@ -133,6 +138,7 @@ function GrantContainer(props) {
   const toggleFilters = () => setFiltersOpen(!filtersOpen);
 
   if (!showcase) {
+    logger('Called', showcase)
     return <Redirect to="/" />;
   }
 

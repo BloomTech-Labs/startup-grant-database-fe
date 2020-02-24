@@ -18,7 +18,7 @@ const components = [
         key: 'Filters',
         component: Filters,
         props: {
-            landing: true
+            landing: true,
         }
     }
 ];

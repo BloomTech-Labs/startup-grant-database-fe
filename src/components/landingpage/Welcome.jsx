@@ -1,5 +1,5 @@
 import React from 'react';
-import {Button} from '@material-ui/core';
+import {Button, Typography} from '@material-ui/core';
 import {Link as RouterLink} from 'react-router-dom';
 import {makeStyles} from "@material-ui/core/styles";
 import {Helmet} from "react-helmet";
@@ -38,18 +38,18 @@ function Welcome() {
     const classes = useStyles();
     return (
         
-        <div className={classes.welcome}>
+        <div>
             <Helmet>
             <title>Founder Grants</title>
             <meta name="description" content="Find your startup grant, browse by type, region, amount" />
             <meta name="keywords" content="grant,startup,funding,invest,financing" />
 
             </Helmet>
-            <h1>Welcome to Founder Grants</h1>
-            <p>
+            <Typography variant='h3' component='h1'>Welcome to Founder Grants</Typography>
+            <Typography paragraph variant='h6' component='p'>
                 Search lists for grants by choosing a category or as many as you
                 are eligible for.
-            </p>
+            </Typography>
             <Button
                 variant="outlined"
                 color="primary"
