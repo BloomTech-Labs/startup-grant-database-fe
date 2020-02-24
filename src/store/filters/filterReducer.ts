@@ -2,7 +2,6 @@ import {FilterActions, FilterFormState, FilterState, FilterTypes} from "./filter
 import {filterFormState} from '../../components/filter/formState';
 import {Grant} from "../grants/grantTypes";
 import {Filters} from "./Filters";
-import {logger} from "../utils/logger";
 
 const initialState: FilterState = {
     pristine: true,

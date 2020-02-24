@@ -8,7 +8,7 @@ import {Helmet} from 'react-helmet';
 
 const useAboutStyles = makeStyles(theme => ({
     layout: {
-        height: "calc(100vh - 84px)",
+        height: "calc(100vh - 176px)",
         [theme.breakpoints.down('sm')]: {
             height: "auto"
         }

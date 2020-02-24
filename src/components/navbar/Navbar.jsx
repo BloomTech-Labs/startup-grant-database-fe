@@ -17,7 +17,6 @@ import SideMenu from "./SideMenu";
 import { useSelector } from "react-redux";
 import { ActionsContext } from "../../context/ActionsContext";
 import { useGetToken } from "../auth0/useGetToken";
-import { logger } from "../../store/utils/logger";
 
 const useStyles = makeStyles(theme => ({
   navBar: {
@@ -33,6 +32,10 @@ const useStyles = makeStyles(theme => ({
     fontSize: "2.125rem",
     textAlign: "left",
     color: "#000",
+    textDecoration: 'none',
+    "&:hover" : {
+      textDecoration: 'none'
+    },
     [theme.breakpoints.down("xs")]: {
       fontSize: "1.5rem",
       marginLeft: "5px"
@@ -77,6 +80,7 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: "white"
   },
   titleLink: {
+    display: "flex",
     flexGrow: 1,
     textDecoration: "none"
   },
@@ -123,10 +127,9 @@ const Navbar = () => {
   useEffect(() => {
     if (
       isAuthenticated &&
-      currentUser.roles.filter(
-        role => role.name === "Moderator"
-      ).length > 0
+      currentUser.roles.filter(role => role.name === "Moderator").length > 0
     ) {
+      console.log("currentUser", currentUser);
       actions.admin.isModerator();
     }
     if (
@@ -156,18 +159,14 @@ const Navbar = () => {
   return (
     <AppBar className={classes.navBar} color="primary" position="sticky">
       <Toolbar className={classes.toolBar}>
-        <Typography variant="h4" className={classes.titleLink}>
+        <Typography variant="h4" component="h1" className={classes.titleLink}>
           <Link component={RouterLink} to="/" className={classes.title}>
             <FGLogo />
           </Link>
         </Typography>
         {isAuthenticated && currentUser.nickname !== undefined ? (
           <>
-            <Typography
-              variant="h6"
-              component="h1"
-              className={classes.helloUser}
-            >
+            <Typography variant="body1" className={classes.helloUser}>
               {`Welcome, ${currentUser.nickname}`}
             </Typography>
             <IconButton

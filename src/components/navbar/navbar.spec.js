@@ -1,45 +1,127 @@
-import React from "react";
-import * as rtl from "@testing-library/react";
-import { NavBar } from "./Navbar";
-import { BrowserRouter as Router } from "react-router-dom";
-import "@testing-library/jest-dom/extend-expect";
-import { Auth0Provider } from "../../components/auth0/Auth0Wrapper.jsx";
-
-afterEach(rtl.cleanup);
+import React from 'react';
+import {render} from '@testing-library/react';
+import {Provider} from "react-redux";
+import configureStore from 'redux-mock-store';
+import Navbar from "./Navbar";
+import {BrowserRouter as Router} from "react-router-dom";
+import {useAuth0} from "../auth0/Auth0Wrapper";
+import {ActionsProvider} from "../../context/ActionsContext";
 
 const user = {
-  email: "testuser@email.com",
-  email_verified: true,
-  sub: `google-oauth2|${process.env.TEST_KEY}`
+    email: "testuser@email.com",
+    email_verified: true,
+    sub: `random-oauth2-stringOfText`,
+    nickname: 'Test User',
+    app_metadata: {
+        authorization: {
+            roles: [],
+            permissions: []
+        }
+    },
+    roles: []
 };
 
-jest.mock("../../components/auth0/Auth0Wrapper.jsx");
+const mockStore = configureStore([]);
 
-describe("<NavBar />", () => {
-  beforeEach(() => {
-    Auth0Provider.mockReturnValue({
-      isAuthenticated: true,
-      user,
-      logout: jest.fn(),
-      loginWithRedirect: jest.fn()
+jest.mock('../auth0/Auth0Wrapper');
+jest.mock('../../store/useActions');
+
+describe('NavBar.js', () => {
+    let store;
+    let wrapper;
+
+    beforeEach(() => {
+        store = mockStore({
+            user: {
+                currentUser: user
+            },
+            admin: {
+                isModerator: false
+            }
+        });
+        useAuth0.mockReturnValue({
+            isAuthenticated: false,
+            user,
+            logout: jest.fn(),
+            loginWithRedirect: jest.fn()
+        });
+        const actions = {
+            user: {
+                setToken: jest.fn(),
+                getUserFromAuth0: jest.fn(),
+                getFavorites: jest.fn()
+            },
+            admin: {
+                isAdmin: jest.fn(),
+                isModerator: jest.fn(),
+                fetchAdminGrants: jest.fn(),
+                fetchAllUsers: jest.fn(),
+                fetchAllRoles: jest.fn()
+            }
+        };
+        wrapper = render(
+            <Provider store={store}>
+                <ActionsProvider value={actions}>
+                    <Router>
+                        <Navbar/>
+                    </Router>
+                </ActionsProvider>
+            </Provider>
+        )
     });
-  });
-
-  it("should render NavBar", () => {
-    rtl.render(
-      <Router>
-        <NavBar />
-      </Router>
-    );
-    //   });
-
-    //     it('should contain text "Grants"', () => {
-    //       const { getByTestId } = rtl.render(
-    //         <Router>
-    //           <NavBar />
-    //         </Router>
-    //       );
-
-    //   expect(getByTestId("main-nav")).toHaveTextContent(/grants/i);
-  });
+    it('should render without crashing', async () => {
+        const logoText = wrapper.getByText(/Founder Grants/i);
+        expect(logoText).toBeInTheDocument;
+    })
 });
+describe('NavBar.js Authenticated', () => {
+    let store;
+    let wrapper;
+    beforeEach(() => {
+        store = mockStore({
+            user: {
+                currentUser: user,
+                isLoading: false
+            },
+            admin: {
+                isModerator: false
+            }
+        });
+        useAuth0.mockReturnValue({
+            isAuthenticated: true,
+            user,
+            getTokenSilently: jest.fn().mockImplementationOnce(() => 'Token'),
+            logout: jest.fn(),
+            loginWithRedirect: jest.fn()
+        });
+        const actions = {
+            user: {
+                setToken: jest.fn(),
+                getUserFromAuth0: jest.fn(),
+                getFavorites: jest.fn()
+            },
+            admin: {
+                isAdmin: jest.fn(),
+                isModerator: jest.fn(),
+                fetchAdminGrants: jest.fn(),
+                fetchAllUsers: jest.fn(),
+                fetchAllRoles: jest.fn()
+            }
+        };
+        wrapper = render(
+            <Provider store={store}>
+                <ActionsProvider value={actions}>
+                    <Router>
+                        <Navbar/>
+                    </Router>
+                </ActionsProvider>
+            </Provider>
+        )
+
+    });
+    it('should say welcome user', () => {
+        const welcomeText = wrapper.getByText(/Welcome, Test User/i);
+        expect(welcomeText).toBeInTheDocument;
+    })
+});
+

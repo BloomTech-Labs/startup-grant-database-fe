@@ -1,49 +1,97 @@
 import React from "react";
 import FGLogo from "../../assets/FGLogo";
-import { Link } from "react-router-dom";
-import { Grid, Typography, Box } from "@material-ui/core/";
-import { sitemapStyles } from "./sitemapStyles";
+import {Link as RouterLink} from "react-router-dom";
+import {Box, Grid, Link, Typography} from "@material-ui/core/";
+import {makeStyles} from "@material-ui/core/styles";
 
-export const Footer = () => {
-  const styles = sitemapStyles();
+const useFooterStyles = makeStyles(theme => ({
+    root: {
+        color: '#696969',
+        background: '#fff',
+        paddingTop: theme.spacing(2),
+        [theme.breakpoints.down('xs')]: {
+            paddingTop: 0,
+            background: "#65D8CF",
+            color: "#fff"
+        }
+    },
+    title: {
+        [theme.breakpoints.down('xs')]: {
+            paddingTop: theme.spacing(2),
+        }
+    },
+    links: {
+        color: '#696969',
+        textDecoration: 'none',
+        "&:hover": {
+            cursor: 'pointer',
+            textDecoration: 'none'
+        },
+        [theme.breakpoints.down('xs')]: {
+            color: 'inherit'
+        }
 
-  return (
-    <Box component="div" className={styles.sitemapContainer}>
-      <Grid container className={styles.sitemap}>
-        <Grid item className={styles.item}>
-          <Typography variant="h5" component="h5">
-            <Link to="/" className={styles.link}>
-              <FGLogo siteMap={true} />
-            </Link>
-          </Typography>
-        </Grid>
-        <Grid item className={styles.item}>
-          <Typography variant="subtitle2">
-            <Link to="/about" className={styles.link}>
-              ABOUT
-            </Link>
-          </Typography>
-        </Grid>
-        <Grid item className={styles.item}>
-          <Typography variant="subtitle2">
-            <a href="mailto:labs16grantly@gmail.com" className={styles.link}>
-              CONTACT
-            </a>
-          </Typography>
-        </Grid>
-        <Grid item className={styles.item}>
-          <Typography variant="subtitle2">
-            <a href="https://www.1517fund.com/" className={styles.link}>
-              1517 FUND
-            </a>
-          </Typography>
-        </Grid>
-        <Grid container justify="center" alignItems="flex-end">
-          <Typography variant="subtitle2" className={styles.copy}>
-            &copy; 2020 FOUNDER GRANTS. ALL RIGHTS RESERVED.
-          </Typography>
-        </Grid>
-      </Grid>
-    </Box>
-  );
-};
+    }
+}));
+
+const footerLinksData = [
+    {
+        xs: 12,
+        sm: 3,
+        variant: 'h5',
+        component: RouterLink,
+        to: '/about',
+        fgComponent: true
+    },
+    {
+        xs: 12,
+        sm: 3,
+        variant: 'subtitle2',
+        component: RouterLink,
+        to: '/about',
+        title: 'about'.toUpperCase(),
+    },
+    {
+        xs: 12,
+        sm: 3,
+        variant: 'subtitle2',
+        href: 'mailto:labs16grantly@gmail.com',
+        title: 'contact'.toUpperCase(),
+    },
+    {
+        xs: 12,
+        sm: 3,
+        variant: 'subtitle2',
+        href: 'https://www.1517fund.com/',
+        title: '1517 fund'.toUpperCase(),
+    },
+    {
+        xs: 12,
+        variant: 'subtitle2',
+        title: `© 2020 FOUNDER GRANTS. ALL RIGHTS RESERVED.`
+    }
+];
+
+function Footer() {
+    const classes = useFooterStyles();
+    return (
+        <Box component="footer" className={classes.root}>
+            <Grid container alignItems='center'>
+                {footerLinksData.map((link, i) => (
+                    <Grid item xs={link.xs} sm={link.sm} key={i}>
+                        <Typography variant={link.variant} className={classes.title}>
+                            {link.to || link.href ? (
+                                <Link component={link.component && RouterLink} to={link.to && link.to}
+                                      href={link.href && link.href} className={classes.links}>
+                                    {link.fgComponent ? <FGLogo siteMap={true}/> : `${link.title}`}
+                                </Link>
+                            ) : `${link.title}`}
+                        </Typography>
+                    </Grid>
+                ))}
+            </Grid>
+        </Box>
+    )
+}
+
+export default Footer;

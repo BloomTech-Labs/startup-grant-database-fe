@@ -2,10 +2,10 @@ import React from 'react';
 import {CssBaseline} from "@material-ui/core";
 import {makeStyles, MuiThemeProvider} from "@material-ui/core/styles";
 import Navbar from "./navbar/Navbar";
-import {Footer} from './footer/Footer';
+import Footer from './footer/Footer';
 import {useActions} from "../store/useActions";
 import {ActionsProvider} from "../context/ActionsContext";
-import {theme} from "./theme";
+import theme from "./theme";
 import routes from './routing/Routes';
 import RenderRoutes from "./routing/RenderRoutes";
 

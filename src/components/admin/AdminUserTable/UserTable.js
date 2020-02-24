@@ -44,7 +44,6 @@ const UserTable = props => {
 
   const style = userTableStyles();
 
-  console.log("roleId", roleId);
   return (
     <React.Fragment>
       <Paper className={style.paper}>
@@ -65,7 +64,6 @@ const UserTable = props => {
               }),
             onRowUpdate: (newData, oldData) =>
               new Promise(resolve => {
-                console.log("oldData", oldData);
 
                 setTimeout(() => {
                   resolve();

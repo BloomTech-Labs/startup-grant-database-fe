@@ -45,10 +45,7 @@ const GrantTable = props => {
   const { token, isModerator, currentUser } = useSelector(state => state.user);
   const { grants } = useSelector(state => state.admin);
   const { isAuthenticated } = useAuth0();
-  console.log(props);
-  console.log(props);
   const style = grantTableStyles();
-  console.log("moderator?", isModerator);
 
   useEffect(() => {
     if (isAuthenticated && currentUser["https://founder-grants.com/appdata"]) {
@@ -66,8 +63,6 @@ const GrantTable = props => {
     isModerator && actions.admin.fetchAdminGrants(token);
   }, [isModerator]);
 
-  console.log("admin grants", grants);
-  console.log("props", props);
   // console.log(
   //   "whats going on with fetch grants?",
   //   actions.grants.fetchAdminGrants(token)

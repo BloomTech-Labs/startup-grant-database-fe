@@ -4,7 +4,6 @@ import NewFilters from "./NewFilters";
 import {filterFormState} from "./formState";
 import {ActionsContext} from "../../context/ActionsContext";
 import {useSelector} from "react-redux";
-import {logger} from "../../store/utils/logger";
 
 const filterStyles = {
     grants: makeStyles(theme => ({
