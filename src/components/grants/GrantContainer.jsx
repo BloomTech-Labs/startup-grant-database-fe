@@ -169,24 +169,29 @@ function GrantContainer(props) {
         <Grid item md={7} className={classes.gridItem}>
           <GrantShowcase showcase={showcase} />
         </Grid>
+
         <Grid item md={2} className={classes.filterList}>
-          <TuneIcon
-            className={clsx(
-              classes.filterIcon,
-              filtersOpen && classes.filterIconSelected
-            )}
-            onClick={toggleFilters}
-          >
-            Filters
-          </TuneIcon>
-          <div
-            className={clsx(
-              classes.filters,
-              filtersOpen ? classes.showFilters : classes.hideFilters
-            )}
-          >
-            <Filters grants={grants} />
-          </div>
+          {isAuthenticated && (
+            <>
+              <TuneIcon
+                className={clsx(
+                  classes.filterIcon,
+                  filtersOpen && classes.filterIconSelected
+                )}
+                onClick={toggleFilters}
+              >
+                Filters
+              </TuneIcon>
+              <div
+                className={clsx(
+                  classes.filters,
+                  filtersOpen ? classes.showFilters : classes.hideFilters
+                )}
+              >
+                <Filters grants={grants} />
+              </div>
+            </>
+          )}
         </Grid>
       </Grid>
     </>
