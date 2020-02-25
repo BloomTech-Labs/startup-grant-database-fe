@@ -3,12 +3,12 @@ import { ActionsContext } from "../../context/ActionsContext";
 import { useAuth0 } from "../auth0/Auth0Wrapper";
 import { useSelector } from "react-redux";
 
-import { Divider, Grid, Paper, Typography } from "@material-ui/core";
+import { Divider, Grid, Paper, Typography, Avatar } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles(theme => ({
   formContainer: {
-    padding: "1em 8em 2em 8em",
+    padding: "1em 8em 6em 8em",
     [theme.breakpoints.down("sm")]: {
       padding: "2em"
     }
@@ -69,12 +69,12 @@ export const UserData = props => {
   return (
     <React.Fragment>
       <Paper>
-        <Typography variant="h5">Change Account Settings</Typography>
-        <Typography variant="h6">Personal Details:</Typography>
+        <Avatar src={currentUser.picture}></Avatar>
+        <Typography variant="h6">{currentUser.nickname}'s Profile</Typography>
         <Divider variant="middle" />
         <Grid container spacing={6} className={styles.formContainer}>
           {Object.keys(initialData).map((key, i) => (
-            <Grid item xs={6} key={key}>
+            <Grid item xs={12} key={key}>
               <Typography className={styles.subtitle}>
                 {`${titles[i]}:`}
               </Typography>

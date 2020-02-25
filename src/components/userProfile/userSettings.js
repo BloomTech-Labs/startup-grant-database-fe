@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import { useSelector } from "react-redux";
 import { UserSettingsForm } from "./UserSettingsForm.js";
 import { UserData } from "./userData.js";
-import { Button, Container } from "@material-ui/core";
+import { Button, Container, Grid } from "@material-ui/core";
 import { ActionsContext } from "../../context/ActionsContext";
 import { makeStyles } from "@material-ui/core/styles";
 import { useForm } from "../../hooks/useForm";
@@ -28,55 +28,55 @@ const UserSettings = () => {
     actions.user.updateUser(token, values);
   }
 
-  console.log("current user", currentUser);
   return (
     <React.Fragment>
-      <Container maxWidth="lg">
-        {/* <AuthForm /> */}
-        {/* <UserSettingsForm /> */}
-        {!isEditing ? (
+      <Grid xs={12}>
+        <Container maxWidth="sm">
           <UserData />
-        ) : (
-          <UserSettingsForm
-            values={values}
-            handleChange={handleChange}
-            handleSubmit={handleSubmit}
-          />
-        )}
-        {!isEditing && (
-          <Button
-            variant="contained"
-            color="primary"
-            className={styles.button}
-            onClick={() => !isEditing && setIsEditing(true)}
-          >
-            Edit Details
-          </Button>
-        )}
-        {isEditing && (
-          <>
+        </Container>
+        <Container maxWidth="sm">
+          {!isEditing && (
             <Button
               variant="contained"
               color="primary"
               className={styles.button}
-              onClick={e => {
-                handleSubmit(e);
-                setIsEditing(false);
-              }}
+              onClick={() => !isEditing && setIsEditing(true)}
             >
-              Save Changes
+              Edit Details
             </Button>
-            <Button
-              variant="contained"
-              color="secondary"
-              className={styles.button}
-              onClick={() => isEditing && setIsEditing(false)}
-            >
-              Cancel Edit
-            </Button>
-          </>
-        )}
-      </Container>
+          )}
+          {isEditing && (
+            <UserSettingsForm
+              values={values}
+              handleChange={handleChange}
+              handleSubmit={handleSubmit}
+            />
+          )}
+        </Container>
+      </Grid>
+      {isEditing && (
+        <>
+          <Button
+            variant="contained"
+            color="primary"
+            className={styles.button}
+            onClick={e => {
+              handleSubmit(e);
+              setIsEditing(false);
+            }}
+          >
+            Save Changes
+          </Button>
+          <Button
+            variant="contained"
+            color="secondary"
+            className={styles.button}
+            onClick={() => isEditing && setIsEditing(false)}
+          >
+            Cancel Edit
+          </Button>
+        </>
+      )}
     </React.Fragment>
   );
 };
