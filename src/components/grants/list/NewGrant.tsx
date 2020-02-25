@@ -70,9 +70,6 @@ function NewGrant({grant, showcase}: IProps) {
     const actions = useContext(ActionsContext);
     const [expanded, setExpanded] = useState<boolean>(false);
     const {favoriteGrants} = useSelector((state: AppState) => state.user);
-    const existingFavorite = favoriteGrants.filter(
-        (fav: Grant) => fav.id === showcase.id
-    );
 
     function selectGrant() {
         actions && actions.grants.selectGrant(grant);
@@ -91,7 +88,7 @@ function NewGrant({grant, showcase}: IProps) {
             <CardContent>
                 <Grid container>
                     {fieldHeaderData.map(fields => (
-                        <ShowcaseFields {...fields} showcase={grant} />
+                        <ShowcaseFields {...fields} showcase={grant} key={fields.title} />
                     ))}
                 </Grid>
             </CardContent>
@@ -118,7 +115,7 @@ function NewGrant({grant, showcase}: IProps) {
                 <CardContent>
                     <Grid container spacing={1}>
                         {fieldData.map(fields => {
-                            return <ShowcaseFields {...fields} showcase={grant}/>
+                            return <ShowcaseFields {...fields} showcase={grant} key={fields.title}/>
                         })}
                     </Grid>
                 </CardContent>
