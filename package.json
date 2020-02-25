@@ -79,7 +79,8 @@
       "**/*.{js,jsx}",
       "!**/node_modules/**",
       "!**/vendor/**",
-      "!**/__tests__/**"
+      "!**/__tests__/**",
+      "!**/*.spec.{js,jsx}"
     ]
   }
 }
