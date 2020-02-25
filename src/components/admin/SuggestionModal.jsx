@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useSelector, connect } from "react-redux";
+import { useSelector } from "react-redux";
 // import { deleteSuggestion } from "../../actions";
 import axios from "axios";
 import { useAuth0 } from "../auth0/Auth0Wrapper.jsx";

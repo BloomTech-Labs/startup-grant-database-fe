@@ -7,6 +7,7 @@ import {
 const initialState: SuggestionState = {
   grant_suggestions: [],
   isSelecting: false,
+  isLoading: true,
   errors: null
 };
 
@@ -32,6 +33,12 @@ export const suggestionReducer = (
     case SuggestionTypes.DELETE_SUGGESTION_SUCCESS:
       return { ...state };
     case SuggestionTypes.DELETE_SUGGESTION_FAILURE:
+      return { ...state, errors: action.payload };
+    case SuggestionTypes.ADD_SUGGESTION_START:
+      return { ...state };
+    case SuggestionTypes.ADD_SUGGESTION_SUCCESS:
+      return { ...state, isLoading: false, grant_suggestions: action.payload };
+    case SuggestionTypes.ADD_SUGGESTION_FAILURE:
       return { ...state, errors: action.payload };
     default:
       return state;
