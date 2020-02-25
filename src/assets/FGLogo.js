@@ -1,5 +1,6 @@
 import React from "react";
 import {makeStyles} from "@material-ui/core/styles";
+import {Typography} from "@material-ui/core";
 import clsx from "clsx";
 import {useSelector} from "react-redux";
 
@@ -16,7 +17,6 @@ const useLogoStyles = makeStyles(theme => ({
         marginLeft: theme.spacing(3),
         color: '#000',
         [theme.breakpoints.down('xs')]: {
-            fontSize: '1.5rem',
             marginLeft: theme.spacing(1)
         }
     }
@@ -157,9 +157,9 @@ const FGLogo = ({siteMap}) => {
                     </filter>
                 </defs>
             </svg>
-            <span className={siteMap ? clsx(classes.logo, classes.siteMap) : classes.title}>
+            <Typography variant='h4' className={siteMap ? clsx(classes.logo, classes.siteMap) : classes.title}>
               {!isAdmin ? "Founder Grants" : "Founder Grants Admin"}
-            </span>
+            </Typography>
         </div>
     );
 };

@@ -35,6 +35,7 @@ const useStyles = makeStyles(theme => ({
         maxWidth: '100%',
         minHeight: 'calc(100vh - 160px)',
         [theme.breakpoints.down('sm')]: {
+            minHeight: 'calc(100vh - 193px)',
             flexDirection: 'column',
             padding: theme.spacing(2),
         },
