@@ -2,12 +2,19 @@ import React from 'react';
 import {Button, Typography} from '@material-ui/core';
 import {Link as RouterLink} from 'react-router-dom';
 import {makeStyles} from "@material-ui/core/styles";
+import clsx from "clsx";
 import {Helmet} from "react-helmet";
 
 const useStyles = makeStyles(theme => ({
-    button: {
-        width: "266px",
-        height: "58px"
+    welcome: {
+        display: 'flex',
+        flexDirection: 'column'
+    },
+    about: {
+        marginLeft: theme.spacing(2),
+        [theme.breakpoints.up('sm')]: {
+            display: 'none'
+        }
     }
 }));
 
@@ -33,9 +40,18 @@ function Welcome() {
                 color="primary"
                 component={RouterLink}
                 to="/grants"
-                // className={classes.button}
             >
                 View All Grants
+            </Button>
+            <Button
+                size='large'
+                variant="outlined"
+                color="primary"
+                component={RouterLink}
+                to="/about"
+                className={classes.about}
+            >
+                About Us
             </Button>
         </div>
     )

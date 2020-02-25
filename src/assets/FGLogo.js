@@ -157,7 +157,7 @@ const FGLogo = ({siteMap}) => {
                     </filter>
                 </defs>
             </svg>
-            <Typography variant='h4' className={siteMap ? clsx(classes.logo, classes.siteMap) : classes.title}>
+            <Typography variant={siteMap ? 'subtitle2' : 'h4'} className={siteMap ? clsx(classes.logo, classes.siteMap) : classes.title}>
               {!isAdmin ? "Founder Grants" : "Founder Grants Admin"}
             </Typography>
         </div>

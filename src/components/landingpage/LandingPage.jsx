@@ -40,7 +40,7 @@ const useStyles = makeStyles(theme => ({
             padding: theme.spacing(2),
         },
         [theme.breakpoints.down('xs')]: {
-            minHeight: 'calc(100vh - 308px)',
+            minHeight: 'calc(100vh - 306px)',
         }
     },
 }));
