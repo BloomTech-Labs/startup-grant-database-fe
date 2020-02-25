@@ -77,6 +77,7 @@ export const useSuggestionActions = () => {
 
   const addSuggestion = useCallback(
     (token: string, values: any) => {
+        console.log(values);
       dispatch({ type: SuggestionTypes.ADD_SUGGESTION_START });
       axiosWithAuth(token)
         .post(`/grants/suggestion/`, values)
