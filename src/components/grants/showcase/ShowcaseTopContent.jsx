@@ -1,14 +1,16 @@
 import React, {useEffect, useState} from "react";
 import {makeStyles} from "@material-ui/core/styles";
-import {Grid, Link, Typography} from "@material-ui/core";
+import {Grid, Link, Typography, CardHeader} from "@material-ui/core";
 import {useSelector} from "react-redux";
 import LanguageIcon from "@material-ui/icons/Language";
 import IconDisplay from "./IconDisplay";
 import {ReactComponent as DefaultLogo} from "../Logo/defaultGrantLogo.svg";
+import WebsiteUrl from "./WebsiteUrl";
 
 const useStyles = makeStyles(theme => ({
     title: {
-        maxWidth: "300px"
+        flexGrow: 1,
+        maxWidth: 585
     },
     topContent: {
         margin: "0"
@@ -44,11 +46,13 @@ function ShowcaseTopContent({showcase}) {
     return (
         <>
             <Grid container justify="space-between" alignItems="center">
-                {showcase.use_logo ? <img src={showcase.logo} alt='Logo'/> : <DefaultLogo/>}
+                {/*{showcase.use_logo ? <img src={showcase.logo} alt='Logo'/> : <DefaultLogo/>}*/}
                 <Grid item className={classes.title}>
-                    <Typography variant="h5" className={classes.grantName}>
-                        {showcase.competition_name}
-                    </Typography>
+                    <CardHeader
+                        avatar={showcase.use_logo ? <img src={showcase.logo} alt='Logo'/> : <DefaultLogo/>}
+                        title={<Typography variant="h5" className={classes.grantName}>{showcase.competition_name}</Typography>}
+                        subheader={<WebsiteUrl website={showcase} />}
+                    />
                 </Grid>
                 <Grid item>
                     <IconDisplay
@@ -57,17 +61,6 @@ function ShowcaseTopContent({showcase}) {
                         existingFavorite={existingFavorite}
                     />
                 </Grid>
-            </Grid>
-            <Grid
-                container
-                justify="flex-start"
-                alignItems="flex-end"
-                alignContent="flex-end"
-            >
-                <LanguageIcon className={classes.website}/>
-                <Link href={showcase.website} target="_blank">
-                    {showcase.website}
-                </Link>
             </Grid>
         </>
     );
