@@ -1,17 +1,39 @@
 import React, { Fragment } from "react";
-import { Typography } from "@material-ui/core";
+import { Typography, Button } from "@material-ui/core";
 import { Link } from "react-router-dom";
+import { makeStyles } from "@material-ui/core";
+
+const useStyles = makeStyles(theme => ({
+  title: {
+    padding: theme.spacing(2)
+  },
+  content: {
+    padding: theme.spacing(2)
+  },
+
+  button: {
+    color: "white"
+  }
+}));
 
 export const SubmitConfirmation = () => {
+  const styles = useStyles();
   return (
     <Fragment>
-      <Typography variant="h3">Thank you for your grant submission!</Typography>
-      <Typography>
+      <Typography variant="h4" className={styles.title}>
+        Thank you for your grant submission!
+      </Typography>
+      <Typography className={styles.content}>
         Our site admins will look over your grant information to be approved
         before it’s posted on Founders Grant. Enter your email address to get
         updates and to know when your grant has been approved.
       </Typography>
-      <Link to="/">Okay!</Link>
+
+      <Link to="/">
+        <Button color="primary" variant="contained" className={styles.button}>
+          Okay
+        </Button>
+      </Link>
     </Fragment>
   );
 };
