@@ -13,7 +13,11 @@ const useStyles = makeStyles(theme => ({
   },
   contain: {
     display: "flex",
-    flexDirection: "row"
+    flexDirection: "row",
+    [theme.breakpoints.down("sm")]: {
+      padding: "2em",
+      flexDirection: "column"
+    }
   }
 }));
 
