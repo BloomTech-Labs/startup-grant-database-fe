@@ -22,7 +22,7 @@ const onRedirectCallback = appState => {
 Sentry.init({
   dsn: "https://3fff2a57bcec4d419f25f24c703f14b9@sentry.io/1811765"
 });
-// const storeFunction = store();
+
 
 const AppWithProvider = () => {
   return (

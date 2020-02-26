@@ -30,7 +30,7 @@ const useStyles = makeStyles(theme => ({
 function GrantShowcase(props) {
     const classes = useStyles();
     return (
-        <Card className={classes.showcaseCard}>
+        <Card className={classes.showcaseCard} raised>
             <ShowcaseTopContent {...props} />
             <ShowcaseMainContent {...props} />
             <Divider color="primary"/>

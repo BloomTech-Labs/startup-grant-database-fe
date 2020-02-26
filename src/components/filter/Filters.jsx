@@ -81,17 +81,10 @@ const filterStyles = {
             }
         },
         card: {
-            marginRight: "2rem",
-            padding: "48px",
-            borderRadius: "2px",
-            [theme.breakpoints.down("sm")]: {
-                width: "100%",
-                borderRadius: 0
-            },
+            marginTop: theme.spacing(2),
+            padding: theme.spacing(6),
             [theme.breakpoints.down("xs")]: {
-                padding: 0,
-                paddingTop: "20px",
-                flexGrow: 2
+                display: 'none'
             }
         },
         set: {

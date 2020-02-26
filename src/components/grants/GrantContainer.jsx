@@ -10,7 +10,9 @@ import TuneIcon from "@material-ui/icons/Tune";
 import Filters from "../filter/Filters";
 import clsx from "clsx";
 import { useAuth0 } from "../auth0/Auth0Wrapper";
-import {Helmet} from "react-helmet";
+import {logger} from "../../store/utils/logger";
+import Alert from "@material-ui/lab/Alert";
+import { Helmet } from "react-helmet";
 
 const useStyles = makeStyles(theme => ({
   homeGridContainer: {
@@ -28,14 +30,14 @@ const useStyles = makeStyles(theme => ({
     maxHeight: "86vh",
     overflow: "auto",
     position: "relative",
-    [theme.breakpoints.down('sm')]: {
-      width: '100%'
+    [theme.breakpoints.down("sm")]: {
+      width: "100%"
     },
     [theme.breakpoints.down("xs")]: {
       marginTop: theme.spacing(11),
       height: "100%",
       justifyContent: "center",
-      flexDirection: "column",
+      flexDirection: "column"
     }
   },
   gridItem: {
@@ -56,7 +58,7 @@ const useStyles = makeStyles(theme => ({
       "0px 1px 0px 0px rgba(0,0,0,0.2), 0px 1px 0px 0px rgba(0,0,0,0.14), 0px 2px 0px -1px rgba(0,0,0,0.12)",
     "&:hover": {
       cursor: "pointer"
-    },
+    }
   },
   filterIconSelected: {
     fill: "#3DB8B3",
@@ -67,8 +69,8 @@ const useStyles = makeStyles(theme => ({
     transition: "all .3s ease-in-out"
   },
   filterList: {
-    [theme.breakpoints.down('sm')]: {
-      display: 'none'
+    [theme.breakpoints.down("sm")]: {
+      display: "none"
     }
   },
   hideFilters: {
@@ -81,6 +83,7 @@ const useStyles = makeStyles(theme => ({
 
 function GrantContainer(props) {
   const { isAuthenticated } = useAuth0();
+  const [isInitialLoad, setIsInitialLoad] = useState(true);
   const allGrants = useSelector(state => state.filters.grants);
   const { pristine } = useSelector(state => state.filters);
   const allTheGrants = useSelector(state => state.grants.grants);
@@ -112,7 +115,10 @@ function GrantContainer(props) {
           setGrants(allTheGrants);
         } else {
           if (allGrants.length !== grants.length) {
-            setGrants(allGrants);
+            if (!isInitialLoad) {
+              setGrants(allGrants)
+            }
+            setIsInitialLoad(false)
           }
         }
       } else {
@@ -133,53 +139,68 @@ function GrantContainer(props) {
   const toggleFilters = () => setFiltersOpen(!filtersOpen);
 
   if (!showcase) {
+    logger('Called', showcase)
     return <Redirect to="/" />;
   }
 
   return (
-      <>
-        <Helmet>
-          <title>Founder Grants | Grants</title>
-          <meta name="description" content="Detail view of an available grant" />
-          <meta name="keywords" content="grant,startup,funding,invest,financing" />
-          <meta property="og:locale" content="en_US" />
-          <meta property="og:site_name" content="Startup Grant Database" />
-        </Helmet>
+    <>
+      <Helmet>
+        <title>Founder Grants | Grants</title>
+        <meta name="description" content="Detail view of an available grant" />
+        <meta
+          name="keywords"
+          content="grant,startup,funding,invest,financing"
+        />
+        <meta property="og:locale" content="en_US" />
+        <meta property="og:site_name" content="Startup Grant Database" />
+      </Helmet>
+
       <Grid
-          container
-          direction="row"
-          justify="space-between"
-          alignItems="flex-start"
-          spacing={2}
-          className={classes.homeGridContainer}
+        container
+        direction="row"
+        justify="space-between"
+        alignItems="flex-start"
+        spacing={2}
+        className={classes.homeGridContainer}
       >
         <Grid item xs={12} md={4} className={classes.grantList}>
+          {!isAuthenticated && (
+            <Alert severity="info" color="success" variant="filled">
+              Please login to see more grants!
+            </Alert>
+          )}
           <GrantList grants={grants} showcase={showcase} />
         </Grid>
         <Grid item md={7} className={classes.gridItem}>
           <GrantShowcase showcase={showcase} />
         </Grid>
+
         <Grid item md={2} className={classes.filterList}>
-          <TuneIcon
-              className={clsx(
+          {isAuthenticated && (
+            <>
+              <TuneIcon
+                className={clsx(
                   classes.filterIcon,
                   filtersOpen && classes.filterIconSelected
-              )}
-              onClick={toggleFilters}
-          >
-            Filters
-          </TuneIcon>
-          <div
-              className={clsx(
+                )}
+                onClick={toggleFilters}
+              >
+                Filters
+              </TuneIcon>
+              <div
+                className={clsx(
                   classes.filters,
                   filtersOpen ? classes.showFilters : classes.hideFilters
-              )}
-          >
-            <Filters grants={grants} />
-          </div>
+                )}
+              >
+                <Filters grants={grants} />
+              </div>
+            </>
+          )}
         </Grid>
       </Grid>
-        </>
+    </>
   );
 }
 
