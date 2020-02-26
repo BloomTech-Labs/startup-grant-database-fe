@@ -2,13 +2,11 @@ import React from 'react';
 import {Button, Typography} from '@material-ui/core';
 import {Link as RouterLink} from 'react-router-dom';
 import {makeStyles} from "@material-ui/core/styles";
-import clsx from "clsx";
 import {Helmet} from "react-helmet";
 
 const useStyles = makeStyles(theme => ({
     welcome: {
-        display: 'flex',
-        flexDirection: 'column'
+        padding: theme.spacing(2)
     },
     about: {
         marginLeft: theme.spacing(2),
@@ -21,13 +19,11 @@ const useStyles = makeStyles(theme => ({
 function Welcome() {
     const classes = useStyles();
     return (
-        
-        <div>
+        <div className={classes.welcome}>
             <Helmet>
-            <title>Founder Grants</title>
-            <meta name="description" content="Find your startup grant, browse by type, region, amount" />
-            <meta name="keywords" content="grant,startup,funding,invest,financing" />
-
+                <title>Founder Grants</title>
+                <meta name="description" content="Find your startup grant, browse by type, region, amount"/>
+                <meta name="keywords" content="grant,startup,funding,invest,financing"/>
             </Helmet>
             <Typography variant='h3' component='h1'>Welcome to Founder Grants</Typography>
             <Typography paragraph variant='h6' component='p'>
