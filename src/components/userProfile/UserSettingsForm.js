@@ -44,6 +44,7 @@ export const UserSettingsForm = props => {
   console.log("WOW", userSettingsFormData);
   return (
     <Paper className={styles.layout}>
+      <Typography variant="h6">Make Changes to Account</Typography>
       <Divider variant="middle" />
       <form onSubmit={props.handleSubmit}>
         <Grid container spacing={3} className={styles.formContainer}>

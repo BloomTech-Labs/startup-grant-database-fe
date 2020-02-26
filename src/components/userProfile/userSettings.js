@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import { useSelector } from "react-redux";
 import { UserSettingsForm } from "./UserSettingsForm.js";
 import { UserData } from "./userData.js";
-import { Button, Container, Grid } from "@material-ui/core";
+import { Paper, Button, Container, Grid } from "@material-ui/core";
 import { ActionsContext } from "../../context/ActionsContext";
 import { makeStyles } from "@material-ui/core/styles";
 import { useForm } from "../../hooks/useForm";
@@ -10,6 +10,10 @@ import { useForm } from "../../hooks/useForm";
 const useStyles = makeStyles(theme => ({
   button: {
     margin: "2em"
+  },
+  contain: {
+    display: "flex",
+    flexDirection: "row"
   }
 }));
 
@@ -30,7 +34,7 @@ const UserSettings = () => {
 
   return (
     <React.Fragment>
-      <Grid xs={12}>
+      <Container xs={12} className={styles.contain}>
         <Container maxWidth="sm">
           <UserData />
         </Container>
@@ -53,8 +57,8 @@ const UserSettings = () => {
             />
           )}
         </Container>
-      </Grid>
-      {isEditing && (
+      </Container>
+      {/* {isEditing && (
         <>
           <Button
             variant="contained"
@@ -76,7 +80,7 @@ const UserSettings = () => {
             Cancel Edit
           </Button>
         </>
-      )}
+      )} */}
     </React.Fragment>
   );
 };
