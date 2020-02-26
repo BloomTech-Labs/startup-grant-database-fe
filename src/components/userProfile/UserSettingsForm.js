@@ -25,12 +25,25 @@ const userSettingsFormData = [
   { label: "Last Name", type: "text", name: "last_name", data: [] },
   { label: "Role", type: "text", name: "role", data: [] },
   { label: "Phone", type: "tel", name: "phone", data: [] },
-  { label: "Project", type: "text", name: "company", data: [] },
-  { label: "Project Website", type: "text", name: "company_url", data: [] },
+  {
+    label: "Project",
+    type: "text",
+    name: "company",
+    placeholder: "Whats your company called?",
+    data: []
+  },
+  {
+    label: "Project Website",
+    type: "text",
+    name: "company_url",
+    placeholder: "https://startup.com",
+    data: []
+  },
   {
     label: "About Project",
     type: "text",
     name: "about",
+    placeholder: "What are you working on?",
     multiline: true,
     variant: "outlined",
     rows: "3",
