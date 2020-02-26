@@ -14,6 +14,7 @@ import {useSelector} from "react-redux";
 import moment from 'moment';
 import GrantTableRow from './GrantTableRow';
 
+
 const columns = [
     {id: 'competition_name', label: 'Name'},
     {id: 'is_reviewed', label: 'Grant Status', align: 'right'},
@@ -60,8 +61,10 @@ function NewGrantTable() {
             <TableContainer className={classes.container}>
                 <Table stickyHeader aria-label="Suggestions Table">
                     <TableHead>
-                        <TableRow>
+                        <TableRow >
                             {columns.map(column => (
+                                
+
                                 <TableCell
                                     key={column.id}
                                     align={column.align}
@@ -82,7 +85,7 @@ function NewGrantTable() {
             </TableContainer>
             <TablePagination
                 rowsPerPageOptions={[5, 10, 25, 100]}
-                componet="div"
+                component="div"
                 count={grants.length}
                 rowsPerPage={rowsPerPage}
                 page={page}

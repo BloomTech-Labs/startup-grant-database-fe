@@ -6,6 +6,8 @@ import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 import {ActionsContext} from "../../context/ActionsContext";
 import {useSelector} from "react-redux";
 import clsx from "clsx";
+import EditIcon from '@material-ui/icons/Edit';
+import EditGrantModal from './EditGrantModal';
 
 const useStyles = makeStyles(theme => ({
     expand: {
@@ -35,9 +37,16 @@ const GrantTableRow = ({grant, format, columns}) => {
         }
     }, [grant]);
 
+    const handleEdit = (e) => {
+        e.preventDefault();
+        
+
+    }
+
     return (
         <>
             <TableRow hover role="checkbox" tabIndex={-1} key={grant.id}>
+                <EditIcon onClick={handleEdit} />
                 {columns.map(column => {
                     return (
                         <TableCell key={column.id} align={column.align}>
@@ -79,6 +88,8 @@ const GrantTableRow = ({grant, format, columns}) => {
                     </TableCell>
                 </TableRow>
             )}
+           {/* <EditGrantModal /> */}
+
         </>
     )
 };
