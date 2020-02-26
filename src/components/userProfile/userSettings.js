@@ -56,31 +56,31 @@ const UserSettings = () => {
               handleSubmit={handleSubmit}
             />
           )}
+          {isEditing && (
+            <>
+              <Button
+                variant="contained"
+                color="primary"
+                className={styles.button}
+                onClick={e => {
+                  handleSubmit(e);
+                  setIsEditing(false);
+                }}
+              >
+                Save Changes
+              </Button>
+              <Button
+                variant="contained"
+                color="secondary"
+                className={styles.button}
+                onClick={() => isEditing && setIsEditing(false)}
+              >
+                Cancel Edit
+              </Button>
+            </>
+          )}
         </Container>
       </Container>
-      {/* {isEditing && (
-        <>
-          <Button
-            variant="contained"
-            color="primary"
-            className={styles.button}
-            onClick={e => {
-              handleSubmit(e);
-              setIsEditing(false);
-            }}
-          >
-            Save Changes
-          </Button>
-          <Button
-            variant="contained"
-            color="secondary"
-            className={styles.button}
-            onClick={() => isEditing && setIsEditing(false)}
-          >
-            Cancel Edit
-          </Button>
-        </>
-      )} */}
     </React.Fragment>
   );
 };

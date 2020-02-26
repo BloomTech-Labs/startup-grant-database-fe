@@ -25,6 +25,9 @@ const useStyles = makeStyles(theme => ({
     fontWeight: "600",
     paddingTop: "1.5em",
     paddingBottom: "0.5em"
+  },
+  card: {
+    justifyContent: "center"
   }
 }));
 
@@ -68,8 +71,8 @@ export const UserData = props => {
 
   return (
     <React.Fragment>
-      <Paper>
-        <Avatar src={currentUser.picture}></Avatar>
+      <Paper className={styles.card}>
+        <Avatar src={currentUser.picture} className={styles.avatar}></Avatar>
         <Typography variant="h6">{currentUser.nickname}'s Profile</Typography>
         <Divider variant="middle" />
         <Grid container spacing={6} className={styles.formContainer}>
