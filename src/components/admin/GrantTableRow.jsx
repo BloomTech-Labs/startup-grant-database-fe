@@ -88,7 +88,7 @@ const GrantTableRow = ({grant, format, columns}) => {
                     </TableCell>
                 </TableRow>
             )}
-           {/* <EditGrantModal /> */}
+           <EditGrantModal actionButtonText="Edit"/>
 
         </>
     )
