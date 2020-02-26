@@ -65,26 +65,15 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-<<<<<<< HEAD
 function NewGrant({ grant, showcase }: IProps) {
   const actions = useContext(ActionsContext);
   const [expanded, setExpanded] = useState<boolean>(false);
   const { favoriteGrants } = useSelector((state: AppState) => state.user);
-  const existingFavorite = favoriteGrants.filter(
-    (fav: Grant) => fav.id === showcase.id
-  );
-=======
-function NewGrant({grant, showcase}: IProps) {
-    const actions = useContext(ActionsContext);
-    const [expanded, setExpanded] = useState<boolean>(false);
-    const {favoriteGrants} = useSelector((state: AppState) => state.user);
->>>>>>> 48dfcb7733cd003feff8d9117d499cf3733f2a66
 
   function selectGrant() {
     actions && actions.grants.selectGrant(grant);
   }
 
-<<<<<<< HEAD
   const isSelected = () => grant.id === showcase.id;
   const handleExpandClick = () => setExpanded(!expanded);
   const classes = useStyles();
@@ -108,7 +97,7 @@ function NewGrant({grant, showcase}: IProps) {
       <CardContent>
         <Grid container>
           {fieldHeaderData.map(fields => (
-            <ShowcaseFields {...fields} showcase={grant} />
+            <ShowcaseFields {...fields} showcase={grant} key={fields.title} />
           ))}
         </Grid>
       </CardContent>
@@ -135,7 +124,13 @@ function NewGrant({grant, showcase}: IProps) {
         <CardContent>
           <Grid container spacing={1}>
             {fieldData.map(fields => {
-              return <ShowcaseFields {...fields} showcase={grant} />;
+              return (
+                <ShowcaseFields
+                  {...fields}
+                  showcase={grant}
+                  key={fields.title}
+                />
+              );
             })}
           </Grid>
         </CardContent>
@@ -148,61 +143,6 @@ function NewGrant({grant, showcase}: IProps) {
       </Collapse>
     </Card>
   );
-=======
-    const isSelected = () => grant.id === showcase.id;
-    const handleExpandClick = () => setExpanded(!expanded);
-    const classes = useStyles();
-    return (
-        <Card className={clsx(classes.root, isSelected() && classes.grantCardSelected)} raised onClick={selectGrant}>
-            <CardHeader
-                avatar={!grant.use_logo ? <DefaultLogo/> : <img src={grant.logo} alt="logo"/>}
-                title={<Typography variant="h5">{grant.competition_name}</Typography>}
-                subheader={<Link href={grant.website}>{grant.sponsoring_entity}</Link>}
-            />
-            <CardContent>
-                <Grid container>
-                    {fieldHeaderData.map(fields => (
-                        <ShowcaseFields {...fields} showcase={grant} key={fields.title} />
-                    ))}
-                </Grid>
-            </CardContent>
-            <CardActions disableSpacing className={classes.firstActions}>
-                <Divider color="primary" />
-                <IconDisplay
-                    favoriteGrants={favoriteGrants}
-                    existingFavorite={favoriteGrants.filter(
-                        (favGrant: Grant) => favGrant.id === grant.id
-                    )}
-                    id={grant.id}
-                />
-                <IconButton
-                    onClick={handleExpandClick}
-                    aria-expanded={expanded}
-                    aria-label="show more"
-                    className={clsx(classes.expand, {[classes.expandOpen]: expanded})}
-                >
-                    <ExpandMoreIcon/>
-                </IconButton>
-            </CardActions>
-            <Collapse in={expanded} timeout="auto" unmountOnExit>
-                <Divider color="primary" />
-                <CardContent>
-                    <Grid container spacing={1}>
-                        {fieldData.map(fields => {
-                            return <ShowcaseFields {...fields} showcase={grant} key={fields.title}/>
-                        })}
-                    </Grid>
-                </CardContent>
-                <CardActions className={classes.secondActions}>
-                    <Link href={grant.website} target="_blank">
-                        <Button color="primary">Apply to Grant</Button>
-                    </Link>
-                    <Button color="primary">Suggestions</Button>
-                </CardActions>
-            </Collapse>
-        </Card>
-    );
->>>>>>> 48dfcb7733cd003feff8d9117d499cf3733f2a66
 }
 
 export default NewGrant;
