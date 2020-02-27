@@ -6,12 +6,10 @@ import Fund1517 from '../../assets/1517Fund.png';
 import Github from '../../assets/teamGithub.png';
 import {Helmet} from 'react-helmet';
 
+
 const useAboutStyles = makeStyles(theme => ({
     layout: {
-        height: "calc(100vh - 176px)",
-        [theme.breakpoints.down('sm')]: {
-            height: "auto"
-        }
+        height: 'auto'
     },
   aboutCardContainer: {
       margin: 20
