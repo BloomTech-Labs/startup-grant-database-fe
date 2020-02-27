@@ -21,13 +21,14 @@ const useStyles = makeStyles(theme => ({
     margin: "0",
     flexWrap: "nowrap",
     overflowX: "hidden",
-    overflowY: "hidden",
+    overflowY: "auto",
     [theme.breakpoints.down("sm")]: {
       background: "#f7f7f7"
     }
   },
   grantList: {
-    maxHeight: "86vh",
+    maxHeight: "100vh",
+    height: 'auto',
     overflow: "auto",
     position: "relative",
     [theme.breakpoints.down("sm")]: {
@@ -41,6 +42,7 @@ const useStyles = makeStyles(theme => ({
     }
   },
   gridItem: {
+    overflow: 'auto',
     padding: "1em"
   },
   filters: {

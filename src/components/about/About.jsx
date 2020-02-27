@@ -12,11 +12,10 @@ const useAboutStyles = makeStyles(theme => ({
         height: 'auto'
     },
   aboutCardContainer: {
-      margin: 20
+      margin: theme.spacing(2.5)
   },
   aboutIntroCardContainer: {
-      margin: 1,
-      padding: 20
+      padding: theme.spacing(2.5)
   },
   aboutContainer: {
       [theme.breakpoints.down(1150 + theme.spacing(2) * 2)]: {
@@ -28,8 +27,8 @@ const useAboutStyles = makeStyles(theme => ({
     aboutCard: {
         width: "100%",
         height: 256,
-        margin: 10,
-        padding: 10,
+        margin: theme.spacing(1),
+        padding: theme.spacing(1),
         opacity: 0.7,
         display: 'flex',
         alignItems: 'center',
@@ -45,7 +44,7 @@ const useAboutStyles = makeStyles(theme => ({
         [theme.breakpoints.down(1150 + theme.spacing(2) * 2)]: {
             width: 300,
             height: 'auto',
-            marginTop: 30
+            marginTop: theme.spacing(4)
         },
         [theme.breakpoints.down(800 + theme.spacing(2) * 2)]: {
             marginLeft: theme.spacing(2),
@@ -54,13 +53,12 @@ const useAboutStyles = makeStyles(theme => ({
         }
     },
     aboutIntro: {
-        marginTop: 15,
-        marginBottom: 15
+        margin: theme.spacing(2, 0)
     },
     aboutTopCard: {
         width: "75%",
-        margin: 20,
-        padding: 15
+        margin: theme.spacing(2.5),
+        padding: theme.spacing(2)
     }
 }));
 
