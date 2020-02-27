@@ -8,7 +8,7 @@ import {useSelector} from "react-redux";
 const filterStyles = {
     grants: makeStyles(theme => ({
         card: {
-            margin: '1em 1em 0 0',
+            margin: theme.spacing(2, 1, 0, 0),
             borderRadius: '2px',
             [theme.breakpoints.down('sm')]: {
                 position: 'initial',
