@@ -8,7 +8,7 @@ import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles(theme => ({
   formContainer: {
-    padding: "1em 8em 6em 8em",
+    padding: "1em 8em 2em 8em",
     [theme.breakpoints.down("sm")]: {
       padding: "2em"
     }
@@ -27,6 +27,9 @@ const useStyles = makeStyles(theme => ({
     paddingBottom: "0.5em"
   },
   card: {
+    justifyContent: "center"
+  },
+  avatar: {
     justifyContent: "center"
   }
 }));

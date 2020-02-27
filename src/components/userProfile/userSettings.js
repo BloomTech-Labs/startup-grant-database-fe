@@ -11,6 +11,11 @@ const useStyles = makeStyles(theme => ({
   button: {
     margin: "2em"
   },
+  editBtn: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center"
+  },
   contain: {
     display: "flex",
     flexDirection: "row",
@@ -23,7 +28,6 @@ const useStyles = makeStyles(theme => ({
 
 const UserSettings = () => {
   const actions = useContext(ActionsContext);
-  const [isEditing, setIsEditing] = useState(false);
   const { token, currentUser } = useSelector(state => state.user);
   const styles = useStyles();
   const [values, handleChange, handleSubmit] = useForm(
@@ -42,47 +46,22 @@ const UserSettings = () => {
         <Container maxWidth="sm">
           <UserData />
         </Container>
-        <Container maxWidth="sm">
-          {!isEditing && (
-            <Button
-              variant="contained"
-              color="primary"
-              className={styles.button}
-              onClick={() => !isEditing && setIsEditing(true)}
-            >
-              Edit Details
-            </Button>
-          )}
-          {isEditing && (
-            <UserSettingsForm
-              values={values}
-              handleChange={handleChange}
-              handleSubmit={handleSubmit}
-            />
-          )}
-          {isEditing && (
-            <>
-              <Button
-                variant="contained"
-                color="primary"
-                className={styles.button}
-                onClick={e => {
-                  handleSubmit(e);
-                  setIsEditing(false);
-                }}
-              >
-                Save Changes
-              </Button>
-              <Button
-                variant="contained"
-                color="secondary"
-                className={styles.button}
-                onClick={() => isEditing && setIsEditing(false)}
-              >
-                Cancel Edit
-              </Button>
-            </>
-          )}
+        <Container maxWidth="sm" className={styles.btnDiv}>
+          <UserSettingsForm
+            values={values}
+            handleChange={handleChange}
+            handleSubmit={handleSubmit}
+          />
+          <Button
+            variant="contained"
+            color="primary"
+            className={styles.button}
+            onClick={e => {
+              handleSubmit(e);
+            }}
+          >
+            Save Changes
+          </Button>
         </Container>
       </Container>
     </React.Fragment>

@@ -10,7 +10,7 @@ import TuneIcon from "@material-ui/icons/Tune";
 import Filters from "../filter/Filters";
 import clsx from "clsx";
 import { useAuth0 } from "../auth0/Auth0Wrapper";
-import {logger} from "../../store/utils/logger";
+import { logger } from "../../store/utils/logger";
 import Alert from "@material-ui/lab/Alert";
 import { Helmet } from "react-helmet";
 
@@ -116,9 +116,9 @@ function GrantContainer(props) {
         } else {
           if (allGrants.length !== grants.length) {
             if (!isInitialLoad) {
-              setGrants(allGrants)
+              setGrants(allGrants);
             }
-            setIsInitialLoad(false)
+            setIsInitialLoad(false);
           }
         }
       } else {
@@ -139,7 +139,7 @@ function GrantContainer(props) {
   const toggleFilters = () => setFiltersOpen(!filtersOpen);
 
   if (!showcase) {
-    logger('Called', showcase)
+    logger("Called", showcase);
     return <Redirect to="/" />;
   }
 

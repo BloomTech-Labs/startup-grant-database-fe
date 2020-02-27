@@ -60,7 +60,7 @@ export const UserSettingsForm = props => {
       <Typography variant="h6">Make Changes to Account</Typography>
       <Divider variant="middle" />
       <form onSubmit={props.handleSubmit}>
-        <Grid container spacing={3} className={styles.formContainer}>
+        <Grid container spacing={6} className={styles.formContainer}>
           {userSettingsFormData.map(data => {
             console.log("Data", data);
             return (
