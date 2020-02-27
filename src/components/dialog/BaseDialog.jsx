@@ -13,7 +13,7 @@ import { useSelector } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
 import { useForm } from "../../hooks/useForm";
 import { ActionsContext } from "../../context/ActionsContext";
-import { ConfirmedModel } from "../admin/ConfirmedModel";
+import ConfirmedModel from "../admin/ConfirmedModel";
 
 const useStyles = makeStyles(theme => ({
   applyButton: {
@@ -23,7 +23,8 @@ const useStyles = makeStyles(theme => ({
     marginTop: "20px"
   },
   header: {
-    background: "#3CBBB1"
+    background: "#3CBBB1",
+    padding: theme.spacing(2)
   },
   headerText: {
     color: "#ffffff",
@@ -42,9 +43,9 @@ const useStyles = makeStyles(theme => ({
 function BaseDialog(props) {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
-  const [confirmedOpen, setConfirmedOpen] = useState(false);
   const actions = useContext(ActionsContext);
   const { token } = useSelector(state => state.user);
+  const { isSuccess } = useSelector(state => state.suggestion);
   const [values, handleChange, handleSubmit, resetForm] = useForm(
     {
       grant_id: props.id,
@@ -60,7 +61,10 @@ function BaseDialog(props) {
     resetForm();
   };
 
-  const handleConfirmedOpen = () => setConfirmedOpen(true);
+  const handleConfirmedClose = () => {
+    actions.suggestion.resetSuccess();
+    resetForm();
+  };
 
   function doSubmit() {
     console.log(values);
@@ -138,21 +142,21 @@ function BaseDialog(props) {
                   variant="outlined"
                   type="submit"
                   className={classes.btn}
-                  onClick={() => {
-                    !confirmedOpen && handleConfirmedOpen();
-
-                    console.log("confirmedOpen", confirmedOpen);
-                  }}
+                  onClick={handleClose}
                 >
                   Send
                 </Button>
               </Grid>
             </Grid>
           </DialogActions>
-          {console.log("confirmedOpen down here", confirmedOpen)}
-          <ConfirmedModel openStatus={confirmedOpen} />
         </form>
       </Dialog>
+      <ConfirmedModel
+        isSuccess={isSuccess}
+        handleClose={handleConfirmedClose}
+        title="Thank You!"
+        message="Your suggestion was recorded"
+      />
     </>
   );
 }

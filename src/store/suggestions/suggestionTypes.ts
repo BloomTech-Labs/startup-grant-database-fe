@@ -10,7 +10,8 @@ export enum SuggestionTypes {
   FETCH_SUGGESTION_FAILURE = "FETCH_SUGGESTION_FAILURE",
   ADD_SUGGESTION_START = "ADD_SUGGESTION_START",
   ADD_SUGGESTION_SUCCESS = "ADD_SUGGESTION_SUCCESS",
-  ADD_SUGGESTION_FAILURE = "ADD_SUGGESTION_FAILURE"
+  ADD_SUGGESTION_FAILURE = "ADD_SUGGESTION_FAILURE",
+  RESET_SUCCESS = "RESET_SUCCESS"
 }
 
 export interface Suggestion {
@@ -26,10 +27,15 @@ export interface SuggestionState {
   errors: Error | null;
   isLoading: boolean;
   isSelecting: boolean;
+  isSuccess: boolean;
 }
 interface FetchSuggestionStart {
   type: typeof SuggestionTypes.FETCH_SUGGESTION_START;
   isFetching: boolean;
+}
+
+interface ResetSuccess {
+  type: typeof SuggestionTypes.RESET_SUCCESS;
 }
 
 interface FetchSuggestionSuccess {
@@ -96,4 +102,5 @@ export type SuggestionActions =
   | DeleteSuggestionFailure
   | AddSuggestionStart
   | AddSuggestionSuccess
-  | AddSuggestionFailure;
+  | AddSuggestionFailure
+  | ResetSuccess;
