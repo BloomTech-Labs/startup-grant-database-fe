@@ -14,7 +14,7 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
 import { ActionsContext } from "../../context/ActionsContext";
 import { useSelector } from "react-redux";
-import { TextFormField } from "../suggestion/formElements/TextFormField";
+import EditGrantModal from "./EditGrantModal";
 import clsx from "clsx";
 
 const useStyles = makeStyles(theme => ({
@@ -55,8 +55,6 @@ const GrantTableRow = ({ grant, format, columns }) => {
     setItem(grant);
   }, [grant]);
 
-  console.log("**********************", grant);
-
   return (
     <>
       <TableRow hover role="checkbox" tabIndex={-1} key={grant.id}>
@@ -67,32 +65,15 @@ const GrantTableRow = ({ grant, format, columns }) => {
             </TableCell>
           );
         })}
+
         <TableCell align="left">
-          <IconButton onClick={() => setEditExpand(!editExpand)}>
+          <IconButton onClick={() => <EditGrantModal grant={grant} />}>
             <EditIcon
               className={clsx(classes.expand, expand && classes.expandOpen)}
             />
           </IconButton>
-          {editExpand && (
-            <TableRow>
-              <TableCell colSpan="3">
-                <Table>
-                  <TableHead>Edit this Grant.</TableHead>
-                  <TableBody>
-                    {item.map(data => (
-                      <TableRow key={data.id}>
-                        <TextFormField />
-                        <IconButton onClick={() => handleDelete(data.id)}>
-                          <DeleteForeverIcon />
-                        </IconButton>
-                      </TableRow>
-                    ))}
-                  </TableBody>
-                </Table>
-              </TableCell>
-            </TableRow>
-          )}
         </TableCell>
+
         <TableCell align="right">
           {grant.requests.length > 0 && (
             <IconButton onClick={() => setExpand(!expand)}>
