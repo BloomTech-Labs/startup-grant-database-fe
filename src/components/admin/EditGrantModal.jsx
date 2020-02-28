@@ -128,6 +128,7 @@ const EditGrantModal = ({ grant, format, columns }) => {
                       multiline={data.multiline}
                       variant={data.variant}
                       rows={data.rows}
+                      handleChange={handleChange}
                     />
                   </Grid>
                 );
