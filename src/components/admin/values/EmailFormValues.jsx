@@ -16,7 +16,7 @@ export const EmailSingleValues = [
     type: "text",
     multiline: true,
     rows: 5,
-    name: "message",
+    name: "text",
     variant: "outlined",
     data: []
   }
