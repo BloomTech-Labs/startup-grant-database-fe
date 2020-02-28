@@ -6,21 +6,21 @@ import {textDisplay} from "../../../utils/helpers";
 
 const useStyles = makeStyles(theme => ({
     showcaseDetails: {
-        margin: '.5em 0',
-        padding: '.5em 0',
-        lineHeight: '1.2rem',
+        // margin: '.5em 0',
+        // padding: '.5em 0',
+        // lineHeight: '1.2rem',
         fontFamily: 'EB Garamond'
     },
     detailTitle: {
         fontFamily: "Nunito Sans",
         fontWeight: "bold",
-        fontSize: '1.1rem'
+        // fontSize: '1.1rem'
     },
     innerDetails: {
         color: '#696969',
-        fontSize: "0.9rem",
-        marginTop: 5,
-        height: 'auto'
+        // fontSize: "0.9rem",
+        // marginTop: 5,
+        // height: 'auto'
     }
 }));
 

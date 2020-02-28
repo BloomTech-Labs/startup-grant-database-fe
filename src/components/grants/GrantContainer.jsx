@@ -21,13 +21,14 @@ const useStyles = makeStyles(theme => ({
     margin: "0",
     flexWrap: "nowrap",
     overflowX: "hidden",
-    overflowY: "hidden",
+    overflowY: "auto",
     [theme.breakpoints.down("sm")]: {
       background: "#f7f7f7"
     }
   },
   grantList: {
-    maxHeight: "86vh",
+    maxHeight: "84vh",
+    height: 'auto',
     overflow: "auto",
     position: "relative",
     [theme.breakpoints.down("sm")]: {
@@ -41,7 +42,11 @@ const useStyles = makeStyles(theme => ({
     }
   },
   gridItem: {
-    padding: "1em"
+    overflow: 'auto',
+    position: 'relative',
+    maxHeight: '84vh',
+    minHeight: '76vh',
+    padding: theme.spacing(2)
   },
   filters: {
     transition: "all .3s ease-in-out"
@@ -139,7 +144,6 @@ function GrantContainer(props) {
         direction="row"
         justify="space-between"
         alignItems="flex-start"
-        spacing={2}
         className={classes.homeGridContainer}
       >
         <Grid item xs={12} md={4} className={classes.grantList}>
@@ -150,7 +154,7 @@ function GrantContainer(props) {
           )}
           <GrantList grants={grants} showcase={showcase} />
         </Grid>
-        <Grid item md={7} className={classes.gridItem}>
+        <Grid item md={6} className={classes.gridItem}>
           <GrantShowcase showcase={showcase} />
         </Grid>
 
