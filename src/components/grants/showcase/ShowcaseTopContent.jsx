@@ -10,7 +10,7 @@ import WebsiteUrl from "./WebsiteUrl";
 const useStyles = makeStyles(theme => ({
     title: {
         flexGrow: 1,
-        maxWidth: 585
+        maxWidth: 535
     },
     topContent: {
         margin: "0"

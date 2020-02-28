@@ -43,28 +43,6 @@ const useStyles = makeStyles(theme => ({
   gridItem: {
     padding: "1em"
   },
-  filterIcon: {
-    position: "absolute",
-    top: "8%",
-    fill: "#BBB",
-    right: "1%",
-    padding: "10px",
-    background: "#fff",
-    width: "2em",
-    height: "2em",
-    borderRadius: "100px",
-    zIndex: "1000",
-    boxShadow:
-      "0px 1px 0px 0px rgba(0,0,0,0.2), 0px 1px 0px 0px rgba(0,0,0,0.14), 0px 2px 0px -1px rgba(0,0,0,0.12)",
-    "&:hover": {
-      cursor: "pointer"
-    }
-  },
-  filterIconSelected: {
-    fill: "#3DB8B3",
-    boxShadow:
-      "0px 1px 0px 0px #3DB8B3, 0px 4px 0px 0px #3DB8B3, 0px 2px 0px -1px #3DB8B3"
-  },
   filters: {
     transition: "all .3s ease-in-out"
   },
@@ -179,21 +157,7 @@ function GrantContainer(props) {
         <Grid item md={2} className={classes.filterList}>
           {isAuthenticated && (
             <>
-              <TuneIcon
-                className={clsx(
-                  classes.filterIcon,
-                  filtersOpen && classes.filterIconSelected
-                )}
-                onClick={toggleFilters}
-              >
-                Filters
-              </TuneIcon>
-              <div
-                className={clsx(
-                  classes.filters,
-                  filtersOpen ? classes.showFilters : classes.hideFilters
-                )}
-              >
+              <div className={clsx(classes.filters, classes.showFilters)}>
                 <Filters grants={grants} />
               </div>
             </>
