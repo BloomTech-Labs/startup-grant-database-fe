@@ -1,8 +1,8 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { UserSettingsForm } from "./UserSettingsForm.js";
 import { UserData } from "./userData.js";
-import { Paper, Button, Container, Grid } from "@material-ui/core";
+import { Button, Container } from "@material-ui/core";
 import { ActionsContext } from "../../context/ActionsContext";
 import { makeStyles } from "@material-ui/core/styles";
 import { useForm } from "../../hooks/useForm";
@@ -10,21 +10,18 @@ import { useForm } from "../../hooks/useForm";
 const useStyles = makeStyles(theme => ({
   button: {
     margin: "2em"
-  },
-  editBtn: {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center"
-  },
-  contain: {
-    display: "flex",
-    flexDirection: "row",
-    [theme.breakpoints.down("sm")]: {
-      padding: "2em",
-      flexDirection: "column"
-    }
   }
 }));
+
+const initialData = {
+  first_name: "",
+  last_name: "",
+  role: "",
+  phone: "",
+  company: "",
+  company_url: "",
+  about: ""
+};
 
 const UserSettings = () => {
   const actions = useContext(ActionsContext);
@@ -36,8 +33,9 @@ const UserSettings = () => {
   );
 
   function doSubmit() {
-    console.log(values);
+    setData(values);
     actions.user.updateUser(token, values);
+    setIsEditing(false);
   }
 
   return (

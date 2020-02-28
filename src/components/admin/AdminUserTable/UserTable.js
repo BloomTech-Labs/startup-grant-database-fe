@@ -5,8 +5,9 @@ import MaterialTable, { FilterRow } from "material-table";
 import { makeStyles } from "@material-ui/core/styles";
 import moment from "moment";
 import { useAuth0 } from "../../auth0/Auth0Wrapper";
-import { Paper } from "@material-ui/core";
+import { Paper, Button } from "@material-ui/core";
 import { tableValues } from "./values/UserTableValues";
+import { EmailFormSingle } from "../EmailFormSingle";
 
 const userTableStyles = makeStyles(theme => ({
   displayNone: {
@@ -41,7 +42,7 @@ const UserTable = props => {
   const roleId = useSelector(
     state => state.admin.roles.filter(role => role.name === "Moderator")[0].id
   );
-
+  const [emailType, setEmailType] = useState("");
   const style = userTableStyles();
 
   return (
@@ -79,6 +80,14 @@ const UserTable = props => {
           zeroMinWidth
         />
       </Paper>
+      <Button
+        variant="contained"
+        color="primary"
+        onClick={() => setEmailType("one")}
+      >
+        Email Individual
+      </Button>
+      {emailType === "one" && <EmailFormSingle />}
     </React.Fragment>
   );
 };

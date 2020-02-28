@@ -1,8 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
-import { ActionsContext } from "../../context/ActionsContext";
-import { useAuth0 } from "../auth0/Auth0Wrapper";
-import { useSelector } from "react-redux";
-
+import React from "react";
 import { Divider, Grid, Paper, Typography, Avatar } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
@@ -34,16 +30,6 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const initialData = {
-  first_name: "",
-  last_name: "",
-  role: "",
-  phone: "",
-  company: "",
-  company_url: "",
-  about: ""
-};
-
 const titles = [
   "First Name",
   "Last Name",
@@ -54,23 +40,8 @@ const titles = [
   "About Project"
 ];
 
-export const UserData = props => {
-  const actions = useContext(ActionsContext);
-  const { token, currentUser } = useSelector(state => state.user);
-  const [data, setData] = useState({});
+export const UserData = ({ data, initialData }) => {
   const styles = useStyles();
-
-  useEffect(() => {
-    const checkCurrentUser = async () => {
-      if (!currentUser.user_metadata) {
-        await actions.user.updateUser(token, initialData);
-        setData(initialData);
-      } else {
-        setData(currentUser.user_metadata);
-      }
-    };
-    checkCurrentUser();
-  }, []);
 
   return (
     <React.Fragment>
