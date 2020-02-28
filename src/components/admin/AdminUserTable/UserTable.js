@@ -87,15 +87,7 @@ const UserTable = props => {
       >
         Email Individual
       </Button>
-      <Button
-        variant="contained"
-        color="secondary"
-        onClick={() => setEmailType("all")}
-      >
-        Email Everyone
-      </Button>
       {emailType === "one" && <EmailFormSingle />}
-      {emailType === "all" && <EmailFormAll />}
     </React.Fragment>
   );
 };
