@@ -55,14 +55,14 @@ const mainDataContent = [
     {
         xs: 9,
         sm: 10,
-        md: 4,
+        md: 8,
         title: 'Sponsor',
         subtitle: 'sponsoring_entity'
     },
     {
         xs: 9,
         sm: 10,
-        md: 4,
+        md: 12,
         title: 'Notes',
         subtitle: 'notes'
     },
@@ -74,6 +74,7 @@ function ShowcaseMainContent(props) {
             container
             justify='space-between'
             direction='row'
+            spacing={1}
         >
             {mainDataContent.map(field => (<ShowcaseFields {...field} key={field.title} {...props} />))}
         </Grid>
