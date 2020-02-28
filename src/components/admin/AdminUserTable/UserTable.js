@@ -8,7 +8,7 @@ import { useAuth0 } from "../../auth0/Auth0Wrapper";
 import { Paper, Button } from "@material-ui/core";
 import { tableValues } from "./values/UserTableValues";
 import { EmailFormSingle } from "../EmailFormSingle";
-import { EmailFormAll } from "../EmailFormAll";
+
 const userTableStyles = makeStyles(theme => ({
   displayNone: {
     color: "#EF7B5C",
