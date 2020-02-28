@@ -64,7 +64,6 @@ const UserTable = props => {
               }),
             onRowUpdate: (newData, oldData) =>
               new Promise(resolve => {
-
                 setTimeout(() => {
                   resolve();
                   if (oldData) {
