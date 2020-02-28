@@ -2,8 +2,8 @@ import React, { useContext, useEffect, useState } from "react";
 import { ActionsContext } from "../../context/ActionsContext";
 import { useAuth0 } from "../auth0/Auth0Wrapper";
 import { useSelector } from "react-redux";
-
-import { Divider, Grid, Paper, Typography } from "@material-ui/core";
+import { Link } from "react-router-dom";
+import { Divider, Grid, Paper, Typography, Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles(theme => ({
@@ -82,6 +82,11 @@ export const UserData = props => {
             </Grid>
           ))}
         </Grid>
+        <Link to="/mailinglist">
+          <Button variant="outlined" color="secondary">
+            Notify Me When New Grants Are Available
+          </Button>
+        </Link>
       </Paper>
     </React.Fragment>
   );
