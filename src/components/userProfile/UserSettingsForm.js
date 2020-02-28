@@ -2,7 +2,7 @@ import React from "react";
 import { TextFormField } from "../suggestion/formElements/TextFormField";
 import { Divider, Grid, Paper, Typography, Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-
+import { Link } from "react-router-dom";
 const useStyles = makeStyles(theme => ({
   formContainer: {
     padding: "1em 8em 2em 8em",
@@ -68,6 +68,11 @@ export const UserSettingsForm = props => {
           })}
         </Grid>
       </form>
+      <Link to="/mailinglist">
+        <Button variant="outlined" color="secondary">
+          Notify Me When New Grants Are Available
+        </Button>
+      </Link>
     </Paper>
   );
 };
