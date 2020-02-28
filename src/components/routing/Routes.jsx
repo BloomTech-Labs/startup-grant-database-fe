@@ -9,6 +9,7 @@ import PrivateRoute from "./PrivateRoute";
 import About from "../about/About";
 import UserTable from "../admin/AdminUserTable/UserTable";
 import AdminRoute from "./AdminRoute";
+import MailingList from "../MailingList";
 const routes = [
   {
     key: "APP_ROOT",
@@ -79,6 +80,12 @@ const routes = [
       exact: true,
       component: UserTable
     }
+  },
+  {
+    key: "MAILING_LIST",
+    path: "/mailinglist",
+    exact: true,
+    component: MailingList
   }
 ];
 
