@@ -10,7 +10,7 @@ import ShowcaseBottomContent from "./showcase/ShowcaseBottomContent";
 const useStyles = makeStyles(theme => ({
     showcaseCard: {
         textAlign: 'left',
-        padding: '30px',
+        padding: theme.spacing(2),
         borderTop: '#3DB8B3 5px solid',
         fontFamily: 'adobe-garamond-pro',
         [theme.breakpoints.down('sm')]: {
