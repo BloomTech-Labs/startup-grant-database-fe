@@ -16,6 +16,7 @@ import { ActionsContext } from "../../context/ActionsContext";
 import { useSelector } from "react-redux";
 import EditGrantModal from "./EditGrantModal";
 import clsx from "clsx";
+import editFormValues from "./values/EditGrantFormValues";
 
 const useStyles = makeStyles(theme => ({
   expand: {
@@ -33,7 +34,7 @@ const useStyles = makeStyles(theme => ({
 const GrantTableRow = ({ grant, format, columns }) => {
   const actions = useContext(ActionsContext);
   const [expand, setExpand] = useState(false);
-  const [editExpand, setEditExpand] = useState(false);
+  const [edit, setEdit] = useState(false);
   const [item, setItem] = useState([]);
 
   const { token } = useSelector(state => state.user);
@@ -55,6 +56,7 @@ const GrantTableRow = ({ grant, format, columns }) => {
     setItem(grant);
   }, [grant]);
 
+  console.log("=++++++++++++++++++++++", editFormValues);
   return (
     <>
       <TableRow hover role="checkbox" tabIndex={-1} key={grant.id}>
@@ -67,13 +69,13 @@ const GrantTableRow = ({ grant, format, columns }) => {
         })}
 
         <TableCell align="left">
-          <IconButton onClick={() => <EditGrantModal grant={grant} />}>
+          <IconButton onClick={() => setEdit(!edit)}>
             <EditIcon
               className={clsx(classes.expand, expand && classes.expandOpen)}
             />
           </IconButton>
         </TableCell>
-
+        {edit && <EditGrantModal grant={grant} />}
         <TableCell align="right">
           {grant.requests.length > 0 && (
             <IconButton onClick={() => setExpand(!expand)}>

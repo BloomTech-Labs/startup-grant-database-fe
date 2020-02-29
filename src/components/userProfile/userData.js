@@ -1,6 +1,7 @@
 import React from "react";
 import { Divider, Grid, Paper, Typography, Avatar } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
+import { useSelector } from "react-redux";
 
 const useStyles = makeStyles(theme => ({
   formContainer: {
@@ -26,7 +27,7 @@ const useStyles = makeStyles(theme => ({
     justifyContent: "center"
   },
   avatar: {
-    justifyContent: "center"
+    padding: "1em"
   }
 }));
 
@@ -40,9 +41,9 @@ const titles = [
   "About Project"
 ];
 
-export const UserData = ({ data, initialData }) => {
+export const UserData = ({ data, initialData, currentUser }) => {
   const styles = useStyles();
-
+  console.log(initialData);
   return (
     <React.Fragment>
       <Paper className={styles.card}>

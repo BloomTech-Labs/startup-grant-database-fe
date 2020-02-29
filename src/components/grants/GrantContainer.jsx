@@ -28,7 +28,7 @@ const useStyles = makeStyles(theme => ({
   },
   grantList: {
     maxHeight: "84vh",
-    height: 'auto',
+    height: "auto",
     overflow: "auto",
     position: "relative",
     [theme.breakpoints.down("sm")]: {
@@ -42,10 +42,10 @@ const useStyles = makeStyles(theme => ({
     }
   },
   gridItem: {
-    overflow: 'auto',
-    position: 'relative',
-    maxHeight: '84vh',
-    minHeight: '76vh',
+    overflow: "auto",
+    position: "relative",
+    maxHeight: "84vh",
+    minHeight: "76vh",
     padding: theme.spacing(2)
   },
   filters: {
@@ -149,7 +149,8 @@ function GrantContainer(props) {
         <Grid item xs={12} md={4} className={classes.grantList}>
           {!isAuthenticated && (
             <Alert severity="info" color="success" variant="filled">
-              Please login to see more grants!
+              Enjoy these samples. Login to access hundreds of curated grants
+              that can fund your ambitions.
             </Alert>
           )}
           <GrantList grants={grants} showcase={showcase} />

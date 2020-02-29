@@ -1,4 +1,3 @@
-import React, { useEffect } from "react";
 import {
   InfoFieldData,
   FocusFormData,
@@ -25,11 +24,11 @@ const approvedValue = {
   ]
 };
 
-const editFormValues = {
-  ...approvedValue,
+const editFormValues = [
+  { ...approvedValue },
   ...InfoFieldData,
   ...DemoFormData,
   ...FocusFormData
-};
+];
 
 export default editFormValues;

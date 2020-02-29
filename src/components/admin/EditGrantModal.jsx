@@ -6,11 +6,10 @@ import {
   DialogContent,
   DialogContentText,
   DialogTitle,
-  DialogActions
+  DialogActions,
+  Paper
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import EditIcon from "@material-ui/icons/Edit";
-import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
 import { ActionsContext } from "../../context/ActionsContext";
 import { useSelector } from "react-redux";
 import { TextFormField } from "../suggestion/formElements/TextFormField";
@@ -19,12 +18,6 @@ import editFormValues from "./values/EditGrantFormValues";
 import moment from "moment";
 
 const useStyles = makeStyles(theme => ({
-  applyButton: {
-    color: "#fff",
-    fontFamily: "Nunito Sans",
-    fontWeight: 600,
-    marginTop: "20px"
-  },
   header: {
     background: "#3CBBB1",
     padding: theme.spacing(2)
@@ -47,7 +40,7 @@ const EditGrantModal = ({ grant, format, columns }) => {
   const actions = useContext(ActionsContext);
   const { token } = useSelector(state => state.user);
   const [open, setOpen] = useState(false);
-  const [values, handleChange, handleSubmit, resetForm] = useForm(
+  const [value, handleChange, handleSubmit, resetForm] = useForm(
     {
       competition_name: "",
       area_focus: "",
@@ -66,14 +59,12 @@ const EditGrantModal = ({ grant, format, columns }) => {
     },
     doSubmit
   );
-
-  console.log("**********************", grant);
-
+  console.log("+++++++++++++++++++++++", editFormValues);
   function deleteGrant(id) {
     actions.grants.deleteAdminGrant(token, id);
   }
-  function doSubmit(id, data) {
-    actions.grants.updateAdminGrant(token, id, data);
+  function doSubmit(id, values) {
+    actions.grants.updateAdminGrant(token, id, value);
   }
 
   const handleOpen = () => setOpen(true);
@@ -85,15 +76,7 @@ const EditGrantModal = ({ grant, format, columns }) => {
   const classes = useStyles();
 
   return (
-    <>
-      <Button
-        className={classes.applyButton}
-        variant="contained"
-        color="primary"
-        onClick={handleOpen}
-      >
-        Open
-      </Button>
+    <Paper>
       <Dialog open={open} onClose={handleClose}>
         <Grid
           container
@@ -114,6 +97,7 @@ const EditGrantModal = ({ grant, format, columns }) => {
         <form onSubmit={handleSubmit}>
           <DialogContent></DialogContent>
           <DialogActions>
+            {console.log("FORMVALUES", editFormValues)}
             <Grid container justify="center">
               {editFormValues.map(data => {
                 return (
@@ -128,7 +112,7 @@ const EditGrantModal = ({ grant, format, columns }) => {
                       multiline={data.multiline}
                       variant={data.variant}
                       rows={data.rows}
-                      handleChange={handleChange}
+                      onChange={handleChange}
                     />
                   </Grid>
                 );
@@ -149,16 +133,27 @@ const EditGrantModal = ({ grant, format, columns }) => {
                   variant="outlined"
                   type="submit"
                   className={classes.btn}
-                  onClick={handleClose}
+                  onClick={doSubmit()}
                 >
                   Save
+                </Button>
+              </Grid>
+              <Grid item>
+                <Button
+                  color="secondary"
+                  variant="outlined"
+                  type="submit"
+                  className={classes.btn}
+                  onClick={() => deleteGrant()}
+                >
+                  Delete this Grant
                 </Button>
               </Grid>
             </Grid>
           </DialogActions>
         </form>
       </Dialog>
-    </>
+    </Paper>
   );
 };
 
