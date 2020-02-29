@@ -1,11 +1,11 @@
 import React from "react";
 import { TextFormField } from "../suggestion/formElements/TextFormField";
-import { Divider, Grid, Paper, Typography, Button } from "@material-ui/core";
+import { Divider, Grid, Paper, Button, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import { Link } from "react-router-dom";
+
 const useStyles = makeStyles(theme => ({
   formContainer: {
-    padding: "1em 8em 2em 8em",
+    padding: "1em 8em 5em 8em",
     [theme.breakpoints.down("sm")]: {
       padding: "2em"
     }
@@ -34,7 +34,6 @@ const userSettingsFormData = [
     multiline: true,
     variant: "outlined",
     rows: "3",
-    // styles: styles.about,
     data: []
   }
 ];
@@ -42,15 +41,15 @@ const userSettingsFormData = [
 export const UserSettingsForm = props => {
   const styles = useStyles();
 
+  console.log("WOW", userSettingsFormData);
   return (
     <Paper className={styles.layout}>
-      <Typography variant="h6" className={styles.title}>
-        Personal Details
-      </Typography>
+      <Typography variant="h6">Make Changes to Account</Typography>
       <Divider variant="middle" />
       <form onSubmit={props.handleSubmit}>
         <Grid container spacing={3} className={styles.formContainer}>
           {userSettingsFormData.map(data => {
+            console.log("Data", data);
             return (
               <TextFormField
                 label={data.label}
@@ -59,7 +58,7 @@ export const UserSettingsForm = props => {
                 multiline={data.multiline}
                 rows={data.rows}
                 variant={data.variant}
-                sm={6}
+                sm={12}
                 data={data.data}
                 handleChanges={props.handleChange}
                 value={props.values}
@@ -68,11 +67,6 @@ export const UserSettingsForm = props => {
           })}
         </Grid>
       </form>
-      <Link to="/mailinglist">
-        <Button variant="outlined" color="secondary">
-          Notify Me When New Grants Are Available
-        </Button>
-      </Link>
     </Paper>
   );
 };

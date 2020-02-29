@@ -1,7 +1,5 @@
 import React, { Fragment } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { connect } from "react-redux";
-// import { useGetToken } from "../../auth0/useGetToken.jsx";
 import {
   Grid,
   Typography,
@@ -10,7 +8,6 @@ import {
   Divider
 } from "@material-ui/core";
 import { DemoFormData } from "../formUtils/formValues.js";
-import formStyles from "../formElements/formStyles";
 import { TextFormField } from "../formElements/TextFormField.jsx";
 const useStyles = makeStyles(theme => ({
   bottomBox: {
@@ -20,7 +17,6 @@ const useStyles = makeStyles(theme => ({
 
 export const GrantDemoForm = props => {
   const styles = useStyles();
-  // const [token] = useGetToken();
 
   return (
     <Fragment>
