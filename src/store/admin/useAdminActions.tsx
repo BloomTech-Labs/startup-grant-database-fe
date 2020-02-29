@@ -60,7 +60,6 @@ export const useAdminActions = () => {
         .then(res => {
           dispatch({
             type: AdminTypes.UPDATE_MODERATOR_SUCCESS,
-            payload: res.data
           });
         })
         .catch(error => {
