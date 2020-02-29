@@ -149,7 +149,7 @@ function GrantContainer(props) {
         <Grid item xs={12} md={4} className={classes.grantList}>
           {!isAuthenticated && (
             <Alert severity="info" color="success" variant="filled">
-              Enjoy these samples. Login to access hundreds of curated grants
+              Enjoy these samples! Login to access hundreds of curated grants
               that can fund your ambitions.
             </Alert>
           )}
