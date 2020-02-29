@@ -96,7 +96,7 @@ const UserSettings = () => {
             variant="contained"
             color="primary"
             className={styles.button}
-            onClick={() => handleSubmit()}
+            onClick={() => doSubmit()}
           >
             Save Changes
           </Button>

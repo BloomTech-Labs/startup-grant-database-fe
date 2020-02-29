@@ -4,7 +4,7 @@ import { Divider, Grid, Paper, Button, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 const useStyles = makeStyles(theme => ({
   formContainer: {
-    padding: "1em 8em 5em 8em",
+    padding: "1em 8em 2em 8em",
     [theme.breakpoints.down("sm")]: {
       padding: "2em"
     }
@@ -46,7 +46,7 @@ export const UserSettingsForm = props => {
       <Typography variant="h6">Make Changes to Account</Typography>
       <Divider variant="middle" />
       <form onSubmit={props.handleSubmit}>
-        <Grid container spacing={3} className={styles.formContainer}>
+        <Grid container spacing={5} className={styles.formContainer}>
           {userSettingsFormData.map(data => {
             console.log("Data", data);
             return (
