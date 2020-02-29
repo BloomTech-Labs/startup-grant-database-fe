@@ -2,6 +2,7 @@ import React from "react";
 import { TextFormField } from "../suggestion/formElements/TextFormField";
 import { Divider, Grid, Paper, Button, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
+
 const useStyles = makeStyles(theme => ({
   formContainer: {
     padding: "1em 8em 2em 8em",

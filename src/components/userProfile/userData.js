@@ -31,14 +31,15 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
+
 const titles = [
-  "First Name",
-  "Last Name",
-  "Role",
-  "Phone Number",
-  "Name of Project",
-  "Project Link",
-  "About Project"
+    "First Name",
+    "Last Name",
+    "Role",
+    "Phone Number",
+    "Name of Project",
+    "Project Link",
+    "About Project"
 ];
 
 export const UserData = ({ data, initialData, currentUser }) => {
