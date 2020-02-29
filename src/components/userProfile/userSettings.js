@@ -24,6 +24,10 @@ const useStyles = makeStyles(theme => ({
     [theme.breakpoints.down("sm")]: {
       padding: "2em",
       flexDirection: "column"
+    },
+    bottom: {
+      marginTop: "2em",
+      marginBottom: "1em"
     }
   }
 }));
@@ -99,11 +103,13 @@ const UserSettings = () => {
         </Container>
       </Container>
       <Grid xs={12}>
-        <Link to="/mailinglist">
-          <Button variant="outlined" color="secondary">
-            Notify Me When New Grants Are Available
-          </Button>
-        </Link>
+        <Container className={styles.bottom}>
+          <Link to="/mailinglist">
+            <Button variant="outlined" color="secondary">
+              Notify Me When New Grants Are Available
+            </Button>
+          </Link>
+        </Container>
       </Grid>
     </React.Fragment>
   );

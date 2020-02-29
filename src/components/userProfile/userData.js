@@ -27,7 +27,7 @@ const useStyles = makeStyles(theme => ({
     justifyContent: "center"
   },
   avatar: {
-    padding: "1em"
+    paddingLeft: "2em"
   }
 }));
 
