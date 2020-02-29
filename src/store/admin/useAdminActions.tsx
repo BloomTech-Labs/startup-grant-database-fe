@@ -1,6 +1,6 @@
 import { useCallback } from "react";
 import { useDispatch } from "react-redux";
-import { axiosWithAuth, axiosWithAuth as axios } from "../utils/axiosConfig";
+import { axiosWithAuth, axiosWithOutAuth } from "../utils/axiosConfig";
 import { AdminTypes } from "./adminTypes";
 
 export const useAdminActions = () => {
@@ -9,7 +9,7 @@ export const useAdminActions = () => {
   const fetchAdminGrants = useCallback(
     (token: string) => {
       dispatch({ type: AdminTypes.FETCH_ADMIN_GRANTS_START });
-      axios(token)
+      axiosWithAuth(token)
         .get("/moderator/grants")
         .then(res =>
           dispatch({
@@ -30,7 +30,7 @@ export const useAdminActions = () => {
   const fetchAllUsers = useCallback(
     (token: string) => {
       dispatch({ type: AdminTypes.FETCH_ADMIN_USERS_START });
-      axios(token)
+      axiosWithAuth(token)
         .get("/moderator/users")
         .then(res =>
           dispatch({
@@ -55,11 +55,11 @@ export const useAdminActions = () => {
   const updateModerator = useCallback(
     (token: string, userId: string, roleId: string) => {
       dispatch({ type: AdminTypes.UPDATE_MODERATOR_START });
-      axios(token)
+      axiosWithAuth(token)
         .post(`/admin/users/moderator/${userId}`, { roleId })
         .then(res => {
           dispatch({
-            type: AdminTypes.UPDATE_MODERATOR_SUCCESS,
+            type: AdminTypes.UPDATE_MODERATOR_SUCCESS
           });
         })
         .catch(error => {
@@ -75,7 +75,7 @@ export const useAdminActions = () => {
   const fetchAllRoles = useCallback(
     (token: string) => {
       dispatch({ type: AdminTypes.FETCH_ADMIN_ROLES_START });
-      axios(token)
+      axiosWithAuth(token)
         .get("/moderator/roles")
         .then(res =>
           dispatch({
@@ -121,7 +121,7 @@ export const useAdminActions = () => {
   const postEmailSingleText = useCallback(
     (token: string, values: any) => {
       dispatch({ type: AdminTypes.POST_EMAIL_SINGLE_TEXT_START });
-      axios(token)
+      axiosWithAuth(token)
         .post(`/mail/individual`, values)
         .then(res =>
           dispatch({
@@ -132,6 +132,27 @@ export const useAdminActions = () => {
         .catch(err =>
           dispatch({
             type: AdminTypes.POST_EMAIL_SINGLE_TEXT_FAILURE,
+            payload: err.response
+          })
+        );
+    },
+    [dispatch]
+  );
+
+  const postContactUsEmail = useCallback(
+    (values: any) => {
+      dispatch({ type: AdminTypes.POST_EMAIL_ADMIN_FAILURE });
+      axiosWithOutAuth()
+        .post(`/mail/contact`, values)
+        .then(res =>
+          dispatch({
+            type: AdminTypes.POST_EMAIL_ADMIN_SUCCESS,
+            payload: res.data
+          })
+        )
+        .catch(err =>
+          dispatch({
+            type: AdminTypes.POST_EMAIL_ADMIN_FAILURE,
             payload: err.response
           })
         );
@@ -152,7 +173,8 @@ export const useAdminActions = () => {
     updateModerator,
     removeSuggestion,
     postEmailSingleText,
-    resetSuccess
+    resetSuccess,
+    postContactUsEmail
   };
 };
 
@@ -165,4 +187,5 @@ export interface UseAdminActions {
   updateModerator: (token: string, userId: string, roleId: string) => void;
   removeSuggestion: (token: string, id: number) => void;
   postEmailSingleText: (token: string, values: any) => void;
+  postContactUsEmail: (values: any) => void;
 }

@@ -26,8 +26,8 @@ const useStyles = makeStyles(theme => ({
       flexDirection: "column"
     },
     bottom: {
-      marginTop: "2em",
-      marginBottom: "1em"
+      marginTop: theme.spacing(2),
+      marginBottom: theme.spacing(2)
     }
   }
 }));
