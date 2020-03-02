@@ -51,7 +51,7 @@ const EditGrantModal = ({ grant, format, columns }) => {
       early_stage_funding: false,
       is_reviewed: false,
       has_requests: false,
-      details_last_updated: moment().format("YYYY-MM-DD")
+      details_last_updated: Date.now()
     },
     doSubmit
   );
