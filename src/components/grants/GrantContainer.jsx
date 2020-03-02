@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Redirect } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { ActionsContext } from "../../context/ActionsContext";
 import GrantShowcase from "./GrantShowcase";
@@ -152,6 +152,13 @@ function GrantContainer(props) {
               Enjoy these samples! Login to access hundreds of curated grants
               that can fund your ambitions.
             </Alert>
+          )}
+          {isAuthenticated && (
+            <Link to="/mailinglist">
+              <Alert severity="info" color="success" variant="filled">
+                Click here to be notified when new grants are available!
+              </Alert>
+            </Link>
           )}
           <GrantList grants={grants} showcase={showcase} />
         </Grid>
