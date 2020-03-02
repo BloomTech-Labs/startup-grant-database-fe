@@ -40,8 +40,9 @@ const useStyles = makeStyles(theme => ({
     }
   },
   paper: {
-    marginTop: theme.spacing(3),
+    marginTop: theme.spacing(10),
     marginBottom: theme.spacing(3),
+    paddingBottom: theme.spacing(3),
 
     [theme.breakpoints.up(600 + theme.spacing(3) * 2)]: {
       marginTop: theme.spacing(3),
