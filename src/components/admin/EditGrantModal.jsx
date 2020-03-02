@@ -51,19 +51,22 @@ const EditGrantModal = ({ grant, format, columns }) => {
       early_stage_funding: false,
       is_reviewed: false,
       has_requests: false,
-      details_last_updated: Date.now()
+      details_last_updated: moment().format("YYYY-MM-DD")
     },
     doSubmit
   );
 
+  function refreshFunction() {
+    actions.admin.fetchAdminGrants(token);
+  }
   function doSubmit() {
     actions.grants.updateAdminGrant(token, grant.id, values);
-    actions.admin.fetchAdminGrants(token);
+    setTimeout(refreshFunction(), 288);
   }
 
   function deleteGrant(id) {
     actions.grants.deleteAdminGrant(token, id);
-    actions.admin.fetchAdminGrants(token);
+    setTimeout(refreshFunction(), 288);
   }
 
   const classes = useStyles();

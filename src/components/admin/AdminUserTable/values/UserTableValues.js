@@ -6,7 +6,8 @@ export const tableValues = {
       field: "email",
       cellStyle: {
         minWidth: "75px"
-      }
+      },
+      editable: "never"
     },
     {
       title: "Moderator",
