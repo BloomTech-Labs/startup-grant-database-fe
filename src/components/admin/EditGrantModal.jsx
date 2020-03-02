@@ -18,15 +18,6 @@ import editFormValues from "./values/EditGrantFormValues";
 import moment from "moment";
 
 const useStyles = makeStyles(theme => ({
-  header: {
-    background: "#3CBBB1",
-    padding: theme.spacing(2)
-  },
-  headerText: {
-    color: "#ffffff",
-    marginTop: "10px",
-    textAlign: "center"
-  },
   btn: {
     margin: "20px",
     padding: "0 50px"
@@ -34,8 +25,10 @@ const useStyles = makeStyles(theme => ({
   formField: {
     width: "100%"
   },
-  inputStyle: {
-    padding: theme.spacing(1)
+  body: {
+    [theme.breakpoints.down("sm")]: {
+      flexDirection: "column"
+    }
   }
 }));
 
@@ -58,15 +51,13 @@ const EditGrantModal = ({ grant, format, columns }) => {
       early_stage_funding: false,
       is_reviewed: false,
       has_requests: false,
-      details_last_updated: moment().format("YYYY-MM-DD")
+      details_last_updated: Date.now()
     },
     doSubmit
   );
 
-  console.log("Grant Values", grant);
-
   function doSubmit() {
-    actions.grants.updateAdminGrant(token, values);
+    actions.grants.updateAdminGrant(token, grant.id, values);
     actions.admin.fetchAdminGrants(token);
   }
 
@@ -75,59 +66,48 @@ const EditGrantModal = ({ grant, format, columns }) => {
     actions.admin.fetchAdminGrants(token);
   }
 
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => {
-    setOpen(false);
-    resetForm();
-  };
-
   const classes = useStyles();
 
   return (
-    <Grid xs={12}>
+    <Grid className={classes.body} spacing={2}>
       <form onSubmit={handleSubmit}>
         {editFormValues.map(data => {
           return (
-            <Grid item>
-              <TextFormField
-                label={data.label}
-                type={data.type}
-                name={data.name}
-                select={data.select}
-                data={data.data}
-                inputLabel={data.inputLabel}
-                multiline={data.multiline}
-                variant={data.variant}
-                rows={data.rows}
-                value={data.name}
-                onChange={handleChange}
-                className={classes.inputStyle}
-              />
-            </Grid>
+            <TextFormField
+              label={data.label}
+              type={data.type}
+              name={data.name}
+              select={data.select}
+              data={data.data}
+              inputLabel={data.inputLabel}
+              multiline={data.multiline}
+              variant={data.variant}
+              rows={data.rows}
+              value={data.name}
+              onChange={handleChange}
+              className={classes.inputStyle}
+            />
           );
         })}
 
-        <Grid item>
-          <Button
-            color="primary"
-            variant="outlined"
-            type="submit"
-            className={classes.btn}
-          >
-            Save
-          </Button>
-        </Grid>
-        <Grid item>
-          <Button
-            color="secondary"
-            variant="outlined"
-            type="submit"
-            className={classes.btn}
-            onClick={() => deleteGrant(grant.id)}
-          >
-            Delete this Grant
-          </Button>
-        </Grid>
+        <Button
+          color="primary"
+          variant="outlined"
+          type="submit"
+          className={classes.btn}
+        >
+          Save
+        </Button>
+        <Button
+          color="secondary"
+          variant="outlined"
+          type="submit"
+          className={classes.btn}
+          onClick={() => deleteGrant(grant.id)}
+        >
+          {/* ADD CONFIRMATION MODAL */}
+          Delete this Grant
+        </Button>
       </form>
     </Grid>
   );

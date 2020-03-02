@@ -33,7 +33,6 @@ export const useGrantActions = () => {
 
   const postGrant = useCallback(
     (data, token) => {
-      console.log("postGrant action data =>", data);
       dispatch({ type: GrantTypes.POST_GRANTS_START });
       axiosWithAuth(token)
         .post("/grants", data)

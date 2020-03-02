@@ -55,13 +55,6 @@ const GrantTableRow = ({ grant, format, columns }) => {
     setItem(grant);
   }, [grant]);
 
-  function openDialog() {
-    setEdit(true);
-    console.log(edit);
-    console.log("WAS CLICKED1!");
-  }
-
-  console.log("=++++++++++++++++++++++", editFormValues);
   return (
     <>
       <TableRow hover role="checkbox" tabIndex={-1} key={grant.id}>
@@ -118,7 +111,7 @@ const GrantTableRow = ({ grant, format, columns }) => {
         handleClose={() => setEdit(false)}
         grant={grant}
         title="Edit Modal"
-        message="Let's give this a whirl"
+        message="Here you can update and delete any grant"
         component={EditGrantModal}
       />
     </>

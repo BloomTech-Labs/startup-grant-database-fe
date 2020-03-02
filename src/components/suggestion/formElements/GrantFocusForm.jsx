@@ -27,7 +27,6 @@ export const GrantFocusForm = props => {
       <Divider variant="middle" />
       <Grid container spacing={3} className={styles.bottomBox}>
         {FocusFormData.map(data => {
-          console.log("data", data);
           return (
             <TextFormField
               label={data.label}
