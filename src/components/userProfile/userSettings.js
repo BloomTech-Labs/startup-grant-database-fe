@@ -12,6 +12,13 @@ const useStyles = makeStyles(theme => ({
   button: {
     margin: "2em"
   },
+  dataContainer: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    marginBottom: theme.spacing(12)
+  },
+
   editBtn: {
     display: "flex",
     alignItems: "center",
@@ -24,11 +31,11 @@ const useStyles = makeStyles(theme => ({
     [theme.breakpoints.down("sm")]: {
       padding: "2em",
       flexDirection: "column"
-    },
-    bottom: {
-      marginTop: theme.spacing(2),
-      marginBottom: theme.spacing(2)
     }
+    // bottom: {
+    //   marginTop: theme.spacing(2),
+    //   marginBottom: theme.spacing(2)
+    // }
   }
 }));
 
@@ -80,7 +87,7 @@ const UserSettings = () => {
   return (
     <React.Fragment>
       <Container xs={12} className={styles.contain}>
-        <Container maxWidth="sm">
+        <Container maxWidth="sm" className={styles.dataContainer}>
           <UserData
             data={data}
             initialData={initialData}
