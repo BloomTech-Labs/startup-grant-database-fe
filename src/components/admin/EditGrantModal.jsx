@@ -36,7 +36,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const EditGrantModal = ({ grant, format, columns }) => {
+const EditGrantModal = ({ grant, key, format, columns }) => {
   const actions = useContext(ActionsContext);
   const { token } = useSelector(state => state.user);
   const [open, setOpen] = useState(false);
@@ -56,16 +56,18 @@ const EditGrantModal = ({ grant, format, columns }) => {
       is_reviewed: false,
       has_requests: false,
       details_last_updated: moment().format("YYYY-MM-DD")
-    },
-    doSubmit
+    }
+    // doSubmit
   );
   console.log("+++++++++++++++++++++++", editFormValues);
-  function deleteGrant(id) {
-    actions.grants.deleteAdminGrant(token, id);
-  }
-  function doSubmit(id, values) {
-    actions.grants.updateAdminGrant(token, id, value);
-  }
+  // function deleteGrant(id) {
+  //   actions.grants.deleteAdminGrant(token, id);
+  //   actions.admin.fetchAdminGrants(token);
+  // }
+  // function doSubmit(id, value) {
+  //   actions.grants.updateAdminGrant(token, id, value);
+  //   actions.admin.fetchAdminGrants(token);
+  // }
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => {
@@ -76,84 +78,79 @@ const EditGrantModal = ({ grant, format, columns }) => {
   const classes = useStyles();
 
   return (
-    <Paper>
-      <Dialog open={open} onClose={handleClose}>
-        <Grid
-          container
-          justify="center"
-          direction="column"
-          alignItems="center"
-          className={classes.header}
-        >
-          <Grid item>
-            <DialogTitle className={classes.headerText}>WOW</DialogTitle>
-          </Grid>
-          <Grid item>
-            <DialogContentText className={classes.headerText}>
-              WOW
-            </DialogContentText>
-          </Grid>
+    <Dialog open={open} onClose={handleClose}>
+      <Grid
+        container
+        justify="center"
+        direction="column"
+        alignItems="center"
+        className={classes.header}
+      >
+        <Grid item>
+          <DialogTitle className={classes.headerText}>
+            Edit this grant.
+          </DialogTitle>
         </Grid>
-        <form onSubmit={handleSubmit}>
-          <DialogContent></DialogContent>
-          <DialogActions>
-            {console.log("FORMVALUES", editFormValues)}
-            <Grid container justify="center">
-              {editFormValues.map(data => {
-                return (
-                  <Grid item>
-                    <TextFormField
-                      label={data.label}
-                      type={data.type}
-                      name={data.name}
-                      select={data.select}
-                      data={data.data}
-                      inputLabel={data.inputLabel}
-                      multiline={data.multiline}
-                      variant={data.variant}
-                      rows={data.rows}
-                      onChange={handleChange}
-                    />
-                  </Grid>
-                );
-              })}
-              <Grid item>
-                <Button
-                  color="secondary"
-                  variant="outlined"
-                  onClick={handleClose}
-                  className={classes.btn}
-                >
-                  Cancel
-                </Button>
-              </Grid>
-              <Grid item>
-                <Button
-                  color="primary"
-                  variant="outlined"
-                  type="submit"
-                  className={classes.btn}
-                  onClick={doSubmit()}
-                >
-                  Save
-                </Button>
-              </Grid>
-              <Grid item>
-                <Button
-                  color="secondary"
-                  variant="outlined"
-                  type="submit"
-                  className={classes.btn}
-                  onClick={() => deleteGrant()}
-                >
-                  Delete this Grant
-                </Button>
-              </Grid>
+      </Grid>
+      <form onSubmit={handleSubmit}>
+        <DialogContent></DialogContent>
+        <DialogActions>
+          {console.log("FORMVALUES", editFormValues)}
+          <Grid container justify="center">
+            {editFormValues.map(data => {
+              return (
+                <Grid item>
+                  <TextFormField
+                    label={data.label}
+                    type={data.type}
+                    name={data.name}
+                    select={data.select}
+                    data={data.data}
+                    inputLabel={data.inputLabel}
+                    multiline={data.multiline}
+                    variant={data.variant}
+                    rows={data.rows}
+                    onChange={handleChange}
+                  />
+                </Grid>
+              );
+            })}
+            <Grid item>
+              <Button
+                color="secondary"
+                variant="outlined"
+                onClick={handleClose}
+                className={classes.btn}
+              >
+                Cancel
+              </Button>
             </Grid>
-          </DialogActions>
-        </form>
-      </Dialog>
-    </Paper>
+            <Grid item>
+              <Button
+                color="primary"
+                variant="outlined"
+                type="submit"
+                className={classes.btn}
+                // onClick={doSubmit()}
+              >
+                Save
+              </Button>
+            </Grid>
+            <Grid item>
+              <Button
+                color="secondary"
+                variant="outlined"
+                type="submit"
+                className={classes.btn}
+                // onClick={() => deleteGrant()}
+              >
+                Delete this Grant
+              </Button>
+            </Grid>
+          </Grid>
+        </DialogActions>
+      </form>
+    </Dialog>
   );
 };
 

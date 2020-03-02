@@ -41,12 +41,7 @@ const GrantTableRow = ({ grant, format, columns }) => {
   function handleDelete(id) {
     actions.admin.removeSuggestion(token, id);
   }
-  function deleteGrant(id) {
-    actions.grants.deleteAdminGrant(token, id);
-  }
-  function submitChange(id, data) {
-    actions.grants.updateAdminGrant(token, id, data);
-  }
+
   const classes = useStyles();
 
   useEffect(() => {
@@ -56,6 +51,10 @@ const GrantTableRow = ({ grant, format, columns }) => {
     setItem(grant);
   }, [grant]);
 
+  function openDialog() {
+    setEdit(true);
+    console.log(edit);
+  }
   console.log("=++++++++++++++++++++++", editFormValues);
   return (
     <>
@@ -69,13 +68,11 @@ const GrantTableRow = ({ grant, format, columns }) => {
         })}
 
         <TableCell align="left">
-          <IconButton onClick={() => setEdit(!edit)}>
-            <EditIcon
-              className={clsx(classes.expand, expand && classes.expandOpen)}
-            />
+          <IconButton onClick={() => openDialog()}>
+            <EditIcon />
           </IconButton>
         </TableCell>
-        {edit && <EditGrantModal grant={grant} />}
+
         <TableCell align="right">
           {grant.requests.length > 0 && (
             <IconButton onClick={() => setExpand(!expand)}>
@@ -96,7 +93,7 @@ const GrantTableRow = ({ grant, format, columns }) => {
                   <TableRow key={request.id}>
                     <TableCell>{request.subject}</TableCell>
                     <TableCell>{request.suggestion}</TableCell>
-                    <IconButton onClick={() => deleteGrant(request.id)}>
+                    <IconButton onClick={() => handleDelete(request.id)}>
                       <DeleteForeverIcon />
                     </IconButton>
                   </TableRow>
@@ -106,6 +103,7 @@ const GrantTableRow = ({ grant, format, columns }) => {
           </TableCell>
         </TableRow>
       )}
+      {edit && <EditGrantModal key={grant.id} grant={grant} />}
     </>
   );
 };

@@ -29,6 +29,9 @@ export enum AdminTypes {
   POST_EMAIL_SINGLE_HTML_START = "POST_EMAIL_SINGLE_HTML_START",
   POST_EMAIL_SINGLE_HTML_SUCCESS = "POST_EMAIL_SINGLE_HTML_SUCCESS",
   POST_EMAIL_SINGLE_HTML_FAILURE = "POST_EMAIL_SINGLE_HTML_FAILURE",
+  POST_EMAIL_ADMIN_START = "POST_EMAIL_ADMIN_START",
+  POST_EMAIL_ADMIN_SUCCESS = "POST_EMAIL_ADMIN_SUCCESS",
+  POST_EMAIL_ADMIN_FAILURE = "POST_EMAIL_ADMIN_FAILURE",
   RESET_SUCCESS = "RESET_SUCCESS"
 }
 
@@ -48,6 +51,12 @@ interface emailSingle {
   email: string;
   subject: string;
   message: string;
+}
+
+interface emailContactUs {
+  from: string;
+  subject: string;
+  text: string;
 }
 
 export interface AdminState {
@@ -186,6 +195,21 @@ interface PostEmailSingleTextFailure {
   payload: Error;
 }
 
+interface PostEmailAdminStart {
+  type: typeof AdminTypes.POST_EMAIL_ADMIN_START;
+}
+
+interface PostEmailAdminSuccess {
+  type: typeof AdminTypes.POST_EMAIL_ADMIN_SUCCESS;
+  isLoading: boolean;
+  payload: emailContactUs[];
+}
+
+interface PostEmailAdminFailure {
+  type: typeof AdminTypes.POST_EMAIL_ADMIN_FAILURE;
+  payload: Error;
+}
+
 interface ResetSuccess {
   type: typeof AdminTypes.RESET_SUCCESS;
 }
@@ -217,4 +241,7 @@ export type AdminActions =
   | PostEmailSingleTextStart
   | PostEmailSingleTextSuccess
   | PostEmailSingleTextFailure
+  | PostEmailAdminStart
+  | PostEmailAdminSuccess
+  | PostEmailAdminFailure
   | ResetSuccess;

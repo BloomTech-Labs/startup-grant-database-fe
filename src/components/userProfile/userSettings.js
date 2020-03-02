@@ -26,8 +26,8 @@ const useStyles = makeStyles(theme => ({
       flexDirection: "column"
     },
     bottom: {
-      marginTop: "2em",
-      marginBottom: "1em"
+      marginTop: theme.spacing(2),
+      marginBottom: theme.spacing(2)
     }
   }
 }));
@@ -73,6 +73,7 @@ const UserSettings = () => {
     setData(values);
     actions.user.updateUser(token, values);
     setIsEditing(false);
+    actions.user.getUserFromAuth0(token);
   }
 
   console.log("current user", currentUser);
@@ -96,7 +97,7 @@ const UserSettings = () => {
             variant="contained"
             color="primary"
             className={styles.button}
-            onClick={() => handleSubmit()}
+            onClick={() => doSubmit()}
           >
             Save Changes
           </Button>
