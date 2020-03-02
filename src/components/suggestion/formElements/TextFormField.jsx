@@ -2,8 +2,6 @@ import React from "react";
 import { Grid, TextField, MenuItem } from "@material-ui/core";
 
 export const TextFormField = props => {
-  // console.log("the data prop => ", props.data);
-  console.log('props in TextFormField', props);
   return (
     <Grid item xs={12} sm={props.sm}>
       <TextField

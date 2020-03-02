@@ -16,7 +16,7 @@ const useStyles = makeStyles(theme => ({
     }
   },
   title: {
-    paddingTop: "1.5em"
+    paddingTop: "2em"
   }
 }));
 
@@ -41,15 +41,15 @@ const userSettingsFormData = [
 export const UserSettingsForm = props => {
   const styles = useStyles();
 
-  console.log("WOW", userSettingsFormData);
   return (
     <Paper className={styles.layout}>
-      <Typography variant="h6">Make Changes to Account</Typography>
+      <Typography variant="h6" className={styles.title}>
+        Make Changes to Account
+      </Typography>
       <Divider variant="middle" />
       <form onSubmit={props.handleSubmit}>
         <Grid container spacing={5} className={styles.formContainer}>
           {userSettingsFormData.map(data => {
-            console.log("Data", data);
             return (
               <TextFormField
                 label={data.label}

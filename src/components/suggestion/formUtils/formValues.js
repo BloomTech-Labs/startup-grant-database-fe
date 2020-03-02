@@ -205,6 +205,7 @@ export const InfoFieldData = [
     label: "Website",
     type: "url",
     name: "website",
+    placeholder: "https://foundergrants.com",
     multiline: false,
     data: []
   },
