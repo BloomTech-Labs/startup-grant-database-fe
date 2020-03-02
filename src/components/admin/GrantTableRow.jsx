@@ -54,6 +54,7 @@ const GrantTableRow = ({ grant, format, columns }) => {
   function openDialog() {
     setEdit(true);
     console.log(edit);
+    console.log("WAS CLICKED1!");
   }
   console.log("=++++++++++++++++++++++", editFormValues);
   return (

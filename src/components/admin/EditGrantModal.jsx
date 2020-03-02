@@ -59,15 +59,6 @@ const EditGrantModal = ({ grant, key, format, columns }) => {
     }
     // doSubmit
   );
-  console.log("+++++++++++++++++++++++", editFormValues);
-  // function deleteGrant(id) {
-  //   actions.grants.deleteAdminGrant(token, id);
-  //   actions.admin.fetchAdminGrants(token);
-  // }
-  // function doSubmit(id, value) {
-  //   actions.grants.updateAdminGrant(token, id, value);
-  //   actions.admin.fetchAdminGrants(token);
-  // }
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => {
@@ -93,62 +84,63 @@ const EditGrantModal = ({ grant, key, format, columns }) => {
         </Grid>
       </Grid>
       <form onSubmit={handleSubmit}>
-        <DialogContent></DialogContent>
-        <DialogActions>
-          {console.log("FORMVALUES", editFormValues)}
-          <Grid container justify="center">
-            {editFormValues.map(data => {
-              return (
-                <Grid item>
-                  <TextFormField
-                    label={data.label}
-                    type={data.type}
-                    name={data.name}
-                    select={data.select}
-                    data={data.data}
-                    inputLabel={data.inputLabel}
-                    multiline={data.multiline}
-                    variant={data.variant}
-                    rows={data.rows}
-                    onChange={handleChange}
-                  />
-                </Grid>
-              );
-            })}
-            <Grid item>
-              <Button
-                color="secondary"
-                variant="outlined"
-                onClick={handleClose}
-                className={classes.btn}
-              >
-                Cancel
-              </Button>
+        <DialogContent>
+          <DialogActions>
+            {console.log("FORMVALUES", editFormValues)}
+            <Grid container justify="center">
+              {editFormValues.map(data => {
+                return (
+                  <Grid item>
+                    <TextFormField
+                      label={data.label}
+                      type={data.type}
+                      name={data.name}
+                      select={data.select}
+                      data={data.data}
+                      inputLabel={data.inputLabel}
+                      multiline={data.multiline}
+                      variant={data.variant}
+                      rows={data.rows}
+                      onChange={handleChange}
+                    />
+                  </Grid>
+                );
+              })}
+              <Grid item>
+                <Button
+                  color="secondary"
+                  variant="outlined"
+                  onClick={handleClose}
+                  className={classes.btn}
+                >
+                  Cancel
+                </Button>
+              </Grid>
+              <Grid item>
+                <Button
+                  color="primary"
+                  variant="outlined"
+                  type="submit"
+                  className={classes.btn}
+                  // onClick={doSubmit()}
+                >
+                  Save
+                </Button>
+              </Grid>
+              <Grid item>
+                <Button
+                  color="secondary"
+                  variant="outlined"
+                  type="submit"
+                  className={classes.btn}
+                  // onClick={() => deleteGrant()}
+                >
+                  Delete this Grant
+                </Button>
+              </Grid>
             </Grid>
-            <Grid item>
-              <Button
-                color="primary"
-                variant="outlined"
-                type="submit"
-                className={classes.btn}
-                // onClick={doSubmit()}
-              >
-                Save
-              </Button>
-            </Grid>
-            <Grid item>
-              <Button
-                color="secondary"
-                variant="outlined"
-                type="submit"
-                className={classes.btn}
-                // onClick={() => deleteGrant()}
-              >
-                Delete this Grant
-              </Button>
-            </Grid>
-          </Grid>
-        </DialogActions>
+          </DialogActions>
+        </DialogContent>
       </form>
     </Dialog>
   );
