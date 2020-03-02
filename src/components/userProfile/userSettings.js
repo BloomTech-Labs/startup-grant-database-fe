@@ -73,6 +73,7 @@ const UserSettings = () => {
     setData(values);
     actions.user.updateUser(token, values);
     setIsEditing(false);
+    actions.user.getUserFromAuth0(token);
   }
 
   console.log("current user", currentUser);
