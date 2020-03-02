@@ -15,11 +15,7 @@ const approvedValue = {
     },
     {
       value: "not_approved",
-      label: "Not Approved"
-    },
-    {
-      value: "expired",
-      label: "Expired"
+      label: "Pending"
     }
   ]
 };
