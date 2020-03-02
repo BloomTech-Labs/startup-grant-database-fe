@@ -36,11 +36,11 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const EditGrantModal = ({ grant, key, format, columns }) => {
+const EditGrantModal = ({ grant, format, columns }) => {
   const actions = useContext(ActionsContext);
   const { token } = useSelector(state => state.user);
   const [open, setOpen] = useState(false);
-  const [value, handleChange, handleSubmit, resetForm] = useForm(
+  const [values, handleChange, handleSubmit, resetForm] = useForm(
     {
       competition_name: "",
       area_focus: "",
