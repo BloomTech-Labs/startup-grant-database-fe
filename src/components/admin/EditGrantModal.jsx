@@ -82,7 +82,7 @@ const EditGrantModal = ({ grant, format, columns }) => {
   };
 
   const classes = useStyles();
-
+  
   return (
     <Grid xs={12}>
       <form onSubmit={handleSubmit}>
@@ -90,6 +90,7 @@ const EditGrantModal = ({ grant, format, columns }) => {
           return (
             <Grid item>
               <TextFormField
+
                 label={data.label}
                 type={data.type}
                 name={data.name}
