@@ -20,6 +20,7 @@ import clsx from "clsx";
 import editFormValues from "./values/EditGrantFormValues";
 import EditGrantForm from "./values/EditGrantForm";
 import EditGrantDialog from "./values/EditGrantDialog";
+import FavoritesIconButton from "../grants/showcase/FavoritesIconButton";
 
 const useStyles = makeStyles(theme => ({
   expand: {
@@ -104,7 +105,11 @@ const GrantTableRow = ({grant, format, columns}) => {
                           <TableCell>{request.subject}</TableCell>
                           <TableCell>{request.suggestion}</TableCell>
                           <IconButton onClick={() => handleDelete(request.id)}>
-                            <DeleteForeverIcon/>
+                            <FavoritesIconButton
+                              title="Delete Suggestion"
+                              label="Delete Suggestion"
+                              icon={DeleteForeverIcon}
+                            />
                           </IconButton>
                         </TableRow>
                     ))}
