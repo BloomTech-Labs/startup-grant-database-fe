@@ -82,8 +82,6 @@ const UserSettings = () => {
     setIsEditing(false);
     actions.user.getUserFromAuth0(token);
   }
-
-  console.log("current user", currentUser);
   return (
     <React.Fragment>
       <Container xs={12} className={styles.contain}>

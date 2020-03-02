@@ -143,7 +143,6 @@ export const AddGrant = props => {
       [event.target.name]: event.target.value
     });
   };
-  console.log("grant info", grantInfo);
 
   function getStepContent(step) {
     switch (step) {

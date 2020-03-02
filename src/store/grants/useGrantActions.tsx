@@ -33,7 +33,6 @@ export const useGrantActions = () => {
 
   const postGrant = useCallback(
     (data, token) => {
-      console.log("postGrant action data =>", data);
       dispatch({ type: GrantTypes.POST_GRANTS_START });
       axiosWithAuth(token)
         .post("/grants", data)
@@ -41,6 +40,7 @@ export const useGrantActions = () => {
           dispatch({ type: GrantTypes.POST_GRANTS_SUCCESS, payload: res.data });
         })
         .catch((err: AxiosError) => {
+          console.log("ERROR on Suggestion Form", err);
           const data =
             err && err.response && err.response.data ? err.response.data : err;
           dispatch({ type: GrantTypes.POST_GRANTS_FAILURE, payload: data });
