@@ -38,7 +38,7 @@ function Welcome() {
                 The best to find dilution-free funding for your startup or project.
             </Typography>
             <Grid container spacing={2}>
-                <Grid item xs={12} sm={6}>
+                <Grid item xs={12}>
                     <Button
                         variant="outlined"
                         color="primary"
@@ -48,7 +48,7 @@ function Welcome() {
                         Find Funding
                     </Button>
                 </Grid>
-                <Grid item xs={12} sm={6}>
+                <Grid item xs={12}>
                     <Button
                         variant="outlined"
                         color="primary"
