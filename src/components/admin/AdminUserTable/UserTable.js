@@ -45,6 +45,25 @@ const UserTable = props => {
   const [emailType, setEmailType] = useState("");
   const style = userTableStyles();
 
+  const manipulateUserData = data => {
+    console.log(data);
+    let newData = [];
+    data.map(data => {
+      newData.push({
+        email: data.email,
+        moderator: undefined,
+        first_name: data.user_metadata ? data.user_metadata.first_name : null,
+        last_name: data.user_metadata ? data.user_metadata.last_name : null,
+        role: data.user_metadata ? data.user_metadata.role : null,
+        company: data.user_metadata ? data.user_metadata.company : null,
+        company_url: data.user_metadata ? data.user_metadata.company_url : null,
+        about: data.user_metadata ? data.user_metadata.about : null
+      });
+    });
+    console.log("newData", newData);
+    return newData;
+  };
+
   return (
     <React.Fragment>
       <Paper className={style.paper}>
@@ -52,7 +71,7 @@ const UserTable = props => {
           title={tableValues.title}
           columns={tableValues.columns}
           options={tableStyles}
-          data={users}
+          data={manipulateUserData(users)}
           editable={{
             onRowAdd: newData =>
               new Promise(resolve => {

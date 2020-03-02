@@ -33,7 +33,7 @@ export const tableValues = {
     },
     {
       title: "Job Title",
-      field: "amount_notes",
+      field: "role",
       cellStyle: {
         minWidth: "300px"
       }
