@@ -80,7 +80,8 @@
       "!**/node_modules/**",
       "!**/vendor/**",
       "!**/__tests__/**",
-      "!**/*.spec.{js,jsx}"
+      "!**/*.spec.{js,jsx}",
+      "!**/coverage/**"
     ]
   }
 }
