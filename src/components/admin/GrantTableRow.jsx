@@ -113,31 +113,6 @@ const GrantTableRow = ({ grant, format, columns }) => {
             </Table>
           </TableCell>
         </TableRow>
-        {expand && (
-            <TableRow>
-              <TableCell colSpan="3">
-                <Table>
-                  <TableHead>Suggestions from Users</TableHead>
-                  <TableBody>
-                    {grant.requests.map(request => (
-                        <TableRow key={request.id}>
-                          <TableCell>{request.subject}</TableCell>
-                          <TableCell>{request.suggestion}</TableCell>
-                          <IconButton onClick={() => handleDelete(request.id)}>
-                            <FavoritesIconButton
-                              title="Delete Suggestion"
-                              label="Delete Suggestion"
-                              icon={DeleteForeverIcon}
-                            />
-                          </IconButton>
-                        </TableRow>
-                    ))}
-                  </TableBody>
-                </Table>
-              </TableCell>
-            </TableRow>
-
-
       )}
       <EditGrantDialog
         isOpen={edit}
