@@ -70,12 +70,13 @@ const EditGrantModal = ({ grant, format, columns }) => {
   }
 
   const classes = useStyles();
-
+  
   return (
     <Grid className={classes.body} spacing={2}>
       <form onSubmit={handleSubmit}>
         {editFormValues.map(data => {
           return (
+
             <TextFormField
               label={data.label}
               type={data.type}
@@ -90,6 +91,7 @@ const EditGrantModal = ({ grant, format, columns }) => {
               onChange={handleChange}
               className={classes.inputStyle}
             />
+
           );
         })}
 
