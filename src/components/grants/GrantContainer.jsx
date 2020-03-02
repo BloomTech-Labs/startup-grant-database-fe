@@ -32,7 +32,8 @@ const useStyles = makeStyles(theme => ({
     overflow: "auto",
     position: "relative",
     [theme.breakpoints.down("sm")]: {
-      width: "100%"
+      width: "100%",
+      marginLeft: theme.spacing(3)
     },
     [theme.breakpoints.down("xs")]: {
       marginTop: theme.spacing(11),
