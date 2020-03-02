@@ -17,6 +17,7 @@ import GrantTableRow from "./GrantTableRow";
 
 const columns = [
   { id: "competition_name", label: "Name" },
+  { id: "edit", label: "Edit"},
   { id: "is_reviewed", label: "Grant Status", align: "right" },
   { id: "details_last_updated", label: "Last Updated", align: "right" },
   { id: "most_recent_application_due_date", label: "Deadline", align: "right" }
