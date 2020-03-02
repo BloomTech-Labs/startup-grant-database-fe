@@ -103,15 +103,6 @@ const UserSettings = () => {
           </Button>
         </Container>
       </Container>
-      <Grid xs={12}>
-        <Container className={styles.bottom}>
-          <Link to="/mailinglist">
-            <Button variant="outlined" color="secondary">
-              Notify Me When New Grants Are Available
-            </Button>
-          </Link>
-        </Container>
-      </Grid>
     </React.Fragment>
   );
 };
