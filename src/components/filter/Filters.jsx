@@ -4,6 +4,7 @@ import NewFilters from "./NewFilters";
 import {filterFormState} from "./formState";
 import {ActionsContext} from "../../context/ActionsContext";
 import {useSelector} from "react-redux";
+import {logger} from "../../store/utils/logger";
 
 const filterStyles = {
     grants: makeStyles(theme => ({
@@ -202,7 +203,9 @@ function Filters({landing, mobile, grants}) {
         filters,
         setFilters
     }
+    const allGrantList = [...new Set(allGrants.map(grant => grant.geographic_region))];
 
+    logger('All Grants', allGrants, allGrantList)
     if (landing) {
         return <NewFilters classes={landingStyles} landing grants={grantList} {...rest} />
     }
