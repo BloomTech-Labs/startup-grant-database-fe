@@ -55,7 +55,7 @@ const ContactUsForm = () => {
           <Typography className={styles.title} variant="h3">
             Fill out this form to contact the Founder Grants Team!
           </Typography>
-          <Grid container className={styles.formInputs}>
+          <Grid spacing={2} container className={styles.formInputs}>
             {EmailFormValues.map(data => {
               return (
                 <TextFormField

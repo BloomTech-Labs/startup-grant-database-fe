@@ -5,23 +5,19 @@ import { useSelector } from "react-redux";
 
 const useStyles = makeStyles(theme => ({
   formContainer: {
-    padding: "1em 8em 2em 8em",
+    padding: "0 8em 2em 8em",
     [theme.breakpoints.down("sm")]: {
       padding: "2em"
     }
   },
   layout: {
     [theme.breakpoints.down("sm")]: {
-      padding: "4em 0"
+      padding: "2em 0"
     }
-  },
-  title: {
-    paddingTop: "1.5em"
   },
   subtitle: {
     fontWeight: "600",
-    paddingTop: "1.5em",
-    paddingBottom: "0.5em"
+    padding: "0.5em 0em"
   },
   card: {
     justifyContent: "center"
@@ -31,25 +27,25 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-
 const titles = [
-    "First Name",
-    "Last Name",
-    "Role",
-    "Phone Number",
-    "Name of Project",
-    "Project Link",
-    "About Project"
+  "First Name",
+  "Last Name",
+  "Role",
+  "Phone Number",
+  "Name of Project",
+  "Project Link",
+  "About Project"
 ];
 
 export const UserData = ({ data, initialData, currentUser }) => {
   const styles = useStyles();
-  console.log(initialData);
   return (
     <React.Fragment>
       <Paper className={styles.card}>
         <Avatar src={currentUser.picture} className={styles.avatar}></Avatar>
-        <Typography variant="h6">{currentUser.nickname}'s Profile</Typography>
+        <Typography variant="h6" className={styles.title}>
+          {currentUser.nickname}'s Profile
+        </Typography>
         <Divider variant="middle" />
         <Grid container spacing={6} className={styles.formContainer}>
           {Object.keys(initialData).map((key, i) => (

@@ -15,6 +15,7 @@ const emailFormStyles = makeStyles(theme => ({
     padding: theme.spacing(3),
     marginTop: theme.spacing(3)
   },
+
   button: {
     margin: theme.spacing(3)
   }
@@ -47,7 +48,7 @@ export const EmailFormSingle = () => {
       <form onSubmit={handleSubmit} className={styles.form}>
         <Paper className={styles.paper}>
           <Typography variant="h3">Email To Single User</Typography>
-          <Grid container className={styles.formInputs}>
+          <Grid container spacing={2} className={styles.formInputs}>
             {EmailSingleValues.map(data => {
               return (
                 <TextFormField

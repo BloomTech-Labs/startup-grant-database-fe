@@ -10,11 +10,12 @@ const useStyles = makeStyles(theme => ({
     alignContent: "center",
     display: "flex",
     flexDirection: "column",
-    [theme.breakpoints.up(600 + theme.spacing(3) * 2)]: {
-      //   marginTop: theme.spacing(3)
-      //   marginBottom: theme.spacing(6)
-      // height: 1000,
-      // position: "relative"
+    [theme.breakpoints.down(600 + theme.spacing(3) * 2)]: {
+      marginTop: theme.spacing(8.5),
+      marginLeft: theme.spacing(-2),
+      width: "100%",
+      height: 1000,
+      position: "relative"
     }
   },
   button: {
@@ -28,7 +29,7 @@ const MailingList = () => {
   return (
     <Paper className={styles.paper}>
       <iframe
-        height="550"
+        height="450"
         width="550"
         title="mailing-list"
         src="https://cdn.forms-content.sg-form.com/fabf10c9-5733-11ea-9868-7e336812a6ff"
