@@ -74,7 +74,7 @@ export const useAdminActions = () => {
 
     const removeModerator = useCallback((token: string, userId: string, roleId: string) => {
         dispatch({type: AdminTypes.REMOVE_MODERATOR_START});
-        axiosWithAuth(token).post(`/api/admin/moderator/remove/${userId}`, roleId).then(() => dispatch({
+        axiosWithAuth(token).post(`/admin/users/moderator/remove/${userId}`, {roleId}).then(() => dispatch({
             type: AdminTypes.REMOVE_MODERATOR_SUCCESS,
             payload: userId
         })).catch(error => dispatch({type: AdminTypes.REMOVE_MODERATOR_FAILURE, payload: error.response}))

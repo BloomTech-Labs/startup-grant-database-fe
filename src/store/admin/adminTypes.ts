@@ -69,6 +69,7 @@ export interface AdminState {
   emailSingle: emailSingle[];
   emailAll: emailAll[];
   isLoading: boolean;
+  isUserLoading: boolean
   isModerator: boolean;
   isAdmin: boolean;
   isSuccess: boolean;

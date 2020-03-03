@@ -51,6 +51,7 @@ const UserTable = props => {
     data.map(data => {
       newData.push({
         email: data.email,
+        user_id: data.user_id,
         moderator:
           data.roles.filter(role => role.name === "Moderator").length > 0,
         first_name: data.user_metadata ? data.user_metadata.first_name : null,
