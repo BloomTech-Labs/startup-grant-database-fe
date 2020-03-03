@@ -140,7 +140,6 @@ function BaseDialog(props) {
                                     variant="outlined"
                                     type="submit"
                                     className={classes.btn}
-                                    onClick={handleClose}
                                 >
                                     Send
                                 </Button>

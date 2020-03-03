@@ -92,7 +92,6 @@ function GrantContainer(props) {
 
     useEffect(() => {
         if (isAuthenticated) {
-            debugger;
             if (allGrantMode) {
                 if (pristine && allFilteredGrants.length !== allTheGrants.length) {
                     setGrants(allTheGrants);
