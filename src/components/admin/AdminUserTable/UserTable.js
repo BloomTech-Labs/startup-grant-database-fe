@@ -51,7 +51,8 @@ const UserTable = props => {
     data.map(data => {
       newData.push({
         email: data.email,
-        moderator: undefined,
+        moderator:
+          data.roles.filter(role => role.name === "Moderator").length > 0,
         first_name: data.user_metadata ? data.user_metadata.first_name : null,
         last_name: data.user_metadata ? data.user_metadata.last_name : null,
         role: data.user_metadata ? data.user_metadata.role : null,
@@ -86,12 +87,21 @@ const UserTable = props => {
               new Promise(resolve => {
                 setTimeout(() => {
                   resolve();
+                  console.log("data types", oldData, newData);
                   if (oldData) {
-                    actions.admin.updateModerator(
-                      token,
-                      newData.user_id,
-                      roleId
-                    );
+                    if (newData.moderator !== "false") {
+                      actions.admin.updateModerator(
+                        token,
+                        newData.user_id,
+                        roleId
+                      );
+                    } else {
+                      actions.admin.removeModerator(
+                        token,
+                        newData.user_id,
+                        roleId
+                      );
+                    }
                   }
                 }, 600);
               })
