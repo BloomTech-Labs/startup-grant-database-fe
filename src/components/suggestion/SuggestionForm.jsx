@@ -172,21 +172,6 @@ export const AddGrant = props => {
     setActiveStep(activeStep - 1);
   };
 
-  // function submitGrant(event) {
-  //   checkWebsite(grantInfo.website)
-  //   setTimeout(doSubmit(event), 288)
-  // }
-  // const checkWebsite = site => {
-  //   if (site.slice(0,4) !== "http"){
-  //     site = "https://" + site
-  //     console.log('site in checkSite', site)
-  //     setGrantInfo({
-  //       ...grantInfo,
-  //       website: site
-  //     })
-  //   }
-  // }
-  //Submit for grant from
   const submitGrant = event => {
     event.preventDefault();
     console.log("grant info in submit", grantInfo);
