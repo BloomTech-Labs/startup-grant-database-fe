@@ -14,6 +14,7 @@ import {makeStyles} from "@material-ui/core/styles";
 import {useForm} from "../../hooks/useForm";
 import {ActionsContext} from "../../context/ActionsContext";
 import ConfirmedModel from "../admin/ConfirmedModel";
+import {logger} from "../../store/utils/logger";
 
 const useStyles = makeStyles(theme => ({
     applyButton: {
@@ -46,7 +47,7 @@ function BaseDialog(props) {
     const actions = useContext(ActionsContext);
     const {token} = useSelector(state => state.user);
     const {isSuccess} = useSelector(state => state.suggestion);
-    const [values, handleChange, handleSubmit, resetForm] = useForm(
+    const [values, handleChange, handleSubmit, resetForm, setValues] = useForm(
         {
             grant_id: props.id,
             subject: "",
@@ -54,6 +55,12 @@ function BaseDialog(props) {
         },
         doSubmit
     );
+
+    useEffect(()=> {
+        if (values.grant_id !== props.id) {
+            setValues({...values, grant_id: props.id})
+        }
+    }, [props])
 
     const handleOpen = () => setOpen(true);
     const handleClose = () => {

@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import {makeStyles} from "@material-ui/core/styles";
 import {
     Paper,
@@ -34,11 +34,16 @@ const useStyles = makeStyles(theme => ({
 
 function NewGrantTable() {
     const {grants} = useSelector(state => state.admin);
+    const [grantList, setGrantList] = useState([]);
     const classes = useStyles();
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(5);
 
     const handleChangePage = (event, newPage) => setPage(newPage);
+
+    useEffect(()=> {
+        setGrantList(grants);
+    }, [grants])
 
     const handleChangeRowsPerPage = event => {
         setRowsPerPage(+event.target.value);
@@ -75,7 +80,7 @@ function NewGrantTable() {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {grants
+                        {grantList
                             .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                             .map(grant => (
                                 <GrantTableRow
