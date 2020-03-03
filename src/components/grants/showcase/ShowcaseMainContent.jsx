@@ -66,7 +66,7 @@ const mainDataContent = [
         title: 'Notes',
         subtitle: 'notes'
     },
-]
+];
 
 function ShowcaseMainContent(props) {
     return (

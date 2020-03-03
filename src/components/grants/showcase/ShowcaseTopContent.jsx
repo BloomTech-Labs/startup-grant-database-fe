@@ -1,8 +1,7 @@
 import React, {useEffect, useState} from "react";
 import {makeStyles} from "@material-ui/core/styles";
-import {Grid, Link, Typography, CardHeader} from "@material-ui/core";
+import {CardHeader, Grid, Typography} from "@material-ui/core";
 import {useSelector} from "react-redux";
-import LanguageIcon from "@material-ui/icons/Language";
 import IconDisplay from "./IconDisplay";
 import {ReactComponent as DefaultLogo} from "../Logo/defaultGrantLogo.svg";
 import WebsiteUrl from "./WebsiteUrl";

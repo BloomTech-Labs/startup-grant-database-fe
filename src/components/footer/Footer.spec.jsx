@@ -15,10 +15,10 @@ describe('Footer', () => {
                 isAdmin: false
             }
         })
-    })
+    });
     it('should render without crashing', () => {
-        const wrapper = render(<Provider store={store}><Router><Footer /></Router></Provider>);
-        const copyRight = wrapper.getByText(/©/i)
+        const wrapper = render(<Provider store={store}><Router><Footer/></Router></Provider>);
+        const copyRight = wrapper.getByText(/©/i);
         expect(copyRight).toBeInTheDocument
     })
 });

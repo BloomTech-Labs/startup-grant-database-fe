@@ -14,7 +14,8 @@ function FilterItem(props: IProps) {
     return (
         <FormControlLabel
             className={classes.mobileSet}
-            control={<Checkbox checked={data.checked} value={data.checked} onChange={() => handleChange(data, labelText)}/>}
+            control={<Checkbox checked={data.checked} value={data.checked}
+                               onChange={() => handleChange(data, labelText)}/>}
             label={data.key}
         />
     )

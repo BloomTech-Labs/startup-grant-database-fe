@@ -3,17 +3,18 @@ import {FilterFormState} from "./filterTypes";
 
 export class Filters {
     private readonly keys: string[];
+
     constructor(private filters: FilterFormState) {
         this.keys = this.getKeys();
     }
+
     public filter(grants: Grant[], min: number | null, max: number | null): Grant[];
     public filter(grants: Grant[], key1: string, key2: string): Grant[];
 
     public filter(param1: Grant[], param2: string | number | null, param3?: string | number | null) {
         if (typeof param2 === 'string') {
             return param1.filter(grant => grant[param2] === param3);
-        }
-         else {
+        } else {
             if (!param2 && param3) {
                 return param1.filter(grant => grant.amount < param3);
             } else if (!param3 && param2) {
@@ -39,7 +40,7 @@ export class Filters {
         return true;
     }
 
-   getFilters(): FilterFormState {
+    getFilters(): FilterFormState {
         const newObj: FilterFormState = {
             amount: [],
             geographic_region: [],
@@ -63,7 +64,7 @@ export class Filters {
     other(grants: Grant[], currentFilters: any[], key: string): Grant[] {
         const returnGrants: Grant[] = [];
         for (let values of currentFilters) {
-            this.filter(grants, key , values.key).forEach(eachGrant => returnGrants.push(eachGrant));
+            this.filter(grants, key, values.key).forEach(eachGrant => returnGrants.push(eachGrant));
         }
         return returnGrants;
     }
