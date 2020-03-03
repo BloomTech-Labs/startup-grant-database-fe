@@ -27,7 +27,7 @@ export const tableValues = {
     {
       title: "Last Updated",
       field: "details_last_updated",
-      type: "date",
+      type: "string",
       editable: "never"
     }, //sent to server in action. not editable by user
     {
@@ -48,7 +48,7 @@ export const tableValues = {
     {
       title: "Deadline",
       field: "most_recent_application_due_date",
-      type: "date"
+      type: "string"
     },
     {
       title: "Focus Area",

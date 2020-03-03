@@ -35,27 +35,28 @@ const useStyles = makeStyles(theme => ({
 const EditGrantModal = ({ grant, format, columns }) => {
   const actions = useContext(ActionsContext);
   const { token } = useSelector(state => state.user);
-  const [open, setOpen] = useState(false);
   const [values, handleChange, handleSubmit, resetForm] = useForm(
     {
-      competition_name: "",
-      area_focus: "",
-      sponsoring_entity: "",
-      website: "",
-      most_recent_application_due_date: "",
-      amount: "",
-      amount_notes: "",
-      geographic_region: "",
-      target_entrepreneur_demographic: "",
-      notes: "",
-      early_stage_funding: false,
-      is_reviewed: false,
-      has_requests: false,
-      details_last_updated: Date.now()
+      competition_name: grant.competition_name || "",
+      area_focus: grant.area_focus || "",
+      sponsoring_entity: grant.sponsoring_entity || "",
+      website: grant.website || "",
+      most_recent_application_due_date:
+        grant.most_recent_application_due_date || "",
+      amount: grant.amount || "",
+      amount_notes: grant.amount_notes || "",
+      geographic_region: grant.geographic_region || "",
+      target_entrepreneur_demographic:
+        grant.target_entrepreneur_demographic || "",
+      notes: grant.notes || "",
+      early_stage_funding: grant.early_stage_funding || false,
+      is_reviewed: grant.is_reviewed || false,
+      details_last_updated: `${Date.now()}`
     },
     doSubmit
   );
 
+  console.log("GRANT ITEMS", grant.competition_name);
   function refreshFunction() {
     actions.admin.fetchAdminGrants(token);
   }
@@ -70,13 +71,12 @@ const EditGrantModal = ({ grant, format, columns }) => {
   }
 
   const classes = useStyles();
-  
+
   return (
     <Grid className={classes.body} spacing={2}>
       <form onSubmit={handleSubmit}>
         {editFormValues.map(data => {
           return (
-
             <TextFormField
               label={data.label}
               type={data.type}
@@ -87,11 +87,10 @@ const EditGrantModal = ({ grant, format, columns }) => {
               multiline={data.multiline}
               variant={data.variant}
               rows={data.rows}
-              value={data.name}
-              onChange={handleChange}
+              value={values}
+              handleChanges={handleChange}
               className={classes.inputStyle}
             />
-
           );
         })}
 

@@ -120,7 +120,7 @@ export const AddGrant = props => {
     // type: "",
     area_focus: "",
     sponsoring_entity: "",
-    
+
     website: "https://",
 
     most_recent_application_due_date: "",
@@ -134,7 +134,7 @@ export const AddGrant = props => {
     early_stage_funding: false,
     is_reviewed: false,
     has_requests: false,
-    details_last_updated: moment().format("YYYY-MM-DD")
+    details_last_updated: ""
   });
 
   const handleChanges = event => {
@@ -144,7 +144,6 @@ export const AddGrant = props => {
       [event.target.name]: event.target.value
     });
   };
-
 
   function getStepContent(step) {
     switch (step) {
@@ -172,7 +171,7 @@ export const AddGrant = props => {
   const handleBack = () => {
     setActiveStep(activeStep - 1);
   };
-  
+
   // function submitGrant(event) {
   //   checkWebsite(grantInfo.website)
   //   setTimeout(doSubmit(event), 288)
@@ -190,7 +189,7 @@ export const AddGrant = props => {
   //Submit for grant from
   const submitGrant = event => {
     event.preventDefault();
-    console.log("grant info in submit", grantInfo)
+    console.log("grant info in submit", grantInfo);
     actions.grants.postGrant(grantInfo, token);
 
     setGrantInfo({
