@@ -21,21 +21,3 @@ export const EmailSingleValues = [
     data: []
   }
 ];
-
-export const EmailAllValues = [
-  {
-    label: "Subject:",
-    type: "text",
-    name: "subject",
-    data: []
-  },
-  {
-    label: "Message:",
-    type: "text",
-    multiline: true,
-    rows: 5,
-    name: "message",
-    variant: "outlined",
-    data: []
-  }
-];

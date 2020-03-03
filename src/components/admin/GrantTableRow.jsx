@@ -15,8 +15,12 @@ import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
 import { ActionsContext } from "../../context/ActionsContext";
 import { useSelector } from "react-redux";
 import EditGrantModal from "./EditGrantModal";
+import ConfirmedModel from "./ConfirmedModel";
 import clsx from "clsx";
 import editFormValues from "./values/EditGrantFormValues";
+import EditGrantForm from "./values/EditGrantForm";
+import EditGrantDialog from "./values/EditGrantDialog";
+import FavoritesIconButton from "../grants/showcase/FavoritesIconButton";
 
 const useStyles = makeStyles(theme => ({
   expand: {
@@ -38,6 +42,7 @@ const GrantTableRow = ({ grant, format, columns }) => {
   const [item, setItem] = useState([]);
 
   const { token } = useSelector(state => state.user);
+
   function handleDelete(id) {
     actions.admin.removeSuggestion(token, id);
   }
@@ -51,27 +56,26 @@ const GrantTableRow = ({ grant, format, columns }) => {
     setItem(grant);
   }, [grant]);
 
-  function openDialog() {
-    setEdit(true);
-    console.log(edit);
-  }
-  console.log("=++++++++++++++++++++++", editFormValues);
   return (
     <>
       <TableRow hover role="checkbox" tabIndex={-1} key={grant.id}>
         {columns.map(column => {
-          return (
-            <TableCell key={column.id} align={column.align}>
-              {format(grant, column)}
-            </TableCell>
-          );
+          if (column.id === "edit") {
+            return (
+              <TableCell align={column.align} key={column.id}>
+                <IconButton onClick={() => setEdit(true)}>
+                  <EditIcon />
+                </IconButton>
+              </TableCell>
+            );
+          } else {
+            return (
+              <TableCell key={column.id} align={column.align}>
+                {format(grant, column)}
+              </TableCell>
+            );
+          }
         })}
-
-        <TableCell align="left">
-          <IconButton onClick={() => openDialog()}>
-            <EditIcon />
-          </IconButton>
-        </TableCell>
 
         <TableCell align="right">
           {grant.requests.length > 0 && (
@@ -103,7 +107,14 @@ const GrantTableRow = ({ grant, format, columns }) => {
           </TableCell>
         </TableRow>
       )}
-      {edit && <EditGrantModal key={grant.id} grant={grant} />}
+      <EditGrantDialog
+        isOpen={edit}
+        handleClose={() => setEdit(false)}
+        grant={grant}
+        title="Edit Modal"
+        message="Here you can update and delete any grant"
+        component={EditGrantModal}
+      />
     </>
   );
 };

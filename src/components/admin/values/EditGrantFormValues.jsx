@@ -10,16 +10,12 @@ const approvedValue = {
   select: true,
   data: [
     {
-      value: "approved",
+      value: true,
       label: "Approved"
     },
     {
-      value: "not_approved",
-      label: "Not Approved"
-    },
-    {
-      value: "expired",
-      label: "Expired"
+      value: false,
+      label: "Pending"
     }
   ]
 };

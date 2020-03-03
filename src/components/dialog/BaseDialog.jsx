@@ -67,8 +67,6 @@ function BaseDialog(props) {
   };
 
   function doSubmit() {
-    console.log(values);
-    console.log("token", token);
     actions.suggestion.addSuggestion(token, values);
   }
 

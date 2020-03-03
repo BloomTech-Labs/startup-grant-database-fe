@@ -14,7 +14,6 @@ const useStyles = makeStyles(theme => ({
 
 export const GrantInfoForm = props => {
   const styles = useStyles();
-  console.log('props in grantInfo', props);
   return (
     <Fragment>
       <Typography variant="h5" className={null}>
