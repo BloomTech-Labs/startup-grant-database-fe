@@ -93,7 +93,7 @@ export default () => {
         <meta name="description" content="List of available grants" />
         <meta
           name="keywords"
-          content="grant,startup,funding,invest,financing"
+          content="grant,startup,funding,invest,financing,science,social,founder,scientist"
         />
         <meta property="og:locale" content="en_US" />
         <meta property="og:site_name" content="Startup Grant Database" />
