@@ -4,11 +4,12 @@ import NewFilters from "./NewFilters";
 import {filterFormState} from "./formState";
 import {ActionsContext} from "../../context/ActionsContext";
 import {useSelector} from "react-redux";
+import {logger} from "../../store/utils/logger";
 
 const filterStyles = {
     grants: makeStyles(theme => ({
         card: {
-            margin: '1em 1em 0 0',
+            margin: theme.spacing(2, 1, 0, 0),
             borderRadius: '2px',
             [theme.breakpoints.down('sm')]: {
                 position: 'initial',
@@ -81,17 +82,10 @@ const filterStyles = {
             }
         },
         card: {
-            marginRight: "2rem",
-            padding: "48px",
-            borderRadius: "2px",
-            [theme.breakpoints.down("sm")]: {
-                width: "100%",
-                borderRadius: 0
-            },
+            marginTop: theme.spacing(2),
+            padding: theme.spacing(6),
             [theme.breakpoints.down("xs")]: {
-                padding: 0,
-                paddingTop: "20px",
-                flexGrow: 2
+                display: 'none'
             }
         },
         set: {
@@ -209,7 +203,9 @@ function Filters({landing, mobile, grants}) {
         filters,
         setFilters
     }
+    const allGrantList = [...new Set(allGrants.map(grant => grant.geographic_region))];
 
+    logger('All Grants', allGrants, allGrantList)
     if (landing) {
         return <NewFilters classes={landingStyles} landing grants={grantList} {...rest} />
     }

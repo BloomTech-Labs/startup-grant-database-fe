@@ -79,7 +79,7 @@ const useStyles = makeStyles(theme => ({
 
 const SideMenu = ({ side, toggleDrawer }) => {
   const { isAuthenticated, loginWithRedirect, logout } = useAuth0();
-  const { isModerator } = useSelector(state => state.admin);
+  const { isModerator, isUserLoading } = useSelector(state => state.admin);
   const classes = useStyles();
 
   const handleAuthActions = () =>
@@ -100,7 +100,7 @@ const SideMenu = ({ side, toggleDrawer }) => {
         {isAuthenticated && isModerator && (
           <>
             <MenuItem url="/admin" title="Edit Grants" icon={ViewListIcon} />
-            <MenuItem url="/manage" title="Manage Users" icon={PeopleAltIcon} />
+            {!isUserLoading && <MenuItem url="/manage" title="Manage Users" icon={PeopleAltIcon} />}
           </>
         )}
         <ListItem>

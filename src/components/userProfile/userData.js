@@ -1,42 +1,30 @@
-import React, { useContext, useEffect, useState } from "react";
-import { ActionsContext } from "../../context/ActionsContext";
-import { useAuth0 } from "../auth0/Auth0Wrapper";
-import { useSelector } from "react-redux";
-
-import { Divider, Grid, Paper, Typography } from "@material-ui/core";
+import React from "react";
+import { Divider, Grid, Paper, Typography, Avatar } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles(theme => ({
   formContainer: {
-    padding: "1em 8em 2em 8em",
+    padding: "0 8em 2em 8em",
     [theme.breakpoints.down("sm")]: {
       padding: "2em"
     }
   },
   layout: {
     [theme.breakpoints.down("sm")]: {
-      padding: "4em 0"
+      padding: "2em 0"
     }
-  },
-  title: {
-    paddingTop: "1.5em"
   },
   subtitle: {
     fontWeight: "600",
-    paddingTop: "1.5em",
-    paddingBottom: "0.5em"
+    padding: "0.5em 0em"
+  },
+  card: {
+    justifyContent: "center"
+  },
+  avatar: {
+    paddingLeft: "2em"
   }
 }));
-
-const initialData = {
-  first_name: "",
-  last_name: "",
-  role: "",
-  phone: "",
-  company: "",
-  company_url: "",
-  about: ""
-};
 
 const titles = [
   "First Name",
@@ -48,33 +36,19 @@ const titles = [
   "About Project"
 ];
 
-export const UserData = props => {
-  const actions = useContext(ActionsContext);
-  const { token, currentUser } = useSelector(state => state.user);
-  const [data, setData] = useState({});
+export const UserData = ({ data, initialData, currentUser }) => {
   const styles = useStyles();
-
-  useEffect(() => {
-    const checkCurrentUser = async () => {
-      if (!currentUser.user_metadata) {
-        await actions.user.updateUser(token, initialData);
-        setData(initialData);
-      } else {
-        setData(currentUser.user_metadata);
-      }
-    };
-    checkCurrentUser();
-  }, []);
-
   return (
     <React.Fragment>
-      <Paper>
-        <Typography variant="h5">Change Account Settings</Typography>
-        <Typography variant="h6">Personal Details:</Typography>
+      <Paper className={styles.card}>
+        <Avatar src={currentUser.picture} className={styles.avatar}></Avatar>
+        <Typography variant="h6" className={styles.title}>
+          {currentUser.nickname}'s Profile
+        </Typography>
         <Divider variant="middle" />
         <Grid container spacing={6} className={styles.formContainer}>
           {Object.keys(initialData).map((key, i) => (
-            <Grid item xs={6} key={key}>
+            <Grid item xs={12} key={key}>
               <Typography className={styles.subtitle}>
                 {`${titles[i]}:`}
               </Typography>

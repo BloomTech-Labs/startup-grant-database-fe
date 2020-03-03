@@ -33,7 +33,6 @@ export const useGrantActions = () => {
 
   const postGrant = useCallback(
     (data, token) => {
-      console.log("postGrant action data =>", data);
       dispatch({ type: GrantTypes.POST_GRANTS_START });
       axiosWithAuth(token)
         .post("/grants", data)
@@ -41,6 +40,7 @@ export const useGrantActions = () => {
           dispatch({ type: GrantTypes.POST_GRANTS_SUCCESS, payload: res.data });
         })
         .catch((err: AxiosError) => {
+          console.log("ERROR on Suggestion Form", err);
           const data =
             err && err.response && err.response.data ? err.response.data : err;
           dispatch({ type: GrantTypes.POST_GRANTS_FAILURE, payload: data });
@@ -54,7 +54,7 @@ export const useGrantActions = () => {
       dispatch({ type: GrantTypes.FETCH_ADMIN_GRANTS_START });
       // @ts-ignore
       axiosWithAuth(token)
-        .get(`/admin`)
+        .get(`/moderator`)
         .then((res: AxiosResponse) => {
           dispatch({
             type: GrantTypes.FETCH_ADMIN_GRANTS_SUCCESS,
@@ -78,7 +78,7 @@ export const useGrantActions = () => {
     (token: string, id: number, data: Grant) => {
       dispatch({ type: GrantTypes.UPDATE_ADMIN_GRANTS_START, payload: true });
       axiosWithAuth(token)
-        .put(`/admin/${id}`, data)
+        .put(`/moderator/grant/${id}`, data)
         .then((res: AxiosResponse) => {
           dispatch({
             type: GrantTypes.UPDATE_ADMIN_GRANTS_SUCCESS,
@@ -101,7 +101,7 @@ export const useGrantActions = () => {
     (token: string, id: number) => {
       dispatch({ type: GrantTypes.DELETE_ADMIN_GRANTS_START });
       axiosWithAuth(token)
-        .delete(`/admin/${id}`)
+        .delete(`/moderator/grant/${id}`)
         .then((res: AxiosResponse) => {
           dispatch({ type: GrantTypes.DELETE_ADMIN_GRANTS_SUCCESS });
         })
@@ -121,7 +121,7 @@ export const useGrantActions = () => {
     (token: string, id: number) => {
       dispatch({ type: GrantTypes.SELECT_ADMIN_GRANTS_START });
       axiosWithAuth(token)
-        .get(`/admin/${id}`)
+        .get(`/moderator/grant/${id}`)
         .then((res: AxiosResponse) => {
           dispatch({ type: GrantTypes.SELECT_ADMIN_GRANTS_SUCCESS });
         })

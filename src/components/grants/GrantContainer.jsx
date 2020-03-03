@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Redirect } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { ActionsContext } from "../../context/ActionsContext";
 import GrantShowcase from "./GrantShowcase";
@@ -10,7 +10,9 @@ import TuneIcon from "@material-ui/icons/Tune";
 import Filters from "../filter/Filters";
 import clsx from "clsx";
 import { useAuth0 } from "../auth0/Auth0Wrapper";
-import {Helmet} from "react-helmet";
+import { logger } from "../../store/utils/logger";
+import Alert from "@material-ui/lab/Alert";
+import { Helmet } from "react-helmet";
 
 const useStyles = makeStyles(theme => ({
   homeGridContainer: {
@@ -19,56 +21,40 @@ const useStyles = makeStyles(theme => ({
     margin: "0",
     flexWrap: "nowrap",
     overflowX: "hidden",
-    overflowY: "hidden",
+    overflowY: "auto",
     [theme.breakpoints.down("sm")]: {
       background: "#f7f7f7"
     }
   },
   grantList: {
-    maxHeight: "86vh",
+    maxHeight: "84vh",
+    height: "auto",
     overflow: "auto",
     position: "relative",
-    [theme.breakpoints.down('sm')]: {
-      width: '100%'
+    [theme.breakpoints.down("sm")]: {
+      width: "100%",
+      marginLeft: theme.spacing(3)
     },
     [theme.breakpoints.down("xs")]: {
       marginTop: theme.spacing(11),
       height: "100%",
       justifyContent: "center",
-      flexDirection: "column",
+      flexDirection: "column"
     }
   },
   gridItem: {
-    padding: "1em"
-  },
-  filterIcon: {
-    position: "absolute",
-    top: "8%",
-    fill: "#BBB",
-    right: "1%",
-    padding: "10px",
-    background: "#fff",
-    width: "2em",
-    height: "2em",
-    borderRadius: "100px",
-    zIndex: "1000",
-    boxShadow:
-      "0px 1px 0px 0px rgba(0,0,0,0.2), 0px 1px 0px 0px rgba(0,0,0,0.14), 0px 2px 0px -1px rgba(0,0,0,0.12)",
-    "&:hover": {
-      cursor: "pointer"
-    },
-  },
-  filterIconSelected: {
-    fill: "#3DB8B3",
-    boxShadow:
-      "0px 1px 0px 0px #3DB8B3, 0px 4px 0px 0px #3DB8B3, 0px 2px 0px -1px #3DB8B3"
+    overflow: "auto",
+    position: "relative",
+    maxHeight: "84vh",
+    minHeight: "76vh",
+    padding: theme.spacing(2)
   },
   filters: {
     transition: "all .3s ease-in-out"
   },
   filterList: {
-    [theme.breakpoints.down('sm')]: {
-      display: 'none'
+    [theme.breakpoints.down("sm")]: {
+      display: "none"
     }
   },
   hideFilters: {
@@ -81,6 +67,7 @@ const useStyles = makeStyles(theme => ({
 
 function GrantContainer(props) {
   const { isAuthenticated } = useAuth0();
+  const [isInitialLoad, setIsInitialLoad] = useState(true);
   const allGrants = useSelector(state => state.filters.grants);
   const { pristine } = useSelector(state => state.filters);
   const allTheGrants = useSelector(state => state.grants.grants);
@@ -112,7 +99,10 @@ function GrantContainer(props) {
           setGrants(allTheGrants);
         } else {
           if (allGrants.length !== grants.length) {
-            setGrants(allGrants);
+            if (!isInitialLoad) {
+              setGrants(allGrants);
+            }
+            setIsInitialLoad(false);
           }
         }
       } else {
@@ -133,53 +123,61 @@ function GrantContainer(props) {
   const toggleFilters = () => setFiltersOpen(!filtersOpen);
 
   if (!showcase) {
+    logger("Called", showcase);
     return <Redirect to="/" />;
   }
 
   return (
-      <>
-        <Helmet>
-          <title>Founder Grants | Grants</title>
-          <meta name="description" content="Detail view of an available grant" />
-          <meta name="keywords" content="grant,startup,funding,invest,financing" />
-          <meta property="og:locale" content="en_US" />
-          <meta property="og:site_name" content="Startup Grant Database" />
-        </Helmet>
+    <>
+      <Helmet>
+        <title>Founder Grants | Grants</title>
+        <meta name="description" content="Detail view of an available grant" />
+        <meta
+          name="keywords"
+          content="grant,startup,funding,invest,financing"
+        />
+        <meta property="og:locale" content="en_US" />
+        <meta property="og:site_name" content="Startup Grant Database" />
+      </Helmet>
+
       <Grid
-          container
-          direction="row"
-          justify="space-between"
-          alignItems="flex-start"
-          spacing={2}
-          className={classes.homeGridContainer}
+        container
+        direction="row"
+        justify="space-between"
+        alignItems="flex-start"
+        className={classes.homeGridContainer}
       >
         <Grid item xs={12} md={4} className={classes.grantList}>
+          {!isAuthenticated && (
+            <Alert severity="info" color="success" variant="filled">
+              Enjoy these samples! Login to access hundreds of curated grants
+              that can fund your ambitions.
+            </Alert>
+          )}
+          {isAuthenticated && (
+            <Link to="/mailinglist">
+              <Alert severity="info" color="success" variant="filled">
+                Click here to be notified when new grants are available!
+              </Alert>
+            </Link>
+          )}
           <GrantList grants={grants} showcase={showcase} />
         </Grid>
-        <Grid item md={7} className={classes.gridItem}>
+        <Grid item md={6} className={classes.gridItem}>
           <GrantShowcase showcase={showcase} />
         </Grid>
+
         <Grid item md={2} className={classes.filterList}>
-          <TuneIcon
-              className={clsx(
-                  classes.filterIcon,
-                  filtersOpen && classes.filterIconSelected
-              )}
-              onClick={toggleFilters}
-          >
-            Filters
-          </TuneIcon>
-          <div
-              className={clsx(
-                  classes.filters,
-                  filtersOpen ? classes.showFilters : classes.hideFilters
-              )}
-          >
-            <Filters grants={grants} />
-          </div>
+          {isAuthenticated && (
+            <>
+              <div className={clsx(classes.filters, classes.showFilters)}>
+                <Filters grants={grants} />
+              </div>
+            </>
+          )}
         </Grid>
       </Grid>
-        </>
+    </>
   );
 }
 

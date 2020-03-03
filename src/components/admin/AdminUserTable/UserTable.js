@@ -5,8 +5,9 @@ import MaterialTable, { FilterRow } from "material-table";
 import { makeStyles } from "@material-ui/core/styles";
 import moment from "moment";
 import { useAuth0 } from "../../auth0/Auth0Wrapper";
-import { Paper } from "@material-ui/core";
+import { Paper, Button } from "@material-ui/core";
 import { tableValues } from "./values/UserTableValues";
+import { EmailFormSingle } from "../EmailFormSingle";
 
 const userTableStyles = makeStyles(theme => ({
   displayNone: {
@@ -41,8 +42,29 @@ const UserTable = props => {
   const roleId = useSelector(
     state => state.admin.roles.filter(role => role.name === "Moderator")[0].id
   );
-
+  const [emailType, setEmailType] = useState("");
   const style = userTableStyles();
+
+  const manipulateUserData = data => {
+    console.log(data);
+    let newData = [];
+    data.map(data => {
+      newData.push({
+        email: data.email,
+        user_id: data.user_id,
+        moderator:
+          data.roles.filter(role => role.name === "Moderator").length > 0,
+        first_name: data.user_metadata ? data.user_metadata.first_name : null,
+        last_name: data.user_metadata ? data.user_metadata.last_name : null,
+        role: data.user_metadata ? data.user_metadata.role : null,
+        company: data.user_metadata ? data.user_metadata.company : null,
+        company_url: data.user_metadata ? data.user_metadata.company_url : null,
+        about: data.user_metadata ? data.user_metadata.about : null
+      });
+    });
+    console.log("newData", newData);
+    return newData;
+  };
 
   return (
     <React.Fragment>
@@ -51,7 +73,7 @@ const UserTable = props => {
           title={tableValues.title}
           columns={tableValues.columns}
           options={tableStyles}
-          data={users}
+          data={manipulateUserData(users)}
           editable={{
             onRowAdd: newData =>
               new Promise(resolve => {
@@ -64,15 +86,23 @@ const UserTable = props => {
               }),
             onRowUpdate: (newData, oldData) =>
               new Promise(resolve => {
-
                 setTimeout(() => {
                   resolve();
+                  console.log("data types", oldData, newData);
                   if (oldData) {
-                    actions.admin.updateModerator(
-                      token,
-                      newData.user_id,
-                      roleId
-                    );
+                    if (newData.moderator !== "false") {
+                      actions.admin.updateModerator(
+                        token,
+                        newData.user_id,
+                        roleId
+                      );
+                    } else {
+                      actions.admin.removeModerator(
+                        token,
+                        newData.user_id,
+                        roleId
+                      );
+                    }
                   }
                 }, 600);
               })
@@ -80,6 +110,14 @@ const UserTable = props => {
           zeroMinWidth
         />
       </Paper>
+      <Button
+        variant="contained"
+        color="primary"
+        onClick={() => setEmailType("one")}
+      >
+        Email Individual
+      </Button>
+      {emailType === "one" && <EmailFormSingle />}
     </React.Fragment>
   );
 };

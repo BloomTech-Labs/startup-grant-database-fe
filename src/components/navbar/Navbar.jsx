@@ -29,21 +29,23 @@ const useStyles = makeStyles(theme => ({
     }
   },
   title: {
-    fontSize: "2.125rem",
+    flexGrow: 1,
     textAlign: "left",
     color: "#000",
-    textDecoration: 'none',
-    "&:hover" : {
-      textDecoration: 'none'
+    textDecoration: "none",
+    "&:hover": {
+      textDecoration: "none"
     },
     [theme.breakpoints.down("xs")]: {
-      fontSize: "1.5rem",
-      marginLeft: "5px"
+      marginLeft: theme.spacing(1)
     }
   },
   helloUser: {
     fontFamily: "Nunito Sans",
-    padding: "15px"
+    padding: theme.spacing(2),
+    [theme.breakpoints.down("xs")]: {
+      display: "none"
+    }
   },
   menu: {
     width: "2.5em",
@@ -57,6 +59,9 @@ const useStyles = makeStyles(theme => ({
     fontFamily: "Roboto",
     "&:hover": {
       textDecoration: "underline"
+    },
+    [theme.breakpoints.down("xs")]: {
+      display: "none"
     }
   },
   navButton: {
@@ -77,19 +82,21 @@ const useStyles = makeStyles(theme => ({
     }
   },
   toolBar: {
-    backgroundColor: "white"
-  },
-  titleLink: {
-    display: "flex",
-    flexGrow: 1,
-    textDecoration: "none"
+    backgroundColor: "white",
+    [theme.breakpoints.down("xs")]: {
+      padding: 0
+    }
   },
   linkContainer: {
-    maxWidth: "600px",
+    maxWidth: "150px",
     width: "100%",
     display: "flex",
-    justifyContent: "space-between",
-    alignItems: "center"
+    justifyContent: "flex-end",
+    alignItems: "center",
+    [theme.breakpoints.up("sm")]: {
+      justifyContent: "space-between",
+      maxWidth: "275px"
+    }
   }
 }));
 
@@ -129,7 +136,6 @@ const Navbar = () => {
       isAuthenticated &&
       currentUser.roles.filter(role => role.name === "Moderator").length > 0
     ) {
-      console.log("currentUser", currentUser);
       actions.admin.isModerator();
     }
     if (
@@ -159,11 +165,9 @@ const Navbar = () => {
   return (
     <AppBar className={classes.navBar} color="primary" position="sticky">
       <Toolbar className={classes.toolBar}>
-        <Typography variant="h4" component="h1" className={classes.titleLink}>
-          <Link component={RouterLink} to="/" className={classes.title}>
-            <FGLogo />
-          </Link>
-        </Typography>
+        <Link component={RouterLink} to="/" className={classes.title}>
+          <FGLogo />
+        </Link>
         {isAuthenticated && currentUser.nickname !== undefined ? (
           <>
             <Typography variant="body1" className={classes.helloUser}>
@@ -191,12 +195,13 @@ const Navbar = () => {
               </Link>
             ))}
             <Button
+              size="small"
               className={classes.navButton}
               color="primary"
               onClick={() => loginWithRedirect()}
               disabled={loading || isLoading}
             >
-              {loading || isLoading ? `Please Wait` : `Log in`}
+              {loading || isLoading ? `Loading...` : `Log in`}
             </Button>
           </div>
         )}

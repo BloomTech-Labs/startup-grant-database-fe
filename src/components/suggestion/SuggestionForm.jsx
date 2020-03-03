@@ -40,8 +40,9 @@ const useStyles = makeStyles(theme => ({
     }
   },
   paper: {
-    marginTop: theme.spacing(3),
+    marginTop: theme.spacing(10),
     marginBottom: theme.spacing(3),
+    paddingBottom: theme.spacing(3),
 
     [theme.breakpoints.up(600 + theme.spacing(3) * 2)]: {
       marginTop: theme.spacing(3),
@@ -119,7 +120,8 @@ export const AddGrant = props => {
     // type: "",
     area_focus: "",
     sponsoring_entity: "",
-    website: "",
+
+    website: "https://",
 
     most_recent_application_due_date: "",
 
@@ -132,7 +134,7 @@ export const AddGrant = props => {
     early_stage_funding: false,
     is_reviewed: false,
     has_requests: false,
-    details_last_updated: moment().format("YYYY-MM-DD")
+    details_last_updated: ""
   });
 
   const handleChanges = event => {
@@ -142,7 +144,6 @@ export const AddGrant = props => {
       [event.target.name]: event.target.value
     });
   };
-  console.log("grant info", grantInfo);
 
   function getStepContent(step) {
     switch (step) {
@@ -171,10 +172,9 @@ export const AddGrant = props => {
     setActiveStep(activeStep - 1);
   };
 
-  //Submit for grant from
   const submitGrant = event => {
     event.preventDefault();
-
+    console.log("grant info in submit", grantInfo);
     actions.grants.postGrant(grantInfo, token);
 
     setGrantInfo({
