@@ -141,10 +141,33 @@ const ResetSuccess: FunctionReducer = (state, payload) => ({
   isSuccess: false
 });
 
-const updateModeratorReducer = (state: AdminState) => ({
-  ...state,
-  isLoading: false
-});
+const updateModeratorReducer = (state: AdminState, payload: string) => {
+  const updatedUsers = state.users.map(user => {
+    if (user.user_id === payload) {
+      return {
+        ...user,
+        roles: state.roles
+      }
+    } else {
+      return user
+    }
+  })
+  return {...state, users: updatedUsers, isLoading: false}
+}
+
+const removeModeratorReducer = (state: AdminState, payload: string) => {
+  const updatedUsers = state.users.map(user => {
+    if (user.user_id === payload) {
+      return {
+        ...user,
+        roles: []
+      }
+    } else {
+      return user
+    }
+  })
+  return {...state, users: updatedUsers, isLoading: false}
+}
 
 export const adminReducer = createReducer(initialState, {
   [AdminTypes.FETCH_ADMIN_GRANTS_START]: adminStartReducer,
@@ -178,5 +201,8 @@ export const adminReducer = createReducer(initialState, {
   [AdminTypes.POST_EMAIL_ADMIN_FAILURE]: PostEmailToAdminFailure,
   [AdminTypes.RESET_SUCCESS]: ResetSuccess,
   [AdminTypes.UPDATE_MODERATOR_START]: adminStartReducer,
-  [AdminTypes.UPDATE_MODERATOR_FAILURE]: adminFailReducer
+  [AdminTypes.UPDATE_MODERATOR_FAILURE]: adminFailReducer,
+  [AdminTypes.REMOVE_MODERATOR_START]: adminStartReducer,
+  [AdminTypes.REMOVE_MODERATOR_SUCCESS]: removeModeratorReducer,
+  [AdminTypes.REMOVE_MODERATOR_FAILURE]: adminFailReducer
 });
