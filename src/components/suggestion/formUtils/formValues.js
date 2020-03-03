@@ -243,7 +243,7 @@ export const DemoFormData = [
   {
     label: "Application Due Date",
     name: "most_recent_application_due_date",
-    type: "date",
+    type: "string",
     inputLabel: { shrink: true },
     sm: 6,
     data: []
