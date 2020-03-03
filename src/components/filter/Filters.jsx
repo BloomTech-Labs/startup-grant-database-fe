@@ -4,7 +4,6 @@ import NewFilters from "./NewFilters";
 import {filterFormState} from "./formState";
 import {ActionsContext} from "../../context/ActionsContext";
 import {useSelector} from "react-redux";
-import {logger} from "../../store/utils/logger";
 
 const filterStyles = {
     grants: makeStyles(theme => ({
@@ -164,12 +163,12 @@ const filterStyles = {
             display: "none"
         }
     }))
-}
+};
 
 function Filters({landing, mobile, grants}) {
     const {pristine, criteria} = useSelector(state => state.filters);
     const actions = useContext(ActionsContext);
-    const [filters, setFilters] = useState(()=> {
+    const [filters, setFilters] = useState(() => {
         if (pristine) {
             return filterFormState;
         } else {
@@ -186,7 +185,7 @@ function Filters({landing, mobile, grants}) {
         }
     }, [filters]);
 
-    useEffect(()=> {
+    useEffect(() => {
         if (grants) {
             setGrantList(grants);
             // actions.filters.grantFilter(grants);
@@ -202,10 +201,8 @@ function Filters({landing, mobile, grants}) {
     const rest = {
         filters,
         setFilters
-    }
-    const allGrantList = [...new Set(allGrants.map(grant => grant.geographic_region))];
+    };
 
-    logger('All Grants', allGrants, allGrantList)
     if (landing) {
         return <NewFilters classes={landingStyles} landing grants={grantList} {...rest} />
     }

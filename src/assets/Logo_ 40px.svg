@@ -1,10 +1,15 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="46" height="46" fill="none" viewBox="0 0 46 46">
-    <path fill="#3CBBB1" d="M2.875 11.02a9.583 9.583 0 0 1 19.167 0v9.584h-9.584a9.583 9.583 0 0 1-9.583-9.583z" filter="url(#a)"/>
-    <path fill="#3CBBB1" d="M43.125 11.02a9.583 9.583 0 0 0-19.167 0v9.584h9.584a9.583 9.583 0 0 0 9.583-9.583z" filter="url(#b)" opacity=".8"/>
-    <path fill="#F1603A" d="M2.875 32.104a9.583 9.583 0 0 0 19.167 0v-9.583h-9.584a9.583 9.583 0 0 0-9.583 9.583z" filter="url(#c)" opacity=".8"/>
-    <path fill="#3CBBB1" d="M43.125 32.104a9.583 9.583 0 0 1-19.167 0v-9.583h9.584a9.583 9.583 0 0 1 9.583 9.583z" filter="url(#d)" opacity=".6"/>
+    <path fill="#3CBBB1" d="M2.875 11.02a9.583 9.583 0 0 1 19.167 0v9.584h-9.584a9.583 9.583 0 0 1-9.583-9.583z"
+          filter="url(#a)"/>
+    <path fill="#3CBBB1" d="M43.125 11.02a9.583 9.583 0 0 0-19.167 0v9.584h9.584a9.583 9.583 0 0 0 9.583-9.583z"
+          filter="url(#b)" opacity=".8"/>
+    <path fill="#F1603A" d="M2.875 32.104a9.583 9.583 0 0 0 19.167 0v-9.583h-9.584a9.583 9.583 0 0 0-9.583 9.583z"
+          filter="url(#c)" opacity=".8"/>
+    <path fill="#3CBBB1" d="M43.125 32.104a9.583 9.583 0 0 1-19.167 0v-9.583h9.584a9.583 9.583 0 0 1 9.583 9.583z"
+          filter="url(#d)" opacity=".6"/>
     <defs>
-        <filter id="a" width="24.917" height="24.917" x="0" y="0" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse">
+        <filter id="a" width="24.917" height="24.917" x="0" y="0" color-interpolation-filters="sRGB"
+                filterUnits="userSpaceOnUse">
             <feFlood flood-opacity="0" result="BackgroundImageFix"/>
             <feColorMatrix in="SourceAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"/>
             <feOffset dy="1.429"/>
@@ -13,7 +18,8 @@
             <feBlend in2="BackgroundImageFix" result="effect1_dropShadow"/>
             <feBlend in="SourceGraphic" in2="effect1_dropShadow" result="shape"/>
         </filter>
-        <filter id="b" width="24.917" height="24.917" x="21.083" y="0" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse">
+        <filter id="b" width="24.917" height="24.917" x="21.083" y="0" color-interpolation-filters="sRGB"
+                filterUnits="userSpaceOnUse">
             <feFlood flood-opacity="0" result="BackgroundImageFix"/>
             <feColorMatrix in="SourceAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"/>
             <feOffset dy="1.429"/>
@@ -22,7 +28,8 @@
             <feBlend in2="BackgroundImageFix" result="effect1_dropShadow"/>
             <feBlend in="SourceGraphic" in2="effect1_dropShadow" result="shape"/>
         </filter>
-        <filter id="c" width="24.917" height="24.917" x="0" y="21.083" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse">
+        <filter id="c" width="24.917" height="24.917" x="0" y="21.083" color-interpolation-filters="sRGB"
+                filterUnits="userSpaceOnUse">
             <feFlood flood-opacity="0" result="BackgroundImageFix"/>
             <feColorMatrix in="SourceAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"/>
             <feOffset dy="1.429"/>
@@ -31,7 +38,8 @@
             <feBlend in2="BackgroundImageFix" result="effect1_dropShadow"/>
             <feBlend in="SourceGraphic" in2="effect1_dropShadow" result="shape"/>
         </filter>
-        <filter id="d" width="24.917" height="24.917" x="21.083" y="21.083" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse">
+        <filter id="d" width="24.917" height="24.917" x="21.083" y="21.083" color-interpolation-filters="sRGB"
+                filterUnits="userSpaceOnUse">
             <feFlood flood-opacity="0" result="BackgroundImageFix"/>
             <feColorMatrix in="SourceAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"/>
             <feOffset dy="1.429"/>

@@ -10,6 +10,7 @@ export enum FilterTypes {
 export interface FormState {
     key: string
     checked: boolean
+
     [index: string]: any
 }
 
@@ -18,6 +19,7 @@ interface Amount {
         min: number | null
         max: number | null
     }
+
     [index: string]: any
 }
 
@@ -27,6 +29,7 @@ export interface FilterFormState {
     amount: AmountState[]
     geographic_region: FormState[]
     domain_areas: FormState[]
+
     [key: string]: FormState[] | AmountState[]
 }
 

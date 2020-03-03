@@ -48,7 +48,7 @@ export const fieldData = [
         title: 'Notes',
         subtitle: 'notes'
     }
-]
+];
 
 export const fieldHeaderData = [
     {
@@ -65,4 +65,4 @@ export const fieldHeaderData = [
         title: 'Amount',
         subtitle: 'amount'
     },
-]
+];
