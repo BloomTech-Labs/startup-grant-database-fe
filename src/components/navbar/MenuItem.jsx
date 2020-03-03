@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {ListItem, ListItemAvatar, ListItemIcon, Link, Typography} from "@material-ui/core";
+import {Link, ListItem, ListItemAvatar, ListItemIcon, Typography} from "@material-ui/core";
 import {makeStyles} from '@material-ui/core/styles';
 import {Link as RouterLink} from 'react-router-dom';
 
@@ -18,7 +18,7 @@ const useStyles = makeStyles(theme => ({
     drawerLink: {
         margin: '.25em',
         color: '#696969',
-        "&:hover" : {
+        "&:hover": {
             textDecoration: 'none'
         }
     }
@@ -30,7 +30,7 @@ const MenuItem = ({url, icon: Icon, title}) => {
         <ListItem className={classes.drawerStyle}>
             <ListItemAvatar>
                 <ListItemIcon className={classes.icon}>
-                    <Icon />
+                    <Icon/>
                 </ListItemIcon>
             </ListItemAvatar>
             <Link component={RouterLink} to={url} className={classes.drawerLink}>

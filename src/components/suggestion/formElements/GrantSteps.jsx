@@ -1,23 +1,23 @@
-import React, { useState } from "react";
-import { Stepper, Step, StepLabel } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
+import React from "react";
+import {Step, StepLabel, Stepper} from "@material-ui/core";
+import {makeStyles} from "@material-ui/core/styles";
 
 const useStyles = makeStyles(theme => ({
-  stepper: {
-    padding: theme.spacing(3, 0, 5)
-  }
+    stepper: {
+        padding: theme.spacing(3, 0, 5)
+    }
 }));
 
 export const GrantSteps = props => {
-  const styles = useStyles();
+    const styles = useStyles();
 
-  return (
-    <Stepper activeStep={props.activeStep} className={styles.stepper}>
-      {props.steps.map(label => (
-        <Step key={label}>
-          <StepLabel>{label}</StepLabel>
-        </Step>
-      ))}
-    </Stepper>
-  );
+    return (
+        <Stepper activeStep={props.activeStep} className={styles.stepper}>
+            {props.steps.map(label => (
+                <Step key={label}>
+                    <StepLabel>{label}</StepLabel>
+                </Step>
+            ))}
+        </Stepper>
+    );
 };

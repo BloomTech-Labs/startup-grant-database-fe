@@ -59,7 +59,7 @@ export const useAdminActions = () => {
                 .post(`/admin/users/moderator/${userId}`, {roleId})
                 .then(res => {
                     dispatch({
-                        type: AdminTypes.UPDATE_MODERATOR_SUCCESS
+                        type: AdminTypes.UPDATE_MODERATOR_SUCCESS, payload: userId
                     });
                 })
                 .catch(error => {

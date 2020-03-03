@@ -1,4 +1,4 @@
-import React, {useEffect, useContext} from 'react';
+import React, {useContext, useEffect} from 'react';
 import Welcome from './Welcome';
 import Filters from "../filter/Filters";
 import {makeStyles} from "@material-ui/core/styles";
@@ -6,7 +6,6 @@ import {Grid} from '@material-ui/core';
 import {useSelector} from "react-redux";
 import {ActionsContext} from "../../context/ActionsContext";
 import {Helmet} from "react-helmet";
-import {logger} from "../../store/utils/logger";
 
 
 const components = [
@@ -51,21 +50,20 @@ function LandingPage() {
     const actions = useContext(ActionsContext);
     const numberOfGrants = useSelector(state => state.grants.grants.length);
 
-    useEffect(()=> {
+    useEffect(() => {
         if (numberOfGrants === 0) {
             actions.grants.fetchGrants();
         }
     }, [numberOfGrants]);
-    logger('Classes', classes, classes.filters, classes['filters'])
     return (
         <div className={classes.container}>
             <Helmet>
                 <title>Founder Grants</title>
-                <meta name="description" content="Find your startup grant, browse by type, region, amount!" />
-                <meta name="keywords" content="grant,startup,funding,invest,financing" />
-                <meta property="og:locale" content="en_US" />
-                <meta property="og:site_name" content="Startup Grant Database" />
-                
+                <meta name="description" content="Find your startup grant, browse by type, region, amount!"/>
+                <meta name="keywords" content="grant,startup,funding,invest,financing"/>
+                <meta property="og:locale" content="en_US"/>
+                <meta property="og:site_name" content="Startup Grant Database"/>
+
 
             </Helmet>
             <Grid
@@ -75,7 +73,7 @@ function LandingPage() {
                 justify="center"
                 alignItems="center"
             >
-                {components.map(({component: Component, props, key, banana })=> (
+                {components.map(({component: Component, props, key, banana}) => (
                     <Grid
                         key={key}
                         item

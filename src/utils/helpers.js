@@ -4,7 +4,7 @@ export const formatNumber = num => num.toString().replace(/\B(?=(\d{3})+(?!\d))/
 
 export function textDisplay(str, grant) {
 
-    switch(str) {
+    switch (str) {
         case 'amount':
             return grant[str] ? `$${formatNumber(grant[str])}` : `See website for details`;
         case 'most_recent_application_due_date':
