@@ -121,7 +121,7 @@ export const AddGrant = props => {
     area_focus: "",
     sponsoring_entity: "",
 
-    website: "https://",
+    website: "",
 
     most_recent_application_due_date: "",
 
