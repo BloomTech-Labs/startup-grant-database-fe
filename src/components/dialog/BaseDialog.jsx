@@ -1,4 +1,4 @@
-import React, {useContext, useState} from "react";
+import React, {useContext, useState, useEffect} from "react";
 import {
     Button,
     Dialog,
@@ -60,6 +60,12 @@ function BaseDialog(props) {
         setOpen(false);
         resetForm();
     };
+
+    useEffect(()=> {
+        if (isSuccess) {
+            handleClose()
+        }
+    }, [isSuccess]);
 
     const handleConfirmedClose = () => {
         actions.suggestion.resetSuccess();
