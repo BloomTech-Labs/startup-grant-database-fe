@@ -64,6 +64,7 @@ function BaseDialog(props) {
     useEffect(()=> {
         if (isSuccess) {
             handleClose()
+            actions.admin.fetchAdminGrants(token)
         }
     }, [isSuccess]);
 
