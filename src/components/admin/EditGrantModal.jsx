@@ -51,7 +51,7 @@ const EditGrantModal = ({ grant, format, columns }) => {
       notes: grant.notes || "",
       early_stage_funding: grant.early_stage_funding || false,
       is_reviewed: grant.is_reviewed || false,
-      details_last_updated: `${Date.now()}`
+      details_last_updated: `${moment().format("YYYY-MM-DD")}`
     },
     doSubmit
   );
