@@ -25,7 +25,6 @@ const useStyles = makeStyles(theme => ({
 function ShowcaseBottomContent({showcase}) {
     const {currentUser} = useSelector(state => state.user);
     const classes = useStyles();
-
     return (
         <Grid
             container
