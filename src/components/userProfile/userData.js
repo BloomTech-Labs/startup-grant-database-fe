@@ -1,7 +1,6 @@
 import React from "react";
 import { Divider, Grid, Paper, Typography, Avatar } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import { useSelector } from "react-redux";
 
 const useStyles = makeStyles(theme => ({
   formContainer: {
