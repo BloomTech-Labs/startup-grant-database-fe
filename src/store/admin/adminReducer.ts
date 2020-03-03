@@ -8,6 +8,7 @@ const initialState: AdminState = {
   emailSingle: [],
   emailAll: [],
   isLoading: false,
+  isUserLoading: false,
   isModerator: false,
   isAdmin: false,
   isSuccess: false,
@@ -33,9 +34,21 @@ const adminStartReducer: FunctionReducer = state => ({
   ...state,
   isLoading: true
 });
+
+const adminStartUserFetchReducer: FunctionReducer = state => ({
+  ...state,
+  isUserLoading: false
+});
+
 const adminFailReducer: FunctionReducer = (state, payload) => ({
   ...state,
   isLoading: false,
+  errors: payload
+});
+
+const adminFailFetchUsersReducer: FunctionReducer = (state, payload) => ({
+  ...state,
+  isUserLoading: false,
   errors: payload
 });
 const adminFetchGrantsSuccessReducer: FunctionReducer = (state, payload) => ({
@@ -45,7 +58,7 @@ const adminFetchGrantsSuccessReducer: FunctionReducer = (state, payload) => ({
 });
 const adminFetchUsersSuccessReducer: FunctionReducer = (state, payload) => ({
   ...state,
-  isLoading: false,
+  isUserLoading: false,
   users: payload
 });
 const adminFetchRolesSuccessReducer: FunctionReducer = (state, payload) => ({
@@ -173,9 +186,9 @@ export const adminReducer = createReducer(initialState, {
   [AdminTypes.FETCH_ADMIN_GRANTS_START]: adminStartReducer,
   [AdminTypes.FETCH_ADMIN_GRANTS_SUCCESS]: adminFetchGrantsSuccessReducer,
   [AdminTypes.FETCH_ADMIN_GRANTS_FAILURE]: adminFailReducer,
-  [AdminTypes.FETCH_ADMIN_USERS_START]: adminStartReducer,
+  [AdminTypes.FETCH_ADMIN_USERS_START]: adminStartUserFetchReducer,
   [AdminTypes.FETCH_ADMIN_USERS_SUCCESS]: adminFetchUsersSuccessReducer,
-  [AdminTypes.FETCH_ADMIN_USERS_FAILURE]: adminFailReducer,
+  [AdminTypes.FETCH_ADMIN_USERS_FAILURE]: adminFailFetchUsersReducer,
   [AdminTypes.FETCH_ADMIN_ROLES_START]: adminStartReducer,
   [AdminTypes.FETCH_ADMIN_ROLES_SUCCESS]: adminFetchRolesSuccessReducer,
   [AdminTypes.FETCH_ADMIN_ROLES_FAILURE]: adminFailReducer,
