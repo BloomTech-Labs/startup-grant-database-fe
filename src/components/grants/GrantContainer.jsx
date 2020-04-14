@@ -106,6 +106,7 @@ function GrantContainer(props) {
       } else {
         if (favoriteGrants.length !== grants.length) {
           setGrants(favoriteGrants);
+          actions.grants.selectGrant(grants[0]);
         }
       }
     } else {
@@ -126,7 +127,6 @@ function GrantContainer(props) {
   }, [props.match.path]);
 
   // this pops the showcase array when favorite mode is selected
-
   if (!showcase) {
     return <Redirect to="/" />;
   }
