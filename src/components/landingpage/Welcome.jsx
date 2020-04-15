@@ -22,11 +22,11 @@ function Welcome() {
         <title>Founder Grants</title>
         <meta
           name="description"
-          content="Find your startup grant, browse by type, region, amount"
+          content="Find your grant, browse by type, region, amount"
         />
         <meta
           name="keywords"
-          content="grant,startup,funding,invest,financing"
+          content="grant,startup,funding,invest,financing,startups,money,1517Fund,science,technology,money,venture,capital"
         />
       </Helmet>
       <Typography variant="h3" component="h1">
