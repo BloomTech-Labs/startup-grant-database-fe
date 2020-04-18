@@ -84,6 +84,7 @@ function GrantContainer(props) {
         return publicGrants;
       }
     } else {
+      actions.grants.selectGrant(favoriteGrants[0]);
       return favoriteGrants;
     }
   });
@@ -113,13 +114,7 @@ function GrantContainer(props) {
       actions.grants.selectGrant(grants[0]);
     }
     setIsInitialLoad(false);
-  }, [
-    allFilteredGrants,
-    favoriteGrants,
-    allGrantMode,
-    isAuthenticated,
-    publicGrants,
-  ]);
+  }, [favoriteGrants, allGrantMode, isAuthenticated, publicGrants]);
 
   useEffect(() => {
     setAllGrantMode(props.match.path === "/grants");
