@@ -84,7 +84,6 @@ function GrantContainer(props) {
         return publicGrants;
       }
     } else {
-      actions.grants.selectGrant(favoriteGrants[0]);
       return favoriteGrants;
     }
   });
@@ -106,6 +105,8 @@ function GrantContainer(props) {
         }
       } else {
         if (favoriteGrants.length !== grants.length) {
+          // favoriteGrants && actions.grants.selectGrant(favoriteGrants[0]);
+
           setGrants(favoriteGrants);
         }
       }
