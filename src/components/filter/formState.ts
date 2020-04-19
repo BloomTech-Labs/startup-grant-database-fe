@@ -63,11 +63,7 @@ export const filterFormState: FilterFormState = {
   ],
   domain_areas: [
     {
-      key: "Tech",
-      checked: false,
-    },
-    {
-      key: "Agriculture",
+      key: "Business",
       checked: false,
     },
     {
@@ -75,7 +71,7 @@ export const filterFormState: FilterFormState = {
       checked: false,
     },
     {
-      key: "Energy",
+      key: "Science",
       checked: false,
     },
   ],
