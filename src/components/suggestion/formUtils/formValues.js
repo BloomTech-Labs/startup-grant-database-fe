@@ -42,42 +42,34 @@ const geographicRegion = [
     value: "Global",
     label: "Global",
   },
-  {
-    value: "Other",
-    label: "Other",
-  },
-  {
-    value: "N/A",
-    label: "N/A",
-  },
 ];
 
 //Array of values for the "Target Demographic" dropdown
 
 const targetDemographic = [
   {
+    value: "N/A",
+    label: "N/A",
+  },
+  {
     value: "Minority Founder",
     label: "Minority Team",
   },
   {
-    value: "Women Founders",
-    label: "Women Founders",
+    value: "Women Founder",
+    label: "Women Founder",
   },
   {
     value: "Disadvantaged Founder",
     label: "Disadvantaged Founder",
   },
   {
-    value: "Veteran Founders",
-    label: "Veteran Founders",
+    value: "Veteran Founder",
+    label: "Veteran Founder",
   },
   {
     value: "Other",
     label: "Other",
-  },
-  {
-    value: "N/A",
-    label: "N/A",
   },
 ];
 
