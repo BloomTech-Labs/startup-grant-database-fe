@@ -32,7 +32,7 @@ const NewFilters = ({ landing, classes, setFilters, filters }: IProps) => {
     });
   }
 
-  const title = ["Grant Amount", "Region", "Focus Areas"];
+  const title = ["Region", "Focus Areas"];
   return (
     <Card className={classes.card} raised>
       <Typography className={classes.title} variant="h5" component="h2">
