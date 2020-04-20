@@ -65,8 +65,8 @@ function LandingPage() {
       {isAuthenticated && (
         <Link to="/settings">
           <Alert severity="success" color="success" variant="filled">
-            Hello, welcome to FG. Fill out your user profile and we will do our
-            best to match you with resources!
+            Hello, welcome to FG. Fill out your user profile, and we might be
+            able to help connect you with the resources you need to be awesome.
           </Alert>
         </Link>
       )}
