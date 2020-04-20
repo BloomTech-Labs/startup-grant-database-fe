@@ -53,7 +53,7 @@ const targetDemographic = [
   },
   {
     value: "Minority Founder",
-    label: "Minority Team",
+    label: "Minority Founder",
   },
   {
     value: "Women Founder",
