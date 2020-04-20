@@ -152,9 +152,9 @@ function GrantContainer(props) {
               Fund your ambitions.
             </Alert>
           )}
-          {isAuthenticated && (
+          {!isAuthenticated && (
             <Link to="/mailinglist">
-              <Alert severity="info" color="success" variant="filled">
+              <Alert severity="success" color="success" variant="filled">
                 Get notified when new grants get added!
               </Alert>
             </Link>

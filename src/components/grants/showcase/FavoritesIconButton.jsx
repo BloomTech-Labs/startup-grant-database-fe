@@ -6,7 +6,7 @@ import { ActionsContext } from "../../../context/ActionsContext";
 
 const useStyles = makeStyles(() => ({
   bookmark: {
-    fill: "#696969",
+    fill: "#3DB8B3",
   },
 }));
 
