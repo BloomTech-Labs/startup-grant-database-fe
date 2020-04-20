@@ -9,10 +9,13 @@ import {
   TableHead,
   TablePagination,
   TableRow,
+  Grid,
+  Typography,
 } from "@material-ui/core";
 import { useSelector } from "react-redux";
 import moment from "moment";
 import GrantTableRow from "./GrantTableRow";
+import { useForm } from "../../hooks/useForm";
 
 const columns = [
   { id: "competition_name", label: "Name" },
@@ -24,14 +27,36 @@ const columns = [
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    display: "flex",
-    justifyContent: "center",
-    flexDirection: "column",
-    width: "90%",
+    marginTop: "2em",
+    marginLeft: "2em",
+    marginRight: "2em",
+    marginBottom: "2em",
     height: "75%",
   },
   container: {
     maxHeight: "81vh",
+  },
+
+  filterContainer: {
+    marginTop: "1em",
+    marginLeft: "2em",
+    marginRight: "2em",
+    marginBottom: "1em",
+    padding: "2em",
+    display: "flex",
+    textAlign: "left",
+    alignContent: "center",
+    [theme.breakpoints.down("sm")]: {
+      marginTop: "6em",
+      padding: theme.spacing(1),
+      textAlign: "center",
+      flexDirection: "column",
+    },
+    filterDiv: {
+      [theme.breakpoints.down("sm")]: {
+        marginTop: "1em",
+      },
+    },
   },
 }));
 
@@ -66,46 +91,125 @@ function NewGrantTable() {
     }
   }
 
+  function searchItems(arr, query) {
+    return arr.filter(function (el) {
+      return el.toLowerCase().indexOf(query.toLowerCase()) !== -1;
+    });
+  }
+
+  function filterByStatus(arr) {
+    arr.filter(function (grant) {
+      return grant.is_reviewed == false;
+    });
+  }
+
+  function hasSuggestions(arr) {
+    arr.filter(function (grant) {
+      return grant.has_requests == true;
+    });
+  }
+
+  function alphaSort(property) {
+    var sortOrder = 1;
+
+    if (property[0] === "-") {
+      sortOrder = -1;
+      property = property.substr(1);
+    }
+
+    return function (a, b) {
+      if (sortOrder == -1) {
+        return b[property].localeCompare(a[property]);
+      } else {
+        return a[property].localeCompare(b[property]);
+      }
+    };
+  }
+
+  function alpha() {
+    return grantList.sort(alphaSort("competition_name"));
+  }
+
+  function status() {
+    return filterByStatus(grantList);
+  }
+
+  function suggestions() {
+    return hasSuggestions(grantList);
+  }
+
+  const filterItem = [
+    {
+      key: "Alphabetical",
+      on: false,
+      type: alpha(),
+    },
+    {
+      key: "Status",
+      on: false,
+      type: status(),
+    },
+    {
+      key: "Suggestions",
+      on: false,
+      type: suggestions(),
+    },
+  ];
   return (
-    <Paper className={classes.root}>
-      <TableContainer className={classes.container}>
-        <Table stickyHeader aria-label="Suggestions Table">
-          <TableHead>
-            <TableRow>
-              {columns.map((column) => (
-                <TableCell key={column.id} align={column.align}>
-                  {column.label}
+    <>
+      <Paper className={classes.filterContainer}>
+        <Grid xs={12} md={3}>
+          <Typography variant="h6" fontWeight="600">
+            Filter by:
+          </Typography>
+        </Grid>
+        {filterItem.map((filter) => (
+          <Grid xs={12} md={3} className={classes.filterDiv} key={filter.key}>
+            <Typography>{filter.key}</Typography>
+          </Grid>
+        ))}
+      </Paper>
+
+      <Paper className={classes.root}>
+        <TableContainer className={classes.container}>
+          <Table stickyHeader aria-label="Suggestions Table">
+            <TableHead>
+              <TableRow>
+                {columns.map((column) => (
+                  <TableCell key={column.id} align={column.align}>
+                    {column.label}
+                  </TableCell>
+                ))}
+                <TableCell key={"suggestion"} align="right">
+                  Suggestions
                 </TableCell>
-              ))}
-              <TableCell key={"suggestion"} align="right">
-                Suggestions
-              </TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {grantList
-              .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-              .map((grant) => (
-                <GrantTableRow
-                  key={grant.id}
-                  grant={grant}
-                  format={format}
-                  columns={columns}
-                />
-              ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
-      <TablePagination
-        rowsPerPageOptions={[5, 10, 25, 100]}
-        componet="div"
-        count={grants.length}
-        rowsPerPage={rowsPerPage}
-        page={page}
-        onChangePage={handleChangePage}
-        onChangeRowsPerPage={handleChangeRowsPerPage}
-      />
-    </Paper>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {grantList
+                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                .map((grant) => (
+                  <GrantTableRow
+                    key={grant.id}
+                    grant={grant}
+                    format={format}
+                    columns={columns}
+                  />
+                ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+        <TablePagination
+          rowsPerPageOptions={[5, 10, 25, 100]}
+          componet="div"
+          count={grants.length}
+          rowsPerPage={rowsPerPage}
+          page={page}
+          onChangePage={handleChangePage}
+          onChangeRowsPerPage={handleChangeRowsPerPage}
+        />
+      </Paper>
+    </>
   );
 }
 

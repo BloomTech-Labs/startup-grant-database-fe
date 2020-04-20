@@ -105,9 +105,8 @@ function GrantContainer(props) {
         }
       } else {
         if (favoriteGrants.length !== grants.length) {
-          // favoriteGrants && actions.grants.selectGrant(favoriteGrants[0]);
-
           setGrants(favoriteGrants);
+          setTimeout(actions.grants.selectGrant(grants[0]), 10);
         }
       }
     } else {

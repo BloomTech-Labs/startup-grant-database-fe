@@ -28,9 +28,9 @@ const components = [
 
 const useStyles = makeStyles((theme) => ({
   container: {
-    padding: theme.spacing(2),
+    padding: theme.spacing(1),
     [theme.breakpoints.down("xs")]: {
-      marginTop: theme.spacing(12),
+      marginTop: theme.spacing(10),
     },
   },
   grid: {
@@ -39,7 +39,7 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down("sm")]: {
       minHeight: "calc(100vh - 193px)",
       flexDirection: "column",
-      padding: theme.spacing(2),
+      padding: theme.spacing(1),
     },
     [theme.breakpoints.down("xs")]: {
       minHeight: "calc(100vh - 306px)",
