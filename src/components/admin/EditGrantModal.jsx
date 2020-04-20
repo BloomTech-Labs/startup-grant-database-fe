@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { Button, Grid } from "@material-ui/core";
+import { Button, Grid, Container } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { ActionsContext } from "../../context/ActionsContext";
 import { useSelector } from "react-redux";
@@ -20,6 +20,10 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down("sm")]: {
       flexDirection: "column",
     },
+  },
+  inputBreak: {
+    marginTop: "10px",
+    marginBottom: "10px",
   },
 }));
 
@@ -71,20 +75,22 @@ const EditGrantModal = ({ grant, format, handleClose, isOpen, columns }) => {
       <Grid className={classes.body} spacing={2}>
         {editFormValues.map((data) => {
           return (
-            <TextFormField
-              label={data.label}
-              type={data.type}
-              name={data.name}
-              select={data.select}
-              data={data.data}
-              inputLabel={data.inputLabel}
-              multiline={data.multiline}
-              variant={data.variant}
-              rows={data.rows}
-              value={values}
-              handleChanges={handleChange}
-              className={classes.inputStyle}
-            />
+            <Container className={classes.inputBreak}>
+              <TextFormField
+                label={data.label}
+                type={data.type}
+                name={data.name}
+                select={data.select}
+                data={data.data}
+                inputLabel={data.inputLabel}
+                multiline={data.multiline}
+                variant={data.variant}
+                rows={data.rows}
+                value={values}
+                handleChanges={handleChange}
+                className={classes.inputStyle}
+              />
+            </Container>
           );
         })}
 
