@@ -55,17 +55,18 @@ const EditGrantModal = ({ grant, format, handleClose, isOpen, columns }) => {
 
   function refreshFunction() {
     actions.admin.fetchAdminGrants(token);
+    setTimeout(actions.admin.fetchAdminGrants(token), 2000);
   }
 
   function doSubmit() {
     actions.grants.updateAdminGrant(token, grant.id, values);
-    setTimeout(refreshFunction(), 1);
+    setTimeout(refreshFunction(), 2);
   }
 
   function deleteGrant(id) {
     actions.grants.deleteAdminGrant(token, id);
     setPrime(false);
-    setTimeout(refreshFunction(), 1);
+    setTimeout(refreshFunction(), 2);
   }
 
   const classes = useStyles();
