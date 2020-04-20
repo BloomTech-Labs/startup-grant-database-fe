@@ -7,6 +7,9 @@ import { Helmet } from "react-helmet";
 const useStyles = makeStyles((theme) => ({
   welcome: {
     padding: theme.spacing(2),
+    [theme.breakpoints.up("md")]: {
+      width: "90%",
+    },
   },
   about: {
     [theme.breakpoints.up("sm")]: {

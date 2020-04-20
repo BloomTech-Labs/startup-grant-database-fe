@@ -7,6 +7,7 @@ import { Button, Container, Avatar, Grid, Typography } from "@material-ui/core";
 import { ActionsContext } from "../../context/ActionsContext";
 import { makeStyles } from "@material-ui/core/styles";
 import { useForm } from "../../hooks/useForm";
+import { Link } from "react-router-dom";
 
 import green from "@material-ui/core/colors/green";
 
@@ -93,12 +94,19 @@ const UserSettings = () => {
 
           <Grid xs={12}>
             <Container className={styles.middleContent}>
-              <Grid xs={12} md={6}>
+              <Grid xs={12} md={4}>
                 <Typography variant="h6" className={styles.title}>
                   {currentUser.nickname}'s Profile
                 </Typography>
               </Grid>
-              <Grid xs={12} md={6}>
+
+              <Grid xs={12} md={4}>
+                <Button>
+                  <a href="https://www.1517fund.com/take-action">Contact Us</a>
+                </Button>
+              </Grid>
+
+              <Grid xs={12} md={4}>
                 {!isEditing && (
                   <Button
                     variant="contained"
