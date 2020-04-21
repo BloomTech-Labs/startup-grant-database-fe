@@ -84,7 +84,7 @@ const areaFocus = [
   },
   {
     value: "Science",
-    label: "Child Care",
+    label: "Science",
   },
 ];
 
