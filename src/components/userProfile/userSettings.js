@@ -32,6 +32,9 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
     justifyContent: "left",
   },
+  btn: {
+    padding: "6px 16px",
+  },
 }));
 
 const initialData = {
@@ -101,7 +104,7 @@ const UserSettings = () => {
               </Grid>
 
               <Grid xs={12} md={4}>
-                <Button>
+                <Button className={styles.btn}>
                   <a href="https://www.1517fund.com/take-action">Contact Us</a>
                 </Button>
               </Grid>

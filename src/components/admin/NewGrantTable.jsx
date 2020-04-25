@@ -79,11 +79,10 @@ function NewGrantTable() {
   const classes = useStyles();
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
-  const [search, setSearch] = useState("");
-  const [state, setState] = React.useState({
-    checkedA: true,
-    checkedS: true,
-    checkedR: true,
+  const [state, setState] = useState({
+    filterAlpha: false,
+    filterStatus: false,
+    filterRequests: false,
   });
   const handleChangePage = (event, newPage) => setPage(newPage);
 
@@ -109,24 +108,6 @@ function NewGrantTable() {
     }
   }
 
-  function searchItems(arr, query) {
-    return arr.filter(function (el) {
-      return el.toLowerCase().indexOf(query.toLowerCase()) !== -1;
-    });
-  }
-
-  function filterByStatus(arr) {
-    arr.filter(function (grant) {
-      return grant.is_reviewed == false;
-    });
-  }
-
-  function hasSuggestions(arr) {
-    arr.filter(function (grant) {
-      return grant.has_requests == true;
-    });
-  }
-
   function alphaSort(property) {
     var sortOrder = 1;
 
@@ -144,48 +125,42 @@ function NewGrantTable() {
     };
   }
 
-  function alpha() {
-    const newData = grantList.sort(alphaSort("competition_name"));
-    return newData;
+  function filter(state) {
+    switch (state) {
+      case state.filterAlpha === true:
+        return console.log("alpha sort");
+      case state.filterStatus:
+        return console.log("Status sort");
+      case state.filterRequests:
+        return console.log("Requests sort");
+    }
   }
-
-  function status() {
-    const newData = filterByStatus(grantList);
-    return newData;
-  }
-
-  function suggestions() {
-    const newData = hasSuggestions(grantList);
-    return newData;
-  }
-
-  const filterItem = [
-    {
-      key: "Alphabetical",
-      name: "checkedA",
-    },
-    {
-      key: "Status",
-      name: "checkedS",
-    },
-    {
-      key: "Suggestions",
-      name: "checkedR",
-    },
-  ];
 
   const handleChange = (event) => {
     setState({ ...state, [event.target.name]: event.target.checked });
-    if (state.checkedA == true) {
-      setGrantList(alpha());
-    } else if (state.checkedS == true) {
-      setGrantList(status());
-    } else if (state.checkedR == true) {
-      setGrantList(suggestions());
-    } else {
-      setGrantList(grants);
-    }
+    filter(state);
   };
+
+  // build handler
+  // switch statemnt
+
+  const filterItem = [
+    {
+      name: "Alphabetical",
+      lock: "filterAlpha",
+      on: state.filterAlpha,
+    },
+    {
+      name: "Status",
+      lock: "filterStatus",
+      on: state.filterStatus,
+    },
+    {
+      name: "Suggestions",
+      lock: "filterRequests",
+      on: state.filterRequests,
+    },
+  ];
 
   return (
     <>
@@ -196,17 +171,18 @@ function NewGrantTable() {
           </Typography>
         </Grid>
         {filterItem.map((filter) => (
-          <Grid xs={12} md={3} className={classes.filterDiv} key={filter.key}>
+          <Grid xs={12} md={3} className={classes.filterDiv} key={filter.name}>
             <FormControlLabel
               control={
                 <GreenCheckbox
                   checked={state.checkedG}
                   onChange={handleChange}
-                  name={filter.name}
+                  name={filter.lock}
                 />
               }
-              label={filter.key}
+              label={filter.name}
             />
+            {console.log(filter)}
           </Grid>
         ))}
       </Paper>
