@@ -136,8 +136,8 @@ function NewGrantTable() {
             control={
               <GreenCheckbox
                 checked={state.checked}
-                onChange={handleChange}
-                name={null}
+                // onChange={handleChange}
+                // name={null}
               />
             }
             label="Alphabetical"
