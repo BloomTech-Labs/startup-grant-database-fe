@@ -80,9 +80,7 @@ function NewGrantTable() {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
   const [state, setState] = useState({
-    filterAlpha: false,
-    filterStatus: false,
-    filterRequests: false,
+    checked: false,
   });
   const handleChangePage = (event, newPage) => setPage(newPage);
 
@@ -125,28 +123,6 @@ function NewGrantTable() {
     };
   }
 
-  const handleChange = (event, state) => {
-    setState({ ...state, [event.target.name]: event.target.checked });
-  };
-
-  const filterItem = [
-    {
-      name: "Alphabetical",
-      lock: "filterAlpha",
-      on: state.filterAlpha,
-    },
-    {
-      name: "Status",
-      lock: "filterStatus",
-      on: state.filterStatus,
-    },
-    {
-      name: "Suggestions",
-      lock: "filterRequests",
-      on: state.filterRequests,
-    },
-  ];
-
   return (
     <>
       <Paper className={classes.filterContainer}>
@@ -155,42 +131,42 @@ function NewGrantTable() {
             Filter by:
           </Typography>
         </Grid>
-        {/* <Grid xs={12} md={3} className={classes.filterDiv} key={filter.name}>
+        <Grid xs={12} md={3} className={classes.filterDiv}>
           <FormControlLabel
             control={
               <GreenCheckbox
-                checked={state.checkedG}
+                checked={state.checked}
                 onChange={handleChange}
-                name={filter.lock}
+                name={null}
               />
             }
-            label={filter.name}
+            label="Alphabetical"
           />
         </Grid>
-        <Grid xs={12} md={3} className={classes.filterDiv} key={filter.name}>
+        <Grid xs={12} md={3} className={classes.filterDiv}>
           <FormControlLabel
             control={
               <GreenCheckbox
-                checked={state.checkedG}
-                onChange={handleChange}
-                name={filter.lock}
+                checked={state.checked}
+                // onChange={handleChange}
+                // name={state.filterStatus}
               />
             }
-            label={filter.name}
+            label="Status"
           />
         </Grid>
-        <Grid xs={12} md={3} className={classes.filterDiv} key={filter.name}>
+        <Grid xs={12} md={3} className={classes.filterDiv}>
           <FormControlLabel
             control={
               <GreenCheckbox
-                checked={state.checkedG}
-                onChange={handleChange}
-                name={filter.lock}
+                checked={state.checked}
+                // onChange={handleChange}
+                // name={state.filterRequests}
               />
             }
-            label={filter.name}
+            label="Suggestions"
           />
-        </Grid> */}
+        </Grid>
       </Paper>
 
       <Paper className={classes.root}>
