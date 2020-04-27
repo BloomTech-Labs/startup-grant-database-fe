@@ -1,134 +1,111 @@
-import React, { useContext, useState } from "react";
-import { Button, Grid, Container } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
-import { ActionsContext } from "../../context/ActionsContext";
-import { useSelector } from "react-redux";
-import { TextFormField } from "../suggestion/formElements/TextFormField";
-import { useForm } from "../../hooks/useForm";
+import React, {useContext} from "react";
+import {Button, Grid} from "@material-ui/core";
+import {makeStyles} from "@material-ui/core/styles";
+import {ActionsContext} from "../../context/ActionsContext";
+import {useSelector} from "react-redux";
+import {TextFormField} from "../suggestion/formElements/TextFormField";
+import {useForm} from "../../hooks/useForm";
 import editFormValues from "./values/EditGrantFormValues";
 import moment from "moment";
 
-const useStyles = makeStyles((theme) => ({
-  btn: {
-    margin: "20px",
-    padding: "0 50px",
-  },
-  formField: {
-    width: "100%",
-  },
-  body: {
-    [theme.breakpoints.down("sm")]: {
-      flexDirection: "column",
+const useStyles = makeStyles(theme => ({
+    btn: {
+        margin: "20px",
+        padding: "0 50px"
     },
-  },
-  inputBreak: {
-    marginTop: "10px",
-    marginBottom: "10px",
-  },
+    formField: {
+        width: "100%"
+    },
+    body: {
+        [theme.breakpoints.down("sm")]: {
+            flexDirection: "column"
+        }
+    }
 }));
 
-const EditGrantModal = ({ grant, format, handleClose, isOpen, columns }) => {
-  const actions = useContext(ActionsContext);
-  const { token } = useSelector((state) => state.user);
-  const [prime, setPrime] = useState(false);
+const EditGrantModal = ({grant, format, columns}) => {
+    const actions = useContext(ActionsContext);
+    const {token} = useSelector(state => state.user);
+    const [values, handleChange, handleSubmit, resetForm] = useForm(
+        {
+            competition_name: grant.competition_name || "",
+            area_focus: grant.area_focus || "",
+            sponsoring_entity: grant.sponsoring_entity || "",
+            website: grant.website || "",
+            most_recent_application_due_date:
+                grant.most_recent_application_due_date || "",
+            amount: grant.amount || "",
+            amount_notes: grant.amount_notes || "",
+            geographic_region: grant.geographic_region || "",
+            target_entrepreneur_demographic:
+                grant.target_entrepreneur_demographic || "",
+            notes: grant.notes || "",
+            early_stage_funding: grant.early_stage_funding || false,
+            is_reviewed: grant.is_reviewed || false,
+            details_last_updated: `${moment().format("YYYY-MM-DD")}`
+        },
+        doSubmit
+    );
 
-  const [values, handleChange, handleSubmit, resetForm] = useForm(
-    {
-      competition_name: grant.competition_name || "",
-      area_focus: grant.area_focus || "",
-      sponsoring_entity: grant.sponsoring_entity || "",
-      website: grant.website || "",
-      most_recent_application_due_date:
-        grant.most_recent_application_due_date || "",
-      amount: grant.amount || "",
-      amount_notes: grant.amount_notes || "",
-      geographic_region: grant.geographic_region || "",
-      target_entrepreneur_demographic:
-        grant.target_entrepreneur_demographic || "",
-      notes: grant.notes || "",
-      early_stage_funding: grant.early_stage_funding || false,
-      is_reviewed: grant.is_reviewed || false,
-      details_last_updated: `${moment().format("YYYY-MM-DD")}`,
-    },
-    doSubmit
-  );
+    function refreshFunction() {
+        actions.admin.fetchAdminGrants(token);
+    }
 
-  function refreshFunction() {
-    actions.admin.fetchAdminGrants(token);
-    setTimeout(actions.admin.fetchAdminGrants(token), 2000);
-  }
+    function doSubmit() {
+        actions.grants.updateAdminGrant(token, grant.id, values);
+        setTimeout(refreshFunction(), 288);
+    }
 
-  function doSubmit() {
-    actions.grants.updateAdminGrant(token, grant.id, values);
-    setTimeout(refreshFunction(), 2);
-  }
+    function deleteGrant(id) {
+        actions.grants.deleteAdminGrant(token, id);
+        setTimeout(refreshFunction(), 288);
+    }
 
-  function deleteGrant(id) {
-    actions.grants.deleteAdminGrant(token, id);
-    setPrime(false);
-    setTimeout(refreshFunction(), 2);
-  }
+    const classes = useStyles();
 
-  const classes = useStyles();
+    return (
+        <Grid className={classes.body} spacing={2}>
+            <form onSubmit={handleSubmit}>
+                {editFormValues.map(data => {
+                    return (
+                        <TextFormField
+                            label={data.label}
+                            type={data.type}
+                            name={data.name}
+                            select={data.select}
+                            data={data.data}
+                            inputLabel={data.inputLabel}
+                            multiline={data.multiline}
+                            variant={data.variant}
+                            rows={data.rows}
+                            value={values}
+                            handleChanges={handleChange}
+                            className={classes.inputStyle}
+                        />
+                    );
+                })}
 
-  return (
-    <form onSubmit={handleSubmit}>
-      <Grid className={classes.body} spacing={2}>
-        {editFormValues.map((data) => {
-          return (
-            <Container className={classes.inputBreak}>
-              <TextFormField
-                label={data.label}
-                type={data.type}
-                name={data.name}
-                select={data.select}
-                data={data.data}
-                inputLabel={data.inputLabel}
-                multiline={data.multiline}
-                variant={data.variant}
-                rows={data.rows}
-                value={values}
-                handleChanges={handleChange}
-                className={classes.inputStyle}
-              />
-            </Container>
-          );
-        })}
-
-        <Button
-          color="primary"
-          variant="outlined"
-          type="submit"
-          className={classes.btn}
-        >
-          Save
-        </Button>
-
-        {!prime && (
-          <Button
-            color="secondary"
-            variant="outlined"
-            type="submit"
-            className={classes.btn}
-            onClick={() => setPrime(true)}
-          >
-            Delete this Grant
-          </Button>
-        )}
-        {prime && (
-          <Button
-            color="secondary"
-            variant="outlined"
-            type="submit"
-            className={classes.btn}
-            onClick={() => deleteGrant(grant.id)}
-          >
-            Delete Forever
-          </Button>
-        )}
-      </Grid>
-    </form>
-  );
+                <Button
+                    color="primary"
+                    variant="outlined"
+                    type="submit"
+                    className={classes.btn}
+                >
+                    Save
+                </Button>
+                <Button
+                    color="secondary"
+                    variant="outlined"
+                    type="submit"
+                    className={classes.btn}
+                    onClick={() => deleteGrant(grant.id)}
+                >
+                    {/* ADD CONFIRMATION MODAL */}
+                    Delete this Grant
+                </Button>
+            </form>
+        </Grid>
+    );
 };
 
 export default EditGrantModal;
