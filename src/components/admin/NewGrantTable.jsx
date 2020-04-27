@@ -19,6 +19,7 @@ import { useForm } from "../../hooks/useForm";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import { green } from "@material-ui/core/colors";
 import Checkbox from "@material-ui/core/Checkbox";
+import { stat } from "fs";
 
 const columns = [
   { id: "competition_name", label: "Name" },
@@ -70,7 +71,6 @@ const GreenCheckbox = withStyles({
       color: green[600],
     },
   },
-  checked: {},
 })((props) => <Checkbox color="default" {...props} />);
 
 function NewGrantTable() {
@@ -125,24 +125,9 @@ function NewGrantTable() {
     };
   }
 
-  function filter(state) {
-    switch (state) {
-      case state.filterAlpha === true:
-        return console.log("alpha sort");
-      case state.filterStatus:
-        return console.log("Status sort");
-      case state.filterRequests:
-        return console.log("Requests sort");
-    }
-  }
-
-  const handleChange = (event) => {
+  const handleChange = (event, state) => {
     setState({ ...state, [event.target.name]: event.target.checked });
-    filter(state);
   };
-
-  // build handler
-  // switch statemnt
 
   const filterItem = [
     {
@@ -170,21 +155,42 @@ function NewGrantTable() {
             Filter by:
           </Typography>
         </Grid>
-        {filterItem.map((filter) => (
-          <Grid xs={12} md={3} className={classes.filterDiv} key={filter.name}>
-            <FormControlLabel
-              control={
-                <GreenCheckbox
-                  checked={state.checkedG}
-                  onChange={handleChange}
-                  name={filter.lock}
-                />
-              }
-              label={filter.name}
-            />
-            {console.log(filter)}
-          </Grid>
-        ))}
+        {/* <Grid xs={12} md={3} className={classes.filterDiv} key={filter.name}>
+          <FormControlLabel
+            control={
+              <GreenCheckbox
+                checked={state.checkedG}
+                onChange={handleChange}
+                name={filter.lock}
+              />
+            }
+            label={filter.name}
+          />
+        </Grid>
+        <Grid xs={12} md={3} className={classes.filterDiv} key={filter.name}>
+          <FormControlLabel
+            control={
+              <GreenCheckbox
+                checked={state.checkedG}
+                onChange={handleChange}
+                name={filter.lock}
+              />
+            }
+            label={filter.name}
+          />
+        </Grid>
+        <Grid xs={12} md={3} className={classes.filterDiv} key={filter.name}>
+          <FormControlLabel
+            control={
+              <GreenCheckbox
+                checked={state.checkedG}
+                onChange={handleChange}
+                name={filter.lock}
+              />
+            }
+            label={filter.name}
+          />
+        </Grid> */}
       </Paper>
 
       <Paper className={classes.root}>
