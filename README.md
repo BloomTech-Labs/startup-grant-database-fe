@@ -17,6 +17,13 @@ You can find the deployed project at [Founder Grants](https://grantly-b5b58.fire
 
 [Daniel Jones: Web Dev](https://github.com/djones36)
 
+[Spencer Clark: Web Dev](https://github.com/spenclark)
+
+[Donald Whitley: Web Dev](https://github.com/dswhitely1)
+
+
+ 
+
 ## Project Overview
 
 [Trello Board](https://trello.com/b/C6YCXNQh/startup-grant-database)
