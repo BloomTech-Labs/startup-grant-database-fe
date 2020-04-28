@@ -202,7 +202,7 @@ function Filters({landing, mobile, grants}) {
         filters,
         setFilters
     };
-
+    console.log(grantList);
     if (landing) {
         return <NewFilters classes={landingStyles} landing grants={grantList} {...rest} />
     }

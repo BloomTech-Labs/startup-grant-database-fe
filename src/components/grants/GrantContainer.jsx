@@ -66,9 +66,9 @@ const useStyles = makeStyles((theme) => ({
 function GrantContainer(props) {
   const { isAuthenticated } = useAuth0();
   const [isInitialLoad, setIsInitialLoad] = useState(true);
-  const allFilteredGrants = useSelector((state) => state.filters.grants);
+  const grants = useSelector((state) => state.filters.grants);
   const { pristine } = useSelector((state) => state.filters);
-  const allTheGrants = useSelector((state) => state.grants.grants);
+  const allGrants = useSelector((state) => state.grants.grants);
   const { favoriteGrants } = useSelector((state) => state.user);
   const { showcase, publicGrants } = useSelector((state) => state.grants);
   const actions = useContext(ActionsContext);
@@ -76,45 +76,56 @@ function GrantContainer(props) {
     return props.match.path === "/grants";
   });
   const [filtersOpen, setFiltersOpen] = useState(false);
-  const [grants, setGrants] = useState(() => {
-    if (allGrantMode) {
-      if (isAuthenticated) {
-        return allFilteredGrants;
-      } else {
-        return publicGrants;
-      }
-    } else {
-      return favoriteGrants;
-    }
-  });
+    // if (allGrantMode) {
+    //   if (isAuthenticated) {
+    //     return allFilteredGrants;
+    //   } else {
+    //     return publicGrants;
+    //   }
+    // } else {
+    //   return favoriteGrants;
+    // }
+    //});
 
   const classes = useStyles();
 
   useEffect(() => {
-    if (isAuthenticated) {
-      if (allGrantMode) {
-        if (pristine && allFilteredGrants.length !== allTheGrants.length) {
-          setGrants(allTheGrants);
-        } else {
-          if (allFilteredGrants.length !== grants.length) {
-            if (!isInitialLoad) {
-              setGrants(allFilteredGrants);
-            }
-            setIsInitialLoad(false);
-          }
-        }
+    if (allGrantMode) {
+      if (isAuthenticated) {
+        actions.filters.grantFilter(allGrants)
       } else {
-        if (favoriteGrants.length !== grants.length) {
-          setGrants(favoriteGrants);
-          setTimeout(actions.grants.selectGrant(grants[0]), 10);
-        }
+        actions.filters.grantFilter(publicGrants)
       }
     } else {
-      setGrants(publicGrants);
-      actions.grants.selectGrant(grants[0]);
+      actions.filters.grantFilter(favoriteGrants);
     }
-    setIsInitialLoad(false);
-  }, [favoriteGrants, allGrantMode, isAuthenticated, publicGrants]);
+  }, [pristine])
+
+  // useEffect(() => {
+  //   if (isAuthenticated) {
+  //     if (allGrantMode) {
+  //       if (pristine && allFilteredGrants.length !== allTheGrants.length) {
+  //         setGrants(allTheGrants);
+  //       } else {
+  //         if (allFilteredGrants.length !== grants.length) {
+  //           if (!isInitialLoad) {
+  //             setGrants(allFilteredGrants);
+  //           }
+  //           setIsInitialLoad(false);
+  //         }
+  //       }
+  //     } else {
+  //       if (favoriteGrants.length !== grants.length) {
+  //         setGrants(favoriteGrants);
+  //         setTimeout(actions.grants.selectGrant(grants[0]), 10);
+  //       }
+  //     }
+  //   } else {
+  //     setGrants(publicGrants);
+  //     actions.grants.selectGrant(grants[0]);
+  //   }
+  //   setIsInitialLoad(false);
+  // }, [favoriteGrants, allGrantMode, isAuthenticated, publicGrants]);
 
   useEffect(() => {
     setAllGrantMode(props.match.path === "/grants");
