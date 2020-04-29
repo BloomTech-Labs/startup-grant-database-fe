@@ -5,7 +5,7 @@ import {rootReducer} from "./rooterReducer";
 
 const store =
     process.env.NODE_ENV === "development"
-        ? createStore(rootReducer, composeWithDevTools())
+        ? createStore(rootReducer, composeWithDevTools(applyMiddleware(logger)))
         : createStore(rootReducer);
 
 export default store;

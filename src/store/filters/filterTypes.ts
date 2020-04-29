@@ -28,7 +28,7 @@ export type AmountState = FormState & Amount
 export interface FilterFormState {
     amount: AmountState[]
     geographic_region: FormState[]
-    domain_areas: FormState[]
+    area_focus: FormState[]
 
     [key: string]: FormState[] | AmountState[]
 }
