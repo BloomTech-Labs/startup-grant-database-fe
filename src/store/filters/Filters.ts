@@ -1,5 +1,6 @@
 import {Grant} from "../grants/grantTypes";
 import {FilterFormState} from "./filterTypes";
+import {logger} from "../utils/logger";
 
 export class Filters {
     private readonly keys: string[];
@@ -62,10 +63,17 @@ export class Filters {
     }
 
     other(grants: Grant[], currentFilters: any[], key: string): Grant[] {
+        logger('Grants, CurrentFilters, and Key coming into Other Filter', [grants, currentFilters, key])
         const returnGrants: Grant[] = [];
-        for (let values of currentFilters) {
-            this.filter(grants, key, values.key).forEach(eachGrant => returnGrants.push(eachGrant));
+        if (currentFilters.length > 0) {
+            for (let values of currentFilters) {
+                this.filter(grants, key, values.key).forEach(eachGrant => returnGrants.push(eachGrant));
+            }
+        } else {
+            logger('Grants in else', [grants])
+            grants.forEach(grant => returnGrants.push(grant));
         }
+        logger('Return Grants from Other', [returnGrants])
         return returnGrants;
     }
 

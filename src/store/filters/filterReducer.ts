@@ -2,6 +2,7 @@ import {FilterActions, FilterFormState, FilterState, FilterTypes} from "./filter
 import {filterFormState} from '../../components/filter/formState';
 import {Grant} from "../grants/grantTypes";
 import {Filters} from "./Filters";
+import {logger} from "../utils/logger";
 
 const initialState: FilterState = {
     pristine: true,
@@ -17,15 +18,20 @@ function pristine(filters: FilterFormState): boolean {
 const filterGrants = (grants: Grant[], state: FilterState): Grant[] => {
     const filterMethods = new Filters(state.criteria);
     const newFilters = filterMethods.getFilters();
+    logger('New Filters', [newFilters])
     const keys = filterMethods.getKeys();
+    logger('Keys', [keys])
     let filteredArray: Grant[] = [];
     let amountArray: Grant[] = [];
     for (let i = 0; i < keys.length; i++) {
+        logger('Filtered Array', filteredArray)
         if (keys[i] === 'amount') {
             amountArray = filterMethods.amount(grants, newFilters[keys[i]]);
         } else {
-            const otherArray = filterMethods.other(amountArray.length > 0 ? amountArray : grants, newFilters[keys[i]], keys[i]);
+            logger('Filtered Array before Other Called', [filteredArray])
+            const otherArray = filterMethods.other(amountArray.length > 0 ? amountArray : filteredArray.length > 0 ? filteredArray : grants, newFilters[keys[i]], keys[i]);
             filteredArray = [...filteredArray, ...otherArray];
+            logger('Filtered Array before Other Called', [filteredArray])
         }
     }
     if (filteredArray.length === 0 && amountArray.length !== 0) {
@@ -33,7 +39,10 @@ const filterGrants = (grants: Grant[], state: FilterState): Grant[] => {
     }
     // @ts-ignore
     filteredArray.sort((a, b) => a.id > b.id ? 1 : -1);
-    return filterMethods.pristine() ? grants : filteredArray
+    const checkDuplicate = filteredArray.map(grant => grant.id);
+    // @ts-ignore
+    const newArray = [...new Set(checkDuplicate)].map(id => filteredArray.filter(grant => grant.id === id)[0]);
+    return filterMethods.pristine() ? grants : newArray
 };
 
 export const filterReducer = (state = initialState, action: FilterActions): FilterState => {
