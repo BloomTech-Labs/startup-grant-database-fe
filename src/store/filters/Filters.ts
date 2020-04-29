@@ -44,7 +44,7 @@ export class Filters {
         const newObj: FilterFormState = {
             amount: [],
             geographic_region: [],
-            domain_areas: []
+            area_focus: []
         };
         for (let values of this.keys) {
             newObj[values] = this.filters[values].filter(item => item.checked);
@@ -62,9 +62,13 @@ export class Filters {
     }
 
     other(grants: Grant[], currentFilters: any[], key: string): Grant[] {
-        const returnGrants: Grant[] = [];
-        for (let values of currentFilters) {
-            this.filter(grants, key, values.key).forEach(eachGrant => returnGrants.push(eachGrant));
+        let returnGrants: Grant[] = [];
+        if (currentFilters.length > 0) {
+            for (let values of currentFilters) {
+                this.filter(grants, key, values.key).forEach(eachGrant => returnGrants.push(eachGrant));
+            }
+        } else {
+            returnGrants = grants;
         }
         return returnGrants;
     }
