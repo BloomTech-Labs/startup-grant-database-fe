@@ -1,6 +1,5 @@
 import {Grant} from "../grants/grantTypes";
 import {FilterFormState} from "./filterTypes";
-import {logger} from "../utils/logger";
 
 export class Filters {
     private readonly keys: string[];
@@ -45,7 +44,7 @@ export class Filters {
         const newObj: FilterFormState = {
             amount: [],
             geographic_region: [],
-            domain_areas: []
+            area_focus: []
         };
         for (let values of this.keys) {
             newObj[values] = this.filters[values].filter(item => item.checked);
@@ -63,17 +62,14 @@ export class Filters {
     }
 
     other(grants: Grant[], currentFilters: any[], key: string): Grant[] {
-        logger('Grants, CurrentFilters, and Key coming into Other Filter', [grants, currentFilters, key])
-        const returnGrants: Grant[] = [];
+        let returnGrants: Grant[] = [];
         if (currentFilters.length > 0) {
             for (let values of currentFilters) {
                 this.filter(grants, key, values.key).forEach(eachGrant => returnGrants.push(eachGrant));
             }
         } else {
-            logger('Grants in else', [grants])
-            grants.forEach(grant => returnGrants.push(grant));
+            returnGrants = grants;
         }
-        logger('Return Grants from Other', [returnGrants])
         return returnGrants;
     }
 
