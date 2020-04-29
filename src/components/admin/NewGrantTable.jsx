@@ -19,7 +19,6 @@ import { useForm } from "../../hooks/useForm";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import { green } from "@material-ui/core/colors";
 import Checkbox from "@material-ui/core/Checkbox";
-import { stat } from "fs";
 
 const columns = [
   { id: "competition_name", label: "Name" },
@@ -71,6 +70,7 @@ const GreenCheckbox = withStyles({
       color: green[600],
     },
   },
+  checked: {},
 })((props) => <Checkbox color="default" {...props} />);
 
 function NewGrantTable() {
@@ -80,13 +80,16 @@ function NewGrantTable() {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
   const [state, setState] = useState({
-    checked: false,
+    filterAlpha: false,
+    filterStatus: false,
+    filterRequest: false,
   });
-  const handleChangePage = (event, newPage) => setPage(newPage);
 
   useEffect(() => {
     setGrantList(grants);
   }, [grants]);
+
+  const handleChangePage = (event, newPage) => setPage(newPage);
 
   const handleChangeRowsPerPage = (event) => {
     setRowsPerPage(+event.target.value);
@@ -123,6 +126,42 @@ function NewGrantTable() {
     };
   }
 
+  const handleChange = (event) => {
+    event.persist();
+    setState({ ...state, [event.target.name]: event.target.checked });
+    if (state.filterAlpha == true) {
+      const alphaGrants = grantList.sort(alphaSort("competition_name"));
+      setGrantList(alphaGrants);
+    } else if (state.filterStatus == true) {
+      const requestGrants = grantList.filter((grant) => {
+        return grant.has_requests === true;
+      });
+      setGrantList(requestGrants);
+    } else if (state.filterRequest == true) {
+      const statusGrants = grantList.filter((grant) => {
+        return grant.is_reviewed === false;
+      });
+      setGrantList(statusGrants);
+    } else {
+      setGrantList(grants);
+    }
+  };
+
+  const filterItem = [
+    {
+      key: "Alphabetical",
+      name: "filterAlpha",
+    },
+    {
+      key: "Status",
+      name: "filterStatus",
+    },
+    {
+      key: "Suggestions",
+      name: "filterRequest",
+    },
+  ];
+
   return (
     <>
       <Paper className={classes.filterContainer}>
@@ -131,42 +170,20 @@ function NewGrantTable() {
             Filter by:
           </Typography>
         </Grid>
-        <Grid xs={12} md={3} className={classes.filterDiv}>
-          <FormControlLabel
-            control={
-              <GreenCheckbox
-                checked={state.checked}
-                // onChange={handleChange}
-                // name={null}
-              />
-            }
-            label="Alphabetical"
-          />
-        </Grid>
-        <Grid xs={12} md={3} className={classes.filterDiv}>
-          <FormControlLabel
-            control={
-              <GreenCheckbox
-                checked={state.checked}
-                // onChange={handleChange}
-                // name={state.filterStatus}
-              />
-            }
-            label="Status"
-          />
-        </Grid>
-        <Grid xs={12} md={3} className={classes.filterDiv}>
-          <FormControlLabel
-            control={
-              <GreenCheckbox
-                checked={state.checked}
-                // onChange={handleChange}
-                // name={state.filterRequests}
-              />
-            }
-            label="Suggestions"
-          />
-        </Grid>
+        {filterItem.map((filter) => (
+          <Grid xs={12} md={3} className={classes.filterDiv}>
+            <FormControlLabel
+              control={
+                <GreenCheckbox
+                  checked={state.checkedG}
+                  onChange={handleChange}
+                  name={filter.name}
+                />
+              }
+              label={filter.key}
+            />
+          </Grid>
+        ))}
       </Paper>
 
       <Paper className={classes.root}>

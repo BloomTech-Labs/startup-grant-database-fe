@@ -7,7 +7,7 @@ You can find the deployed project at [Founder Grants](https://grantly-b5b58.fire
 
 ## Contributors
 
-[Mario Amaya: Team Lead, Web Dev](https://github.com/MAmaya1) 
+[Mario Amaya: Team Lead, Web Dev](https://github.com/MAmaya1)
 
 [Kristin Barr: Web Dev](https://github.com/Kristinbarr)
 
@@ -21,8 +21,7 @@ You can find the deployed project at [Founder Grants](https://grantly-b5b58.fire
 
 [Donald Whitley: Web Dev](https://github.com/dswhitely1)
 
-
- 
+[Jackson McComas: Web Dev](https://github.com/modernadmiral)
 
 ## Project Overview
 
