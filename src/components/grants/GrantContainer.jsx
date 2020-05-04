@@ -11,6 +11,7 @@ import clsx from "clsx";
 import { useAuth0 } from "../auth0/Auth0Wrapper";
 import Alert from "@material-ui/lab/Alert";
 import { Helmet } from "react-helmet";
+import ResponsiveDialog from "./nonUserModal";
 
 const useStyles = makeStyles((theme) => ({
   homeGridContainer: {
@@ -74,20 +75,33 @@ function GrantContainer(props) {
   const [allGrantMode, setAllGrantMode] = useState(() => {
     return props.match.path === "/grants";
   });
+  const [filtersOpen, setFiltersOpen] = useState(false);
+  // if (allGrantMode) {
+  //   if (isAuthenticated) {
+  //     return allFilteredGrants;
+  //   } else {
+  //     return publicGrants;
+  //   }
+  // } else {
+  //   return favoriteGrants;
+  // }
+  //});
 
   const classes = useStyles();
 
   useEffect(() => {
     if (allGrantMode) {
       if (isAuthenticated) {
-        actions.filters.grantFilter(allGrants)
+        actions.filters.grantFilter(allGrants);
       } else {
-        actions.filters.grantFilter(publicGrants)
+        // public grants was removed for UX reasons
+
+        actions.filters.grantFilter(allGrants);
       }
     } else {
       actions.filters.grantFilter(favoriteGrants);
     }
-  }, [pristine])
+  }, [pristine]);
 
   useEffect(() => {
     setAllGrantMode(props.match.path === "/grants");
@@ -118,12 +132,7 @@ function GrantContainer(props) {
         className={classes.homeGridContainer}
       >
         <Grid item xs={12} md={4} className={classes.grantList}>
-          {!isAuthenticated && (
-            <Alert severity="info" color="success" variant="filled">
-              Create an account to get free access hundreds of curated grants.
-              Fund your ambitions.
-            </Alert>
-          )}
+          {!isAuthenticated && <ResponsiveDialog />}
           {isAuthenticated && (
             <Link to="/mailinglist">
               <Alert severity="success" color="success" variant="filled">
@@ -138,13 +147,11 @@ function GrantContainer(props) {
         </Grid>
 
         <Grid item md={2} className={classes.filterList}>
-          {isAuthenticated && (
-            <>
-              <div className={clsx(classes.filters, classes.showFilters)}>
-                <Filters grants={grants} />
-              </div>
-            </>
-          )}
+          <>
+            <div className={clsx(classes.filters, classes.showFilters)}>
+              <Filters grants={grants} />
+            </div>
+          </>
         </Grid>
       </Grid>
     </>

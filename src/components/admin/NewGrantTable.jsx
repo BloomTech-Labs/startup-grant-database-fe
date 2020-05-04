@@ -174,11 +174,7 @@ function NewGrantTable() {
           <Grid xs={12} md={3} className={classes.filterDiv}>
             <FormControlLabel
               control={
-                <GreenCheckbox
-                  checked={state.checkedG}
-                  onChange={handleChange}
-                  name={filter.name}
-                />
+                <GreenCheckbox onChange={handleChange} name={filter.name} />
               }
               label={filter.key}
             />
