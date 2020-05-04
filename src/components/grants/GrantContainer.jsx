@@ -94,11 +94,13 @@ function GrantContainer(props) {
     if (allGrantMode) {
       if (isAuthenticated) {
         actions.filters.grantFilter(allGrants);
+      } else {
+        actions.filters.grantFilter(allGrants);
       }
     } else {
       actions.filters.grantFilter(favoriteGrants);
     }
-    // public grants was removed for UI reasons
+    // public grants was removed for UX reasons
   }, [pristine]);
 
   // useEffect(() => {

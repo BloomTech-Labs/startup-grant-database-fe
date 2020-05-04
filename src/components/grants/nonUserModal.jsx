@@ -8,7 +8,14 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import { useTheme } from "@material-ui/core/styles";
 import { useAuth0 } from "../auth0/Auth0Wrapper";
+import { makeStyles } from "@material-ui/core/styles";
 
+const useStyles = makeStyles((theme) => ({
+  btn: {
+    // background: "#3CBBB1",
+    color: "#FFFFF",
+  },
+}));
 export default function ResponsiveDialog() {
   const [open, setOpen] = React.useState(true);
   const theme = useTheme();
@@ -23,6 +30,8 @@ export default function ResponsiveDialog() {
     setOpen(false);
   };
 
+  const classes = useStyles();
+
   return (
     <div>
       <Dialog
@@ -31,9 +40,8 @@ export default function ResponsiveDialog() {
         onClose={handleClose}
         aria-labelledby="responsive-dialog-title"
       >
-        <DialogTitle id="responsive-dialog-title">
-          {" "}
-          Stay up to date with the latest funding offerings and opportunities.
+        <DialogTitle id="responsive-dialog-title" className={classes.title}>
+          Stay up to date with the latest funding opportunities and offerings.
         </DialogTitle>
         <DialogContent>
           <DialogContentText>
@@ -42,7 +50,12 @@ export default function ResponsiveDialog() {
           <DialogContentText>- Marc Andreessen</DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button autoFocus onClick={() => loginWithRedirect()} color="primary">
+          <Button
+            autoFocus
+            onClick={() => loginWithRedirect()}
+            color="primary"
+            className={classes.btn}
+          >
             Create an Account
           </Button>
           <Button onClick={handleClose} color="primary" autoFocus>
