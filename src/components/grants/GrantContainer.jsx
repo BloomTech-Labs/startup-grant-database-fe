@@ -95,12 +95,13 @@ function GrantContainer(props) {
       if (isAuthenticated) {
         actions.filters.grantFilter(allGrants);
       } else {
+        // public grants was removed for UX reasons
+
         actions.filters.grantFilter(allGrants);
       }
     } else {
       actions.filters.grantFilter(favoriteGrants);
     }
-    // public grants was removed for UX reasons
   }, [pristine]);
 
   // useEffect(() => {
