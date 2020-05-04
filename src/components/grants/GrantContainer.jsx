@@ -66,7 +66,6 @@ const useStyles = makeStyles((theme) => ({
 
 function GrantContainer(props) {
   const { isAuthenticated } = useAuth0();
-  const [isInitialLoad, setIsInitialLoad] = useState(true);
   const grants = useSelector((state) => state.filters.grants);
   const { pristine } = useSelector((state) => state.filters);
   const allGrants = useSelector((state) => state.grants.grants);
@@ -103,32 +102,6 @@ function GrantContainer(props) {
       actions.filters.grantFilter(favoriteGrants);
     }
   }, [pristine]);
-
-  // useEffect(() => {
-  //   if (isAuthenticated) {
-  //     if (allGrantMode) {
-  //       if (pristine && allFilteredGrants.length !== allTheGrants.length) {
-  //         setGrants(allTheGrants);
-  //       } else {
-  //         if (allFilteredGrants.length !== grants.length) {
-  //           if (!isInitialLoad) {
-  //             setGrants(allFilteredGrants);
-  //           }
-  //           setIsInitialLoad(false);
-  //         }
-  //       }
-  //     } else {
-  //       if (favoriteGrants.length !== grants.length) {
-  //         setGrants(favoriteGrants);
-  //         setTimeout(actions.grants.selectGrant(grants[0]), 10);
-  //       }
-  //     }
-  //   } else {
-  //     setGrants(publicGrants);
-  //     actions.grants.selectGrant(grants[0]);
-  //   }
-  //   setIsInitialLoad(false);
-  // }, [favoriteGrants, allGrantMode, isAuthenticated, publicGrants]);
 
   useEffect(() => {
     setAllGrantMode(props.match.path === "/grants");
