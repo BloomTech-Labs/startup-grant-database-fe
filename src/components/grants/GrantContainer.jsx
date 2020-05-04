@@ -76,30 +76,29 @@ function GrantContainer(props) {
     return props.match.path === "/grants";
   });
   const [filtersOpen, setFiltersOpen] = useState(false);
-    // if (allGrantMode) {
-    //   if (isAuthenticated) {
-    //     return allFilteredGrants;
-    //   } else {
-    //     return publicGrants;
-    //   }
-    // } else {
-    //   return favoriteGrants;
-    // }
-    //});
+  // if (allGrantMode) {
+  //   if (isAuthenticated) {
+  //     return allFilteredGrants;
+  //   } else {
+  //     return publicGrants;
+  //   }
+  // } else {
+  //   return favoriteGrants;
+  // }
+  //});
 
   const classes = useStyles();
 
   useEffect(() => {
     if (allGrantMode) {
       if (isAuthenticated) {
-        actions.filters.grantFilter(allGrants)
-      } else {
-        actions.filters.grantFilter(publicGrants)
+        actions.filters.grantFilter(allGrants);
       }
     } else {
       actions.filters.grantFilter(favoriteGrants);
     }
-  }, [pristine])
+    // public grants was removed for UI reasons
+  }, [pristine]);
 
   // useEffect(() => {
   //   if (isAuthenticated) {
