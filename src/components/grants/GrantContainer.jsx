@@ -147,13 +147,11 @@ function GrantContainer(props) {
         </Grid>
 
         <Grid item md={2} className={classes.filterList}>
-          {isAuthenticated && (
-            <>
-              <div className={clsx(classes.filters, classes.showFilters)}>
-                <Filters grants={grants} />
-              </div>
-            </>
-          )}
+          <>
+            <div className={clsx(classes.filters, classes.showFilters)}>
+              <Filters grants={grants} />
+            </div>
+          </>
         </Grid>
       </Grid>
     </>
