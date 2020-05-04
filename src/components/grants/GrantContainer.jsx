@@ -11,6 +11,7 @@ import clsx from "clsx";
 import { useAuth0 } from "../auth0/Auth0Wrapper";
 import Alert from "@material-ui/lab/Alert";
 import { Helmet } from "react-helmet";
+import ResponsiveDialog from "./nonUserModal";
 
 const useStyles = makeStyles((theme) => ({
   homeGridContainer: {
@@ -155,12 +156,7 @@ function GrantContainer(props) {
         className={classes.homeGridContainer}
       >
         <Grid item xs={12} md={4} className={classes.grantList}>
-          {!isAuthenticated && (
-            <Alert severity="info" color="success" variant="filled">
-              Create an account to get free access hundreds of curated grants.
-              Fund your ambitions.
-            </Alert>
-          )}
+          {!isAuthenticated && <ResponsiveDialog />}
           {isAuthenticated && (
             <Link to="/mailinglist">
               <Alert severity="success" color="success" variant="filled">
