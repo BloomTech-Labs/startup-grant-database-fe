@@ -129,14 +129,6 @@ export const AddGrant = (props) => {
     });
   };
 
-  const handleNext = () => {
-    setActiveStep(activeStep + 1);
-  };
-
-  const handleBack = () => {
-    setActiveStep(activeStep - 1);
-  };
-
   const submitGrant = (event) => {
     event.preventDefault();
     actions.grants.postGrant(grantInfo, token);
@@ -164,19 +156,16 @@ export const AddGrant = (props) => {
 
       <main className={styles.layout}>
         <Paper className={styles.paper}>
-          {/* <GrantInfoForm handleChanges={handleChanges} grantInfo={grantInfo} />
+          <GrantInfoForm handleChanges={handleChanges} grantInfo={grantInfo} />
 
           <GrantFocusForm handleChanges={handleChanges} grantInfo={grantInfo} />
 
-          <GrantDemoForm handleChanges={handleChanges} grantInfo={grantInfo} /> */}
+          <GrantDemoForm handleChanges={handleChanges} grantInfo={grantInfo} />
 
           <Fragment>
-            <Button
-              variant="contained"
-              color="primary"
-              // Ternary that determines what button to display based on what component the user is on
-              onClick={submitGrant}
-            ></Button>
+            <Button variant="contained" color="primary" onClick={submitGrant}>
+              Submit
+            </Button>
           </Fragment>
         </Paper>
       </main>

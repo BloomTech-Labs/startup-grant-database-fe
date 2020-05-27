@@ -16,7 +16,7 @@ export const GrantFocusForm = (props) => {
 
   return (
     <Fragment>
-      <Typography variant="h5">Foucus</Typography>
+      <Typography variant="h5">Focus</Typography>
       <Divider variant="middle" />
       <Grid container spacing={3} className={styles.bottomBox}>
         {FocusFormData.map((data) => {

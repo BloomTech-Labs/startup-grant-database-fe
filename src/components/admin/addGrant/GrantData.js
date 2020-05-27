@@ -1,76 +1,3 @@
-export const InfoFieldData = [
-  {
-    label: "Grant Name",
-    type: "text",
-    name: "competition_name",
-    multiline: false,
-    data: [],
-  },
-  {
-    label: "Website",
-    type: "url",
-    name: "website",
-    placeholder: "https://foundergrants.com",
-    multiline: false,
-    data: [],
-  },
-  {
-    label: "Amount",
-    type: "number",
-    name: "amount",
-    multiline: false,
-    data: [],
-  },
-  {
-    label: "Amount Notes",
-    type: "text",
-    name: "amount_notes",
-    rows: "3",
-    variant: "outlined",
-    multiline: true,
-    data: [],
-  },
-];
-
-export const DemoFormData = [
-  {
-    label: "Geographic Region",
-    name: "geographic_region",
-    select: true,
-    data: geographicRegion,
-  },
-  {
-    label: "Target Demographic",
-    name: "target_entrepreneur_demographic",
-    select: true,
-    data: targetDemographic,
-  },
-  {
-    label: "Application Due Date",
-    name: "most_recent_application_due_date",
-    type: "string",
-    inputLabel: { shrink: true },
-    sm: 6,
-    data: [],
-  },
-  {
-    label: "Early Stage Funding",
-    name: "early_stage_funding",
-    select: true,
-    sm: 6,
-    data: funding,
-  },
-  {
-    label: "Description",
-    type: "text",
-    name: "notes",
-    multiline: true,
-    variant: "outlined",
-    rows: "3",
-    data: [],
-  },
-];
-
 //Array of values for the "Early Stage Funding" dropdown
 
 const funding = [
@@ -177,3 +104,76 @@ export const FocusFormData = [
 ];
 
 //Data for the grant info form
+
+export const InfoFieldData = [
+  {
+    label: "Grant Name",
+    type: "text",
+    name: "competition_name",
+    multiline: false,
+    data: [],
+  },
+  {
+    label: "Website",
+    type: "url",
+    name: "website",
+    placeholder: "https://foundergrants.com",
+    multiline: false,
+    data: [],
+  },
+  {
+    label: "Amount",
+    type: "number",
+    name: "amount",
+    multiline: false,
+    data: [],
+  },
+  {
+    label: "Amount Notes",
+    type: "text",
+    name: "amount_notes",
+    rows: "3",
+    variant: "outlined",
+    multiline: true,
+    data: [],
+  },
+];
+
+export const DemoFormData = [
+  {
+    label: "Geographic Region",
+    name: "geographic_region",
+    select: true,
+    data: geographicRegion,
+  },
+  {
+    label: "Target Demographic",
+    name: "target_entrepreneur_demographic",
+    select: true,
+    data: targetDemographic,
+  },
+  {
+    label: "Application Due Date",
+    name: "most_recent_application_due_date",
+    type: "string",
+    inputLabel: { shrink: true },
+    sm: 6,
+    data: [],
+  },
+  {
+    label: "Early Stage Funding",
+    name: "early_stage_funding",
+    select: true,
+    sm: 6,
+    data: funding,
+  },
+  {
+    label: "Description",
+    type: "text",
+    name: "notes",
+    multiline: true,
+    variant: "outlined",
+    rows: "3",
+    data: [],
+  },
+];
