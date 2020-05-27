@@ -147,7 +147,6 @@ export const AddGrant = (props) => {
       early_stage_funding: "",
       details_last_updated: "",
     });
-    handleNext();
   };
 
   return (
