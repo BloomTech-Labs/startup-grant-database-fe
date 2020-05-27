@@ -100,7 +100,12 @@ const routes = [
     key: "ADD_ADMIN_GRANT",
     path: "/addgrant",
     exact: true,
-    component: AddGrant,
+    component: AdminRoute,
+    renderComponent: {
+      path: "/addgrant",
+      exact: true,
+      component: AddGrant,
+    },
   },
 ];
 

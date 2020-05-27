@@ -111,7 +111,6 @@ export const AddGrant = (props) => {
     amount: "",
     amount_notes: "",
     geographic_region: "",
-    // domain_areas: "",
     target_entrepreneur_demographic: "",
     notes: "",
     early_stage_funding: false,
