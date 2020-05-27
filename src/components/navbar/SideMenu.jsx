@@ -107,6 +107,7 @@ const SideMenu = ({ side, toggleDrawer }) => {
                 icon={PeopleAltIcon}
               />
             )}
+            <MenuItem url="/addgrant" title="Add Grant" icon={AddIcon} />
           </>
         )}
         <ListItem>

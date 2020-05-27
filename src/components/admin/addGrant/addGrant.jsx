@@ -13,13 +13,13 @@ import { GrantDemoForm } from "./formComponents.jsx/demoForm";
 const useStyles = makeStyles((theme) => ({
   layout: {
     width: "auto",
+    marginBottom: "8em",
     marginLeft: theme.spacing(2),
     marginRight: theme.spacing(2),
     [theme.breakpoints.up(600 + theme.spacing(2) * 2)]: {
       width: 700,
       marginLeft: "auto",
       marginRight: "auto",
-      // height: "auto"
       height: 1000,
     },
   },
