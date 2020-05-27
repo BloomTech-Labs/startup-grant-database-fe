@@ -1,18 +1,14 @@
 //Dependencies
 import React, { Fragment, useContext, useState } from "react";
 import { useSelector } from "react-redux";
-import { ActionsContext } from "../../context/ActionsContext";
+import { ActionsContext } from "../../../context/ActionsContext";
 import { makeStyles } from "@material-ui/core/styles";
-import { SubmitConfirmation } from "./formElements/SubmitConfirmation.jsx";
 //Objects
-// import formStyles from "../styles/formStyles";
 import { Button, CssBaseline, Paper } from "@material-ui/core";
 //Grant form components for each step
-import { GrantInfoForm } from "./formElements/GrantInfoForm";
-import { GrantFocusForm } from "./formElements/GrantFocusForm";
-import { GrantDemoForm } from "./formElements/GrantDemoForm";
-import { SuggestionFormTopContent } from "./formElements/SuggestionFormTopContent.jsx";
-import { GrantSteps } from "./formElements/GrantSteps.jsx";
+import { GrantInfoForm } from "./formComponents.jsx/infoForm";
+import { GrantFocusForm } from "./formComponents.jsx/focusForm";
+import { GrantDemoForm } from "./formComponents.jsx/demoForm";
 
 const useStyles = makeStyles((theme) => ({
   layout: {
@@ -133,25 +129,6 @@ export const AddGrant = (props) => {
     });
   };
 
-  function getStepContent(step) {
-    switch (step) {
-      case 0:
-        return (
-          <GrantInfoForm handleChanges={handleChanges} grantInfo={grantInfo} />
-        );
-      case 1:
-        return (
-          <GrantFocusForm handleChanges={handleChanges} grantInfo={grantInfo} />
-        );
-      case 2:
-        return (
-          <GrantDemoForm handleChanges={handleChanges} grantInfo={grantInfo} />
-        );
-      default:
-        throw new Error("Unknown Step");
-    }
-  }
-
   const handleNext = () => {
     setActiveStep(activeStep + 1);
   };
@@ -187,45 +164,19 @@ export const AddGrant = (props) => {
 
       <main className={styles.layout}>
         <Paper className={styles.paper}>
-          <SuggestionFormTopContent />
-          <GrantSteps steps={steps} activeStep={activeStep} />
+          {/* <GrantInfoForm handleChanges={handleChanges} grantInfo={grantInfo} />
+
+          <GrantFocusForm handleChanges={handleChanges} grantInfo={grantInfo} />
+
+          <GrantDemoForm handleChanges={handleChanges} grantInfo={grantInfo} /> */}
 
           <Fragment>
-            {/* Ternary statement to determine if the grant has been submitted.  This is not being used now, but will be once an email input option has been implemented in future releases  */}
-            {activeStep === steps.length ? (
-              <SubmitConfirmation />
-            ) : (
-              //else portion of ternary
-              <Fragment>
-                {getStepContent(activeStep)}
-
-                <div className={styles.button}>
-                  {activeStep !== 0 && (
-                    <Button
-                      onClick={handleBack}
-                      variant="outlined"
-                      className={styles.back}
-                      style={{ marginRight: "30px" }}
-                    >
-                      Back
-                    </Button>
-                  )}
-                  <Button
-                    variant="contained"
-                    color="primary"
-                    // Ternary that determines what button to display based on what component the user is on
-                    onClick={
-                      activeStep === steps.length - 1 ? submitGrant : handleNext
-                    }
-                    className={styles.submit}
-                    style={{ color: "#fff" }}
-                  >
-                    {/* Ternary that determine what button to display*/}
-                    {activeStep === steps.length - 1 ? "submit" : "Next"}
-                  </Button>
-                </div>
-              </Fragment>
-            )}
+            <Button
+              variant="contained"
+              color="primary"
+              // Ternary that determines what button to display based on what component the user is on
+              onClick={submitGrant}
+            ></Button>
           </Fragment>
         </Paper>
       </main>
