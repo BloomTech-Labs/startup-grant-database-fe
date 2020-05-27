@@ -106,7 +106,6 @@ export const AddGrant = (props) => {
     sponsoring_entity: "",
 
     website: "",
-
     most_recent_application_due_date: "",
 
     amount: "",
@@ -116,7 +115,7 @@ export const AddGrant = (props) => {
     target_entrepreneur_demographic: "",
     notes: "",
     early_stage_funding: false,
-    is_reviewed: false,
+    is_reviewed: true,
     has_requests: false,
     details_last_updated: "",
   });
