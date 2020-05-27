@@ -164,7 +164,7 @@ function NewGrantTable() {
 
   return (
     <>
-      <Paper className={classes.filterContainer}>
+      {/* <Paper className={classes.filterContainer}>
         <Grid xs={12} md={3}>
           <Typography variant="h6" fontWeight="600">
             Filter by:
@@ -180,7 +180,7 @@ function NewGrantTable() {
             />
           </Grid>
         ))}
-      </Paper>
+      </Paper> */}
 
       <Paper className={classes.root}>
         <TableContainer className={classes.container}>
