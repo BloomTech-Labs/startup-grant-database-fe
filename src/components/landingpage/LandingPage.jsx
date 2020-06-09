@@ -65,8 +65,8 @@ function LandingPage() {
       {isAuthenticated && (
         <Link to="/settings">
           <Alert severity="success" color="success" variant="filled">
-            Hello, welcome to FG. Fill out your user profile, and we might be
-            able to help connect you with the resources you need to be awesome.
+            Fill out your user profile, and we will help connect you with the
+            resources you need to be awesome.
           </Alert>
         </Link>
       )}
@@ -74,8 +74,8 @@ function LandingPage() {
       {!isAuthenticated && (
         <Link onClick={() => loginWithRedirect()}>
           <Alert severity="info" color="success" variant="filled">
-            Hello, welcome to Founder Grants. Creating a free account will set
-            you up with the resources you need to grow your project.
+            Create a free account to be notified of new grants that fit your
+            criteria.
           </Alert>
         </Link>
       )}
