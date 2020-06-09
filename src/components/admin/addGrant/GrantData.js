@@ -90,13 +90,13 @@ const areaFocus = [
 
 export const FocusFormData = [
   {
-    label: "Sponsoring Entity",
+    label: "Sponsoring Entity - Required",
     type: "text",
     name: "sponsoring_entity",
     data: [],
   },
   {
-    label: "Grant Categories",
+    label: "Grant Categories - Required",
     name: "area_focus",
     select: true,
     data: areaFocus,
@@ -107,22 +107,22 @@ export const FocusFormData = [
 
 export const InfoFieldData = [
   {
-    label: "Grant Name",
+    label: "Grant Name - Required",
     type: "text",
     name: "competition_name",
     multiline: false,
     data: [],
   },
   {
-    label: "Website",
+    label: "Website - Required (ex. https://www.wikipedia.org) ",
     type: "url",
     name: "website",
-    placeholder: "https://foundergrants.com",
+    placeholder: "foundergrants.com",
     multiline: false,
     data: [],
   },
   {
-    label: "Amount",
+    label: "Amount - Required - Must be an interger - if uncertain input '0' ",
     type: "number",
     name: "amount",
     multiline: false,
@@ -141,19 +141,19 @@ export const InfoFieldData = [
 
 export const DemoFormData = [
   {
-    label: "Geographic Region",
+    label: "Geographic Region - Required",
     name: "geographic_region",
     select: true,
     data: geographicRegion,
   },
   {
-    label: "Target Demographic",
+    label: "Target Demographic - Required",
     name: "target_entrepreneur_demographic",
     select: true,
     data: targetDemographic,
   },
   {
-    label: "Application Due Date",
+    label: "Application Due Date - Must be empty or in MM-DD-YYYY format  ",
     name: "most_recent_application_due_date",
     type: "string",
     inputLabel: { shrink: true },
