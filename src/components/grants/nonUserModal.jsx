@@ -42,12 +42,14 @@ export default function ResponsiveDialog() {
       >
         <DialogTitle id="responsive-dialog-title" className={classes.title}>
           Stay up to date with the latest funding opportunities and offerings.
+          {/* Create a free account to be notified of new grants that fit your
+          criteria */}
         </DialogTitle>
         <DialogContent>
           <DialogContentText>
-            "I know where I'm putting my money."
+            "A real education is a liberation."
           </DialogContentText>
-          <DialogContentText>- Marc Andreessen</DialogContentText>
+          <DialogContentText>- Nietzsche</DialogContentText>
         </DialogContent>
         <DialogActions>
           <Button
