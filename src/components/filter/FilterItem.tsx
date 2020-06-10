@@ -19,6 +19,7 @@ function FilterItem(props: IProps) {
           checked={data.checked}
           value={data.checked}
           onChange={() => handleChange(data, labelText)}
+          size={"small"}
         />
       }
       label={data.key}
