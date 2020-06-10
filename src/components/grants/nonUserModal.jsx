@@ -52,16 +52,17 @@ export default function ResponsiveDialog() {
           <DialogContentText>- Nietzsche</DialogContentText>
         </DialogContent>
         <DialogActions>
+          <Button onClick={handleClose} color="secondary" autoFocus>
+            Close
+          </Button>
           <Button
             autoFocus
             onClick={() => loginWithRedirect()}
             color="primary"
-            className={classes.btn}
+            variant="outlined"
+            className={classes.abtn}
           >
             Create an Account
-          </Button>
-          <Button onClick={handleClose} color="primary" autoFocus>
-            Close
           </Button>
         </DialogActions>
       </Dialog>
