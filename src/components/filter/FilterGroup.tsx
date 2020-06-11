@@ -17,7 +17,7 @@ function FilterGroup(props: IProps) {
     <FormControl
       className={classes.set}
       component="fieldset"
-      style={{ height: "auto", width: "auto" }}
+      // style={{ height: "auto", width: "auto" }}
     >
       <FormLabel className={classes.label} component="legend">
         {title}
