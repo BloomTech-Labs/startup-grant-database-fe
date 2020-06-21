@@ -17,7 +17,6 @@ const NewFilters = ({ landing, classes, setFilters, filters }: IProps) => {
   const { isModerator } = useSelector((state: AppState) => state.user);
 
   function handleChange(data: FormState, key: string): void {
-    console.log(data, key);
     Object.keys(filters).forEach((eachKey) => {
       if (eachKey === key) {
         // @ts-ignore
@@ -34,36 +33,24 @@ const NewFilters = ({ landing, classes, setFilters, filters }: IProps) => {
   }
 
   const title = ["Grant Value", "Region", "Focus Area"];
+  const filterFields = Object.keys(filters);
+
   return (
     <Card className={classes.card} raised>
       <Typography className={classes.title} variant="h5" component="h2">
         {landing ? "Find Funding Now." : "Filter grants by:"}
       </Typography>
       <FormGroup className={classes.filterCard}>
-        <FilterGroup
-          classes={classes}
-          key={0}
-          handleChange={handleChange}
-          data={filters.amount}
-          title={title[0]}
-          labelText="amount"
-        />
-        <FilterGroup
-          classes={classes}
-          key={0}
-          handleChange={handleChange}
-          data={filters.geographic_region}
-          title={title[1]}
-          labelText="geographic_region"
-        />
-        <FilterGroup
-          classes={classes}
-          key={0}
-          handleChange={handleChange}
-          data={filters.area_focus}
-          title={title[2]}
-          labelText="area_focus"
-        />
+        {filterFields.map((group, id) => (
+          <FilterGroup
+            classes={classes}
+            key={id}
+            handleChange={handleChange}
+            data={filters[group]}
+            title={title[id]}
+            labelText={group}
+          />
+        ))}
       </FormGroup>
       <Button
         variant="contained"
