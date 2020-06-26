@@ -33,15 +33,13 @@ const NewFilters = ({ landing, classes, setFilters, filters }: IProps) => {
   }
 
   const title = ["Grant Value", "Region", "Focus Area"];
-  const filterFields = Object.keys(filters);
-
   return (
     <Card className={classes.card} raised>
       <Typography className={classes.title} variant="h5" component="h2">
         {landing ? "Find Funding Now." : "Filter grants by:"}
       </Typography>
       <FormGroup className={classes.filterCard}>
-        {filterFields.map((group, id) => (
+        {Object.keys(filters).map((group, id) => (
           <FilterGroup
             classes={classes}
             key={id}
