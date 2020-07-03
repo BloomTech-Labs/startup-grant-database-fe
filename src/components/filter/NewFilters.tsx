@@ -39,7 +39,16 @@ const NewFilters = ({ landing, classes, setFilters, filters }: IProps) => {
         {landing ? "Find Funding Now." : "Filter grants by:"}
       </Typography>
       <FormGroup className={classes.filterCard}>
-        {console.log(filters)}
+
+          <FilterGroup
+            classes={classes}
+            key={id}
+            handleChange={handleChange}
+            data={filters[group]}
+            title={title[id]}
+            labelText={group}
+          />
+
         <FilterGroup
           classes={classes}
           key={0}
