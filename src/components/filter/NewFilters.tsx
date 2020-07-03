@@ -40,7 +40,6 @@ const NewFilters = ({ landing, classes, setFilters, filters }: IProps) => {
       </Typography>
       <FormGroup className={classes.filterCard}>
         {console.log(filters)}
-        {/* {Object.keys(filters).map((group, id) => ( */}
         <FilterGroup
           classes={classes}
           key={0}
@@ -65,7 +64,6 @@ const NewFilters = ({ landing, classes, setFilters, filters }: IProps) => {
           title={title[2]}
           labelText="area_focus"
         />
-        {/* ))} */}
       </FormGroup>
       <Button
         variant="contained"
