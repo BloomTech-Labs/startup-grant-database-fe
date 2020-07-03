@@ -22,6 +22,7 @@ function FilterGroup(props: IProps) {
       <FormLabel className={classes.label} component="legend">
         {title}
       </FormLabel>
+      {console.log(data, "filterGroupData")}
 
       {data.map((item: FormState) => (
         <FilterItem
