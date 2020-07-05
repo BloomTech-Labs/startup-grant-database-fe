@@ -39,7 +39,7 @@ const NewFilters = ({ landing, classes, setFilters, filters }: IProps) => {
         {landing ? "Find Funding Now." : "Filter grants by:"}
       </Typography>
       <FormGroup className={classes.filterCard}>
-        {/* {Object.keys(filters).map((group, id) => (
+        {Object.keys(filters).map((group, id) => (
           <FilterGroup
             classes={classes}
             key={id}
@@ -48,8 +48,8 @@ const NewFilters = ({ landing, classes, setFilters, filters }: IProps) => {
             title={title[id]}
             labelText={group}
           />
-        ))} */}
-        <FilterGroup
+        ))}
+        {/* <FilterGroup
           classes={classes}
           key={0}
           handleChange={handleChange}
@@ -72,7 +72,7 @@ const NewFilters = ({ landing, classes, setFilters, filters }: IProps) => {
           data={filters.area_focus}
           title={title[2]}
           labelText="area_focus"
-        />
+        /> */}
       </FormGroup>
       <Button
         variant="contained"
