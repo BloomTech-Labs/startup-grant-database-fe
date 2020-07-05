@@ -65,11 +65,23 @@ export class Filters {
   }
 
   amount(grants: Grant[], currentFilters: any[]): Grant[] {
-    return currentFilters
-      .map(({ values: { min, max } }) => this.filter(grants, min, max))
-      .flat();
+    const returnGrants: Grant[] = [];
+    for (let values of currentFilters) {
+      const {
+        values: { min, max },
+      } = values;
+      this.filter(grants, min, max).forEach((eachGrant) =>
+        returnGrants.push(eachGrant)
+      );
+    }
+    return returnGrants;
   }
 
+  // amount(grants: Grant[], currentFilters: any[]): Grant[] {
+  //     return currentFilters
+  //         .map(({ values: { min, max } }) => this.filter(grants, min, max))
+  //         .flat();
+  //   }
   other(grants: Grant[], currentFilters: any[], key: string): Grant[] {
     let returnGrants: Grant[] = [];
     if (currentFilters.length > 0) {
