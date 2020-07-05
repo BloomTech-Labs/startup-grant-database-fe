@@ -64,14 +64,13 @@ export class Filters {
     other(grants: Grant[], currentFilters: any[], key: string): Grant[] {
         let returnGrants: Grant[] = [];
         if (currentFilters.length > 0) {
-          for (let values of currentFilters) {
-            this.filter(grants, key, values.key).forEach((eachGrant) =>
-              returnGrants.push(eachGrant)
-            );
-          }
+            for (let values of currentFilters) {
+                this.filter(grants, key, values.key).forEach(eachGrant => returnGrants.push(eachGrant));
+            }
         } else {
-          returnGrants = grants;
+            returnGrants = grants;
         }
         return returnGrants;
-      }
     }
+
+}
