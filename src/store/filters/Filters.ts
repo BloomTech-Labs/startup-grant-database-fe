@@ -28,7 +28,7 @@ export class Filters {
     }
 
     getKeys(): string[] {
-        return Object.keys(this.filters).map(key => key);
+        return ['amount', 'area_focus', 'geographic_region']
     }
 
     pristine(): boolean {
