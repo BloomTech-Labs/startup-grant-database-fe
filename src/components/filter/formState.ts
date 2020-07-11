@@ -14,7 +14,7 @@ export const filterFormState: FilterFormState = {
       key: "$100,000+",
       checked: false,
       values: {
-        min: 100001,
+        min: 100000,
         max: null,
       },
     },
